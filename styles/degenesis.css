@@ -1,3 +1,7 @@
+:root {
+    --degenesis-red: #ed1d27;
+}
+
 
   @font-face {
     font-family: "Avenir";
@@ -10,7 +14,6 @@
   }
 
 
-
 .degenesis.sheet .window-content {
     padding: 5px;
     overflow-y: hidden;
@@ -18,26 +21,50 @@
     font-family: "Avenir"
 }
 
-input[type="text"] {
+.degenesis.sheet input[type="text"] {
     background: none;
     border: none;
-    border-bottom: 1px solid black
 }
 
-input[type="text"]:focus {
+.degenesis.sheet input[type="text"]:focus {
     box-shadow: none;
 }
 
-input[type="text"]:hover {
-    color: #ed1d27;
+.degenesis.sheet input[type="text"]:hover {
+    color: var(--degenesis-red);
+    -webkit-transition: color 100ms linear;
+    -ms-transition: color 100ms linear;
+    transition: color 100ms linear;
 }
 
 .degenesis.sheet .sheet-field {
     display: flex;
+    border-bottom: 1px solid black
 }
+.degenesis.sheet .sheet-field-stack:hover,
 .degenesis.sheet .sheet-field:hover {
-    color: #ed1d27;    
+    color: var(--degenesis-red);
+    -webkit-transition: color 100ms linear;
+    -ms-transition: color 100ms linear;
+    transition: color 100ms linear;
+
+
 }
+
+.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
+.degenesis.sheet .sheet-field:hover {
+   border-bottom: 1px solid var(--degenesis-red);   
+   -webkit-transition: border-bottom 100ms linear;
+   -ms-transition: border-bottom 100ms linear;
+   transition: border-bottom 100ms linear;
+}
+
+.degenesis.sheet .sheet-field-stack .field-input-stacked {
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+
 .degenesis.sheet .sheet-field .field-name {
     margin-top: 5px;
 }
@@ -60,62 +87,56 @@ input[type="text"]:hover {
     border: none
 }
 
-.degenesis.sheet .header-fields {
-    flex: 1;
-    height: 100px;
-}
-
-.degenesis.sheet .charname {
-    height: 60px;
-    padding: 5px;
-    margin: 0;
-    border-bottom: 0;
-}
-.degenesis.sheet .charname input {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-.degenesis.sheet .resource {
-    height: 40px;
-    width: 50%;
-    padding: 3px 10px;
-    float: left;
-}
-.degenesis.sheet .resource input {
-    width: 100px;
-    height: 28px;
-}
 
 /* Navigation Tabs */
 .degenesis.sheet .tabs {
     flex: 0 0 40px;
-    border-top: 1px solid #AAA;
-    border-bottom: 1px solid #AAA;
 }
 
 .degenesis.sheet .tabs .item {
-    line-height: 40px;
     font-weight: bold;
+    color: white;
+    background-color: black;
+    margin: 0px 20px 20px 10px
 }
 
 .degenesis.sheet .tabs .item.active {
-    text-decoration: underline;
-    text-shadow: none;
+    background-color: var(--degenesis-red);
+    text-shadow: none
 }
 
-/* Content Tabs */
-.degenesis.sheet .sheet-body {
-    height: calc(100% - 160px);
-}
-.degenesis.sheet .sheet-body .tab {
-    height: 100%;
-}
-.degenesis.sheet .sheet-body .editor {
+
+.degenesis.sheet .tab-content {
+    border: 1px solid var(--degenesis-red);
     width: 100%;
-    height: 100%;
+    height: calc(100% - 170px);
 }
+
+.degenesis.sheet .row {
+    display: flex;
+}
+
+.degenesis.sheet .three-Cs .sheet-field-stack{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.degenesis.sheet .three-Cs > *{
+    width: 33%;
+    margin: 15px
+}
+
+.degenesis.sheet .three-Cs > input{
+    width: 33%;
+    margin: 15px
+}
+
+
+.degenesis.sheet .three-Cs img{
+    border: none;
+}
+
 
 
 /* Items */
