@@ -5,38 +5,38 @@
         <div class="header-column">
             <div class="sheet-field">
                 <span class="field-name">NAME:</span>
-                <input class="field-input" type="text"/>
+                <input class="field-input" type="text" name="name" value="{{actor.name}}"/>
               </div>
             <div class="sheet-field">
                     <span class="field-name">AGE:</span>
-                    <input class="field-input" type="text"/>
+                    <input class="field-input" type="text" name="data.age.value" value="{{data.age.value}}"/>
             </div>
             <div class="sheet-field">
                     <span class="field-name">RANK:</span>
-                    <input class="field-input" type="text"/>
+                    <input class="field-input" type="text" name="data.rank.value" value="{{data.rank.value}}"/>
             </div>
             <div class="sheet-field">
                     <span class="field-name">EXPERIENCE:</span>
-                    <input class="field-input" type="text"/>
+                    <input class="field-input" type="text" name="data.experience.value" value="{{data.experience.value}}"/>
             </div>
         </div>    
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>  
         <div class="header-column">
             <div class="sheet-field">
                     <span class="field-name">SEX:</span>
-                    <input class="field-input" type="text"/>
+                    <input class="field-input" type="text" name="data.sex.value" value="{{data.sex.value}}"/>
                 </div>
                 <div class="sheet-field">
                         <span class="field-name">HEIGHT:</span>
-                        <input class="field-input" type="text"/>
+                        <input class="field-input" type="text" name="data.height.value" value="{{data.height.value}}"/>
                 </div>
                 <div class="sheet-field">
                         <span class="field-name">WEIGHT:</span>
-                        <input class="field-input" type="text"/>
+                        <input class="field-input" type="text" name="data.weight.value" value="{{data.weight.value}}"/>
                 </div>
                 <div class="sheet-field">
                         <span class="field-name">DINARS/CD:</span>
-                        <input class="field-input" type="text"/>
+                        <input class="field-input" type="text" name="data.dinars.value" value="{{data.dinars.value}}"/>
                 </div>
         </div>          
     </header>
@@ -45,27 +45,15 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="main">MAIN</a>
         <a class="item" data-tab="attributes">ATTRIBUTES</a>
+        <a class="item" data-tab="combat">COMBAT</a>
         <a class="item" data-tab="inventory">INVENTORY</a>
     </nav>
 
     <div class = "tab-content">
-    <div class ="three-Cs row">
-        <div class = "sheet-field-stack">
-            <input class = "field-input-stacked" type = "text">
-            <div>CULTURE</div>
-            <img height="100" width="100"/>
+        <div class="tab" data-tab="main">
+            {{> systems/degenesis/templates/actor/actor-main.html}}
         </div>
-        <div class = "sheet-field-stack">
-                <input class = "field-input-stacked" type = "text">
-                <div>CONCEPT</div>
-                <img height="100" width="100"/>
-            </div>
-        <div class = "sheet-field-stack">
-                <input class = "field-input-stacked" type = "text">
-                <div>CULT</div>
-                <img height="100" width="100"/>
-        </div>
-    </div>
+        <div class="tab" data-tab="tab2">Content 2</div>
     </div>
 </form>
 

@@ -1,3 +1,5 @@
+import { DEGENESIS } from "../config.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -11,7 +13,7 @@ export class DegenesisActorSheet extends ActorSheet {
   	  template: "systems/degenesis/templates/actor/actor-sheet.html",
       width: 600,
       height: 600,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}]
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main"}]
     });
   }
 
@@ -20,7 +22,20 @@ export class DegenesisActorSheet extends ActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
+    this.loadConfigData(data);
+    data.conceptIcon = this.actor.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
+    data.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
+    data.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
     return data;
+  }
+
+  /* -------------------------------------------- */
+
+
+  loadConfigData(sheetData) {
+    sheetData.concepts = DEGENESIS.concepts
+    sheetData.cults = DEGENESIS.cults
+    sheetData.cultures = DEGENESIS.cultures
   }
 
   /* -------------------------------------------- */

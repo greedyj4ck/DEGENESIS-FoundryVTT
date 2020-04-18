@@ -5,17 +5,20 @@
  */
 
 // Import Modules
-import { DegenesisItemSheet } from "./item/item-sheet.js";
-import { DegenesisItem } from "./item/item-degenesis.js";
-import { DegenesisActorSheet } from "./actor/actor-sheet.js";
-import { DegenesisActor } from "./actor/actor-degenesis.js";
+import { DegenesisItemSheet } from "./module/item/item-sheet.js";
+import { DegenesisItem } from "./module/item/item-degenesis.js";
+import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
+import { DegenesisActor } from "./module/actor/actor-degenesis.js";
+
+// import tippy from './node_modules/tippy.js';
+// import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
 
 Hooks.once("init", async function() {
-  console.log(`DEGENESIS | Initializing`);
+  console.log(`%cDEGENESIS` + `%c | Initializing`, "color: #ed1d27", "color: unset");
 
 	/**
 	 * Set an initiative formula for the system
@@ -31,6 +34,11 @@ Hooks.once("init", async function() {
   Actors.registerSheet("dnd5e", DegenesisActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("dnd5e", DegenesisItemSheet, {makeDefault: true});
+
+  // Pre-load templates
+  loadTemplates([
+    "systems/degenesis/templates/actor/actor-main.html",
+  ]);
 
     // Assign the actor class to the CONFIG
   CONFIG.Actor.entityClass = DegenesisActor;

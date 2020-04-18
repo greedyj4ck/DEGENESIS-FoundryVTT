@@ -1,0 +1,81 @@
+<div class ="three-Cs row">
+        <div class = "sheet-field-stack">
+           <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
+              {{#select data.details.culture.value}}
+              <option value=""></option>
+              {{#each cultures as |culture c|}}
+              <option value="{{c}}">{{culture}}</option>
+              {{/each}}
+              {{/select}}
+           </select>
+           <div>CULTURE</div>
+           <img height="80" width="80" src = "{{cultureIcon}}"/>
+        </div>
+        <div class = "sheet-field-stack">
+           <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
+              {{#select data.details.concept.value}}
+              <option value=""></option>
+              {{#each concepts as |concept c|}}
+              <option value="{{c}}">{{concept}}</option>
+              {{/each}}
+              {{/select}}
+           </select>
+           <div>CONCEPT</div>
+           <img height="80" width="80" src = "{{conceptIcon}}"/>
+        </div>
+        <div class = "sheet-field-stack">
+           <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
+              {{#select data.details.cult.value}}
+              <option value=""></option>
+              {{#each cults as |cult c|}}
+              <option value="{{c}}">{{cult}}</option>
+              {{/each}}
+              {{/select}}
+           </select>
+           <div>CULT</div>
+           <img height="80" width="80" src = "{{cultIcon}}"/>
+        </div>
+     </div>
+     <div class = "section-header row">
+        <div class="row-divide"></div>
+        <h3>CONDITION</h3>
+        <div class="row-divide"></div>
+     </div>
+     <div class = "condition row">
+        <div class = "condition-section">
+           <span class="condition-title">MODIFIERS</span>
+           <textarea>
+           </textarea>
+        </div>
+        <div>
+           <div class = "condition-item">
+              <div class = "inline-input">
+                 <input type="text"><span class="divider">|</span><input type="text">
+              </div>
+              EGO
+           </div>
+           <div class = "condition-item">
+                <div class = "inline-input">                      
+                 <input type="text"><span class="divider">|</span><input type="text">
+              </div>
+              SPORE INFESTATIONS
+           </div>
+           <div class = "condition-item">
+             <div class = "inline-input">                  
+                 <input type="text"><span class="divider">|</span><input type="text">
+              </div>
+              FLESHWOUNDS
+           </div>
+           <div class = "condition-item">
+              <div class = "inline-input">                  
+                 <input type="text"><span class="divider">|</span><input type="text">
+              </div>
+              TRAUMA
+           </div>
+        </div>
+        <div class = "condition-section">
+           COMPLICATIONS
+           <textarea>
+           </textarea>
+        </div>
+     </div>

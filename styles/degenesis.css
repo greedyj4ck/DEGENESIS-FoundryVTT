@@ -2,6 +2,12 @@
     --degenesis-red: #ed1d27;
 }
 
+::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 3px;
+    background: #782e22;
+    border: 1px solid var(--degenesis-red);
+  }
 
   @font-face {
     font-family: "Avenir";
@@ -13,6 +19,10 @@
     font-weight: bold;
   }
 
+  @font-face {
+    font-family: "Calluna";
+    src: url('../fonts/Calluna-Regular.otf');
+  }
 
 .degenesis.sheet .window-content {
     padding: 5px;
@@ -21,9 +31,23 @@
     font-family: "Avenir"
 }
 
+.degenesis.sheet .editable {
+    height: 100%
+}
+
+
+.degenesis.sheet a:hover {
+    text-shadow: none
+}
+
+.degenesis.sheet h2 {
+    border: none    
+}
+
 .degenesis.sheet input[type="text"] {
     background: none;
     border: none;
+    padding-top: 5px;
 }
 
 .degenesis.sheet input[type="text"]:focus {
@@ -37,18 +61,60 @@
     transition: color 100ms linear;
 }
 
+.degenesis.sheet .inline-input {
+    display:flex;
+    align-items: center
+}
+.degenesis.sheet .inline-input > input[type="text"] {
+    width:30px;
+}
+
+
+
+.degenesis.sheet textarea {
+    outline: var(--degenesis-red);
+    box-shadow: none;
+    font-family: "Calluna"
+}
+
+.degenesis.sheet textarea:focus {
+    outline: var(--degenesis-red);
+    box-shadow: none
+}
+
+.degenesis.sheet select {
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+    padding: 0px;
+    text-align-last:center
+}
+
+.degenesis.sheet select:focus{
+    border-bottom: 1px solid var(--degenesis-red);
+    box-shadow: none;
+}
+
+.degenesis.sheet select > *{
+    color: white;
+    background-color: black
+}
+
+
 .degenesis.sheet .sheet-field {
     display: flex;
     border-bottom: 1px solid black
 }
+
+.degenesis.sheet .condition .condition-item:hover,
+    .degenesis.sheet .condition .condition-section:hover 
 .degenesis.sheet .sheet-field-stack:hover,
 .degenesis.sheet .sheet-field:hover {
     color: var(--degenesis-red);
     -webkit-transition: color 100ms linear;
     -ms-transition: color 100ms linear;
     transition: color 100ms linear;
-
-
 }
 
 .degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
@@ -91,10 +157,10 @@
 /* Navigation Tabs */
 .degenesis.sheet .tabs {
     flex: 0 0 40px;
+    height: 20px;
 }
 
 .degenesis.sheet .tabs .item {
-    font-weight: bold;
     color: white;
     background-color: black;
     margin: 0px 20px 20px 10px
@@ -105,15 +171,23 @@
     text-shadow: none
 }
 
+.degenesis.sheet .tab {
+    height: 100%
+}
 
 .degenesis.sheet .tab-content {
-    border: 1px solid var(--degenesis-red);
     width: 100%;
-    height: calc(100% - 170px);
+    height: calc(100% - 150px);
+    overflow: auto
 }
 
 .degenesis.sheet .row {
     display: flex;
+}
+
+.degenesis.sheet .three-Cs {
+    height: 35%;
+    min-height: 130px;
 }
 
 .degenesis.sheet .three-Cs .sheet-field-stack{
@@ -137,6 +211,59 @@
     border: none;
 }
 
+.degenesis.sheet .section-header.row .row-divide{
+    width:40%;
+    border-bottom: 1px solid black;
+    margin: 20px
+}
+
+.degenesis.sheet .section-header.row h3{
+    padding-top:10px
+}
+
+.degenesis.sheet .condition {
+    height: 50%
+}
+
+.degenesis.sheet .condition .condition-item:hover,
+    .degenesis.sheet .condition .condition-section:hover {
+        color: var(--degenesis-red);
+    -webkit-transition: color 100ms linear;
+    -ms-transition: color 100ms linear;
+    transition: color 100ms linear;
+}
+
+.degenesis.sheet .condition > * {
+    width: 33%;
+    text-align: center;
+}
+
+.degenesis.sheet .condition .inline-input {
+    border-bottom: 2px solid black;
+    margin-bottom: 3px
+}
+.degenesis.sheet .condition .divider {
+    font-size: 20px
+}
+.degenesis.sheet .condition-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    margin-top: 10px
+}
+
+.degenesis.sheet .condition textarea {
+    height: 100%;
+    overflow-x: hidden;
+    background: none;
+    border-radius: 0px;
+    background-attachment: local;
+    background-image: linear-gradient(to right, white 10px, transparent 10px), linear-gradient(to left, white 10px, transparent 10px), repeating-linear-gradient(white, white 20px, #ccc 20px, #ccc 20px, white 21px);
+    line-height: 21px;
+    padding: 1px 8px;
+    resize: none;
+ }
 
 
 /* Items */

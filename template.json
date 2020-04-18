@@ -1,6 +1,262 @@
 {
 "Actor": {
   "types": ["character", "npc"],
+  "templates" : {
+    "details" : {
+      "details" : {
+        "age" : {
+          "type" : "Number",
+          "value" : null
+        },
+        "rank" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "experience" : {
+          "type" : "Number",
+          "value" : 0
+        },
+        "sex" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "height" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "weight" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "dinars" : {
+          "type" : "Number",
+          "value" : 0
+        }
+      }
+    },
+    "attributes" : {
+      "attributes" : {
+        "body" : {
+          "type" : "Number",
+          "value" : 1
+        },
+        "agility" : {
+          "type" : "Number",
+          "value" : 1
+        },
+        "charisma" : {
+          "type" : "Number",
+          "value" : 1
+        },
+        "intellect" : {
+          "type" : "Number",
+          "value" : 1
+        },
+        "psyche" : {
+          "type" : "Number",
+          "value" : 1
+        },
+        "instinct" : {
+          "type" : "Number",
+          "value" : 1
+        }
+      }
+    },
+    "skills" : {
+      "skills" : {
+        "athletics" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+        "brawl" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+        "force" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+        "melee" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+        "stamina" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+        "toughness" : {
+          "attribute": "body",
+          "type" : "Number",
+          "value" : 0
+        },
+
+
+        "crafting" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+        "dexterity" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+        "navigation" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+        "mobility" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+        "projectiles" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+        "stealth" : {
+          "attribute": "agility",
+          "type" : "Number",
+          "value" : 0
+        },
+
+
+        "arts" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+        "conduct" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+        "expression" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+        "leadership" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+        "negotiation" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+        "seduction" : {
+          "attribute": "charisma",
+          "type" : "Number",
+          "value" : 0
+        },
+
+
+        "artifact" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+        "engineering" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+        "focus" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+        "legends" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+        "medicine" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+        "science" : {
+          "attribute": "intellect",
+          "type" : "Number",
+          "value" : 0
+        },
+
+
+        "cunning" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+        "deception" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+        "domination" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+        "faith" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+        "reaction" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+        "willpower" : {
+          "attribute": "psyche",
+          "type" : "Number",
+          "value" : 0
+        },
+
+
+        "empathy" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        },
+        "orienteering" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        },
+        "perception" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        },
+        "primal" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        },
+        "survival" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        },
+        "taming" : {
+          "attribute": "instinct",
+          "type" : "Number",
+          "value" : 0
+        }
+      }
+    }
+  },
   "character": {
     "biography": "",
     "health": {
