@@ -26,6 +26,11 @@ export class DegenesisActorSheet extends ActorSheet {
     data.conceptIcon = this.actor.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
     data.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
     data.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
+
+    data.data.status.ego.pct = (1 - data.data.status.ego.value / data.data.status.ego.max)*100;
+    data.data.status.fleshwounds.pct = (1 - data.data.status.fleshwounds.value / data.data.status.fleshwounds.max)*100;
+    data.data.status.spore.pct = (1 - data.data.status.spore.value / data.data.status.spore.max)*100;
+    data.data.status.trauma.pct = (1 - data.data.status.trauma.value / data.data.status.trauma.max)*100;
     return data;
   }
 
@@ -36,6 +41,8 @@ export class DegenesisActorSheet extends ActorSheet {
     sheetData.concepts = DEGENESIS.concepts
     sheetData.cults = DEGENESIS.cults
     sheetData.cultures = DEGENESIS.cultures
+
+
   }
 
   /* -------------------------------------------- */
@@ -44,16 +51,13 @@ export class DegenesisActorSheet extends ActorSheet {
 	activateListeners(html) {
     super.activateListeners(html);
 
-    // Activate tabs
-    let tabs = html.find('.tabs');
-    let initial = this._sheetTab;
-    new Tabs(tabs, {
-      initial: initial,
-      callback: clicked => this._sheetTab = clicked.data("tab")
-    });
-
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
+
+    $("input[type=text]").focusin(function() {
+      $(this).select();
+    });
+
 
     // Update Inventory Item
     html.find('.item-edit').click(ev => {

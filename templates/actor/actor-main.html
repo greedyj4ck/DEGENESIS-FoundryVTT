@@ -1,39 +1,39 @@
 <div class ="three-Cs row">
         <div class = "sheet-field-stack">
-           <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
-              {{#select data.details.culture.value}}
-              <option value=""></option>
-              {{#each cultures as |culture c|}}
-              <option value="{{c}}">{{culture}}</option>
-              {{/each}}
-              {{/select}}
-           </select>
            <div>CULTURE</div>
            <img height="80" width="80" src = "{{cultureIcon}}"/>
+           <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
+                {{#select data.details.culture.value}}
+                <option value=""></option>
+                {{#each cultures as |culture c|}}
+                <option value="{{c}}">{{culture}}</option>
+                {{/each}}
+                {{/select}}
+             </select>
         </div>
         <div class = "sheet-field-stack">
-           <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
-              {{#select data.details.concept.value}}
-              <option value=""></option>
-              {{#each concepts as |concept c|}}
-              <option value="{{c}}">{{concept}}</option>
-              {{/each}}
-              {{/select}}
-           </select>
            <div>CONCEPT</div>
            <img height="80" width="80" src = "{{conceptIcon}}"/>
+           <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
+                {{#select data.details.concept.value}}
+                <option value=""></option>
+                {{#each concepts as |concept c|}}
+                <option value="{{c}}">{{concept}}</option>
+                {{/each}}
+                {{/select}}
+             </select>
         </div>
         <div class = "sheet-field-stack">
-           <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
-              {{#select data.details.cult.value}}
-              <option value=""></option>
-              {{#each cults as |cult c|}}
-              <option value="{{c}}">{{cult}}</option>
-              {{/each}}
-              {{/select}}
-           </select>
            <div>CULT</div>
            <img height="80" width="80" src = "{{cultIcon}}"/>
+           <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
+                {{#select data.details.cult.value}}
+                <option value=""></option>
+                {{#each cults as |cult c|}}
+                <option value="{{c}}">{{cult}}</option>
+                {{/each}}
+                {{/select}}
+             </select>
         </div>
      </div>
      <div class = "section-header row">
@@ -50,26 +50,30 @@
         <div>
            <div class = "condition-item">
               <div class = "inline-input">
-                 <input type="text"><span class="divider">|</span><input type="text">
+                 <input name="data.status.ego.value" value="{{data.status.ego.value}}" type="text" data-dtype="Number"><span class="divider">|</span><input type="text"  name="data.status.ego.max" value="{{data.status.ego.max}}">
               </div>
+              <span class="condition-bar progress-bar" style="width: {{data.status.ego.pct}}%"></span>
               EGO
            </div>
            <div class = "condition-item">
                 <div class = "inline-input">                      
-                 <input type="text"><span class="divider">|</span><input type="text">
-              </div>
+                 <input type="text" name="data.status.spore.value" value="{{data.status.spore.value}}" data-dtype="Number"><span class="divider">|</span><input type="text" name="data.status.spore.max" value="{{data.status.spore.max}}" data-dtype="Number">
+                </div>
+                    <span class="condition-bar progress-bar" style="width: {{data.status.spore.pct}}%"></span>          
               SPORE INFESTATIONS
            </div>
            <div class = "condition-item">
              <div class = "inline-input">                  
-                 <input type="text"><span class="divider">|</span><input type="text">
+                <input type="text" name="data.status.fleshwounds.value" value="{{data.status.fleshwounds.value}}" data-dtype="Number"><span class="divider">|</span><input type="text" name="data.status.fleshwounds.max" value="{{data.status.fleshwounds.max}}" data-dtype="Number">
               </div>
+                <span class="condition-bar progress-bar" style="width: {{data.status.fleshwounds.pct}}%"></span>
               FLESHWOUNDS
            </div>
            <div class = "condition-item">
               <div class = "inline-input">                  
-                 <input type="text"><span class="divider">|</span><input type="text">
+                <input type="text" name="data.status.trauma.value" value="{{data.status.trauma.value}}" data-dtype="Number"><span class="divider">|</span><input type="text" name="data.status.trauma.max" value="{{data.status.trauma.max}}" data-dtype="Number">                 
               </div>
+                <span class="condition-bar progress-bar" style="width: {{data.status.trauma.pct}}%"></span>           
               TRAUMA
            </div>
         </div>
