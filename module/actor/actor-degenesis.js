@@ -1,3 +1,5 @@
+import { DEGENESIS } from "../config.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -33,5 +35,21 @@ export class DegenesisActor extends Actor {
         {
             console.log(e);
         }
+    }
+
+    sortAttributesSkills()
+    {
+        let attributeSkillGroups = {}
+
+        for (let attribute in this.data.data.attributes)
+        {
+            attributeSkillGroups[attribute] = {label: DEGENESIS.attributes[attribute], value :this.data.data.attributes[attribute].value, skills: {}}
+        }
+        for (let skill in this.data.data.skills)
+        {
+            this.data.data.skills[skill].label = DEGENESIS.skills[skill];
+            attributeSkillGroups[this.data.data.skills[skill].attribute].skills[skill] = this.data.data.skills[skill];
+        }
+        return attributeSkillGroups;
     }
 }

@@ -31,6 +31,8 @@ export class DegenesisActorSheet extends ActorSheet {
     data.data.status.fleshwounds.pct = (1 - data.data.status.fleshwounds.value / data.data.status.fleshwounds.max)*100;
     data.data.status.spore.pct = (1 - data.data.status.spore.value / data.data.status.spore.max)*100;
     data.data.status.trauma.pct = (1 - data.data.status.trauma.value / data.data.status.trauma.max)*100;
+
+    data.attributeSkillGroups = this.actor.sortAttributesSkills()
     return data;
   }
 

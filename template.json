@@ -31,6 +31,18 @@
         "dinars" : {
           "type" : "Number",
           "value" : 0
+        },
+        "concept" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "cult" : {
+          "type" : "String",
+          "value" : ""
+        },
+        "culture" : {
+          "type" : "String",
+          "value" : ""
         }
       }
     },
