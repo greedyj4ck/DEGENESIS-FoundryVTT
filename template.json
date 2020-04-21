@@ -322,12 +322,41 @@
   }
 },
 "Item": {
-  "types": ["item"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {}
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential"],
+  "templates" : {
+    "description" : "",
+    "encumbrance" : 0,
+    "tech" : 0,
+    "slots" : 0,
+    "qualities" : [],
+    "effect" : "",
+    "resources" : 0,
+    "value" : 0,
+    "cult" : "", 
+    "damage" : "",
+    "group" : ""
+  },
+  "ammunition" : {
+    "templates": ["description", "damage", "tech", "value"]
+  },
+  "weapon" : {
+    "templates" : ["description", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "handling": 0,
+    "distance": {
+      "short" : 0,
+      "far" : 0
+    },
+    "mag" : ""
+  },
+  "armor" : {
+    "templates" : ["description", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"]
+  },
+  "equipment" : {
+    "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"],
+  },
+  "mod" : {
+    "templates" : ["description", "effect"],
+    "augmentation" : ""
   }
 }
 }
