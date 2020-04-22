@@ -40,6 +40,10 @@
     text-shadow: none
 }
 
+.degenesis.sheet .item-controls a:hover {
+    color: var(--degenesis-red)
+}
+
 .degenesis.sheet h2 {
     border: none    
 }
@@ -180,7 +184,7 @@
 .degenesis.sheet .tabs .item {
     color: white;
     background-color: black;
-    margin: 0px 20px 20px 10px
+    margin: 0px 20px 0px 10px
 }
 
 .degenesis.sheet .tabs .item.active {
@@ -339,25 +343,59 @@
 /* Items */
 .degenesis.sheet .items-list {
     list-style: none;
-    margin: 7px 0;
     padding: 0;
-    overflow-y: auto;
 }
+.degenesis.sheet .inventory-tab {
+    margin-top: 20px   
+}
+
 .degenesis.sheet .items-list .item {
     height: 30px;
     line-height: 24px;
-    padding: 3px 0;
-    border-bottom: 1px solid #BBB;
 }
 .degenesis.sheet .items-list .item img {
     flex: 0 0 24px;
     margin-right: 5px;
 }
-.degenesis.sheet .items-list .item-name {
-    margin: 0;
-}
 .degenesis.sheet .items-list .item-controls {
     flex: 0 0 36px;
+}
+.degenesis.sheet .item-header .item-controls {
+    flex: 0 0 50px;
+}
+
+.degenesis.sheet .item-section {
+    border: 1px solid black;
+}
+
+.degenesis.sheet .item-header .item-tech,
+    .degenesis.sheet .item-header .item-encumbrance {
+    flex: 0 0 40px;
+}
+
+.degenesis.sheet .items-list .item-tech,
+    .degenesis.sheet .items-list .item-encumbrance {
+    flex: 0 0 40px;
+}
+.degenesis.sheet .item-tech,
+    .degenesis.sheet .item-encumbrance {
+    text-align: center
+}
+
+.degenesis.sheet .header-details{
+    border-bottom: 1px solid black
+}
+.degenesis.sheet .header-details > *,
+.degenesis.sheet .item > *{
+    margin: 0px 5px 0px 5px
+}
+
+.degenesis.sheet .item-header .header-type {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 24px;
+    line-height: 24px
 }
 
 /* Attributes */

@@ -38,7 +38,8 @@ Hooks.once("init", async function() {
   // Pre-load templates
   loadTemplates([
     "systems/degenesis/templates/actor/actor-main.html",
-    "systems/degenesis/templates/actor/actor-attributes-skills.html"
+    "systems/degenesis/templates/actor/actor-attributes-skills.html",
+    "systems/degenesis/templates/actor/actor-inventory.html"
   ]);
 
     // Assign the actor class to the CONFIG

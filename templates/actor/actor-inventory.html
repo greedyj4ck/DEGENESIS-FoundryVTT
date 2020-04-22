@@ -1,0 +1,34 @@
+<div class="inventory-tab">
+   <div class="item-section">
+      <div class="item-header">   
+         <div class="header-type flexrow">
+            <div style="flex: 0 0 50px"></div>
+            <span>WEAPONS</span>
+            <div class="item-controls">
+                  <a class="item-control item-add" title="Add Item">+ ADD</a>
+            </div>
+         </div>
+         <div class="header-details flexrow">
+            <div style="flex: 0 0 18px"></div>
+            <div class="item-name">NAME</div>
+            <div class="item-encumbrance">ENC</div>
+            <div class="item-tech">TECH</div>
+            <div style="flex: 0 0 40px"></div>
+         </div>
+      </div>
+      <ul class="inventory items-list">
+         {{#each actor.items as |item i|}}
+         <li class = "item flexrow">
+            <img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/>
+            <span class="item-name">{{item.name}}</span>
+            <span class="item-encumbrance">3</span>
+            <span class="item-tech">IV</span>
+            <div class="item-controls">
+                  <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            </div>
+         </li>
+         {{/each}}
+      </ul>
+   </div>
+</div>

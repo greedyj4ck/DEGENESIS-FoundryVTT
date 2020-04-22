@@ -352,7 +352,7 @@
     "templates" : ["description", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"]
   },
   "equipment" : {
-    "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"],
+    "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"]
   },
   "mod" : {
     "templates" : ["description", "effect"],
