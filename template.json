@@ -324,17 +324,39 @@
 "Item": {
   "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential"],
   "templates" : {
-    "description" : "",
-    "encumbrance" : 0,
-    "tech" : 0,
-    "slots" : 0,
-    "qualities" : [],
-    "effect" : "",
-    "resources" : 0,
-    "value" : 0,
-    "cult" : "", 
-    "damage" : "",
+    "description" : {
+    "description" : ""
+    },
+    "encumbrance" : {
+    "encumbrance" : 0
+    },
+    "tech" : {
+    "tech" : 0
+    },
+    "slots" : {
+    "slots" : 0
+    },
+    "qualities" : {
+    "qualities" : []
+    },
+    "effect" : {
+    "effect" : ""
+    },
+    "resources" : {
+    "resources" : 0
+    },
+    "value" : {
+    "value" : 0
+    },
+    "cult" : {
+    "cult" : ""
+    },
+    "damage" : {
+    "damage" : ""
+    },
+    "group" : {
     "group" : ""
+    }
   },
   "ammunition" : {
     "templates": ["description", "damage", "tech", "value"]
@@ -349,7 +371,8 @@
     "mag" : ""
   },
   "armor" : {
-    "templates" : ["description", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"]
+    "templates" : ["description", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "AP" : 0
   },
   "equipment" : {
     "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"]

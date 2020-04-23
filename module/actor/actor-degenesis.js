@@ -36,6 +36,14 @@ export class DegenesisActor extends Actor {
             console.log(e);
         }
     }
+    
+    prepare() 
+    {
+        let preparedData = {};
+        preparedData.attributeSkillGroups = this.sortAttributesSkills();
+        preparedData.inventory = this.prepareItems()
+        return preparedData;
+    }
 
     sortAttributesSkills()
     {
@@ -51,5 +59,32 @@ export class DegenesisActor extends Actor {
             attributeSkillGroups[this.data.data.skills[skill].attribute].skills[skill] = this.data.data.skills[skill];
         }
         return attributeSkillGroups;
+    }
+
+    prepareItems() 
+    {
+        let actorData = duplicate(this.data)
+        let inventory = {
+            weapons: {header : "WEAPONS" , items : []},
+            armor: {header : "ARMOR" , items : []},
+            equipment: {header : "EQUIPMENT" , items : []}
+        }
+
+        for (let i of actorData.items)
+        {
+            if (i.type == "weapon")
+            {
+                inventory.weapons.items.push(i);
+            }
+            if (i.type == "armor")
+            {
+                inventory.armor.items.push(i);
+            }
+            if (i.type == "equipment")
+            {
+                inventory.equipment.items.push(i);
+            }
+        }
+        return inventory;
     }
 }

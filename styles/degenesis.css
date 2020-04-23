@@ -184,7 +184,8 @@
 .degenesis.sheet .tabs .item {
     color: white;
     background-color: black;
-    margin: 0px 20px 0px 10px
+    margin: 0px 10px 0px 10px;
+    line-height: 20px
 }
 
 .degenesis.sheet .tabs .item.active {
@@ -368,15 +369,18 @@
     border: 1px solid black;
 }
 
+.degenesis.sheet .item-header .item-equipped,
 .degenesis.sheet .item-header .item-tech,
     .degenesis.sheet .item-header .item-encumbrance {
     flex: 0 0 40px;
 }
 
+.degenesis.sheet .items-list .item-equipped,
 .degenesis.sheet .items-list .item-tech,
     .degenesis.sheet .items-list .item-encumbrance {
     flex: 0 0 40px;
 }
+.degenesis.sheet .item-equipped,
 .degenesis.sheet .item-tech,
     .degenesis.sheet .item-encumbrance {
     text-align: center
