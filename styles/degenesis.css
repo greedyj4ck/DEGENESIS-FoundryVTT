@@ -52,6 +52,12 @@
     src: url('../fonts/Calluna-Regular.otf');
   }
 
+/* * Degenesis Sheet */
+.degenesis.sheet .break{
+    flex-basis: 100%;
+    height: 0;
+}
+
 .degenesis.sheet .window-content {
     padding: 5px;
     overflow-y: hidden;
@@ -187,9 +193,9 @@
 
 /* * Sheet Header */
 /* ? Tentative de tout mettre en flex */
-.degenesis.sheet .sheet-header > * {
-    flex: none;
-}
+/* .degenesis.sheet .sheet-header > * {
+    flex: 1;
+} */
  
 .degenesis.sheet .sheet-header {
     overflow: hidden;
@@ -203,15 +209,19 @@
 }
 
 .degenesis.sheet .header-line{
-    align-self: stretch;
     background-color: var(--degenesis-red);
+    border: 1px solid transparent;
+    align-self: start;
     width: 100%;
-    height:10%;
+    height:100px;
 }
 
 .degenesis.sheet .header-column{
-    width:40%;
-    flex: none;
+    
+}
+
+.degenesis.sheet .sheet-header .char-info{
+
 }
 
 .degenesis.sheet .img-container{
