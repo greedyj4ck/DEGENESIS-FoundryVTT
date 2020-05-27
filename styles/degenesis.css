@@ -2,12 +2,40 @@
     --degenesis-red: #ed1d27;
 }
 
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    width: 4px;
+    border: none;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-button{
+    display: inline-block;
+}
+
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    display: none;
+}
+
 ::-webkit-scrollbar-thumb {
-    outline: none;
-    border-radius: 3px;
-    background: #782e22;
-    border: 1px solid var(--degenesis-red);
-  }
+    border-radius: 0px;
+    background-color: black;
+}
+
+::-webkit-scrollbar-track {
+    background-image: url('../icons/scrolltrack.png');
+    background-position:center;
+    background-repeat: repeat-y;
+    border-radius: 0px;
+    box-shadow: none;
+}
 
   @font-face {
     font-family: "Avenir";
@@ -28,7 +56,8 @@
     padding: 5px;
     overflow-y: hidden;
     background: white;
-    font-family: "Avenir"
+    font-family: "Avenir";
+    color: black;
 }
 
 .degenesis.sheet .editable {
@@ -156,9 +185,15 @@
     margin-top: 5px;
 }
 
-/* Sheet Header */
+/* * Sheet Header */
+/* ? Tentative de tout mettre en flex */
+.degenesis.sheet .sheet-header > * {
+    flex: none;
+}
+ 
 .degenesis.sheet .sheet-header {
     overflow: hidden;
+    flex: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -167,12 +202,44 @@
     margin-bottom: 10px;
 }
 
-.degenesis.sheet .profile-img {
-    flex: 0 0 100px;
-    height: 100px;
-    margin: 10px;
-    border: none
+.degenesis.sheet .header-line{
+    align-self: stretch;
+    background-color: var(--degenesis-red);
+    width: 100%;
+    height:10%;
 }
+
+.degenesis.sheet .header-column{
+    width:40%;
+    flex: none;
+}
+
+.degenesis.sheet .img-container{
+    flex: 0 0 115spx;
+}
+
+.degenesis.sheet .img-frame{
+    flex: 0 0 115px;
+    z-index: 1000;
+    height: 120px;
+    background-image: url(../icons/character\ frame.svg);
+    background-repeat: no-repeat;
+    background-size: 142%;
+    background-position: 51% 44%;
+    border: none;
+}
+
+.degenesis.sheet .profile-img {
+    height: 99px;
+    width: 99px;
+    margin: 9px;
+    border: none;
+    display: block;
+    border-radius: 0;
+    margin-left: 7px;
+}
+
+
 
 
 /* Navigation Tabs */
@@ -184,7 +251,7 @@
 .degenesis.sheet .tabs .item {
     color: white;
     background-color: black;
-    margin: 0px 10px 0px 10px;
+    margin: 2px;
     line-height: 20px
 }
 
