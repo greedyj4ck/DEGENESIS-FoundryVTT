@@ -2,6 +2,17 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
+        <!-- ! Work in progress-->
+        <!--
+        <div class="header-line">
+             <svg xmlns="../../icons/header line left.svg" width="100%" height="100%"></svg> 
+                 <img class="left-right" src="../../icons/header line right.svg"> 
+              <object type="image/svg+xml" data="../../icons/header line right.svg" width="400" height="600">
+                    Your browser does not support SVG.
+                  </object>   
+            <svg xmlns="../../icons/header line right.svg"></svg>
+        </div>    
+         -->
         <div class="header-column">
             <div class="sheet-field">
                 <span class="field-name">NAME:</span>
@@ -20,7 +31,9 @@
                     <input class="field-input" type="text" name="data.experience.value" value="{{data.experience.value}}"/>
             </div>
         </div>    
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>  
+            <div class="img-frame">
+                <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
+            </div>
         <div class="header-column">
             <div class="sheet-field">
                     <span class="field-name">SEX:</span>
@@ -35,7 +48,7 @@
                         <input class="field-input" type="text" name="data.weight.value" value="{{data.weight.value}}"/>
                 </div>
                 <div class="sheet-field">
-                        <span class="field-name">DINARS/CD:</span>
+                        <span class="field-name">DRAFTS/DINARS:</span>
                         <input class="field-input" type="text" name="data.dinars.value" value="{{data.dinars.value}}"/>
                 </div>
         </div>          
@@ -43,11 +56,12 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="main">MAIN</a>
         <a class="item" data-tab="attributes">ATTRIBUTES</a>
+        <a class="item" data-tab="advantages">ADVANTAGES</a>
+        <a class="item" data-tab="condition">CONDITION</a>
         <a class="item" data-tab="combat">COMBAT</a>
         <a class="item" data-tab="inventory">INVENTORY</a>
-        <a class="item" data-tab="other">OTHER</a>
+        <a class="item" data-tab="history">HISTORY</a>
     </nav>
 
     <div class = "tab-content">
