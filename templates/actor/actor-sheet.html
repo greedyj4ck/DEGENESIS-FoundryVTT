@@ -2,18 +2,14 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <!-- ! Work in progress-->
         <div class="header-column header-line">
-            <!-- <svg xmlns="../../icons/header line left.svg" width="100%" height="100%"></svg>
-            <img class="left-right" src="../../icons/header line right.svg">
-            <object type="image/svg+xml" data="../../icons/header line right.svg" width="400" height="600">
-                Your browser does not support SVG.
-            </object>
-            <svg xmlns="../../icons/header line right.svg"></svg> -->
+            <div class="line line-left"></div>
+            <div class="middle-name">ARCHETYPE</div>
+            <div class="line line-right"></div>
         </div>
-        <!-- !                  -->
+        // Start new row
         <div class="break"></div>
-        <div class="header-column char-info">
+        <div class="header-column char-info left">
             <div class="sheet-field">
                 <span class="field-name">NAME:</span>
                 <input class="field-input" type="text" name="name" value="{{actor.name}}" />
@@ -35,7 +31,7 @@
             <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
                 width="100" />
         </div>
-        <div class="header-column char-info">
+        <div class="header-column char-info right">
             <div class="sheet-field">
                 <span class="field-name">SEX:</span>
                 <input class="field-input" type="text" name="data.sex.value" value="{{data.sex.value}}" />
@@ -53,6 +49,12 @@
                 <input class="field-input" type="text" name="data.dinars.value" value="{{data.dinars.value}}" />
             </div>
         </div>
+        <div class="break"></div>
+        <hr size="1">
+        <div class="break"></div>
+       <!-- ! WORK IN PROGRESS ! --> 
+        <div class="header-column"></div>
+       <!-- ! WORK IN PROGRESS ! --> 
     </header>
 
     {{!-- Sheet Tab Navigation --}}
