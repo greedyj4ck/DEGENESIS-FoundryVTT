@@ -2,33 +2,97 @@
     --degenesis-red: #ed1d27;
 }
 
-::-webkit-scrollbar-thumb {
-    outline: none;
-    border-radius: 3px;
-    background: #782e22;
-    border: 1px solid var(--degenesis-red);
-  }
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    width: 4px;
+    border: none;
+    background-color: transparent;
+}
 
-  @font-face {
+::-webkit-scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-button{
+    display: inline-block;
+}
+
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: black;
+}
+
+::-webkit-scrollbar-track {
+    background-image: url('../icons/scrolltrack.png');
+    background-position:center;
+    background-repeat: repeat-y;
+    border-radius: 0px;
+    box-shadow: none;
+}
+
+
+@font-face {
     font-family: "Avenir";
-    src: url('../fonts/AvenirLTStd-Roman.otf');
-  }
-  @font-face {
+    src: url('../fonts/AvenirLTStd-Heavy.otf');
+    font-weight: 900;
+}
+@font-face {
     font-family: "Avenir";
     src: url('../fonts/AvenirLTStd-Black.otf');
     font-weight: bold;
-  }
+ }
+@font-face {
+    font-family: "Avenir";
+    src: url('../fonts/AvenirLTStd-Medium.otf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: "Avenir";
+    src: url('../fonts/AvenirLTStd-Roman.otf');
+}
+@font-face {
+    font-family: "Avenir";
+    src: url('../fonts/AvenirLTStd-Book.otf');
+    font-weight: 300;
+}  
+@font-face {
+    font-family: "Avenir";
+    src: url('../fonts/AvenirLTStd-Light.otf');
+    font-weight: 200;
+}
 
-  @font-face {
+@font-face {
     font-family: "Calluna";
     src: url('../fonts/Calluna-Regular.otf');
-  }
+}
+
+/* * Degenesis Sheet */
+.degenesis.sheet .break{
+    flex-basis: 100%;
+    height: 0;
+}
+
+.degenesis.sheet .break.break-line{
+    flex-basis: 100%;
+    border: 1px solid black;
+    padding-top: 4px;
+    height: 0;
+}
 
 .degenesis.sheet .window-content {
     padding: 5px;
     overflow-y: hidden;
     background: white;
-    font-family: "Avenir"
+    font-family: "Avenir";
+    font-weight: 300;
+    color: black;
 }
 
 .degenesis.sheet .editable {
@@ -156,9 +220,15 @@
     margin-top: 5px;
 }
 
-/* Sheet Header */
+/* * Sheet Header */
+/* ? Tentative de tout mettre en flex */
+/* .degenesis.sheet .sheet-header > * {
+    flex: 1;
+} */
+ 
 .degenesis.sheet .sheet-header {
     overflow: hidden;
+    flex: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -167,11 +237,84 @@
     margin-bottom: 10px;
 }
 
+.degenesis.sheet .header-line{
+    /* background-color: var(--degenesis-red); */
+    /* border: 1px solid transparent; */
+    align-self: start;
+    display: flex;
+}
+
+.degenesis.sheet .line{
+    display: flex;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 366px;
+    background-position: center;
+    flex: 1;
+}
+
+.degenesis.sheet .middle-name{
+    display: flex;
+    align-items: flex-end;
+    font-size: 15px;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
+.degenesis.sheet .line-left{
+    /* background-color: green; */
+    background-image: url(../icons/header\ line\ left.svg);
+}
+
+.degenesis.sheet .line-right{
+    /* background-color: blueviolet; */
+    background-image: url(../icons/header\ line\ right.svg);
+}
+
+/* .degenesis.sheet .header-column{
+    
+} */
+
+.degenesis.sheet .header-column.char-info.left{
+    margin-left: 7px;
+}
+
+.degenesis.sheet .header-column.char-info.right{
+    margin-right: 7px;
+}
+
+.degenesis.sheet .img-container{
+    flex: 0 0 115spx;
+}
+
+.degenesis.sheet .img-frame{
+    flex: 0 0 115px;
+    z-index: 1000;
+    height: 120px;
+    background-image: url(../icons/character\ frame.svg);
+    background-repeat: no-repeat;
+    background-size: 142%;
+    background-position: 51% 44%;
+    border: none;
+}
+
 .degenesis.sheet .profile-img {
-    flex: 0 0 100px;
-    height: 100px;
-    margin: 10px;
-    border: none
+    height: 99px;
+    width: 99px;
+    margin: 9px;
+    border: none;
+    display: block;
+    border-radius: 0;
+    margin-left: 7px;
+}
+
+.degenesis.sheet .sheet-header hr{
+    border: solid;
+    border-top: 1px solid black;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    margin: -2px 2px 0px;
 }
 
 
@@ -184,8 +327,10 @@
 .degenesis.sheet .tabs .item {
     color: white;
     background-color: black;
-    margin: 0px 10px 0px 10px;
-    line-height: 20px
+    margin: 2px;
+    line-height: 20px;
+    font-weight: 500;
+    font-size: 13px;
 }
 
 .degenesis.sheet .tabs .item.active {
