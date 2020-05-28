@@ -12,7 +12,7 @@ export class DegenesisActorSheet extends ActorSheet {
   	  classes: ["degenesis", "sheet", "actor"],
   	  template: "systems/degenesis/templates/actor/actor-sheet.html",
       width: 600,
-      height: 600,
+      height: 750,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main"}]
     });
   }

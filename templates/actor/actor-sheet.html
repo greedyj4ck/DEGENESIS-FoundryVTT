@@ -52,9 +52,46 @@
         <div class="break"></div>
         <hr size="1">
         <div class="break"></div>
-       <!-- ! WORK IN PROGRESS ! --> 
-        <div class="header-column"></div>
-       <!-- ! WORK IN PROGRESS ! --> 
+        <!-- ! WORK IN PROGRESS ! -->
+        <div class ="three-Cs row">
+            <div class = "sheet-field-stack">
+               <div class="title-Cs">CULTURE</div>
+               <img height="80" width="80" src = "{{cultureIcon}}"/>
+               <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
+                    {{#select data.details.culture.value}}
+                    <option value=""></option>
+                    {{#each cultures as |culture c|}}
+                    <option value="{{c}}">{{culture}}</option>
+                    {{/each}}
+                    {{/select}}
+                 </select>
+            </div>
+            <div class = "sheet-field-stack">
+               <div class="title-Cs">CONCEPT</div>
+               <img height="80" width="80" src = "{{conceptIcon}}"/>
+               <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
+                    {{#select data.details.concept.value}}
+                    <option value=""></option>
+                    {{#each concepts as |concept c|}}
+                    <option value="{{c}}">{{concept}}</option>
+                    {{/each}}
+                    {{/select}}
+                 </select>
+            </div>
+            <div class = "sheet-field-stack">
+               <div class="title-Cs">CULT</div>
+               <img height="80" width="80" src = "{{cultIcon}}"/>
+               <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
+                    {{#select data.details.cult.value}}
+                    <option value=""></option>
+                    {{#each cults as |cult c|}}
+                    <option value="{{c}}">{{cult}}</option>
+                    {{/each}}
+                    {{/select}}
+                 </select>
+            </div>
+        </div>
+        <!-- ! WORK IN PROGRESS ! -->
     </header>
 
     {{!-- Sheet Tab Navigation --}}
@@ -78,4 +115,9 @@
             {{> systems/degenesis/templates/actor/actor-inventory.html}}
         </div>
     </div>
+    <footer class="sheet-footer">
+        <div class="footer-column footer-line">
+
+        </div>
+    </footer>
 </form>

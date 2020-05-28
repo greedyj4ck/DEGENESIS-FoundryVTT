@@ -30,7 +30,7 @@
 }
 
 ::-webkit-scrollbar-track {
-    background-image: url('../icons/scrolltrack.png');
+    background-image: url('../images/scrolltrack.png');
     background-position:center;
     background-repeat: repeat-y;
     border-radius: 0px;
@@ -74,6 +74,7 @@
 }
 
 /* * Degenesis Sheet */
+
 .degenesis.sheet .break{
     flex-basis: 100%;
     height: 0;
@@ -221,10 +222,6 @@
 }
 
 /* * Sheet Header */
-/* ? Tentative de tout mettre en flex */
-/* .degenesis.sheet .sheet-header > * {
-    flex: 1;
-} */
  
 .degenesis.sheet .sheet-header {
     overflow: hidden;
@@ -234,7 +231,6 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     flex: 0 0 100px;
-    margin-bottom: 10px;
 }
 
 .degenesis.sheet .header-line{
@@ -262,18 +258,12 @@
 }
 
 .degenesis.sheet .line-left{
-    /* background-color: green; */
-    background-image: url(../icons/header\ line\ left.svg);
+    background-image: url(../images/header\ line\ left.svg);
 }
 
 .degenesis.sheet .line-right{
-    /* background-color: blueviolet; */
-    background-image: url(../icons/header\ line\ right.svg);
+    background-image: url(../images/header\ line\ right.svg);
 }
-
-/* .degenesis.sheet .header-column{
-    
-} */
 
 .degenesis.sheet .header-column.char-info.left{
     margin-left: 7px;
@@ -291,7 +281,7 @@
     flex: 0 0 115px;
     z-index: 1000;
     height: 120px;
-    background-image: url(../icons/character\ frame.svg);
+    background-image: url(../images/character\ frame.svg);
     background-repeat: no-repeat;
     background-size: 142%;
     background-position: 51% 44%;
@@ -317,8 +307,26 @@
     margin: -2px 2px 0px;
 }
 
+/* * Sheet Footer */
+.degenesis.sheet .sheet-footer {
+    overflow: hidden;
+    flex: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 0 0 100px;
+}
+.degenesis.sheet .footer-line{
+    background-image: url(../images/footer\ line.svg);
+    height: 20px;
+    flex: 1;
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: center;
+}
 
-/* Navigation Tabs */
+/* * Navigation Tabs */
 .degenesis.sheet .tabs {
     flex: 0 0 40px;
     height: 20px;
@@ -344,7 +352,7 @@
 
 .degenesis.sheet .tab-content {
     width: 100%;
-    height: calc(100% - 150px);
+    height: calc(100% - 304px);
     overflow: auto
 }
 
@@ -357,6 +365,12 @@
     min-height: 130px;
 }
 
+.degenesis.sheet .title-Cs {
+    font-size: 17px;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+
 .degenesis.sheet .three-Cs .sheet-field-stack{
     align-items: center;
     display: flex;
@@ -365,7 +379,7 @@
 
 .degenesis.sheet .three-Cs > *{
     width: 33%;
-    margin: 15px
+    margin: 5px
 }
 
 .degenesis.sheet .three-Cs > input{
@@ -486,7 +500,7 @@
 
 
 
-/* Items */
+/* * Items */
 .degenesis.sheet .items-list {
     list-style: none;
     padding: 0;
@@ -547,7 +561,7 @@
     line-height: 24px
 }
 
-/* Attributes */
+/* * Attributes */
 .degenesis.sheet .attributes-header { 
     padding: 5px;
     margin: 5px 0;
