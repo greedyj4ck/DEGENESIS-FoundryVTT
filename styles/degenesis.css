@@ -389,19 +389,19 @@
 }
 
 .degenesis.sheet .tabs .item.active {
-    background-color: var(--degenesis-red);
+    background-color: black;
     text-shadow: none
 }
 
 /* ! makes scroller appear for no reason ! */
 /* ! see later may provoque bugs ! */
-.degenesis.sheet .tab {
+/* .degenesis.sheet .tab {
     height: 100%
-}
+} */
 
 .degenesis.sheet .body-line {
     width: 100%;
-    height: calc(100% - 304px);
+    height: calc(100% - 300px);
     overflow: auto
 }
 
@@ -524,9 +524,9 @@
 .degenesis.sheet .tab-content {
     font-size: 12px;
     letter-spacing: 1px;
-    /* width: 100%;
-    height: calc(100% - 304px);
-    overflow: auto */
+    width: 100%;
+    height: calc(100% - 300px);
+    overflow: auto
 }
 
 .degenesis.sheet .tab-content h3 {
