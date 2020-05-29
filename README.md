@@ -1,5 +1,5 @@
 # DEGENESIS: Rebirth
 
-Some testing for future dev
+## Work in progress
 
 DEGENESIS: Rebirth system for Foundry Virtual Tabletop
