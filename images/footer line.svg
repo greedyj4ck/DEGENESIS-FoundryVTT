@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1280 800" enable-background="new 0 0 1280 800" xml:space="preserve">
+	 viewBox="0 0 674 40" enable-background="new 0 0 674 40" xml:space="preserve">
 <g>
 	<defs>
-		<rect id="SVGID_1_" x="35.8" y="390.5" width="1208.4" height="19.8"/>
+		<rect id="SVGID_1_" y="14.4" width="674" height="11"/>
 	</defs>
 	<clipPath id="SVGID_2_">
 		<use xlink:href="#SVGID_1_"  overflow="visible"/>
 	</clipPath>
-	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" stroke-width="2" points="736.5,390.9 1125.7,390.9 1137.4,403 
-		1231.5,403 	"/>
-	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" stroke-width="2" points="1237.4,409.1 1243.5,403 1243.7,402.8 
-		1243.5,402.6 1237.4,396.5 1237.2,396.3 1237,396.5 1230.9,402.6 1230.7,402.8 1230.9,403 1237,409.1 1237.2,409.3 	"/>
-	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" stroke-width="2" points="736.5,390.9 154.3,390.9 142.6,403 
-		48.5,403 	"/>
-	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" stroke-width="2" points="42.6,409.1 36.5,403 36.3,402.8 
-		36.5,402.6 42.6,396.5 42.8,396.3 43,396.5 49.1,402.6 49.3,402.8 49.1,403 43,409.1 42.8,409.3 	"/>
+	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="390.7,14.6 607.3,14.6 613.8,21.4 666.2,21.4 	"/>
+	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="669.5,24.8 672.9,21.4 673,21.3 672.9,21.1 669.5,17.8 
+		669.4,17.6 669.2,17.8 665.8,21.1 665.7,21.3 665.8,21.4 669.2,24.8 669.4,24.9 	"/>
+	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="390.7,14.6 66.7,14.6 60.2,21.4 7.8,21.4 	"/>
+	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="4.5,24.8 1.1,21.4 1,21.3 1.1,21.1 4.5,17.8 4.6,17.6 
+		4.8,17.8 8.2,21.1 8.3,21.3 8.2,21.4 4.8,24.8 4.6,24.9 	"/>
+	<polygon display="none" clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="336.8,25.1 333.4,21.7 333.3,21.6 
+		333.4,21.4 336.8,18 336.9,17.9 337,18 340.4,21.4 340.5,21.6 340.4,21.7 337,25.1 336.9,25.2 	"/>
 </g>
 </svg>
