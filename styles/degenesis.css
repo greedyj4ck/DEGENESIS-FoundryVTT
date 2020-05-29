@@ -349,6 +349,11 @@
     background-position: center;
 }
 
+.degenesis.sheet .footer-diamond{
+    position: absolute;
+    margin-left: 49%;
+    margin-top: 8px;
+}
 /* * Navigation Tabs */
 .degenesis.sheet .tabs {
     flex: 0 0 40px;
@@ -494,7 +499,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 14px;
     margin-bottom: 5px;
 }
 
@@ -523,12 +528,18 @@
  }
 
  .degenesis.sheet .attribute {
-     border-bottom: 1px solid black
+    /*border-bottom: 1px solid black*/
  }
 
  .degenesis.sheet .attribute-name {
-     height: 100%;
-     width: 100%;
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/attribut\ border.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
+    margin-top: -2px;
  }
 
  .degenesis.sheet .skill,
@@ -570,7 +581,13 @@
 
 
  .degenesis.sheet .attribute h3{
-     margin-bottom: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+
+ }
+
+ .degenesis.sheet .skill-name{
+    margin-left: 10px;
  }
 
 

@@ -28,7 +28,7 @@
       <div class = "skill-list">
          {{#each group.skills as |skill sk|}}
          <div data-target="{{sk}}" class="skill">
-            <a>{{skill.label}}</a>
+            <a class="skill-name">{{skill.label}}</a>
             <div class = "diamond-row">
                {{#each skill.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
@@ -46,3 +46,4 @@
    </div>
    {{/each}}
 </div>
+<div class=" footer-diamond square"></div>
