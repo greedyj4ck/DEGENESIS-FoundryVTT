@@ -362,8 +362,10 @@
 
 .degenesis.sheet .footer-diamond{
     position: absolute;
-    left: 50%;
     bottom: 0.7%;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%);
 
 }
 /* * Navigation Tabs */
