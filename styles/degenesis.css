@@ -74,6 +74,26 @@
     src: url('../fonts/Calluna-Regular.otf');
 }
 
+/* * Squares */
+.square {
+    height: 9px;
+    width: 9px;
+    border: 1px solid rgb(165 165 165);
+    margin: 0px 2px 0px 2px;;
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari et Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
+.square.black {
+    background-color:black;
+    border: none;
+}
+
+.square.red {
+    background-color: red;
+}
 /* * Degenesis Sheet */
 
 .degenesis.sheet .break{
@@ -342,6 +362,7 @@
     line-height: 20px;
     font-weight: 500;
     font-size: 13px;
+    letter-spacing: 1px;
 }
 
 .degenesis.sheet .tabs .item.active {
@@ -349,6 +370,8 @@
     text-shadow: none
 }
 
+/* ! makes scroller appear for no reason ! */
+/* ! see later may provoque bugs ! */
 .degenesis.sheet .tab {
     height: 100%
 }
@@ -476,14 +499,23 @@
 }
 
 .degenesis.sheet .tab-content {
-    width: 100%;
+    font-size: 12px;
+    letter-spacing: 1px;
+    /* width: 100%;
     height: calc(100% - 304px);
-    overflow: auto
+    overflow: auto */
 }
 
+.degenesis.sheet .tab-content h3 {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* * Attributes tab * */
+
  .degenesis.sheet .attribute-tab .attribute-skill-group {
-    margin: 5px;
-    width: 25%;
+    margin: 18px;
+    flex:1;
 }
 .degenesis.sheet .attribute-tab {
     display: flex;
@@ -492,6 +524,11 @@
 
  .degenesis.sheet .attribute {
      border-bottom: 1px solid black
+ }
+
+ .degenesis.sheet .attribute-name {
+     height: 100%;
+     width: 100%;
  }
 
  .degenesis.sheet .skill,
@@ -503,6 +540,11 @@
  .degenesis.sheet .attribute > *{
     display: flex;
 }
+
+.degenesis.sheet .diamond-row{
+    justify-content:flex-end;
+}
+
 .degenesis.sheet .skill a {
     margin-top: 5px;
 }
