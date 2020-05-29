@@ -39,6 +39,7 @@ Hooks.once("init", async function() {
   loadTemplates([
     "systems/degenesis/templates/actor/actor-main.html",
     "systems/degenesis/templates/actor/actor-attributes-skills.html",
+    "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html"
   ]);
 
