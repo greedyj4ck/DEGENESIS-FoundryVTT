@@ -86,6 +86,17 @@
     -o-transform: rotate(45deg); /* Opera */
 }
 
+.square.little{
+    height: 7px;
+    width: 7px;
+    border: 1px solid rgb(165 165 165);
+    margin: 0px 2px 0px 2px;;
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari et Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
 .square.black {
     background-color:black;
     border: none;
@@ -351,8 +362,9 @@
 
 .degenesis.sheet .footer-diamond{
     position: absolute;
-    margin-left: 49%;
-    margin-top: 8px;
+    left: 50%;
+    bottom: 0.7%;
+
 }
 /* * Navigation Tabs */
 .degenesis.sheet .tabs {
