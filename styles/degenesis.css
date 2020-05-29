@@ -94,6 +94,10 @@
 .square.red {
     background-color: red;
 }
+
+.diamond:hover .square {
+    border: 1px solid var(--degenesis-red);
+}
 /* * Degenesis Sheet */
 
 .degenesis.sheet .break{
@@ -519,7 +523,7 @@
 /* * Attributes tab * */
 
  .degenesis.sheet .attribute-tab .attribute-skill-group {
-    margin: 18px;
+    margin: 16px 18px;
     flex:1;
 }
 .degenesis.sheet .attribute-tab {
@@ -539,7 +543,6 @@
     color: white;
     background-size: 100%;
     background-position: center;
-    margin-top: -2px;
  }
 
  .degenesis.sheet .skill,
@@ -547,6 +550,11 @@
      display: flex;
      justify-content: space-between;
  }
+
+ .degenesis.sheet .attribute{
+     margin-bottom:15px;
+ }
+ 
  .degenesis.sheet .skill >*,
  .degenesis.sheet .attribute > *{
     display: flex;
@@ -556,8 +564,17 @@
     justify-content:flex-end;
 }
 
-.degenesis.sheet .skill a {
+.degenesis.sheet .skill .diamond {
+    align-self: center;
+}
+
+.degenesis.sheet .attribute .diamond-row{
+    align-self:center;
+}
+
+.degenesis.sheet .skill {
     margin-top: 5px;
+    align-self: center; 
 }
 
 .degenesis.sheet .skill-list {
