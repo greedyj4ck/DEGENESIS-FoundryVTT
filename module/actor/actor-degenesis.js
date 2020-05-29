@@ -40,7 +40,7 @@ export class DegenesisActor extends Actor {
     prepare() 
     {
         let preparedData = {};
-        preparedData.attributeSkillGroups = this.sortAttributesSkills();
+        preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
         preparedData.inventory = this.prepareItems()
         return preparedData;
     }
@@ -57,6 +57,36 @@ export class DegenesisActor extends Actor {
         {
             this.data.data.skills[skill].label = DEGENESIS.skills[skill];
             attributeSkillGroups[this.data.data.skills[skill].attribute].skills[skill] = this.data.data.skills[skill];
+        }
+        return attributeSkillGroups;
+    }
+
+    sortAttributesSkillsDiamonds()
+    {
+        let attributeSkillGroups = this.sortAttributesSkills()
+
+        for (let attrKey in attributeSkillGroups)
+        {
+            let attrGroup = attributeSkillGroups[attrKey]
+            attrGroup.diamonds = [];
+            for (let i = 0; i < 6; i++)
+            {
+                attrGroup.diamonds.push({
+                    filled : i + 1 <= attrGroup.value
+                })
+            }
+
+            for (let skillKey in attrGroup.skills)
+            {
+                let skill = attrGroup.skills[skillKey]
+                skill.diamonds = [];
+                for (let i = 0; i < 6; i++)
+                {
+                    skill.diamonds.push({
+                        filled : i + 1 <= skill.value
+                    })
+                }
+            }
         }
         return attributeSkillGroups;
     }

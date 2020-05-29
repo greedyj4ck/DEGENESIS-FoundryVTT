@@ -1,0 +1,30 @@
+<div class="attribute-tab">
+   {{#each attributeSkillGroups as |group g|}}
+   <div class="attribute-skill-group">
+      <div data-target="{{g}}" class="attribute"> 
+         <h3>{{group.label}}</h3>
+         {{#each group.diamonds as |diamond index|}}
+            {{#if diamond.filled}}
+               <a class = "diamond" data-index={{index}} data-target="attribute"><i class="fas fa-square"></i></a>
+            {{else}}
+               <a class = "diamond" data-index={{index}} data-target="attribute"><i class="far fa-square"></i></a>
+            {{/if}}
+         {{/each}}
+      </div>
+      <div class = "skill-list">
+         {{#each group.skills as |skill sk|}}
+         <div data-target="{{sk}}" class="skill">
+            <a>{{skill.label}}</a>
+            {{#each skill.diamonds as |diamond index|}}
+               {{#if diamond.filled}}
+                  <a class = "diamond" data-index={{index}}><i class="fas fa-square"></i></a>
+               {{else}}
+                  <a class = "diamond" data-index={{index}}><i class="far fa-square"></i></a>
+               {{/if}}
+            {{/each}}
+         </div>
+         {{/each}}
+      </div>
+   </div>
+   {{/each}}
+</div>
