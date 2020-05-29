@@ -389,7 +389,7 @@
 }
 
 .degenesis.sheet .tabs .item.active {
-    background-color: black;
+    background-color: var(--degenesis-red);
     text-shadow: none
 }
 
