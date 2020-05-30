@@ -1,5 +1,6 @@
 :root {
     --degenesis-red: #ed1d27;
+    --dark-grey: rgb(164, 164, 164);
 }
 
 ::-webkit-scrollbar,
@@ -40,14 +41,14 @@
 
 @font-face {
     font-family: "Avenir";
-    src: url('../fonts/AvenirLTStd-Heavy.otf');
+    src: url('../fonts/AvenirLTStd-Black.otf');
     font-weight: 900;
-}
+ }
 @font-face {
     font-family: "Avenir";
-    src: url('../fonts/AvenirLTStd-Black.otf');
+    src: url('../fonts/AvenirLTStd-Heavy.otf');
     font-weight: bold;
- }
+}
 @font-face {
     font-family: "Avenir";
     src: url('../fonts/AvenirLTStd-Medium.otf');
@@ -73,6 +74,8 @@
     font-family: "Calluna";
     src: url('../fonts/Calluna-Regular.otf');
 }
+
+
 
 /* * Squares */
 .square {
@@ -146,7 +149,9 @@
 }
 
 .degenesis.sheet h2 {
-    border: none    
+    border: none ;
+    color: var(--degenesis-red);
+    font-weight: 400;   
 }
 
 
@@ -224,7 +229,7 @@
 
 .degenesis.sheet .sheet-field {
     display: flex;
-    border-bottom: 1px solid black
+    border-bottom: 1px solid var(--dark-grey);
 }
 
 .degenesis.sheet .condition .condition-item:hover,
@@ -338,11 +343,46 @@
 
 .degenesis.sheet hr{
     border: solid;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--dark-grey);
     border-bottom: none;
     border-left: none;
     border-right: none;
     margin: 2px 2px 0px;
+}
+
+.window-Cs {
+    position: absolute;
+    top: 290px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 300px;
+    z-index: 20;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* display: none; */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+
+.img-Cs:hover ~ .window-Cs {
+    /* display: block; */
+    visibility: visible;
+    opacity: 1;
+}
+
+.img-Cs:not(:hover) ~ .window-Cs {
+    /* display: block; */
+    visibility: visible;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
 }
 
 /* * Sheet Footer */
@@ -383,7 +423,7 @@
     background-color: black;
     margin: 2px;
     line-height: 20px;
-    font-weight: 500;
+    font-weight: 100;
     font-size: 13px;
     letter-spacing: 1px;
 }

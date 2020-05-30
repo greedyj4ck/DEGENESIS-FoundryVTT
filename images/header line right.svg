@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 284 40" enable-background="new 0 0 284 40" xml:space="preserve">
+	 viewBox="0 0 285 22" enable-background="new 0 0 285 22" xml:space="preserve">
 <g>
 	<defs>
-		<rect id="SVGID_1_" y="8" width="284.3" height="12"/>
+		<rect id="SVGID_1_" x="0.2" y="-0.7" width="289.3" height="13.3"/>
 	</defs>
 	<clipPath id="SVGID_2_">
 		<use xlink:href="#SVGID_1_"  overflow="visible"/>
 	</clipPath>
-	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="0,19.8 217.5,19.8 224.1,13 276.7,13 	"/>
-	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" points="280,9.6 283.4,13 283.5,13.1 283.4,13.3 280,16.7 
-		279.9,16.8 279.7,16.7 276.3,13.3 276.2,13.1 276.3,13 279.7,9.6 279.9,9.5 	"/>
+	<polyline clip-path="url(#SVGID_2_)" fill="none" stroke="#010202" stroke-width="0.5" points="0,11.1 218,11.1 224.6,4.3 
+		277.3,4.3 	"/>
+	<polygon clip-path="url(#SVGID_2_)" fill="none" stroke="#010202" stroke-width="0.5" points="280.6,0.9 284,4.3 284.1,4.4 
+		284,4.6 280.6,8 280.5,8.1 280.3,8 276.9,4.6 276.8,4.4 276.9,4.3 280.3,0.9 280.5,0.8 	"/>
 </g>
 </svg>
