@@ -56,7 +56,11 @@
         <div class ="three-Cs row">
             <div class = "sheet-field-stack">
                <div class="title-Cs">CULTURE</div>
-               <img height="80" width="80" src = "{{cultureIcon}}"/>
+               <img class ="culture-img" height="80" width="80" src = "{{cultureIcon}}"/>
+               <div class="c-popout culture">
+                <h2>{{culture}}</h2>
+                {{{cultureDescription}}}
+                </div>
                <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
                     {{#select data.details.culture.value}}
                     <option value=""></option>
@@ -68,18 +72,11 @@
             </div>
             <div class = "sheet-field-stack">
                <div class="title-Cs">CONCEPT</div>
-               <img class="img-Cs" height="80" width="80" src = "{{conceptIcon}}"/>
-                <div class="window-Cs">
-                <h2>XIV. THE CHOSEN</h2>
-                <p>People come running to see him, to bask in his glory. 
-                Others have always listened to every word the chosen said. 
-                All of his words sounded wise. That had its consequences: 
-                sees himself as the solution to every problem. He is the 
-                sword splitting apart the Gordian knot, and he is the Messiah 
-                that the congregation has awaited. His presence inspires the people,
-                for good or for bad. Those who disdain him and call him a fraud are damned 
-                in their faithlessness in his eyes.</p>
-            </div>
+               <img class="concept-img" height="80" width="80" src = "{{conceptIcon}}"/>
+                <div class="c-popout concept">
+                <h2>{{concept}}</h2>
+                {{{conceptDescription}}}
+                </div>
                <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
                     {{#select data.details.concept.value}}
                     <option value=""></option>
@@ -92,7 +89,11 @@
            
             <div class = "sheet-field-stack">
                <div class="title-Cs">CULT</div>
-               <img height="80" width="80" src = "{{cultIcon}}"/>
+               <img class="cult-img" height="80" width="80" src = "{{cultIcon}}"/>
+               <div class="c-popout cult">
+                <h2>{{cult}}</h2>
+                {{{cultDescription}}}
+                </div>
                <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
                     {{#select data.details.cult.value}}
                     <option value=""></option>

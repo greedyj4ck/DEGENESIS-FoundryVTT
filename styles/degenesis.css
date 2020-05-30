@@ -354,7 +354,7 @@
     margin: 2px 2px 0px;
 }
 
-.window-Cs {
+.c-popout {
     position: absolute;
     top: 290px;
     left: 50%;
@@ -375,7 +375,28 @@
     transition: visibility 0.2s, opacity 0.2s linear;
 }
 
-.img-Cs:hover ~ .window-Cs {
+.c-popout.culture {
+    left: 25%
+}
+
+.c-popout.concept {
+    left: 50%
+}
+
+.c-popout.cult {
+    left: 75%
+}
+
+
+.culture-img:hover ~ .c-popout.culture {
+    visibility: visible;
+    opacity: 1;
+} 
+.cult-img:hover ~ .c-popout.cult {
+    visibility: visible;
+    opacity: 1;
+} 
+.concept-img:hover ~ .c-popout.concept {
     visibility: visible;
     opacity: 1;
 } 

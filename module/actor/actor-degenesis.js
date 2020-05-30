@@ -42,6 +42,12 @@ export class DegenesisActor extends Actor {
         let preparedData = {};
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
         preparedData.inventory = this.prepareItems()
+        preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
+        preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
+        preparedData.concept = DEGENESIS.concepts[this.data.data.details.concept.value]
+        preparedData.cultureDescription = DEGENESIS.cultureDescription[this.data.data.details.culture.value]
+        preparedData.cultDescription = DEGENESIS.cultDescription[this.data.data.details.cult.value]
+        preparedData.conceptDescription = DEGENESIS.conceptDescription[this.data.data.details.concept.value]
         return preparedData;
     }
 
