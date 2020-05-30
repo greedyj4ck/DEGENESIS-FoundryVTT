@@ -785,3 +785,157 @@
 .degenesis.sheet .attributes-list li a.attribute-control {
     border: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/****************************** EXPERIMENTAL UI CHANGES *****************************/
+
+
+#logo {
+    content:url(../icons/degenesis.png)
+}
+
+button {
+    background: none;
+    border-radius: 0px;
+    font-family: "Avenir";
+    text-transform: uppercase;
+    border: 2px solid var(--degenesis-red);
+    color: white
+}
+
+button:hover {
+    box-shadow: none;
+    color: var(--degenesis-red)
+}
+
+
+
+#sidebar-tabs {
+    box-shadow: none;
+    border-bottom: 2px solid var(--degenesis-red)
+}
+
+#sidebar-tabs > .item.active {
+    box-shadow: none;
+    border: 0px solid var(--degenesis-red)
+}
+
+#sidebar .tabs .item.active {
+    text-shadow: none;
+    color: var(--degenesis-red)
+}
+
+#sidebar {
+    background : rgb(0, 0, 0, 0.90);
+    border-radius: 0px;
+    font-family: "Calluna"
+}
+
+
+ #sidebar h2 {
+     font-family: "Avenir";
+     border-bottom: 0px;
+     color: var(--degenesis-red);
+     text-transform: uppercase;
+}
+
+
+#sidebar .directory-footer button {
+    font-size: 12px
+}
+
+#chat-form textarea {
+    background: white;
+    border-radius : 0px;
+    border: 1px solid var(--degenesis-red);
+    margin-top: 3px
+}
+
+#sidebar .directory-header a,
+#chat-controls a{
+    color: var(--degenesis-red);
+}
+
+#sidebar .directory-header a:hover,
+#chat-controls a:hover{
+    color: white;
+}
+
+#chat-controls .roll-type-select label i {
+    width: 25px;
+    height: 25px;
+    color: #f0f8ff00;
+    background: url(../icons/logo-small.png);
+}
+
+#chat-controls div.roll-type-select select {
+    background: none;
+    border: none;
+    padding: 0px;
+    color: white;
+    border: 1px solid var(--degenesis-red);
+    border-radius: 0px;
+    font-family: "Avenir";
+    text-transform: uppercase;
+}
+/*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
+
+#select:focus {
+    box-shadow: none
+}
+
+select > *{
+    color: white;
+    background-color: black;
+}
+
+textarea:focus {
+    outline: 2px solid var(--degenesis-red);
+    box-shadow: 0 0 10px var(--degenesis-red);
+}
+
+a:hover {
+    text-shadow:none;
+    color: var(--degenesis-red);
+  }
+
+.sidebar-tab .directory-header .header-search input {
+    background: none;
+    border-radius: 0px;
+    border: 1px solid var(--degenesis-red);
+    color: white
+}
+
+.sidebar-tab .directory-header .header-search input:focus {
+    box-shadow: none;
+    color: var(--degenesis-red);
+}
+
+#sidebar .directory-header .header-search i {
+    color: var(--degenesis-red)
+}
+
+#controls .scene-control,
+#controls .control-tool {
+    background-color: black;
+    border-radius: 0px;
+    border: 1px solid white
+}
+
+#controls .scene-control.active,
+#controls .control-tool.active,
+#controls .scene-control:hover,
+#controls .control-tool:hover {
+    box-shadow: none;
+    color: var(--degenesis-red);
+}
