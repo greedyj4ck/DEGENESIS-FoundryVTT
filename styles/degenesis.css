@@ -366,24 +366,25 @@
     -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* display: none; */
-    visibility: hidden;
+/** Need display none, menu broken if not* */
+    display: none;
+    /*visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.2s linear;
+    transition: visibility 0s, opacity 0.2s linear;*/
 }
 
 .img-Cs:hover ~ .window-Cs {
-    /* display: block; */
-    visibility: visible;
-    opacity: 1;
-}
+    display: block;
+   /* visibility: visible;
+    opacity: 1;*/
+} 
 
-.img-Cs:not(:hover) ~ .window-Cs {
-    /* display: block; */
+/* .img-Cs:not(:hover) ~ .window-Cs {
+    display: none;
     visibility: visible;
     opacity: 0;
     transition: visibility 0s, opacity 0.2s linear;
-}
+} */
 
 /* * Sheet Footer */
 .degenesis.sheet .sheet-footer {
