@@ -109,6 +109,10 @@
     background-color: red;
 }
 
+.diamond .square {
+    transition: border-color 0.1s linear;
+}
+
 .diamond:hover .square {
     border: 1px solid var(--degenesis-red);
 }
@@ -366,25 +370,15 @@
     -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
-/** Need display none, menu broken if not* */
-    /* display: none; */
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.2s linear;
+    transition: visibility 0.2s, opacity 0.2s linear;
 }
 
-.img-Cs:hover ~ .window-Cs {  
-    /* display: block; */
+.img-Cs:hover ~ .window-Cs {
     visibility: visible;
     opacity: 1;
 } 
-
-.img-Cs:not(:hover) ~ .window-Cs {
-    /* display: none; */
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.2s linear;
-}
 
 /* * Sheet Footer */
 .degenesis.sheet .sheet-footer {
@@ -427,6 +421,11 @@
     font-weight: 100;
     font-size: 13px;
     letter-spacing: 1px;
+    transition: background-color 0.1s ease-out;
+}
+
+.degenesis.sheet .tabs .item:hover {
+    background-color: var(--degenesis-red);
 }
 
 .degenesis.sheet .tabs .item.active {
