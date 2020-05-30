@@ -41,6 +41,7 @@ export class DegenesisActor extends Actor {
     {
         let preparedData = {};
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
+        preparedData.backgrounds = this.prepareBackgrounds();
         preparedData.inventory = this.prepareItems()
         preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
         preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
@@ -74,27 +75,34 @@ export class DegenesisActor extends Actor {
         for (let attrKey in attributeSkillGroups)
         {
             let attrGroup = attributeSkillGroups[attrKey]
-            attrGroup.diamonds = [];
-            for (let i = 0; i < 6; i++)
-            {
-                attrGroup.diamonds.push({
-                    filled : i + 1 <= attrGroup.value
-                })
-            }
+            this.addDiamonds(attrGroup, 6)
 
             for (let skillKey in attrGroup.skills)
-            {
-                let skill = attrGroup.skills[skillKey]
-                skill.diamonds = [];
-                for (let i = 0; i < 6; i++)
-                {
-                    skill.diamonds.push({
-                        filled : i + 1 <= skill.value
-                    })
-                }
-            }
+                this.addDiamonds(attrGroup.skills[skillKey], 6)
         }
         return attributeSkillGroups;
+    }
+
+    prepareBackgrounds()
+    {
+        let backgrounds = duplicate(this.data.data.backgrounds)
+        for (let bg in backgrounds)
+        {
+            this.addDiamonds(backgrounds[bg], 6);
+            backgrounds[bg].label = backgrounds[bg].label.toUpperCase()
+        }
+        return backgrounds
+    }
+
+    addDiamonds(data, diamondMax = 0)
+    {
+        data.diamonds = [];
+        for (let i = 0; i < diamondMax; i++)
+        {
+            data.diamonds.push({
+                filled : i + 1 <= data.value
+            })
+        }
     }
 
     prepareItems() 
