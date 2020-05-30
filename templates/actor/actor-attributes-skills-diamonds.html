@@ -1,30 +1,51 @@
+<div class="title">
+   <div class="body-column body-line">
+      <div class="title-line middle-left"></div>
+      <div class="middle-name">ATTRIBUTES & SKILLS</div>
+      <div class="title-line middle-right"></div>
+   </div>
+</div> 
 <div class="attribute-tab">
    {{#each attributeSkillGroups as |group g|}}
    <div class="attribute-skill-group">
       <div data-target="{{g}}" class="attribute"> 
-         <h3>{{group.label}}</h3>
-         {{#each group.diamonds as |diamond index|}}
-            {{#if diamond.filled}}
-               <a class = "diamond" data-index={{index}} data-target="attribute"><i class="fas fa-square"></i></a>
-            {{else}}
-               <a class = "diamond" data-index={{index}} data-target="attribute"><i class="far fa-square"></i></a>
-            {{/if}}
-         {{/each}}
+         <div class="attribute-name">
+            <h3>{{group.label}}</h3>
+         </div>
+         
+         <div class = "diamond-row">
+            {{#each group.diamonds as |diamond index|}}
+               {{#if diamond.filled}}
+               <!-- <a class = "diamond" data-index={{index}} data-target="attribute"><i class="fas fa-square"></i></a> -->
+               <a class = "diamond" data-index={{index}} data-target="attribute"><div class="square black"></div></a>
+               {{else}}
+                  <!-- <a class = "diamond" data-index={{index}} data-target="attribute"><i class="far fa-square"></i></a> -->
+                  <a class = "diamond" data-index={{index}} data-target="attribute"><div class="square"></div></a>
+               {{/if}}
+            {{/each}}
+         </div>
       </div>
       <div class = "skill-list">
          {{#each group.skills as |skill sk|}}
          <div data-target="{{sk}}" class="skill">
-            <a>{{skill.label}}</a>
-            {{#each skill.diamonds as |diamond index|}}
-               {{#if diamond.filled}}
-                  <a class = "diamond" data-index={{index}}><i class="fas fa-square"></i></a>
-               {{else}}
-                  <a class = "diamond" data-index={{index}}><i class="far fa-square"></i></a>
-               {{/if}}
-            {{/each}}
+            <a class="skill-name">{{skill.label}}</a>
+            <div class = "diamond-row">
+               {{#each skill.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                     <!-- <a class = "diamond" data-index={{index}}><i class="fas fa-square"></i></a> -->
+                     <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                  {{else}}
+                     <!-- <a class = "diamond" data-index={{index}}><i class="far fa-square"></i></a> -->
+                     <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                  {{/if}}
+               {{/each}}
+            </div>
          </div>
          {{/each}}
       </div>
    </div>
    {{/each}}
 </div>
+<div class="footer-diamond">
+   <div class="square little"></div>
+ </div>

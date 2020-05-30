@@ -1,5 +1,6 @@
 :root {
     --degenesis-red: #ed1d27;
+    --dark-grey: rgb(164, 164, 164);
 }
 
 ::-webkit-scrollbar,
@@ -40,14 +41,14 @@
 
 @font-face {
     font-family: "Avenir";
-    src: url('../fonts/AvenirLTStd-Heavy.otf');
+    src: url('../fonts/AvenirLTStd-Black.otf');
     font-weight: 900;
-}
+ }
 @font-face {
     font-family: "Avenir";
-    src: url('../fonts/AvenirLTStd-Black.otf');
+    src: url('../fonts/AvenirLTStd-Heavy.otf');
     font-weight: bold;
- }
+}
 @font-face {
     font-family: "Avenir";
     src: url('../fonts/AvenirLTStd-Medium.otf');
@@ -56,6 +57,7 @@
 @font-face {
     font-family: "Avenir";
     src: url('../fonts/AvenirLTStd-Roman.otf');
+
 }
 @font-face {
     font-family: "Avenir";
@@ -73,6 +75,47 @@
     src: url('../fonts/Calluna-Regular.otf');
 }
 
+
+
+/* * Squares */
+.square {
+    height: 9px;
+    width: 9px;
+    border: 1px solid rgb(165 165 165);
+    margin: 0px 2px 0px 2px;;
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari et Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
+.square.little{
+    height: 7px;
+    width: 7px;
+    border: 1px solid rgb(165 165 165);
+    margin: 0px 2px 0px 2px;;
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari et Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
+.square.black {
+    background-color:black;
+    border: none;
+}
+
+.square.red {
+    background-color: red;
+}
+
+.diamond .square {
+    transition: border-color 0.1s linear;
+}
+
+.diamond:hover .square {
+    border: 1px solid var(--degenesis-red);
+}
 /* * Degenesis Sheet */
 
 .degenesis.sheet .break{
@@ -110,7 +153,9 @@
 }
 
 .degenesis.sheet h2 {
-    border: none    
+    border: none ;
+    color: var(--degenesis-red);
+    font-weight: 400;   
 }
 
 
@@ -171,8 +216,6 @@
 .degenesis.sheet select {
     background: none;
     border: none;
-    border-bottom: 1px solid black;
-    border-radius: 0px;
     padding: 0px;
     text-align-last:center
 }
@@ -190,7 +233,7 @@
 
 .degenesis.sheet .sheet-field {
     display: flex;
-    border-bottom: 1px solid black
+    border-bottom: 1px solid var(--dark-grey);
 }
 
 .degenesis.sheet .condition .condition-item:hover,
@@ -240,11 +283,11 @@
     display: flex;
 }
 
-.degenesis.sheet .line{
+.degenesis.sheet .archetype-line{
     display: flex;
-    height: 20px;
+    height: 22px;
     background-repeat: no-repeat;
-    background-size: 366px;
+    background-size: 100%;
     background-position: center;
     flex: 1;
 }
@@ -255,22 +298,26 @@
     font-size: 15px;
     font-weight: 200;
     letter-spacing: 2px;
+    text-align: center;
+    border: 2px solid transparent;
 }
 
-.degenesis.sheet .line-left{
+.degenesis.sheet .archetype-line.line-left{
     background-image: url(../images/header\ line\ left.svg);
 }
 
-.degenesis.sheet .line-right{
+.degenesis.sheet .archetype-line.line-right{
     background-image: url(../images/header\ line\ right.svg);
 }
 
 .degenesis.sheet .header-column.char-info.left{
     margin-left: 7px;
+    margin-right: 2px;
 }
 
 .degenesis.sheet .header-column.char-info.right{
     margin-right: 7px;
+    margin-left: 2px;
 }
 
 .degenesis.sheet .img-container{
@@ -278,34 +325,60 @@
 }
 
 .degenesis.sheet .img-frame{
-    flex: 0 0 115px;
+    display: flex;
+    flex: 0 0 107px;
     z-index: 1000;
-    height: 120px;
+    height: 107px;
     background-image: url(../images/character\ frame.svg);
     background-repeat: no-repeat;
-    background-size: 142%;
-    background-position: 51% 44%;
+    background-size: 100%;
+    background-position: center;
     border: none;
 }
 
 .degenesis.sheet .profile-img {
-    height: 99px;
-    width: 99px;
-    margin: 9px;
+    height: 88%;
+    width: 88%;
+    margin: auto;
     border: none;
-    display: block;
+    display: flex;
     border-radius: 0;
-    margin-left: 7px;
 }
 
-.degenesis.sheet .sheet-header hr{
+.degenesis.sheet hr{
     border: solid;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--dark-grey);
     border-bottom: none;
     border-left: none;
     border-right: none;
-    margin: -2px 2px 0px;
+    margin: 2px 2px 0px;
 }
+
+.window-Cs {
+    position: absolute;
+    top: 290px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 300px;
+    z-index: 20;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s linear;
+}
+
+.img-Cs:hover ~ .window-Cs {
+    visibility: visible;
+    opacity: 1;
+} 
 
 /* * Sheet Footer */
 .degenesis.sheet .sheet-footer {
@@ -322,10 +395,18 @@
     height: 20px;
     flex: 1;
     background-repeat: no-repeat;
-    background-size: 105%;
+    background-size: 100%;
     background-position: center;
 }
 
+.degenesis.sheet .footer-diamond{
+    position: absolute;
+    bottom: 0.7%;
+    display: flex;
+    left: 50%;
+    transform: translate(-50%);
+
+}
 /* * Navigation Tabs */
 .degenesis.sheet .tabs {
     flex: 0 0 40px;
@@ -337,8 +418,14 @@
     background-color: black;
     margin: 2px;
     line-height: 20px;
-    font-weight: 500;
+    font-weight: 100;
     font-size: 13px;
+    letter-spacing: 1px;
+    transition: background-color 0.1s ease-out;
+}
+
+.degenesis.sheet .tabs .item:hover {
+    background-color: var(--degenesis-red);
 }
 
 .degenesis.sheet .tabs .item.active {
@@ -346,13 +433,15 @@
     text-shadow: none
 }
 
-.degenesis.sheet .tab {
+/* ! makes scroller appear for no reason ! */
+/* ! see later may provoque bugs ! */
+/* .degenesis.sheet .tab {
     height: 100%
-}
+} */
 
-.degenesis.sheet .tab-content {
+.degenesis.sheet .body-line {
     width: 100%;
-    height: calc(100% - 304px);
+    height: calc(100% - 300px);
     overflow: auto
 }
 
@@ -402,7 +491,20 @@
 .degenesis.sheet .section-header.row h3{
     padding-top:10px
 }
-
+.degenesis.sheet .title-line{
+    display: flex;
+    height: 22px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    flex: 1;
+}
+.degenesis.sheet .middle-left{
+    background-image: url(../images/middle\ line\ left.svg);
+}
+.degenesis.sheet .middle-right{
+    background-image: url(../images/middle\ line\ right.svg);
+}
 .degenesis.sheet .condition {
     height: 50%
 }
@@ -448,9 +550,35 @@
     resize: none;
  }
 
+ .degenesis.sheet .body-line{
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 14px;
+    margin-bottom: 5px;
+}
+
+.degenesis.sheet .tab-content {
+    font-size: 12px;
+    letter-spacing: 1px;
+    width: 100%;
+    height: calc(100% - 300px);
+    overflow: auto
+}
+
+.degenesis.sheet .tab-content h3 {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* * Attributes tab * */
+
  .degenesis.sheet .attribute-tab .attribute-skill-group {
-    margin: 20px;
-    width: 25%;
+    margin: 16px 18px;
+    flex:1;
 }
 .degenesis.sheet .attribute-tab {
     display: flex;
@@ -458,7 +586,17 @@
  }
 
  .degenesis.sheet .attribute {
-     border-bottom: 1px solid black
+    /*border-bottom: 1px solid black*/
+ }
+
+ .degenesis.sheet .attribute-name {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/attribut\ border.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
  }
 
  .degenesis.sheet .skill,
@@ -466,12 +604,31 @@
      display: flex;
      justify-content: space-between;
  }
+
+ .degenesis.sheet .attribute{
+     margin-bottom:15px;
+ }
+ 
  .degenesis.sheet .skill >*,
  .degenesis.sheet .attribute > *{
     display: flex;
 }
-.degenesis.sheet .skill a {
+
+.degenesis.sheet .diamond-row{
+    justify-content:flex-end;
+}
+
+.degenesis.sheet .skill .diamond {
+    align-self: center;
+}
+
+.degenesis.sheet .attribute .diamond-row{
+    align-self:center;
+}
+
+.degenesis.sheet .skill {
     margin-top: 5px;
+    align-self: center; 
 }
 
 .degenesis.sheet .skill-list {
@@ -495,7 +652,13 @@
 
 
  .degenesis.sheet .attribute h3{
-     margin-bottom: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+
+ }
+
+ .degenesis.sheet .skill-name{
+    margin-left: 10px;
  }
 
 
