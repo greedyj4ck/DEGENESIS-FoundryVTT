@@ -78,32 +78,23 @@ export class DegenesisActorSheet extends ActorSheet {
 
     // Respond to diamond clicks
     html.find(".diamond").click(ev => {
-      let skillElement = $(ev.currentTarget).parents(".skill");
-      let attributeElement = $(ev.currentTarget).parents(".attribute");
-      let target = $(ev.currentTarget)
       let actorData = duplicate(this.actor)
       let index = Number($(ev.currentTarget).attr("data-index"));
+      let target = $(ev.currentTarget).parents(".diamond-row").attr("data-target")
 
-      // If a skill diamond was clicked
-      if (skillElement.length)
-      {
-        target = skillElement.attr("data-target")
-        if (actorData.data.skills[target].value == index + 1) // If the last one was clicked, decrease by 1
-          actorData.data.skills[target].value = index
-        else                                                  // Otherwise, value = index clicked
-          actorData.data.skills[target].value = index + 1
-      }
+      let value = getProperty(actorData, target)
+      if (value == index + 1)                 // If the last one was clicked, decrease by 1
+        setProperty(actorData, target, index)
+      else                                    // Otherwise, value = index clicked
+        setProperty(actorData, target, index + 1)
+
+      // If attribute selected
+      let attributeElement = $(ev.currentTarget).parents(".attribute");
       if (attributeElement.length)
       {
-        target = attributeElement.attr("data-target")
-        if (actorData.data.attributes[target].value == index + 1) // If the last one was clicked, decrease by 1
-          actorData.data.attributes[target].value = index
-        else                                                      // Otherwise, value = index clicked
-          actorData.data.attributes[target].value = index + 1
-
         // Constrain attributes to be greater than 0
-        if (actorData.data.attributes[target].value <= 0)
-          actorData.data.attributes[target].value = 1;
+        if (getProperty(actorData, target) <= 0)
+          setProperty(actorData, target, 1)
       }
 
       this.actor.update(actorData);

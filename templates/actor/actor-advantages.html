@@ -20,10 +20,9 @@
 
                   <div class="advantage-list">
                      {{#each backgrounds as |background bg|}}
-
-                     <div data-target"{{bg}}" class="advantage">
+                     <div class="advantage">
                         <a class="background-name">{{background.label}}</a>
-                        <div class="diamond-row">
+                        <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
                            {{#each background.diamonds as |diamond index|}}
                               {{#if diamond.filled}}
                                  <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
