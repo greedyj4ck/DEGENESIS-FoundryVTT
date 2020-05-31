@@ -700,7 +700,6 @@
  }
 
  .degenesis.sheet .black-title {
-    height: 100%;
     width: 100%;
     background-image: url(../images/attribut\ border.svg);
     background-repeat: no-repeat;
@@ -757,7 +756,7 @@
     }
 
 
- .degenesis.sheet .background h3{
+ .degenesis.sheet .advantage-group h3{
     margin-bottom: 0px;
     margin-left: 10px;
 
