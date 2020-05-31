@@ -601,6 +601,7 @@
     margin: 16px 18px;
     flex:1;
 }
+
 .degenesis.sheet .attribute-tab {
     display: flex;
     flex-wrap: wrap;
@@ -682,6 +683,49 @@
     margin-left: 10px;
  }
 
+ /* * Advantages tab * */
+ 
+.degenesis.sheet .advantage-tab {
+    display: flex;
+    flex-wrap: wrap;
+ }
+ .degenesis.sheet .advantage-tab .upper-row {
+     display: inline-flex;
+     flex-direction:row;
+     justify-content: space-between;
+}
+
+ .degenesis.sheet .advantage-tab .advantage-group {
+    margin: 16px 18px;
+    flex:1;
+}
+
+
+.degenesis.sheet .background {
+    margin-top: 5px;
+    align-self: center; 
+}
+
+.degenesis.sheet .background-list {
+    margin-top:10px;
+}
+
+
+ .degenesis.sheet .advantage-tab .black-title {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/attribut\ border.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
+ }
+
+ .degenesis.sheet .background,
+ .degenesis.sheet .black-title {
+     display: flex;
+     justify-content: space-between;
+ }
 
 
 /* * Items */
