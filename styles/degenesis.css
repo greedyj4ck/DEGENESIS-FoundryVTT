@@ -714,6 +714,16 @@
      justify-content: space-between;
  }
 
+ .degenesis.sheet .advantage,
+ .degenesis.sheet .background {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .degenesis.sheet .scars-group .advantage {
+     display: block;
+ }
+
  .degenesis.sheet .background{
      margin-bottom:15px;
  }
@@ -749,10 +759,20 @@
      text-align: center;
  }
 
+ .degenesis.sheet .advantage-tab .sheet-field .field-name {
+     flex: 1.91;
+ }
+
+ .degenesis.sheet .advantage-tab .sheet-field {
+    margin-left: 10px;
+}
+
  .degenesis.sheet .advantage input[type="text"]{
      border-top: 0px;
      border-left: 0px;
      border-right: 0px;
+     border-bottom: 0px;
+     flex: 1.58;
     }
 
 
