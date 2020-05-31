@@ -5,8 +5,93 @@
        <div class="title-line middle-right"></div>
     </div>
  </div> 
- <div class="attribute-tab">
+
+ <div class="advantage-tab">
+   <!-- <div class="upper-row"> -->
+
+      <!-- * BACKGROUNDS * -->
+      <!-- <div class="advantage-column"> -->
+            <div class="advantage-group background-group"> 
+               <div class="background">
+                  <div class="black-title">
+                     <h3>BACKGROUNDS</h3>
+                  </div>
+               </div>
+
+                  <div class="advantage-list">
+                     {{#each backgrounds as |background bg|}}
+
+                     <div data-target"{{bg}}" class="advantage">
+                        <a class="background-name">{{background.label}}</a>
+                        <div class="diamond-row">
+                           {{#each background.diamonds as |diamond index|}}
+                              {{#if diamond.filled}}
+                                 <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                              {{else}}
+                                 <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                              {{/if}}
+                           {{/each}}
+                        </div>
+                     </div>
+                     {{/each}}
+                  </div>
+           </div>
+      <!-- </div> -->
+
+      <!-- * LEGACY * -->
+      <!-- <div class="advantage-column"> -->
+         <div class="advantage-group legacy-group">
+            <div class="black-title">
+               <h3>LEGACY</h3>
+            </div>
+            <div class="legacy clickable-row">
+               <a class="legacy-name">
+                  {{legacy}}
+               </a>
+            </div>
+            <div class="legacy-description">
+               {{{legacydescription}}}
+            </div>
+         </div>
+      <!-- </div> -->
+      
+      <!-- * SCARS * -->
+      <!-- <div class="advantage-column"> -->
+         <div class="advantage-group scars-group">
+            <div class="black-title">
+               <h3>SCARS</h3>
+            </div>
+            <div class="sheet-field">
+               <span class="field-name">GROUP NAME:</span>
+               <input class="field-input" type="text" name="group-" value="{{actor.group-name}}"/>
+            </div>
+            <div class="sheet-field">
+               <span class="field-name">ALIGNEMENT:</span>
+               <input class="field-input" type="text" name="alignement" value="{{actor.alignement}}"/>
+            </div>
+            <div class="sheet-field">
+               <span class="field-name">CONSTELATION:</span>
+               <input class="field-input" type="text" name="constelation" value="{{actor.constelation}}"/>
+            </div>
+            <div class="sheet-field">
+               <span class="field-name">SCARS VALUE:</span>
+               <input class="field-input" type="text" name="scars-value" value="{{actor.constelation}}"/>
+            </div>
+            <div class="diamond-row">
+               {{#each infamy.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                     <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                  {{else}}
+                     <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                  {{/if}}
+               {{/each}}
+            </div>
+         </div>
+      <!-- </div> -->
+
+   <!-- </div> -->
  </div>
+
  <div class="footer-diamond">
    <div class="square little"></div>
    <div class="square little"></div>

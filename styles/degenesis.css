@@ -601,6 +601,7 @@
     margin: 16px 18px;
     flex:1;
 }
+
 .degenesis.sheet .attribute-tab {
     display: flex;
     flex-wrap: wrap;
@@ -682,6 +683,88 @@
     margin-left: 10px;
  }
 
+ /* * Advantages tab * */
+ 
+ .degenesis.sheet .advantage-tab .advantage-group {
+    margin: 16px 18px;
+    flex:1;
+}
+
+.degenesis.sheet .advantage-tab {
+    display: flex;
+    flex-wrap: wrap;
+ }
+
+ .degenesis.sheet .background {
+    /*border-bottom: 1px solid black*/
+ }
+
+ .degenesis.sheet .black-title {
+    width: 100%;
+    background-image: url(../images/attribut\ border.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
+ }
+
+ .degenesis.sheet .advantage,
+ .degenesis.sheet .background {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .degenesis.sheet .background{
+     margin-bottom:15px;
+ }
+ 
+ .degenesis.sheet .advantage >*,
+ .degenesis.sheet .background > *{
+    display: flex;
+}
+
+.degenesis.sheet .advantage .diamond {
+    align-self: center;
+}
+
+.degenesis.sheet .background .diamond-row{
+    align-self:center;
+}
+
+.degenesis.sheet .advantage {
+    margin-top: 5px;
+    align-self: center; 
+}
+
+.degenesis.sheet .advantage-list {
+    margin-top:10px;
+}
+
+ .degenesis.sheet .advantage input[type="text"] ,
+    .degenesis.sheet .background input[type="text"] {
+     border: 1px solid black;
+     border-radius: 0px;
+     width:20px;
+     height:20px;
+     text-align: center;
+ }
+
+ .degenesis.sheet .advantage input[type="text"]{
+     border-top: 0px;
+     border-left: 0px;
+     border-right: 0px;
+    }
+
+
+ .degenesis.sheet .advantage-group h3{
+    margin-bottom: 0px;
+    margin-left: 10px;
+
+ }
+
+ .degenesis.sheet .background-name{
+    margin-left: 10px;
+ }
 
 
 /* * Items */

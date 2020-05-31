@@ -5,10 +5,14 @@
       <div class="title-line middle-right"></div>
    </div>
 </div> 
+<!-- advantage-tab -->
 <div class="attribute-tab">
    {{#each attributeSkillGroups as |group g|}}
+   <!-- advantage-group -->
    <div class="attribute-skill-group">
+      <!-- background -->
       <div data-target="{{g}}" class="attribute"> 
+         <!-- black-title -->
          <div class="attribute-name">
             <h3>{{group.label}}</h3>
          </div>
@@ -16,26 +20,25 @@
          <div class = "diamond-row">
             {{#each group.diamonds as |diamond index|}}
                {{#if diamond.filled}}
-               <!-- <a class = "diamond" data-index={{index}} data-target="attribute"><i class="fas fa-square"></i></a> -->
                <a class = "diamond" data-index={{index}} data-target="attribute"><div class="square black"></div></a>
                {{else}}
-                  <!-- <a class = "diamond" data-index={{index}} data-target="attribute"><i class="far fa-square"></i></a> -->
                   <a class = "diamond" data-index={{index}} data-target="attribute"><div class="square"></div></a>
                {{/if}}
             {{/each}}
          </div>
       </div>
+      <!-- advantage-list -->
       <div class = "skill-list">
          {{#each group.skills as |skill sk|}}
+         <!-- advantage -->
          <div data-target="{{sk}}" class="skill">
+            <!-- background-name -->
             <a class="skill-name">{{skill.label}}</a>
             <div class = "diamond-row">
                {{#each skill.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
-                     <!-- <a class = "diamond" data-index={{index}}><i class="fas fa-square"></i></a> -->
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
                   {{else}}
-                     <!-- <a class = "diamond" data-index={{index}}><i class="far fa-square"></i></a> -->
                      <a class = "diamond" data-index={{index}}><div class="square"></div></a>
                   {{/if}}
                {{/each}}
