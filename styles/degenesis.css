@@ -836,7 +836,8 @@ button:hover {
 }
 
 #sidebar {
-    background : rgb(0, 0, 0, 0.90);
+    /*background : rgb(0, 0, 0, 0.90);*/
+    background-image: url(../ui/degenesis_parchment_black.jpg);
     border-radius: 0px;
     font-family: "Calluna"
 }
@@ -925,6 +926,10 @@ a:hover {
     color: var(--degenesis-red)
 }
 
+#hotbar .bar-controls,
+#hotbar #macro-list,
+#navigation #nav-toggle,
+#navigation #scene-list #nav-item,
 #controls .scene-control,
 #controls .control-tool {
     background-color: black;
@@ -932,10 +937,80 @@ a:hover {
     border: 1px solid white
 }
 
+#navigation #scene-list .scene {
+    border: 1px solid white;
+    border-radius: 0px;
+    /*background: url(../ui/degenesis_parchment_black.jpg);*/
+    background: black;
+}
+
+#navigation #scene-list .scene.gm {
+    border: 1px solid var(--degenesis-red);
+    /*background: url(../ui/degenesis_parchment_black.jpg);*/
+    background: black;
+}
+
+#navigation #scene-list .scene.view {
+    border: 1px solid var(--degenesis-red);
+    box-shadow: none;
+    color: var(--degenesis-red);
+    /*background: url(../ui/degenesis_parchment_black.jpg);*/
+    background: black;
+}
+
 #controls .scene-control.active,
 #controls .control-tool.active,
 #controls .scene-control:hover,
 #controls .control-tool:hover {
-    box-shadow: none;
     color: var(--degenesis-red);
+}
+
+#chat-log .message {
+    border-radius: 0px;
+    background: url(../ui/degenesis_parchment.jpg)
+}
+
+.dice-tooltip .dice-rolls .roll.d6.max {
+    color: var(--degenesis-red);
+    filter: none;
+    content: url(../icons/logo-small.png);
+    padding: 2px
+}
+
+.dice-tooltip .dice-rolls .roll.d6 {
+    background-image: none;
+    border: 1px solid black;
+    line-height: 22px
+}
+
+
+#players {
+    background: url(../ui/degenesis_parchment_black.jpg);
+    font-family: "Avenir";
+    text-transform: uppercase;
+    border-radius: 0px
+}
+
+#players ol .player-name.self {
+    color: var(--degenesis-red)
+}
+
+
+#hotbar {
+    font-family: "Avenir"
+}
+
+#hotbar #macro-list {
+    background: url(../ui/degenesis_parchment_black.jpg);
+}
+
+#hotbar .macro {
+    background:none;
+    border-radius: 0px;
+    border: 1px solid #CCC
+}
+
+#hotbar .macro:hover {
+    box-shadow: none;
+    border: 1px solid var(--degenesis-red)
 }
