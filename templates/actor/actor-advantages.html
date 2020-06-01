@@ -22,38 +22,49 @@
                      {{#each backgrounds as |background bg|}}
                      <div class="advantage">
                         <a class="background-name">{{background.label}}</a>
-                        <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
-                           {{#each background.diamonds as |diamond index|}}
-                              {{#if diamond.filled}}
-                                 <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                              {{else}}
-                                 <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                              {{/if}}
-                           {{/each}}
-                        </div>
+                         <div class="diamond-position">  
+                           <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                              {{#each background.diamonds as |diamond index|}}
+                                 {{#if diamond.filled}}
+                                    <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                                 {{else}}
+                                    <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                                 {{/if}}
+                              {{/each}}
+                           </div>
+                         </div> 
                      </div>
                      {{/each}}
                   </div>
            </div>
       <!-- </div> -->
 
-      <!-- * LEGACY * -->
+      <!-- * RELATIONSHIPS * -->
       <!-- <div class="advantage-column"> -->
-         <div class="advantage-group legacy-group">
+         <div class="advantage-group relationships-group">
             <div class="background">
                <div class="black-title">
-                  <h3>LEGACY</h3>
+                  <h3>RELATIONSHIPS</h3>
                </div>
             </div>
+
                <div class="advantage">
-                  <div class="legacy clickable-row">
-                     <a class="legacy-name">
+                  <div class="cadre-tab">
+                  <table class="relationships-tab">
+                     <tr class="relationships-tr">
+                        <td class="relationships-cultes">Anabaptists</td>
+                        <td class="relationships-bonus" contenteditable='true'>+6D</td>
+                     </tr>
+                  </table> 
+                  </div>
+          <!--    <div class="relationships clickable-row">
+                     <a class="relationships-name">
                         {{legacy}}
                      </a>
                   </div>
                   <div class="legacy-description">
                      {{{legacydescription}}}
-                  </div>
+                   </div> -->
                </div>
          </div>
       <!-- </div> -->
@@ -70,7 +81,7 @@
                <div class="advantage">
                   <div class="sheet-field">
                      <span class="field-name">GROUP NAME:</span>
-                     <input class="field-input" type="text" name="group-" value="{{actor.group-name}}"/>
+                     <input class="field-input" type="text" name="group" value="{{actor.group-name}}"/>
                   </div>
                </div>
                <div class="advantage">
@@ -92,7 +103,7 @@
                   </div>
                </div>
                <div class="advantage">
-                  <a class="background-name">{{background.label}}</a>
+                  <a class="background-name">INFAMY</a>
                   <div class="diamond-row">
                      {{#each infamy.diamonds as |diamond index|}}
                         {{#if diamond.filled}}
