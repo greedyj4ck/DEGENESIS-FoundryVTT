@@ -686,7 +686,7 @@
  /* * Advantages tab * */
  
  .degenesis.sheet .advantage-tab .advantage-group {
-    margin: 16px 18px;
+    margin: 16px 13px;
     flex:1;
 }
 
@@ -720,8 +720,8 @@
      justify-content: space-between;
  }
 
- .degenesis.sheet .scars-group .advantage {
-     display: block;
+ .degenesis.sheet .scars-group .background {
+     margin-bottom:10px;
  }
 
  .degenesis.sheet .background{
@@ -758,9 +758,18 @@
     height:107px; 
     overflow:auto;
 }
-.degenesis.sheet .relationships-tab{
-    overflow-x: hidden;
-    overflow-y: scroll; 
+
+.degenesis.sheet .relationships-group .advantage{
+    height: 118px;
+    overflow: auto;
+}
+
+.degenesis.sheet .relationships-group .background{
+    margin-bottom: 10px;
+}
+
+
+.degenesis.sheet .relationships-ol{
     border-collapse: collapse;
     background: white;
     border: none;
@@ -768,32 +777,36 @@
     flex: auto;
     display: table;
     margin: 0 10px 0 10px;
+    list-style-type: none;
 }
 .degenesis.sheet .relationships-cultes{
     text-align: left;
 }
 .degenesis.sheet .relationships-bonus{
     text-align: right;
+    margin-left: 68px;
 }
 
-.degenesis.sheet .relationships-tr{
-    border-bottom: 1px solid black;
+.degenesis.sheet .relationships-li{
+    border-bottom: 1px solid var(--dark-grey);
+    margin-bottom: 3px;
+    padding-bottom: 2px;
 }
+
  .degenesis.sheet .advantage input[type="text"] ,
     .degenesis.sheet .background input[type="text"] {
      border: 1px solid black;
      border-radius: 0px;
-     width:20px;
      height:20px;
      text-align: center;
+     flex: 1;
  }
 
- .degenesis.sheet .advantage-tab .sheet-field .field-name {
-     flex: 1.91;
- }
+
 
  .degenesis.sheet .advantage-tab .sheet-field {
     margin-left: 10px;
+    margin-right: 10px;
 }
 
  .degenesis.sheet .advantage input[type="text"]{
@@ -801,7 +814,7 @@
      border-left: 0px;
      border-right: 0px;
      border-bottom: 0px;
-     flex: 1.58;
+     /* flex: 1.58; */
     }
 
 
