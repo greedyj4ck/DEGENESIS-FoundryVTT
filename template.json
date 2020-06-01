@@ -263,10 +263,29 @@
           "value" : 0
         }
       }
+    },
+    "scars": {
+      "scars" : {
+        "groupname" : {
+          "value" : 0
+        },
+        "alignment" : {
+          "value" : 0
+        },
+        "constelation" : {
+          "value" : 0
+        },
+        "scarsValue" : {
+          "value" : 0
+        },
+        "infamy" : {
+          "value" : 0
+        }
+      }
     }
   },
   "character": {
-    "templates" : ["details", "attributes", "skills", "status", "backgrounds"]
+    "templates" : ["details", "attributes", "skills", "status", "backgrounds", "scars"]
   }
 },
 "Item": {

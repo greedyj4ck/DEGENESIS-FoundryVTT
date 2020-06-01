@@ -43,6 +43,7 @@ export class DegenesisActor extends Actor {
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
         preparedData.backgrounds = this.prepareBackgrounds();
         preparedData.inventory = this.prepareItems()
+        preparedData.infamy = this.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
         preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
         preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
         preparedData.concept = DEGENESIS.concepts[this.data.data.details.concept.value]
@@ -103,6 +104,7 @@ export class DegenesisActor extends Actor {
                 filled : i + 1 <= data.value
             })
         }
+        return data
     }
 
     prepareItems() 
