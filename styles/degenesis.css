@@ -701,7 +701,7 @@
 
  .degenesis.sheet .black-title {
     width: 100%;
-    background-image: url(../images/attribut\ border.svg);
+    background-image: url(../images/title\ border.svg);
     background-repeat: no-repeat;
     color: white;
     background-size: 100%;
@@ -736,7 +736,10 @@
 .degenesis.sheet .advantage .diamond {
     align-self: center;
 }
-
+.degenesis.sheet .diamond-position >* {
+    display: flex;
+    margin-right: 10px;
+}
 .degenesis.sheet .background .diamond-row{
     align-self:center;
 }
@@ -750,6 +753,32 @@
     margin-top:10px;
 }
 
+.degenesis.sheet .cadre-tab{
+    width:180px; 
+    height:107px; 
+    overflow:auto;
+}
+.degenesis.sheet .relationships-tab{
+    overflow-x: hidden;
+    overflow-y: scroll; 
+    border-collapse: collapse;
+    background: white;
+    border: none;
+    margin: 0;
+    flex: auto;
+    display: table;
+    margin: 0 10px 0 10px;
+}
+.degenesis.sheet .relationships-cultes{
+    text-align: left;
+}
+.degenesis.sheet .relationships-bonus{
+    text-align: right;
+}
+
+.degenesis.sheet .relationships-tr{
+    border-bottom: 1px solid black;
+}
  .degenesis.sheet .advantage input[type="text"] ,
     .degenesis.sheet .background input[type="text"] {
      border: 1px solid black;
