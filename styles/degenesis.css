@@ -940,7 +940,7 @@ button:hover {
 
 #sidebar {
     /*background : rgb(0, 0, 0, 0.90);*/
-    background-image: url(../ui/degenesis_parchment_black.jpg);
+    background: url(../ui/degenesis_parchment_black.jpg);
     border-radius: 0px;
     font-family: "Calluna"
 }
@@ -1040,6 +1040,11 @@ a:hover {
     border: 1px solid white
 }
 
+#controls .scene-control,
+#controls .control-tool {
+    box-shadow: none
+}
+
 #navigation #scene-list .scene {
     border: 1px solid white;
     border-radius: 0px;
@@ -1066,6 +1071,7 @@ a:hover {
 #controls .scene-control:hover,
 #controls .control-tool:hover {
     color: var(--degenesis-red);
+    box-shadow: none;
 }
 
 #chat-log .message {
