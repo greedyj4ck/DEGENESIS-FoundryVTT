@@ -401,6 +401,36 @@
     opacity: 1;
 } 
 
+/* * Sheet titles */
+.app.window-app.degenesis.sheet .title{
+    align-self: center;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.app.window-app.degenesis.sheet .title-line{
+    display: flex;
+    background-size: 100%;
+    flex: 1;
+}
+.app.window-app.degenesis.sheet .header-column.header-line .square.little{
+    margin-bottom: 12px;
+}
+.app.window-app.degenesis.sheet .title .square.little,
+.app.window-app.degenesis.sheet .header-line .square.little{
+    margin: 0px;
+    align-self: center;
+    margin-bottom: 1px;
+    height: 7px;
+    width: 7px;
+}
+.app.window-app.degenesis.sheet .square.little.left{
+    margin-left: 2px;
+}
+.app.window-app.degenesis.sheet .square.little.right{
+    margin-right: 2px;
+}
+
 /* * Sheet Footer */
 .app.window-app.degenesis.sheet .sheet-footer {
     overflow: hidden;
@@ -512,20 +542,7 @@
 .app.window-app.degenesis.sheet .section-header.row h3{
     padding-top:10px
 }
-.app.window-app.degenesis.sheet .title-line{
-    display: flex;
-    height: 22px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    flex: 1;
-}
-.app.window-app.degenesis.sheet .middle-left{
-    background-image: url(../images/middle\ line\ left.svg);
-}
-.app.window-app.degenesis.sheet .middle-right{
-    background-image: url(../images/middle\ line\ right.svg);
-}
+
 .app.window-app.degenesis.sheet .condition {
     height: 50%
 }
