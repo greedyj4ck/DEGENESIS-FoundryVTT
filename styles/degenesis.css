@@ -118,19 +118,19 @@
 }
 /* * Degenesis Sheet */
 
-.degenesis.sheet .break{
+.app.window-app.degenesis.sheet .break{
     flex-basis: 100%;
     height: 0;
 }
 
-.degenesis.sheet .break.break-line{
+.app.window-app.degenesis.sheet .break.break-line{
     flex-basis: 100%;
     border: 1px solid black;
     padding-top: 4px;
     height: 0;
 }
 
-.degenesis.sheet .window-content {
+.app.window-app.degenesis.sheet .window-content {
     padding: 5px;
     overflow-y: hidden;
     background: white;
@@ -139,61 +139,61 @@
     color: black;
 }
 
-.degenesis.sheet .editable {
+.app.window-app.degenesis.sheet .editable {
     height: 100%
 }
 
 
-.degenesis.sheet a:hover {
+.app.window-app.degenesis.sheet a:hover {
     text-shadow: none
 }
 
-.degenesis.sheet .item-controls a:hover {
+.app.window-app.degenesis.sheet .item-controls a:hover {
     color: var(--degenesis-red)
 }
 
-.degenesis.sheet h2 {
+.app.window-app.degenesis.sheet h2 {
     border: none ;
     color: var(--degenesis-red);
     font-weight: 400;   
 }
 
 
-.degenesis.sheet .progress-bar {
+.app.window-app.degenesis.sheet .progress-bar {
     background-color: var(--degenesis-red);
     height: 2px;
 }
 
-.degenesis.sheet input[type="text"] {
+.app.window-app.degenesis.sheet input[type="text"] {
     background: none;
     border: none;
     padding-top: 5px;
 }
 
-.degenesis.sheet input[type="text"]:focus {
+.app.window-app.degenesis.sheet input[type="text"]:focus {
     box-shadow: none;
 }
 
-.degenesis.sheet input[type="text"]:hover {
+.app.window-app.degenesis.sheet input[type="text"]:hover {
     color: var(--degenesis-red);
     -webkit-transition: color 100ms linear;
     -ms-transition: color 100ms linear;
     transition: color 100ms linear;
 }
 
-.degenesis.sheet .inline-input {
+.app.window-app.degenesis.sheet .inline-input {
     display:flex;
     align-items: center
 }
-.degenesis.sheet .inline-input > input[type="text"] {
+.app.window-app.degenesis.sheet .inline-input > input[type="text"] {
     width:30px;
 }
 
-.degenesis.sheet .inline-input input[type="text"]:first-of-type {
+.app.window-app.degenesis.sheet .inline-input input[type="text"]:first-of-type {
     border-right: 1px solid black;
     border-radius: 0px;
 }
-.degenesis.sheet .inline-input input[type="text"]:last-of-type {
+.app.window-app.degenesis.sheet .inline-input input[type="text"]:last-of-type {
     border-left: 1px solid black;
     border-radius: 0px;
 
@@ -202,71 +202,71 @@
 
 
 
-.degenesis.sheet textarea {
+.app.window-app.degenesis.sheet textarea {
     outline: var(--degenesis-red);
     box-shadow: none;
     font-family: "Calluna"
 }
 
-.degenesis.sheet textarea:focus {
+.app.window-app.degenesis.sheet textarea:focus {
     outline: var(--degenesis-red);
     box-shadow: none
 }
 
-.degenesis.sheet select {
+.app.window-app.degenesis.sheet select {
     background: none;
     border: none;
     padding: 0px;
     text-align-last:center
 }
 
-.degenesis.sheet select:focus{
+.app.window-app.degenesis.sheet select:focus{
     border-bottom: 1px solid var(--degenesis-red);
     box-shadow: none;
 }
 
-.degenesis.sheet select > *{
+.app.window-app.degenesis.sheet select > *{
     color: white;
     background-color: black
 }
 
 
-.degenesis.sheet .sheet-field {
+.app.window-app.degenesis.sheet .sheet-field {
     display: flex;
     border-bottom: 1px solid var(--dark-grey);
 }
 
-.degenesis.sheet .condition .condition-item:hover,
-    .degenesis.sheet .condition .condition-section:hover 
-.degenesis.sheet .sheet-field-stack:hover,
-.degenesis.sheet .sheet-field:hover {
+.app.window-app.degenesis.sheet .condition .condition-item:hover,
+    .app.window-app.degenesis.sheet .condition .condition-section:hover 
+.app.window-app.degenesis.sheet .sheet-field-stack:hover,
+.app.window-app.degenesis.sheet .sheet-field:hover {
     color: var(--degenesis-red);
     -webkit-transition: color 100ms linear;
     -ms-transition: color 100ms linear;
     transition: color 100ms linear;
 }
 
-.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
-.degenesis.sheet .sheet-field:hover {
+.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
+.app.window-app.degenesis.sheet .sheet-field:hover {
    border-bottom: 1px solid var(--degenesis-red);   
    -webkit-transition: border-bottom 100ms linear;
    -ms-transition: border-bottom 100ms linear;
    transition: border-bottom 100ms linear;
 }
 
-.degenesis.sheet .sheet-field-stack .field-input-stacked {
+.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked {
     border-bottom: 1px solid black;
     text-align: center;
 }
 
 
-.degenesis.sheet .sheet-field .field-name {
+.app.window-app.degenesis.sheet .sheet-field .field-name {
     margin-top: 5px;
 }
 
 /* * Sheet Header */
  
-.degenesis.sheet .sheet-header {
+.app.window-app.degenesis.sheet .sheet-header {
     overflow: hidden;
     flex: none;
     display: flex;
@@ -276,14 +276,14 @@
     flex: 0 0 100px;
 }
 
-.degenesis.sheet .header-line{
+.app.window-app.degenesis.sheet .header-line{
     /* background-color: var(--degenesis-red); */
     /* border: 1px solid transparent; */
     align-self: start;
     display: flex;
 }
 
-.degenesis.sheet .archetype-line{
+.app.window-app.degenesis.sheet .archetype-line{
     display: flex;
     height: 22px;
     background-repeat: no-repeat;
@@ -292,7 +292,7 @@
     flex: 1;
 }
 
-.degenesis.sheet .middle-name{
+.app.window-app.degenesis.sheet .middle-name{
     display: flex;
     align-items: flex-end;
     font-size: 15px;
@@ -302,29 +302,29 @@
     border: 2px solid transparent;
 }
 
-.degenesis.sheet .archetype-line.line-left{
+.app.window-app.degenesis.sheet .archetype-line.line-left{
     background-image: url(../images/header\ line\ left.svg);
 }
 
-.degenesis.sheet .archetype-line.line-right{
+.app.window-app.degenesis.sheet .archetype-line.line-right{
     background-image: url(../images/header\ line\ right.svg);
 }
 
-.degenesis.sheet .header-column.char-info.left{
+.app.window-app.degenesis.sheet .header-column.char-info.left{
     margin-left: 7px;
     margin-right: 2px;
 }
 
-.degenesis.sheet .header-column.char-info.right{
+.app.window-app.degenesis.sheet .header-column.char-info.right{
     margin-right: 7px;
     margin-left: 2px;
 }
 
-.degenesis.sheet .img-container{
+.app.window-app.degenesis.sheet .img-container{
     flex: 0 0 115spx;
 }
 
-.degenesis.sheet .img-frame{
+.app.window-app.degenesis.sheet .img-frame{
     display: flex;
     flex: 0 0 107px;
     z-index: 1000;
@@ -336,7 +336,7 @@
     border: none;
 }
 
-.degenesis.sheet .profile-img {
+.app.window-app.degenesis.sheet .profile-img {
     height: 88%;
     width: 88%;
     margin: auto;
@@ -345,7 +345,7 @@
     border-radius: 0;
 }
 
-.degenesis.sheet hr{
+.app.window-app.degenesis.sheet hr{
     border: solid;
     border-top: 1px solid var(--dark-grey);
     border-bottom: none;
@@ -402,7 +402,7 @@
 } 
 
 /* * Sheet Footer */
-.degenesis.sheet .sheet-footer {
+.app.window-app.degenesis.sheet .sheet-footer {
     overflow: hidden;
     flex: none;
     display: flex;
@@ -411,7 +411,7 @@
     justify-content: flex-end;
     flex: 0 0 100px;
 }
-.degenesis.sheet .footer-line{
+.app.window-app.degenesis.sheet .footer-line{
     background-image: url(../images/footer\ line.svg);
     height: 20px;
     flex: 1;
@@ -420,7 +420,7 @@
     background-position: center;
 }
 
-.degenesis.sheet .footer-diamond{
+.app.window-app.degenesis.sheet .footer-diamond{
     position: absolute;
     bottom: 0.7%;
     display: flex;
@@ -429,12 +429,12 @@
 
 }
 /* * Navigation Tabs */
-.degenesis.sheet .tabs {
+.app.window-app.degenesis.sheet .tabs {
     flex: 0 0 40px;
     height: 20px;
 }
 
-.degenesis.sheet .tabs .item {
+.app.window-app.degenesis.sheet .tabs .item {
     color: white;
     background-color: black;
     margin: 2px;
@@ -445,74 +445,74 @@
     transition: background-color 0.1s ease-out;
 }
 
-.degenesis.sheet .tabs .item:hover {
+.app.window-app.degenesis.sheet .tabs .item:hover {
     background-color: var(--degenesis-red);
 }
 
-.degenesis.sheet .tabs .item.active {
+.app.window-app.degenesis.sheet .tabs .item.active {
     background-color: var(--degenesis-red);
     text-shadow: none
 }
 
 /* ! makes scroller appear for no reason ! */
 /* ! see later may provoque bugs ! */
-/* .degenesis.sheet .tab {
+/* .app.window-app.degenesis.sheet .tab {
     height: 100%
 } */
 
-.degenesis.sheet .body-line {
+.app.window-app.degenesis.sheet .body-line {
     width: 100%;
     height: calc(100% - 300px);
     overflow: auto
 }
 
-.degenesis.sheet .row {
+.app.window-app.degenesis.sheet .row {
     display: flex;
 }
 
-.degenesis.sheet .three-Cs {
+.app.window-app.degenesis.sheet .three-Cs {
     height: 35%;
     min-height: 130px;
 }
 
-.degenesis.sheet .title-Cs {
+.app.window-app.degenesis.sheet .title-Cs {
     font-size: 17px;
     font-weight: 200;
     letter-spacing: 2px;
 }
 
-.degenesis.sheet .three-Cs .sheet-field-stack{
+.app.window-app.degenesis.sheet .three-Cs .sheet-field-stack{
     align-items: center;
     display: flex;
     flex-direction: column;
 }
 
-.degenesis.sheet .three-Cs > *{
+.app.window-app.degenesis.sheet .three-Cs > *{
     width: 33%;
     margin: 5px
 }
 
-.degenesis.sheet .three-Cs > input{
+.app.window-app.degenesis.sheet .three-Cs > input{
     width: 33%;
     margin: 15px
 }
 
 
-.degenesis.sheet .three-Cs img{
+.app.window-app.degenesis.sheet .three-Cs img{
     border: none;
     margin: 5px;
 }
 
-.degenesis.sheet .section-header.row .row-divide{
+.app.window-app.degenesis.sheet .section-header.row .row-divide{
     width:40%;
     border-bottom: 1px solid black;
     margin: 20px
 }
 
-.degenesis.sheet .section-header.row h3{
+.app.window-app.degenesis.sheet .section-header.row h3{
     padding-top:10px
 }
-.degenesis.sheet .title-line{
+.app.window-app.degenesis.sheet .title-line{
     display: flex;
     height: 22px;
     background-repeat: no-repeat;
@@ -520,38 +520,38 @@
     background-position: center;
     flex: 1;
 }
-.degenesis.sheet .middle-left{
+.app.window-app.degenesis.sheet .middle-left{
     background-image: url(../images/middle\ line\ left.svg);
 }
-.degenesis.sheet .middle-right{
+.app.window-app.degenesis.sheet .middle-right{
     background-image: url(../images/middle\ line\ right.svg);
 }
-.degenesis.sheet .condition {
+.app.window-app.degenesis.sheet .condition {
     height: 50%
 }
 
-.degenesis.sheet .skill:hover,
-.degenesis.sheet .condition .condition-item:hover,
-    .degenesis.sheet .condition .condition-section:hover {
+.app.window-app.degenesis.sheet .skill:hover,
+.app.window-app.degenesis.sheet .condition .condition-item:hover,
+    .app.window-app.degenesis.sheet .condition .condition-section:hover {
         color: var(--degenesis-red);
     -webkit-transition: color 100ms linear;
     -ms-transition: color 100ms linear;
     transition: color 100ms linear;
 }
 
-.degenesis.sheet .condition > * {
+.app.window-app.degenesis.sheet .condition > * {
     width: 33%;
     text-align: center;
 }
 
-.degenesis.sheet .condition .inline-input {
+.app.window-app.degenesis.sheet .condition .inline-input {
     border-bottom: 2px solid black;
     margin-bottom: 3px
 }
-.degenesis.sheet .condition .divider {
+.app.window-app.degenesis.sheet .condition .divider {
     font-size: 20px
 }
-.degenesis.sheet .condition-item {
+.app.window-app.degenesis.sheet .condition-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -559,7 +559,7 @@
     margin-top: 5px
 }
 
-.degenesis.sheet .condition textarea {
+.app.window-app.degenesis.sheet .condition textarea {
     height: 100%;
     overflow-x: hidden;
     background: none;
@@ -571,7 +571,7 @@
     resize: none;
  }
 
- .degenesis.sheet .body-line{
+ .app.window-app.degenesis.sheet .body-line{
     align-self: start;
     display: flex;
     flex-direction: row;
@@ -582,7 +582,7 @@
     margin-bottom: 5px;
 }
 
-.degenesis.sheet .tab-content {
+.app.window-app.degenesis.sheet .tab-content {
     font-size: 12px;
     letter-spacing: 1px;
     width: 100%;
@@ -590,28 +590,28 @@
     overflow: auto
 }
 
-.degenesis.sheet .tab-content h3 {
+.app.window-app.degenesis.sheet .tab-content h3 {
     font-size: 12px;
     font-weight: 300;
 }
 
 /* * Attributes tab * */
 
- .degenesis.sheet .attribute-tab .attribute-skill-group {
+ .app.window-app.degenesis.sheet .attribute-tab .attribute-skill-group {
     margin: 16px 18px;
     flex:1;
 }
 
-.degenesis.sheet .attribute-tab {
+.app.window-app.degenesis.sheet .attribute-tab {
     display: flex;
     flex-wrap: wrap;
  }
 
- .degenesis.sheet .attribute {
+ .app.window-app.degenesis.sheet .attribute {
     /*border-bottom: 1px solid black*/
  }
 
- .degenesis.sheet .attribute-name {
+ .app.window-app.degenesis.sheet .attribute-name {
     height: 100%;
     width: 100%;
     background-image: url(../images/attribut\ border.svg);
@@ -621,44 +621,44 @@
     background-position: center;
  }
 
- .degenesis.sheet .skill,
- .degenesis.sheet .attribute {
+ .app.window-app.degenesis.sheet .skill,
+ .app.window-app.degenesis.sheet .attribute {
      display: flex;
      justify-content: space-between;
  }
 
- .degenesis.sheet .attribute{
+ .app.window-app.degenesis.sheet .attribute{
      margin-bottom:15px;
  }
  
- .degenesis.sheet .skill >*,
- .degenesis.sheet .attribute > *{
+ .app.window-app.degenesis.sheet .skill >*,
+ .app.window-app.degenesis.sheet .attribute > *{
     display: flex;
 }
 
-.degenesis.sheet .diamond-row{
+.app.window-app.degenesis.sheet .diamond-row{
     justify-content:flex-end;
 }
 
-.degenesis.sheet .skill .diamond {
+.app.window-app.degenesis.sheet .skill .diamond {
     align-self: center;
 }
 
-.degenesis.sheet .attribute .diamond-row{
+.app.window-app.degenesis.sheet .attribute .diamond-row{
     align-self:center;
 }
 
-.degenesis.sheet .skill {
+.app.window-app.degenesis.sheet .skill {
     margin-top: 5px;
     align-self: center; 
 }
 
-.degenesis.sheet .skill-list {
+.app.window-app.degenesis.sheet .skill-list {
     margin-top:10px;
 }
 
- .degenesis.sheet .skill input[type="text"] ,
-    .degenesis.sheet .attribute input[type="text"] {
+ .app.window-app.degenesis.sheet .skill input[type="text"] ,
+    .app.window-app.degenesis.sheet .attribute input[type="text"] {
      border: 1px solid black;
      border-radius: 0px;
      width:20px;
@@ -666,40 +666,40 @@
      text-align: center;
  }
 
- .degenesis.sheet .skill input[type="text"]{
+ .app.window-app.degenesis.sheet .skill input[type="text"]{
      border-top: 0px;
      border-left: 0px;
      border-right: 0px;
     }
 
 
- .degenesis.sheet .attribute h3{
+ .app.window-app.degenesis.sheet .attribute h3{
     margin-bottom: 0px;
     margin-left: 10px;
 
  }
 
- .degenesis.sheet .skill-name{
+ .app.window-app.degenesis.sheet .skill-name{
     margin-left: 10px;
  }
 
  /* * Advantages tab * */
  
- .degenesis.sheet .advantage-tab .advantage-group {
+ .app.window-app.degenesis.sheet .advantage-tab .advantage-group {
     margin: 16px 13px;
     flex:1;
 }
 
-.degenesis.sheet .advantage-tab {
+.app.window-app.degenesis.sheet .advantage-tab {
     display: flex;
     flex-wrap: wrap;
  }
 
- .degenesis.sheet .background {
+ .app.window-app.degenesis.sheet .background {
     /*border-bottom: 1px solid black*/
  }
 
- .degenesis.sheet .black-title {
+ .app.window-app.degenesis.sheet .black-title {
     width: 100%;
     background-image: url(../images/title\ border.svg);
     background-repeat: no-repeat;
@@ -708,68 +708,68 @@
     background-position: center;
  }
 
- .degenesis.sheet .advantage,
- .degenesis.sheet .background {
+ .app.window-app.degenesis.sheet .advantage,
+ .app.window-app.degenesis.sheet .background {
      display: flex;
      justify-content: space-between;
  }
 
- .degenesis.sheet .advantage,
- .degenesis.sheet .background {
+ .app.window-app.degenesis.sheet .advantage,
+ .app.window-app.degenesis.sheet .background {
      display: flex;
      justify-content: space-between;
  }
 
- .degenesis.sheet .scars-group .background {
+ .app.window-app.degenesis.sheet .scars-group .background {
      margin-bottom:10px;
  }
 
- .degenesis.sheet .background{
+ .app.window-app.degenesis.sheet .background{
      margin-bottom:15px;
  }
  
- .degenesis.sheet .advantage >*,
- .degenesis.sheet .background > *{
+ .app.window-app.degenesis.sheet .advantage >*,
+ .app.window-app.degenesis.sheet .background > *{
     display: flex;
 }
 
-.degenesis.sheet .advantage .diamond {
+.app.window-app.degenesis.sheet .advantage .diamond {
     align-self: center;
 }
-.degenesis.sheet .diamond-position >* {
+.app.window-app.degenesis.sheet .diamond-position >* {
     display: flex;
     margin-right: 10px;
 }
-.degenesis.sheet .background .diamond-row{
+.app.window-app.degenesis.sheet .background .diamond-row{
     align-self:center;
 }
 
-.degenesis.sheet .advantage {
+.app.window-app.degenesis.sheet .advantage {
     margin-top: 5px;
     align-self: center; 
 }
 
-.degenesis.sheet .advantage-list {
+.app.window-app.degenesis.sheet .advantage-list {
     margin-top:10px;
 }
 
-.degenesis.sheet .cadre-tab{
+.app.window-app.degenesis.sheet .cadre-tab{
     width:180px; 
     height:107px; 
     overflow:auto;
 }
 
-.degenesis.sheet .relationships-group .advantage{
+.app.window-app.degenesis.sheet .relationships-group .advantage{
     height: 118px;
     overflow: auto;
 }
 
-.degenesis.sheet .relationships-group .background{
+.app.window-app.degenesis.sheet .relationships-group .background{
     margin-bottom: 10px;
 }
 
 
-.degenesis.sheet .relationships-ol{
+.app.window-app.degenesis.sheet .relationships-ol{
     border-collapse: collapse;
     background: white;
     border: none;
@@ -779,31 +779,31 @@
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
-.degenesis.sheet .relationships-cultes{
+.app.window-app.degenesis.sheet .relationships-cultes{
     text-align: left;
     width: 75%;
     border: none;
 }
-.degenesis.sheet .relationships-bonus{
+.app.window-app.degenesis.sheet .relationships-bonus{
     text-align: right;
     width: 25%;
     border: none;
 }
 
-.degenesis.sheet .relationships-li{
+.app.window-app.degenesis.sheet .relationships-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
     padding-bottom: 2px;
     display:flex
 }
 
-.degenesis.sheet .relationships-li > input:hover,
-    .degenesis.sheet .relationships-li > input:focus{
+.app.window-app.degenesis.sheet .relationships-li > input:hover,
+    .app.window-app.degenesis.sheet .relationships-li > input:focus{
     border: 1px dotted var(--degenesis-red)
 }
 
- .degenesis.sheet .advantage input[type="text"] ,
-    .degenesis.sheet .background input[type="text"] {
+ .app.window-app.degenesis.sheet .advantage input[type="text"] ,
+    .app.window-app.degenesis.sheet .background input[type="text"] {
      border: 1px solid black;
      border-radius: 0px;
      height:20px;
@@ -813,12 +813,12 @@
 
 
 
- .degenesis.sheet .advantage-tab .sheet-field {
+ .app.window-app.degenesis.sheet .advantage-tab .sheet-field {
     margin-left: 10px;
     margin-right: 10px;
 }
 
- .degenesis.sheet .advantage input[type="text"]{
+ .app.window-app.degenesis.sheet .advantage input[type="text"]{
      border-top: 0px;
      border-left: 0px;
      border-right: 0px;
@@ -827,71 +827,71 @@
     }
 
 
- .degenesis.sheet .advantage-group h3{
+ .app.window-app.degenesis.sheet .advantage-group h3{
     margin-bottom: 0px;
     margin-left: 10px;
 
  }
 
- .degenesis.sheet .background-name{
+ .app.window-app.degenesis.sheet .background-name{
     margin-left: 10px;
  }
 
 
 /* * Items */
-.degenesis.sheet .items-list {
+.app.window-app.degenesis.sheet .items-list {
     list-style: none;
     padding: 0;
 }
-.degenesis.sheet .inventory-tab {
+.app.window-app.degenesis.sheet .inventory-tab {
     margin-top: 20px   
 }
 
-.degenesis.sheet .items-list .item {
+.app.window-app.degenesis.sheet .items-list .item {
     height: 30px;
     line-height: 24px;
 }
-.degenesis.sheet .items-list .item img {
+.app.window-app.degenesis.sheet .items-list .item img {
     flex: 0 0 24px;
     margin-right: 5px;
 }
-.degenesis.sheet .items-list .item-controls {
+.app.window-app.degenesis.sheet .items-list .item-controls {
     flex: 0 0 36px;
 }
-.degenesis.sheet .item-header .item-controls {
+.app.window-app.degenesis.sheet .item-header .item-controls {
     flex: 0 0 50px;
 }
 
-.degenesis.sheet .item-section {
+.app.window-app.degenesis.sheet .item-section {
     border: 1px solid black;
 }
 
-.degenesis.sheet .item-header .item-equipped,
-.degenesis.sheet .item-header .item-tech,
-    .degenesis.sheet .item-header .item-encumbrance {
+.app.window-app.degenesis.sheet .item-header .item-equipped,
+.app.window-app.degenesis.sheet .item-header .item-tech,
+    .app.window-app.degenesis.sheet .item-header .item-encumbrance {
     flex: 0 0 40px;
 }
 
-.degenesis.sheet .items-list .item-equipped,
-.degenesis.sheet .items-list .item-tech,
-    .degenesis.sheet .items-list .item-encumbrance {
+.app.window-app.degenesis.sheet .items-list .item-equipped,
+.app.window-app.degenesis.sheet .items-list .item-tech,
+    .app.window-app.degenesis.sheet .items-list .item-encumbrance {
     flex: 0 0 40px;
 }
-.degenesis.sheet .item-equipped,
-.degenesis.sheet .item-tech,
-    .degenesis.sheet .item-encumbrance {
+.app.window-app.degenesis.sheet .item-equipped,
+.app.window-app.degenesis.sheet .item-tech,
+    .app.window-app.degenesis.sheet .item-encumbrance {
     text-align: center
 }
 
-.degenesis.sheet .header-details{
+.app.window-app.degenesis.sheet .header-details{
     border-bottom: 1px solid black
 }
-.degenesis.sheet .header-details > *,
-.degenesis.sheet .item > *{
+.app.window-app.degenesis.sheet .header-details > *,
+.app.window-app.degenesis.sheet .item > *{
     margin: 0px 5px 0px 5px
 }
 
-.degenesis.sheet .item-header .header-type {
+.app.window-app.degenesis.sheet .item-header .header-type {
     background-color: black;
     color: white;
     text-align: center;
@@ -900,7 +900,7 @@
 }
 
 /* * Attributes */
-.degenesis.sheet .attributes-header { 
+.app.window-app.degenesis.sheet .attributes-header { 
     padding: 5px;
     margin: 5px 0;
     background: rgba(0, 0, 0, 0.05);
@@ -909,20 +909,20 @@
     text-align: center;
     font-weight: bold;
 }
-.degenesis.sheet .attribute-label { 
+.app.window-app.degenesis.sheet .attribute-label { 
     flex: 1.5;
 }
-.degenesis.sheet .attribute-control { 
+.app.window-app.degenesis.sheet .attribute-control { 
     flex: 0 0 20px;
 }
 
-.degenesis.sheet .attributes-list {
+.app.window-app.degenesis.sheet .attributes-list {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.degenesis.sheet .attributes-list li > * {
+.app.window-app.degenesis.sheet .attributes-list li > * {
     margin: 0 3px;
     height: 28px;
     line-height: 24px;
@@ -932,11 +932,11 @@
     border-bottom: 1px solid #AAA;
 }
 
-.degenesis.sheet .attribute-value.checkbox {
+.app.window-app.degenesis.sheet .attribute-value.checkbox {
     text-align: center;
 }
 
-.degenesis.sheet .attributes-list li a.attribute-control {
+.app.window-app.degenesis.sheet .attributes-list li a.attribute-control {
     border: none;
 }
 
@@ -958,16 +958,68 @@
     content:url(../icons/degenesis.png)
 }
 
+
+.app.window-app .window-content {
+    background: white;
+    font-family: "Calluna"
+}
+
+.app.window-app .window-header {
+    font-family: Calluna
+}
+
+h1,h2,h3 {
+    font-family: "Avenir";
+    text-transform: uppercase;
+}
+
+/* .window-title {
+    font-family: "Calluna";
+    text-transform: unset;
+} */
+
+input[type="text"] {
+    background: none;
+    border: 0px;
+    border-bottom: 1px solid black;
+    border-radius: 0px
+}
+
+form button,
+.dialog .dialog-buttons button,
 button {
     background: none;
     border-radius: 0px;
     font-family: "Avenir";
     text-transform: uppercase;
-    border: 2px solid var(--degenesis-red);
-    color: white
+    border: 2px solid black;
 }
 
+form button:hover,
+.dialog .dialog-buttons button:hover,
 button:hover {
+    box-shadow: none;
+    color: var(--degenesis-red);
+    border: 2px solid var(--degenesis-red);
+}
+
+.sheet-tabs.tabs .item {
+    font-family: "Avenir";
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.sheet-tabs.tabs .item.active {
+    color: var(--degenesis-red);
+    text-shadow: none
+}
+
+#sidebar button {
+    color: white;
+    border: 2px solid var(--degenesis-red);
+}
+
+#sidebar button:hover {
     box-shadow: none;
     color: var(--degenesis-red)
 }
@@ -1003,6 +1055,11 @@ button:hover {
      color: var(--degenesis-red);
      text-transform: uppercase;
 }
+
+/* #sidebar .directory-list .directory-item h4 {
+    font-family: "Calluna";
+    text-transform: unset
+} */
 
 
 #sidebar .directory-footer button {
@@ -1045,14 +1102,23 @@ button:hover {
 }
 /*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
 
-#select:focus {
-    box-shadow: none
+select {
+    background: none;
+    border: none;
+    padding: 0px;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+
+select:focus{
+    box-shadow: none;
 }
 
 select > *{
     color: white;
-    background-color: black;
+    background-color: black
 }
+
 
 textarea:focus {
     outline: 2px solid var(--degenesis-red);
