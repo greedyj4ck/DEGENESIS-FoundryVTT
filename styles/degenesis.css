@@ -762,6 +762,17 @@
 .app.window-app.degenesis.sheet .relationships-group .advantage{
     height: 118px;
     overflow: auto;
+    display: block;
+}
+
+.app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar,
+.app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-track {
+    /* width: 10px;
+    border: none;
+    background-color: transparent; */
+    margin-top:-17px;
+    margin-bottom: -10px;
 }
 
 .app.window-app.degenesis.sheet .relationships-group .background{
