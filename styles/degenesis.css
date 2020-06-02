@@ -797,9 +797,80 @@
     display:flex
 }
 
-.app.window-app.degenesis.sheet .relationships-li > input:hover,
-    .app.window-app.degenesis.sheet .relationships-li > input:focus{
-    border: 1px dotted var(--degenesis-red)
+.app.window-app.degenesis.sheet .relationships-li > input:hover{
+    /* border: 1px dotted var(--degenesis-red) */
+    background-color: rgb(240, 240, 240);
+}
+
+.app.window-app.degenesis.sheet .tab-line{
+    flex:1;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .potentials-legend{
+    display:flex;
+    flex: 1;
+    border-bottom: 1px solid var(--dark-grey);
+    width: 100%;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .first-part{
+    display: flex;
+    flex: 2;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .potentials-legend .origin{
+    flex: 2;
+    margin-right: 5px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .empty{
+    flex: 1;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.app.window-app.degenesis.sheet .potentials-group .potentials-legend > *{
+    justify-content: flex-end;
+    flex: 1;
+    text-align: center;
+}
+
+/* potentials list */
+
+.app.window-app.degenesis.sheet .potentials-group .advantage {
+    margin-left: 5px;
+    border-bottom: 1px solid var(--dark-grey);
+    padding-bottom: 5px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .background-name {
+    margin-left: 5px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
+    flex: 2;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
+    display: flex;
+    flex: 1;
+}
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
+    flex: 2;
+    display: block;
+    text-align: center;
+    margin-right: 5px;
+}
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .level {
+    flex: 1;
+    display: block;
+}
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .level .diamond-row {
+    justify-content: center;
+    margin: 0px;
+}
+
+.app.window-app.degenesis.sheet .relationships-li > input:focus{
+    background-color: rgb(230, 230, 230);
 }
 
  .app.window-app.degenesis.sheet .advantage input[type="text"] ,
@@ -835,7 +906,16 @@
 
  .app.window-app.degenesis.sheet .background-name{
     margin-left: 10px;
- }
+}
+
+ /* * Potentials */
+ .degenesis.sheet .potentials{
+    display: flex;
+}
+ .degenesis.sheet .potentials .black-title{
+    max-width: 199px;
+    align-self:flex-start;
+}
 
 
 /* * Items */

@@ -21,7 +21,7 @@
                   <div class="advantage-list">
                      {{#each backgrounds as |background bg|}}
                      <div class="advantage">
-                        <a class="background-name">{{background.label}}</a>
+                        <div class="background-name">{{background.label}}</div>
                          <div class="diamond-position">  
                            <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
                               {{#each background.diamonds as |diamond index|}}
@@ -130,31 +130,163 @@
 
       <div class="advantage-group potentials-group">
          <div class="potentials">
-            <div class="black-title">
-               <h3>POTENTIALS</h3>
+            <div class="first-part">
+               <div class="black-title">
+                  <h3>POTENTIALS</h3>
+               </div>
+               <!-- ! Work in progress -->
+               <svg class="tab-start-line" height="23" width="26">
+                  <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+                  <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               </svg>
+               <!-- <svg class="tab-right-line" height="27" width="500">
+                  <line x1="0" y1="21" x2="526" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               </svg> -->
+               
+               <div class="empty">
+            
+               </div>
             </div>
-            <!-- ! Work in progress -->
-            <!-- <svg height="210" width="500">
-               <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
-             </svg> -->
+            <div class="potentials-legend">
+               <div class="origin">
+                  <span>ORIGIN</span>
+               </div>
+               <div class="level">
+                  <span2>LEVEL</span>
+               </div>
+            </div>
          </div>
          <div class="advantage-list">
-            {{#each potentials as |potential pt|}}
+            {{#each potentials as |potential p|}}
             <div class="advantage">
-               <div class="background-name">{{potential.label}}</div>
-                <div class="diamond-position">  
-                  <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
-                     {{#each potential.diamonds as |potential index|}}
-                        {{#if diamond.filled}}
-                           <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                        {{else}}
-                           <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                        {{/if}}
-                     {{/each}}
+               <a class="background-name">{{potential.name}}</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     {{potential.data.origin}}
                   </div>
-                </div> 
+                  <div class="diamond-position">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        {{#each potential.diamonds as |potential index|}}
+                           {{#if diamond.filled}}
+                              <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                           {{else}}
+                              <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                           {{/if}}
+                        {{/each}}
+                     </div>
+                  </div> 
+                </div>
             </div>
             {{/each}}
+
+            <!-- ! TEST -->
+            <div class="advantage">
+               <a class="background-name">Fisherman's Blood</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Anabaptists
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Some Potential Name</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Another Potential Name but it's loooooooooooong</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Another Potential Name but it's loooooooooooong</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Another Potential Name but it's loooooooooooong</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Another Potential Name but it's loooooooooooong</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <div class="advantage">
+               <a class="background-name">Another Potential Name but it's loooooooooooong</a>
+               <div class="potential-characteristics">
+                  <div class="origin">
+                     Common
+                  </div>
+                  <div class="diamond-position level">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                        <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                     </div>
+                  </div> 
+               </div>
+            </div>
+            <!-- ! END TEST -->
+
          </div>
       </div>
       
