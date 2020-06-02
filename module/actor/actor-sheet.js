@@ -100,6 +100,25 @@ export class DegenesisActorSheet extends ActorSheet {
       this.actor.update(actorData);
     })
 
+    html.find(".relationships-cultes,.relationships-bonus").change(ev => {
+      let elem = $(ev.currentTarget)
+      let editType = elem.hasClass("relationships-cultes") ? "group" : "modifier"
+      let relationships = duplicate(this.actor.data.data.relationships)
+      let index = Number(elem.parents(".relationships-li").attr("data-index"))
+
+      if (isNaN(index)) // New relationship
+      {
+        let newRelationship = {}
+        newRelationship[editType] = elem[0].value
+        relationships.push(newRelationship)
+      }
+      else 
+        relationships[index][editType] = elem[0].value
+      
+      relationships = relationships.filter(r => !!r.group)
+      this.actor.update({"data.relationships" : relationships})
+    })
+
   }
 
   /* -------------------------------------------- */

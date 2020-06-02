@@ -264,6 +264,9 @@
         }
       }
     },
+    "relationships" : {
+      "relationships" : []
+    },
     "scars": {
       "scars" : {
         "groupname" : {
@@ -285,7 +288,7 @@
     }
   },
   "character": {
-    "templates" : ["details", "attributes", "skills", "status", "backgrounds", "scars"]
+    "templates" : ["details", "attributes", "skills", "status", "backgrounds", "scars", "relationships"]
   }
 },
 "Item": {

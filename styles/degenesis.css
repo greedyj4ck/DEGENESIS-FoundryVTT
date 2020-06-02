@@ -781,16 +781,25 @@
 }
 .degenesis.sheet .relationships-cultes{
     text-align: left;
+    width: 75%;
+    border: none;
 }
 .degenesis.sheet .relationships-bonus{
     text-align: right;
-    margin-left: 68px;
+    width: 25%;
+    border: none;
 }
 
 .degenesis.sheet .relationships-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
     padding-bottom: 2px;
+    display:flex
+}
+
+.degenesis.sheet .relationships-li > input:hover,
+    .degenesis.sheet .relationships-li > input:focus{
+    border: 1px dotted var(--degenesis-red)
 }
 
  .degenesis.sheet .advantage input[type="text"] ,

@@ -51,57 +51,15 @@
                <div class="advantage">
                  <!-- <div class="cadre-tab">-->
                   <ol class="relationships-ol">
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
+                     {{#each data.relationships as |rs index|}}
+                     <li class="relationships-li" data-index="{{index}}">
+                        <input class="relationships-cultes" value="{{rs.group}}"/>
+                        <input class="relationships-bonus" value="{{rs.modifier}}"/>
                      </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                      <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>
-                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
-                     </li>                     <li class="relationships-li">
-                        <a class="relationships-cultes">Anabaptists</a>
-                        <a class="relationships-bonus" contenteditable='true'>+6D</a>
+                     {{/each}}
+                     <li class="relationships-li" data-index="new">
+                        <input class="relationships-cultes" value=""/>
+                        <input class="relationships-bonus" value=""/>
                      </li>
                   </ol> 
                   <!--</div>-->
