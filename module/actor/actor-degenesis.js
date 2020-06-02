@@ -135,6 +135,6 @@ export class DegenesisActor extends Actor {
 
     preparePotential(potential) {
         DEG_Utility.addDiamonds(potential, 3, "data.level")
-        console.log(potential)
+        return potential
     }
 }

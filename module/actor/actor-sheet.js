@@ -83,6 +83,21 @@ export class DegenesisActorSheet extends ActorSheet {
       let index = Number($(ev.currentTarget).attr("data-index"));
       let target = $(ev.currentTarget).parents(".diamond-row").attr("data-target")
 
+      if (target == "item")
+      {
+        let itemData = duplicate(this.actor.items.find(i => i._id == $(ev.currentTarget).parents(".diamond-row").attr("data-item-id")))
+        target = $(ev.currentTarget).parents(".diamond-row").attr("data-item-target")
+
+        let value = getProperty(itemData, target)
+        if (value == index + 1)                 // If the last one was clicked, decrease by 1
+          setProperty(itemData, target, index)
+        else                                    // Otherwise, value = index clicked
+          setProperty(itemData, target, index + 1)
+        
+        this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+        return
+      }
+      
       let value = getProperty(actorData, target)
       if (value == index + 1)                 // If the last one was clicked, decrease by 1
         setProperty(actorData, target, index)
