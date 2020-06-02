@@ -779,18 +779,21 @@
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
-.degenesis.sheet .relationships-cultes{
+.degenesis.sheet .relationships-cults>input[type="text"]{
     text-align: left;
+    flex: 1;
 }
-.degenesis.sheet .relationships-bonus{
+.degenesis.sheet .relationships-bonus>input[type="text"]{
     text-align: right;
-    margin-left: 68px;
+    flex: 3;
 }
 
 .degenesis.sheet .relationships-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
     padding-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
 }
 
  .degenesis.sheet .advantage input[type="text"] ,
@@ -801,8 +804,6 @@
      text-align: left;
      flex: 1;
  }
-
-
 
  .degenesis.sheet .advantage-tab .sheet-field {
     margin-left: 10px;
@@ -826,6 +827,10 @@
 
  .degenesis.sheet .background-name{
     margin-left: 10px;
+ }
+
+ .degenesis.sheet .potentials .black-title{
+     max-width: 199px;
  }
 
 
