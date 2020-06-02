@@ -858,7 +858,7 @@
 }
 
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
-    flex: 2;
+    flex: 3.4;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
@@ -866,7 +866,7 @@
     flex: 1;
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
-    flex: 2;
+    flex: 1;
     display: block;
     text-align: center;
     margin-right: 5px;
@@ -879,6 +879,11 @@
     justify-content: center;
     margin: 0px;
 }
+
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .diamond-position > * {
+    margin: 0px;
+}
+
 
 .app.window-app.degenesis.sheet .relationships-li > input:focus{
     background-color: rgb(230, 230, 230);

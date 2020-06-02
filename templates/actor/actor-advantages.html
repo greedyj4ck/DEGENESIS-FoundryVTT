@@ -164,17 +164,19 @@
                   <div class="origin">
                      {{potential.data.origin}}
                   </div>
-                  <div class="diamond-position">  
-                     <div class="diamond-row" data-target="item" data-item-id={{potential._id}} data-item-target="data.level">
-                        {{#each potential.diamonds as |diamond index|}}
-                           {{#if diamond.filled}}
-                              <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                           {{else}}
-                              <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                           {{/if}}
-                        {{/each}}
-                     </div>
-                  </div> 
+                  <div class="level">
+                     <div class="diamond-position">  
+                        <div class="diamond-row" data-target="item" data-item-id={{potential._id}} data-item-target="data.level">
+                           {{#each potential.diamonds as |diamond index|}}
+                              {{#if diamond.filled}}
+                                 <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                              {{else}}
+                                 <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                              {{/if}}
+                           {{/each}}
+                        </div>
+                     </div> 
+                  </div>
                 </div>
             </div>
             {{/each}}
