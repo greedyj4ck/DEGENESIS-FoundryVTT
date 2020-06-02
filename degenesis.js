@@ -41,7 +41,8 @@ Hooks.once("init", async function() {
     "systems/degenesis/templates/actor/actor-attributes-skills.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
-    "systems/degenesis/templates/actor/actor-advantages.html"
+    "systems/degenesis/templates/actor/actor-advantages.html",
+    "systems/degenesis/templates/actor/actor-condition.html",
   ]);
 
     // Assign the actor class to the CONFIG

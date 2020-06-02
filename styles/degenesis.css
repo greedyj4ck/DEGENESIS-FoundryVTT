@@ -431,7 +431,6 @@
 /* * Navigation Tabs */
 .app.window-app.degenesis.sheet .tabs {
     flex: 0 0 40px;
-    height: 20px;
 }
 
 .app.window-app.degenesis.sheet .tabs .item {
@@ -501,6 +500,7 @@
 .app.window-app.degenesis.sheet .three-Cs img{
     border: none;
     margin: 5px;
+    flex: none;
 }
 
 .app.window-app.degenesis.sheet .section-header.row .row-divide{
@@ -578,7 +578,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
-    margin-top: 14px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
@@ -826,11 +826,11 @@
 
 .app.window-app.degenesis.sheet .potentials-group .first-part{
     display: flex;
-    flex: 2;
+    flex: 3.4;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potentials-legend .origin{
-    flex: 2;
+    flex: 1;
     margin-right: 5px;
 }
 
