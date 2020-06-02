@@ -1,4 +1,5 @@
 import { DEGENESIS } from "../config.js";
+import { DEG_Utility } from "../utility.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -42,14 +43,15 @@ export class DegenesisActor extends Actor {
         let preparedData = {};
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
         preparedData.backgrounds = this.prepareBackgrounds();
-        preparedData.inventory = this.prepareItems()
-        preparedData.infamy = this.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
+        preparedData.infamy = DEG_Utility.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
         preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
         preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
         preparedData.concept = DEGENESIS.concepts[this.data.data.details.concept.value]
         preparedData.cultureDescription = DEGENESIS.cultureDescription[this.data.data.details.culture.value]
         preparedData.cultDescription = DEGENESIS.cultDescription[this.data.data.details.cult.value]
         preparedData.conceptDescription = DEGENESIS.conceptDescription[this.data.data.details.concept.value]
+
+        mergeObject(preparedData, this.prepareItems())
         return preparedData;
     }
 
@@ -76,10 +78,10 @@ export class DegenesisActor extends Actor {
         for (let attrKey in attributeSkillGroups)
         {
             let attrGroup = attributeSkillGroups[attrKey]
-            this.addDiamonds(attrGroup, 6)
+            DEG_Utility.addDiamonds(attrGroup, 6)
 
             for (let skillKey in attrGroup.skills)
-                this.addDiamonds(attrGroup.skills[skillKey], 6)
+                DEG_Utility.addDiamonds(attrGroup.skills[skillKey], 6)
         }
         return attributeSkillGroups;
     }
@@ -89,23 +91,12 @@ export class DegenesisActor extends Actor {
         let backgrounds = duplicate(this.data.data.backgrounds)
         for (let bg in backgrounds)
         {
-            this.addDiamonds(backgrounds[bg], 6);
+            DEG_Utility.addDiamonds(backgrounds[bg], 6);
             backgrounds[bg].label = backgrounds[bg].label.toUpperCase()
         }
         return backgrounds
     }
 
-    addDiamonds(data, diamondMax = 0)
-    {
-        data.diamonds = [];
-        for (let i = 0; i < diamondMax; i++)
-        {
-            data.diamonds.push({
-                filled : i + 1 <= data.value
-            })
-        }
-        return data
-    }
 
     prepareItems() 
     {
@@ -115,6 +106,7 @@ export class DegenesisActor extends Actor {
             armor: {header : "ARMOR" , items : []},
             equipment: {header : "EQUIPMENT" , items : []}
         }
+        let potentials = [];
 
         for (let i of actorData.items)
         {
@@ -130,7 +122,19 @@ export class DegenesisActor extends Actor {
             {
                 inventory.equipment.items.push(i);
             }
+            if (i.type == "potential")
+            {
+                potentials.push(this.preparePotential(i));
+            }
         }
-        return inventory;
+        return {
+            inventory,
+            potentials
+        }
+    }
+
+    preparePotential(potential) {
+        DEG_Utility.addDiamonds(potential, 3, "data.level")
+        console.log(potential)
     }
 }

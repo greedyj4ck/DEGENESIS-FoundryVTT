@@ -295,37 +295,43 @@
   "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential"],
   "templates" : {
     "description" : {
-    "description" : ""
+      "description" : ""
+    },
+    "rules" : {
+      "rules" : ""
+    },
+    "origin" : {
+      "origin" : ""
     },
     "encumbrance" : {
-    "encumbrance" : 0
+      "encumbrance" : 0
     },
     "tech" : {
-    "tech" : 0
+      "tech" : 0
     },
     "slots" : {
-    "slots" : 0
+      "slots" : 0
     },
     "qualities" : {
-    "qualities" : []
+      "qualities" : []
     },
     "effect" : {
-    "effect" : ""
+      "effect" : ""
     },
     "resources" : {
-    "resources" : 0
+      "resources" : 0
     },
     "value" : {
-    "value" : 0
+      "value" : 0
     },
     "cult" : {
-    "cult" : ""
+      "cult" : ""
     },
     "damage" : {
-    "damage" : ""
+      "damage" : ""
     },
     "group" : {
-    "group" : ""
+      "group" : ""
     }
   },
   "ammunition" : {
@@ -350,6 +356,10 @@
   "mod" : {
     "templates" : ["description", "effect"],
     "augmentation" : ""
+  },
+  "potential" : {
+    "templates" : ["rules", "effect", "level", "origin"],
+    "level" : 1
   }
 }
 }
