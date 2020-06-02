@@ -21,7 +21,7 @@
                   <div class="advantage-list">
                      {{#each backgrounds as |background bg|}}
                      <div class="advantage">
-                        <a class="background-name">{{background.label}}</a>
+                        <div class="background-name">{{background.label}}</div>
                          <div class="diamond-position">  
                            <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
                               {{#each background.diamonds as |diamond index|}}
@@ -124,9 +124,41 @@
                </div>
             </div>
          </div>
-      <!-- </div> -->
 
-   <!-- </div> -->
+         <div class="break"></div>
+
+         <div class="advantage-group potentials-group">
+            <div class="potentials">
+               <div class="black-title">
+                  <h3>POTENTIALS</h3>
+               </div>
+               <!-- ! Work in progress -->
+               <!-- <svg height="210" width="500">
+                  <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+                </svg> -->
+            </div>
+            <div class="advantage-list">
+               {{#each potentials as |potential pt|}}
+               <div class="advantage">
+                  <div class="background-name">{{potential.label}}</div>
+                   <div class="diamond-position">  
+                     <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                        {{#each potential.diamonds as |potential index|}}
+                           {{#if diamond.filled}}
+                              <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                           {{else}}
+                              <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                           {{/if}}
+                        {{/each}}
+                     </div>
+                   </div> 
+               </div>
+               {{/each}}
+            </div>
+         </div>
+
+         <!-- * POTENTIALS  -->
+         
  </div>
 
  <div class="footer-diamond">

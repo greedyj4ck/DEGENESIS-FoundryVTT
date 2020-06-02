@@ -779,12 +779,12 @@
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
-.degenesis.sheet .relationships-cultes{
+.degenesis.sheet .relationships-cults>input[type="text"]{
     text-align: left;
     width: 75%;
     border: none;
 }
-.degenesis.sheet .relationships-bonus{
+.degenesis.sheet .relationships-bonus>input[type="text"]{
     text-align: right;
     width: 25%;
     border: none;
@@ -811,8 +811,6 @@
      flex: 1;
  }
 
-
-
  .degenesis.sheet .advantage-tab .sheet-field {
     margin-left: 10px;
     margin-right: 10px;
@@ -835,6 +833,10 @@
 
  .degenesis.sheet .background-name{
     margin-left: 10px;
+ }
+
+ .degenesis.sheet .potentials .black-title{
+     max-width: 199px;
  }
 
 
