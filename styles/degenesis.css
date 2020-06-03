@@ -472,6 +472,7 @@
     font-size: 13px;
     letter-spacing: 1px;
     transition: background-color 0.1s ease-out;
+    padding: 0px 8px;
 }
 
 .app.window-app.degenesis.sheet .tabs .item:hover {
