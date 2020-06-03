@@ -1,5 +1,6 @@
 :root {
     --degenesis-red: #ed1d27;
+    --light-grey: #f3f3f2;
     --dark-grey: rgb(164, 164, 164);
 }
 
@@ -773,7 +774,7 @@
 }
 
 .app.window-app.degenesis.sheet .item-controls {
-    border-left: 1px solid black;
+    border-left: 1px solid var(--dark-grey);
     padding-left: 5px
 }
 
@@ -874,7 +875,7 @@
 .app.window-app.degenesis.sheet .potentials-group .item-summary {
     display: inline-block;
     margin-top: 5px;
-    background-color: #f3f3f2;
+    background-color: var(--light-grey);
     padding-top: 5px;
     border-top: 1px solid var( --dark-grey);
 }
