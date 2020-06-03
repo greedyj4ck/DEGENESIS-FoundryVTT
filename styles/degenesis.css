@@ -877,6 +877,8 @@
     margin-top: 5px;
     background-color: var(--light-grey);
     padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
     border-top: 1px solid var( --dark-grey);
 }
 
@@ -885,7 +887,6 @@
 .app.window-app.degenesis.sheet .potentials-group .advantage {
     margin-left: 5px;
     border-bottom: 1px solid var(--dark-grey);
-    padding-bottom: 5px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -896,6 +897,7 @@
 
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
     flex: 2;
+    padding-bottom: 5px;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
