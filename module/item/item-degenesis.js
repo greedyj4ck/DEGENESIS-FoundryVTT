@@ -13,7 +13,7 @@ export class DegenesisItem extends Item {
 
     _potentialDropdownData()
     {
-        return `<b>EFFECT</b>: ${this.data.data.effect}<br><br>
+        return `<div class="break"></div><b>EFFECT</b>: ${this.data.data.effect}<br><br>
                 <b>RULES</b>: ${this.data.data.rules}`
     }
 }
