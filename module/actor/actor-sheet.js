@@ -84,18 +84,19 @@ export class DegenesisActorSheet extends ActorSheet {
 
 
     // Update Inventory Item
-    html.find('.item-edit').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
-      item.sheet.render(true);
-    });
+    html.find(".item-edit").click(ev => {
+      let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+      this.actor.items.find(i => i._id == itemId).sheet.render(true)
+    })
 
-    // Delete Inventory Item
-    html.find('.item-delete').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
-      li.slideUp(200, () => this.render(false));
-    });
+    html.find(".item-delete").click(ev => {
+      let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+      this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+    })
+
+    html.find(".item-post").click(ev => {
+      
+    })
 
 
     // Respond to diamond clicks
@@ -157,21 +158,11 @@ export class DegenesisActorSheet extends ActorSheet {
     })
 
     html.find(".dropdown").click(ev => {
-      let itemId = $(ev.currentTarget).parents(".item-list").find(".item").attr("data-item-id")
+      let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
       let item = this.actor.items.find(i => i._id == itemId)
       this._dropdown(ev, item.dropdownData())
     })
 
-    html.find(".item-delete").click(ev => {
-      this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
-    })
-    html.find(".item-edit").click(ev => {
-      let itemId = $(ev.currentTarget).parents(".item-list").find(".item").attr("data-item-id")
-      this.actor.items.find(i => i._id == itemId).sheet.render()
-    })
-    html.find(".item-post").click(ev => {
-      
-    })
   }
 
   /* -------------------------------------------- */
