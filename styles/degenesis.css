@@ -726,6 +726,7 @@
     background-position: center;
  }
 
+
  .app.window-app.degenesis.sheet .advantage,
  .app.window-app.degenesis.sheet .background {
      display: flex;
@@ -770,6 +771,12 @@
 .app.window-app.degenesis.sheet .advantage-list {
     margin-top:10px;
 }
+
+.app.window-app.degenesis.sheet .item-controls {
+    border-left: 1px solid black;
+    padding-left: 5px
+}
+
 
 .app.window-app.degenesis.sheet .cadre-tab{
     width:180px; 

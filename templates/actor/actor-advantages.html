@@ -163,17 +163,17 @@
                </div>
             </div>
          </div>
-         <div class="advantage-list">
+         <div class="advantage-list item-list">
             {{#each potentials as |potential p|}}
-            <div class="advantage">
-               <a class="background-name">{{potential.name}}</a>
+            <div class="advantage item" data-item-id={{potential._id}}>
+               <a class="background-name dropdown">{{potential.name}}</a>
                <div class="potential-characteristics">
                   <div class="origin">
                      {{potential.data.origin}}
                   </div>
                   <div class="level">
                      <div class="diamond-position">  
-                        <div class="diamond-row" data-target="item" data-item-id={{potential._id}} data-item-target="data.level">
+                        <div class="diamond-row" data-target="item" data-item-target="data.level">
                            {{#each potential.diamonds as |diamond index|}}
                               {{#if diamond.filled}}
                                  <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -183,6 +183,11 @@
                            {{/each}}
                         </div>
                      </div> 
+                  </div>
+                  <div class="item-controls">
+                     <a class="item-post"><i class="fas fa-comment"></i></a>
+                     <a class="item-edit"><i class="fas fa-edit"></i></a>
+                     <a class="item-delete"><i class="fas fa-times"></i></a>
                   </div>
                 </div>
             </div>

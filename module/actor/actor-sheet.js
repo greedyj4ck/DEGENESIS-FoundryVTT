@@ -14,7 +14,7 @@ export class DegenesisActorSheet extends ActorSheet {
       width: 685,
       height: 723,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main"}],
-      scrollY: [".relationship"]
+      scrollY: [".relationship", ".tab-content"]
     });
   }
 
@@ -44,8 +44,29 @@ export class DegenesisActorSheet extends ActorSheet {
     sheetData.concepts = DEGENESIS.concepts
     sheetData.cults = DEGENESIS.cults
     sheetData.cultures = DEGENESIS.cultures
+  }
 
-
+  
+  _dropdown(event, dropdownData)
+  {
+    event.preventDefault()
+    let li = $(event.currentTarget).parents(".item")
+    // Toggle expansion for an item
+    if (li.hasClass("expanded")) // If expansion already shown - remove
+    {
+      let summary = li.children(".item-summary");
+      summary.slideUp(200, () => summary.remove());
+    }
+    else
+    {
+      // Add a div with the item summary belowe the item
+      let div = "";
+      div = $(`<div class="item-summary">${dropdownData}</div>`);
+  
+      li.append(div.hide());
+      div.slideDown(200);
+    }
+    li.toggleClass("expanded");
   }
 
   /* -------------------------------------------- */
@@ -85,7 +106,7 @@ export class DegenesisActorSheet extends ActorSheet {
 
       if (target == "item")
       {
-        let itemData = duplicate(this.actor.items.find(i => i._id == $(ev.currentTarget).parents(".diamond-row").attr("data-item-id")))
+        let itemData = duplicate(this.actor.items.find(i => i._id == $(ev.currentTarget).parents(".item").attr("data-item-id")))
         target = $(ev.currentTarget).parents(".diamond-row").attr("data-item-target")
 
         let value = getProperty(itemData, target)
@@ -135,6 +156,22 @@ export class DegenesisActorSheet extends ActorSheet {
       this.actor.update({"data.relationships" : relationships})
     })
 
+    html.find(".dropdown").click(ev => {
+      let itemId = $(ev.currentTarget).parents(".item-list").find(".item").attr("data-item-id")
+      let item = this.actor.items.find(i => i._id == itemId)
+      this._dropdown(ev, item.dropdownData())
+    })
+
+    html.find(".item-delete").click(ev => {
+      this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+    })
+    html.find(".item-edit").click(ev => {
+      let itemId = $(ev.currentTarget).parents(".item-list").find(".item").attr("data-item-id")
+      this.actor.items.find(i => i._id == itemId).sheet.render()
+    })
+    html.find(".item-post").click(ev => {
+      
+    })
   }
 
   /* -------------------------------------------- */
