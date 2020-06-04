@@ -16,7 +16,7 @@
             <svg class="title-line middle-left" height="11" width="100%">
                 <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
              </svg>
-            <div class="middle-name">ARCHETYPE</div>
+            <div class="middle-name">{{localize "DGNS.Archetype"}}</div>
             <svg class="title-line middle-right" height="11" width="100%">
                <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
             </svg>
@@ -31,19 +31,19 @@
         <div class="break"></div>
         <div class="header-column char-info left">
             <div class="sheet-field">
-                <span class="field-name">NAME:</span>
+                <span class="field-name">{{localize "DGNS.Name"}}:</span>
                 <input class="field-input" type="text" name="name" value="{{actor.name}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">AGE:</span>
+                <span class="field-name">{{localize "DGNS.Age"}}:</span>
                 <input class="field-input" type="text" name="data.age.value" value="{{data.age.value}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">RANK:</span>
+                <span class="field-name">{{localize "DGNS.Rank"}}:</span>
                 <input class="field-input" type="text" name="data.rank.value" value="{{data.rank.value}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">EXPERIENCE:</span>
+                <span class="field-name">{{localize "DGNS.Experience"}}:</span>
                 <input class="field-input" type="text" name="data.experience.value" value="{{data.experience.value}}" />
             </div>
         </div>
@@ -53,19 +53,19 @@
         </div>
         <div class="header-column char-info right">
             <div class="sheet-field">
-                <span class="field-name">SEX:</span>
+                <span class="field-name">{{localize "DGNS.Sex"}}:</span>
                 <input class="field-input" type="text" name="data.sex.value" value="{{data.sex.value}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">HEIGHT:</span>
+                <span class="field-name">{{localize "DGNS.Height"}}:</span>
                 <input class="field-input" type="text" name="data.height.value" value="{{data.height.value}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">WEIGHT:</span>
+                <span class="field-name">{{localize "DGNS.Weight"}}:</span>
                 <input class="field-input" type="text" name="data.weight.value" value="{{data.weight.value}}" />
             </div>
             <div class="sheet-field">
-                <span class="field-name">DRAFTS/DINARS:</span>
+                <span class="field-name">{{localize "DGNS.DraftsDinars"}}:</span>
                 <input class="field-input" type="text" name="data.dinars.value" value="{{data.dinars.value}}" />
             </div>
         </div>
@@ -129,12 +129,12 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="attributes">ATTRIBUTES</a>
-        <a class="item" data-tab="advantages">ADVANTAGES</a>
-        <a class="item" data-tab="condition">CONDITION</a>
-        <a class="item" data-tab="combat">COMBAT</a>
-        <a class="item" data-tab="inventory">INVENTORY</a>
-        <a class="item" data-tab="history">HISTORY</a>
+        <a class="item" data-tab="attributes">{{localize "DGNS.Attributes"}}</a>
+        <a class="item" data-tab="advantages">{{localize "DGNS.Advantages"}}</a>
+        <a class="item" data-tab="condition">{{localize "DGNS.Condition"}}</a>
+        <a class="item" data-tab="combat">{{localize "DGNS.Combat"}}</a>
+        <a class="item" data-tab="inventory">{{localize "DGNS.Inventory"}}</a>
+        <a class="item" data-tab="history">{{localize "DGNS.History"}}</a>
     </nav>
 
     <div class="tab-content">

@@ -9,6 +9,7 @@ import { DegenesisItemSheet } from "./module/item/item-sheet.js";
 import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
+import { DEGENESIS } from "./module/config.js";
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
@@ -49,3 +50,12 @@ Hooks.once("init", async function() {
   CONFIG.Actor.entityClass = DegenesisActor;
   CONFIG.Item.entityClass = DegenesisItem;
 });
+
+Hooks.on("setup", () => {
+  for(let group in DEGENESIS)
+  {
+    console.log(group)
+    for(let key in DEGENESIS[group])
+      DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
+  }
+})

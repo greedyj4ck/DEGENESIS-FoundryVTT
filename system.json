@@ -17,7 +17,13 @@
     "systems/degenesis/node_modules/dist/tippy.cjs"
 ],
   "packs": [],
-  "languages": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
   "gridDistance": 5,
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",

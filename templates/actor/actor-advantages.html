@@ -5,7 +5,7 @@
       <svg class="title-line middle-left" height="11" width="100%">
          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
       </svg>
-      <div class="middle-name">ADVANTAGES</div>
+      <div class="middle-name">{{localize "DGNS.Advantages"}}</div>
       <svg class="title-line middle-right" height="11" width="100%">
          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
       </svg>
@@ -21,7 +21,7 @@
             <div class="advantage-group background-group"> 
                <div class="background">
                   <div class="black-title">
-                     <h3>BACKGROUNDS</h3>
+                     <h3>{{localize "DGNS.Backgrounds"}}</h3>
                   </div>
                </div>
 
@@ -51,7 +51,7 @@
          <div class="advantage-group relationships-group">
             <div class="background">
                <div class="black-title">
-                  <h3>RELATIONSHIPS</h3>
+                  <h3>{{localize "DGNS.Relationships"}}</h3>
                </div>
             </div>
 
@@ -87,36 +87,36 @@
          <div class="advantage-group scars-group">
             <div class="background">
                <div class="black-title">
-                  <h3>SCARS</h3>
+                  <h3>{{localize "DGNS.Scars"}}</h3>
                </div>
             </div>
             <div class="advantage-list">
                <div class="advantage">
                   <div class="sheet-field">
-                     <span class="field-name">GROUP NAME:</span>
+                     <span class="field-name">{{localize "DGNS.GroupName"}}:</span>
                      <input class="field-input" type="text" name="data.groupname" value="{{data.groupname}}"/>
                   </div>
                </div>
                <div class="advantage">
                   <div class="sheet-field">
-                     <span class="field-name">ALIGNMENT:</span>
+                     <span class="field-name">{{localize "DGNS.Alignment"}}:</span>
                      <input class="field-input" type="text" name="data.alignment" value="{{data.alignment}}"/>
                   </div>
                </div>
                <div class="advantage">
                   <div class="sheet-field">
-                     <span class="field-name">CONSTELLATION:</span>
+                     <span class="field-name">{{localize "DGNS.Constellation"}}:</span>
                      <input class="field-input" type="text" name="data.constellation" value="{{data.constellation}}"/>
                   </div>
                </div>
                <div class="advantage">
                   <div class="sheet-field">
-                     <span class="field-name">SCARS VALUE:</span>
+                     <span class="field-name">{{localize "DGNS.ScarsValue"}}:</span>
                      <input class="field-input" type="text" name="data.scarsValue" value="{{data.scarsValue}}"/>
                   </div>
                </div>
                <div class="advantage">
-                  <a class="background-name">INFAMY</a>
+                  <a class="background-name">{{localize "DGNS.Infamy"}}</a>
                   <div class="diamond-position"> 
                      <div class="diamond-row" data-target="data.scars.infamy.value">
                         {{#each infamy.diamonds as |diamond index|}}
@@ -139,7 +139,7 @@
          <div class="potentials">
             <div class="first-part">
                <div class="black-title">
-                  <h3>POTENTIALS</h3>
+                  <h3>{{localize "DGNS.Potentials"}}</h3>
                </div>
                <!-- ! Work in progress -->
                <svg class="tab-start-line" height="23" width="26">
@@ -156,10 +156,10 @@
             </div>
             <div class="potentials-legend">
                <div class="origin">
-                  <span>ORIGIN</span>
+                  <span>{{localize "DGNS.Origin"}}</span>
                </div>
                <div class="level">
-                  <span2>LEVEL</span>
+                  <span2>{{localize "DGNS.Level"}}</span>
                </div>
             </div>
          </div>
