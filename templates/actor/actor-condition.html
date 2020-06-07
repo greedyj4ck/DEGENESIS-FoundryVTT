@@ -1,26 +1,196 @@
 <div class="title">
-    <div class="body-column body-line">
+   <div class="body-column body-line">
       <div class="square little left"></div>
       <svg class="title-line middle-left" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
+         <line x1="0" y1="11" x2="100%" y2="11" style="stroke: black; stroke-width: 1;"></line>
       </svg>
-       <div class="middle-name">{{localize "DGNS.Condition"}}</div>
-       <svg class="title-line middle-right" height="11" width="100%">
-          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-       </svg>
-       <div class="square little right"></div>
-    </div>
- </div> 
+      <div class="middle-name">{{localize "DGNS.Condition"}}</div>
+      <svg class="title-line middle-right" height="11" width="100%">
+         <line x1="0" y1="11" x2="100%" y2="11" style="stroke: black; stroke-width: 1;"></line>
+      </svg>
+      <div class="square little right"></div>
+   </div>
+</div>
 
- <div class="condition-tab">
- <!-- * CONDITION * -->
- 
+<div class="condition-tab">
+   <!-- * CONDITION * -->
+   <div class="column-flex">
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
+      <div class="ego">
+         <div class="diamond-row bar">
+            {{#each status.ego.diamonds as |diamond index|}}
+            {{#if diamond.filled}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{/if}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square"></div>
+            </a>
+            {{/if}}
+            {{/each}}
+         </div>
+         <div class="text">
+            EGO
+         </div>
+      </div>
 
- </div>
+      <div class="spore">
+         <div class="diamond-row bar">
+            {{#each status.spore.diamonds as |diamond index|}}
+            {{#if diamond.filled}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{/if}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square"></div>
+            </a>
+            {{/if}}
+            {{/each}}
+         </div>
+         <div class="text">
+            SPORE INFESTATION
+         </div>
+      </div>
 
- <div class="footer-diamond">
-   <div class="square little"></div>
-   <div class="square little"></div>
-   <div class="square little"></div>
- </div>
+      <div class="fleshwounds">
+         <div class="diamond-row bar">
+            {{#each status.fleshwounds.diamonds as |diamond index|}}
+            {{#if diamond.filled}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{/if}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square red"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square"></div>
+            </a>
+            {{/if}}
+            {{/each}}
+         </div>
+         <div class="text">
+            FLESHWOUNDS
+         </div>
+      </div>
+
+      <div class="trauma">
+         <div class="diamond-row bar">
+            {{#each status.trauma.diamonds as |diamond index|}}
+            {{#if diamond.filled}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square black"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square"></div>
+            </a>
+            {{/if}}
+            {{/each}}
+         </div>
+         <div class="text">
+            TRAUMA
+         </div>
+      </div>
+   </div>
+
+   <div class="bottom-conditions">
+      <div class="modifiers">
+         <div class="black-title">
+            <h3>MODIFIERS</h3>
+         </div>
+         <ol class="relationships-ol">
+            {{#each data.modifiers as |md index|}}
+            <li class="relationships-li" data-index="{{index}}">
+               <input class="relationships-cultes" value="{{md.group}}" />
+               <input class="relationships-bonus" value="{{md.modifier}}" />
+            </li>
+            {{/each}}
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+         </ol>
+      </div>
+
+      <div class="complications">
+         <div class="black-title">
+            <h3>COMPLICATIONS</h3>
+         </div>
+         <ol class="relationships-ol">
+            {{#each data.complications as |co index|}}
+            <li class="relationships-li" data-index="{{index}}">
+               <input class="relationships-cultes" value="{{co.group}}" />
+               <input class="relationships-bonus" value="{{co.modifier}}" />
+            </li>
+            {{/each}}
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+         </ol>
+      </div>
+
+   </div>
+
+   <div class="footer-diamond">
+      <div class="square little"></div>
+      <div class="square little"></div>
+      <div class="square little"></div>
+   </div>

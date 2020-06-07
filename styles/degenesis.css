@@ -106,8 +106,13 @@
     border: none;
 }
 
+.square.black {
+    background-color:black;
+    border: none;
+}
+
 .square.red {
-    background-color: red;
+    background-color: var(--degenesis-red);
 }
 
 .diamond .square {
@@ -657,6 +662,8 @@
 
 .app.window-app.degenesis.sheet .diamond-row{
     justify-content:flex-end;
+    display: flex;
+    flex-direction: row;
 }
 
 .app.window-app.degenesis.sheet .skill .diamond {
@@ -1129,11 +1136,24 @@ padding-right: 4px;
     border: none;
 }
 
+/* * CONDITION TAB */
 
+.app.window-app.degenesis.sheet .column-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
+.app.window-app.degenesis.sheet .bar.diamond-row{
+    justify-content: center;
+}
 
-
-
+.app.window-app.degenesis.sheet .bottom-conditions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 
