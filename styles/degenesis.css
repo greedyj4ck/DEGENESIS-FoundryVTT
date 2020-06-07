@@ -454,6 +454,10 @@
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    left: 0%;
 }
 
 .app.window-app.degenesis.sheet .footer-diamond{
@@ -1149,11 +1153,37 @@ padding-right: 4px;
     justify-content: center;
 }
 
+.app.window-app.degenesis.sheet .bar-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.app.window-app.degenesis.sheet .bar-group .text{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.app.window-app.degenesis.sheet .bar-group.trauma{
+    margin-bottom: 4px;
+}
+
+/* * Bottom conditions */
+
 .app.window-app.degenesis.sheet .bottom-conditions{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+.app.window-app.degenesis.sheet .bottom-conditions .black-title h3{
+    margin-left: 10px;
+}
+
+.app.window-app.degenesis.sheet .modifiers-group {
+    width: 40%;
+}
+
 
 .app.window-app.degenesis.sheet .modifiers-group .modifiers-data{
     height: 118px;
@@ -1164,17 +1194,9 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar,
 .app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-thumb,
 .app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-track {
-    /* width: 10px;
-    border: none;
-    background-color: transparent; */
     margin-top:-17px;
     margin-bottom: -10px;
 }
-
-.app.window-app.degenesis.sheet .modifiers-group .background{
-    margin-bottom: 10px;
-}
-
 
 .app.window-app.degenesis.sheet .modifiers-ol{
     border-collapse: collapse;
@@ -1210,7 +1232,6 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .modifiers-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
-    padding-bottom: 2px;
     display:flex
 }
 
@@ -1219,8 +1240,9 @@ padding-right: 4px;
     background-color: rgb(240, 240, 240);
 }
 
-
-
+.app.window-app.degenesis.sheet .complications-group {
+    width: 40%;
+}
 
 
 

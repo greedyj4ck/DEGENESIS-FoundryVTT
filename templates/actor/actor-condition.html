@@ -15,10 +15,8 @@
 <div class="condition-tab">
    <!-- * CONDITION * -->
    <div class="column-flex">
-<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
-      <div class="ego">
+      <div class="ego bar-group">
          <div class="diamond-row bar">
             {{#each status.ego.diamonds as |diamond index|}}
             {{#if diamond.filled}}
@@ -42,7 +40,7 @@
          </div>
       </div>
 
-      <div class="spore">
+      <div class="spore bar-group">
          <div class="diamond-row bar">
             {{#each status.spore.diamonds as |diamond index|}}
             {{#if diamond.filled}}
@@ -66,7 +64,7 @@
          </div>
       </div>
 
-      <div class="fleshwounds">
+      <div class="fleshwounds bar-group">
          <div class="diamond-row bar">
             {{#each status.fleshwounds.diamonds as |diamond index|}}
             {{#if diamond.filled}}
@@ -90,7 +88,7 @@
          </div>
       </div>
 
-      <div class="trauma">
+      <div class="trauma bar-group">
          <div class="diamond-row bar">
             {{#each status.trauma.diamonds as |diamond index|}}
             {{#if diamond.filled}}
@@ -132,81 +130,21 @@
                   <input class="modifiers-type" value="{{md.type}}" />
                </li>
                {{/each}}
-               <li class="modifiers-li" data-index="{{index}}">
-                  <input class="modifiers-name" value="{{md.name}}" />
-                  <select class="modifiers-action" name="action">
-                     <option value="">-</option>
-                     <option value="initiative">Initiative</option>
-                     <option value="dodge">Dodge</option>
-                     <option value="movement">Movement</option>
-                     <option value="armor">Armor</option>
-                     <option value="etc">etc</option>
-                 </select>
-                  <input class="modifiers-number" value="{{md.number}}" />
-                  <select class="modifiers-type" name="type">
-                     <option value="">-</option>
-                     <option value="D">D</option>
-                     <option value="S">S</option>
-                     <option value="T">T</option>
-                 </select>
-               </li>
-               <li class="modifiers-li" data-index="{{index}}">
-                  <input class="modifiers-name" value="{{md.name}}" />
-                  <select class="modifiers-action" name="action">
-                     <option value="">-</option>
-                     <option value="initiative">Initiative</option>
-                     <option value="dodge">Dodge</option>
-                     <option value="movement">Movement</option>
-                     <option value="armor">Armor</option>
-                     <option value="etc">etc</option>
-                 </select>
-                  <input class="modifiers-number" value="{{md.number}}" />
-                  <select class="modifiers-type" name="type">
-                     <option value="">-</option>
-                     <option value="D">D</option>
-                     <option value="S">S</option>
-                     <option value="T">T</option>
-                 </select>
-               </li>
             </ol>
          </div>
       </div>
 
-      <div class="complications">
+      <div class="complications-group">
          <div class="black-title">
             <h3>COMPLICATIONS</h3>
          </div>
          <ol class="relationships-ol">
             {{#each data.complications as |co index|}}
-            <li class="relationships-li" data-index="{{index}}">
+            <li class="modifiers-li" data-index="{{index}}">
                <input class="relationships-cultes" value="{{co.group}}" />
                <input class="relationships-bonus" value="{{co.modifier}}" />
             </li>
             {{/each}}
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
-            <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
-            </li>
          </ol>
       </div>
 
