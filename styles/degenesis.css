@@ -1155,6 +1155,70 @@ padding-right: 4px;
     justify-content: space-between;
 }
 
+.app.window-app.degenesis.sheet .modifiers-group .modifiers-data{
+    height: 118px;
+    overflow: auto;
+    display: block;
+}
+
+.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar,
+.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-track {
+    /* width: 10px;
+    border: none;
+    background-color: transparent; */
+    margin-top:-17px;
+    margin-bottom: -10px;
+}
+
+.app.window-app.degenesis.sheet .modifiers-group .background{
+    margin-bottom: 10px;
+}
+
+
+.app.window-app.degenesis.sheet .modifiers-ol{
+    border-collapse: collapse;
+    background: white;
+    border: none;
+    margin: 0;
+    flex: auto;
+    display: table;
+    margin: 0 10px 0 10px;
+    list-style-type: none;
+}
+.app.window-app.degenesis.sheet .modifiers-name{
+    text-align: left;
+    width: 40%;
+    border: none;
+}
+.app.window-app.degenesis.sheet .modifiers-action{
+    text-align: center;
+    width: 30%;
+    border: none;
+}
+.app.window-app.degenesis.sheet .modifiers-number{
+    text-align: center;
+    width: 15%;
+    border: none;
+}
+.app.window-app.degenesis.sheet .modifiers-type{
+    text-align: center;
+    width: 15%;
+    border: none;
+}
+
+.app.window-app.degenesis.sheet .modifiers-li{
+    border-bottom: 1px solid var(--dark-grey);
+    margin-bottom: 3px;
+    padding-bottom: 2px;
+    display:flex
+}
+
+.app.window-app.degenesis.sheet .modifiers-li > input:hover{
+    /* border: 1px dotted var(--degenesis-red) */
+    background-color: rgb(240, 240, 240);
+}
+
 
 
 
