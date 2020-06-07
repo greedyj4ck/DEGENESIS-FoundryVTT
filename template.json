@@ -216,8 +216,8 @@
         }
       }
     },
-    "status": {
-      "status" : {
+    "condition": {
+      "condition" : {
         "ego": {
           "max": 0,
           "value": 0
