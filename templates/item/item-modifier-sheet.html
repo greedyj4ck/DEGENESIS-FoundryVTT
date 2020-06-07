@@ -1,0 +1,43 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+
+        <div class="form-group">
+            <label>Action</label>
+            <select name="data.action">
+                {{#select data.action}}
+                <option value="">-</option>
+                {{#each modifyActions as |action a|}}
+                <option value="{{a}}">{{action}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Number</label>
+            <input type="text" name="data.number" value="{{data.number}}" data-dtype="Number" placeholder="-1, +2, etc"/>
+        </div>
+
+
+        <div class="form-group">
+            <label>Type</label>
+            <select name="data.type">
+                {{#select data.type}}
+                <option value="">-</option>
+                {{#each modifyTypes as |type t|}}
+                <option value="{{t}}">{{type}}</option>
+                {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    </section>
+</form>

@@ -152,3 +152,23 @@ DEGENESIS.skills = {
   "survival" : "DGNS.Survival",
   "taming" : "DGNS.Taming"
 }
+
+DEGENESIS.modifyTypes = {
+  "D" : "D",
+  "S" : "S",
+  "T" : "T",
+}
+
+DEGENESIS.modifyActions = {
+  "initiative" : "Initiative",
+  "dodge" : "Dodge",
+  "movement" : "Movement",
+  "armor" : "Armor",
+  "action" : "Action",
+  "attack" : "Attack",
+  "damage" : "Damage",
+  "a_defense" : "Active Defense",
+  "p_defense" : "Passive Defense"
+}
+
+DEGENESIS.noType = ["movement", "armor", "damage", "p_defense"]

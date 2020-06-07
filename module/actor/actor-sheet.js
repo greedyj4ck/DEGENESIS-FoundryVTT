@@ -33,6 +33,11 @@ export class DegenesisActorSheet extends ActorSheet {
     data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
     data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
 
+
+    // Used for Modifier item list
+    data.modifyTypes = DEGENESIS.modifyTypes;
+    data.modifyActions = DEGENESIS.modifyActions;
+
     mergeObject(data, this.actor.prepare());
     return data;
   }
@@ -163,6 +168,26 @@ export class DegenesisActorSheet extends ActorSheet {
       this._dropdown(ev, item.dropdownData())
     })
 
+    html.find(".modifiers-name, .modifiers-action, .modifiers-number, .modifiers-type").change(ev => {
+        let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+
+
+
+        if (itemId == "new")
+          return this.actor.createEmbeddedEntity("OwnedItem", {type : "modifier", name : ev.target.value})
+
+
+
+        let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
+        let target = $(ev.currentTarget).attr("data-target")
+
+        if (target == "name" && !event.target.value)
+          return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+
+        setProperty(itemData, target, ev.target.value)
+
+        this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+    })
   }
 
   /* -------------------------------------------- */

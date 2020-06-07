@@ -111,6 +111,7 @@ export class DegenesisActor extends Actor {
             equipment: {header : "EQUIPMENT" , items : []}
         }
         let potentials = [];
+        let modifiers = [];
 
         for (let i of actorData.items)
         {
@@ -130,10 +131,15 @@ export class DegenesisActor extends Actor {
             {
                 potentials.push(this.preparePotential(i));
             }
+            if (i.type == "modifier")
+            {
+                modifiers.push(i);
+            }
         }
         return {
             inventory,
-            potentials
+            potentials,
+            modifiers
         }
     }
 

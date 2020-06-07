@@ -54,7 +54,6 @@ Hooks.once("init", async function() {
 Hooks.on("setup", () => {
   for(let group in DEGENESIS)
   {
-    console.log(group)
     for(let key in DEGENESIS[group])
       DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
   }

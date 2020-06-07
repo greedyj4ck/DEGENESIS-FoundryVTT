@@ -124,34 +124,31 @@
          </div>
          <div class="modifiers-data">
             <ol class="modifiers-ol">
-            {{#each data.modifiers as |md index|}}
-               <li class="modifiers-li" data-index="{{index}}">
-                  <input class="modifiers-name" value="{{md.name}}" />
-                  <select class="modifiers-action" name="action">
+            {{#each modifiers as |mod m|}}
+               <li class="modifiers-li item" data-item-id="{{mod._id}}">
+                  <input class="modifiers-name" value="{{mod.name}}" data-target="name"/>
+                  <select class="modifiers-action" data-target="data.action">
+                     {{#select mod.data.action}}
                      <option value="">-</option>
-                     <option value="initiative">Initiative</option>
-                     <option value="dodge">Dodge</option>
-                     <option value="movement">Movement</option>
-                     <option value="armor">Armor</option>
-                     <option value="etc">etc</option>
+                     {{#each ../modifyActions as |action a|}}
+                     <option value="{{a}}">{{action}}</option>
+                     {{/each}}
+                     {{/select}}
                  </select>
-                  <input class="modifiers-number" value="{{md.number}}" />
-                  <input class="modifiers-type" value="{{md.type}}" />
+                  <input class="modifiers-number" value="{{mod.data.number}}" data-target="data.number"/>
+                  <select class="modifiers-type" data-target="data.type">
+                     {{#select mod.data.type}}
+                     <option value="">-</option>
+                     {{#each ../modifyTypes as |type t|}}
+                     <option value="{{t}}">{{type}}</option>
+                     {{/each}}
+                     {{/select}}
+                 </select>
                </li>
                {{/each}}
             </ol>
-            <li class="modifiers-li" data-index="{{index}}">
-               <input class="modifiers-name" value="{{md.name}}" />
-               <select class="modifiers-action" name="action">
-                  <option value="">-</option>
-                  <option value="initiative">Initiative</option>
-                  <option value="dodge">Dodge</option>
-                  <option value="movement">Movement</option>
-                  <option value="armor">Armor</option>
-                  <option value="etc">etc</option>
-              </select>
-               <input class="modifiers-number" value="{{md.number}}" />
-               <input class="modifiers-type" value="{{md.type}}" />
+            <li class="modifiers-li item" data-item-id="new">
+               <input class="modifiers-name" placeholder="New Modifier"/>
             </li>
          </div>
       </div>

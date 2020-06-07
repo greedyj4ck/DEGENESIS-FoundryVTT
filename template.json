@@ -292,7 +292,7 @@
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -360,6 +360,11 @@
   "potential" : {
     "templates" : ["rules", "effect", "level", "origin"],
     "level" : 1
+  },
+  "modifier" : {
+    "action" : "",
+    "number" : 0,
+    "type" : ""
   }
 }
 }
