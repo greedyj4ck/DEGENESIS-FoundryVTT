@@ -127,7 +127,12 @@
                      <option value="etc">etc</option>
                  </select>
                   <input class="modifiers-number" value="{{md.number}}" />
-                  <input class="modifiers-type" value="{{md.type}}" />
+                  <select class="modifiers-type" name="type">
+                     <option value="">-</option>
+                     <option value="D">D</option>
+                     <option value="S">S</option>
+                     <option value="T">T</option>
+                  </select>
                </li>
                {{/each}}
             </ol>
