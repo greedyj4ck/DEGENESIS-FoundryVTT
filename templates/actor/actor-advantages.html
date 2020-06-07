@@ -1,6 +1,5 @@
 <div class="title">
-    <div class="body-column body-line">
-       <!-- <div class="title-line middle-left"></div> -->
+   <div class="body-column body-line">
       <div class="square little left"></div>
       <svg class="title-line middle-left" height="11" width="100%">
          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
@@ -10,67 +9,66 @@
          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
       </svg>
       <div class="square little right"></div>
-    </div>
- </div> 
+   </div>
+</div>
 
- <div class="advantage-tab">
-   <!-- <div class="upper-row"> -->
+<div class="advantage-tab">
+   <!-- * BACKGROUNDS * -->
+   <div class="advantage-group background-group">
+      <div class="background">
+         <div class="black-title">
+            <h3>{{localize "DGNS.Backgrounds"}}</h3>
+         </div>
+      </div>
 
-      <!-- * BACKGROUNDS * -->
-      <!-- <div class="advantage-column"> -->
-            <div class="advantage-group background-group"> 
-               <div class="background">
-                  <div class="black-title">
-                     <h3>{{localize "DGNS.Backgrounds"}}</h3>
-                  </div>
-               </div>
-
-                  <div class="advantage-list">
-                     {{#each backgrounds as |background bg|}}
-                     <div class="advantage">
-                        <div class="background-name">{{background.label}}</div>
-                         <div class="diamond-position">  
-                           <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
-                              {{#each background.diamonds as |diamond index|}}
-                                 {{#if diamond.filled}}
-                                    <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                                 {{else}}
-                                    <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                                 {{/if}}
-                              {{/each}}
-                           </div>
-                         </div> 
-                     </div>
-                     {{/each}}
-                  </div>
-           </div>
-      <!-- </div> -->
-
-      <!-- * RELATIONSHIPS * -->
-      <!-- <div class="advantage-column"> -->
-         <div class="advantage-group relationships-group">
-            <div class="background">
-               <div class="black-title">
-                  <h3>{{localize "DGNS.Relationships"}}</h3>
+      <div class="advantage-list">
+         {{#each backgrounds as |background bg|}}
+         <div class="advantage">
+            <div class="background-name">{{background.label}}</div>
+            <div class="diamond-position">
+               <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+                  {{#each background.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                  <a class="diamond" data-index={{index}}>
+                     <div class="square black"></div>
+                  </a>
+                  {{else}}
+                  <a class="diamond" data-index={{index}}>
+                     <div class="square"></div>
+                  </a>
+                  {{/if}}
+                  {{/each}}
                </div>
             </div>
+         </div>
+         {{/each}}
+      </div>
+   </div>
 
-               <div class="advantage relationship">
-                 <!-- <div class="cadre-tab">-->
-                  <ol class="relationships-ol">
-                     {{#each data.relationships as |rs index|}}
-                     <li class="relationships-li" data-index="{{index}}">
-                        <input class="relationships-cultes" value="{{rs.group}}"/>
-                        <input class="relationships-bonus" value="{{rs.modifier}}"/>
-                     </li>
-                     {{/each}}
-                     <li class="relationships-li" data-index="new">
-                        <input class="relationships-cultes" value=""/>
-                        <input class="relationships-bonus" value=""/>
-                     </li>
-                  </ol> 
-                  <!--</div>-->
-          <!--    <div class="relationships clickable-row">
+   <!-- * RELATIONSHIPS * -->
+   <div class="advantage-group relationships-group">
+      <div class="background">
+         <div class="black-title">
+            <h3>{{localize "DGNS.Relationships"}}</h3>
+         </div>
+      </div>
+
+      <div class="advantage relationship">
+         <!-- <div class="cadre-tab">-->
+         <ol class="relationships-ol">
+            {{#each data.relationships as |rs index|}}
+            <li class="relationships-li" data-index="{{index}}">
+               <input class="relationships-cultes" value="{{rs.group}}" />
+               <input class="relationships-bonus" value="{{rs.modifier}}" />
+            </li>
+            {{/each}}
+            <li class="relationships-li" data-index="new">
+               <input class="relationships-cultes" value="" />
+               <input class="relationships-bonus" value="" />
+            </li>
+         </ol>
+         <!--</div>-->
+         <!--    <div class="relationships clickable-row">
                      <a class="relationships-name">
                         {{legacy}}
                      </a>
@@ -78,130 +76,139 @@
                   <div class="legacy-description">
                      {{{legacydescription}}}
                    </div> -->
-               </div>
+      </div>
+   </div>
+   <!-- </div> -->
+
+   <!-- * SCARS * -->
+   <div class="advantage-group scars-group">
+      <div class="background">
+         <div class="black-title">
+            <h3>{{localize "DGNS.Scars"}}</h3>
          </div>
-      <!-- </div> -->
-      
-      <!-- * SCARS * -->
-      <!-- <div class="advantage-column"> -->
-         <div class="advantage-group scars-group">
-            <div class="background">
-               <div class="black-title">
-                  <h3>{{localize "DGNS.Scars"}}</h3>
+      </div>
+      <div class="advantage-list">
+         <div class="advantage">
+            <div class="sheet-field">
+               <span class="field-name">{{localize "DGNS.GroupName"}}:</span>
+               <input class="field-input" type="text" name="data.groupname" value="{{data.groupname}}" />
+            </div>
+         </div>
+         <div class="advantage">
+            <div class="sheet-field">
+               <span class="field-name">{{localize "DGNS.Alignment"}}:</span>
+               <input class="field-input" type="text" name="data.alignment" value="{{data.alignment}}" />
+            </div>
+         </div>
+         <div class="advantage">
+            <div class="sheet-field">
+               <span class="field-name">{{localize "DGNS.Constellation"}}:</span>
+               <input class="field-input" type="text" name="data.constellation" value="{{data.constellation}}" />
+            </div>
+         </div>
+         <div class="advantage">
+            <div class="sheet-field">
+               <span class="field-name">{{localize "DGNS.ScarsValue"}}:</span>
+               <input class="field-input" type="text" name="data.scarsValue" value="{{data.scarsValue}}" />
+            </div>
+         </div>
+         <div class="advantage">
+            <a class="background-name">{{localize "DGNS.Infamy"}}</a>
+            <div class="diamond-position">
+               <div class="diamond-row" data-target="data.scars.infamy.value">
+                  {{#each infamy.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                  <a class="diamond" data-index={{index}}>
+                     <div class="square black"></div>
+                  </a>
+                  {{else}}
+                  <a class="diamond" data-index={{index}}>
+                     <div class="square"></div>
+                  </a>
+                  {{/if}}
+                  {{/each}}
                </div>
             </div>
-            <div class="advantage-list">
-               <div class="advantage">
-                  <div class="sheet-field">
-                     <span class="field-name">{{localize "DGNS.GroupName"}}:</span>
-                     <input class="field-input" type="text" name="data.groupname" value="{{data.groupname}}"/>
-                  </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="break"></div>
+   <!-- * POTENTIALS * -->
+   <div class="advantage-group potentials-group">
+      <div class="potentials">
+         <div class="first-part">
+            <div class="black-title">
+               <h3>{{localize "DGNS.Potentials"}}</h3>
+            </div>
+            <!-- ! Work in progress -->
+            <svg class="tab-start-line" height="23" width="26">
+               <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+            </svg>
+
+            <div class="empty">
+
+            </div>
+         </div>
+         <div class="potentials-legend">
+            <div class="origin">
+               <span>{{localize "DGNS.Origin"}}</span>
+            </div>
+            <div class="level">
+               <span2>{{localize "DGNS.Level"}}</span>
+            </div>
+            <div class="empty">
+
+            </div>
+         </div>
+      </div>
+      <div class="advantage-list item-list">
+         {{#each potentials as |potential p|}}
+         <div class="advantage item" data-item-id={{potential._id}}>
+            <a class="background-name dropdown">{{potential.name}}</a>
+            <div class="potential-characteristics">
+               <div class="origin">
+                  {{potential.data.origin}}
                </div>
-               <div class="advantage">
-                  <div class="sheet-field">
-                     <span class="field-name">{{localize "DGNS.Alignment"}}:</span>
-                     <input class="field-input" type="text" name="data.alignment" value="{{data.alignment}}"/>
-                  </div>
-               </div>
-               <div class="advantage">
-                  <div class="sheet-field">
-                     <span class="field-name">{{localize "DGNS.Constellation"}}:</span>
-                     <input class="field-input" type="text" name="data.constellation" value="{{data.constellation}}"/>
-                  </div>
-               </div>
-               <div class="advantage">
-                  <div class="sheet-field">
-                     <span class="field-name">{{localize "DGNS.ScarsValue"}}:</span>
-                     <input class="field-input" type="text" name="data.scarsValue" value="{{data.scarsValue}}"/>
-                  </div>
-               </div>
-               <div class="advantage">
-                  <a class="background-name">{{localize "DGNS.Infamy"}}</a>
-                  <div class="diamond-position"> 
-                     <div class="diamond-row" data-target="data.scars.infamy.value">
-                        {{#each infamy.diamonds as |diamond index|}}
-                           {{#if diamond.filled}}
-                              <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                           {{else}}
-                              <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                           {{/if}}
+               <div class="level">
+                  <div class="diamond-position">
+                     <div class="diamond-row" data-target="item" data-item-target="data.level">
+                        {{#each potential.diamonds as |diamond index|}}
+                        {{#if diamond.filled}}
+                        <a class="diamond" data-index={{index}}>
+                           <div class="square black"></div>
+                        </a>
+                        {{else}}
+                        <a class="diamond" data-index={{index}}>
+                           <div class="square"></div>
+                        </a>
+                        {{/if}}
                         {{/each}}
                      </div>
                   </div>
                </div>
+               <div class="vertical-bar">
+                  <svg height="15px" width="1px">
+                     <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                  </svg>
+               </div>
+               <div class="item-controls">
+                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+               </div>
             </div>
+            <div class="break"></div>
          </div>
-      <!-- </div> -->
+         {{/each}}
 
-      <div class="break"></div>
-
-      <div class="advantage-group potentials-group">
-         <div class="potentials">
-            <div class="first-part">
-               <div class="black-title">
-                  <h3>{{localize "DGNS.Potentials"}}</h3>
-               </div>
-               <!-- ! Work in progress -->
-               <svg class="tab-start-line" height="23" width="26">
-                  <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-                  <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-               </svg>
-               <!-- <svg class="tab-right-line" height="27" width="500">
-                  <line x1="0" y1="21" x2="526" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-               </svg> -->
-               
-               <div class="empty">
-            
-               </div>
-            </div>
-            <div class="potentials-legend">
-               <div class="origin">
-                  <span>{{localize "DGNS.Origin"}}</span>
-               </div>
-               <div class="level">
-                  <span2>{{localize "DGNS.Level"}}</span>
-               </div>
-            </div>
-         </div>
-         <div class="advantage-list item-list">
-            {{#each potentials as |potential p|}}
-            <div class="advantage item" data-item-id={{potential._id}}>
-               <a class="background-name dropdown">{{potential.name}}</a>
-               <div class="potential-characteristics">
-                  <div class="origin">
-                     {{potential.data.origin}}
-                  </div>
-                  <div class="level">
-                     <div class="diamond-position">  
-                        <div class="diamond-row" data-target="item" data-item-target="data.level">
-                           {{#each potential.diamonds as |diamond index|}}
-                              {{#if diamond.filled}}
-                                 <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                              {{else}}
-                                 <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                              {{/if}}
-                           {{/each}}
-                        </div>
-                     </div> 
-                  </div>
-                  <div class="item-controls">
-                     <a class="item-post"><i class="fas fa-comment"></i></a>
-                     <a class="item-edit"><i class="fas fa-edit"></i></a>
-                     <a class="item-delete"><i class="fas fa-times"></i></a>
-                  </div>
-                </div>
-                <div class="break"></div>
-            </div>
-            {{/each}}
-
-         </div>
       </div>
-      
-   <!-- </div> -->
- </div>
+   </div>
 
- <div class="footer-diamond">
+</div>
+
+<div class="footer-diamond">
    <div class="square little"></div>
    <div class="square little"></div>
- </div>
- 
+</div>

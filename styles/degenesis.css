@@ -106,8 +106,13 @@
     border: none;
 }
 
+.square.black {
+    background-color:black;
+    border: none;
+}
+
 .square.red {
-    background-color: red;
+    background-color: var(--degenesis-red);
 }
 
 .diamond .square {
@@ -657,6 +662,8 @@
 
 .app.window-app.degenesis.sheet .diamond-row{
     justify-content:flex-end;
+    display: flex;
+    flex-direction: row;
 }
 
 .app.window-app.degenesis.sheet .skill .diamond {
@@ -774,8 +781,15 @@
 }
 
 .app.window-app.degenesis.sheet .item-controls {
-    border-left: 1px solid var(--dark-grey);
-    padding-left: 5px
+    /* border-left: 1px solid var(--dark-grey);
+    padding-left: 5px */
+    flex: 1;
+    margin-left: 1.7%;
+}
+
+.app.window-app.degenesis.sheet .icon {
+    margin-right: 2px;
+    margin-left: 2px;
 }
 
 
@@ -857,7 +871,8 @@
 
 .app.window-app.degenesis.sheet .potentials-group .potentials-legend .origin{
     flex: 2;
-    margin-right: 5px;
+    margin-right: 1.5%;
+    margin-left: 1.5%;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .empty{
@@ -865,30 +880,59 @@
     border-bottom: 1px solid var(--dark-grey);
 }
 
+.app.window-app.degenesis.sheet .potentials-group .potentials-legend .empty {
+    flex: 1.17;
+    margin-right: 0px;
+}
+
 .app.window-app.degenesis.sheet .potentials-group .potentials-legend > *{
     justify-content: flex-end;
     flex: 1;
     text-align: center;
-    margin-right: 25%;
+    border-bottom: 0px;
+    margin-right: 1.5%;
+    margin-left: 1.5%;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .item-summary {
     display: inline-block;
-    margin-top: 5px;
     background-color: var(--light-grey);
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-top: 6px;
     width: 100%;
     border-top: 1px solid var( --dark-grey);
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 /* potentials list */
 
+.app.window-app.degenesis.sheet .potentials-group .advantage-list{
+    margin:0;
+}
 .app.window-app.degenesis.sheet .potentials-group .advantage {
     margin-left: 5px;
     border-bottom: 1px solid var(--dark-grey);
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 6px;
+    margin-top: 8px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .advantage.expanded {
+    padding-bottom: 0px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .item-summary{
+padding-left: 4px;
+padding-right: 4px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .item-controls {
+    display: flex;
+    align-self: center;
+    justify-content: center;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .background-name {
@@ -897,7 +941,8 @@
 
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
     flex: 2;
-    padding-bottom: 5px;
+    display: flex;
+    align-self: center;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
@@ -906,18 +951,33 @@
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
     flex: 2;
-    display: block;
-    text-align: center;
-    margin-right: 5px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-right: 1.5%;
+    margin-left: 1.5%;
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .level {
     flex: 1;
-    display: block;
-    margin-top: 2px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-right: 1.5%;
+    margin-left: 1.5%;
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .level .diamond-row {
     justify-content: center;
+    margin-right: 3%;
     margin: 0px;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .vertical-bar {
+    flex: 0.1;
+    display: flex;
+    margin-top: -0px;
+    margin-bottom: -7px;
+    text-align:center;
+    justify-content: center;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .diamond-position > * {
@@ -1076,11 +1136,24 @@
     border: none;
 }
 
+/* * CONDITION TAB */
 
+.app.window-app.degenesis.sheet .column-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
+.app.window-app.degenesis.sheet .bar.diamond-row{
+    justify-content: center;
+}
 
-
-
+.app.window-app.degenesis.sheet .bottom-conditions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 
 
