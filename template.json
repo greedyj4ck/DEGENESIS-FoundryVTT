@@ -288,7 +288,7 @@
     }
   },
   "character": {
-    "templates" : ["details", "attributes", "skills", "status", "backgrounds", "scars", "relationships"]
+    "templates" : ["details", "attributes", "skills", "condition", "backgrounds", "scars", "relationships"]
   }
 },
 "Item": {

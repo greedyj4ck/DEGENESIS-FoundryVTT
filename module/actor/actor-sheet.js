@@ -28,10 +28,10 @@ export class DegenesisActorSheet extends ActorSheet {
     data.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
     data.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
 
-    data.data.status.ego.pct = (1 - data.data.status.ego.value / data.data.status.ego.max)*100;
-    data.data.status.fleshwounds.pct = (1 - data.data.status.fleshwounds.value / data.data.status.fleshwounds.max)*100;
-    data.data.status.spore.pct = (1 - data.data.status.spore.value / data.data.status.spore.max)*100;
-    data.data.status.trauma.pct = (1 - data.data.status.trauma.value / data.data.status.trauma.max)*100;
+    data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
+    data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
+    data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
+    data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
 
     mergeObject(data, this.actor.prepare());
     return data;

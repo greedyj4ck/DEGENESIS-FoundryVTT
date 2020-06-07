@@ -15,24 +15,24 @@
 <div class="condition-tab">
    <!-- * CONDITION * -->
    <div class="column-flex">
-<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
       <div class="ego">
-         <div class="diamond-row bar">
-            {{#each status.ego.diamonds as |diamond index|}}
+         <div class="diamond-row bar" data-target="data.condition.ego.value">
+            {{#each ego.diamonds as |diamond index|}}
             {{#if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
             {{/if}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
+            {{#unless diamond.filled}}
+            {{#unless diamond.locked}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
+            </a>
+            {{/unless}}
+            {{/unless}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -43,20 +43,23 @@
       </div>
 
       <div class="spore">
-         <div class="diamond-row bar">
-            {{#each status.spore.diamonds as |diamond index|}}
+         <div class="diamond-row bar" data-target="data.condition.spore.value">
+            {{#each spore.diamonds as |diamond index|}}
             {{#if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
             {{/if}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
+            {{#unless diamond.filled}}
+            {{#unless diamond.locked}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
+            </a>
+            {{/unless}}
+            {{/unless}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -67,20 +70,23 @@
       </div>
 
       <div class="fleshwounds">
-         <div class="diamond-row bar">
-            {{#each status.fleshwounds.diamonds as |diamond index|}}
+         <div class="diamond-row bar" data-target="data.condition.fleshwounds.value">
+            {{#each fleshwounds.diamonds as |diamond index|}}
             {{#if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
             {{/if}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
+            {{#unless diamond.filled}}
+            {{#unless diamond.locked}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
+            </a>
+            {{/unless}}
+            {{/unless}}
+            {{#if diamond.locked}}
+            <a class="diamond" data-index={{index}}>
+               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -91,11 +97,11 @@
       </div>
 
       <div class="trauma">
-         <div class="diamond-row bar">
-            {{#each status.trauma.diamonds as |diamond index|}}
+         <div class="diamond-row bar" data-target="data.condition.trauma.value">
+            {{#each trauma.diamonds as |diamond index|}}
             {{#if diamond.filled}}
             <a class="diamond" data-index={{index}}>
-               <div class="square black"></div>
+               <div class="square red"></div>
             </a>
             {{else}}
             <a class="diamond" data-index={{index}}>
