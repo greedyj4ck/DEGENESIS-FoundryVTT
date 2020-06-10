@@ -115,11 +115,11 @@
     background-color: var(--degenesis-red);
 }
 
-.diamond .square {
+a.diamond .square {
     transition: border-color 0.1s linear;
 }
 
-.diamond:hover .square {
+a.diamond:hover .square {
     border: 1px solid var(--degenesis-red);
 }
 /* * Degenesis Sheet */

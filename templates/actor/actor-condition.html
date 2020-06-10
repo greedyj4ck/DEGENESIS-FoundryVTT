@@ -19,21 +19,17 @@
       <div class="ego bar-group">
          <div class="diamond-row bar" data-target="data.condition.ego.value">
             {{#each ego.diamonds as |diamond index|}}
-            {{#if diamond.filled}}
+            {{#if diamond.locked}}
+            <div class="diamond" data-index={{index}}>
+               <div class="square black"></div>
+            </div>
+            {{else if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
-            {{/if}}
-            {{#unless diamond.filled}}
-            {{#unless diamond.locked}}
+            {{else}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
-            </a>
-            {{/unless}}
-            {{/unless}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -46,21 +42,17 @@
       <div class="spore bar-group">
          <div class="diamond-row bar" data-target="data.condition.spore.value">
             {{#each spore.diamonds as |diamond index|}}
-            {{#if diamond.filled}}
+            {{#if diamond.locked}}
+            <div class="diamond" data-index={{index}}>
+               <div class="square black"></div>
+            </div>
+            {{else if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
-            {{/if}}
-            {{#unless diamond.filled}}
-            {{#unless diamond.locked}}
+            {{else}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
-            </a>
-            {{/unless}}
-            {{/unless}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -73,21 +65,17 @@
       <div class="fleshwounds bar-group">
          <div class="diamond-row bar" data-target="data.condition.fleshwounds.value">
             {{#each fleshwounds.diamonds as |diamond index|}}
-            {{#if diamond.filled}}
+            {{#if diamond.locked}}
+            <div class="diamond" data-index={{index}}>
+               <div class="square black"></div>
+            </div>
+            {{else if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
-            {{/if}}
-            {{#unless diamond.filled}}
-            {{#unless diamond.locked}}
+            {{else}}
             <a class="diamond" data-index={{index}}>
                <div class="square"></div>
-            </a>
-            {{/unless}}
-            {{/unless}}
-            {{#if diamond.locked}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square black"></div>
             </a>
             {{/if}}
             {{/each}}
@@ -100,7 +88,11 @@
       <div class="trauma bar-group">
          <div class="diamond-row bar" data-target="data.condition.trauma.value">
             {{#each trauma.diamonds as |diamond index|}}
-            {{#if diamond.filled}}
+            {{#if diamond.locked}}
+            <div class="diamond" data-index={{index}}>
+               <div class="square black"></div>
+            </div>
+            {{else if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
             </a>
@@ -146,10 +138,10 @@
                  </select>
                </li>
                {{/each}}
+               <li class="modifiers-li item" data-item-id="new">
+                  <input class="modifiers-name" placeholder="New Modifier"/>
+               </li>
             </ol>
-            <li class="modifiers-li item" data-item-id="new">
-               <input class="modifiers-name" placeholder="New Modifier"/>
-            </li>
          </div>
       </div>
 
@@ -157,14 +149,35 @@
          <div class="black-title">
             <h3>COMPLICATIONS</h3>
          </div>
-         <ol class="relationships-ol">
-            {{#each data.complications as |co index|}}
-            <li class="modifiers-li" data-index="{{index}}">
-               <input class="relationships-cultes" value="{{co.group}}" />
-               <input class="relationships-bonus" value="{{co.modifier}}" />
-            </li>
-            {{/each}}
-         </ol>
+         <div class="modifiers-data">
+            <ol class="modifiers-ol">
+            {{#each modifiers as |mod m|}}
+               <li class="modifiers-li item" data-item-id="{{mod._id}}">
+                  <input class="modifiers-name" value="{{mod.name}}" data-target="name"/>
+                  <select class="modifiers-action" data-target="data.action">
+                     {{#select mod.data.action}}
+                     <option value="">-</option>
+                     {{#each ../modifyActions as |action a|}}
+                     <option value="{{a}}">{{action}}</option>
+                     {{/each}}
+                     {{/select}}
+                 </select>
+                  <input class="modifiers-number" value="{{mod.data.number}}" data-target="data.number"/>
+                  <select class="modifiers-type" data-target="data.type">
+                     {{#select mod.data.type}}
+                     <option value="">-</option>
+                     {{#each ../modifyTypes as |type t|}}
+                     <option value="{{t}}">{{type}}</option>
+                     {{/each}}
+                     {{/select}}
+                 </select>
+               </li>
+               {{/each}}
+               <li class="modifiers-li item" data-item-id="new">
+                  <input class="modifiers-name" placeholder="New Modifier"/>
+               </li>
+            </ol>
+         </div>
       </div>
 
    </div>
