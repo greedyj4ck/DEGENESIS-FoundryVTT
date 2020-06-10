@@ -1,0 +1,29 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        </div>
+    </header>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+
+        <div class="form-group">
+            <label>cost/rating (triggers)</label>
+            <input type="text" name="data.cost" value="{{data.cost}}" data-dtype="Number" placeholder="-1, +2, etc"/>
+        </div>
+
+        <div class="form-group">
+            <label>rating</label>
+            <input type="text" name="data.rating" value="{{data.rating}}" data-dtype="Number" placeholder="-1, +2, etc"/>
+        </div>
+
+
+        <div class = "form-group">
+            <label>Description</label>
+            <textarea name="data.description">{{data.description}}</textarea>
+        </div>
+    </section>
+</form>

@@ -151,10 +151,10 @@
          </div>
          <div class="complications-data conditions-data">
             <ol class="complications-ol conditions-ol">
-            {{#each complications as |com c|}}
-               <li class="complications-li conditions-li item" data-item-id="{{com._id}}">
-                  <input class="complications-name conditions-name" value="{{com.name}}" data-target="name"/>
-                  <input class="complications-rating conditions-rating" value="{{com.data.rating}}" data-target="data.rating"/>
+            {{#each complications as |complication c|}}
+               <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
+                  <input class="complications-name conditions-name" value="{{complication.name}}" data-target="name"/>
+                  <input class="complications-rating conditions-number" value="{{complication.data.rating}}" data-target="data.rating"/>
                </li>
                {{/each}}
                <li class="complications-li conditions-li item" data-item-id="new">

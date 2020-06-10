@@ -188,6 +188,27 @@ export class DegenesisActorSheet extends ActorSheet {
 
         this.actor.updateEmbeddedEntity("OwnedItem", itemData)
     })
+
+    html.find(".complications-name, .complications-rating").change(ev => {
+        let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+
+
+
+        if (itemId == "new")
+          return this.actor.createEmbeddedEntity("OwnedItem", {type : "complication", name : ev.target.value})
+
+
+
+        let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
+        let target = $(ev.currentTarget).attr("data-target")
+
+        if (target == "name" && !event.target.value)
+          return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+
+        setProperty(itemData, target, ev.target.value)
+
+        this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+    })
   }
 
   /* -------------------------------------------- */
