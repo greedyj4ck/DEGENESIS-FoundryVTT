@@ -110,16 +110,16 @@
    </div>
 
    <div class="bottom-conditions">
-      <div class="modifiers-group">
+      <div class="modifiers-group conditions-group">
          <div class="black-title">
             <h3>MODIFIERS</h3>
          </div>
-         <div class="modifiers-data">
-            <ol class="modifiers-ol">
+         <div class="modifiers-data conditions-data">
+            <ol class="modifiers-ol conditions-ol">
             {{#each modifiers as |mod m|}}
-               <li class="modifiers-li item" data-item-id="{{mod._id}}">
-                  <input class="modifiers-name" value="{{mod.name}}" data-target="name"/>
-                  <select class="modifiers-action" data-target="data.action">
+               <li class="modifiers-li conditions-li item" data-item-id="{{mod._id}}">
+                  <input class="modifiers-name conditions-name" value="{{mod.name}}" data-target="name"/>
+                  <select class="modifiers-action conditions-action" data-target="data.action">
                      {{#select mod.data.action}}
                      <option value="">-</option>
                      {{#each ../modifyActions as |action a|}}
@@ -127,8 +127,8 @@
                      {{/each}}
                      {{/select}}
                  </select>
-                  <input class="modifiers-number" value="{{mod.data.number}}" data-target="data.number"/>
-                  <select class="modifiers-type" data-target="data.type">
+                  <input class="modifiers-number conditions-number" value="{{mod.data.number}}" data-target="data.number"/>
+                  <select class="modifiers-type conditions-type" data-target="data.type">
                      {{#select mod.data.type}}
                      <option value="">-</option>
                      {{#each ../modifyTypes as |type t|}}
@@ -138,43 +138,27 @@
                  </select>
                </li>
                {{/each}}
-               <li class="modifiers-li item" data-item-id="new">
-                  <input class="modifiers-name" placeholder="New Modifier"/>
+               <li class="modifiers-li conditions-li item" data-item-id="new">
+                  <input class="long modifiers-name conditions-name" placeholder="New Modifier"/>
                </li>
             </ol>
          </div>
       </div>
 
-      <div class="complications-group">
+      <div class="complications-group conditions-group">
          <div class="black-title">
             <h3>COMPLICATIONS</h3>
          </div>
-         <div class="modifiers-data">
-            <ol class="modifiers-ol">
-            {{#each modifiers as |mod m|}}
-               <li class="modifiers-li item" data-item-id="{{mod._id}}">
-                  <input class="modifiers-name" value="{{mod.name}}" data-target="name"/>
-                  <select class="modifiers-action" data-target="data.action">
-                     {{#select mod.data.action}}
-                     <option value="">-</option>
-                     {{#each ../modifyActions as |action a|}}
-                     <option value="{{a}}">{{action}}</option>
-                     {{/each}}
-                     {{/select}}
-                 </select>
-                  <input class="modifiers-number" value="{{mod.data.number}}" data-target="data.number"/>
-                  <select class="modifiers-type" data-target="data.type">
-                     {{#select mod.data.type}}
-                     <option value="">-</option>
-                     {{#each ../modifyTypes as |type t|}}
-                     <option value="{{t}}">{{type}}</option>
-                     {{/each}}
-                     {{/select}}
-                 </select>
+         <div class="complications-data conditions-data">
+            <ol class="complications-ol conditions-ol">
+            {{#each complications as |com c|}}
+               <li class="complications-li conditions-li item" data-item-id="{{com._id}}">
+                  <input class="complications-name conditions-name" value="{{com.name}}" data-target="name"/>
+                  <input class="complications-rating conditions-rating" value="{{com.data.rating}}" data-target="data.rating"/>
                </li>
                {{/each}}
-               <li class="modifiers-li item" data-item-id="new">
-                  <input class="modifiers-name" placeholder="New Modifier"/>
+               <li class="complications-li conditions-li item" data-item-id="new">
+                  <input class="long complications-name conditions-name" placeholder="New Modifier"/>
                </li>
             </ol>
          </div>

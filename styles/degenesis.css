@@ -610,6 +610,15 @@ a.diamond:hover .square {
     margin-bottom: 5px;
 }
 
+.app.window-app.degenesis.sheet .tab ol input:hover{
+    /* border: 1px dotted var(--degenesis-red) */
+    background-color: rgb(240, 240, 240);
+}
+
+.app.window-app.degenesis.sheet .tab ol input:focus{
+    background-color: rgb(230, 230, 230);
+}
+
 .app.window-app.degenesis.sheet .tab-content {
     font-size: 12px;
     letter-spacing: 1px;
@@ -836,12 +845,12 @@ a.diamond:hover .square {
 }
 .app.window-app.degenesis.sheet .relationships-cultes{
     text-align: left;
-    width: 75%;
+    width: 80%;
     border: none;
 }
 .app.window-app.degenesis.sheet .relationships-bonus{
     text-align: right;
-    width: 25%;
+    width: 20%;
     border: none;
 }
 
@@ -850,11 +859,6 @@ a.diamond:hover .square {
     margin-bottom: 3px;
     padding-bottom: 2px;
     display:flex
-}
-
-.app.window-app.degenesis.sheet .relationships-li > input:hover{
-    /* border: 1px dotted var(--degenesis-red) */
-    background-color: rgb(240, 240, 240);
 }
 
 .app.window-app.degenesis.sheet .tab-line{
@@ -986,11 +990,6 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .diamond-position > * {
     margin: 0px;
-}
-
-
-.app.window-app.degenesis.sheet .relationships-li > input:focus{
-    background-color: rgb(230, 230, 230);
 }
 
  .app.window-app.degenesis.sheet .advantage input[type="text"] ,
@@ -1169,6 +1168,14 @@ padding-right: 4px;
 }
 
 /* * Bottom conditions */
+.app.window-app.degenesis.sheet .bottom-conditions .item > *{
+    margin: 0;
+}
+
+.app.window-app.degenesis.sheet .bottom-conditions li{
+    padding-right: 5px;
+    padding-left: 5px;
+}
 
 .app.window-app.degenesis.sheet .bottom-conditions{
     display: flex;
@@ -1180,68 +1187,76 @@ padding-right: 4px;
     margin-left: 10px;
 }
 
-.app.window-app.degenesis.sheet .modifiers-group {
-    width: 40%;
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-group {
+    width: 45%;
 }
 
 
-.app.window-app.degenesis.sheet .modifiers-group .modifiers-data{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data{
     height: 118px;
     overflow: auto;
     display: block;
 }
 
-.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar,
-.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet .modifiers-group .modifiers-data::-webkit-scrollbar-track {
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar,
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar-track {
     margin-top:-17px;
     margin-bottom: -10px;
 }
 
-.app.window-app.degenesis.sheet .modifiers-ol{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-ol{
     border-collapse: collapse;
     background: white;
     border: none;
     margin: 0;
     flex: auto;
-    display: table;
+    /* display: table; */
+    padding: 0;
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
-.app.window-app.degenesis.sheet .modifiers-name{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-name{
     text-align: left;
     width: 40%;
     border: none;
 }
-.app.window-app.degenesis.sheet .modifiers-action{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-action{
     text-align: center;
     width: 30%;
     border: none;
 }
-.app.window-app.degenesis.sheet .modifiers-number{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-number{
     text-align: center;
     width: 15%;
     border: none;
 }
-.app.window-app.degenesis.sheet .modifiers-type{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-type{
     text-align: center;
     width: 15%;
     border: none;
 }
 
-.app.window-app.degenesis.sheet .modifiers-li{
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
     display:flex
 }
 
-.app.window-app.degenesis.sheet .modifiers-li > input:hover{
-    /* border: 1px dotted var(--degenesis-red) */
-    background-color: rgb(240, 240, 240);
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-name.long{
+    width: 100%;
 }
 
 .app.window-app.degenesis.sheet .complications-group {
     width: 40%;
+}
+
+
+.app.window-app.degenesis.sheet .bottom-conditions .complications-name{
+    width: 90%;
+}
+.app.window-app.degenesis.sheet .bottom-conditions .complications-rating{
+    width: 10%;
 }
 
 
