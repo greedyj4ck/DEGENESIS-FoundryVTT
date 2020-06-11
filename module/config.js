@@ -114,6 +114,15 @@ DEGENESIS.attributes = {
   "instinct" : "DGNS.Instinct"
 }
 
+DEGENESIS.attributeAbbrev = {
+  "body" :  "DGNS.BodyAbbrev",
+  "agility" :  "DGNS.AgilityAbbrev",
+  "charisma" :  "DGNS.CharismaAbbrev",
+  "intellect" :  "DGNS.IntellectAbbrev",
+  "psyche" :  "DGNS.PsycheAbbrev",
+  "instinct" : "DGNS.InstinctAbbrev",
+}
+
 DEGENESIS.skills = {
   "athletics" : "DGNS.Athletics",
   "brawl" : "DGNS.Brawl",
@@ -151,6 +160,45 @@ DEGENESIS.skills = {
   "primal" : "DGNS.Primal",
   "survival" : "DGNS.Survival",
   "taming" : "DGNS.Taming"
+}
+
+DEGENESIS.skillAttributes = {
+  "athletics" : "body",
+  "brawl" : "body",
+  "force" : "body",
+  "melee" : "body",
+  "stamina" : "body",
+  "toughness" : "body",
+  "crafting" : "agility",
+  "dexterity" : "agility",
+  "navigation" : "agility",
+  "mobility" : "agility",
+  "projectiles" : "agility",
+  "stealth" : "agility",
+  "arts" : "charisma",
+  "conduct" : "charisma",
+  "expression" : "charisma",
+  "leadership" : "charisma",
+  "negotiation" : "charisma",
+  "seduction" : "charisma",
+  "artifact" : "intellect",
+  "engineering" : "intellect",
+  "focus" : "intellect",
+  "legends" : "intellect",
+  "medicine" : "intellect",
+  "science" : "intellect",
+  "cunning" : "psyche",
+  "deception" : "psyche",
+  "domination" : "psyche",
+  "faith" : "psyche",
+  "reaction" : "psyche",
+  "willpower" : "psyche",
+  "empathy" : "instinct",
+  "orienteering" : "instinct",
+  "perception" : "instinct",
+  "primal" : "instinct",
+  "survival" : "instinct",
+  "taming" : "instinct"
 }
 
 DEGENESIS.modifyTypes = {

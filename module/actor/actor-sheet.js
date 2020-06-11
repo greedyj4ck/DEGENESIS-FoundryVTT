@@ -1,4 +1,5 @@
 import { DEGENESIS } from "../config.js";
+import { DEG_Utility } from "../utility.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -36,7 +37,7 @@ export class DegenesisActorSheet extends ActorSheet {
 
     // Used for Modifier item list
     data.modifyTypes = DEGENESIS.modifyTypes;
-    data.modifyActions = DEGENESIS.modifyActions;
+    data.modifyActions = DEG_Utility.getModificationActions()
 
     mergeObject(data, this.actor.prepare());
     return data;
@@ -101,6 +102,13 @@ export class DegenesisActorSheet extends ActorSheet {
 
     html.find(".item-post").click(ev => {
       
+    })
+
+    
+    html.find(".item-add").click(ev => {
+      let type = $(ev.currentTarget).attr("data-item");
+
+      this.actor.createEmbeddedEntity("OwnedItem", {name : `New ${type.capitalize()}`, type : type})
     })
 
 
@@ -168,26 +176,26 @@ export class DegenesisActorSheet extends ActorSheet {
       this._dropdown(ev, item.dropdownData())
     })
 
-    html.find(".modifiers-name, .modifiers-action, .modifiers-number, .modifiers-type").change(ev => {
-        let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+    // html.find(".modifiers-name, .modifiers-action, .modifiers-number, .modifiers-type").change(ev => {
+    //     let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
 
 
 
-        if (itemId == "new")
-          return this.actor.createEmbeddedEntity("OwnedItem", {type : "modifier", name : ev.target.value})
+    //     if (itemId == "new")
+    //       return this.actor.createEmbeddedEntity("OwnedItem", {type : "modifier", name : ev.target.value})
 
 
 
-        let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
-        let target = $(ev.currentTarget).attr("data-target")
+    //     let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
+    //     let target = $(ev.currentTarget).attr("data-target")
 
-        if (target == "name" && !event.target.value)
-          return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+    //     if (target == "name" && !event.target.value)
+    //       return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
 
-        setProperty(itemData, target, ev.target.value)
+    //     setProperty(itemData, target, ev.target.value)
 
-        this.actor.updateEmbeddedEntity("OwnedItem", itemData)
-    })
+    //     this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+    // })
   }
 
   /* -------------------------------------------- */

@@ -54,7 +54,8 @@ Hooks.once("init", async function() {
 Hooks.on("setup", () => {
   for(let group in DEGENESIS)
   {
-    for(let key in DEGENESIS[group])
-      DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
+      for(let key in DEGENESIS[group])
+        if (typeof DEGENESIS[group][key] == "string")
+          DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
   }
 })

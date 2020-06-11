@@ -1,4 +1,5 @@
 import { DEGENESIS } from "../config.js";
+import { DEG_Utility } from "../utility.js";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -26,8 +27,14 @@ export class DegenesisItemSheet extends ItemSheet {
   getData() {
     const data = super.getData();
 
-    data.modifyTypes = DEGENESIS.modifyTypes;
-    data.modifyActions = DEGENESIS.modifyActions;
+
+    if (data.type = "modifier")
+    {
+      if (data.data.action == "custom")
+        data.customAction = true;
+      data.modifyActions = DEG_Utility.getModificationActions();
+      data.modifyTypes = DEGENESIS.modifyTypes;
+  }
 
     return data;
   }

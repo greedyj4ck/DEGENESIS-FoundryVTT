@@ -121,41 +121,34 @@
       <div class="modifiers-group">
          <div class="black-title">
             <h3>MODIFIERS</h3>
+            <a class="icon item-add" data-item="modifier">+</a>
          </div>
          <div class="modifiers-data">
             <ol class="modifiers-ol">
             {{#each modifiers as |mod m|}}
                <li class="modifiers-li item" data-item-id="{{mod._id}}">
-                  <input class="modifiers-name" value="{{mod.name}}" data-target="name"/>
-                  <select class="modifiers-action" data-target="data.action">
-                     {{#select mod.data.action}}
-                     <option value="">-</option>
-                     {{#each ../modifyActions as |action a|}}
-                     <option value="{{a}}">{{action}}</option>
-                     {{/each}}
-                     {{/select}}
-                 </select>
-                  <input class="modifiers-number" value="{{mod.data.number}}" data-target="data.number"/>
-                  <select class="modifiers-type" data-target="data.type">
-                     {{#select mod.data.type}}
-                     <option value="">-</option>
-                     {{#each ../modifyTypes as |type t|}}
-                     <option value="{{t}}">{{type}}</option>
-                     {{/each}}
-                     {{/select}}
-                 </select>
+                  <a class="modifiers-number dropdown">{{mod.data.number}}</a>
+                  <a class="modifiers-type dropdown">{{modifyType}}</a>
+                  <a class="modifiers-action dropdown">{{actionType}}</a>
+                 <div class="vertical-bar">
+                  <svg height="15px" width="1px">
+                     <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                  </svg>
+               </div>
+                 <div class="item-controls">
+                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+               </div>
                </li>
-               {{/each}}
-            </ol>
-            <li class="modifiers-li item" data-item-id="new">
-               <input class="modifiers-name" placeholder="New Modifier"/>
-            </li>
+            {{/each}}
          </div>
       </div>
 
       <div class="complications-group">
          <div class="black-title">
             <h3>COMPLICATIONS</h3>
+            <a class="icon item-add" data-item="complication">+</a>
          </div>
          <ol class="relationships-ol">
             {{#each data.complications as |co index|}}

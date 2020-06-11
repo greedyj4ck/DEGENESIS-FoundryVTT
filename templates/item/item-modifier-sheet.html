@@ -39,5 +39,12 @@
                 {{/select}}
             </select>
         </div>
+
+        {{#if customAction}}
+        <div class = "form-group">
+            <label>Action Description</label>
+            <textarea name="data.description">{{data.description}}</textarea>
+        </div>
+        {{/if}}
     </section>
 </form>

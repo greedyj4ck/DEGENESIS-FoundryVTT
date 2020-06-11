@@ -364,7 +364,8 @@
   "modifier" : {
     "action" : "",
     "number" : 0,
-    "type" : ""
+    "type" : "",
+    "description" : ""
   }
 }
 }

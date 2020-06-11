@@ -16,4 +16,8 @@ export class DegenesisItem extends Item {
         return `<b>EFFECT</b>: ${this.data.data.effect}<br><br>
                 <b>RULES</b>: ${this.data.data.rules}`
     }
+    _modifierDropdownData()
+    {
+        return this.data.data.description
+    }
 }

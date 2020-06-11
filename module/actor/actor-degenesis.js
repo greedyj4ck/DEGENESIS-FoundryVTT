@@ -133,7 +133,7 @@ export class DegenesisActor extends Actor {
             }
             if (i.type == "modifier")
             {
-                modifiers.push(i);
+                modifiers.push(this.prepareModifier(i));
             }
         }
         return {
@@ -146,5 +146,11 @@ export class DegenesisActor extends Actor {
     preparePotential(potential) {
         DEG_Utility.addDiamonds(potential, 3, "data.level")
         return potential
+    }
+    
+    prepareModifier(modifier) {
+        modifier.actionType = DEG_Utility.getModificationActions()[modifier.data.action]
+        modifier.modifyType = DEGENESIS.modifyTypes[modifier.data.type]
+        return modifier
     }
 }

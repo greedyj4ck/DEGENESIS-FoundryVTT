@@ -1,3 +1,5 @@
+import {DEGENESIS} from "./config.js"
+
 export class DEG_Utility {
     static addDiamonds(data, diamondMax = 0, valueAttribute = "value")
     {
@@ -17,5 +19,25 @@ export class DEG_Utility {
             }
         }   
         return data
+    }
+
+    static getModificationActions()
+    {
+        let actions = duplicate(DEGENESIS.modifyActions);
+
+        for(let attr in DEGENESIS.attributeAbbrev)
+            actions[`attr:${attr}`] = `All ${DEGENESIS.attributeAbbrev[attr]}`
+
+        for(let skill in DEGENESIS.skills)
+            actions[`skill:${skill}`] = `${DEGENESIS.attributeAbbrev[DEGENESIS.skillAttributes[skill]]}+${DEGENESIS.skills[skill]}`
+
+        actions[`custom`] = `Custom`
+        
+        return actions;
+    }
+
+    static getKey()
+    {
+
     }
 }

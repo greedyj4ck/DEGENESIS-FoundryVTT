@@ -1035,8 +1035,13 @@ padding-right: 4px;
  .degenesis.sheet .potentials .black-title{
     max-width: 199px;
     align-self:flex-start;
+
 }
 
+.degenesis.sheet .black-title {
+    display:flex;
+    justify-content: space-between;
+}
 
 /* * Items */
 .app.window-app.degenesis.sheet .items-list {
@@ -1181,7 +1186,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .modifiers-group {
-    width: 40%;
+    width: 50%;
 }
 
 
@@ -1208,27 +1213,39 @@ padding-right: 4px;
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
-.app.window-app.degenesis.sheet .modifiers-name{
-    text-align: left;
-    width: 40%;
+    .app.window-app.degenesis.sheet .modifiers-description,
+    .app.window-app.degenesis.sheet .modifiers-number,
+    .app.window-app.degenesis.sheet .modifiers-action,
+    .app.window-app.degenesis.sheet .modifiers-type,
+    .app.window-app.degenesis.sheet .modifiers-name {
     border: none;
+}
+.app.window-app.degenesis.sheet .modifiers-name {
+    width: 40%;
+    text-align: left;
 }
 .app.window-app.degenesis.sheet .modifiers-action{
     text-align: center;
     width: 30%;
-    border: none;
 }
 .app.window-app.degenesis.sheet .modifiers-number{
     text-align: center;
     width: 15%;
-    border: none;
 }
 .app.window-app.degenesis.sheet .modifiers-type{
     text-align: center;
     width: 15%;
-    border: none;
+}
+.app.window-app.degenesis.sheet .modifiers-description {
+    border-bottom: 1px solid var(--dark-grey);
+    width: 100%
 }
 
+
+
+.app.window-app.degenesis.sheet .modifiers-data > li{
+    margin-left: 10px;
+}
 .app.window-app.degenesis.sheet .modifiers-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
@@ -1241,7 +1258,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .complications-group {
-    width: 40%;
+    width: 50%;
 }
 
 

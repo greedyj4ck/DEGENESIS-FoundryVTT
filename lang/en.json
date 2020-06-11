@@ -93,6 +93,13 @@
     "DGNS.Inventory" : "INVENTORY",
     "DGNS.History" : "HISTORY",
 
+    "DGNS.BodyAbbrev" : "BOD",
+    "DGNS.AgilityAbbrev" : "AGI",
+    "DGNS.CharismaAbbrev" : "CHA",
+    "DGNS.IntellectAbbrev" : "INT",
+    "DGNS.PsycheAbbrev" : "PSY",
+    "DGNS.InstinctAbbrev" : "INS",
+
     "DGNS.Borca" : "BORCA",
     "DGNS.Franka" : "FRANKA",
     "DGNS.Purgare" : "PURGARE",
