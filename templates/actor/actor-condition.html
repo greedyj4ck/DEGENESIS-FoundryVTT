@@ -146,13 +146,25 @@
             <ol class="complications-ol conditions-ol">
             {{#each complications as |complication c|}}
                <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
-                  <input class="complications-name conditions-name" value="{{complication.name}}" data-target="name"/>
-                  <input class="complications-rating conditions-number" value="{{complication.data.rating}}" data-target="data.rating"/>
+                  {{#if ../isGM}}
+                  <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
+                  <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
+                  <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
+                  <div class="vertical-bar">
+                     <svg height="15px" width="1px">
+                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                     </svg>
+                  </div>
+                  <div class="item-controls">
+                     <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                     <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                     <a class="icon item-delete"><i class="fas fa-times"></i></a>
+                  </div>
+                  {{else}}
+                  <span class="complications-name conditions-name">{{complication.name}}</span>
+                  {{/if}}
                </li>
-               {{/each}}
-               <li class="complications-li conditions-li item" data-item-id="new">
-                  <input class="long complications-name conditions-name" placeholder="New Modifier"/>
-               </li>
+            {{/each}}
             </ol>
          </div>
       </div>

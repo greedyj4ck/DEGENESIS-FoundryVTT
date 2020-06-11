@@ -39,6 +39,7 @@ export class DegenesisActorSheet extends ActorSheet {
     data.modifyTypes = DEGENESIS.modifyTypes;
     data.modifyActions = DEG_Utility.getModificationActions()
 
+    data.isGM = game.user.isGM;
     mergeObject(data, this.actor.prepare());
     return data;
   }

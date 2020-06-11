@@ -1,3 +1,5 @@
+import { DEG_Utility } from "../utility.js"
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
@@ -18,6 +20,13 @@ export class DegenesisItem extends Item {
     }
     _modifierDropdownData()
     {
-        return this.data.data.description
+        if (this.data.data.action == "custom")
+            return this.data.data.description
+        else return DEG_Utility.getModificationActions()[this.data.data.action] + " Tests"
+    }
+
+    _complicationDropdownData()
+    {
+        return this.data.data.description;
     }
 }
