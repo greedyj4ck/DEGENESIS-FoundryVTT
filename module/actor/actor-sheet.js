@@ -68,7 +68,11 @@ export class DegenesisActorSheet extends ActorSheet {
     {
       // Add a div with the item summary belowe the item
       let div = "";
-      div = $(`<div class="item-summary">${dropdownData}</div>`);
+      if(dropdownData=="") {
+        div = $(`<div class="item-summary">No description yet</div>`);
+      } else {
+        div = $(`<div class="item-summary">${dropdownData}</div>`);
+      }
   
       li.append(div.hide());
       div.slideDown(200);

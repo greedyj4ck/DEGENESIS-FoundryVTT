@@ -715,7 +715,8 @@ a.diamond:hover .square {
  .app.window-app.degenesis.sheet .attribute h3{
     margin-bottom: 0px;
     margin-left: 10px;
-
+    display: flex;
+    align-self: center;
  }
 
  .app.window-app.degenesis.sheet .skill-name{
@@ -796,13 +797,17 @@ a.diamond:hover .square {
 .app.window-app.degenesis.sheet .item-controls {
     /* border-left: 1px solid var(--dark-grey);
     padding-left: 5px */
-    flex: 1;
+    flex: 0;
     margin-left: 1.7%;
 }
 
 .app.window-app.degenesis.sheet .icon {
     margin-right: 2px;
     margin-left: 2px;
+}
+
+.app.window-app.degenesis.sheet .icon.item-add {
+    margin-right:10px;
 }
 
 
@@ -907,7 +912,7 @@ a.diamond:hover .square {
     background-color: var(--light-grey);
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top: 6px;
+    margin-top: 7px;
     width: 100%;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
@@ -979,7 +984,7 @@ padding-right: 4px;
     margin: 0px;
 }
 
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .vertical-bar {
+.app.window-app.degenesis.sheet .vertical-bar {
     flex: 0.1;
     display: flex;
     margin-top: -0px;
@@ -1040,6 +1045,11 @@ padding-right: 4px;
 .degenesis.sheet .black-title {
     display:flex;
     justify-content: space-between;
+}
+
+.degenesis.sheet .black-title h3 {
+    display:flex;
+    align-self: center;
 }
 
 /* * Items */
@@ -1173,13 +1183,35 @@ padding-right: 4px;
 }
 
 /* * Bottom conditions */
-.app.window-app.degenesis.sheet .bottom-conditions .item > *{
-    margin: 0;
+
+
+.app.window-app.degenesis.sheet .bottom-conditions .item-controls{
+    display:flex;
+    justify-content: flex-end;
+    margin-left: 0;
 }
 
 .app.window-app.degenesis.sheet .bottom-conditions li{
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--dark-grey);
+    margin-top: 7px;
+}
+.app.window-app.degenesis.sheet .bottom-conditions li.expanded{
+    padding-bottom: 0;
+}
+
+.app.window-app.degenesis.sheet .bottom-conditions .item-summary {
+    display: inline-block;
+    background-color: var(--light-grey);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 6px;
+    width: 100%;
+    border-top: 1px solid var( --dark-grey);
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .bottom-conditions{
@@ -1189,11 +1221,19 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .bottom-conditions .black-title h3{
-    margin-left: 10px;
+    margin: 0 0 0 10px;
 }
 
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-group {
     width: 45%;
+}
+
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-characteristics {
+    padding-right: 5px;
+    padding-left: 5px;
+    display: flex;
+    width: 100%;
+    margin:0;
 }
 
 
@@ -1221,6 +1261,12 @@ padding-right: 4px;
     margin: 0 10px 0 10px;
     list-style-type: none;
 }
+
+.app.window-app.degenesis.sheet .bottom-conditions .conditions-value{
+    display: flex;
+    flex: 0 0 35px;
+    justify-content: space-evenly;
+}
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-name{
     text-align: left;
     width: 40%;
@@ -1238,6 +1284,13 @@ padding-right: 4px;
     text-align: center;
     width: 15%;
 }
+
+.app.window-app.degenesis.sheet .modifiers-action.dropdown {
+    display:flex;
+    justify-content: center;
+    flex:1;
+}
+
 .app.window-app.degenesis.sheet .modifiers-description {
     border-bottom: 1px solid var(--dark-grey);
     width: 100%
@@ -1246,7 +1299,6 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
-    display:flex
 }
 
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-name.long{
@@ -1259,13 +1311,46 @@ padding-right: 4px;
 
 
 .app.window-app.degenesis.sheet .bottom-conditions .complications-name{
-    width: 90%;
+    flex: 1;
 }
 .app.window-app.degenesis.sheet .bottom-conditions .complications-rating{
     width: 10%;
 }
 
 
+/************************************ ITEM SHEET ********************************/
+
+.app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
+    margin-top: -15px;
+    margin-bottom: -20px;
+}
+
+.app.window-app.degenesis.sheet.item textarea {
+    border: 1px solid var(--dark-grey);
+    border-radius: 0;
+}
+
+.app.window-app.degenesis.sheet.item input {
+    background-color: rgb(242, 242, 242);
+}
+
+.app.window-app.degenesis.sheet.item select {
+    background-color: rgb(242, 242, 242);
+}
+
+.app.window-app.degenesis.sheet.item input:hover{
+    /* border: 1px dotted var(--degenesis-red) */
+    background-color: rgb(240, 240, 240);
+}
+
+.app.window-app.degenesis.sheet.item input:focus{
+    background-color: rgb(230, 230, 230);
+}
+
+.app.window-app.degenesis.sheet .profile-img.item-img {
+    max-height:64px;
+    max-width:64px;
+}
 
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
 

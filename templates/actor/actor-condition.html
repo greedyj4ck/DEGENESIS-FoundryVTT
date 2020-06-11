@@ -118,20 +118,24 @@
          <div class="modifiers-data conditions-data">
             <ol class="modifiers-ol conditions-ol">
             {{#each modifiers as |mod m|}}
-               <li class="modifiers-li item" data-item-id="{{mod._id}}">
-                  <a class="modifiers-number dropdown">{{mod.data.number}}</a>
-                  <a class="modifiers-type dropdown">{{modifyType}}</a>
-                  <a class="modifiers-action dropdown">{{actionType}}</a>
-                 <div class="vertical-bar">
-                  <svg height="15px" width="1px">
-                     <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                  </svg>
-               </div>
-                 <div class="item-controls">
-                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
-                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
-               </div>
+               <li class="conditions-li modifiers-li item" data-item-id="{{mod._id}}">
+                  <div class="conditions-characteristics">
+                     <div class="conditions-value">
+                        <a class="modifiers-number dropdown">{{mod.data.number}}</a>
+                        <a class="modifiers-type dropdown">{{modifyType}}</a>
+                     </div>
+                     <a class="modifiers-action dropdown">{{actionType}}</a>
+                     <div class="vertical-bar">
+                        <svg height="15px" width="1px">
+                           <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                        </svg>
+                     </div>
+                     <div class="item-controls">
+                        <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                        <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                        <a class="icon item-delete"><i class="fas fa-times"></i></a>
+                     </div>
+                  </div>
                </li>
             {{/each}}
          </div>
@@ -146,23 +150,25 @@
             <ol class="complications-ol conditions-ol">
             {{#each complications as |complication c|}}
                <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
-                  {{#if ../isGM}}
-                  <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
-                  <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
-                  <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
-                  <div class="vertical-bar">
-                     <svg height="15px" width="1px">
-                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                     </svg>
+                  <div class="conditions-characteristics">
+                     {{#if ../isGM}}
+                     <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
+                     <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
+                     <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
+                     <div class="vertical-bar">
+                        <svg height="15px" width="1px">
+                           <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                        </svg>
+                     </div>
+                     <div class="item-controls">
+                        <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                        <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                        <a class="icon item-delete"><i class="fas fa-times"></i></a>
+                     </div>
+                     {{else}}
+                     <span class="complications-name conditions-name">{{complication.name}}</span>
+                     {{/if}}
                   </div>
-                  <div class="item-controls">
-                     <a class="icon item-post"><i class="fas fa-comment"></i></a>
-                     <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-                     <a class="icon item-delete"><i class="fas fa-times"></i></a>
-                  </div>
-                  {{else}}
-                  <span class="complications-name conditions-name">{{complication.name}}</span>
-                  {{/if}}
                </li>
             {{/each}}
             </ol>
