@@ -25,6 +25,9 @@ export class DegenesisActor extends Actor {
                 data.data.condition.spore.max = (data.data.skills.faith.value + data.data.attributes[data.data.skills.faith.attribute].value) * 2
     
             data.data.condition.fleshwounds.max = (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
+
+            data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value)
+
             
             // data.data.condition.ego.max = 10;
             // data.data.condition.fleshwounds.max = 10;

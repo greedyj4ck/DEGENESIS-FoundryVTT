@@ -92,6 +92,9 @@
     "DGNS.Combat" : "COMBAT",
     "DGNS.Inventory" : "INVENTORY",
     "DGNS.History" : "HISTORY",
+    "DGNS.General" : "GENERAL",
+    "DGNS.Fighting" : "FIGHTING",
+    "DGNS.State" : "STATE",
 
     "DGNS.BodyAbbrev" : "BOD",
     "DGNS.AgilityAbbrev" : "AGI",
