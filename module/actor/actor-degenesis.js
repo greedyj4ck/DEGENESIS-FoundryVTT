@@ -112,6 +112,7 @@ export class DegenesisActor extends Actor {
         }
         let potentials = [];
         let modifiers = [];
+        let complications = [];
 
         for (let i of actorData.items)
         {
@@ -135,11 +136,16 @@ export class DegenesisActor extends Actor {
             {
                 modifiers.push(this.prepareModifier(i));
             }
+            if (i.type == "complication")
+            {
+                complications.push(i);
+            }
         }
         return {
             inventory,
             potentials,
-            modifiers
+            modifiers,
+            complications
         }
     }
 

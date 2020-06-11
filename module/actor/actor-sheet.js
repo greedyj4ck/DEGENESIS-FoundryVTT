@@ -176,26 +176,26 @@ export class DegenesisActorSheet extends ActorSheet {
       this._dropdown(ev, item.dropdownData())
     })
 
-    // html.find(".modifiers-name, .modifiers-action, .modifiers-number, .modifiers-type").change(ev => {
-    //     let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+    html.find(".complications-name, .complications-rating").change(ev => {
+        let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
 
 
 
-    //     if (itemId == "new")
-    //       return this.actor.createEmbeddedEntity("OwnedItem", {type : "modifier", name : ev.target.value})
+        if (itemId == "new")
+          return this.actor.createEmbeddedEntity("OwnedItem", {type : "complication", name : ev.target.value})
 
 
 
-    //     let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
-    //     let target = $(ev.currentTarget).attr("data-target")
+        let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
+        let target = $(ev.currentTarget).attr("data-target")
 
-    //     if (target == "name" && !event.target.value)
-    //       return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
+        if (target == "name" && !event.target.value)
+          return this.actor.deleteEmbeddedEntity("OwnedItem", itemId)
 
-    //     setProperty(itemData, target, ev.target.value)
+        setProperty(itemData, target, ev.target.value)
 
-    //     this.actor.updateEmbeddedEntity("OwnedItem", itemData)
-    // })
+        this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+    })
   }
 
   /* -------------------------------------------- */

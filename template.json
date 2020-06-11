@@ -292,7 +292,7 @@
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier", "complication"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -364,7 +364,11 @@
   "modifier" : {
     "action" : "",
     "number" : 0,
-    "type" : "",
+    "type" : ""
+  },
+  "complication" : {
+    "cost" : 0,
+    "rating" : 0,
     "description" : ""
   }
 }
