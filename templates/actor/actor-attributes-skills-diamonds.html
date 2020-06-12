@@ -40,7 +40,11 @@
          <!-- advantage -->
          <div data-target="{{sk}}" class="skill">
             <!-- background-name -->
+            {{#if skill.unused}}
+            <a class="skill-name unused">{{skill.label}}</a>
+            {{else}}
             <a class="skill-name">{{skill.label}}</a>
+            {{/if}}
             <div class = "diamond-row" data-target="data.skills.{{sk}}.value">
                {{#each skill.diamonds as |diamond index|}}
                   {{#if diamond.filled}}

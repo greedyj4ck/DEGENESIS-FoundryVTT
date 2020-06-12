@@ -35,7 +35,7 @@
             {{/each}}
          </div>
          <div class="text">
-            EGO
+            {{localize "DGNS.Ego"}}
          </div>
       </div>
 
@@ -58,7 +58,7 @@
             {{/each}}
          </div>
          <div class="text">
-            SPORE INFESTATION
+            {{localize "DGNS.Spore"}}
          </div>
       </div>
 
@@ -81,7 +81,7 @@
             {{/each}}
          </div>
          <div class="text">
-            FLESHWOUNDS
+            {{localize "DGNS.Fleshwounds"}}
          </div>
       </div>
 
@@ -104,7 +104,7 @@
             {{/each}}
          </div>
          <div class="text">
-            TRAUMA
+            {{localize "TRAUMA"}}
          </div>
       </div>
    </div>
@@ -112,7 +112,7 @@
    <div class="bottom-conditions">
       <div class="modifiers-group conditions-group">
          <div class="black-title">
-            <h3>MODIFIERS</h3>
+            <h3>{{localize "DGNS.Modifiers"}}</h3>
             <a class="icon item-add" data-item="modifier">+</a>
          </div>
          <div class="modifiers-data conditions-data">
@@ -143,7 +143,7 @@
 
       <div class="complications-group conditions-group">
          <div class="black-title">
-            <h3>COMPLICATIONS</h3>
+            <h3>{{localize "DGNS.Complications"}}</h3>
             <a class="icon item-add" data-item="complication">+</a>
          </div>
          <div class="complications-data conditions-data">
@@ -154,6 +154,7 @@
                      {{#if ../isGM}}
                      <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
                      <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
+                     X
                      <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
                      <div class="vertical-bar">
                         <svg height="15px" width="1px">

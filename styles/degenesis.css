@@ -723,6 +723,10 @@ a.diamond:hover .square {
     margin-left: 10px;
  }
 
+ .app.window-app.degenesis.sheet .skill-name.unused{
+    color: #CCC;
+ }
+
  /* * Advantages tab * */
  
  .app.window-app.degenesis.sheet .advantage-tab .advantage-group {

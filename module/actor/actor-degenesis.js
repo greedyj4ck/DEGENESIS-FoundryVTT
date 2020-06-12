@@ -13,26 +13,11 @@ export class DegenesisActor extends Actor {
         {
             super.prepareData();
             const data = this.data;
-
-            if (data.data.skills.focus.value)
-                data.data.condition.ego.max = (data.data.skills.focus.value + data.data.attributes[data.data.skills.focus.attribute].value) * 2
-            else if (data.data.skills.primal.value)
-                data.data.condition.ego.max = (data.data.skills.primal.value + data.data.attributes[data.data.skills.primal.attribute].value) * 2
-
-            if (data.data.skills.willpower.value)
-                data.data.condition.spore.max = (data.data.skills.willpower.value + data.data.attributes[data.data.skills.willpower.attribute].value) * 2
-            else if (data.data.skills.faith.value)
-                data.data.condition.spore.max = (data.data.skills.faith.value + data.data.attributes[data.data.skills.faith.attribute].value) * 2
     
+            data.data.condition.ego.max = (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
+            data.data.condition.spore.max = (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
             data.data.condition.fleshwounds.max = (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
-
-            data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value)
-
-            
-            // data.data.condition.ego.max = 10;
-            // data.data.condition.fleshwounds.max = 10;
-            // data.data.condition.spore.max =10;
-            // data.data.condition.ego.max = 10;
+            data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value);
             
         }
         catch(e)
@@ -88,9 +73,47 @@ export class DegenesisActor extends Actor {
             DEG_Utility.addDiamonds(attrGroup, 6)
 
             for (let skillKey in attrGroup.skills)
+            {
                 DEG_Utility.addDiamonds(attrGroup.skills[skillKey], 6)
+
+                if (skillKey == "faith" && attrGroup.skills[skillKey].value)
+                {
+                    attrGroup.skills["willpower"].unused = true;
+                    attrGroup.skills[skillKey].unused = false;
+                }
+                else if (skillKey == "willpower" && attrGroup.skills[skillKey].value)
+                {
+                    attrGroup.skills["faith"].unused = true;
+                    attrGroup.skills[skillKey].unused = false;
+                }
+                else if (skillKey == "primal" && attrGroup.skills[skillKey].value)
+                {
+                    attributeSkillGroups["intellect"].skills["focus"].unused = true;
+                    attrGroup.skills[skillKey].unused = false;
+                }
+                else if (skillKey == "focus" && attrGroup.skills[skillKey].value)
+                {
+                    attributeSkillGroups["instinct"].skills["primal"].unused = true;
+                    attrGroup.skills[skillKey].unused = false;
+                }
+            }
         }
         return attributeSkillGroups;
+    }
+
+    getFaithOrWillpower()
+    {
+        if (this.data.data.skills.willpower.value)
+            return this.data.data.skills.willpower
+        else if (this.data.data.skills.faith.value)
+            return this.data.data.skills.faith
+    }
+
+    getFocusOrPrimal(){
+        if (this.data.data.skills.focus.value)
+            return this.data.data.skills.focus
+        else if (this.data.data.skills.primal.value)
+            return this.data.data.skills.primal
     }
 
     prepareBackgrounds()

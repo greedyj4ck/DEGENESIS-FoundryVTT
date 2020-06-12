@@ -153,6 +153,16 @@ export class DegenesisActorSheet extends ActorSheet {
           setProperty(actorData, target, 1)
       }
 
+      if (target == "data.skills.faith.value")
+        setProperty(actorData, "data.skills.willpower.value", 0)
+      else if (target == "data.skills.willpower.value")
+        setProperty(actorData, "data.skills.faith.value", 0)
+        
+      else if (target == "data.skills.focus.value")
+        setProperty(actorData, "data.skills.primal.value", 0)
+      else if (target == "data.skills.primal.value")
+        setProperty(actorData, "data.skills.focus.value", 0)
+
       this.actor.update(actorData);
     })
 

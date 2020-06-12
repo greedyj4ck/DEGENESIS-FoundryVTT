@@ -82,6 +82,8 @@
     "DGNS.Infamy" : "INFAMY",
     "DGNS.Potentials" : "POTENTIALS",
     "DGNS.Potential" : "POTENTIAL",
+    "DGNS.Modifiers" : "MODIFIERS",
+    "DGNS.Complications" : "COMPLICATIONS",
     "DGNS.Rules" : "RULES",
     "DGNS.Effect" : "EFFECT",
     "DGNS.Level" : "LEVEL",
