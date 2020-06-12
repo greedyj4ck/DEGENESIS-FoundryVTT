@@ -285,10 +285,42 @@
           "value" : 0
         }
       }
+    },
+    "general": {
+      "general" : {
+        "movement" : 8,
+        "encumbrance" : {
+          "max" : 0,
+          "current" : 0
+        },
+        "armor" : 0,
+        "actionModifier" : 0
+      }
+    },
+    "fighting": {
+      "fighting" : {
+        "initiative" : 0,
+        "dodge" : 0,
+        "mentalDefense" : 0,
+        "passiveDefense" : 0
+      },
+      "state": {
+        "state" : {
+          "dropBackpack" : false,
+          "motion" : false,
+          "active" : true,
+          "cover" : {
+            "value" : 0
+          },
+          "spentEgo" : {
+            "value" : 0
+          }
+        }
+      }
     }
   },
   "character": {
-    "templates" : ["details", "attributes", "skills", "condition", "backgrounds", "scars", "relationships"]
+    "templates" : ["details", "attributes", "skills", "condition", "backgrounds", "scars", "relationships", "general", "fighting", "state"]
   }
 },
 "Item": {

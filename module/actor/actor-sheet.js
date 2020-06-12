@@ -165,6 +165,14 @@ export class DegenesisActorSheet extends ActorSheet {
 
       this.actor.update(actorData);
     })
+    html.find(".checkbox").click(ev => {
+      let actorData = duplicate(this.actor)
+      let target = $(ev.currentTarget).attr("data-target")
+      if (target)
+        setProperty(actorData, target, !getProperty(actorData, target))
+      this.actor.update(actorData);
+    })
+
 
     html.find(".relationships-cultes,.relationships-bonus").change(ev => {
       let elem = $(ev.currentTarget)

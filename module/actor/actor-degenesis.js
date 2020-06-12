@@ -18,11 +18,21 @@ export class DegenesisActor extends Actor {
             data.data.condition.spore.max = (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
             data.data.condition.fleshwounds.max = (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
             data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value);
-            
+
+            data.data.general.movement = data.data.attributes.body.value + data.data.skills.athletics.value + (data.data.state.state.motion ? 2 : 0);      
+            data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
+            // Encumbrance Todo
+            data.data.general.actionModifier = data.data.state.state.motion ? -2 : 0 // todo: more
+            data.data.fighting.initiative = data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
+            data.data.fighting.dodge = data.data.attributes.agility.value + data.data.general.movement + data.data.general.actionModifier;
+            data.data.fighting.mentalDefense = data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
+            data.data.fighting.passiveDefense = data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
+                                                // Temporarily state.state, not sure why it's nested
+
         }
         catch(e)
         {
-            console.log(e);
+            console.error(e);
         }
     }
     
@@ -36,6 +46,8 @@ export class DegenesisActor extends Actor {
         preparedData.spore = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 20)
         preparedData.fleshwounds = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 20)
         preparedData.trauma = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.trauma), 12)
+        preparedData.cover = DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.cover), 3)
+        preparedData.spentEgo = DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.spentEgo), 3)
         preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
         preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
         preparedData.concept = DEGENESIS.concepts[this.data.data.details.concept.value]
