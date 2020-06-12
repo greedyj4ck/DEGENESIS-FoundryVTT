@@ -19,14 +19,14 @@ export class DegenesisActor extends Actor {
             data.data.condition.fleshwounds.max = (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
             data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value);
 
-            data.data.general.movement = data.data.attributes.body.value + data.data.skills.athletics.value + (data.data.state.state.motion ? 2 : 0);      
+            data.data.general.movement = data.data.attributes.body.value + data.data.skills.athletics.value;      
             data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
             // Encumbrance Todo
             data.data.general.actionModifier = data.data.state.state.motion ? -2 : 0 // todo: more
             data.data.fighting.initiative = data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
-            data.data.fighting.dodge = data.data.attributes.agility.value + data.data.general.movement + data.data.general.actionModifier;
+            data.data.fighting.dodge = data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
             data.data.fighting.mentalDefense = data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
-            data.data.fighting.passiveDefense = data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
+            data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
                                                 // Temporarily state.state, not sure why it's nested
 
         }
@@ -195,6 +195,12 @@ export class DegenesisActor extends Actor {
     prepareModifier(modifier) {
         modifier.actionType = DEG_Utility.getModificationActions()[modifier.data.action]
         modifier.modifyType = DEGENESIS.modifyTypes[modifier.data.type]
+        if(modifier.data.number>0){
+            modifier.displayNumber = '+'+modifier.data.number;
+        }
+        else {
+            modifier.displayNumber = modifier.data.number;
+        }
         return modifier
     }
 }

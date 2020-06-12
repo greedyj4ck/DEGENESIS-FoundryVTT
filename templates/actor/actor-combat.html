@@ -23,20 +23,16 @@
        </div>
         <div class="combat-list">
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Movement"}}:</div>
-                <span>{{data.general.movement}}m</span>
+                <div class="general-name">{{localize "DGNS.Movement"}}: {{data.general.movement}}m</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Encumbrance"}}:</div>
-                <span>{{data.general.encumbrance.current}} / {{data.general.encumbrance.max}}</span>
+                <div class="general-name">{{localize "DGNS.Encumbrance"}}: {{data.general.encumbrance.current}} / {{data.general.encumbrance.max}}</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Armor"}}:</div>
-                <span>{{data.general.armor}}</span>
+                <div class="general-name">{{localize "DGNS.Armor"}}: {{data.general.armor}}</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.ActionMod"}}:</div>
-                <span>{{data.general.actionModifier}}</span>
+                <div class="general-name">{{localize "DGNS.ActionMod"}}: {{data.general.actionModifier}}D</div>
             </div>
         </div>
     </div>
@@ -49,21 +45,17 @@
           </div>
        </div>
        <div class="combat-list">
+        <a class="combat">
+            <div class="general-name">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
+        </a>
+        <a class="combat">
+            <div class="general-name">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
+        </a>
+        <a class="combat">
+            <div class="general-name">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
+        </a>
         <div class="combat">
-            <div class="general-name">{{localize "DGNS.Initiative"}}</div>
-            <span>{{data.fighting.initiative}}D</span>
-        </div>
-        <div class="combat">
-            <div class="general-name">{{localize "DGNS.Dodge"}}</div>
-            <span>{{data.fighting.dodge}}D</span>
-        </div>
-        <div class="combat">
-            <div class="general-name">{{localize "DGNS.MentalDef"}}</div>
-            <span>{{data.fighting.mentalDefense}}D</span>
-        </div>
-        <div class="combat">
-            <div class="general-name">{{localize "DGNS.PassiveDef"}}</div>
-            <span>{{data.fighting.passiveDefense}}</span>
+            <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}</div>
         </div>
     </div>
     </div>
@@ -77,53 +69,57 @@
           </div>
        </div>
        <div class="combat">
-            <div class="general-name" data-target="data.state.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</div> 
+            <a class="general-name checkbox" data-target="data.state.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
             {{#if data.state.state.dropBackpack}} 
-            <a class="square black button-position checkbox" data-target="data.state.state.dropBackpack"></a>
+            <a class="square border-black button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.dropBackpack"></a>
+            <a class="square button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into"></div></a>
             {{/if}}
-        </div>
+       </div>
         <div class="combat">
-            <div class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}}</div>             
+            <a class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}}</a>             
             {{#if data.state.state.motion}} 
-            <a class="square black button-position checkbox" data-target="data.state.state.motion"></a>
+            <a class="square border-black button-position checkbox" data-target="data.state.state.motion"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.motion"></a>
+            <a class="square button-position checkbox" data-target="data.state.state.motion"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
-            <div class="general-name checkbox" data-target="data.state.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</div>
+            <a class="general-name checkbox" data-target="data.state.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
             {{#if data.state.state.active}} 
-            <a class="square black button-position checkbox" data-target="data.state.state.active"></a>
+            <a class="square border-black button-position checkbox" data-target="data.state.state.active"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.active"></a>
+            <a class="square button-position checkbox" data-target="data.state.state.active"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
-            <div class="general-name checkbox">{{localize "DGNS.Cover"}}</div>
-            <div class = "diamond-row" data-target="data.state.state.cover.value">
-            {{#each cover.diamonds as |diamond index|}}
-               {{#if diamond.filled}}
-                  <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-               {{else}}
-                  <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-               {{/if}}
-            {{/each}}
+            <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
+            <div class="diamond-position">
+               <div class = "diamond-row" data-target="data.state.state.cover.value">
+                  {{#each cover.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                     <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                  {{else}}
+                     <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                  {{/if}}
+                  {{/each}}
+               </div>
+            </div>
          </div>
-        </div>
         <div class="combat">
-            <div class="general-name checkbox">{{localize "DGNS.SpentEgo"}}</div>
-            <div class = "diamond-row" data-target="data.state.state.spentEgo.value">
-            {{#each spentEgo.diamonds as |diamond index|}}
-               {{#if diamond.filled}}
-                  <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-               {{else}}
-                  <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-               {{/if}}
-            {{/each}}
-        </div>
-    </div>
+            <a class="general-name checkbox">{{localize "DGNS.SpentEgo"}}: </a>
+            <div class="diamond-position">
+               <div class = "diamond-row" data-target="data.state.state.spentEgo.value">
+                  {{#each spentEgo.diamonds as |diamond index|}}
+                  {{#if diamond.filled}}
+                     <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                  {{else}}
+                     <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                  {{/if}}
+                  {{/each}}
+               </div>
+            </div>
+         </div>
  
     <!-- <div class="break"></div>
     
