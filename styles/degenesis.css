@@ -1465,7 +1465,7 @@ padding-right: 4px;
     margin-left: 1.5%;
 }
 .app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name {
-    flex: 0.5;
+    flex: 1;
     margin-right: 1.5%;
     margin-left: 1.5%;
     align-self: center;
@@ -1479,7 +1479,7 @@ margin-left: 12px;
 
 
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name{
-    flex: 0.13;
+    flex: 1.1;
     margin-right: 1.5%;
     margin-left: 1.5%;
     align-self: center;
@@ -1489,11 +1489,19 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name.equipped {
     display: flex;
     justify-content: center;
+    flex: 1.7
 }
 
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .item-controls {
+    flex: 0 0 49px;
+}
+
+.app.window-app.degenesis.sheet .inventory-group .weapon-legend .equipped {
+    flex: 1.7;
+}
 
 .app.window-app.degenesis.sheet .inventory-group .weapon-legend .empty {
-    flex: 1.17;
+    flex: 0 0 49px;
     display: flex;
     align-self: center;
 }
@@ -1507,17 +1515,23 @@ margin-left: 12px;
     margin-top: 8px;
 }
 
+.app.window-app.degenesis.sheet .inventory-list .square.button-position {
+    margin:0;
+}
+
 .app.window-app.degenesis.sheet .inventory-list .weapon.item .weapon-name {
-    flex: 3;
+    flex: 2;
     display: flex;
     align-self: center;
+    margin-right: 0;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
-    flex: 3;
+    flex: 2;
     display: flex;
     align-self: center;
     justify-content: flex-end;
+    margin: 0;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-controls {
