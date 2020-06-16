@@ -1573,6 +1573,35 @@ margin-left: 12px;
     max-height:64px;
     max-width:64px;
 }
+.app.window-app.degenesis.sheet.item .sheet-body {
+    width: 100%;
+    height: calc(100% - 125px);
+    overflow: auto;
+}
+.app.window-app.degenesis.sheet.item .tab {
+    width: 100%;
+    height:100%;
+}
+
+
+.app.window-app.degenesis.sheet.item .editor {
+    width: 100%;
+    height: 100%;
+}
+
+
+.app.window-app.degenesis.sheet.item .header-inputs {
+    display:flex;
+}
+.app.window-app.degenesis.sheet.item .quality-inputs {
+    display:flex;
+}
+.app.window-app.degenesis.sheet.item .item-quality {
+    display:flex;
+}
+
+
+
 
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
 

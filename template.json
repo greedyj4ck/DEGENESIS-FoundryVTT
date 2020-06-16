@@ -342,7 +342,13 @@
       "tech" : 0
     },
     "slots" : {
-      "slots" : 0
+      "slots" : {
+        "total" : 0,
+        "used" : 0
+      }
+    },
+    "quantity" : {
+      "quantity" : 0
     },
     "qualities" : {
       "qualities" : []
@@ -367,23 +373,25 @@
     }
   },
   "ammunition" : {
-    "templates": ["description", "damage", "tech", "value"]
+    "templates": ["description", "quantity", "damage", "tech", "value"]
   },
   "weapon" : {
-    "templates" : ["description", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "handling": 0,
     "distance": {
       "short" : 0,
-      "far" : 0
+      "far" : 0,
+      "melee" : 0
     },
-    "mag" : ""
+    "mag" : "",
+    "group" : ""
   },
   "armor" : {
-    "templates" : ["description", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "AP" : 0
   },
   "equipment" : {
-    "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"]
+    "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"]
   },
   "mod" : {
     "templates" : ["description", "effect"],

@@ -1,10 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="sheet-header">
-        <img class="profile-img item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-        </div>
-    </header>
+    {{> systems/degenesis/templates/item/item-header.html}}
+
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">

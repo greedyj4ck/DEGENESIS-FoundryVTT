@@ -1,0 +1,39 @@
+
+    <header class="sheet-header">
+        <img class="profile-img item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+        <div class="header-fields">
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        </div>
+
+        <div class="header-inputs">
+            <div class="header-input">
+                <label>Value</label>
+                <input name="data.value" value="{{data.value}}" data-dtype="Number">
+            </div>    
+            <div class="header-input">
+                <label>Quantity</label>
+                <input name="data.quantity" value="{{data.quantity}}" data-dtype="Number">
+            </div>   
+            <div class="header-input">
+                <label>Enc.</label>
+                <input name="data.encumbrance" value="{{data.encumbrance}}" data-dtype="Number">
+            </div>      
+            <div class="header-input">
+                <label>Tech</label>
+                <select name="data.tech" data-dtype="Number">
+                    <option value="">-</option>
+                    {{#select data.tech}}
+                    {{#each techValues as |tech t|}}
+                    <option value="{{t}}">{{tech}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div> 
+            <div class="header-input">
+                <label>Res.</label>
+                <input name="data.resources" value="{{data.resources}}" data-dtype="Number">
+            </div>       
+        </div>
+        </div>
+    </header>
+

@@ -72,23 +72,24 @@
          </div>
    
    <div class="inventory-list item-list">
-      <div class="weapon item" data-item-id="">
-         <a class="weapon-name dropdown">Bidenhander</a>
+      {{#each inventory.weapons.items as |weapon w|}}
+      <div class="weapon item" data-item-id="{{weapon._id}}">
+         <a class="weapon-name dropdown">{{weapon.name}}</a>
          <div class="weapon-characteristics">
             <div class="legend-name equipped">
                <a class="square border-black button-position checkbox" data-target=""><div class="square-into black"></div></a>
             </div>
             <div class="legend-name qti">
-               <span>1</span>
+               <span>{{weapon.data.quantity}}</span>
             </div>
             <div class="legend-name enc">
-               <span>3</span>
+               <span>{{weapon.data.encumbrance}}</span>
             </div>
             <div class="legend-name tech">
-               <span>II</span>
+               <span>{{lookup ../techValues weapon.data.tech}}</span>
             </div>
             <div class="legend-name slot">
-               <span>0/2</span>
+               <span>0/{{weapon.data.slots.total}}</span>
             </div>
             <div class="vertical-bar">
                <svg height="15px" width="1px">
@@ -103,6 +104,7 @@
          </div>
          <div class="break"></div>
       </div>
+      {{/each}}
    </div>
    </div>
 </div>

@@ -1,0 +1,100 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{> systems/degenesis/templates/item/item-header-physical.html}}
+    <!-- Tabs V2-->
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item active" data-tab="details">{{localize "Details"}}</a>
+        <a class="item" data-tab="description">{{localize "Description"}}</a>
+        <a class="item" data-tab="qualities">{{localize "Qualities"}}</a>
+    </nav>
+        
+    {{!-- Sheet Body --}}
+    <section class="sheet-body" >
+        <div class="tab" data-tab="details">
+
+            <div class = "form-group">
+                <label>Group</label>
+                <select name="data.group" data-dtype="String">
+                    <option value="{{g}}">{{group}}</option>
+                    {{#select data.group}}
+                    {{#each weaponGroups as |group g|}}
+                    <option value="{{g}}">{{group}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+
+            <div class = "form-group">
+                <label>Handling</label>
+                <input type="text" name="data.handling" value="{{data.handling}}" data-dtype="Number"/>
+                D
+            </div>
+
+            <div class = "form-group">
+                <label>Distance</label>
+                {{#if isMelee}} <!--Is Melee determined by weapon group-->
+                <input type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
+                {{else}}
+                <input type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
+                /
+                <input type="text" name="data.distance.far" value="{{data.distance.far}}" data-dtype="Number"/>
+                {{/if}}  
+            </div>
+
+            <div class = "form-group">
+                <label>Damage</label>
+                <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="String"/>
+            </div>
+
+            <div class = "form-group">
+                <label>Magazine</label>
+                <input type="text" name="data.mag" value="{{data.mag}}" data-dtype="Number"/>
+                Belt?
+                {{#if isBelt}}
+                <a class="checkbox"><div class="square-into black"></div></a>
+                {{else}}
+                <a class="checkbox"><div class="square-into black"></div></a>
+                {{/if}}
+                <!--Not functional yet-->
+            </div>
+
+            <div class = "form-group">
+                <label>Slots</label>
+                <input type="text" name="data.slots.total" value="{{data.slots.total}}" data-dtype="Number"/>
+            </div>
+
+            
+            <div class = "form-group">
+                <label>Cult</label>
+                <input type="text" name="data.cult" value="{{data.cult}}" data-dtype="String"/>
+            </div>
+
+        </div>
+
+        <div class="tab" data-tab="description">
+            {{editor content=data.description target="data.description"button=true owner=owner editable=editable}}
+        </div>
+
+        <div class="tab" data-tab="qualities">
+            {{#each qualities as |quality q|}}
+
+            <div class="item-quality">
+                <!--Not functional-->
+                {{#if checked}}
+                    <a class="checkbox"><div class="square-into black"></div></a>
+                {{else}}
+                    <a class="checkbox"><div class="square-into black"></div></a>
+                {{/if}}
+                {{quality.name}}
+                <div class="quality-inputs">
+                {{#each quality.values as |value i| }}
+                    <input placeholder="{{value}}" type="text">
+                {{/each}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </section>
+
+</form>

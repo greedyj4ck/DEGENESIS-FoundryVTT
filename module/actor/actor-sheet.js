@@ -34,10 +34,12 @@ export class DegenesisActorSheet extends ActorSheet {
     data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
     data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
 
-
+    
     // Used for Modifier item list
     data.modifyTypes = DEGENESIS.modifyTypes;
     data.modifyActions = DEG_Utility.getModificationActions()
+    data.techValues = DEGENESIS.techValues;
+
 
     data.isGM = game.user.isGM;
     mergeObject(data, this.actor.prepare());
