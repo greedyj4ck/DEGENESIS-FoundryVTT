@@ -1,3 +1,4 @@
+
 <div class="title">
    <div class="body-column body-line">
       <div class="square little left"></div>
@@ -120,15 +121,17 @@
             {{#each modifiers as |mod m|}}
                <li class="conditions-li modifiers-li item" data-item-id="{{mod._id}}">
                   <div class="conditions-characteristics">
-                     <div class="conditions-value">
-                        <a class="modifiers-number dropdown">{{mod.data.number}}</a>
-                        <a class="modifiers-type dropdown">{{modifyType}}</a>
-                     </div>
-                     <a class="modifiers-action dropdown">{{actionType}}</a>
-                     <div class="vertical-bar">
-                        <svg height="15px" width="1px">
-                           <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                        </svg>
+                     <div class='item-data'>
+                        <div class="conditions-value">
+                           <a class="modifiers-number dropdown">{{displayNumber}}</a>
+                           <a class="modifiers-type dropdown">{{modifyType}}</a>
+                        </div>
+                        <a class="modifiers-action dropdown">{{actionType}}</a>
+                        <div class="vertical-bar">
+                           <svg height="15px" width="1px">
+                              <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                           </svg>
+                        </div>
                      </div>
                      <div class="item-controls">
                         <a class="icon item-post"><i class="fas fa-comment"></i></a>
@@ -152,23 +155,27 @@
                <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
                   <div class="conditions-characteristics">
                      {{#if ../isGM}}
-                     <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
-                     <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
-                     X
-                     <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
-                     <div class="vertical-bar">
-                        <svg height="15px" width="1px">
-                           <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                        </svg>
+                     <div class='item-data'>
+                        <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
+                        <a class="complications-rating conditions-number dropdown">{{complication.data.cost}}T</a>
+                           /
+                        <a class="complications-rating conditions-number dropdown">{{complication.data.rating}}</a>
+                        <div class="vertical-bar">
+                           <svg height="15px" width="1px">
+                              <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                           </svg>
+                        </div>
                      </div>
                      <div class="item-controls">
                         <a class="icon item-post"><i class="fas fa-comment"></i></a>
                         <a class="icon item-edit"><i class="fas fa-edit"></i></a>
                         <a class="icon item-delete"><i class="fas fa-times"></i></a>
                      </div>
-                     {{else}}
-                     <span class="complications-name conditions-name">{{complication.name}}</span>
-                     {{/if}}
+                        {{else}}
+                        <div class='item-data'>
+                           <span class="complications-name conditions-name">{{complication.name}}</span>
+                        </div>
+                        {{/if}}
                   </div>
                </li>
             {{/each}}
@@ -176,7 +183,7 @@
          </div>
       </div>
    </div>
-   </div>
+</div>
 
    <div class="footer-diamond">
       <div class="square little"></div>
