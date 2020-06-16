@@ -1,5 +1,6 @@
 :root {
     --degenesis-red: #ed1d27;
+    --blackred: #9a0c13;
     --light-grey: #f3f3f2;
     --dark-grey: rgb(164, 164, 164);
 }
@@ -37,6 +38,17 @@
     background-repeat: repeat-y;
     border-radius: 0px;
     box-shadow: none;
+}
+
+.app.degenesis.sheet header.window-header.flexrow.draggable.resizable {
+    font-family: Avenir;
+    font-weight: 100;
+    background-color: rgba(0, 0, 0, 0.2);
+
+}
+
+.app.degenesis.sheet{
+    border-radius: 0px;
 }
 
 .app.window-app.degenesis.sheet .window-resizable-handle {
@@ -81,6 +93,10 @@
     src: url('../fonts/Calluna-Regular.otf');
 }
 
+@font-face {
+    font-family: "DG";
+    src: url('../fonts/DG-Medium.otf');
+}
 
 
 /* * Squares */
@@ -95,6 +111,7 @@
     -o-transform: rotate(45deg); /* Opera */
     display: flex;
     justify-content: center;
+    border-radius: 1px;
 }
 
 .square-into{
@@ -102,6 +119,7 @@
     width: 7px;
     align-self: center;
     border: 1px solid rgb(165 165 165);
+    border-radius: 1px;
 }
 
 .square.little{
@@ -120,11 +138,6 @@
     border: none;
 }
 
-.square.black {
-    background-color:black;
-    border: none;
-}
-
 .square-into.black {
     background-color:black;
     border: none;
@@ -132,8 +145,21 @@
     width: 5px;
 }
 
+.square-into.mid-size {
+    background-color:black;
+    border: none;
+    height: 70%;
+    width: 70%;
+}
+
 .square.red {
     background-color: var(--degenesis-red);
+    border: 1px solid transparent;
+}
+
+.square.blackred {
+    background: radial-gradient(black 45%, var(--degenesis-red) 45%);
+    /* background: linear-gradient(to left, var(--degenesis-red) 50%, black 50%) */
 }
 
 .square.border-black {
@@ -154,6 +180,11 @@ a.diamond .square {
 a.diamond:hover .square {
     border: 1px solid var(--degenesis-red);
 }
+
+a.diamond:hover .square.red {
+    border: 1px solid rgb(100 100 100);
+}
+
 /* * Degenesis Sheet */
 
 .app.window-app.degenesis.sheet .break{
@@ -1390,7 +1421,7 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .square.button-position{
     margin-right: 10px;
     margin-top: 2px;
-    flex: 0;
+    flex: 0, 0, 9px;
 }
 
 .app.window-app.degenesis.sheet .title.arsenal-title{

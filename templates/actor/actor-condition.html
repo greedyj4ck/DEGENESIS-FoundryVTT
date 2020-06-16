@@ -42,6 +42,9 @@
 
       <div class="spore bar-group">
          <div class="diamond-row bar" data-target="data.condition.spore.value">
+            <a class="diamond" data-index={{index}}>
+               <div class="square blackred"></div>
+            </a>
             {{#each spore.diamonds as |diamond index|}}
             {{#if diamond.locked}}
             <div class="diamond" data-index={{index}}>
@@ -50,6 +53,10 @@
             {{else if diamond.filled}}
             <a class="diamond" data-index={{index}}>
                <div class="square red"></div>
+            </a>
+            {{else if diamond.perma}}
+            <a class="diamond" data-index={{index}}>
+               <a class="square red"><div class="square-into black mid-size"></div></a>
             </a>
             {{else}}
             <a class="diamond" data-index={{index}}>
