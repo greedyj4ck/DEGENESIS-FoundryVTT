@@ -77,9 +77,13 @@
          <a class="weapon-name dropdown">{{weapon.name}}</a>
          <div class="weapon-characteristics">
             <div class="legend-name equipped">
-               <a class="square border-black button-position checkbox" data-target=""><div class="square-into black"></div></a>
+                {{#if weapon.data.equipped}}
+                  <a class="square border-black button-position checkbox" data-target="weapon.data.equipped"><div class="square-into black"></div></a>
+               {{else}}
+                  <a class="square button-position checkbox" data-target="weapon.data.equipped"><div class="square-into"></div></a>
+               {{/if}}
             </div>
-            <div class="legend-name qti">
+            <div class="legend-name qty">
                <span>{{weapon.data.quantity}}</span>
             </div>
             <div class="legend-name enc">

@@ -51,10 +51,11 @@
                 <input type="text" name="data.mag" value="{{data.mag}}" data-dtype="Number"/>
                 Belt?
                 {{#if isBelt}}
-                <a class="checkbox"><div class="square-into black"></div></a>
+                <a class="square border-black button-position checkbox"><div class="square-into black"></div></a>
                 {{else}}
-                <a class="checkbox"><div class="square-into black"></div></a>
+                <a class="square button-position checkbox"><div class="square-into"></div></a>
                 {{/if}}
+                
                 <!--Not functional yet-->
             </div>
 
@@ -81,9 +82,9 @@
             <div class="item-quality">
                 <!--Not functional-->
                 {{#if checked}}
-                    <a class="checkbox"><div class="square-into black"></div></a>
+                    <a class="square border-black button-position checkbox"><div class="square-into black"></div></a>
                 {{else}}
-                    <a class="checkbox"><div class="square-into black"></div></a>
+                    <a class="square button-position checkbox"><div class="square-into"></div></a>
                 {{/if}}
                 {{quality.name}}
                 <div class="quality-inputs">

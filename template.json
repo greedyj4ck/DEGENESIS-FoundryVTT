@@ -370,13 +370,16 @@
     },
     "group" : {
       "group" : ""
+    },
+    "equipped": {
+      "equipped" : false
     }
   },
   "ammunition" : {
     "templates": ["description", "quantity", "damage", "tech", "value"]
   },
   "weapon" : {
-    "templates" : ["description", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "handling": 0,
     "distance": {
       "short" : 0,

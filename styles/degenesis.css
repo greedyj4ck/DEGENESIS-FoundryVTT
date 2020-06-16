@@ -202,17 +202,17 @@ a.diamond:hover .square {
     height: 2px;
 }
 
-.app.window-app.degenesis.sheet input[type="text"] {
+.app.window-app.degenesis.sheet input {
     background: none;
     border: none;
     padding-top: 5px;
 }
 
-.app.window-app.degenesis.sheet input[type="text"]:focus {
+.app.window-app.degenesis.sheet input:focus {
     box-shadow: none;
 }
 
-.app.window-app.degenesis.sheet input[type="text"]:hover {
+.app.window-app.degenesis.sheet input:hover {
     color: var(--degenesis-red);
     -webkit-transition: color 100ms linear;
     -ms-transition: color 100ms linear;
@@ -223,15 +223,15 @@ a.diamond:hover .square {
     display:flex;
     align-items: center
 }
-.app.window-app.degenesis.sheet .inline-input > input[type="text"] {
+.app.window-app.degenesis.sheet .inline-input > input {
     width:30px;
 }
 
-.app.window-app.degenesis.sheet .inline-input input[type="text"]:first-of-type {
+.app.window-app.degenesis.sheet .inline-input input:first-of-type {
     border-right: 1px solid black;
     border-radius: 0px;
 }
-.app.window-app.degenesis.sheet .inline-input input[type="text"]:last-of-type {
+.app.window-app.degenesis.sheet .inline-input input:last-of-type {
     border-left: 1px solid black;
     border-radius: 0px;
 
@@ -1390,6 +1390,7 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .square.button-position{
     margin-right: 10px;
     margin-top: 2px;
+    flex: 0;
 }
 
 .app.window-app.degenesis.sheet .title.arsenal-title{
@@ -1592,12 +1593,25 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet.item .header-inputs {
     display:flex;
+    justify-content: space-between;
+}
+.app.window-app.degenesis.sheet.item .header-input {
+    display:flex;
+    flex-direction:column
 }
 .app.window-app.degenesis.sheet.item .quality-inputs {
     display:flex;
 }
 .app.window-app.degenesis.sheet.item .item-quality {
     display:flex;
+}
+.app.window-app.degenesis.sheet.item .header-inputs input {
+    width:100%;
+    text-align: center;
+}
+.app.window-app.degenesis.sheet.item .header-input label {
+    display: flex;
+    justify-content: center;
 }
 
 
