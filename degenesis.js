@@ -60,3 +60,19 @@ Hooks.on("setup", () => {
           DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
   }
 })
+
+Hooks.once('diceSoNiceReady', (dice3d) => {
+  dice3d.addSystem({id:"degenesis",name:"DEGENESIS: Rebirth"},true);
+  dice3d.addDicePreset({
+    type:"d6",
+    labels:[
+      'systems/degenesis/icons/dice-faces/d1.png', 
+      'systems/degenesis/icons/dice-faces/d2.png', 
+      'systems/degenesis/icons/dice-faces/d3.png', 
+      'systems/degenesis/icons/dice-faces/d4.png', 
+      'systems/degenesis/icons/dice-faces/d5.png', 
+      'systems/degenesis/icons/dice-faces/d6.png'
+    ],
+    system:"degenesis"
+  });
+});
