@@ -78,9 +78,9 @@
          <div class="weapon-characteristics">
             <div class="legend-name equipped">
                 {{#if weapon.data.equipped}}
-                  <a class="square border-black button-position checkbox" data-target="weapon.data.equipped"><div class="square-into black"></div></a>
+                  <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
                {{else}}
-                  <a class="square button-position checkbox" data-target="weapon.data.equipped"><div class="square-into"></div></a>
+                  <a class="square button-position checkbox" data-target="item" data-item-target="data.equipped" ><div class="square-into"></div></a>
                {{/if}}
             </div>
             <div class="legend-name qty">

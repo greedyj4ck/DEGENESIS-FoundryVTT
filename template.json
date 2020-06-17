@@ -387,7 +387,10 @@
       "far" : 0,
       "melee" : 0
     },
-    "mag" : "",
+    "mag" : {
+      "belt": false,
+      "size" : 0
+    },
     "group" : ""
   },
   "armor" : {
@@ -399,7 +402,8 @@
   },
   "mod" : {
     "templates" : ["description", "effect"],
-    "augmentation" : ""
+    "augmentation" : "",
+    "slotCost" : 0
   },
   "potential" : {
     "templates" : ["rules", "effect", "level", "origin"],

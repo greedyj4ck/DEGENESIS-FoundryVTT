@@ -151,12 +151,15 @@ export class DegenesisActor extends Actor {
         let potentials = [];
         let modifiers = [];
         let complications = [];
+        let equippedWeapons = [];
 
         for (let i of actorData.items)
         {
             if (i.type == "weapon")
             {
                 inventory.weapons.items.push(i);
+                if(i.data.equipped)
+                    equippedWeapons.push(i);
             }
             if (i.type == "armor")
             {
@@ -181,6 +184,7 @@ export class DegenesisActor extends Actor {
         }
         return {
             inventory,
+            equippedWeapons,
             potentials,
             modifiers,
             complications
