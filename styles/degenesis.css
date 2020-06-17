@@ -1609,11 +1609,11 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet.item input:hover{
     /* border: 1px dotted var(--degenesis-red) */
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(230, 230, 230);
 }
 
 .app.window-app.degenesis.sheet.item input:focus{
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(220, 220, 220);
 }
 
 .app.window-app.degenesis.sheet .profile-img.item-img {
