@@ -119,7 +119,6 @@
     width: 80%;
     align-self: center;
     border: 1px solid rgb(165 165 165);
-    border-radius: 1px;
 }
 
 .square.little{
@@ -148,6 +147,7 @@
     border: none;
     height: 70%;
     width: 70%;
+    border-radius: 1px;
 }
 
 .square.red {
@@ -159,18 +159,18 @@
     border-color: black;
 }
 
-a.square.button-position.checkbox {
+a.square.checkbox {
     transition: border-color 0.1s linear, background-color 0.1s linear;
 }
-a.square.button-position.checkbox:hover{
+a.square.checkbox:hover{
     border: 1px solid var(--degenesis-red);
 }
 
-a.square.button-position.checkbox:hover .square-into.black{
+a.square.checkbox:hover .square-into.black{
     background-color: var(--degenesis-red);
     border: 1px solid var(--degenesis-red);
 }
-a.square.button-position.checkbox:hover .square-into:not(.black){
+a.square.checkbox:hover .square-into:not(.black){
     border: 1px solid var(--degenesis-red);
 }
 
