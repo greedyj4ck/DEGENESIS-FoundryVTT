@@ -115,8 +115,8 @@
 }
 
 .square-into{
-    height: 7px;
-    width: 7px;
+    height: 80%;
+    width: 80%;
     align-self: center;
     border: 1px solid rgb(165 165 165);
     border-radius: 1px;
@@ -140,9 +140,7 @@
 
 .square-into.black {
     background-color:black;
-    border: none;
-    height: 5px;
-    width: 5px;
+    border: 1px solid black;
 }
 
 .square-into.mid-size {
@@ -157,32 +155,44 @@
     border: 1px solid transparent;
 }
 
-.square.blackred {
-    background: radial-gradient(black 45%, var(--degenesis-red) 45%);
-    /* background: linear-gradient(to left, var(--degenesis-red) 50%, black 50%) */
-}
-
 .square.border-black {
     border-color: black;
 }
 
 a.square.button-position.checkbox {
-    transition: border-color 0.1s linear;
+    transition: border-color 0.1s linear, background-color 0.1s linear;
 }
 a.square.button-position.checkbox:hover{
     border: 1px solid var(--degenesis-red);
 }
 
+a.square.button-position.checkbox:hover .square-into.black{
+    background-color: var(--degenesis-red);
+    border: 1px solid var(--degenesis-red);
+}
+a.square.button-position.checkbox:hover .square-into:not(.black){
+    border: 1px solid var(--degenesis-red);
+}
 
-a.diamond .square {
-    transition: border-color 0.1s linear;
+
+a.diamond .square,
+.square-into {
+    transition: border-color 0.1s linear, background-color 0.1s linear;
 }
 a.diamond:hover .square {
     border: 1px solid var(--degenesis-red);
 }
 
+a.diamond:hover .square.perma {
+    background-color: black;
+}
+
+a.diamond:hover .square.perma .square-into.black {
+    background-color: var(--degenesis-red);
+}
+
 a.diamond:hover .square.red {
-    border: 1px solid rgb(100 100 100);
+    border: 1px solid rgb(70 70 70);
 }
 
 /* * Degenesis Sheet */
