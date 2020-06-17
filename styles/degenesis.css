@@ -134,7 +134,7 @@
 
 .square.black {
     background-color:black;
-    border: none;
+    border: 1px solid black;
 }
 
 .square-into.black {
@@ -152,7 +152,7 @@
 
 .square.red {
     background-color: var(--degenesis-red);
-    border: 1px solid transparent;
+    border: 1px solid var(--degenesis-red);
 }
 
 .square.border-black {
@@ -191,8 +191,13 @@ a.diamond:hover .square.perma .square-into.black {
     background-color: var(--degenesis-red);
 }
 
+
 a.diamond:hover .square.red {
     border: 1px solid rgb(70 70 70);
+}
+
+a.diamond:hover .square.red.perma {
+    border: 1px solid black;
 }
 
 /* * Degenesis Sheet */
