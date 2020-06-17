@@ -224,7 +224,8 @@
         },
         "spore": {
           "max": 0,
-          "value": 0
+          "value": 0,
+          "permanent" : 0
         },
         "fleshwounds": {
           "max": 0,
