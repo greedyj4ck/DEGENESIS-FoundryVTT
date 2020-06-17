@@ -167,9 +167,45 @@ export class DegenesisActorSheet extends ActorSheet {
 
       this.actor.update(actorData);
     })
+
+      html.find(".perma").mousedown(ev => {
+        if (event.button != 2)
+          return
+        let actorData = duplicate(this.actor)
+        let index = Number($(ev.currentTarget).attr("data-index"));
+        let target = "data.condition.spore.permanent"
+        
+        let value = getProperty(actorData, target)
+        if (value == index + 1)                 // If the last one was clicked, decrease by 1
+          setProperty(actorData, target, index)
+        else                                    // Otherwise, value = index clicked
+          setProperty(actorData, target, index + 1)
+  
+        // If attribute selected
+        let attributeElement = $(ev.currentTarget).parents(".attribute");
+        if (attributeElement.length)
+        {
+          // Constrain attributes to be greater than 0
+          if (getProperty(actorData, target) <= 0)
+            setProperty(actorData, target, 1)
+        }
+  
+        this.actor.update(actorData);
+      })
+
     html.find(".checkbox").click(ev => {
       let actorData = duplicate(this.actor)
       let target = $(ev.currentTarget).attr("data-target")
+
+      if (target == "item")
+      {
+        target = $(ev.currentTarget).attr("data-item-target")
+        let itemData = duplicate(this.actor.items.find(i => i._id == $(ev.currentTarget).parents(".item").attr("data-item-id")))
+        setProperty(itemData, target, !getProperty(itemData, target));
+        this.actor.updateEmbeddedEntity("OwnedItem", itemData);
+        return;
+      }
+
       if (target)
         setProperty(actorData, target, !getProperty(actorData, target))
       this.actor.update(actorData);

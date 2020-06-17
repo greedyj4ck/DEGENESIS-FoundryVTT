@@ -18,6 +18,15 @@ export class DEG_Utility {
                 data.diamonds[i].locked = i + 1 > getProperty(data, "max")
             }
         }   
+
+        if (data.permanent)
+        {
+            for (let i = 0; i < data.permanent; i++)
+            {
+                data.diamonds[i].permanent = true
+            }
+        }
+
         return data
     }
 

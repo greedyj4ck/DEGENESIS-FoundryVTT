@@ -7,6 +7,19 @@ import { DEG_Utility } from "../utility.js"
 export class DegenesisItem extends Item {
 
 
+    prepareData() {
+        super.prepareData();
+        const data = this.data;
+
+        if (this.type == "weapon")
+        {
+            let slotsUsed = 0;
+            if (hasProperty(this.data, "flags.degenesis.mods"))
+                this.data.flags.degenesis.mods.forEach(m => {slotsUsed += m.data.slotCost})
+
+            data.data.slots.used = slotsUsed;
+        }
+    }
 
     dropdownData()
     {

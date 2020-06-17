@@ -224,7 +224,8 @@
         },
         "spore": {
           "max": 0,
-          "value": 0
+          "value": 0,
+          "permanent" : 0
         },
         "fleshwounds": {
           "max": 0,
@@ -386,7 +387,10 @@
       "far" : 0,
       "melee" : 0
     },
-    "mag" : "",
+    "mag" : {
+      "belt": false,
+      "size" : 0
+    },
     "group" : ""
   },
   "armor" : {
@@ -398,7 +402,8 @@
   },
   "mod" : {
     "templates" : ["description", "effect"],
-    "augmentation" : ""
+    "augmentation" : "",
+    "slotCost" : 0
   },
   "potential" : {
     "templates" : ["rules", "effect", "level", "origin"],
