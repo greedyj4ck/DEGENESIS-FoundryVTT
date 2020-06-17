@@ -1436,7 +1436,7 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .square.button-position{
     margin-right: 10px;
     margin-top: 2px;
-    flex: 0, 0, 9px;
+    flex: 0 0 9px;
 }
 
 .app.window-app.degenesis.sheet .title.arsenal-title{
@@ -1643,7 +1643,9 @@ margin-left: 12px;
 }
 .app.window-app.degenesis.sheet.item .header-input {
     display:flex;
-    flex-direction:column
+    flex-direction:column;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 .app.window-app.degenesis.sheet.item .quality-inputs {
     display:flex;
