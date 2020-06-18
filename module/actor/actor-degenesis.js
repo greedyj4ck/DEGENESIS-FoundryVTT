@@ -1,5 +1,6 @@
 import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
+import {DegenesisItem} from "../item/item-degenesis.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -166,7 +167,7 @@ export class DegenesisActor extends Actor {
             {
                 inventory.weapons.items.push(i);
                 if(i.data.equipped)
-                    equippedWeapons.push(i);
+                    equippedWeapons.push(this.prepareWeapon(i));
                 encumbrance.current += i.data.encumbrance                
             }
             if (i.type == "armor")
@@ -222,6 +223,7 @@ export class DegenesisActor extends Actor {
     }
 
     prepareWeapon(weapon) {
-
+        weapon.isMelee = DegenesisItem.isMelee(weapon);
+        return weapon
     }
 }
