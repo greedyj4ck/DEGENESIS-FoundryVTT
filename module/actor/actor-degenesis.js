@@ -14,18 +14,17 @@ export class DegenesisActor extends Actor {
             super.prepareData();
             const data = this.data;
     
-            data.data.condition.ego.max = (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
-            data.data.condition.spore.max = (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
-            data.data.condition.fleshwounds.max = (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
-            data.data.condition.trauma.max = (data.data.attributes.body.value + data.data.attributes.psyche.value);
+            data.data.condition.ego.max =           (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
+            data.data.condition.spore.max =         (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
+            data.data.condition.fleshwounds.max =   (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
+            data.data.condition.trauma.max =        (data.data.attributes.body.value + data.data.attributes.psyche.value);
 
-            data.data.general.movement = data.data.attributes.body.value + data.data.skills.athletics.value;      
+            data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value;      
             data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
-            // Encumbrance Todo
-            data.data.general.actionModifier = data.data.state.state.motion ? -2 : 0 // todo: more
-            data.data.fighting.initiative = data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
-            data.data.fighting.dodge = data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
-            data.data.fighting.mentalDefense = data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
+            data.data.general.actionModifier =  data.data.state.state.motion ? -2 : 0 // todo: more
+            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
+            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
+            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
             data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
                                                 // Temporarily state.state, not sure why it's nested
 
@@ -41,19 +40,26 @@ export class DegenesisActor extends Actor {
         let preparedData = {};
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
         preparedData.backgrounds = this.prepareBackgrounds();
-        preparedData.infamy = DEG_Utility.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
-        preparedData.ego = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.ego), 20)
-        preparedData.spore = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 20)
-        preparedData.fleshwounds = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 20)
-        preparedData.trauma = DEG_Utility.addDiamonds(duplicate(this.data.data.condition.trauma), 12)
-        preparedData.cover = DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.cover), 3)
-        preparedData.spentEgo = DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.spentEgo), 3)
-        preparedData.culture = DEGENESIS.cultures[this.data.data.details.culture.value]
-        preparedData.cult = DEGENESIS.cults[this.data.data.details.cult.value]
-        preparedData.concept = DEGENESIS.concepts[this.data.data.details.concept.value]
-        preparedData.cultureDescription = DEGENESIS.cultureDescription[this.data.data.details.culture.value]
-        preparedData.cultDescription = DEGENESIS.cultDescription[this.data.data.details.cult.value]
-        preparedData.conceptDescription = DEGENESIS.conceptDescription[this.data.data.details.concept.value]
+
+        preparedData.infamy =       DEG_Utility.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
+        preparedData.ego =          DEG_Utility.addDiamonds(duplicate(this.data.data.condition.ego), 20)
+        preparedData.spore =        DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 20)
+        preparedData.fleshwounds =  DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 20)
+        preparedData.trauma =       DEG_Utility.addDiamonds(duplicate(this.data.data.condition.trauma), 12)
+        preparedData.cover =        DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.cover), 3)
+        preparedData.spentEgo =     DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.spentEgo), 3)
+
+        preparedData.culture =  DEGENESIS.cultures[this.data.data.details.culture.value]
+        preparedData.cult =     DEGENESIS.cults[this.data.data.details.cult.value]
+        preparedData.concept =  DEGENESIS.concepts[this.data.data.details.concept.value]
+
+        preparedData.cultureDescription =   DEGENESIS.cultureDescription[this.data.data.details.culture.value]
+        preparedData.cultDescription =      DEGENESIS.cultDescription[this.data.data.details.cult.value]
+        preparedData.conceptDescription =   DEGENESIS.conceptDescription[this.data.data.details.concept.value]
+
+        preparedData.conceptIcon =  this.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
+        preparedData.cultIcon =     this.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
+        preparedData.cultureIcon =  this.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
 
         mergeObject(preparedData, this.prepareItems())
         return preparedData;
@@ -152,6 +158,7 @@ export class DegenesisActor extends Actor {
         let modifiers = [];
         let complications = [];
         let equippedWeapons = [];
+        let encumbrance = actorData.data.general.encumbrance;
 
         for (let i of actorData.items)
         {
@@ -160,6 +167,7 @@ export class DegenesisActor extends Actor {
                 inventory.weapons.items.push(i);
                 if(i.data.equipped)
                     equippedWeapons.push(i);
+                encumbrance.current += i.data.encumbrance                
             }
             if (i.type == "armor")
             {
@@ -182,12 +190,17 @@ export class DegenesisActor extends Actor {
                 complications.push(i);
             }
         }
+
+
+        encumbrance.pct = encumbrance.current/encumbrance.max * 100
+
         return {
             inventory,
             equippedWeapons,
             potentials,
             modifiers,
-            complications
+            complications,
+            encumbrance
         }
     }
 
@@ -206,5 +219,9 @@ export class DegenesisActor extends Actor {
             modifier.displayNumber = modifier.data.number;
         }
         return modifier
+    }
+
+    prepareWeapon(weapon) {
+
     }
 }

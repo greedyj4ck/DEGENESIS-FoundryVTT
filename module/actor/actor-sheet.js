@@ -25,20 +25,16 @@ export class DegenesisActorSheet extends ActorSheet {
   getData() {
     const data = super.getData();
     this.loadConfigData(data);
-    data.conceptIcon = this.actor.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
-    data.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
-    data.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
+    
 
-    data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
-    data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
-    data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
-    data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
+    // data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
+    // data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
+    // data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
+    // data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
 
     
     // Used for Modifier item list
-    data.modifyTypes = DEGENESIS.modifyTypes;
     data.modifyActions = DEG_Utility.getModificationActions()
-    data.techValues = DEGENESIS.techValues;
 
 
     data.isGM = game.user.isGM;
@@ -50,9 +46,11 @@ export class DegenesisActorSheet extends ActorSheet {
 
 
   loadConfigData(sheetData) {
-    sheetData.concepts = DEGENESIS.concepts
-    sheetData.cults = DEGENESIS.cults
-    sheetData.cultures = DEGENESIS.cultures
+    sheetData.concepts =    DEGENESIS.concepts
+    sheetData.cults =       DEGENESIS.cults
+    sheetData.cultures =    DEGENESIS.cultures
+    sheetData.modifyTypes = DEGENESIS.modifyTypes;
+    sheetData.techValues =  DEGENESIS.techValues;
   }
 
   

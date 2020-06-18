@@ -28,39 +28,23 @@ export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
+    this.loadConfigData(data)
+    mergeObject(data, this.item.prepare())
+    return data;
+  }
 
-
+  loadConfigData(data) 
+  {
     data.techValues = DEGENESIS.techValues
     if (data.item.type == "modifier")
     {
-      if (data.data.action == "custom")
-        data.customAction = true;
       data.modifyActions = DEG_Utility.getModificationActions();
       data.modifyTypes = DEGENESIS.modifyTypes;
+      if (data.data.action == "custom")
+        data.customAction = true;
     }
     if (data.item.type == "weapon")
-    {
-      data["weaponGroups"] = DEGENESIS.weaponGroups;
-      data["qualities"] = {};
-      data.isMelee = DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" ? false : true 
-      for (let q in DEGENESIS.weaponQualities)
-      {
-        data["qualities"][q] = {
-          "checked" : !!data.data.qualities.find(quality => quality.name == q),
-          "name" : DEGENESIS.weaponQualities[q],
-          "description" : DEGENESIS.weaponQualityDescription[q],
-          "values" : duplicate(DEGENESIS.weaponQualitiesValues[q])
-        }
-        data.qualities[q].values = data.qualities[q].values.map(val => {
-          let existingQuality = data.data.qualities.find(quality => q == quality.name)
-          if (existingQuality)
-            return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
-          else 
-            return {value : "", placeholder : DEGENESIS.qualityValues[val], key: val}
-        })
-      }
-    }
-    return data;
+      data.weaponGroups = DEGENESIS.weaponGroups;
   }
 
 
@@ -93,9 +77,7 @@ export class DegenesisItemSheet extends ItemSheet {
         let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
 
         for(let i = 0 ; i < valueInputs.length; i++)
-        {
           quality.values[i] = {name : quality.values[i], value : valueInputs[i].value}
-        }
 
         let qualities = duplicate(this.item.data.data.qualities);
         if (qualities.find(q => q.name == quality.name))

@@ -22,6 +22,42 @@ export class DegenesisItem extends Item {
         }
     }
 
+    prepare() {
+        let preparedData = {};
+        if (this.data.type == "modifier")
+        {
+          if (this.data.data.action == "custom")
+            preparedData.customAction = true;
+        }
+        if (this.data.type == "weapon")
+        {
+          preparedData.qualities = {};
+          preparedData.isMelee = this.isMelee();
+
+          // For each weapon quality in configuration (we want to display all of them to show checkboxes)
+          for (let q in DEGENESIS.weaponQualities)
+          {
+            preparedData.qualities[q] = {
+              "checked" : !!this.data.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
+              "name" : DEGENESIS.weaponQualities[q],                                     // Display name
+              "description" : DEGENESIS.weaponQualityDescription[q],                     // Description (to be used for tooltip/dropdown)
+              "values" : duplicate(DEGENESIS.weaponQualitiesValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
+            }
+            // Map each quality to a function to determine how the values are filled.
+            // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
+            preparedData.qualities[q].values = preparedData.qualities[q].values.map(val => {
+              // If the weapon has the quality
+              let existingQuality = this.data.data.qualities.find(quality => q == quality.name)
+              if (existingQuality) // Set the value to an object with the specified value, placeholder, and config key object
+                return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
+              else                 // Set the value to an object with with no value, but with the placeholder and the config key
+                return {value : "", placeholder : DEGENESIS.qualityValues[val], key: val}
+            })
+          }
+        }
+        return preparedData
+    }
+
     dropdownData()
     {
         return this[`_${this.type}DropdownData`]()
@@ -43,7 +79,6 @@ export class DegenesisItem extends Item {
         if (this.data.data.action == "custom")
             text = `<b>NAME</b>: ${this.data.name}<br>
                 <b>RULES</b>: ${this.displayNumber}${this.data.data.type} `+this.data.data.description;
-        // else return DEG_Utility.getModificationActions()[this.data.data.action] + " Tests"
             else text = `<b>NAME</b>: ${this.data.name}<br>
                 <b>RULES</b>: ${this.displayNumber}${this.data.data.type} on `+ DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
 
