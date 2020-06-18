@@ -46,6 +46,7 @@
                 <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="String"/>
             </div>
 
+            {{#unless isMelee}}
             <div class = "form-group">
                 <label>{{localize "DGNS.Magazine"}}</label>
                 {{#if data.mag.belt}}
@@ -57,9 +58,8 @@
                 Belt?
                 <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
                 {{/if}}
-                
-                <!--Not functional yet-->
             </div>
+            {{/unless}}
             <div class = "form-group">
                 <label>{{localize "DGNS.Slots"}}</label>
                 <input type="text" name="data.slots.total" value="{{data.slots.total}}" data-dtype="Number"/>
@@ -72,16 +72,15 @@
         <div class="tab" data-tab="qualities">
             {{#each qualities as |quality q|}}
             <div class="item-quality">
-                <!--Not functional-->
                 {{#if quality.checked}}
                     <a class="square border-black button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into black"></div></a>
                 {{else}}
                     <a class="square button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into"></div></a>
                 {{/if}}
                 {{quality.name}}
-                <div class="quality-inputs">
+                <div class="quality-inputs" data-quality="{{q}}">
                 {{#each quality.values as |value i| }}
-                    <input placeholder="{{value}}" type="text">
+                    <input class="quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}" value="{{value.value}}" type="text">
                 {{/each}}
                 </div>
             </div>

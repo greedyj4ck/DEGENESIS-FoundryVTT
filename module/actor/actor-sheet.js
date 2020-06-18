@@ -58,6 +58,7 @@ export class DegenesisActorSheet extends ActorSheet {
   
   _dropdown(event, dropdownData)
   {
+    let dropdownHTML = ""
     event.preventDefault()
     let li = $(event.currentTarget).parents(".item")
     // Toggle expansion for an item
@@ -69,13 +70,25 @@ export class DegenesisActorSheet extends ActorSheet {
     else
     {
       // Add a div with the item summary belowe the item
-      let div = "";
-      if(dropdownData=="") {
-        div = $(`<div class="item-summary">No description yet</div>`);
+      let div
+      if(!dropdownData) {
+        return
       } else {
-        div = $(`<div class="item-summary">${dropdownData}</div>`);
+        dropdownHTML = `<div class="item-summary">${dropdownData.text}`;
       }
-  
+
+      if (dropdownData.tags)
+      {
+        let tags = `<div class='tags'>`
+        dropdownData.tags.forEach(tag => {
+          tags = tags.concat(`<span class='tag'>${tag}</span>`)
+        })
+        dropdownHTML = dropdownHTML.concat(tags)
+      }
+      dropdownHTML += "</div>"
+
+      div = $(dropdownHTML)
+
       li.append(div.hide());
       div.slideDown(200);
     }

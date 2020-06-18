@@ -1,4 +1,5 @@
 import { DEG_Utility } from "../utility.js"
+import { DEGENESIS } from "../config.js"
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -14,7 +15,7 @@ export class DegenesisItem extends Item {
         if (this.type == "weapon")
         {
             let slotsUsed = 0;
-            if (hasProperty(this.data, "flags.degenesis.mods"))
+            if (this.getFlag("degenesis", "mods"))
                 this.data.flags.degenesis.mods.forEach(m => {slotsUsed += m.data.slotCost})
 
             data.data.slots.used = slotsUsed;
@@ -28,8 +29,7 @@ export class DegenesisItem extends Item {
 
     _potentialDropdownData()
     {
-        return `<b>EFFECT</b>: ${this.data.data.effect}<br><br>
-                <b>RULES</b>: ${this.data.data.rules}`
+        return {text :`<b>EFFECT</b>: ${this.data.data.effect}<br><br><b>RULES</b>: ${this.data.data.rules}`}
     }
     _modifierDropdownData()
     {
@@ -39,17 +39,50 @@ export class DegenesisItem extends Item {
         else {
             this.displayNumber = this.data.data.number;
         }
-
+        let text;
         if (this.data.data.action == "custom")
-            return `<b>NAME</b>: ${this.data.name}<br>
+            text = `<b>NAME</b>: ${this.data.name}<br>
                 <b>RULES</b>: ${this.displayNumber}${this.data.data.type} `+this.data.data.description;
         // else return DEG_Utility.getModificationActions()[this.data.data.action] + " Tests"
-            else return `<b>NAME</b>: ${this.data.name}<br>
+            else text = `<b>NAME</b>: ${this.data.name}<br>
                 <b>RULES</b>: ${this.displayNumber}${this.data.data.type} on `+ DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
+
+        return {text}
+
     }
 
     _complicationDropdownData()
     {
-        return this.data.data.description;
+        return {text : this.data.data.description}
+    }
+
+    _weaponDropdownData()
+    {
+        let tags = [];
+        let data = duplicate(this.data.data)
+        tags.push(DEGENESIS.weaponGroups[data.group])
+        tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)
+        tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)
+        tags.push(data.damage)
+        tags.push(`DIST: ${this.isMelee() ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
+        tags.push(data.mag.belt ? `MAG: ${data.mag.size}` : "MAG: BELT")
+        tags.push(data.value)
+        tags.push(data.cult)
+        data.qualities.forEach(q => {
+            let qualityString = DEGENESIS.weaponQualities[q.name] + " "
+            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
+            tags.push(qualityString)
+        })
+        tags.filter(t => !!t)
+        return {
+            text : data.description,
+            tags : tags        
+        }
+    }
+
+    isMelee() 
+    {
+        if (this.data.type = "weapon")
+            return DEGENESIS.weaponGroupSkill[this.data.data.group] == "projectiles" ? false : true 
     }
 }
