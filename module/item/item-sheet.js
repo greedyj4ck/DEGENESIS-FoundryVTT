@@ -14,7 +14,8 @@ export class DegenesisItemSheet extends ItemSheet {
 			width: 520,
 			height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details"}],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}],
+      scrollY: [".sheet-body"]
 		});
   }
 
@@ -27,34 +28,23 @@ export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
+    this.loadConfigData(data)
+    mergeObject(data, this.item.prepare())
+    return data;
+  }
 
-
+  loadConfigData(data) 
+  {
     data.techValues = DEGENESIS.techValues
     if (data.item.type == "modifier")
     {
-      if (data.data.action == "custom")
-        data.customAction = true;
       data.modifyActions = DEG_Utility.getModificationActions();
       data.modifyTypes = DEGENESIS.modifyTypes;
+      if (data.data.action == "custom")
+        data.customAction = true;
     }
     if (data.item.type == "weapon")
-    {
-      data["weaponGroups"] = DEGENESIS.weaponGroups;
-      data["qualities"] = {};
-      data.isMelee = DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" ? false : true 
-      for (let q in DEGENESIS.weaponQualities)
-      {
-        data["qualities"][q] = {
-          "checked" : data.data.qualities.includes(q),
-          "name" : DEGENESIS.weaponQualities[q],
-          "description" : DEGENESIS.weaponQualityDescription[q],
-          "values" : DEGENESIS.weaponQualitiesValues[q]
-        }
-      }
-    }
-
-
-    return data;
+      data.weaponGroups = DEGENESIS.weaponGroups;
   }
 
 
@@ -80,10 +70,18 @@ export class DegenesisItemSheet extends ItemSheet {
 
       if (target == "quality")
       {
-        let quality = $(ev.currentTarget).attr("data-quality");
+        let quality = {}
+        quality.name = $(ev.currentTarget).attr("data-quality");
+        quality.values = duplicate(DEGENESIS.weaponQualitiesValues[quality.name]);
+        
+        let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
+
+        for(let i = 0 ; i < valueInputs.length; i++)
+          quality.values[i] = {name : quality.values[i], value : valueInputs[i].value}
+
         let qualities = duplicate(this.item.data.data.qualities);
-        if (qualities.includes(quality))
-          qualities.splice(qualities.indexOf(quality), 1)
+        if (qualities.find(q => q.name == quality.name))
+          qualities.splice(qualities.findIndex(q => q.name == quality.name), 1)
         else
           qualities.push(quality)
 
@@ -94,6 +92,17 @@ export class DegenesisItemSheet extends ItemSheet {
       if (target)
         setProperty(itemData, target, !getProperty(itemData, target))
       this.item.update(itemData);
+    })
+
+    html.find(".quality-value").change(ev => {
+      let target = $(ev.currentTarget).parents(".quality-inputs").attr("data-quality");
+      let valueKey = $(ev.currentTarget).attr("data-value-key");
+      let qualities = duplicate(this.item.data.data.qualities)
+      let existingQuality = qualities.find(q => q.name == target)
+      if (!existingQuality)
+        return
+      existingQuality.values.find(v => v.name == valueKey).value = ev.target.value
+      this.item.update({"data.qualities" : qualities});
     })
 
 

@@ -25,20 +25,16 @@ export class DegenesisActorSheet extends ActorSheet {
   getData() {
     const data = super.getData();
     this.loadConfigData(data);
-    data.conceptIcon = this.actor.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
-    data.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
-    data.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
+    
 
-    data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
-    data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
-    data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
-    data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
+    // data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
+    // data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
+    // data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
+    // data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
 
     
     // Used for Modifier item list
-    data.modifyTypes = DEGENESIS.modifyTypes;
     data.modifyActions = DEG_Utility.getModificationActions()
-    data.techValues = DEGENESIS.techValues;
 
 
     data.isGM = game.user.isGM;
@@ -50,14 +46,17 @@ export class DegenesisActorSheet extends ActorSheet {
 
 
   loadConfigData(sheetData) {
-    sheetData.concepts = DEGENESIS.concepts
-    sheetData.cults = DEGENESIS.cults
-    sheetData.cultures = DEGENESIS.cultures
+    sheetData.concepts =    DEGENESIS.concepts
+    sheetData.cults =       DEGENESIS.cults
+    sheetData.cultures =    DEGENESIS.cultures
+    sheetData.modifyTypes = DEGENESIS.modifyTypes;
+    sheetData.techValues =  DEGENESIS.techValues;
   }
 
   
   _dropdown(event, dropdownData)
   {
+    let dropdownHTML = ""
     event.preventDefault()
     let li = $(event.currentTarget).parents(".item")
     // Toggle expansion for an item
@@ -69,13 +68,25 @@ export class DegenesisActorSheet extends ActorSheet {
     else
     {
       // Add a div with the item summary belowe the item
-      let div = "";
-      if(dropdownData=="") {
-        div = $(`<div class="item-summary">No description yet</div>`);
+      let div
+      if(!dropdownData) {
+        return
       } else {
-        div = $(`<div class="item-summary">${dropdownData}</div>`);
+        dropdownHTML = `<div class="item-summary">${dropdownData.text}`;
       }
-  
+
+      if (dropdownData.tags)
+      {
+        let tags = `<div class='tags'>`
+        dropdownData.tags.forEach(tag => {
+          tags = tags.concat(`<span class='tag'>${tag}</span>`)
+        })
+        dropdownHTML = dropdownHTML.concat(tags)
+      }
+      dropdownHTML += "</div>"
+
+      div = $(dropdownHTML)
+
       li.append(div.hide());
       div.slideDown(200);
     }
