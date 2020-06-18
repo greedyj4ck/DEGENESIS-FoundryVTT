@@ -994,7 +994,6 @@ a.diamond:hover .square.red.perma {
     background-color: var(--light-grey);
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top: 7px;
     width: 100%;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
@@ -1011,7 +1010,6 @@ a.diamond:hover .square.red.perma {
     border-bottom: 1px solid var(--dark-grey);
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 6px;
     margin-top: 8px;
 }
 
@@ -1030,19 +1028,18 @@ padding-right: 4px;
     justify-content: center;
 }
 
-.app.window-app.degenesis.sheet .potentials-group .background-name {
-    margin-left: 5px;
-}
-
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
     flex: 2;
     display: flex;
     align-self: center;
+    margin-left: 5px;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
     display: flex;
     flex: 1;
+    padding-bottom: 6px;
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
     flex: 2;
