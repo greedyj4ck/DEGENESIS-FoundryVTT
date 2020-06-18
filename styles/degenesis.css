@@ -1190,8 +1190,8 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .header-details{
     border-bottom: 1px solid black
 }
-.app.window-app.degenesis.sheet .header-details > *,
-.app.window-app.degenesis.sheet .item > *{
+.app.window-app.degenesis.sheet .header-details > *
+/*.app.window-app.degenesis.sheet .item > * */{
     margin: 0px 5px 0px 5px
 }
 
@@ -1558,7 +1558,6 @@ margin-left: 12px;
     border-bottom: 1px solid var(--dark-grey);
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 6px;
     margin-top: 8px;
 }
 
@@ -1571,6 +1570,7 @@ margin-left: 12px;
     display: flex;
     align-self: center;
     margin-right: 0;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
@@ -1579,12 +1579,34 @@ margin-left: 12px;
     align-self: center;
     justify-content: flex-end;
     margin: 0;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-controls {
     display: flex;
     align-self: center;
     justify-content: center;
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary{
+    display: inline-block;
+    background-color: var(--light-grey);
+    padding: 5px 4px 5px 4px;
+    width: 100%;
+    border-top: 1px solid var( --dark-grey);
+    margin-left: 0px;
+    margin-right: 0px;
+    
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
+    border: 1px solid var(--dark-grey);
+    background: white;
+    margin-left: 5px;
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary p{
+    margin-top: 0;
 }
 
 /************************************ ITEM SHEET ********************************/
