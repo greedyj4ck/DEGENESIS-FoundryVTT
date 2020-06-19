@@ -77,13 +77,14 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data)
         tags.push(DEGENESIS.weaponGroups[data.group])
-        tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)
-        tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)
-        tags.push(data.damage)
-        tags.push(`DIST: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
-        tags.push(data.mag.belt ? `MAG: ${data.mag.size}` : "MAG: BELT")
-        tags.push(data.value)
-        tags.push(data.cult)
+        /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
+        /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
+        tags.push(`Handling: ${data.handling}D`)
+        tags.push(`Damage: ${data.damage}`)
+        tags.push(`Distance: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
+        tags.push(data.mag.belt ? `Magazine: ${data.mag.size}` : "MAG: BELT")
+        tags.push(`Value: ${data.value}`)
+        tags.push(`Cult: ${data.cult}`)
         data.qualities.forEach(q => {
             let qualityString = DEGENESIS.weaponQualities[q.name] + " "
             qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
