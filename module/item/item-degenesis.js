@@ -31,7 +31,12 @@ export class DegenesisItem extends Item {
         }
         if (this.data.type == "weapon")
         {
-          preparedData.qualities = {};
+          preparedData.qualities = [];
+          this.data.data.qualities.forEach(q => {
+            let qualityString = DEGENESIS.weaponQualities[q.name] + " "
+            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
+            preparedData.qualities.push(qualityString)
+        })
           preparedData.isMelee = DegenesisItem.isMelee(this.data);
 
         

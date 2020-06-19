@@ -1,6 +1,8 @@
 import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
-import {DegenesisItem} from "../item/item-degenesis.js";
+import { DegenesisDice } from "../dice.js";
+import { DegenesisItem } from "../item/item-degenesis.js";
+import { DegenesisChat } from "../chat.js"
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -226,4 +228,19 @@ export class DegenesisActor extends Actor {
         weapon.isMelee = DegenesisItem.isMelee(weapon);
         return weapon
     }
+
+
+
+
+    async rollSkill(skill) 
+    {
+        let rollData = {
+            actionNumber : this.data.data.attributes[skill.attribute].value + skill.value
+        }
+        let rollResult = await DegenesisDice.rollAction(rollData)
+
+        DegenesisChat.renderRollCard(rollResult)
+        return rollResult
+    }
+
 }

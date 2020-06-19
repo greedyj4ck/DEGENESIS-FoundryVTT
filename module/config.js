@@ -356,7 +356,7 @@ DEGENESIS.agentQualitiesValues = {
   "pseudoDesporeing" : ["desporeing", "duration"],
 },
 DEGENESIS.armorQualitiesValues = {
-  "respected" : ["target group", "bonus dice"],
+  "respected" : ["target group", "bonusDice"],
   "firstImpression" : ["bonus"],
   "fireResistant" : ["armor"],
   "terrifying" : ["difficulty"],
@@ -390,7 +390,7 @@ DEGENESIS.qualityValues = {
   "desporeing" : "DGNS.Desporeing",
   "duration" : "DGNS.Duration",
   "targetGroup" :"DGNS.Target",
-  "bonusDice" : "DGNS.Bonus",
+  "bonusDice" : "DGNS.BonusDice",
   "armor" : "DGNS.QualityArmor",
   "criticalDamageRating" : "DGNS.CriticalDamageRating",
   "bonusSuccesses" : "DGNS.BonusSuccesses",
@@ -462,4 +462,11 @@ DEGENESIS.techValues = {
   4 : "IV",
   5 : "V",
   6 : "VI",
+}
+
+
+DEGENESIS.rollResults = {
+  "success" : "Success",
+  "failure" : "Failure",
+  "botch" : "Botch",
 }
