@@ -410,9 +410,9 @@ a.diamond:hover .square.red.perma {
 
 .app.window-app.degenesis.sheet .img-frame{
     display: flex;
-    flex: 0 0 107px;
+    flex: 0 0 108px;
     z-index: 1000;
-    height: 107px;
+    height: 108px;
     background-image: url(../images/character\ frame.svg);
     background-repeat: no-repeat;
     background-size: 100%;
@@ -421,8 +421,8 @@ a.diamond:hover .square.red.perma {
 }
 
 .app.window-app.degenesis.sheet .profile-img {
-    height: 88%;
-    width: 88%;
+    height: 96px;
+    width: 96px;
     margin: auto;
     border: none;
     display: flex;
@@ -994,7 +994,6 @@ a.diamond:hover .square.red.perma {
     background-color: var(--light-grey);
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top: 7px;
     width: 100%;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
@@ -1011,7 +1010,6 @@ a.diamond:hover .square.red.perma {
     border-bottom: 1px solid var(--dark-grey);
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 6px;
     margin-top: 8px;
 }
 
@@ -1030,19 +1028,18 @@ padding-right: 4px;
     justify-content: center;
 }
 
-.app.window-app.degenesis.sheet .potentials-group .background-name {
-    margin-left: 5px;
-}
-
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
     flex: 2;
     display: flex;
     align-self: center;
+    margin-left: 5px;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potential-characteristics{
     display: flex;
     flex: 1;
+    padding-bottom: 6px;
 }
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
     flex: 2;
@@ -1190,8 +1187,8 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .header-details{
     border-bottom: 1px solid black
 }
-.app.window-app.degenesis.sheet .header-details > *,
-.app.window-app.degenesis.sheet .item > *{
+.app.window-app.degenesis.sheet .header-details > *
+/*.app.window-app.degenesis.sheet .item > * */{
     margin: 0px 5px 0px 5px
 }
 
@@ -1558,7 +1555,6 @@ margin-left: 12px;
     border-bottom: 1px solid var(--dark-grey);
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 6px;
     margin-top: 8px;
 }
 
@@ -1571,6 +1567,7 @@ margin-left: 12px;
     display: flex;
     align-self: center;
     margin-right: 0;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
@@ -1579,12 +1576,34 @@ margin-left: 12px;
     align-self: center;
     justify-content: flex-end;
     margin: 0;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-controls {
     display: flex;
     align-self: center;
     justify-content: center;
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary{
+    display: inline-block;
+    background-color: var(--light-grey);
+    padding: 5px 4px 5px 4px;
+    width: 100%;
+    border-top: 1px solid var( --dark-grey);
+    margin-left: 0px;
+    margin-right: 0px;
+    
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
+    border: 1px solid var(--dark-grey);
+    background: white;
+    margin-left: 5px;
+}
+
+.app.window-app.degenesis.sheet .inventory-list .item-summary p{
+    margin-top: 0;
 }
 
 /************************************ ITEM SHEET ********************************/
