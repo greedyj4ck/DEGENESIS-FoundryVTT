@@ -61,16 +61,18 @@ export class ItemQualities extends BaseEntitySheet {
   
     /* -------------------------------------------- */
   
-    /** @override */
-    _onSubmit(event, formData) {
-      event.preventDefault();
 
       // Update the object
-      this.object.update({"data.qualities" : this.tempData.data.qualities});
-    }
 
     activateListeners(html)
     {
+
+      html.submit(e => {
+        e.preventDefault()
+        this.object.update({"data.qualities" : this.tempData.data.qualities});
+        this.close();
+      })
+
       html.find(".checkbox").click(ev => {
 
         let quality = {}
@@ -100,7 +102,5 @@ export class ItemQualities extends BaseEntitySheet {
           return
         existingQuality.values.find(v => v.name == valueKey).value = ev.target.value
       })
-
-
     }
   }
