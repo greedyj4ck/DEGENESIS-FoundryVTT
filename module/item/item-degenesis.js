@@ -32,7 +32,7 @@ export class DegenesisItem extends Item {
         if (this.data.type == "weapon")
         {
           preparedData.qualities = {};
-          preparedData.isMelee = this.isMelee();
+          preparedData.isMelee = DegenesisItem.isMelee(this.data);
 
           // For each weapon quality in configuration (we want to display all of them to show checkboxes)
           for (let q in DEGENESIS.weaponQualities)
