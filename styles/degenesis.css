@@ -1600,6 +1600,8 @@ margin-left: 12px;
     border: 1px solid var(--dark-grey);
     background: white;
     margin-left: 5px;
+    margin: 2px 5px;
+    display: inline-block;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-summary p{
@@ -1666,10 +1668,10 @@ margin-left: 12px;
     margin-right: 2px;
     margin-left: 2px;
 }
-.app.window-app.degenesis.sheet.item .quality-inputs {
+.app.window-app.degenesis.quality-selector .quality-inputs {
     display:flex;
 }
-.app.window-app.degenesis.sheet.item .item-quality {
+.app.window-app.degenesis.quality-selector .item-quality {
     display:flex;
 }
 .app.window-app.degenesis.sheet.item .header-inputs input {

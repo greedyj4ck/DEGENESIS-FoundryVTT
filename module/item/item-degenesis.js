@@ -32,28 +32,9 @@ export class DegenesisItem extends Item {
         if (this.data.type == "weapon")
         {
           preparedData.qualities = {};
-          preparedData.isMelee = this.isMelee();
+          preparedData.isMelee = DegenesisItem.isMelee(this.data);
 
-          // For each weapon quality in configuration (we want to display all of them to show checkboxes)
-          for (let q in DEGENESIS.weaponQualities)
-          {
-            preparedData.qualities[q] = {
-              "checked" : !!this.data.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
-              "name" : DEGENESIS.weaponQualities[q],                                     // Display name
-              "description" : DEGENESIS.weaponQualityDescription[q],                     // Description (to be used for tooltip/dropdown)
-              "values" : duplicate(DEGENESIS.weaponQualitiesValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
-            }
-            // Map each quality to a function to determine how the values are filled.
-            // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
-            preparedData.qualities[q].values = preparedData.qualities[q].values.map(val => {
-              // If the weapon has the quality
-              let existingQuality = this.data.data.qualities.find(quality => q == quality.name)
-              if (existingQuality) // Set the value to an object with the specified value, placeholder, and config key object
-                return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
-              else                 // Set the value to an object with with no value, but with the placeholder and the config key
-                return {value : "", placeholder : DEGENESIS.qualityValues[val], key: val}
-            })
-          }
+        
         }
         return preparedData
     }
@@ -96,13 +77,14 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data)
         tags.push(DEGENESIS.weaponGroups[data.group])
-        tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)
-        tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)
-        tags.push(data.damage)
-        tags.push(`DIST: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
-        tags.push(data.mag.belt ? `MAG: ${data.mag.size}` : "MAG: BELT")
-        tags.push(data.value)
-        tags.push(data.cult)
+        /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
+        /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
+        tags.push(`Handling: ${data.handling}D`)
+        tags.push(`Damage: ${data.damage}`)
+        tags.push(`Distance: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
+        tags.push(data.mag.belt ? `Magazine: ${data.mag.size}` : "MAG: BELT")
+        tags.push(`Value: ${data.value}`)
+        tags.push(`Cult: ${data.cult}`)
         data.qualities.forEach(q => {
             let qualityString = DEGENESIS.weaponQualities[q.name] + " "
             qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
