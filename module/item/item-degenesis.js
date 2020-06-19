@@ -118,7 +118,12 @@ export class DegenesisItem extends Item {
 
     isMelee() 
     {
-        if (this.data.type = "weapon")
-            return DEGENESIS.weaponGroupSkill[this.data.data.group] == "projectiles" ? false : true 
+        return this.isMelee(this.data)
+    }
+
+    static isMelee(itemData)
+    {
+        if (itemData.type = "weapon")
+            return DEGENESIS.weaponGroupSkill[itemData.data.group] == "projectiles" ? false : true 
     }
 }
