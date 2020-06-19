@@ -1665,6 +1665,14 @@ margin-left: 12px;
 
 
 
+/****************************** CHAT *****************************/
+
+.message .message-content .cluster-credits {
+    font-size: 11px
+}
+
+
+
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
 
 

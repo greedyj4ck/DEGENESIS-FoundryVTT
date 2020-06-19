@@ -79,3 +79,23 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     system:"degenesis"
   });
 });
+
+Hooks.on("chatMessage", (html, content, msg) => {
+  let command = content.split(" ");
+  if (command[0].includes("/name"))
+  {
+        let response = fetch("http://localhost:3000/name", {
+            method: "POST"
+        }).then(r => r.text())
+        .then(text => {
+            let name = `${text} 
+            <span class="cluster-credits">Powered by <a href="https://degenesis-cluster.com">Degenesis Cluster</a></span>` 
+            // send request
+            ChatMessage.create({content : name})
+      }).catch(error => {
+        console.error(error)
+        ui.notifications.error(error)
+      })
+  }
+  return false
+})
