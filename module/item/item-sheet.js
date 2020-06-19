@@ -1,5 +1,6 @@
 import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
+import { ItemQualities } from "../apps/item-qualities.js"
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -106,6 +107,9 @@ export class DegenesisItemSheet extends ItemSheet {
     })
 
 
+    html.find(".item-quality-config").click(ev => {
+      new ItemQualities(this.item).render(true)
+    })
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;

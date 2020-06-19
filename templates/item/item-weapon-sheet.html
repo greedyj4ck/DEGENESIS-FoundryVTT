@@ -68,6 +68,8 @@
                 <label>{{localize "DGNS.Cult"}}</label>
                 <input type="text" name="data.cult" value="{{data.cult}}" data-dtype="String"/>
             </div>
+            <a class="item-quality-config"><i class="fas fa-cog"></i></a>
+
         </div>
         <div class="tab" data-tab="qualities">
             {{#each qualities as |quality q|}}
@@ -93,7 +95,5 @@
                 <div>{{mod.data.effect}}</div>
             {{/each}}
         </div>
-
     </section>
-
 </form>
