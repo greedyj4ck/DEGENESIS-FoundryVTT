@@ -7,7 +7,9 @@
             {{else}}
                 <a class="square button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into"></div></a>
             {{/if}}
-            {{quality.name}}
+            <div class="field-name quality-name">
+                {{quality.name}}
+            </div>
             <div class="quality-inputs" data-quality="{{q}}">
             {{#each quality.values as |value i| }}
                 <input class="quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}" value="{{value.value}}" type="text">

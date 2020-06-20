@@ -354,7 +354,10 @@ a.diamond:hover .square.red.perma {
 
 .app.window-app.degenesis.sheet .sheet-field .field-name {
     text-transform: uppercase;
-    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 1px;
+    display: flex;
+    align-self: center;
 }
 
 /* * Sheet Header */
@@ -1749,9 +1752,29 @@ margin-left: 12px;
     background-color: transparent;
 }
 
+.app.window-app.degenesis.sheet.item .tab .editor {
+    font-size: 14px;
+}
+
+.app.window-app.degenesis.sheet.item .field-name.belt-text {
+    margin-right: 10px;
+}
+
 .app.window-app.degenesis.sheet.item .icon.wheel {
     font-size: 11px;
 }
+
+.app.window-app.degenesis.sheet.item .mods-group .black-title .right {
+    margin: 0;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.app.window-app.degenesis.sheet.item .mods-group .black-title .slots {
+    margin-right: 5px;
+}
+
 .app.window-app.degenesis.sheet.item .black-title .right {
     margin-right:10px;
     display: flex;
@@ -1778,9 +1801,8 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet.item .square.button-position{
     margin-right: 4px;
-    margin-top: 8px;
-    margin-left: 5px;
     flex: 0 0 9px;
+    align-self: center;
 }
 
 
