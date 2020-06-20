@@ -143,10 +143,13 @@
                 </div>
              </div>
           
-          
-
-
+             {{#if specialty}}
+             {{localize "DGNS.Specialty"}}
+             <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
+             {{/if}}
         </div>
+
+        
         <div class="tab" data-tab="qualities">
             {{#each qualities as |quality q|}}
             <div class="item-quality">

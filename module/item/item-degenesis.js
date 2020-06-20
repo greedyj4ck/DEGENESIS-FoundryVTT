@@ -38,6 +38,7 @@ export class DegenesisItem extends Item {
             preparedData.qualities.push(qualityString)
         })
           preparedData.isMelee = DegenesisItem.isMelee(this.data);
+          preparedData.specialty = !!this.data.data.qualities.find(q => q.name == "special")
 
         
         }
@@ -80,7 +81,8 @@ export class DegenesisItem extends Item {
     _weaponDropdownData()
     {
         let tags = [];
-        let data = duplicate(this.data.data)
+        let data = duplicate(this.data.data);
+        let text = `${data.description}<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`;
         tags.push(DEGENESIS.weaponGroups[data.group])
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
@@ -97,7 +99,7 @@ export class DegenesisItem extends Item {
         })
         tags.filter(t => !!t)
         return {
-            text : data.description,
+            text : text,
             tags : tags        
         }
     }
