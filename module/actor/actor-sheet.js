@@ -268,6 +268,13 @@ export class DegenesisActorSheet extends ActorSheet {
 
         this.actor.updateEmbeddedEntity("OwnedItem", itemData)
     })
+
+
+    html.find(".skill-name").click(ev => {
+      let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
+      this.actor.rollSkill(this.actor.data.data.skills[skill])
+    })
+
   }
 
   /* -------------------------------------------- */

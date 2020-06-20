@@ -1,0 +1,13 @@
+<div>
+    {{#each rolls as |roll r|}}
+    <img src="{{roll.img}}" width=25 height=25/>
+    {{/each}}
+</div>
+
+<div>
+    <div>Successes: {{successes}}</div>
+    <div>Triggers: {{triggers}}</div>
+    {{#if result}}
+    <div>Result: {{result}}</div>
+    {{/if}}
+</div>
