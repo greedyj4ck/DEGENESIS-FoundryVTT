@@ -503,12 +503,14 @@ a.diamond:hover .square.red.perma {
 } 
 
 /* * Sheet titles */
+.app.window-app.degenesis.sheet.item .tittle,
 .app.window-app.degenesis.sheet .title{
     align-self: center;
     margin-left: 1px;
     margin-right: 1px;
 }
 
+.app.window-app.degenesis.sheet.item .title-line,
 .app.window-app.degenesis.sheet .title-line{
     display: flex;
     background-size: 100%;
@@ -517,6 +519,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .header-column.header-line .square.little{
     margin-bottom: 12px;
 }
+
+.app.window-app.degenesis.sheet.item .square.little,
 .app.window-app.degenesis.sheet .title .square.little,
 .app.window-app.degenesis.sheet .header-line .square.little{
     margin: 0px;
@@ -525,9 +529,12 @@ a.diamond:hover .square.red.perma {
     height: 7px;
     width: 7px;
 }
+.app.window-app.degenesis.sheet.item .square.little.left,
 .app.window-app.degenesis.sheet .square.little.left{
     margin-left: 2px;
 }
+
+.app.window-app.degenesis.sheet.item .square.little.right,
 .app.window-app.degenesis.sheet .square.little.right{
     margin-right: 2px;
 }
@@ -595,10 +602,10 @@ a.diamond:hover .square.red.perma {
     height: 100%
 } */
 
+.app.window-app.degenesis.sheet.item .body-line,
 .app.window-app.degenesis.sheet .body-line {
     width: 100%;
     height: calc(100% - 300px);
-    overflow: auto
 }
 
 .app.window-app.degenesis.sheet .row {
@@ -1683,7 +1690,6 @@ margin-left: 12px;
 }
 .app.window-app.degenesis.sheet.item .tab {
     width: 100%;
-    height:100%;
 }
 
 
@@ -1805,6 +1811,10 @@ margin-left: 12px;
     align-self: center;
 }
 
+.app.window-app.degenesis.sheet.item .editor-content{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
 
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
