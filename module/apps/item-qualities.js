@@ -66,6 +66,7 @@ export class ItemQualities extends BaseEntitySheet {
 
     activateListeners(html)
     {
+      super.activateListeners(html);
 
       html.submit(e => {
         e.preventDefault()
