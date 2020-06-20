@@ -23,7 +23,7 @@
        </div>
         <div class="combat-list">
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Movement"}}: {{data.general.movement}}m</div>
+                <div class="general-name">{{localize "DGNS.Movement"}}: {{data.general.movement}}<span class="nocaps">m</span></div>
             </div>
             <div class="combat">
                 <div class="general-name">{{localize "DGNS.Encumbrance"}}: {{data.general.encumbrance.current}} / {{data.general.encumbrance.max}}</div>
@@ -77,7 +77,7 @@
             {{/if}}
        </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}}</a>             
+            <a class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
             {{#if data.state.state.motion}} 
             <a class="square border-black button-position checkbox" data-target="data.state.state.motion"><div class="square-into black"></div></a>
             {{else}}

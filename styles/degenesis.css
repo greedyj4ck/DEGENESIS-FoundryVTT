@@ -207,6 +207,10 @@ a.diamond:hover .square.red.perma {
     height: 0;
 }
 
+.app.window-app.degenesis.sheet .tab{
+    font-size: 12px;
+}
+
 .app.window-app.degenesis.sheet .break.break-line{
     flex-basis: 100%;
     border: 1px solid black;
@@ -330,6 +334,10 @@ a.diamond:hover .square.red.perma {
     transition: color 100ms linear;
 }
 
+.app.window-app.degenesis.sheet .condition-title {
+    text-transform: uppercase;
+}
+
 .app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
 .app.window-app.degenesis.sheet .sheet-field:hover {
    border-bottom: 1px solid var(--degenesis-red);   
@@ -345,6 +353,7 @@ a.diamond:hover .square.red.perma {
 
 
 .app.window-app.degenesis.sheet .sheet-field .field-name {
+    text-transform: uppercase;
     margin-top: 5px;
 }
 
@@ -377,6 +386,7 @@ a.diamond:hover .square.red.perma {
 }
 
 .app.window-app.degenesis.sheet .middle-name{
+    text-transform: uppercase;
     display: flex;
     align-items: flex-end;
     font-size: 15px;
@@ -384,6 +394,10 @@ a.diamond:hover .square.red.perma {
     letter-spacing: 2px;
     text-align: center;
     border: 2px solid transparent;
+}
+
+.app.window-app.degenesis.sheet .legend{
+    text-transform: uppercase;
 }
 
 .app.window-app.degenesis.sheet .archetype-line.line-left{
@@ -705,12 +719,17 @@ a.diamond:hover .square.red.perma {
     overflow: auto
 }
 
-.app.window-app.degenesis.sheet .tab-content h3 {
+.app.window-app.degenesis.sheet .tab-content h3,
+.app.window-app.degenesis.sheet .tab.active h3 {
     font-size: 12px;
     font-weight: 300;
 }
 
 /* * Attributes tab * */
+
+.app.window-app.degenesis.sheet .attribute-tab {
+    text-transform: uppercase;
+}
 
  .app.window-app.degenesis.sheet .attribute-tab .attribute-skill-group {
     margin: 16px 18px;
@@ -817,17 +836,15 @@ a.diamond:hover .square.red.perma {
     flex-wrap: wrap;
  }
 
- .app.window-app.degenesis.sheet .background {
-    /*border-bottom: 1px solid black*/
- }
-
  .app.window-app.degenesis.sheet .black-title {
+    text-transform: uppercase;
     width: 100%;
     background-image: url(../images/title\ border.svg);
     background-repeat: no-repeat;
     color: white;
     background-size: 100%;
     background-position: center;
+    height: 14px;
  }
 
 
@@ -950,6 +967,14 @@ a.diamond:hover .square.red.perma {
 
 .app.window-app.degenesis.sheet .tab-line{
     flex:1;
+}
+
+.app.window-app.degenesis.sheet .potentials-group .advantage-list .potential-name{
+    flex: 2;
+    display: flex;
+    align-self: center;
+    margin-left: 5px;
+    padding-bottom: 6px;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .potentials-legend{
@@ -1108,6 +1133,7 @@ padding-right: 4px;
  }
 
  .app.window-app.degenesis.sheet .background-name{
+    text-transform: uppercase;
     margin-left: 10px;
 }
 
@@ -1371,13 +1397,15 @@ padding-right: 4px;
     width: 15%;
 }
 
-.app.window-app.degenesis.sheet .modifiers-action.dropdown {
+.app.window-app.degenesis.sheet .modifiers-action.dropdown,
+.app.window-app.degenesis.sheet .qualities-action.dropdown {
     display:flex;
     justify-content: center;
     flex:1;
 }
 
-.app.window-app.degenesis.sheet .modifiers-description {
+.app.window-app.degenesis.sheet .modifiers-description,
+.app.window-app.degenesis.sheet .qualities-description {
     border-bottom: 1px solid var(--dark-grey);
     width: 100%
 }
@@ -1391,21 +1419,25 @@ padding-right: 4px;
     width: 100%;
 }
 
-.app.window-app.degenesis.sheet .complications-group {
+.app.window-app.degenesis.sheet .complications-group,
+.app.window-app.degenesis.sheet .mods-group {
     width: 50%;
 }
 
 
-.app.window-app.degenesis.sheet .bottom-conditions .complications-name{
+.app.window-app.degenesis.sheet .bottom-conditions .complications-name,
+.app.window-app.degenesis.sheet .bottom-conditions .mods-name{
     flex: 1;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .complications-rating{
+.app.window-app.degenesis.sheet .bottom-conditions .complications-rating,
+.app.window-app.degenesis.sheet .bottom-conditions .mods-rating{
     width: 10%;
 }
 
 /* * COMBAT TAB * */
  
  .app.window-app.degenesis.sheet .combat-tab .combat-group {
+    text-transform: uppercase;
     margin: 16px 13px;
     flex:1;
 }
@@ -1599,9 +1631,9 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
     border: 1px solid var(--dark-grey);
     background: white;
-    margin-left: 5px;
     margin: 2px 5px;
     display: inline-block;
+    padding: 2px 7px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-summary p{
@@ -1683,6 +1715,73 @@ margin-left: 12px;
     justify-content: center;
 }
 
+.app.window-app.degenesis.sheet.item .img-frame{
+    display: flex;
+    flex: 0 0 108px;
+    z-index: 1000;
+    height: 108px;
+    background-image: url(../images/item\ frame.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    border: none;
+}
+
+.app.window-app.degenesis.sheet.item .header-column.char-info {
+    margin-left: 7px;
+    margin-right: 2px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container select,
+.app.window-app.degenesis.sheet.item .header-column select{
+    width: 100%;
+    background-color: transparent;
+    text-align-last: left;
+    padding-top: 3px;
+    height: 24px;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container input,
+.app.window-app.degenesis.sheet.item .header-column input{
+    background-color: transparent;
+}
+
+.app.window-app.degenesis.sheet.item .icon.wheel {
+    font-size: 11px;
+}
+.app.window-app.degenesis.sheet.item .black-title .right {
+    margin-right:10px;
+    display: flex;
+    justify-content:center;
+    align-self: center;
+}
+.app.window-app.degenesis.sheet.item .detail-container{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container .column{
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    margin: 5px;
+}
+
+.app.window-app.degenesis.sheet .bottom-conditions.spaced-conditions{
+    margin-top: 10px;
+}
+
+.app.window-app.degenesis.sheet.item .square.button-position{
+    margin-right: 4px;
+    margin-top: 8px;
+    margin-left: 5px;
+    flex: 0 0 9px;
+}
 
 
 
@@ -1747,6 +1846,14 @@ button:hover {
 .sheet-tabs.tabs .item.active {
     color: var(--degenesis-red);
     text-shadow: none
+}
+
+.caps{
+    text-transform: uppercase;
+}
+
+span.nocaps{
+    text-transform: none;
 }
 
 #sidebar button {

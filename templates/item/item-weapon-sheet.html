@@ -4,8 +4,6 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">{{localize "DGNS.Description"}}</a>
         <a class="item active" data-tab="details">{{localize "DGNS.Details"}}</a>
-        <a class="item" data-tab="qualities">{{localize "DGNS.Qualities"}}</a>
-        <a class="item" data-tab="mods">{{localize "DGNS.Mods"}}</a>
     </nav>
         
     {{!-- Sheet Body --}}
@@ -13,62 +11,142 @@
         <div class="tab" data-tab="description">
             {{editor content=data.description target="data.description"button=true owner=owner editable=editable}}
         </div>
+<!-- DETAILS TAB-->
+    <div class="tab" data-tab="details">
+        <div class="detail-container">
+            <div class="column">
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Handling"}}: </span>
+                    <input class="field-input" type="text" name="data.handling" value="{{actor.data.handling}}" data-dtype="Number" /><span class="field-name">D</span>
+                </div>
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Distance"}}: </span>
+                    {{#if isMelee}} <!--Is Melee determined by weapon group-->
+                    <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
+                    {{else}}
+                    <input class="field-input" type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
+                    <span class="field-name">/</span>
+                    <input class="field-input" type="text" name="data.distance.far" value="{{data.distance.far}}" data-dtype="Number"/>
+                    {{/if}} 
+                </div>
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Damage"}}: </span>
+                    <input class="field-input" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/>
+                    <select name="data.cac" data-dtype="String">
+                        <option value=""></option>
+                        <option value="F">+ F</option>
+                        <option value="F/2">+ F/2</option>
+                        <option value="F/3">+ F/3</option>
+                        <option value="T">+ T</option>
+                    </select>
+                </div>
+                {{#unless isMelee}}
+               <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Caliber"}}: </span>
+                    <select name="data.caliber" data-dtype="String">
+                        <option value=""></option>
+                    </select>
+                </div> 
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Magazine"}}: </span>
+                    {{#if data.mag.belt}}
+                    <input type="text" value="-" data-dtype="Number" disabled="disabled"/>
+                    <span class="field-name">Belt?</span>
+                    <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
+                    {{else}}
+                    <input type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
+                    <span class="field-name">Belt?</span>
+                    <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
+                    {{/if}}
+                </div>
+                {{/unless}}
+            </div>
+            <div class="column">
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Slots"}}: </span>
+                    <input input class="field-input" type="text" name="data.slots.total" value="{{data.slots.total}}" data-dtype="Number"/>
+                </div>
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Cult"}}: </span>
+                    <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
+                </div>
+                <div class="sheet-field">
+                    <span class="field-name">{{localize "DGNS.Resources"}}:</span>
+                    <input class="field-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="Number"/>
+                </div>
+            </div>
+        </div>
 
-        <div class="tab" data-tab="details">
-            <div class = "form-group">
-                <label>{{localize "DGNS.Group"}}</label>
-                <select name="data.group" data-dtype="String">
-                    <option value="{{g}}">{{group}}</option>
-                    {{#select data.group}}
-                    {{#each weaponGroups as |group g|}}
-                    <option value="{{g}}">{{group}}</option>
-                    {{/each}}
-                    {{/select}}
-                </select>
-            </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Handling"}}</label>
-                <input type="text" name="data.handling" value="{{data.handling}}" data-dtype="Number"/>
-                D
-            </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Distance"}}</label>
-                {{#if isMelee}} <!--Is Melee determined by weapon group-->
-                <input type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
-                {{else}}
-                <input type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
-                /
-                <input type="text" name="data.distance.far" value="{{data.distance.far}}" data-dtype="Number"/>
-                {{/if}}  
-            </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Damage"}}</label>
-                <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="String"/>
-            </div>
+<!-- Qualities and mods -->
+            <div class="bottom-conditions spaced-conditions">
+<!-- Qualities -->
+                <div class="qualities-group conditions-group">
+                   <div class="black-title">
+                      <h3>{{localize "DGNS.Qualities"}}</h3>
+                      <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
+                   </div>
+                   <div class="qualities-data conditions-data">
+                      <ol class="qualities-ol conditions-ol">
+                      {{#each qualities as |quality q|}}
+                        {{#if quality.checked}}
+                            <li class="conditions-li qualities-li item">
+                                <div class="conditions-characteristics">
+                                <div class='item-data'>
+                                    <a class="qualities-name">
+                                        {{quality.name}}
+                                        {{log quality}}
+                                    </a>
+                                </div>
+                                </div>
+                            </li>
+                        {{/if}}
+                        </ol>
+                      {{/each}}
+                   </div>
+                </div>
+<!-- Mods -->
+                <div class="mods-group conditions-group">
+                   <div class="black-title">
+                      <h3>{{localize "DGNS.Mods"}}</h3>
+                      <div class="right" data-item="">{{data.slots.used}}/{{data.slots.total}}</div>
+                   </div>
+                   <div class="mods-data conditions-data">
+                      <ol class="mods-ol conditions-ol">
+                      {{#each mods as |complication c|}}
+                         <li class="mods-li conditions-li item" data-item-id="{{complication._id}}">
+                            <div class="conditions-characteristics">
+                               {{#if ../isGM}}
+                               <div class='item-data'>
+                                  <a class="mods-name conditions-name dropdown">{{complication.name}}</a>
+                                  <a class="mods-rating conditions-number dropdown">{{complication.data.cost}}T</a>
+                                     /
+                                  <a class="mods-rating conditions-number dropdown">{{complication.data.rating}}</a>
+                                  <div class="vertical-bar">
+                                     <svg height="15px" width="1px">
+                                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                                     </svg>
+                                  </div>
+                               </div>
+                               <div class="item-controls">
+                                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+                               </div>
+                                  {{else}}
+                                  <div class='item-data'>
+                                     <span class="mods-name conditions-name">{{complication.name}}</span>
+                                  </div>
+                                  {{/if}}
+                            </div>
+                         </li>
+                      {{/each}}
+                      </ol>
+                   </div>
+                </div>
+             </div>
+          
+          
 
-            {{#unless isMelee}}
-            <div class = "form-group">
-                <label>{{localize "DGNS.Magazine"}}</label>
-                {{#if data.mag.belt}}
-                <input type="text" value="-" data-dtype="Number" disabled="disabled"/>
-                Belt?
-                <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
-                {{else}}
-                <input type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
-                Belt?
-                <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
-                {{/if}}
-            </div>
-            {{/unless}}
-            <div class = "form-group">
-                <label>{{localize "DGNS.Slots"}}</label>
-                <input type="text" name="data.slots.total" value="{{data.slots.total}}" data-dtype="Number"/>
-            </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Cult"}}</label>
-                <input type="text" name="data.cult" value="{{data.cult}}" data-dtype="String"/>
-            </div>
-            <a class="item-quality-config"><i class="fas fa-cog"></i></a>
 
         </div>
         <div class="tab" data-tab="qualities">
@@ -79,10 +157,12 @@
                 {{else}}
                     <a class="square button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into"></div></a>
                 {{/if}}
-                {{quality.name}}
-                <div class="quality-inputs" data-quality="{{q}}">
+                <div class="field-name quality-name">
+                    {{quality.name}}
+                </div>
+                <div class="field-inputs quality-inputs" data-quality="{{q}}">
                 {{#each quality.values as |value i| }}
-                    <input class="quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}" value="{{value.value}}" type="text">
+                    <input class="field-input quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}" value="{{value.value}}" type="text">
                 {{/each}}
                 </div>
             </div>

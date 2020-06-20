@@ -152,7 +152,7 @@
 
             </div>
          </div>
-         <div class="potentials-legend">
+         <div class="potentials-legend legend">
             <div class="origin">
                <span>{{localize "DGNS.Origin"}}</span>
             </div>
@@ -167,7 +167,7 @@
       <div class="advantage-list item-list">
          {{#each potentials as |potential p|}}
          <div class="advantage item" data-item-id={{potential._id}}>
-            <a class="background-name dropdown">{{potential.name}}</a>
+            <a class="potential-name dropdown">{{potential.name}}</a>
             <div class="potential-characteristics">
                <div class="origin">
                   {{potential.data.origin}}
