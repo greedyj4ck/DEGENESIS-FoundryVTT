@@ -1499,13 +1499,13 @@ padding-right: 4px;
 /* * INVENTORY TAB*/
 
 .app.window-app.degenesis.sheet .inventory-group.weapon-group,
-.app.window-app.degenesis.sheet .inventory-tab .emcumbrance-group {
+.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group {
     margin: 16px 13px;
     flex: 1;
 }
 
 .degenesis.sheet .weapon,
-.degenesis.sheet .emcumbrance {
+.degenesis.sheet .encumbrance {
     display: flex;
 }
 
@@ -1519,7 +1519,7 @@ padding-right: 4px;
 }
 
 .degenesis.sheet .weapon .black-title,
-.degenesis.sheet .emcumbrance .black-title {
+.degenesis.sheet .encumbrance .black-title {
     max-width: 164px;
     max-height: 14px;
     align-self: flex-start;
@@ -1531,19 +1531,19 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .weapon-group .first-part,
-.app.window-app.degenesis.sheet .emcumbrance-group .first-part {
+.app.window-app.degenesis.sheet .encumbrance-group .first-part {
     display: flex;
     flex: 2;
 }
 
 .app.window-app.degenesis.sheet .weapon-group .empty,
-.app.window-app.degenesis.sheet .emcumbrance-group .empty {
+.app.window-app.degenesis.sheet .encumbrance-group .empty {
     flex: 1;
     border-bottom: 1px solid var(--dark-grey);
 }
 
 .app.window-app.degenesis.sheet .weapon-group .weapon-legend,
-.app.window-app.degenesis.sheet .emcumbrance-group .emcumbrance-legend {
+.app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend {
     display: flex;
     flex: 2;
     border-bottom: 1px solid var(--dark-grey);
