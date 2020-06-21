@@ -352,7 +352,7 @@ a.diamond:hover .square.red.perma {
 }
 
 
-.app.window-app.degenesis.sheet .sheet-field .field-name {
+.app.window-app.degenesis.sheet .sheet-field span {
     text-transform: uppercase;
     padding-top: 5px;
     padding-bottom: 1px;
@@ -532,11 +532,13 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.item .square.little.left,
 .app.window-app.degenesis.sheet .square.little.left{
     margin-left: 2px;
+    margin-right: 0px;
 }
 
 .app.window-app.degenesis.sheet.item .square.little.right,
 .app.window-app.degenesis.sheet .square.little.right{
     margin-right: 2px;
+    margin-left: 0px;
 }
 
 /* * Sheet Footer */
@@ -550,16 +552,23 @@ a.diamond:hover .square.red.perma {
     flex: 0 0 100px;
 }
 .app.window-app.degenesis.sheet .footer-line{
-    background-image: url(../images/footer\ line.svg);
+    /* background-image: url(../images/footer\ line.svg); */
+    display: flex;
     height: 20px;
     flex: 1;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
     position: absolute;
     bottom: 0%;
     width: 100%;
     left: 0%;
+    padding: 0px 5px;
+}
+
+.app.window-app.degenesis.sheet .footer-line .square.little{
+    margin-top: 7px;
+}
+
+.app.window-app.degenesis.sheet.item .footer-line .square.little{
+    margin-top: 3px;
 }
 
 .app.window-app.degenesis.sheet .footer-diamond{
@@ -1361,7 +1370,7 @@ padding-right: 4px;
 
 
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data{
-    height: 118px;
+    max-height: 118px;
     display: block;
 }
 
@@ -1685,7 +1694,8 @@ margin-left: 12px;
 }
 .app.window-app.degenesis.sheet.item .sheet-body {
     width: 100%;
-    height: calc(100% - 125px);
+    height: calc(100% - 167px);
+    /* height: calc(100% - 125px); */
     overflow: auto;
 }
 .app.window-app.degenesis.sheet.item .tab {
@@ -1744,6 +1754,10 @@ margin-left: 12px;
     flex-direction: column;
 }
 
+.app.window-app.degenesis.sheet.item .detail-container .sheet-field span.field-name{
+    min-width: 72px;
+}
+
 .app.window-app.degenesis.sheet.item .detail-container select,
 .app.window-app.degenesis.sheet.item .header-column select{
     width: 100%;
@@ -1753,17 +1767,58 @@ margin-left: 12px;
     height: 24px;
 }
 
+.app.window-app.degenesis.sheet.item .detail-container .field-inputs{
+    display: flex;
+    justify-content: center;
+    width: 100%
+}
+
+.app.window-app.degenesis.sheet.item .detail-container .field-inputs > *{
+    flex: 1;
+}
+
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-short{
+    text-align: right;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-far{
+    text-align: left;
+    
+}
+.app.window-app.degenesis.sheet.item .detail-container span.field-separator{
+    flex: inherit;
+    
+}
+
+.app.window-app.degenesis.sheet.item .detail-container select.cac-select{
+    width: auto;
+}
+
 .app.window-app.degenesis.sheet.item .detail-container input,
 .app.window-app.degenesis.sheet.item .header-column input{
     background-color: transparent;
+}
+.app.window-app.degenesis.sheet.item .detail-container input{
+    text-align: center;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-start{
+    text-align: right;
 }
 
 .app.window-app.degenesis.sheet.item .tab .editor {
     font-size: 14px;
 }
 
-.app.window-app.degenesis.sheet.item .field-name.belt-text {
+.app.window-app.degenesis.sheet.item .field-inputs .field-end {
+    padding: 1px 3px;
+    padding-top: 5px;
+}
+
+.app.window-app.degenesis.sheet.item .field-inputs .belt-text {
     margin-right: 10px;
+    flex: inherit
 }
 
 .app.window-app.degenesis.sheet.item .icon.wheel {
