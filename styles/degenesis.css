@@ -44,7 +44,10 @@
     font-family: Avenir;
     font-weight: 100;
     background-color: rgba(0, 0, 0, 0.2);
+}
 
+.app.window-app.degenesis header.window-header.flexrow.draggable.resizable {
+    font-family: avenir
 }
 
 .app.degenesis.sheet{
@@ -1719,12 +1722,7 @@ margin-left: 12px;
     margin-right: 2px;
     margin-left: 2px;
 }
-.app.window-app.degenesis.quality-selector .quality-inputs {
-    display:flex;
-}
-.app.window-app.degenesis.quality-selector .item-quality {
-    display:flex;
-}
+
 .app.window-app.degenesis.sheet.item .header-inputs input {
     width:100%;
     text-align: center;
@@ -1869,6 +1867,70 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet.item .editor-content{
     margin-left: 10px;
     margin-right: 10px;
+}
+
+/* * WEAPON SHEET QUALITY SELECTOR * */
+
+.app.window-app.degenesis.quality-selector .quality-inputs {
+    display:flex;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality {
+    display:flex;
+}
+.app.window-app.degenesis.quality-selector .item-quality > * {
+    align-self: center;
+    flex: 1;
+}
+.app.window-app.degenesis.quality-selector .sheet-fields{
+    display: flex;
+    flex: 1;
+}
+.app.window-app.degenesis.quality-selector .sheet-fields > * {
+    align-self: center;
+    flex: 1;
+}
+
+.app.window-app.degenesis.quality-selector .field-name.quality-name {
+    padding-top: 5px;
+    margin-left: 6px;
+    flex: 0 0 133px;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality .checkbox{
+    flex: 0 0 9px;
+}
+
+.app.window-app.degenesis.quality-selector .sheet-fields {
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"] {
+    border:none;
+    padding-top: 5px;
+    border-bottom: 1px solid var(--dark-grey);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"]:focus {
+    color: var(--degenesis-red);
+    box-shadow: none;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"]:hover {
+    border-color: var(--degenesis-red);
+    color: var(--degenesis-red);
+}
+
+.app.window-app.degenesis.quality-selector .window-content{
+    font-family: "Avenir";
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.app.window-app.degenesis.quality-selector form button, .dialog .dialog-buttons button, button {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
 }
 
 
