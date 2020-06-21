@@ -54,11 +54,10 @@
     border-radius: 0px;
 }
 
-.app.window-app.degenesis.sheet .window-resizable-handle {
+.app.window-app.degenesis .window-resizable-handle {
     border-radius: 0;
     background: black;
 }
-
 
 @font-face {
     font-family: "Avenir";
@@ -1899,9 +1898,6 @@ margin-left: 12px;
 
 .app.window-app.degenesis.quality-selector .item-quality .checkbox{
     flex: 0 0 9px;
-}
-
-.app.window-app.degenesis.quality-selector .sheet-fields {
 }
 
 .app.window-app.degenesis.quality-selector .item-quality input[type="text"] {
