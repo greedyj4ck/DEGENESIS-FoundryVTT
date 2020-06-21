@@ -40,13 +40,13 @@
     box-shadow: none;
 }
 
-.app.degenesis.sheet header.window-header.flexrow.draggable.resizable {
+.app header.window-header.flexrow.draggable.resizable {
     font-family: Avenir;
     font-weight: 100;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.app.window-app.degenesis header.window-header.flexrow.draggable.resizable {
+.app.window-app header.window-header.flexrow.draggable.resizable {
     font-family: avenir
 }
 
@@ -54,7 +54,7 @@
     border-radius: 0px;
 }
 
-.app.window-app.degenesis .window-resizable-handle {
+.app.window-app .window-resizable-handle {
     border-radius: 0;
     background: black;
 }
@@ -1923,10 +1923,15 @@ margin-left: 12px;
     font-weight: 300;
 }
 
-.app.window-app.degenesis.quality-selector form button, .dialog .dialog-buttons button, button {
+.app.window-app.degenesis.quality-selector form button, .dialog .dialog-buttons button {
     background-color: black;
     color: white;
     margin-top: 5px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.app.window-app.degenesis.quality-selector form button:hover, .dialog .dialog-buttons button:hover {
+    color: var(--degenesis-red);
 }
 
 
