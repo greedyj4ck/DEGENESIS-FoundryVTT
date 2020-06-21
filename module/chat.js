@@ -1,16 +1,25 @@
+import { DEGENESIS } from "./config.js"
+
 export class DegenesisChat {
 
 
 
-    static renderRollCard(rollResult)
+    static renderRollCard(rollResult, cardData)
     {
         rollResult.rolls.forEach(r => {
             r.img = `systems/degenesis/icons/dice-faces/d${r.roll}.svg`
         })
 
+        rollResult.result = DEGENESIS.rollResults[rollResult.result]
 
-        renderTemplate("systems/degenesis/templates/chat/roll-card.html", rollResult).then(html => {
-            ChatMessage.create({content : html, sound : CONFIG.sounds.dice})
+
+        renderTemplate(cardData.template, rollResult).then(html => {
+            ChatMessage.create({
+                content : html,
+                //sound : CONFIG.sounds.dice,
+                speaker : cardData.speaker,
+                flavor : cardData.flavor
+            })
         })
     }
 }

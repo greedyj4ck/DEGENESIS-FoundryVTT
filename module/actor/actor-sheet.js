@@ -1,5 +1,7 @@
 import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
+import { DegenesisChat } from "../chat.js"
+import { DegenesisDice } from "../dice.js"
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -270,9 +272,12 @@ export class DegenesisActorSheet extends ActorSheet {
     })
 
 
-    html.find(".skill-name").click(ev => {
+    html.find(".skill-name").click(async ev => {
       let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
-      this.actor.rollSkill(this.actor.data.data.skills[skill])
+      //let rollResult = await this.actor.rollSkill(this.actor.data.data.skills[skill])
+      let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+      await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
+      //DegenesisChat.renderRollCard(rollResult)
     })
 
   }

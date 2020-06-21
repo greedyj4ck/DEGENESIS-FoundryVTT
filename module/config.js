@@ -466,7 +466,7 @@ DEGENESIS.techValues = {
 
 
 DEGENESIS.rollResults = {
-  "success" : "Success",
-  "failure" : "Failure",
-  "botch" : "Botch",
+  "success" : "DGNS.Success",
+  "failure" : "DGNS.Failure",
+  "botch" : "DGNS.Botch",
 }

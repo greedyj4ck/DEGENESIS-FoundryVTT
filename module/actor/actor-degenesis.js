@@ -2,7 +2,6 @@ import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { DegenesisDice } from "../dice.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
-import { DegenesisChat } from "../chat.js"
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -231,6 +230,29 @@ export class DegenesisActor extends Actor {
 
 
 
+    setupSkill(skill) {
+        let dialogData = {
+            title : DEGENESIS.skills[skill],
+            preFilled : this.calculateModifiers(),
+            template : "systems/degenesis/templates/apps/roll-dialog.html",
+        },
+            cardData = {
+                template : "systems/degenesis/templates/chat/roll-card.html",
+                flavor : `${DEGENESIS.skills[skill]}`,
+                speaker : {
+                    alias : this.data.name
+                }
+            },
+            rollData = {
+                skill : this.data.data.skills[skill],
+                actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
+            }
+
+        
+        //let rollResult = await DegenesisDice.rollAction(rollData)
+        return {dialogData, cardData, rollData}
+    }
+
 
     async rollSkill(skill) 
     {
@@ -239,8 +261,11 @@ export class DegenesisActor extends Actor {
         }
         let rollResult = await DegenesisDice.rollAction(rollData)
 
-        DegenesisChat.renderRollCard(rollResult)
         return rollResult
+    }
+
+    calculateModifiers() {
+        return {}
     }
 
 }

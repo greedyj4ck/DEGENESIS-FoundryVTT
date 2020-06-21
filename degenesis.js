@@ -21,6 +21,10 @@ import { DEGENESIS } from "./module/config.js";
 Hooks.once("init", async function() {
   console.log(`%cDEGENESIS` + `%c | Initializing`, "color: #ed1d27", "color: unset");
 
+  document.onkeydown = function (e) {
+    if (e.keyCode == 123)
+      console.log(`%cDEGENESIS` + `%c | Welcome, Chronicler`, "color: #ed1d27", "color: unset"); 
+    }
 	/**
 	 * Set an initiative formula for the system
 	 * @type {String}

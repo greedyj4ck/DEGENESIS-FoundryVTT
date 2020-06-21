@@ -1,30 +1,31 @@
+import {DegenesisChat} from "./chat.js"
 
 export class DegenesisDice 
 {
-    
-    static async rollAction({actionNumber, difficulty=0, dieBonus=0, successBonus=0, triggerBonus=0})
+    static async rollAction({actionNumber, difficulty=0, diceModifier=0, successModifier=0, triggerModifier=0})
     {
         let rollResult = {}
 
         let successes;
-        let triggers = triggerBonus;
+        let triggers = triggerModifier;
         let ones = 0;
         let result;
         let rolls = [];
 
+        actionNumber += diceModifier
         let autoSuccesses = 0;
         if (actionNumber > 12)
         {
             autoSuccesses = actionNumber - 12;
             actionNumber = 12;
         }
-        let roll = new Roll(`${actionNumber + dieBonus}d6cs>3`);
+        let roll = new Roll(`${actionNumber}d6cs>3`);
         if (game.dice3d)
             await game.dice3d.showForRoll(roll);
         
 
         rolls = roll.parts[0].rolls;
-        successes = roll.total + autoSuccesses + successBonus;
+        successes = roll.total + autoSuccesses + successModifier;
 
         rolls.forEach(r => {
             if (r.roll == 6)
@@ -55,5 +56,30 @@ export class DegenesisDice
             rolls
         }
         return rollResult;
+    }
+
+
+    static async showRollDialog({dialogData, rollData, cardData})
+    {
+        return renderTemplate("systems/degenesis/templates/apps/roll-dialog.html", dialogData.preFilled).then(html => {
+            new Dialog({
+                content : html,
+                title : dialogData.title,
+                buttons : {
+                    "roll" : {
+                        label : "Roll",
+                        callback : async (dlg) => {
+                            rollData.difficulty = parseInt(dlg.find('[name="difficulty"]').val() || 0)
+                            rollData.diceModifier = parseInt(dlg.find('[name="diceModifier"]').val() || 0)
+                            rollData.successModifier = parseInt(dlg.find('[name="successModifier"]').val() || 0)
+                            rollData.triggerModifier = parseInt(dlg.find('[name="triggerModifier"]').val() || 0)
+                            let rollResult = await DegenesisDice.rollAction(rollData)
+                            DegenesisChat.renderRollCard(rollResult, cardData)
+                        }
+                    }
+                }
+            }).render(true)
+
+        })
     }
 }

@@ -1,0 +1,24 @@
+<div>
+    <span>
+        <label>Difficulty</label>
+        <input name="difficulty" value="{{difficulty}}"/>
+    </span>
+    <div>
+        <input name="diceModifier" value="{{diceModifier}}"/>D
+    </div>
+    <div>
+        <input name="successModifier" value="{{successModifier}}"/>S
+    </div>
+    <div>
+        <input name="triggerModifier" value="{{triggerModifier}}"/>T
+    </div>
+</div>
+
+<div>
+    <select multiple>
+        {{#each customModifiers as |modifier m|}}
+        <span>{{modifier.name}}</span>
+        <span>{{modifier.value}}</span>
+        {{/each}}
+    </select>
+</div>
