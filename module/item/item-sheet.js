@@ -13,7 +13,7 @@ export class DegenesisItemSheet extends ItemSheet {
 	  return mergeObject(super.defaultOptions, {
 			classes: ["degenesis", "sheet", "item"],
 			width: 550,
-			height: 480,
+			height: 534,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "details"}],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}],
       scrollY: [".sheet-body"]

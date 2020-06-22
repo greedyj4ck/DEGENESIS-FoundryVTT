@@ -40,22 +40,24 @@
     box-shadow: none;
 }
 
-.app.degenesis.sheet header.window-header.flexrow.draggable.resizable {
+.app header.window-header.flexrow.draggable.resizable {
     font-family: Avenir;
     font-weight: 100;
     background-color: rgba(0, 0, 0, 0.2);
+}
 
+.app.window-app header.window-header.flexrow.draggable.resizable {
+    font-family: avenir
 }
 
 .app.degenesis.sheet{
     border-radius: 0px;
 }
 
-.app.window-app.degenesis.sheet .window-resizable-handle {
+.app.window-app .window-resizable-handle {
     border-radius: 0;
     background: black;
 }
-
 
 @font-face {
     font-family: "Avenir";
@@ -352,7 +354,7 @@ a.diamond:hover .square.red.perma {
 }
 
 
-.app.window-app.degenesis.sheet .sheet-field .field-name {
+.app.window-app.degenesis.sheet .sheet-field span {
     text-transform: uppercase;
     padding-top: 5px;
     padding-bottom: 1px;
@@ -503,12 +505,14 @@ a.diamond:hover .square.red.perma {
 } 
 
 /* * Sheet titles */
+.app.window-app.degenesis.sheet.item .tittle,
 .app.window-app.degenesis.sheet .title{
     align-self: center;
     margin-left: 1px;
     margin-right: 1px;
 }
 
+.app.window-app.degenesis.sheet.item .title-line,
 .app.window-app.degenesis.sheet .title-line{
     display: flex;
     background-size: 100%;
@@ -517,6 +521,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .header-column.header-line .square.little{
     margin-bottom: 12px;
 }
+
+.app.window-app.degenesis.sheet.item .square.little,
 .app.window-app.degenesis.sheet .title .square.little,
 .app.window-app.degenesis.sheet .header-line .square.little{
     margin: 0px;
@@ -525,11 +531,16 @@ a.diamond:hover .square.red.perma {
     height: 7px;
     width: 7px;
 }
+.app.window-app.degenesis.sheet.item .square.little.left,
 .app.window-app.degenesis.sheet .square.little.left{
     margin-left: 2px;
+    margin-right: 0px;
 }
+
+.app.window-app.degenesis.sheet.item .square.little.right,
 .app.window-app.degenesis.sheet .square.little.right{
     margin-right: 2px;
+    margin-left: 0px;
 }
 
 /* * Sheet Footer */
@@ -543,16 +554,23 @@ a.diamond:hover .square.red.perma {
     flex: 0 0 100px;
 }
 .app.window-app.degenesis.sheet .footer-line{
-    background-image: url(../images/footer\ line.svg);
+    /* background-image: url(../images/footer\ line.svg); */
+    display: flex;
     height: 20px;
     flex: 1;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
     position: absolute;
     bottom: 0%;
     width: 100%;
     left: 0%;
+    padding: 0px 5px;
+}
+
+.app.window-app.degenesis.sheet .footer-line .square.little{
+    margin-top: 7px;
+}
+
+.app.window-app.degenesis.sheet.item .footer-line .square.little{
+    margin-top: 3px;
 }
 
 .app.window-app.degenesis.sheet .footer-diamond{
@@ -595,10 +613,10 @@ a.diamond:hover .square.red.perma {
     height: 100%
 } */
 
+.app.window-app.degenesis.sheet.item .body-line,
 .app.window-app.degenesis.sheet .body-line {
     width: 100%;
     height: calc(100% - 300px);
-    overflow: auto
 }
 
 .app.window-app.degenesis.sheet .row {
@@ -1354,7 +1372,7 @@ padding-right: 4px;
 
 
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data{
-    height: 118px;
+    max-height: 118px;
     display: block;
 }
 
@@ -1678,12 +1696,12 @@ margin-left: 12px;
 }
 .app.window-app.degenesis.sheet.item .sheet-body {
     width: 100%;
-    height: calc(100% - 125px);
+    height: calc(100% - 167px);
+    /* height: calc(100% - 125px); */
     overflow: auto;
 }
 .app.window-app.degenesis.sheet.item .tab {
     width: 100%;
-    height:100%;
 }
 
 
@@ -1703,12 +1721,7 @@ margin-left: 12px;
     margin-right: 2px;
     margin-left: 2px;
 }
-.app.window-app.degenesis.quality-selector .quality-inputs {
-    display:flex;
-}
-.app.window-app.degenesis.quality-selector .item-quality {
-    display:flex;
-}
+
 .app.window-app.degenesis.sheet.item .header-inputs input {
     width:100%;
     text-align: center;
@@ -1738,6 +1751,10 @@ margin-left: 12px;
     flex-direction: column;
 }
 
+.app.window-app.degenesis.sheet.item .detail-container .sheet-field span.field-name{
+    min-width: 72px;
+}
+
 .app.window-app.degenesis.sheet.item .detail-container select,
 .app.window-app.degenesis.sheet.item .header-column select{
     width: 100%;
@@ -1747,17 +1764,58 @@ margin-left: 12px;
     height: 24px;
 }
 
+.app.window-app.degenesis.sheet.item .detail-container .field-inputs{
+    display: flex;
+    justify-content: center;
+    width: 100%
+}
+
+.app.window-app.degenesis.sheet.item .detail-container .field-inputs > *{
+    flex: 1;
+}
+
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-short{
+    text-align: right;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-far{
+    text-align: left;
+    
+}
+.app.window-app.degenesis.sheet.item .detail-container span.field-separator{
+    flex: inherit;
+    
+}
+
+.app.window-app.degenesis.sheet.item .detail-container select.cac-select{
+    width: auto;
+}
+
 .app.window-app.degenesis.sheet.item .detail-container input,
 .app.window-app.degenesis.sheet.item .header-column input{
     background-color: transparent;
+}
+.app.window-app.degenesis.sheet.item .detail-container input{
+    text-align: center;
+}
+
+.app.window-app.degenesis.sheet.item .detail-container input.field-start{
+    text-align: right;
 }
 
 .app.window-app.degenesis.sheet.item .tab .editor {
     font-size: 14px;
 }
 
-.app.window-app.degenesis.sheet.item .field-name.belt-text {
+.app.window-app.degenesis.sheet.item .field-inputs .field-end {
+    padding: 1px 3px;
+    padding-top: 5px;
+}
+
+.app.window-app.degenesis.sheet.item .field-inputs .belt-text {
     margin-right: 10px;
+    flex: inherit
 }
 
 .app.window-app.degenesis.sheet.item .icon.wheel {
@@ -1805,6 +1863,76 @@ margin-left: 12px;
     align-self: center;
 }
 
+.app.window-app.degenesis.sheet.item .editor-content{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* * WEAPON SHEET QUALITY SELECTOR * */
+
+.app.window-app.degenesis.quality-selector .quality-inputs {
+    display:flex;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality {
+    display:flex;
+}
+.app.window-app.degenesis.quality-selector .item-quality > * {
+    align-self: center;
+    flex: 1;
+}
+.app.window-app.degenesis.quality-selector .sheet-fields{
+    display: flex;
+    flex: 1;
+}
+.app.window-app.degenesis.quality-selector .sheet-fields > * {
+    align-self: center;
+    flex: 1;
+}
+
+.app.window-app.degenesis.quality-selector .field-name.quality-name {
+    padding-top: 5px;
+    margin-left: 6px;
+    flex: 0 0 133px;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality .checkbox{
+    flex: 0 0 9px;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"] {
+    border:none;
+    padding-top: 5px;
+    border-bottom: 1px solid var(--dark-grey);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"]:focus {
+    color: var(--degenesis-red);
+    box-shadow: none;
+}
+
+.app.window-app.degenesis.quality-selector .item-quality input[type="text"]:hover {
+    border-color: var(--degenesis-red);
+    color: var(--degenesis-red);
+}
+
+.app.window-app.degenesis.quality-selector .window-content{
+    font-family: "Avenir";
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.app.window-app.degenesis.quality-selector form button, .dialog .dialog-buttons button {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.app.window-app.degenesis.quality-selector form button:hover, .dialog .dialog-buttons button:hover {
+    color: var(--degenesis-red);
+}
 
 
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
