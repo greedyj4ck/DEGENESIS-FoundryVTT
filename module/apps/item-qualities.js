@@ -13,7 +13,7 @@ export class ItemQualities extends BaseEntitySheet {
         classes: ["degenesis", "quality-selector"],
         title: "Item Qualities Selection",
         template: "systems/degenesis/templates/apps/item-qualities.html",
-        width: 320,
+        width: 397,
         resizable: true,
         closeOnSubmit: true
       });

@@ -1752,7 +1752,7 @@ margin-left: 12px;
 }
 
 .app.window-app.degenesis.sheet.item .detail-container .sheet-field span.field-name{
-    min-width: 72px;
+    /* min-width: 72px; */
 }
 
 .app.window-app.degenesis.sheet.item .detail-container select,
@@ -1775,14 +1775,11 @@ margin-left: 12px;
 }
 
 
-.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-short{
-    text-align: right;
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-short,
+.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-far{
+    text-align: center;
 }
 
-.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-far{
-    text-align: left;
-    
-}
 .app.window-app.degenesis.sheet.item .detail-container span.field-separator{
     flex: inherit;
     
@@ -1790,6 +1787,7 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet.item .detail-container select.cac-select{
     width: auto;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet.item .detail-container input,
@@ -1797,12 +1795,18 @@ margin-left: 12px;
     background-color: transparent;
 }
 .app.window-app.degenesis.sheet.item .detail-container input{
-    text-align: center;
+    text-align: left;
 }
 
 .app.window-app.degenesis.sheet.item .detail-container input.field-start{
-    text-align: right;
+    padding-right: 0px;
 }
+
+/* .app.window-app.degenesis.sheet.item .detail-container input.handling{
+    text-align: center;
+    min-width: 10px;
+    flex: 0 0 16px;
+} */
 
 .app.window-app.degenesis.sheet.item .tab .editor {
     font-size: 14px;
@@ -1811,11 +1815,24 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet.item .field-inputs .field-end {
     padding: 1px 3px;
     padding-top: 5px;
+    justify-content: flex-end;
+    flex: 0;
 }
 
 .app.window-app.degenesis.sheet.item .field-inputs .belt-text {
     margin-right: 10px;
-    flex: inherit
+    justify-content: flex-end;
+    flex: 0;
+}
+
+.app.window-app.degenesis.sheet.item .field-inputs .mag-size {
+    text-align: right;
+}
+
+.app.window-app.degenesis.sheet.item .field-inputs .belt-field {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .app.window-app.degenesis.sheet.item .icon.wheel {
@@ -1893,7 +1910,8 @@ margin-left: 12px;
 .app.window-app.degenesis.quality-selector .field-name.quality-name {
     padding-top: 5px;
     margin-left: 6px;
-    flex: 0 0 133px;
+    flex: 0 0 170px;
+    text-transform: uppercase;
 }
 
 .app.window-app.degenesis.quality-selector .item-quality .checkbox{
@@ -1923,15 +1941,17 @@ margin-left: 12px;
     font-weight: 300;
 }
 
-.app.window-app.degenesis.quality-selector form button, .dialog .dialog-buttons button {
+.app.window-app.degenesis.quality-selector form button {
     background-color: black;
     color: white;
     margin-top: 5px;
-    transition: color 0.2s, border-color 0.2s;
+    border: none;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-.app.window-app.degenesis.quality-selector form button:hover, .dialog .dialog-buttons button:hover {
-    color: var(--degenesis-red);
+.app.window-app.degenesis.quality-selector form button:hover {
+    background-color: var(--degenesis-red);
+    border: none;
 }
 
 
@@ -1972,19 +1992,20 @@ input[type="text"] {
 form button,
 .dialog .dialog-buttons button,
 button {
-    background: none;
+    background-color: black;
     border-radius: 0px;
     font-family: "Avenir";
     text-transform: uppercase;
-    border: 2px solid black;
+    border: none;
+    color: white;
+    transition: color 0.2s, border 0.2s, background 0.2s;
 }
 
 form button:hover,
 .dialog .dialog-buttons button:hover,
 button:hover {
     box-shadow: none;
-    color: var(--degenesis-red);
-    border: 2px solid var(--degenesis-red);
+    background-color: var(--degenesis-red);
 }
 
 .sheet-tabs.tabs .item {
@@ -2008,19 +2029,23 @@ span.nocaps{
 
 #sidebar button {
     color: white;
-    border: 2px solid var(--degenesis-red);
+    background-color: none;
+    border-top: 1px solid rgb(65, 65, 65);
+    border-bottom: 1px solid rgb(65, 65, 65);
+    background: none;
 }
 
 #sidebar button:hover {
     box-shadow: none;
-    color: var(--degenesis-red)
+    background-color: var(--degenesis-red);
+    border-color: var(--degenesis-red);
 }
 
 
 
 #sidebar-tabs {
-    box-shadow: none;
-    border-bottom: 2px solid var(--degenesis-red)
+    border-bottom: 1px solid var(--degenesis-red);
+    box-shadow: 0 0 10px darkred;
 }
 
 #sidebar-tabs > .item.active {
@@ -2087,10 +2112,19 @@ span.nocaps{
     border: none;
     padding: 0px;
     color: white;
-    border: 1px solid var(--degenesis-red);
+    border-top: 1px solid rgb(65, 65, 65);
+    border-bottom: 1px solid rgb(65, 65, 65);
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
     border-radius: 0px;
     font-family: "Avenir";
     text-transform: uppercase;
+    transition: border 0.2s, background 0.2s;
+}
+
+#chat-controls div.roll-type-select select:hover {
+    border: 1px solid var(--degenesis-red);
+    background-color: var(--degenesis-red);
 }
 /*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
 
