@@ -10,6 +10,7 @@ import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DEGENESIS } from "./module/config.js";
+import {DegenesisImporter} from "./module/importer.js"
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
@@ -91,3 +92,19 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
     system:"degenesis"
   });
 });
+
+
+
+Hooks.on("getActorDirectoryEntryContext", async (html, options) => {
+    options.push( 
+    {
+      name : "Import KatharSys-Character",
+      condition: true,
+      icon: '<i class="fas fa-plus"></i>',
+      callback: target => {
+        const actor = game.actors.get(target.attr('data-entity-id'));
+        actor.update(DegenesisImporter.KatharSysCharacterImport())
+      }
+      
+    })
+  })
