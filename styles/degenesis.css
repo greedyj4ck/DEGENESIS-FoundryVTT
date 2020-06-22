@@ -1752,7 +1752,7 @@ margin-left: 12px;
 }
 
 .app.window-app.degenesis.sheet.item .detail-container .sheet-field span.field-name{
-    min-width: 72px;
+    /* min-width: 72px; */
 }
 
 .app.window-app.degenesis.sheet.item .detail-container select,
@@ -1795,13 +1795,18 @@ margin-left: 12px;
     background-color: transparent;
 }
 .app.window-app.degenesis.sheet.item .detail-container input{
-    text-align: center;
+    text-align: left;
 }
 
 .app.window-app.degenesis.sheet.item .detail-container input.field-start{
-    text-align: right;
     padding-right: 0px;
 }
+
+/* .app.window-app.degenesis.sheet.item .detail-container input.handling{
+    text-align: center;
+    min-width: 10px;
+    flex: 0 0 16px;
+} */
 
 .app.window-app.degenesis.sheet.item .tab .editor {
     font-size: 14px;
@@ -1810,6 +1815,8 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet.item .field-inputs .field-end {
     padding: 1px 3px;
     padding-top: 5px;
+    justify-content: flex-end;
+    flex: 0;
 }
 
 .app.window-app.degenesis.sheet.item .field-inputs .belt-text {
