@@ -82,13 +82,17 @@
                     <span class="field-name">{{localize "DGNS.Magazine"}}: </span>
                     <div class="field-inputs">
                         {{#if data.mag.belt}}
-                        <input type="text" value="-" data-dtype="Number" disabled="disabled"/>
-                        <span class="belt-text">BELT</span>
-                        <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
+                        <input class=" field-start" type="text" value="-" data-dtype="Number" disabled="disabled"/>
+                        <div class="belt-field">
+                            <span class="belt-text">BELT</span>
+                            <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
+                        </div>
                         {{else}}
-                        <input type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
-                        <span class="field-name belt-text">BELT</span>
-                        <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
+                        <input class="field-start" type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
+                        <div class="belt-field">
+                            <span class="belt-text">BELT</span>
+                            <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
+                        </div>
                         {{/if}}
                     </div>
                 </div>
