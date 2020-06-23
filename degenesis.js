@@ -98,16 +98,16 @@ Hooks.once('diceSoNiceReady', (dice3d) => {
 Hooks.on("getActorDirectoryEntryContext", async (html, options) => {
     options.push( 
     {
-      name : "Import KatharSys-Character",
+      name : "Import KatharSys Character",
       condition: true,
       icon: '<i class="fas fa-plus"></i>',
       callback: target => {
-        const actor = game.actors.get(target.attr('data-entity-id'));
-        actor.update(DegenesisImporter.KatharSysCharacterImport())
+        DegenesisImporter.KatharSysCharacterImportDialog(target.attr('data-entity-id'))
       }
       
     })
   })
+
 Hooks.on("chatMessage", (html, content, msg) => {
   let command = content.split(" ");
   if (command[0].includes("/name"))

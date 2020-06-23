@@ -2,27 +2,33 @@ import { DEGENESIS } from "./config.js"
 
 export class DegenesisImporter 
 {
-    static KatharSysCharacterImport(actorId)
+    static KatharSysCharacterImportDialog(actorId)
     {
         new Dialog({
             content : "Input your KatharSys Character ID<div><input name='id'/></div>",
             title : "KatharSys Import",
             buttons : {
-                title : "Import",
+            "import" : {
+                label : "Import",
                 callback : async (dlg) => {
                     let actorData = await this.KatharSysCharacterImport(dlg.find("input[name=id]").val())
                     game.actors.get(actorId).update(actorData);
                 }
             }
-
-        })
+        }
+        }).render(true)
     }
-    static KatharSysCharacterImport(id)
+    static async KatharSysCharacterImport(id)
     {
-
-
+        let response = await fetch("http://localhost:3000/katharsys", {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+            body : "uid="+id
+        })
         let actor = { name : "", data : duplicate(game.system.model.Actor.character)}
-        let importString = "0&e135fec6-7b50-4f86-e440-f2443895640f&75e8e561-f589-4b19-91fb-7333e95cf7cd&1|name|ag|rank|experience|sex|height|weight|money| test|1|2|3| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | ||0|0|0|312113|221023201110001002010222010023221122|123123|100000|0|0"
+        let importString = await response.text();
         let importValues = importString.split("|")
         actor.name = importValues[1]
         actor.data.details.age.value = importValues[2]

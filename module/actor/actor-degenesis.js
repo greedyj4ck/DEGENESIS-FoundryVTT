@@ -127,6 +127,7 @@ export class DegenesisActor extends Actor {
             return this.data.data.skills.willpower
         else if (this.data.data.skills.faith.value)
             return this.data.data.skills.faith
+        else return this.data.data.skills.willpower
     }
 
     getFocusOrPrimal(){
@@ -134,6 +135,7 @@ export class DegenesisActor extends Actor {
             return this.data.data.skills.focus
         else if (this.data.data.skills.primal.value)
             return this.data.data.skills.primal
+        else return this.data.data.skills.focus
     }
 
     prepareBackgrounds()
