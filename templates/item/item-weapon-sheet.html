@@ -21,7 +21,9 @@
                 <div class="square little right"></div>
             </div>
             {{editor content=data.description target="data.description"button=true owner=owner editable=editable}}
-           
+            <div class="footer-diamond">
+                <div class="square little"></div>
+             </div>
         </div>
 <!-- DETAILS TAB-->
     <div class="tab" data-tab="details">
@@ -190,6 +192,10 @@
              {{localize "DGNS.Specialty"}}
              <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
              {{/if}}
+             <div class="footer-diamond">
+                <div class="square little"></div>
+                <div class="square little"></div>
+             </div>
         </div>
 
         

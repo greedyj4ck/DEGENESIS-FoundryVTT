@@ -525,7 +525,6 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.item .square.little,
 .app.window-app.degenesis.sheet .title .square.little,
 .app.window-app.degenesis.sheet .header-line .square.little{
-    margin: 0px;
     align-self: center;
     margin-bottom: 1px;
     height: 7px;
@@ -567,6 +566,7 @@ a.diamond:hover .square.red.perma {
 
 .app.window-app.degenesis.sheet .footer-line .square.little{
     margin-top: 7px;
+    flex: none;
 }
 
 .app.window-app.degenesis.sheet.item .footer-line .square.little{
