@@ -10,7 +10,8 @@ import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DEGENESIS } from "./module/config.js";
-import {DegenesisImporter} from "./module/importer.js"
+import { DegenesisImporter } from "./module/importer.js"
+import { ClusterInterface } from "./module/apps/cluster.js"
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
@@ -127,3 +128,18 @@ Hooks.on("chatMessage", (html, content, msg) => {
   }
   return false
 })
+
+// Activate chat listeners defined in dice-wfrp4e.js
+Hooks.on('renderChatLog', (log, html, data) => {
+  console.log(log, html, data)
+
+  html.find(".roll-type-select").click(ev => {
+     let cl = new ClusterInterface();
+     cl.render(true);
+  })
+
+  html.find(".roll-type-select").mouseover(ev => {
+    $(ev.currentTarget).attr("title", "Access The Cluster")
+ })
+
+});

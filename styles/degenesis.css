@@ -1963,6 +1963,40 @@ margin-left: 12px;
 
 
 
+/**************************** THE CLUSTER ***************************/
+
+.app.window-app.cluster-interface .window-content{
+    font-family: "Avenir";
+}
+
+.cluster-interface .cluster-row {
+    display: flex;
+    justify-content: space-around;
+    height: 33%;
+}
+
+.cluster-interface img.cluster-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cluster-interface img {
+    border: none;
+}
+
+.cluster-interface .cluster-section {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cluster-interface .cluster-section label{
+    font-size: 18px;
+    margin: 10px
+}
+
 /****************************** EXPERIMENTAL UI CHANGES *****************************/
 
 
@@ -2113,6 +2147,12 @@ span.nocaps{
     height: 25px;
     color: #f0f8ff00;
     background: url(../icons/logo-small.png);
+}
+
+#chat-controls .roll-type-select label i:hover {
+    cursor:pointer;
+    background: url(../icons/cluster/logo-small.png);
+    transition: background 0.5s
 }
 
 #chat-controls div.roll-type-select select {
@@ -2273,4 +2313,8 @@ a:hover {
 #hotbar .macro:hover {
     box-shadow: none;
     border: 1px solid var(--degenesis-red)
+}
+
+.app.window-app.journal-sheet .window-content {
+background: url(../ui/degenesis_parchment.jpg);
 }

@@ -1,0 +1,44 @@
+<div>
+    <div class="cluster-row">
+        <div class="cluster-section">
+            <img src="systems/degenesis/icons/cluster/randomizer.svg"/>
+            <label>RANDOMIZER</label>
+        </div>
+        <div class="cluster-section">
+            <img src="systems/degenesis/icons/cluster/name_generator.svg"/>
+            <label>NAME GENERATOR</label>
+        </div>
+    </div>
+    <img class="cluster-logo" src="systems/degenesis/icons/cluster/logo.svg"/>
+    <div class="cluster-row">
+        <div class="cluster-section">
+            <img src="systems/degenesis/icons/cluster/npc_generator.svg"/>
+            <label>NPC GENERATOR</label>
+        </div>
+        <div class="cluster-section">
+            <img src="systems/degenesis/icons/cluster/clan_generator.svg"/>
+            <label>CLAN GENERATOR</label>
+        </div>
+    </div>
+</div> 
+<script>
+    console.log(gsap)
+if (document.readyState === "complete") {
+  resolve();
+} else {
+  window.addEventListener("load", resolve);
+}
+
+// Initialize your app
+function resolve() {
+  
+  document.body.removeAttribute("unresolved");
+  
+//    //gsap.from(".cluster-logo", {opacity: 0, y: 50, duration : 1});
+//    gsap.from(".cluster-section", {opacity: 0, duration: 1});
+ let timeline = gsap.timeline();
+  timeline.from(".cluster-logo", {opacity: 0,y: 50, duration : 1});
+  timeline.from(".cluster-section", {opacity: 0, duration: 1});
+  //timeline.resume()
+}
+</script>

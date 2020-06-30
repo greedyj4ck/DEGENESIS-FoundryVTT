@@ -10,10 +10,7 @@
   "esmodules": ["degenesis.js"],
   "styles": ["styles/degenesis.css"],
   "scripts" : [
-    "greensock/dist/TweenMax.min.js",
-		"greensock/dist/plugins/PixiPlugin.min.js",
-		"greensock/dist/plugins/ScrollToPlugin.min.js",
-    "greensock/dist/utils/SplitText.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js",
     "systems/degenesis/node_modules/dist/tippy.cjs"
 ],
   "packs": [],
