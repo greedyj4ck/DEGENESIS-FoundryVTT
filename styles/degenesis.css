@@ -1506,6 +1506,34 @@ padding-right: 4px;
     flex: 1;
 }
 
+.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-container{
+    width: 100%;
+    flex: 3;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-bar {
+    border: 6px solid black;
+    border-right-color: transparent;
+    border-top-width: 0;
+    /* border-bottom-width: 0; */
+    margin-left: -1px;
+    border-left-color: transparent;
+    margin-top: 17px;
+}
+
+.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-bar::before {
+    content:"";
+    border: 6px solid black;
+    border-right-color: transparent;
+    /* border-top-width: 0; */
+    border-bottom-width: 0;
+    border-left-color: transparent;
+    position: absolute;
+    margin-left: -11px;
+    /* margin-top: 17px; */
+}
+
 .degenesis.sheet .weapon,
 .degenesis.sheet .encumbrance {
     display: flex;
@@ -1547,7 +1575,7 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .weapon-group .weapon-legend,
 .app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend {
     display: flex;
-    flex: 2;
+    flex: 0 0 32px;
     border-bottom: 1px solid var(--dark-grey);
     width: 100%;
     justify-content: flex-end;
