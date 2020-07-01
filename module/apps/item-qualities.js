@@ -35,28 +35,44 @@ export class ItemQualities extends BaseEntitySheet {
     /** @override */
     getData() {
       let qualities = {};
-      // For each weapon quality in configuration (we want to display all of them to show checkboxes)
-      for (let q in DEGENESIS.weaponQualities)
+
+      let qualityList;
+      let qualityDescriptions;
+      let qualityValues;
+
+      if (this.object.type == "weapon")
       {
-        qualities[q] = {
-          "checked" : !!this.tempData.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
-          "name" : DEGENESIS.weaponQualities[q],                                     // Display name
-          "description" : DEGENESIS.weaponQualityDescription[q],                     // Description (to be used for tooltip/dropdown)
-          "values" : duplicate(DEGENESIS.weaponQualitiesValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
-        }
-        // Map each quality to a function to determine how the values are filled.
-        // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
-        qualities[q].values = qualities[q].values.map(val => {
-          // If the weapon has the quality
-          let existingQuality = this.tempData.data.qualities.find(quality => q == quality.name)
-          if (existingQuality) // Set the value to an object with the specified value, placeholder, and config key object
-            return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
-          else                 // Set the value to an object with with no value, but with the placeholder and the config key
-            return {value : "", placeholder : DEGENESIS.qualityValues[val], key: val}
-        })
+        qualityList = DEGENESIS.weaponQualities
+        qualityDescriptions = DEGENESIS.weaponQualityDescription
+        qualityValues = DEGENESIS.weaponQualitiesValues
       }
-      console.log(qualities)
-      return {qualities : qualities}
+      else if (this.object.type == "armor")
+      {
+        qualityList = DEGENESIS.armorQualities
+        qualityDescriptions = DEGENESIS.armorQualityDescription
+        qualityValues = DEGENESIS.armorQualitiesValues
+      }
+        // For each weapon quality in configuration (we want to display all of them to show checkboxes)
+        for (let q in qualityList)
+        {
+          qualities[q] = {
+            "checked" : !!this.tempData.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
+            "name" : qualityList[q],                                                       // Display name  
+            "description" : qualityDescriptions[q],                                        // Description (to be used for tooltip/dropdown)
+            "values" : duplicate(qualityValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
+          }
+          // Map each quality to a function to determine how the values are filled.
+          // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
+          qualities[q].values = qualities[q].values.map(val => {
+            // If the weapon has the quality
+            let existingQuality = this.tempData.data.qualities.find(quality => q == quality.name)
+            if (existingQuality) // Set the value to an object with the specified value, placeholder, and config key object
+              return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
+            else                 // Set the value to an object with with no value, but with the placeholder and the config key
+              return {value : "", placeholder : DEGENESIS.qualityValues[val], key: val}
+          })
+        }
+        return {qualities : qualities}
     }
   
     /* -------------------------------------------- */

@@ -127,6 +127,7 @@
     "DGNS.Handling" : "Handling",
     "DGNS.Distance" : "Distance",
     "DGNS.Magazine" : "Magazine",
+    "DGNS.AP" : "AP",
     "DGNS.Mods" : "Mods",
     "DGNS.ActiveDefense" : "Active Defense",
     "DGNS.PassiveDefense" : "Passive Defense",
