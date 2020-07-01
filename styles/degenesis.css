@@ -1990,11 +1990,20 @@ margin-left: 12px;
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .cluster-interface .cluster-section label{
     font-size: 18px;
     margin: 10px
+}
+
+.cluster-interface .cluster-section select > * {
+    text-transform: uppercase;
+}
+.cluster-interface .cluster-section select {
+    width: 50%;
+    text-transform: uppercase;
 }
 
 /****************************** EXPERIMENTAL UI CHANGES *****************************/

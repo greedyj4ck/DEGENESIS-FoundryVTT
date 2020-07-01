@@ -1,4 +1,5 @@
 export const DEGENESIS = {};
+export const CLUSTER = {};
 
 DEGENESIS.cultures = {
   "borca" : "DGNS.Borca",
@@ -452,9 +453,6 @@ DEGENESIS.armorQualityDescription = {
   "sealed" : "DGNS.SealedDescription",
 }
 
-
-
-
 DEGENESIS.techValues = {
   1 : "I",
   2 : "II",
@@ -469,4 +467,33 @@ DEGENESIS.rollResults = {
   "success" : "DGNS.Success",
   "failure" : "DGNS.Failure",
   "botch" : "DGNS.Botch",
+}
+
+CLUSTER.genders = {
+  "male" : "Male",
+  "female" : "Female",
+  "neutral" : "Neutral"
+}
+
+CLUSTER.randomizerOptions = {
+  "antagonists" : "Antagonists",
+  "bygoneCompanyName" : "Bygone Company Name",
+  "prophecyDreams" : "Cryptic Names for Propechies or Dreams",
+  "foodDrink" : "Food and Drinks",
+  "hallucinations" : "Hallucinations",
+  "patrons" : "Inn and Bar Patrons",
+  "jobs" : "Jobs",
+  "obsession" : "NPC Obsessions",
+  "objects" : "Objects",
+  "shops" : "Shops and Stalls",
+  "ruin" : "This ruin is based on...",
+  "travelComplications" : "Travel Complications"
+}
+
+CLUSTER.techLevels = {
+  1 : "I",
+  2 : "II",
+  3 : "III",
+  4 : "IV",
+  5 : "V",
 }

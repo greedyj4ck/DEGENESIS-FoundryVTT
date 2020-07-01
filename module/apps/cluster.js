@@ -1,5 +1,8 @@
 
 
+import { DEGENESIS } from "../config.js"
+import { CLUSTER } from "../config.js"
+
 export class ClusterInterface extends Application {
     /** @override */
     static get defaultOptions() {
@@ -12,5 +15,15 @@ export class ClusterInterface extends Application {
         height: 800,
         resizable: true,
         });
+    }
+
+
+    getData()
+    {
+        let data = super.getData();
+        data.genders = CLUSTER.genders;
+        data.cults = DEGENESIS.cults;
+        data.randomizerOptions = CLUSTER.randomizerOptions;
+        return data
     }
 }

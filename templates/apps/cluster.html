@@ -3,10 +3,28 @@
         <div class="cluster-section">
             <img src="systems/degenesis/icons/cluster/randomizer.svg"/>
             <label>RANDOMIZER</label>
+            <select name="randomizerSelect">
+              <option value="">-</option>
+              {{#each randomizerOptions as |option o|}}
+              <option value="{{o}}">{{option}}</option>
+              {{/each}}
+            </select>
         </div>
         <div class="cluster-section">
             <img src="systems/degenesis/icons/cluster/name_generator.svg"/>
             <label>NAME GENERATOR</label>
+            <select name="cultSelect">
+              <option value="any">ANY CULT</option>
+              {{#each cults as |cult c|}}
+              <option value="{{c}}">{{cult}}</option>
+              {{/each}}
+            </select>
+            <select name="genderSelect">
+              <option value="any">ANY GENDER</option>
+              {{#each genders as |gender g|}}
+              <option value="{{g}}">{{gender}}</option>
+              {{/each}}
+            </select>
         </div>
     </div>
     <img class="cluster-logo" src="systems/degenesis/icons/cluster/logo.svg"/>
@@ -22,7 +40,6 @@
     </div>
 </div> 
 <script>
-    console.log(gsap)
 if (document.readyState === "complete") {
   resolve();
 } else {
