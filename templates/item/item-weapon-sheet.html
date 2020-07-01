@@ -76,7 +76,10 @@
                     <span class="field-name">{{localize "DGNS.Caliber"}}: </span>
                     <div class="field-inputs">
                         <select name="data.caliber" data-dtype="String">
-                            <option value=""></option>
+                            <option value="">-</option>
+                            {{#each calibers as |caliber c|}}
+                            <option value="{{c}}">{{caliber}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div> 

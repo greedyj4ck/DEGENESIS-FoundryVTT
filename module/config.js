@@ -462,12 +462,51 @@ DEGENESIS.techValues = {
   6 : "VI",
 }
 
-
 DEGENESIS.rollResults = {
   "success" : "DGNS.Success",
   "failure" : "DGNS.Failure",
   "botch" : "DGNS.Botch",
 }
+
+DEGENESIS.calibers = {
+  "50gl": ".50 GL",
+  "357": ".357",
+  "44": ".44",
+  "556": "5.56x45mm",
+  "jacket": "HF Full Jacket",
+  "hollowPoint": "HF Hollow Point",
+  "flechette": "5.56 mm HUNTER Flechette",
+  "46x30": "4.6x30 mm",
+  "9mm": "9mm",
+  "5x30": "5x30 mm Caseless",
+  "buckshot" : "CALIBER 12 (Buckshot)",
+  "rifleBarrel" : "CALIBER 12 (Rifle barrel ammo)",
+  "blackpowder" : "Lead bullet and black powder",
+  "Ecube" : "E-Cube",
+  "EcubeRecharging" : "E-Cube recharging",
+  "arrow" : "Arrow",
+  "bolt" : "Bolt",
+  "petro" : "Can of Petro",
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CLUSTER.genders = {
   "male" : "Male",
