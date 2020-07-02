@@ -227,6 +227,9 @@ export class DegenesisActor extends Actor {
 
     prepareWeapon(weapon) {
         weapon.isMelee = DegenesisItem.isMelee(weapon);
+        let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
+        weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
+        weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
         return weapon
     }
 

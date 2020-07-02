@@ -77,9 +77,11 @@
                     <div class="field-inputs">
                         <select name="data.caliber" data-dtype="String">
                             <option value="">-</option>
+                            {{#select data.caliber}}
                             {{#each calibers as |caliber c|}}
                             <option value="{{c}}">{{caliber}}</option>
                             {{/each}}
+                            {{/select}}
                         </select>
                     </div>
                 </div> 

@@ -88,7 +88,7 @@ export class DegenesisItem extends Item {
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
         tags.push(`Handling: ${data.handling}D`)
         tags.push(`Damage: ${data.damage}`)
-        tags.push(`Distance: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.dist.short} / ${data.dist.far}` }`)
+        tags.push(`Distance: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.distance.short} / ${data.distance.far}` }`)
         tags.push(data.mag.belt ? `Magazine: ${data.mag.size}` : "MAG: BELT")
         tags.push(`Value: ${data.value}`)
         tags.push(`Cult: ${data.cult}`)
