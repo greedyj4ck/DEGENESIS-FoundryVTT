@@ -131,7 +131,6 @@ Hooks.on("chatMessage", (html, content, msg) => {
 
 // Activate chat listeners defined in dice-wfrp4e.js
 Hooks.on('renderChatLog', (log, html, data) => {
-  console.log(log, html, data)
 
   html.find(".roll-type-select").click(ev => {
      let cl = new ClusterInterface();

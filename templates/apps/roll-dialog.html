@@ -1,24 +1,23 @@
-<div>
+<div class = "dialog-inputs">
     <span>
         <label>Difficulty</label>
-        <input name="difficulty" value="{{difficulty}}"/>
+        <input name="difficulty" value="{{prefilled.difficulty}}"/>
     </span>
     <div>
-        <input name="diceModifier" value="{{diceModifier}}"/>D
+        <input name="diceModifier" value="{{prefilled.diceModifier}}"/>D
     </div>
     <div>
-        <input name="successModifier" value="{{successModifier}}"/>S
+        <input name="successModifier" value="{{prefilled.successModifier}}"/>S
     </div>
     <div>
-        <input name="triggerModifier" value="{{triggerModifier}}"/>T
+        <input name="triggerModifier" value="{{prefilled.triggerModifier}}"/>T
     </div>
 </div>
 
 <div>
-    <select multiple>
+    <select name="customModifiers" class = "custom-modifiers" multiple>
         {{#each customModifiers as |modifier m|}}
-        <span>{{modifier.name}}</span>
-        <span>{{modifier.value}}</span>
+        <option value="{{m}}">{{modifier.description}} {{modifier.number}}{{modifier.type}}</option>
         {{/each}}
     </select>
 </div>

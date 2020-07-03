@@ -2073,6 +2073,22 @@ margin-left: 12px;
 }
 
 
+/***************************** DIALOG ***************************/
+
+.roll-dialog .dialog-content {
+    display: flex;
+}
+
+.roll-dialog .dialog-content > div {
+    width: 50%;
+}
+
+.roll-dialog .custom-modifiers {
+    width: 100%;
+    height: 100%;
+}
+
+
 
 /**************************** THE CLUSTER ***************************/
 

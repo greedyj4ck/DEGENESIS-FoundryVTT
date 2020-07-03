@@ -61,7 +61,7 @@ export class DegenesisDice
 
     static async showRollDialog({dialogData, rollData, cardData})
     {
-        return renderTemplate("systems/degenesis/templates/apps/roll-dialog.html", dialogData.preFilled).then(html => {
+        return renderTemplate("systems/degenesis/templates/apps/roll-dialog.html", dialogData).then(html => {
             new Dialog({
                 content : html,
                 title : dialogData.title,
@@ -73,12 +73,29 @@ export class DegenesisDice
                             rollData.diceModifier = parseInt(dlg.find('[name="diceModifier"]').val() || 0)
                             rollData.successModifier = parseInt(dlg.find('[name="successModifier"]').val() || 0)
                             rollData.triggerModifier = parseInt(dlg.find('[name="triggerModifier"]').val() || 0)
+                            let customModifiersIndices = dlg.find('[name="customModifiers"]').val().map(m => parseInt(m))
+                            customModifiersIndices.forEach(index => {
+                                let modifier = dialogData.customModifiers[index];
+                                switch(modifier.type)
+                                {
+                                    case "D":
+                                        rollData.diceModifier += modifier.number;
+                                        break;
+                                    case "S":
+                                        rollData.successModifier += modifier.number;
+                                        break;
+                                    case "T":
+                                        rollData.triggerModifier += modifier.number;
+                                        break;
+                                }
+                            })
+
                             let rollResult = await DegenesisDice.rollAction(rollData)
                             DegenesisChat.renderRollCard(rollResult, cardData)
                         }
                     }
                 }
-            }).render(true)
+            }, {classes : ["roll-dialog"]}).render(true)
 
         })
     }

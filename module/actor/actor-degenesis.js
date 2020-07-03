@@ -15,6 +15,29 @@ export class DegenesisActor extends Actor {
         {
             super.prepareData();
             const data = this.data;
+
+            let modifierArray = this.data.items.filter(i => i.type == "modifier").map(m => m.data);
+            let modifiers = {};
+            modifiers.custom = [];
+            modifierArray.forEach(mod => {
+                if (mod.action == "custom")
+                {
+                    modifiers.custom.push(mod);
+                }
+                else if (mod.action && mod.type)
+                {
+                    if (!modifiers[mod.action])
+                    {
+                        modifiers[mod.action] = {
+                            "D" : 0,
+                            "S" : 0,
+                            "T" : 0,
+                        }
+                    }
+                    modifiers[mod.action][mod.type] += mod.number;
+                }
+            })
+            setProperty(this.data.flags, "degenesis.modifiers" ,  modifiers)
     
             data.data.condition.ego.max =           (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
             data.data.condition.spore.max =         (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
@@ -23,12 +46,14 @@ export class DegenesisActor extends Actor {
 
             data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value;      
             data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
-            data.data.general.actionModifier =  data.data.state.state.motion ? -2 : 0 // todo: more
+            data.data.general.actionModifier =  data.data.state.state.motion ? -2 : 0 
+            //data.data.general.actionModifier += getProperty(modifiers, "action.D") || 0; 
             data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
             data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
             data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
             data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
                                                 // Temporarily state.state, not sure why it's nested
+
 
         }
         catch(e)
@@ -59,9 +84,9 @@ export class DegenesisActor extends Actor {
         preparedData.cultDescription =      DEGENESIS.cultDescription[this.data.data.details.cult.value]
         preparedData.conceptDescription =   DEGENESIS.conceptDescription[this.data.data.details.concept.value]
 
-        preparedData.conceptIcon =  this.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
-        preparedData.cultIcon =     this.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png";
-        preparedData.cultureIcon =  this.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
+        preparedData.conceptIcon =  this.data.data.details.concept.value ?  `systems/degenesis/icons/concept/${this.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png";
+        preparedData.cultIcon =     this.data.data.details.cult.value    ?  `systems/degenesis/icons/cult/${this.data.data.details.cult.value}.svg`       : "systems/degenesis/icons/blank.png";
+        preparedData.cultureIcon =  this.data.data.details.culture.value ?  `systems/degenesis/icons/culture/${this.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
 
         mergeObject(preparedData, this.prepareItems())
         return preparedData;
@@ -238,7 +263,8 @@ export class DegenesisActor extends Actor {
     setupSkill(skill) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
-            preFilled : this.calculateModifiers(),
+            prefilled : this.calculateModifiers("skill", skill),
+            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         },
             cardData = {
@@ -253,7 +279,6 @@ export class DegenesisActor extends Actor {
                 actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
             }
 
-        
         //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
@@ -269,8 +294,21 @@ export class DegenesisActor extends Actor {
         return rollResult
     }
 
-    calculateModifiers() {
-        return {}
+    calculateModifiers(type, specifier) {
+        let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
+        let prefilled = {
+            diceModifier : 0,
+            successModifier : 0,
+            triggerModifier : 0,
+        }
+        if (modifiers["action"])
+        {
+            prefilled.diceModifier += modifiers["action"].D
+            prefilled.successModifier += modifiers["action"].S
+            prefilled.triggerModifier += modifiers["action"].T
+
+        }
+        return prefilled
     }
 
 }
