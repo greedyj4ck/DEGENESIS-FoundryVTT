@@ -127,7 +127,18 @@
     height: 7px;
     width: 7px;
     border: 1px solid rgb(165 165 165);
-    margin: 0px 2px 0px 2px;;
+    margin: 0px 2px 0px 2px;
+    -ms-transform: rotate(45deg); /* Internet Explorer */
+    -moz-transform: rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Safari et Chrome */
+    -o-transform: rotate(45deg); /* Opera */
+}
+
+.properties.square{
+    height: 14px;
+    width: 14px;
+    border: 1px solid rgb(165 165 165);
+    margin: 0px 2px 0px 2px;
     -ms-transform: rotate(45deg); /* Internet Explorer */
     -moz-transform: rotate(45deg); /* Firefox */
     -webkit-transform: rotate(45deg); /* Safari et Chrome */
@@ -1544,8 +1555,16 @@ padding-right: 4px;
     margin-top: 8px;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .weapon-name{
+    flex: 1;
+    display: flex;
+    /* align-self: center; */
+    margin-left: 5px;
+    padding-bottom: 6px;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics {
-    flex: 2;
+    flex: 3;
     display: flex;
     align-self: center;
     justify-content: flex-end;
@@ -1561,15 +1580,33 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.distance {
-    margin-right: 5.5%;
+    margin-right: 0.5%;
+    flex: 0.6;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage {
-    margin-right: 8%;
+    flex: 0.5;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses {
-    margin-right: 33%;
+    margin-right: 32%;
+    flex: 1.5;
+}
+
+.app.window-app.degenesis.sheet .weapon-properties{
+    margin-left: 3%;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.app.window-app.degenesis.sheet .name-rotate{
+    -ms-transform: rotate(-45deg); /* Internet Explorer */
+    -moz-transform: rotate(-45deg); /* Firefox */
+    -webkit-transform: rotate(-45deg); /* Safari et Chrome */
+    -o-transform: rotate(-45deg);
+}
+.app.window-app.degenesis.sheet .qualities-name{
+    margin-left: 5px;
 }
 
 /* * INVENTORY TAB*/
@@ -2199,6 +2236,10 @@ button:hover {
 
 .caps{
     text-transform: uppercase;
+}
+
+.capitalize{
+    text-transform: capitalize;
 }
 
 span.nocaps{

@@ -181,9 +181,29 @@
                </div>
             </div>
             <div class="break"></div>
+            {{#if weapon.data.qualities}}
+            <div class="weapon-properties">
+               <div class="square properties">
+                  <div class="name-rotate">P</div>
+               </div>
+               <div class="qualities-name">
+                  <span>
+                  {{#each weapon.data.qualities as |quality q|}}
+                     <a class="capitalize dropdown">{{quality.name}}</a>
+                  {{/each}}
+                  </span>
+               </div>
+            </div>
+            {{/if}}
+
+
+            <div class="break"></div>
+            {{log weapon.data.qualities}} {{log weapon}}
          </div>
          {{/each}}
       </div>
+
+      
    <!-- {{#each equippedWeapons as |weapon w|}}
     <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
     {{/each}}-->
