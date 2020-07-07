@@ -203,6 +203,44 @@
          {{/each}}
       </div>
 
+         <div class="arsenal-list item-list">
+         {{#each equippedArmor as |armor a|}}
+         <div class="weapon item" data-item-id="{{armor._id}}">
+            <a class="weapon-name">{{a.name}}</a>
+            <div class="weapon-characteristics">
+               <div class="legend-name uses">
+                  <span><a>Attack {{weapon.attackDice}}D</a> <a>Defense {{weapon.defenseDice}}D</a></span>
+               </div>
+               <div class="legend-name dammage">
+                  <span>{{weapon.data.damage}}</span>
+               </div>
+               <div class="legend-name distance">
+                  <span>{{weapon.data.distance.melee}}</span>
+               </div>
+            </div>
+            <div class="break"></div>
+            {{#if armor.qualities}}
+            <div class="weapon-properties">
+               <div class="square properties">
+                  <div class="name-rotate">P</div>
+               </div>
+               <div class="qualities-name">
+                  <span>
+                  {{#each armor.qualities as |quality q|}}
+                     <a class="capitalize quality-dropdown" data-key="{{quality.key}}" data-type="armor">{{quality.display}}</a>
+                  {{/each}}
+                  </span>
+               </div>
+            </div>
+            {{/if}}
+
+
+            <div class="break"></div>
+            {{log weapon.data.qualities}} {{log weapon}}
+         </div>
+         {{/each}}
+      </div>
+
       
    <!-- {{#each equippedWeapons as |weapon w|}}
     <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>

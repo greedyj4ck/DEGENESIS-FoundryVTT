@@ -92,11 +92,7 @@ export class DegenesisItem extends Item {
         tags.push(data.mag.belt ? `Magazine: ${data.mag.size}` : "MAG: BELT")
         tags.push(`Value: ${data.value}`)
         tags.push(`Cult: ${data.cult}`)
-        data.qualities.forEach(q => {
-            let qualityString = DEGENESIS.weaponQualities[q.name] + " "
-            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
-            tags.push(qualityString)
-        })
+        tags = tags.concat(DegenesisItem.formatQualities(this.data));
         tags.filter(t => !!t)
         return {
             text : text,
@@ -108,5 +104,17 @@ export class DegenesisItem extends Item {
     {
         if (data.type = "weapon")
             return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" ? false : true 
+    }
+
+    static formatQualities(itemData)
+    {
+        let qualitiesFormatted = [];
+        itemData.data.qualities.forEach(q => {
+            let qualityString = DEGENESIS.weaponQualities[q.name] + " "
+            if (q.values.length)
+                qualityString = qualityString.concat("(" + q.values.map(v => `${v.value}`).join(", ") + ")")
+            qualitiesFormatted.push(qualityString)
+        })
+        return qualitiesFormatted
     }
 }

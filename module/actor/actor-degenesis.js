@@ -187,6 +187,7 @@ export class DegenesisActor extends Actor {
         let modifiers = [];
         let complications = [];
         let equippedWeapons = [];
+        let equippedArmor = [];
         let encumbrance = actorData.data.general.encumbrance;
 
         for (let i of actorData.items)
@@ -201,6 +202,9 @@ export class DegenesisActor extends Actor {
             if (i.type == "armor")
             {
                 inventory.armor.items.push(i);
+                if(i.data.equipped)
+                    equippedArmor.push(this.prepareArmor(i));
+                encumbrance.current += i.data.encumbrance   
             }
             if (i.type == "equipment")
             {
@@ -226,10 +230,11 @@ export class DegenesisActor extends Actor {
         return {
             inventory,
             equippedWeapons,
+            equippedArmor,
             potentials,
             modifiers,
             complications,
-            encumbrance
+            encumbrance,
         }
     }
 
@@ -255,10 +260,22 @@ export class DegenesisActor extends Actor {
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
         weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
-        weapon.qualities = weapon.data.qualities.map(q => {return {key : q.name,
-                                                          display : DEGENESIS.weaponQualities[q.name] + " " + q.values.map(v => `(${v.value})`).join(", ")}})
+        weapon.qualities = weapon.data.qualities.map(q => { return {
+                                                                key : q.name,
+                                                                display : [q.values.length ? DEGENESIS.weaponQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.weaponQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
+                                                            }
+                                                         })
         return weapon
     }
+
+    prepareArmor(armor) {
+        armor.qualities = armor.data.qualities.map(q => { return {
+            key : q.name,
+            display : [q.values.length ? DEGENESIS.armorQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.armorQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
+        }
+     })
+        return armor
+    }   
 
 
 
