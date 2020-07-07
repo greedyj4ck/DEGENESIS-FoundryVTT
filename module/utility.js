@@ -45,8 +45,11 @@ export class DEG_Utility {
         return actions;
     }
 
-    static getKey()
+    static findKey(value, object)
     {
-
+        for (let key in object) 
+            if (object[key] === value)
+                return key
+        throw "Could not find key corresponding to " + value
     }
 }

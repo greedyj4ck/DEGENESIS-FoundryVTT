@@ -255,6 +255,8 @@ export class DegenesisActor extends Actor {
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
         weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
+        weapon.qualities = weapon.data.qualities.map(q => {return {key : q.name,
+                                                          display : DEGENESIS.weaponQualities[q.name] + " " + q.values.map(v => `(${v.value})`).join(", ")}})
         return weapon
     }
 

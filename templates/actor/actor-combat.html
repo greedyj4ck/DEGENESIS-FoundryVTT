@@ -188,8 +188,8 @@
                </div>
                <div class="qualities-name">
                   <span>
-                  {{#each weapon.data.qualities as |quality q|}}
-                     <a class="capitalize dropdown">{{quality.name}}</a>
+                  {{#each weapon.qualities as |quality q|}}
+                     <a class="capitalize quality-dropdown" data-key="{{quality.key}}" data-type="weapon">{{quality.display}}</a>
                   {{/each}}
                   </span>
                </div>

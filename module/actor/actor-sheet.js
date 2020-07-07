@@ -250,6 +250,17 @@ export class DegenesisActorSheet extends ActorSheet {
       this._dropdown(ev, item.dropdownData())
     })
 
+    html.find(".quality-dropdown").click(ev => {
+      let type = $(ev.currentTarget).attr("data-type")
+      let key = $(ev.currentTarget).attr("data-key")
+
+      let valueObject =  DEGENESIS[`${type}QualitiesValues`]
+      let descriptionObject =  DEGENESIS[`${type}QualityDescription`]
+      let text = valueObject[key].map(value => `(${DEGENESIS.qualityValues[value]})`).join(", ") + "<br><br>"
+      text = text.concat(descriptionObject[key]) 
+      this._dropdown(ev, {text})
+    })
+
     html.find(".complications-name, .complications-rating").change(ev => {
         let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
 
