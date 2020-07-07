@@ -255,8 +255,10 @@ export class DegenesisActorSheet extends ActorSheet {
       let key = $(ev.currentTarget).attr("data-key")
 
       let valueObject =  DEGENESIS[`${type}QualitiesValues`]
+      let nameObject =  DEGENESIS[`${type}Qualities`]
       let descriptionObject =  DEGENESIS[`${type}QualityDescription`]
-      let text = valueObject[key].map(value => `<b>${DEGENESIS.weaponQualities[key]}`)+ (valueObject[key].map(value =>` (${DEGENESIS.qualityValues[value]})</b>`).join(", "))+": "
+      let text = `<b>${nameObject[key]} `
+      text = text.concat(valueObject[key].map(value => `(${DEGENESIS.qualityValues[value]})`).join(", "))+":</b> "
       text = text.concat(descriptionObject[key]) 
       this._dropdown(ev, {text})
     })
