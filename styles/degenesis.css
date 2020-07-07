@@ -1707,7 +1707,7 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend {
     display: flex;
-    flex: 0 0 32px;
+    flex: 0 0 38px;
     border-bottom: 1px solid var(--dark-grey);
     width: 100%;
     justify-content: flex-end;
