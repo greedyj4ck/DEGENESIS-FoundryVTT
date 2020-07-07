@@ -143,6 +143,7 @@
     -moz-transform: rotate(45deg); /* Firefox */
     -webkit-transform: rotate(45deg); /* Safari et Chrome */
     -o-transform: rotate(45deg); /* Opera */
+    flex: none;
 }
 
 .square.black {
@@ -1609,6 +1610,16 @@ padding-right: 4px;
     margin-left: 5px;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .item-summary{
+    display: inline-block;
+    background-color: var(--light-grey);
+    padding: 5px 4px 5px 4px;
+    width: 100%;
+    border-top: 1px solid var( --dark-grey);
+    margin-left: 0px;
+    margin-right: 0px;   
+}
+
 /* * INVENTORY TAB*/
 
 .app.window-app.degenesis.sheet .inventory-group.weapon-group,
@@ -1631,6 +1642,7 @@ padding-right: 4px;
     margin-left: -1px;
     border-left-color: transparent;
     margin-top: 17px;
+    max-width: 100%;
 }
 
 .app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-bar::before {
