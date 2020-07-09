@@ -1551,6 +1551,10 @@ padding-right: 4px;
     margin-right:68%;
 }
 
+.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.uses-ranged{
+    margin-right: 43%;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .armor.item,
 .app.window-app.degenesis.sheet .arsenal-list .weapon.item {
     margin-left: 5px;
@@ -1599,6 +1603,10 @@ padding-right: 4px;
     flex: 0.6;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.distance-ranged {
+    margin-right: 4.5%;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.armor-value{
     flex:0.25;
 }
@@ -1607,8 +1615,22 @@ padding-right: 4px;
     flex: 0.5;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged {
+    margin-right: 7%;
+}
+
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged{
+    margin-right: 7%;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses {
     margin-right: 32%;
+    flex: 1.5;
+}
+
+
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged {
+    margin-right: 8%;
     flex: 1.5;
 }
 

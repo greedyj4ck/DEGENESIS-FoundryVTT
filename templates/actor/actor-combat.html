@@ -136,8 +136,12 @@
             <div class="square little right"></div>
          </div>
       </div>
+
+<!--* ARSENAL -->      
    <div class="arsenal scrollable">
       
+      
+      <!--* MELEE WEAPON -->      
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -167,6 +171,7 @@
       </div>
       <div class="arsenal-list item-list">
          {{#each equippedWeapons as |weapon w|}}
+         {{#if weapon.isMelee}}
          <div class="weapon item" data-item-id="{{weapon._id}}">
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -199,10 +204,85 @@
 
             <div class="break"></div>
          </div>
+         {{/if}}
          {{/each}}
       </div>
    </div>
 
+      <!--* ARMED WEAPON -->      
+      <div class="arsenal-group weapon-group">
+         <div class="weapon">
+            <div class="first-part">
+               <div class="black-title">
+                  <h3>{{localize "DGNS.RangedWeapons"}}</h3>
+               </div>
+               <svg class="tab-start-line" height="23" width="26">
+                  <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+                  <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               </svg>
+   
+               <div class="empty">
+   
+               </div>
+            </div>
+            <div class="weapon-legend legend">
+               <div class="legend-name uses-ranged">
+                  <span>{{localize "DGNS.Uses"}}</span>
+               </div>
+               <div class="legend-name magazine">
+                  <span>{{localize "DGNS.Magazine"}}</span>
+               </div>
+               <div class="legend-name dammage">
+                  <span>{{localize "DGNS.Damage"}}</span>
+               </div>
+               <div class="legend-name distance">
+                  <span>{{localize "DGNS.Distance"}}</span>
+               </div>
+            </div>
+         </div>
+         <div class="arsenal-list item-list">
+            {{#each equippedWeapons as |weapon w|}}
+            {{#unless weapon.isMelee}}
+            <div class="weapon item" data-item-id="{{weapon._id}}">
+               <a class="weapon-name">{{weapon.name}}</a>
+            <div class="weapon-characteristics">
+               <div class="legend-name uses-ranged">
+                  <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.attackDice}}D)</a> </span>
+               </div>
+               <div class="legend-name magazine-ranged">
+                  <a class="mag-count">10</a><span>/{{weapon.data.mag.size}}</span>
+               </div>
+               <div class="legend-name dammage-ranged">
+                  <span>{{weapon.data.damage}}</span>
+               </div>
+               <div class="legend-name distance-ranged">
+                  <span>{{weapon.data.distance.short}}/{{weapon.data.distance.far}}</span>
+               </div>
+            </div>
+            <div class="break"></div>
+            {{#if weapon.data.qualities}}
+            <div class="weapon-properties">
+               <div class="square properties">
+                  <div class="name-rotate">P</div>
+               </div>
+               <div class="qualities-name">
+                  <span>
+                  {{#each weapon.qualities as |quality q|}}
+                     <a class="capitalize quality-dropdown" data-key="{{quality.key}}" data-type="weapon">{{quality.display}}</a>
+                  {{/each}}
+                  </span>
+               </div>
+            </div>
+            {{/if}}
+
+
+            <div class="break"></div>
+         </div>
+         {{/unless}}
+         {{/each}}
+      </div>
+   </div>
+      <!--* ARMOR -->      
    <div class="arsenal-group armor-group">
       <div class="armor">
          <div class="first-part">
