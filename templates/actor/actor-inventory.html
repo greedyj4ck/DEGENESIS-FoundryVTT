@@ -112,12 +112,12 @@
 </div>
 
       <!-- *ARMOR* -->
-      <div class="inventory-group weapon-group">
-         <div class="weapon">
+      <div class="inventory-group armor-group">
+         <div class="armor">
             <div class="first-part">
                <div class="black-title">
                   <h3>{{localize "DGNS.Armor"}}</h3>
-                  <a class="icon item-add" data-item="weapon">+</a>
+                  <a class="icon item-add" data-item="armor">+</a>
                </div>
                <svg class="tab-start-line" height="23" width="26">
                   <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
@@ -128,7 +128,7 @@
    
                </div>
             </div>
-            <div class="weapon-legend legend">
+            <div class="armor-legend legend">
                <div class="legend-name equipped">
                   <span>{{localize "DGNS.Worn"}}</span>
                </div>
@@ -149,9 +149,9 @@
             </div>
    <div class="inventory-list item-list">
       {{#each inventory.armor.items as |armor w|}}
-      <div class="weapon item" data-item-id="{{armor._id}}">
-         <a class="weapon-name dropdown">{{armor.name}}</a>
-         <div class="weapon-characteristics">
+      <div class="armor item" data-item-id="{{armor._id}}">
+         <a class="armor-name dropdown">{{armor.name}}</a>
+         <div class="armor-characteristics">
             <div class="legend-name equipped">
                 {{#if armor.data.equipped}}
                   <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
