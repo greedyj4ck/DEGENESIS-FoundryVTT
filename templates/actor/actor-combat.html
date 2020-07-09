@@ -171,7 +171,7 @@
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses">
-                  <span><a>Attack {{weapon.attackDice}}D</a> <a>Defense {{weapon.defenseDice}}D</a></span>
+                  <span><a class="roll-weapon" data-use="attack">Attack {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">Defense {{weapon.defenseDice}}D</a></span>
                </div>
                <div class="legend-name dammage">
                   <span>{{weapon.data.damage}}</span>
@@ -202,11 +202,40 @@
          </div>
          {{/each}}
       </div>
+   </div>
+
+   <div class="arsenal-group weapon-group">
+      <div class="weapon">
+         <div class="first-part">
+            <div class="black-title">
+               <h3>{{localize "DGNS.Armor"}}</h3>
+            </div>
+            <svg class="tab-start-line" height="23" width="26">
+               <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+            </svg>
+
+            <div class="empty">
+
+            </div>
+         </div>
+         <div class="weapon-legend legend">
+            <div class="legend-name uses">
+               <span>{{localize "DGNS.Uses"}}</span>
+            </div>
+            <div class="legend-name dammage">
+               <span>{{localize "DGNS.Damage"}}</span>
+            </div>
+            <div class="legend-name distance">
+               <span>{{localize "DGNS.Distance"}}</span>
+            </div>
+         </div>
+   </div>
 
          <div class="arsenal-list item-list">
          {{#each equippedArmor as |armor a|}}
          <div class="weapon item" data-item-id="{{armor._id}}">
-            <a class="weapon-name">{{a.name}}</a>
+            <a class="weapon-name">{{armor.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses">
                   <span><a>Attack {{weapon.attackDice}}D</a> <a>Defense {{weapon.defenseDice}}D</a></span>
@@ -240,13 +269,12 @@
          </div>
          {{/each}}
       </div>
-
+   </div>
       
    <!-- {{#each equippedWeapons as |weapon w|}}
     <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
     {{/each}}-->
 
-   </div>
 </div>
 </div>
 <div class="footer-diamond">

@@ -99,6 +99,21 @@ export class DegenesisItem extends Item {
             tags : tags        
         }
     }
+    _armorDropdownData()
+    {
+        let tags = [];
+        let data = duplicate(this.data.data);
+        let text = `${data.description}`;
+
+        tags.push(`Value: ${data.value}`)
+        tags.push(`Cult: ${data.cult}`)
+        tags = tags.concat(DegenesisItem.formatQualities(this.data));
+        tags.filter(t => !!t)
+        return {
+            text : text,
+            tags : tags        
+        }
+    }
 
     static isMelee(data) 
     {
@@ -110,7 +125,7 @@ export class DegenesisItem extends Item {
     {
         let qualitiesFormatted = [];
         itemData.data.qualities.forEach(q => {
-            let qualityString = DEGENESIS.weaponQualities[q.name] + " "
+            let qualityString = DEGENESIS[`${itemData.type}Qualities`][q.name] + " "
             if (q.values.length)
                 qualityString = qualityString.concat("(" + q.values.map(v => `${v.value}`).join(", ") + ")")
             qualitiesFormatted.push(qualityString)

@@ -76,7 +76,7 @@ export class DegenesisItemSheet extends ItemSheet {
       {
         let quality = {}
         quality.name = $(ev.currentTarget).attr("data-quality");
-        quality.values = duplicate(DEGENESIS.weaponQualitiesValues[quality.name]);
+        quality.values = duplicate(DEGENESIS[`${this.item.type}QualitiesValues`][quality.name]);
         
         let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
 

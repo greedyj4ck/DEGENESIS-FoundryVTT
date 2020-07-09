@@ -90,7 +90,7 @@ export class DegenesisDice
                                 }
                             })
 
-                            let rollResult = await DegenesisDice.rollAction(rollData)
+                            let rollResult = await dialogData.rollMethod(rollData)
                             DegenesisChat.renderRollCard(rollResult, cardData)
                         }
                     }
