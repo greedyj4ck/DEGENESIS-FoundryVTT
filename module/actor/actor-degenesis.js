@@ -279,41 +279,74 @@ export class DegenesisActor extends Actor {
 
 
 
-    setupSkill(skill) {
+    setupSkill(skill, options = {}) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
             prefilled : this.calculateModifiers("skill", skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
-        },
-            cardData = {
-                template : "systems/degenesis/templates/chat/roll-card.html",
-                flavor : `${DEGENESIS.skills[skill]}`,
-                speaker : {
-                    alias : this.data.name
-                }
-            },
-            rollData = {
-                skill : this.data.data.skills[skill],
-                actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
-            }
+        }
+        dialogData.rollMethod = this.rollSkill;
+
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
+
+        let rollData = {
+            skill : this.data.data.skills[skill],
+            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
+        }
 
         //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
 
-
-    async rollSkill(skill) 
-    {
-        let rollData = {
-            actionNumber : this.data.data.attributes[skill.attribute].value + skill.value
+    setupWeapon(weapon, options = {}) {
+        let skill = DEGENESIS.weaponGroupSkill[weapon.data.group]
+        weapon = this.prepareWeapon(duplicate(weapon));
+        let dialogData = {
+            title : `Weapon - ${weapon.name}`,
+            prefilled : this.calculateModifiers("weapon", skill),
+            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
-        let rollResult = await DegenesisDice.rollAction(rollData)
+        dialogData.rollMethod = this.rollWeapon;
 
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", DEGENESIS.skills[skill])
+
+        let rollData = {
+            skill : this.data.data.skills[skill],
+            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value + weapon.data.handling,
+            weapon : weapon
+        }
+
+        //let rollResult = await DegenesisDice.rollAction(rollData)
+        return {dialogData, cardData, rollData}
+    }
+
+    constructCardData(template, cardTitle) {
+        return {
+            title : cardTitle,
+            template,
+            speaker : {
+                alias : this.data.name
+            }
+        }
+    }
+
+    async rollSkill(rollData) 
+    {
+        let rollResult = await DegenesisDice.rollAction(rollData)
         return rollResult
     }
 
-    calculateModifiers(type, specifier) {
+    async rollWeapon(rollData) 
+    {
+        let rollResult = await DegenesisDice.rollAction(rollData)
+        rollResult.weapon = rollData.weapon
+        return rollResult
+    }
+
+    calculateModifiers(type, skill, use) {
+        console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,

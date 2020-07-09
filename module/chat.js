@@ -12,13 +12,13 @@ export class DegenesisChat {
 
         rollResult.result = DEGENESIS.rollResults[rollResult.result]
 
+        mergeObject(cardData, rollResult);
 
-        renderTemplate(cardData.template, rollResult).then(html => {
+        renderTemplate(cardData.template, cardData).then(html => {
             ChatMessage.create({
                 content : html,
                 //sound : CONFIG.sounds.dice,
                 speaker : cardData.speaker,
-                flavor : cardData.flavor
             })
         })
     }

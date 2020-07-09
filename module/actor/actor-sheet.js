@@ -26,7 +26,7 @@ export class DegenesisActorSheet extends ActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    this.loadConfigData(data);
+    this.addConfigData(data);
     
 
     // data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
@@ -47,7 +47,7 @@ export class DegenesisActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
 
-  loadConfigData(sheetData) {
+  addConfigData(sheetData) {
     sheetData.concepts =    DEGENESIS.concepts
     sheetData.cults =       DEGENESIS.cults
     sheetData.cultures =    DEGENESIS.cultures
@@ -268,14 +268,9 @@ export class DegenesisActorSheet extends ActorSheet {
 
     html.find(".complications-name, .complications-rating").change(ev => {
         let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
-
-
-
         if (itemId == "new")
           return this.actor.createEmbeddedEntity("OwnedItem", {type : "complication", name : ev.target.value})
-
-
-
+          
         let itemData = duplicate(this.actor.items.find(i => i._id == itemId));
         let target = $(ev.currentTarget).attr("data-target")
 
@@ -290,10 +285,15 @@ export class DegenesisActorSheet extends ActorSheet {
 
     html.find(".skill-name").click(async ev => {
       let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
-      //let rollResult = await this.actor.rollSkill(this.actor.data.data.skills[skill])
       let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
       await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
-      //DegenesisChat.renderRollCard(rollResult)
+    })
+    html.find(".roll-weapon").click(async ev => {
+      let weaponId = $(ev.currentTarget).parents(".weapon").attr("data-item-id")
+      let use = $(ev.currentTarget).attr("data-use");
+      let weapon = this.actor.getEmbeddedEntity("OwnedItem", weaponId)
+      let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, {use})
+      await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
     })
 
   }

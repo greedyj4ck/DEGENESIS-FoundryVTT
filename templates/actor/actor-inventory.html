@@ -109,8 +109,84 @@
       </div>
       {{/each}}
    </div>
-   </div>
 </div>
+
+      <!-- *ARMOR* -->
+      <div class="inventory-group weapon-group">
+         <div class="weapon">
+            <div class="first-part">
+               <div class="black-title">
+                  <h3>{{localize "DGNS.Armor"}}</h3>
+                  <a class="icon item-add" data-item="weapon">+</a>
+               </div>
+               <svg class="tab-start-line" height="23" width="26">
+                  <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+                  <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+               </svg>
+   
+               <div class="empty">
+   
+               </div>
+            </div>
+            <div class="weapon-legend legend">
+               <div class="legend-name equipped">
+                  <span>{{localize "DGNS.Equipped"}}</span>
+               </div>
+               <div class="legend-name qty">
+                  <span>{{localize "DGNS.Qty"}}</span>
+               </div>
+               <div class="legend-name enc">
+                  <span>{{localize "DGNS.Enc"}}</span>
+               </div>
+               <div class="legend-name tech">
+                  <span>{{localize "DGNS.Tech"}}</span>
+               </div>
+               <div class="legend-name slots">
+                  <span2>{{localize "DGNS.Slots"}}</span>
+               </div>
+               <div class="empty"> </div>
+               </div>
+            </div>
+   <div class="inventory-list item-list">
+      {{#each inventory.armor.items as |armor w|}}
+      <div class="weapon item" data-item-id="{{armor._id}}">
+         <a class="weapon-name dropdown">{{armor.name}}</a>
+         <div class="weapon-characteristics">
+            <div class="legend-name equipped">
+                {{#if armor.data.equipped}}
+                  <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
+               {{else}}
+                  <a class="square button-position checkbox" data-target="item" data-item-target="data.equipped" ><div class="square-into"></div></a>
+               {{/if}}
+            </div>
+            <div class="legend-name qty">
+               <span>{{armor.data.quantity}}</span>
+            </div>
+            <div class="legend-name enc">
+               <span>{{armor.data.encumbrance}}</span>
+            </div>
+            <div class="legend-name tech">
+               <span>{{lookup ../techValues armor.data.tech}}</span>
+            </div>
+            <div class="legend-name slot">
+               <span>0/{{armor.data.slots.total}}</span>
+            </div>
+            <div class="vertical-bar">
+               <svg height="15px" width="1px">
+                  <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+               </svg>
+            </div>
+            <div class="item-controls">
+               <a class="icon item-post"><i class="fas fa-comment"></i></a>
+               <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+               <a class="icon item-delete"><i class="fas fa-times"></i></a>
+            </div>
+         </div>
+         <div class="break"></div>
+      </div>
+      {{/each}}
+   </div>
+   </div>
 
 <div class="footer-diamond">
    <div class="square little"></div>
