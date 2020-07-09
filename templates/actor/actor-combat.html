@@ -198,14 +198,13 @@
 
 
             <div class="break"></div>
-            {{log weapon.data.qualities}} {{log weapon}}
          </div>
          {{/each}}
       </div>
    </div>
 
-   <div class="arsenal-group weapon-group">
-      <div class="weapon">
+   <div class="arsenal-group armor-group">
+      <div class="armor">
          <div class="first-part">
             <div class="black-title">
                <h3>{{localize "DGNS.Armor"}}</h3>
@@ -218,38 +217,25 @@
             <div class="empty">
 
             </div>
-         </div>
-         <div class="weapon-legend legend">
-            <div class="legend-name uses">
-               <span>{{localize "DGNS.Uses"}}</span>
+            <div class="armor-legend legend">
+               <div class="legend-name armor-value">
+                  <span>{{localize "DGNS.ArmorValue"}}</span>
+               </div>
             </div>
-            <div class="legend-name dammage">
-               <span>{{localize "DGNS.Damage"}}</span>
-            </div>
-            <div class="legend-name distance">
-               <span>{{localize "DGNS.Distance"}}</span>
-            </div>
-         </div>
    </div>
 
          <div class="arsenal-list item-list">
          {{#each equippedArmor as |armor a|}}
-         <div class="weapon item" data-item-id="{{armor._id}}">
-            <a class="weapon-name">{{armor.name}}</a>
-            <div class="weapon-characteristics">
-               <div class="legend-name uses">
-                  <span><a>Attack {{weapon.attackDice}}D</a> <a>Defense {{weapon.defenseDice}}D</a></span>
-               </div>
-               <div class="legend-name dammage">
-                  <span>{{weapon.data.damage}}</span>
-               </div>
-               <div class="legend-name distance">
-                  <span>{{weapon.data.distance.melee}}</span>
+         <div class="armor item" data-item-id="{{armor._id}}">
+            <a class="armor-name">{{armor.name}}</a>
+            <div class="armor-characteristics">
+               <div class="legend-name armor-value">
+                  <span>{{armor.data.AP}}</span>
                </div>
             </div>
             <div class="break"></div>
             {{#if armor.qualities}}
-            <div class="weapon-properties">
+            <div class="armor-properties">
                <div class="square properties">
                   <div class="name-rotate">P</div>
                </div>
@@ -269,6 +255,7 @@
          </div>
          {{/each}}
       </div>
+</div>
    </div>
       
    <!-- {{#each equippedWeapons as |weapon w|}}
