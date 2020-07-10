@@ -142,6 +142,7 @@
       
       
       <!--* MELEE WEAPON -->      
+      {{#if meleeWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -206,8 +207,9 @@
          {{/each}}
       </div>
    </div>
-
-      <!--* RANGED WEAPON -->      
+   {{/if}}
+      <!--* RANGED WEAPON -->     
+      {{#if rangedWeapons.length}} 
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -278,8 +280,9 @@
          {{/each}}
       </div>
    </div>
-
+   {{/if}}
       <!--* SONIC WEAPON-->
+      {{#if sonicWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -318,14 +321,14 @@
                <div class="legend-name uses-ranged-sonic">
                   <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} (INT+Eng & PSY+Dom)</a></span>
                </div>
-               <div class="legend-name magazine-ranged">
+               <div class="legend-name magazine-ranged-sonic">
                   <a class="mag-count">10</a><span>/{{weapon.data.mag.size}}</span>
                </div>
-               <div class="legend-name dammage-ranged">
+               <div class="legend-name dammage-ranged-sonic">
                   <span>{{weapon.data.damage}}</span>
                </div>
-               <div class="legend-name distance-ranged">
-                  <span>{{weapon.data.distance.short}}/{{weapon.data.distance.far}}</span>
+               <div class="legend-name distance-ranged-sonic">
+                  <span>{{weapon.data.distance.short}}</span>
                </div>
             </div>
             <div class="break"></div>
@@ -350,8 +353,9 @@
          {{/each}}
       </div>
    </div>
-
+{{/if}}
       <!--* ARMOR -->      
+   {{#if equippedArmor.length}}
    <div class="arsenal-group armor-group">
       <div class="armor">
          <div class="first-part">
@@ -406,6 +410,7 @@
          {{/each}}
       </div>
 </div>
+{{/if}}
       
    <!-- {{#each equippedWeapons as |weapon w|}}
     <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
