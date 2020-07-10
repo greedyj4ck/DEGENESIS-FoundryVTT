@@ -179,8 +179,8 @@ export class DegenesisActor extends Actor {
     {
         let actorData = duplicate(this.data)
         let inventory = {
-            weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], equippable : true},
-            armor: {header : game.i18n.localize("DGNS.Armor") , items : [], equippable : true},
+            weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
+            armor: {header : game.i18n.localize("DGNS.Armor") , items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
             ammo : {header : game.i18n.localize("DGNS.Ammunition"), items : []},
             survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), items : []},
