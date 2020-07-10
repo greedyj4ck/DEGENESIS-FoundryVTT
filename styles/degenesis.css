@@ -1695,7 +1695,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-container{
-    width: 100%;
+    width: calc(100% - 5px);
     flex: 3;
     border: 1px solid var(--dark-grey);
     margin-left: 2px;

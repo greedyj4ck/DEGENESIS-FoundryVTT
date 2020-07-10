@@ -37,7 +37,8 @@
    </div>
 
    {{#each inventory as |section s|}}
-   <div class="inventory-group weapon-group" data-group = {{s}}>
+   {{#if section.items.length}}
+   <div class="inventory-group weapon-group">
       <div class="weapon">
          <div class="first-part">
             <div class="black-title">
@@ -54,9 +55,12 @@
             </div>
          </div>
          <div class="weapon-legend legend">
-            {{#if section.equippable}}
+            {{#if section.toggleable}}
             <div class="legend-name equipped">
-               <span>{{localize "DGNS.Equipped"}}</span>
+               <span>{{toggleDisplay}}</span>
+            </div>
+            {{else}}
+            <div class="legend-name equipped">
             </div>
             {{/if}}
             <div class="legend-name qty">
@@ -79,13 +83,16 @@
       <div class="weapon item" data-item-id="{{item._id}}">
          <a class="weapon-name dropdown">{{item.name}}</a>
          <div class="weapon-characteristics">
-            {{#if ../equippable}}
+            {{#if ../toggleable}}
             <div class="legend-name equipped">
                 {{#if item.data.equipped}}
                   <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
                {{else}}
                   <a class="square button-position checkbox" data-target="item" data-item-target="data.equipped" ><div class="square-into"></div></a>
                {{/if}}
+            </div>
+            {{else}}
+            <div class="legend-name equipped">
             </div>
             {{/if}}
             <div class="legend-name qty">
@@ -116,6 +123,7 @@
       {{/each}}
    </div>
 </div>
+{{/if}}
 {{/each}}
 
 

@@ -179,10 +179,15 @@ export class DegenesisActor extends Actor {
     {
         let actorData = duplicate(this.data)
         let inventory = {
-            weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], toggleable : true, toggleDisplay: "DGNS.Equipped"},
-            armor: {header : game.i18n.localize("DGNS.Armor") , items : [], toggleable : true, toggleDisplay : "DGNS.Worn"},
-            equipment: {header : "EQUIPMENT" , items : []}, //placeholder
-            ammunition : {header : "AMMUNITION", items : []}
+            weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
+            armor: {header : game.i18n.localize("DGNS.Armor") , items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
+            ammo : {header : game.i18n.localize("DGNS.Ammunition"), items : []},
+            survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), items : []},
+            technology : {header : game.i18n.localize("DGNS.Technology"), items : []},
+            medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), items : []},
+            elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), items : []},
+            primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), items : []},
+            other : {header : game.i18n.localize("DGNS.Other"), items : []},
         }
         let potentials = [];
         let modifiers = [];
