@@ -51,6 +51,8 @@
                     <div class="field-inputs">
                         {{#if isMelee}} <!--Is Melee determined by weapon group-->
                         <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
+                        {{else if isSonic}}
+                        <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
                         {{else}}
                         <input class="field-input distance-short" type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
                         <span class="field-separator">/</span>

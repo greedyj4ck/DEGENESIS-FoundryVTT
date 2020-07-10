@@ -38,6 +38,7 @@ export class DegenesisItem extends Item {
             preparedData.qualities.push(qualityString)
         })
           preparedData.isMelee = DegenesisItem.isMelee(this.data);
+          preparedData.isSonic = DegenesisItem.isSonic(this.data);
           preparedData.specialty = !!this.data.data.qualities.find(q => q.name == "special")
 
         

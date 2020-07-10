@@ -230,7 +230,10 @@
     "DGNS.Technology" : "Technology",
     "DGNS.ElysianOils" : "Elysian Oils",
     "DGNS.PrimalIngenuity" : "Primal Ingenuity",
-    "DGNS.Other" : "Other",    
+    "DGNS.Other" : "Other",
+    "DGNS.BonusDice" : "Bonus Dices",
+    "DGNS.TargetGroup" : "Target Group",   
+    "DGNS.MovementPenalty" : "Movement Penalty",
  
     "DGNS.AreaDamageDescription" : "The weapon doesn’t aim directly at an enemy: it covers an area stated in degrees. Everything inside this area can take Damage.",
     "DGNS.ArmorpiercingDescription" : "The projectile used is highly compact and fast. It pierces armor as if it were made of paper. Armor piercing projectiles do not necessarily cause more Damage, but they ignore the special Qualities like “Massive” or “Bulletproof” the target’s armor might have.",
