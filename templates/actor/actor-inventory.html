@@ -36,6 +36,7 @@
          </div>
    </div>
    <!-- *WEAPON* -->
+   {{#if inventory.weapons.items.length}}
    <div class="inventory-group weapon-group">
       <div class="weapon">
          <div class="first-part">
@@ -71,7 +72,6 @@
             <div class="empty"> </div>
             </div>
          </div>
-   
    <div class="inventory-list item-list">
       {{#each inventory.weapons.items as |weapon w|}}
       <div class="weapon item" data-item-id="{{weapon._id}}">
@@ -112,8 +112,10 @@
       {{/each}}
    </div>
 </div>
+{{/if}}
 
       <!-- *ARMOR* -->
+      {{#if inventory.armor.items.length}}
       <div class="inventory-group armor-group">
          <div class="armor">
             <div class="first-part">
@@ -189,6 +191,8 @@
       {{/each}}
    </div>
    </div>
+   {{/if}}
+
 
 <div class="footer-diamond">
    <div class="square little"></div>

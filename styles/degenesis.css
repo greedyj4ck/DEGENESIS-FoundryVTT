@@ -1607,6 +1607,10 @@ padding-right: 4px;
     margin-right: 4.5%;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.distance-ranged-sonic {
+    margin-right: 6%;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.armor-value{
     flex:0.25;
 }
@@ -1619,7 +1623,16 @@ padding-right: 4px;
     margin-right: 7%;
 }
 
+
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged-sonic {
+    margin-right: 9%;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged{
+    margin-right: 7%;
+}
+
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged-sonic{
     margin-right: 7%;
 }
 
@@ -1635,7 +1648,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged-sonic{
-    margin-right: 8%;
+    margin-right: 10%;
     flex: 1.5;
 }
 
