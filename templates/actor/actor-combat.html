@@ -175,7 +175,7 @@
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses">
-                  <span><a class="roll-weapon" data-use="attack">Attack {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">Defense {{weapon.defenseDice}}D</a></span>
+                  <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}} {{weapon.defenseDice}}D</a></span>
                </div>
                <div class="legend-name dammage">
                   <span>{{weapon.data.damage}}</span>
@@ -316,7 +316,7 @@
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses-ranged-sonic">
-                  <span><a class="roll-weapon" data-use="attack">Attack (INT+Eng & PSY+Dom)</a></span>
+                  <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} (INT+Eng & PSY+Dom)</a></span>
                </div>
                <div class="legend-name magazine-ranged">
                   <a class="mag-count">10</a><span>/{{weapon.data.mag.size}}</span>
