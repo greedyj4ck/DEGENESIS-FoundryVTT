@@ -82,7 +82,9 @@ export class DegenesisItem extends Item {
     {
         let tags = [];
         let data = duplicate(this.data.data);
-        let text = `${data.description}<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`;
+        let text = `${data.description}`
+        if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
+            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
         tags.push(DEGENESIS.weaponGroups[data.group])
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
@@ -118,8 +120,16 @@ export class DegenesisItem extends Item {
     static isMelee(data) 
     {
         if (data.type = "weapon")
-            return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" ? false : true 
+            return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" || data.data.group =="sonic" ? false : true 
     }
+
+    
+    static isSonic(data) 
+    {
+        if (data.type = "weapon")
+            return data.data.group == "sonic" 
+    }
+
 
     static formatQualities(itemData)
     {
