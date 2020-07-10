@@ -37,6 +37,7 @@
    </div>
 
    {{#each inventory as |section s|}}
+   {{#if section.items.length}}
    <div class="inventory-group weapon-group">
       <div class="weapon">
          <div class="first-part">
@@ -116,6 +117,7 @@
       {{/each}}
    </div>
 </div>
+{{/if}}
 {{/each}}
 
 

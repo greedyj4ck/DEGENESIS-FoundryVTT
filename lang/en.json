@@ -226,7 +226,12 @@
     "DGNS.RangedWeapons" : "Ranged Weapons",
     "DGNS.Worn" : "Worn",
     "DGNS.ArmorValue" : "Armor Value",
-    
+    "DGNS.Ammunition" : "Ammunition",
+    "DGNS.Technology" : "Technology",
+    "DGNS.ElysianOils" : "Elysian Oils",
+    "DGNS.PrimalIngenuity" : "Primal Ingenuity",
+    "DGNS.Other" : "Other",    
+ 
     "DGNS.AreaDamageDescription" : "The weapon doesn’t aim directly at an enemy: it covers an area stated in degrees. Everything inside this area can take Damage.",
     "DGNS.ArmorpiercingDescription" : "The projectile used is highly compact and fast. It pierces armor as if it were made of paper. Armor piercing projectiles do not necessarily cause more Damage, but they ignore the special Qualities like “Massive” or “Bulletproof” the target’s armor might have.",
     "DGNS.BiometricallyEncodedDescription" : "The shaft contains biometrical sensors that are only triggered when the right person wields the weapon. Often, the electronics hum and vibrate to show their readiness. In the hands of a stranger, nothing happens: he cannot fire the weapon. To switch off this protective mechanism or change the encoding, the circuits have to be formatted or bypassed. Both require a skillful technician with an electronics workshop. He first has to make an Action roll on AGI+Crafting against the Difficulty of the Quality to lay bare the electronics. With INT+Engineering (Difficulty), he identifies the circuitry, understands its workings, and manipulates it. If one of the rolls fails, the Difficulty rises by (1). If it rises to (12), the weapon powers down. The only value it now has is its scrap value.",
