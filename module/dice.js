@@ -89,7 +89,8 @@ export class DegenesisDice
                                         break;
                                 }
                             })
-
+                            if (dialogData.callback)
+                                dialogData.callback(dialogData, rollData, cardData);
                             let rollResult = await dialogData.rollMethod(rollData)
                             DegenesisChat.renderRollCard(rollResult, cardData)
                         }

@@ -2,6 +2,7 @@ import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { DegenesisChat } from "../chat.js"
 import { DegenesisDice } from "../dice.js"
+import { DegenesisItem } from "../item/item-degenesis.js"
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -182,7 +183,7 @@ export class DegenesisActorSheet extends ActorSheet {
     })
 
       html.find(".perma").mousedown(ev => {
-        if (event.button != 2)
+        if (event.button != CONST.CLICK.RIGHT)
           return
         let actorData = duplicate(this.actor)
         let index = Number($(ev.currentTarget).attr("data-index"));
@@ -281,8 +282,6 @@ export class DegenesisActorSheet extends ActorSheet {
 
         this.actor.updateEmbeddedEntity("OwnedItem", itemData)
     })
-
-
     html.find(".skill-name").click(async ev => {
       let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
       let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
@@ -296,7 +295,80 @@ export class DegenesisActorSheet extends ActorSheet {
       await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
     })
 
+    html.find(".quantity-click").mousedown(ev => {
+      let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+      let value = event.button == CONST.CLICK.LEFT ? 1 : -1
+      value = event.ctrlKey ? value * 10 : value
+      let item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId))
+      item.data.quantity += value
+      item.data.quantity = item.data.quantity < 0 ? 0 : item.data.quantity 
+      this.actor.updateEmbeddedEntity("OwnedItem", item)
+    })
+
+    html.find(".reload-click").mousedown( ev => {
+      let itemId = $(ev.currentTarget).parents(".item").attr("data-item-id")
+      let item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId))
+      let ammo = duplicate(this.actor.data.items.filter(i => i.type == "ammunition"))
+      ammo = DegenesisItem.matchAmmo(item, ammo)
+      let magLeft = item.data.mag.size - item.data.mag.current 
+      if (ev.button == CONST.CLICK.RIGHT)
+      {
+        item.data.mag.current = 0;
+        this.actor.updateEmbeddedEntity("OwnedItem", item)
+        return
+      }
+
+      for (let a of ammo)
+      {
+        if (magLeft <= 0)
+          break;
+        if (magLeft <= a.data.quantity)
+        {
+          item.data.mag.current += magLeft;
+          a.data.quantity -= magLeft;
+          magLeft = 0;
+        }
+        else 
+        {
+          item.data.mag.current += a.data.quantity;
+          magLeft -= a.data.quantity
+          a.data.quantity = 0;
+        }
+      }
+      this.actor.updateEmbeddedEntity("OwnedItem", item)
+      this.actor.updateEmbeddedEntity("OwnedItem", ammo)
+    })
+
+
+    // TODO: unloading the magazine just deletes the ammo
+    // TODO: Salvo
+    // TODO: Ammo check before firing
+    html.find(".aggregate").click(async ev => {
+      let group = $(ev.currentTarget).parents(".inventory-group").attr("data-group")
+      if (group == "ammunition")
+      {
+        let compiledAmmoNames = [];
+        let compiledAmmo = [];
+        let ammo = duplicate(this.actor.items.filter(i => i.type == "ammunition"))
+        await this.actor.deleteEmbeddedEntity("OwnedItem", ammo.map(i => i._id))
+
+        for(let a of ammo)
+          if (!compiledAmmoNames.includes(a.name))
+            compiledAmmoNames.push(a.name)
+
+        for (let name of compiledAmmoNames)
+        {
+          let ammoToCombine = ammo.filter(a => a.name == name)
+          let ammoItem = ammoToCombine[0]
+          ammoItem.data.quantity = ammoToCombine.reduce((a, b) => a + b.data.quantity, 0)
+          compiledAmmo.push(ammoItem);
+        }
+        this.actor.createEmbeddedEntity("OwnedItem", compiledAmmo)
+
+      }
+    })
   }
+
 
   /* -------------------------------------------- */
 }

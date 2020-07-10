@@ -37,7 +37,7 @@
    </div>
 
    {{#each inventory as |section s|}}
-   <div class="inventory-group weapon-group">
+   <div class="inventory-group weapon-group" data-group = {{s}}>
       <div class="weapon">
          <div class="first-part">
             <div class="black-title">
@@ -60,7 +60,7 @@
             </div>
             {{/if}}
             <div class="legend-name qty">
-               <span>{{localize "DGNS.Qty"}}</span>
+               <a class="aggregate">{{localize "DGNS.Qty"}}</a>
             </div>
             <div class="legend-name enc">
                <span>{{localize "DGNS.Enc"}}</span>
@@ -89,7 +89,7 @@
             </div>
             {{/if}}
             <div class="legend-name qty">
-               <span>{{item.data.quantity}}</span>
+               <a class="quantity-click">{{item.data.quantity}}</a>
             </div>
             <div class="legend-name enc">
                <span>{{item.data.encumbrance}}</span>

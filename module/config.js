@@ -491,17 +491,10 @@ DEGENESIS.calibers = {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+CONST.CLICK = {
+  LEFT: 0,
+  RIGHT: 2
+}
 
 
 
