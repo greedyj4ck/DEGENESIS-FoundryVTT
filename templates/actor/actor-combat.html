@@ -170,8 +170,7 @@
             </div>
       </div>
       <div class="arsenal-list item-list">
-         {{#each equippedWeapons as |weapon w|}}
-         {{#if weapon.isMelee}}
+         {{#each meleeWeapons as |weapon w|}}
          <div class="weapon item" data-item-id="{{weapon._id}}">
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -204,7 +203,6 @@
 
             <div class="break"></div>
          </div>
-         {{/if}}
          {{/each}}
       </div>
    </div>
@@ -241,8 +239,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each equippedWeapons as |weapon w|}}
-            {{#unless weapon.isMelee}}
+            {{#each rangedWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon._id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -278,7 +275,6 @@
 
             <div class="break"></div>
          </div>
-         {{/unless}}
          {{/each}}
       </div>
    </div>
@@ -315,8 +311,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each equippedWeapons as |weapon w|}}
-            {{#unless weapon.isMelee}}
+            {{#each sonicWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon._id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -352,7 +347,6 @@
 
             <div class="break"></div>
          </div>
-         {{/unless}}
          {{/each}}
       </div>
    </div>

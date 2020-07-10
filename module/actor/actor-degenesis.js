@@ -239,7 +239,9 @@ export class DegenesisActor extends Actor {
 
         return {
             inventory,
-            equippedWeapons,
+            meleeWeapons,
+            rangedWeapons,
+            sonicWeapons,
             equippedArmor,
             potentials,
             modifiers,
