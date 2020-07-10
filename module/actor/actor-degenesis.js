@@ -188,7 +188,6 @@ export class DegenesisActor extends Actor {
             elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), items : []},
             primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), items : []},
             other : {header : game.i18n.localize("DGNS.Other"), items : []},
-            equipment: {header : "EQUIPMENT" , items : []}, //placeholder
         }
         let potentials = [];
         let modifiers = [];
