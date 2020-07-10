@@ -1634,6 +1634,11 @@ padding-right: 4px;
     flex: 1.5;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged-sonic{
+    margin-right: 8%;
+    flex: 1.5;
+}
+
 .app.window-app.degenesis.sheet .armor-properties,
 .app.window-app.degenesis.sheet .weapon-properties{
     margin-left: 3%;
