@@ -124,11 +124,30 @@ export class DegenesisItem extends Item {
             return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" || data.data.group =="sonic" ? false : true 
     }
 
+    static isRanged(data) 
+    {
+        if (data.type = "weapon")
+            return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" && data.data.group != "sonic"
+    }
+
     
     static isSonic(data) 
     {
         if (data.type = "weapon")
             return data.data.group == "sonic" 
+    }
+
+    static matchAmmo(weapon, ammo)
+    {
+        let ammoName = DEGENESIS.calibers[weapon.data.caliber]
+        let matchingCalibers = ammo.filter(a => a.name == ammoName)
+        return matchingCalibers
+    }
+
+    static totalAmmoAvailable(weapon, ammoList)
+    {
+        let compatibleAmmo = this.matchAmmo(weapon, ammoList)
+        return compatibleAmmo.reduce((a, b) => a + b.data.quantity, 0)
     }
 
 

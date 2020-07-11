@@ -389,9 +389,11 @@
     },
     "mag" : {
       "belt": false,
-      "size" : 0
+      "size" : 0,
+      "current" : 0
     },
-    "group" : ""
+    "group" : "",
+    "caliber" : ""
   },
   "armor" : {
     "templates" : ["description", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],

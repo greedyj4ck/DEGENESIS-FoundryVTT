@@ -226,6 +226,7 @@
     "DGNS.RangedWeapons" : "Ranged Weapons",
     "DGNS.Worn" : "Worn",
     "DGNS.ArmorValue" : "Armor Value",
+    "DGNS.TotalAmmo" : "Total Ammo",
     "DGNS.Ammunition" : "Ammunition",
     "DGNS.Technology" : "Technology",
     "DGNS.ElysianOils" : "Elysian Oils",
