@@ -181,7 +181,7 @@ export class DegenesisActor extends Actor {
         let inventory = {
             weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
             armor: {header : game.i18n.localize("DGNS.Armor") , items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
-            ammo : {header : game.i18n.localize("DGNS.Ammunition"), items : []},
+            ammunition : {header : game.i18n.localize("DGNS.Ammunition"), items : []},
             survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), items : []},
             medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), items : []},
@@ -348,10 +348,6 @@ export class DegenesisActor extends Actor {
             prefilled : this.calculateModifiers("weapon", skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
-            callback : (dialogData, rollData, cardData) => {
-                if (rollData.weapon.isRanged)
-                    this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
-            }
         }
         dialogData.rollMethod = this.rollWeapon;
 
@@ -363,7 +359,6 @@ export class DegenesisActor extends Actor {
             weapon : weapon
         }
 
-        //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
 
@@ -377,17 +372,23 @@ export class DegenesisActor extends Actor {
         }
     }
 
-    async rollSkill(rollData) 
+    async rollSkill(skill) 
     {
-        let rollResult = await DegenesisDice.rollAction(rollData)
-        return rollResult
+        let {dialogData, cardData, rollData} = this.setupSkill(skill)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        return {rollResults, cardData}
     }
 
-    async rollWeapon(rollData) 
+    async rollWeapon(weapon) 
     {
-        let rollResult = await DegenesisDice.rollAction(rollData)
-        rollResult.weapon = rollData.weapon
-        return rollResult
+        let {dialogData, cardData, rollData} = this.setupWeapon(weapon)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        rollResults.weapon = rollData.weapon
+        if (rollData.weapon.isRanged)
+            this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
+        return {rollResults, cardData}
     }
 
     calculateModifiers(type, skill, use) {

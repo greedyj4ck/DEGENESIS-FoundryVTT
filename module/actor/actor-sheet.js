@@ -284,15 +284,18 @@ export class DegenesisActorSheet extends ActorSheet {
     })
     html.find(".skill-name").click(async ev => {
       let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
-      let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
-      await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
+      let {rollResults, cardData} = await this.actor.rollSkill(skill)
+      DegenesisChat.renderRollCard(rollResults, cardData)
+      // let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
+      // await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
     })
+    
     html.find(".roll-weapon").click(async ev => {
       let weaponId = $(ev.currentTarget).parents(".weapon").attr("data-item-id")
       let use = $(ev.currentTarget).attr("data-use");
       let weapon = this.actor.getEmbeddedEntity("OwnedItem", weaponId)
-      let {dialogData, cardData, rollData} = this.actor.setupWeapon(weapon, {use})
-      await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
+      let {rollResults, cardData} = await this.actor.rollWeapon(weapon)
+      DegenesisChat.renderRollCard(rollResults, cardData)
     })
 
     html.find(".quantity-click").mousedown(ev => {

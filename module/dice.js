@@ -61,7 +61,8 @@ export class DegenesisDice
 
     static async showRollDialog({dialogData, rollData, cardData})
     {
-        return renderTemplate("systems/degenesis/templates/apps/roll-dialog.html", dialogData).then(html => {
+        let html = await renderTemplate("systems/degenesis/templates/apps/roll-dialog.html", dialogData)
+        return new Promise((resolve, reject) => {
             new Dialog({
                 content : html,
                 title : dialogData.title,
@@ -89,15 +90,13 @@ export class DegenesisDice
                                         break;
                                 }
                             })
-                            if (dialogData.callback)
-                                dialogData.callback(dialogData, rollData, cardData);
-                            let rollResult = await dialogData.rollMethod(rollData)
-                            DegenesisChat.renderRollCard(rollResult, cardData)
+                            resolve(rollData)
                         }
-                    }
-                }
+                    },
+                close : reject
+                },
+                default: "roll"
             }, {classes : ["roll-dialog"]}).render(true)
-
         })
     }
 }
