@@ -484,7 +484,6 @@ DEGENESIS.calibers = {
   "rifleBarrel" : "CALIBER 12 (Rifle barrel ammo)",
   "blackpowder" : "Lead bullet and black powder",
   "Ecube" : "E-Cube",
-  "EcubeRecharging" : "E-Cube recharging",
   "arrow" : "Arrow",
   "bolt" : "Bolt",
   "petro" : "Can of Petro",

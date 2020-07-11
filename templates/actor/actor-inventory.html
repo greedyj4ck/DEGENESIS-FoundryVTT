@@ -44,7 +44,6 @@
             <div class="black-title">
                <h3>{{localize section.header}}</h3>
                <a class="icon item-add" data-item="{{localize section.type}}">+</a>
-               {{log section.type}}
             </div>
             <svg class="tab-start-line" height="23" width="26">
                <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
@@ -87,6 +86,7 @@
       {{#each section.items as |item w|}}
       <div class="weapon item" data-item-id="{{item._id}}">
          <a class="weapon-name dropdown">{{item.name}}</a>
+         {{log item}}
          <div class="weapon-characteristics">
             {{#if ../toggleable}}
             <div class="legend-name equipped">
