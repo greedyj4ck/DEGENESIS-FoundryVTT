@@ -286,8 +286,12 @@ export class DegenesisActorSheet extends ActorSheet {
       let skill = $(ev.currentTarget).parents(".skill").attr("data-target")
       let {rollResults, cardData} = await this.actor.rollSkill(skill)
       DegenesisChat.renderRollCard(rollResults, cardData)
-      // let {dialogData, cardData, rollData} = this.actor.setupSkill(skill)
-      // await DegenesisDice.showRollDialog({dialogData, cardData, rollData})
+    })
+
+    html.find(".fight-roll").click(async ev => {
+      let type = $(ev.currentTarget).attr("data-roll")
+      let {rollResults, cardData} = await this.actor.rollFightRoll(type)
+      DegenesisChat.renderRollCard(rollResults, cardData)
     })
     
     html.find(".roll-weapon").click(async ev => {
@@ -370,6 +374,10 @@ export class DegenesisActorSheet extends ActorSheet {
 
       }
     })
+
+
+  
+
   }
 
 

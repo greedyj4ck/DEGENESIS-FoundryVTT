@@ -363,6 +363,28 @@ export class DegenesisActor extends Actor {
         return {dialogData, cardData, rollData}
     }
 
+    setupFightRoll(type, options = {})
+    {
+        let skill = DEGENESIS.fightRolls[type]
+        let dialogData = {
+            title : DEGENESIS.skills[skill],
+            prefilled : this.calculateModifiers(type, skill),
+            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            template : "systems/degenesis/templates/apps/roll-dialog.html",
+        }
+        dialogData.rollMethod = this.rollSkill;
+
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
+
+        let rollData = {
+            skill : this.data.data.skills[skill],
+            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
+        }
+
+        //let rollResult = await DegenesisDice.rollAction(rollData)
+        return {dialogData, cardData, rollData}
+    }
+
     constructCardData(template, cardTitle) {
         return {
             title : cardTitle,
@@ -392,19 +414,60 @@ export class DegenesisActor extends Actor {
         return {rollResults, cardData}
     }
 
+        
+    async rollFightRoll(type) 
+    {
+        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        return {rollResults, cardData}
+    }
+
+
+    /**
+     * 
+     * @param {String} type "weapon", "skill"  "initiative", "dodge", "action", 
+     * @param {String} skill Skill used
+     * @param {String} use Some specifiec, "attack", "defense", etc
+     */
     calculateModifiers(type, skill, use) {
         console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
-            diceModifier : 0,
+            diceModifier : this.data.data.general.actionModifier,
             successModifier : 0,
             triggerModifier : 0,
         }
-        if (modifiers["action"])
+        for (let modifier in modifiers)
         {
-            prefilled.diceModifier += modifiers["action"].D
-            prefilled.successModifier += modifiers["action"].S
-            prefilled.triggerModifier += modifiers["action"].T
+            let useModifier = false;
+            if ( modifier == "action" ||
+                (modifier == "initiative" && type == "initiative") ||
+                (modifier == "dodge" && type == "dodge") ||
+                (modifier == "attack" && use == "attack") ||
+                (modifier == "a_defense" && use == "defense"))
+            {
+                useModifier = true;
+            }
+            else if (modifier.includes("attr:"))
+            {
+                let attrMod = modifier.split(":")[1]
+                if (attrMod == DEGENESIS.skillAttributes[skill])
+                    useModifier = true;
+            }
+            else if (modifier.includes("skill:"))
+            {
+                let skillMod = modifier.split(":")[1]
+                if (skillMod == skill)
+                    useModifier = true;
+            }
+
+            if (useModifier)
+            {   
+                prefilled.diceModifier += modifiers[modifier].D
+                prefilled.successModifier += modifiers[modifier].S
+                prefilled.triggerModifier += modifiers[modifier].T
+            }
 
         }
         return prefilled

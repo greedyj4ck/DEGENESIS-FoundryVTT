@@ -202,6 +202,12 @@ DEGENESIS.skillAttributes = {
   "taming" : "instinct"
 }
 
+DEGENESIS.fightRolls = {
+  "dodge" : "mobility",
+  "initiative" : "reaction",
+  "mentalDefense" : "willpower",
+}
+
 DEGENESIS.modifyTypes = {
   "D" : "D",
   "S" : "S",
