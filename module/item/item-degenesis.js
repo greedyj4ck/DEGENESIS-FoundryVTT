@@ -38,6 +38,7 @@ export class DegenesisItem extends Item {
             preparedData.qualities.push(qualityString)
         })
           preparedData.isMelee = DegenesisItem.isMelee(this.data);
+          preparedData.isSonic = DegenesisItem.isSonic(this.data);
           preparedData.specialty = !!this.data.data.qualities.find(q => q.name == "special")
 
         
@@ -88,12 +89,13 @@ export class DegenesisItem extends Item {
         tags.push(DEGENESIS.weaponGroups[data.group])
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
-        tags.push(`Handling: ${data.handling}D`)
-        tags.push(`Damage: ${data.damage}`)
-        tags.push(`Distance: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.distance.short} / ${data.distance.far}` }`)
-        tags.push(data.mag.belt ? `Magazine: ${data.mag.size}` : "MAG: BELT")
-        tags.push(`Value: ${data.value}`)
-        tags.push(`Cult: ${data.cult}`)
+        tags.push(`${game.i18n.localize("DGNS.Handling")}: ${data.handling}D`)
+        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${data.damage}`)
+        tags.push(`${game.i18n.localize("DGNS.Distance")}: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.distance.short} / ${data.distance.far}` }`)
+        if(DegenesisItem.isMelee(this.data)==false){tags.push(data.mag.belt ? `${game.i18n.localize("DGNS.Magazine")}: ${game.i18n.localize("DGNS.Belt")}` : `${game.i18n.localize("DGNS.Magazine")}: ${data.mag.size}`)};
+        tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
+        if(data.cult){tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`)};
+        if(data.resources){tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`)};
         tags = tags.concat(DegenesisItem.formatQualities(this.data));
         tags.filter(t => !!t)
         return {
@@ -107,8 +109,10 @@ export class DegenesisItem extends Item {
         let data = duplicate(this.data.data);
         let text = `${data.description}`;
 
-        tags.push(`Value: ${data.value}`)
-        tags.push(`Cult: ${data.cult}`)
+        tags.push(`${game.i18n.localize("DGNS.ArmorValue")}: ${data.AP}`)
+        tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
+        if(data.cult){tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`)};
+        if(data.resources){tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`)};
         tags = tags.concat(DegenesisItem.formatQualities(this.data));
         tags.filter(t => !!t)
         return {
@@ -123,11 +127,30 @@ export class DegenesisItem extends Item {
             return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" || data.data.group =="sonic" ? false : true 
     }
 
+    static isRanged(data) 
+    {
+        if (data.type = "weapon")
+            return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" && data.data.group != "sonic"
+    }
+
     
     static isSonic(data) 
     {
         if (data.type = "weapon")
             return data.data.group == "sonic" 
+    }
+
+    static matchAmmo(weapon, ammo)
+    {
+        let ammoName = DEGENESIS.calibers[weapon.data.caliber]
+        let matchingCalibers = ammo.filter(a => a.name == ammoName)
+        return matchingCalibers
+    }
+
+    static totalAmmoAvailable(weapon, ammoList)
+    {
+        let compatibleAmmo = this.matchAmmo(weapon, ammoList)
+        return compatibleAmmo.reduce((a, b) => a + b.data.quantity, 0)
     }
 
 

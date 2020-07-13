@@ -51,6 +51,8 @@
                     <div class="field-inputs">
                         {{#if isMelee}} <!--Is Melee determined by weapon group-->
                         <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
+                        {{else if isSonic}}
+                        <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
                         {{else}}
                         <input class="field-input distance-short" type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
                         <span class="field-separator">/</span>
@@ -91,13 +93,13 @@
                         {{#if data.mag.belt}}
                         <input class=" field-start" type="text" value="-" data-dtype="Number" disabled="disabled"/>
                         <div class="belt-field">
-                            <span class="belt-text">BELT</span>
+                            <span class="belt-text">{{localize "DGNS.Belt"}}</span>
                             <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
                         </div>
                         {{else}}
                         <input class="field-start" type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
                         <div class="belt-field">
-                            <span class="belt-text">BELT</span>
+                            <span class="belt-text">{{localize "DGNS.Belt"}}</span>
                             <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
                         </div>
                         {{/if}}

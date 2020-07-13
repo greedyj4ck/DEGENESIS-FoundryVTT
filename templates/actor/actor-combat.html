@@ -46,13 +46,13 @@
        </div>
        <div class="combat-list">
         <a class="combat">
-            <div class="general-name">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
+            <div class="general-name fight-roll" data-roll="initiative">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
         </a>
         <a class="combat">
-            <div class="general-name">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
+            <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
         </a>
         <a class="combat">
-            <div class="general-name">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
+            <div class="general-name fight-roll" data-roll="mentalDefense">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
         </a>
         <div class="combat">
             <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}</div>
@@ -250,10 +250,10 @@
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses-ranged">
-                  <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.attackDice}}D)</a> </span>
+                  <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.effectiveDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.farDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.extremeDice}}D)</a> </span>
                </div>
-               <div class="legend-name magazine-ranged">
-                  <a class="mag-count">10</a><span>/{{weapon.data.mag.size}}</span>
+               <div class="legend-name magazine-ranged" title="{{localize 'DGNS.TotalAmmo'}}: {{weapon.totalAvailableAmmo}}">
+                  <a class="mag-count reload-click">{{weapon.data.mag.current}}</a><span>/{{weapon.data.mag.size}}</span>
                </div>
                <div class="legend-name dammage-ranged">
                   <span>{{weapon.data.damage}}</span>
@@ -287,6 +287,7 @@
    {{/if}}
       <!--* SONIC WEAPON-->
       {{#if sonicWeapons.length}}
+      {{ log sonicWeapons}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -332,7 +333,7 @@
                   <span>{{weapon.data.damage}}</span>
                </div>
                <div class="legend-name distance-ranged-sonic">
-                  <span>{{weapon.data.distance.short}}</span>
+                  <span>{{weapon.data.distance.melee}}</span>
                </div>
             </div>
             <div class="break"></div>

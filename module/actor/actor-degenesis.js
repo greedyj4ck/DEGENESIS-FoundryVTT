@@ -179,15 +179,16 @@ export class DegenesisActor extends Actor {
     {
         let actorData = duplicate(this.data)
         let inventory = {
-            weapons: {header : game.i18n.localize("DGNS.Weapons") , items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
-            armor: {header : game.i18n.localize("DGNS.Armor") , items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
-            ammo : {header : game.i18n.localize("DGNS.Ammunition"), items : []},
-            survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), items : []},
-            technology : {header : game.i18n.localize("DGNS.Technology"), items : []},
-            medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), items : []},
-            elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), items : []},
-            primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), items : []},
-            other : {header : game.i18n.localize("DGNS.Other"), items : []},
+            weapons: {header : game.i18n.localize("DGNS.Weapons") , type: 'weapon', items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
+            armor: {header : game.i18n.localize("DGNS.Armor") , type: 'armor', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
+            ammunition : {header : game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items : []},
+            survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
+            technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
+            medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
+            elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), type: 'elysianOil', items : []},
+            primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
+            other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},
+            artifact : {header : game.i18n.localize("DGNS.Artifact"), type: 'artifact', items : []},
         }
         let potentials = [];
         let modifiers = [];
@@ -203,17 +204,7 @@ export class DegenesisActor extends Actor {
             if (i.type == "weapon")
             {
                 inventory.weapons.items.push(i);
-                if(i.data.equipped)
-                {
-                    let weapon = this.prepareWeapon(i);
-                    if (weapon.isSonic)
-                        sonicWeapons.push(weapon);
-                    else if (weapon.isMelee)
-                        meleeWeapons.push(weapon);
-                    else
-                        rangedWeapons.push(weapon)
-                }
-                encumbrance.current += i.data.encumbrance                
+             
             }
             if (i.type == "armor")
             {
@@ -225,6 +216,10 @@ export class DegenesisActor extends Actor {
             if (i.type == "equipment")
             {
                 inventory.equipment.items.push(i);
+            }
+            if (i.type == "ammunition")
+            {
+                inventory.ammunition.items.push(i);
             }
             if (i.type == "potential")
             {
@@ -238,6 +233,21 @@ export class DegenesisActor extends Actor {
             {
                 complications.push(i);
             }
+        }
+
+        for (let wep of inventory.weapons.items)
+        {
+            if(wep.data.equipped)
+            {
+                let weapon = this.prepareWeapon(wep, inventory.ammunition.items);
+                if (weapon.isSonic)
+                    sonicWeapons.push(weapon);
+                else if (weapon.isMelee)
+                    meleeWeapons.push(weapon);
+                else
+                    rangedWeapons.push(weapon)
+            }
+            encumbrance.current += wep.data.encumbrance   
         }
 
 
@@ -278,9 +288,10 @@ export class DegenesisActor extends Actor {
         return modifier
     }
 
-    prepareWeapon(weapon) {
+    prepareWeapon(weapon, ammo = []) {
         weapon.isMelee = DegenesisItem.isMelee(weapon);
         weapon.isSonic = DegenesisItem.isSonic(weapon);
+        weapon.isRanged = DegenesisItem.isRanged(weapon);
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         if (!weapon.isSonic)
         {
@@ -292,6 +303,15 @@ export class DegenesisActor extends Actor {
                                                                 display : [q.values.length ? DEGENESIS.weaponQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.weaponQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
                                                             }
                                                          })
+
+        if (weapon.isRanged)
+        {
+            weapon.totalAvailableAmmo = DegenesisItem.totalAmmoAvailable(weapon, ammo)
+            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
+            weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
+            weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
+        }
+
         return weapon
     }
 
@@ -337,12 +357,33 @@ export class DegenesisActor extends Actor {
         }
         dialogData.rollMethod = this.rollWeapon;
 
-        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", DEGENESIS.skills[skill])
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]])
 
         let rollData = {
             skill : this.data.data.skills[skill],
             actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value + weapon.data.handling,
             weapon : weapon
+        }
+
+        return {dialogData, cardData, rollData}
+    }
+
+    setupFightRoll(type, options = {})
+    {
+        let skill = DEGENESIS.fightRolls[type]
+        let dialogData = {
+            title : DEGENESIS.skills[skill],
+            prefilled : this.calculateModifiers(type, skill),
+            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            template : "systems/degenesis/templates/apps/roll-dialog.html",
+        }
+        dialogData.rollMethod = this.rollSkill;
+
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
+
+        let rollData = {
+            skill : this.data.data.skills[skill],
+            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
         }
 
         //let rollResult = await DegenesisDice.rollAction(rollData)
@@ -359,32 +400,79 @@ export class DegenesisActor extends Actor {
         }
     }
 
-    async rollSkill(rollData) 
+    async rollSkill(skill) 
     {
-        let rollResult = await DegenesisDice.rollAction(rollData)
-        return rollResult
+        let {dialogData, cardData, rollData} = this.setupSkill(skill)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        return {rollResults, cardData}
     }
 
-    async rollWeapon(rollData) 
+    async rollWeapon(weapon) 
     {
-        let rollResult = await DegenesisDice.rollAction(rollData)
-        rollResult.weapon = rollData.weapon
-        return rollResult
+        let {dialogData, cardData, rollData} = this.setupWeapon(weapon)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        rollResults.weapon = rollData.weapon
+        if (rollData.weapon.isRanged)
+            this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
+        return {rollResults, cardData}
     }
 
+        
+    async rollFightRoll(type) 
+    {
+        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let rollResults = await DegenesisDice.rollAction(rollData)
+        return {rollResults, cardData}
+    }
+
+
+    /**
+     * 
+     * @param {String} type "weapon", "skill"  "initiative", "dodge", "action", 
+     * @param {String} skill Skill used
+     * @param {String} use Some specifiec, "attack", "defense", etc
+     */
     calculateModifiers(type, skill, use) {
         console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
-            diceModifier : 0,
+            diceModifier : this.data.data.general.actionModifier,
             successModifier : 0,
             triggerModifier : 0,
         }
-        if (modifiers["action"])
+        for (let modifier in modifiers)
         {
-            prefilled.diceModifier += modifiers["action"].D
-            prefilled.successModifier += modifiers["action"].S
-            prefilled.triggerModifier += modifiers["action"].T
+            let useModifier = false;
+            if ( modifier == "action" ||
+                (modifier == "initiative" && type == "initiative") ||
+                (modifier == "dodge" && type == "dodge") ||
+                (modifier == "attack" && use == "attack") ||
+                (modifier == "a_defense" && use == "defense"))
+            {
+                useModifier = true;
+            }
+            else if (modifier.includes("attr:"))
+            {
+                let attrMod = modifier.split(":")[1]
+                if (attrMod == DEGENESIS.skillAttributes[skill])
+                    useModifier = true;
+            }
+            else if (modifier.includes("skill:"))
+            {
+                let skillMod = modifier.split(":")[1]
+                if (skillMod == skill)
+                    useModifier = true;
+            }
+
+            if (useModifier)
+            {   
+                prefilled.diceModifier += modifiers[modifier].D
+                prefilled.successModifier += modifiers[modifier].S
+                prefilled.triggerModifier += modifiers[modifier].T
+            }
 
         }
         return prefilled

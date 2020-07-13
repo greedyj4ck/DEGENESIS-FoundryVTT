@@ -202,6 +202,12 @@ DEGENESIS.skillAttributes = {
   "taming" : "instinct"
 }
 
+DEGENESIS.fightRolls = {
+  "dodge" : "mobility",
+  "initiative" : "reaction",
+  "mentalDefense" : "willpower",
+}
+
 DEGENESIS.modifyTypes = {
   "D" : "D",
   "S" : "S",
@@ -357,7 +363,7 @@ DEGENESIS.agentQualitiesValues = {
   "pseudoDesporeing" : ["desporeing", "duration"],
 },
 DEGENESIS.armorQualitiesValues = {
-  "respected" : ["target group", "bonusDice"],
+  "respected" : ["targetGroup", "bonusDice"],
   "firstImpression" : ["bonus"],
   "fireResistant" : ["armor"],
   "terrifying" : ["difficulty"],
@@ -367,7 +373,7 @@ DEGENESIS.armorQualitiesValues = {
   "bulletproof" : ["armor"],
   "massive" : ["armor"],
   "brittle" : ["criticalDamageRating"],
-  "sealed" : ["bonus successes"],
+  "sealed" : ["bonusSuccesses"],
 }
 
 DEGENESIS.qualityValues = {
@@ -376,7 +382,7 @@ DEGENESIS.qualityValues = {
   "time" : "DGNS.Time",
   "damage" : "DGNS.QualityDamage",
   "amountOfTime" : "DGNS.AmountOfTime",
-  "movementPenalty" : "DGNS.Movement",
+  "movementPenalty" : "DGNS.MovementPenalty",
   "egoDamage" : "DGNS.EgoDamage",
   "radius" : "DGNS.Radius",
   "penalty" : "DGNS.Penalty",
@@ -391,7 +397,7 @@ DEGENESIS.qualityValues = {
   "target" : "DGNS.Target",
   "desporeing" : "DGNS.Desporeing",
   "duration" : "DGNS.Duration",
-  "targetGroup" :"DGNS.Target",
+  "targetGroup" :"DGNS.TargetGroup",
   "bonusDice" : "DGNS.BonusDice",
   "armor" : "DGNS.QualityArmor",
   "criticalDamageRating" : "DGNS.CriticalDamageRating",
@@ -484,24 +490,16 @@ DEGENESIS.calibers = {
   "rifleBarrel" : "CALIBER 12 (Rifle barrel ammo)",
   "blackpowder" : "Lead bullet and black powder",
   "Ecube" : "E-Cube",
-  "EcubeRecharging" : "E-Cube recharging",
   "arrow" : "Arrow",
   "bolt" : "Bolt",
   "petro" : "Can of Petro",
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+CONST.CLICK = {
+  LEFT: 0,
+  RIGHT: 2
+}
 
 
 
