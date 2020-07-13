@@ -1122,7 +1122,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .vertical-bar {
-    flex: 0.1;
+    flex: 0 0 7px;
     display: flex;
     margin-top: -0px;
     margin-bottom: -7px;
@@ -1541,18 +1541,28 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name,
 .app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name {
-    margin-left: 3.5%;
     align-self: center;
     text-align: center;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name.uses,
 .app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.uses{
-    margin-right:68%;
+    flex: 3;
+}
+
+.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.empty-melee{
+    flex: 1;
+    height: 14px;
+}
+
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.empty-melee{
+    flex: 1;
+    height: 14px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.uses-ranged{
-    margin-right: 43%;
+    flex: 3;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .armor.item,
@@ -1565,11 +1575,12 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .weapon-name{
-    flex: 1;
+    width: 185px;
     display: flex;
     /* align-self: center; */
     margin-left: 5px;
     padding-bottom: 6px;
+    max-width: 190px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .armor-name{
@@ -1591,24 +1602,31 @@ padding-right: 4px;
     padding-bottom: 6px;
 }
 
+.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics > *,
+.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics > *{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name{
+    flex: 1;
+}
+
 .app.window-app.degenesis.sheet .arsenal-list .armor-characteristics .legend-name,
 .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name{
-    margin-left: 3.5%;
     align-self: center;
     text-align: center;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.distance {
-    margin-right: 0.5%;
-    flex: 0.6;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.distance-ranged {
-    margin-right: 4.5%;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.distance-ranged-sonic {
-    margin-right: 6%;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.armor-value{
@@ -1616,40 +1634,35 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage {
-    flex: 0.5;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged {
-    margin-right: 7%;
 }
 
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged-sonic {
-    margin-right: 9%;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged{
-    margin-right: 7%;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged-sonic{
-    margin-right: 7%;
+    flex: 1;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses {
-    margin-right: 32%;
-    flex: 1.5;
+    flex: 3;
 }
 
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged {
-    margin-right: 8%;
-    flex: 1.5;
+    flex: 3;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged-sonic{
-    margin-right: 10%;
-    flex: 1.5;
+    flex: 3;
 }
 
 .app.window-app.degenesis.sheet .armor-properties,
@@ -1689,9 +1702,10 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-all{
-    width: 100%;
     display: flex;
+    flex:1;
     flex-direction: column;
+    margin-left: -7px;
 }
 
 .app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-container{
@@ -1758,7 +1772,7 @@ padding-right: 4px;
 .app.window-app.degenesis.sheet .weapon-group .first-part,
 .app.window-app.degenesis.sheet .encumbrance-group .first-part {
     display: flex;
-    flex: 2;
+    width: 190px;
 }
 
 .app.window-app.degenesis.sheet .armor-group .empty,
@@ -1777,6 +1791,12 @@ padding-right: 4px;
     justify-content: flex-end;
 }
 
+.app.window-app.degenesis.sheet .armor-group .armor-legend > *,
+.app.window-app.degenesis.sheet .weapon-group .weapon-legend > *{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 
 .app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend {
     display: flex;
@@ -1791,8 +1811,8 @@ padding-right: 4px;
     flex: 1;
     text-align: center;
     border-bottom: 0px;
-    margin-right: 1.5%;
-    margin-left: 1.5%;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .app.window-app.degenesis.sheet .inventory-group .armor-legend >* {
@@ -1800,17 +1820,16 @@ padding-right: 4px;
     flex: 1;
     text-align: center;
     border-bottom: 0px;
-    margin-right: 1.5%;
-    margin-left: 1.5%;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .app.window-app.degenesis.sheet .inventory-group .armor-legend .legend-name,
 .app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name {
     flex: 1;
-    margin-right: 1.5%;
-    margin-left: 1.5%;
     align-self: center;
     text-align: center;
+    max-width: 50px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name .slots,
@@ -1823,9 +1842,10 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name,
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name{
-    flex: 1.1;
-    margin-right: 1.5%;
-    margin-left: 1.5%;
+    flex: 1;
+    max-width: 50px;
+    padding-right: 5px;
+    padding-left: 5px;
     align-self: center;
     text-align: center;
 }
@@ -1834,7 +1854,8 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name.equipped {
     display: flex;
     justify-content: center;
-    flex: 1.7
+    flex: 1.7;
+    max-width: 75px;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .armor-characteristics .item-controls,
@@ -1845,12 +1866,14 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .inventory-group .armor-legend .equipped,
 .app.window-app.degenesis.sheet .inventory-group .weapon-legend .equipped {
     flex: 1.7;
+    max-width: 75px;
 }
 
 .app.window-app.degenesis.sheet .inventory-group .armor-legend .empty,
 .app.window-app.degenesis.sheet .inventory-group .weapon-legend .empty {
-    flex: 0 0 49px;
+    flex: 0 0 64px;
     display: flex;
+    height: 14px;
     align-self: center;
 }
 
@@ -1869,7 +1892,7 @@ margin-left: 12px;
 
 .app.window-app.degenesis.sheet .inventory-list .armor.item .armor-name,
 .app.window-app.degenesis.sheet .inventory-list .weapon.item .weapon-name {
-    flex: 2;
+    width: 185px;
     display: flex;
     align-self: center;
     margin-right: 0;

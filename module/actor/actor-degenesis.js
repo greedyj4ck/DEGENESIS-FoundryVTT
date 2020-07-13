@@ -241,7 +241,12 @@ export class DegenesisActor extends Actor {
         }
 
 
-        encumbrance.pct = encumbrance.current/encumbrance.max * 100
+        encumbrance.pct = encumbrance.current/encumbrance.max * 100;
+        if(encumbrance.pct>100){
+            encumbrance.color = "var(--degenesis-red)";
+        } else {
+            encumbrance.color = "black";
+        }
 
         return {
             inventory,
