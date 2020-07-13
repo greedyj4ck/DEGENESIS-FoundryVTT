@@ -24,6 +24,13 @@ export class DegenesisActor extends Actor {
                 {
                     modifiers.custom.push(mod);
                 }
+                else if (DEGENESIS.noType.includes(mod.action))
+                {
+                    if (!modifiers[mod.action])
+                        modifiers[mod.action] = mod.number
+                    else
+                        modifiers[mod.action] += mod.number
+                }
                 else if (mod.action && mod.type)
                 {
                     if (!modifiers[mod.action])
@@ -44,14 +51,14 @@ export class DegenesisActor extends Actor {
             data.data.condition.fleshwounds.max =   (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
             data.data.condition.trauma.max =        (data.data.attributes.body.value + data.data.attributes.psyche.value);
 
-            data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value;      
+            data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value + (getProperty(this.data.flags, "degenesis.modifiers.movement") || 0);      
             data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
             data.data.general.actionModifier =  data.data.state.state.motion ? -2 : 0 
             //data.data.general.actionModifier += getProperty(modifiers, "action.D") || 0; 
             data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
             data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
             data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
-            data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0);
+            data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
                                                 // Temporarily state.state, not sure why it's nested
 
 

@@ -41,6 +41,8 @@ export class DegenesisItemSheet extends ItemSheet {
     {
       data.modifyActions = DEG_Utility.getModificationActions();
       data.modifyTypes = DEGENESIS.modifyTypes;
+      if (!DEGENESIS.noType.includes(data.data.action))
+        data.showType = true;
       if (data.data.action == "custom")
         data.customAction = true;
     }
