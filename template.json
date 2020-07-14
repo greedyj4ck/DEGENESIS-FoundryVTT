@@ -325,7 +325,7 @@
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier", "complication"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier","shield", "complication"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -396,8 +396,18 @@
     "caliber" : ""
   },
   "armor" : {
-    "templates" : ["description", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "AP" : 0
+  },
+  "shield" : {
+    "templates" : ["description", "equipped", "quantity", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "defense" : {
+        "D": 0,
+        "p_defense" : 0
+    },
+    "attack" : {
+      "D" : 0
+    }
   },
   "equipment" : {
     "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"]

@@ -320,6 +320,8 @@ DEGENESIS.armorQualities = {
   "sealed" : "DGNS.Sealed",
 }
 
+DEGENESIS.shieldQualities = {}
+
 DEGENESIS.weaponQualitiesValues = {
   "areaDamage" : ["angle"],
   "armorPiercing" : [],

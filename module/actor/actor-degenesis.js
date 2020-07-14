@@ -15,46 +15,8 @@ export class DegenesisActor extends Actor {
         {
             super.prepareData();
             const data = this.data;
-
-            let modifierArray = this.data.items.filter(i => i.type == "modifier").map(m => m.data);
-            let modifiers = {};
-            modifiers.custom = [];
-            modifierArray.forEach(mod => {
-                if (mod.action == "custom")
-                {
-                    modifiers.custom.push(mod);
-                }
-                else if (DEGENESIS.noType.includes(mod.action))
-                {
-                    if (!modifiers[mod.action])
-                        modifiers[mod.action] = mod.number
-                    else
-                        modifiers[mod.action] += mod.number
-                }
-                else if (mod.action && mod.type)
-                {
-                    if (!modifiers[mod.action])
-                    {
-                        modifiers[mod.action] = {
-                            "D" : 0,
-                            "S" : 0,
-                            "T" : 0,
-                        }
-                    }
-                    modifiers[mod.action][mod.type] += mod.number;
-                }
-            })
-            if (!modifiers["action"])
-            {
-                modifiers.action = {
-                    "D" : 0,
-                    "S" : 0,
-                    "T" : 0,
-                }
-            }
-            modifiers.action.D = data.data.state.state.motion ? modifiers.action.D - 2 : modifiers.action.D
-
-            setProperty(this.data.flags, "degenesis.modifiers" ,  modifiers)
+            let modifiers = this.getModifiers();
+            setProperty(this.data.flags, "degenesis.modifiers", modifiers)
     
             data.data.condition.ego.max =           (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
             data.data.condition.spore.max =         (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
@@ -77,6 +39,82 @@ export class DegenesisActor extends Actor {
             console.error(e);
         }
     }
+
+    getModifiers()
+    {
+        let shields = this.data.items.filter(i => i.type == "shield" && i.data.equipped)
+        let shieldPassiveModifier = 0;
+        let shieldActiveModifier = 0;
+        let shieldAttackModifier = 0;
+
+        shields.forEach(s => {
+            shieldActiveModifier += s.data.defense.D
+            shieldPassiveModifier += s.data.defense.p_defense
+            shieldAttackModifier += s.data.attack.D
+        })
+
+        let modifierArray = this.data.items.filter(i => i.type == "modifier").map(m => m.data);
+        let modifiers = {};
+        modifiers.custom = [];
+        modifierArray.forEach(mod => {
+            if (mod.action == "custom")
+            {
+                modifiers.custom.push(mod);
+            }
+            else if (DEGENESIS.noType.includes(mod.action))
+            {
+                if (!modifiers[mod.action])
+                    modifiers[mod.action] = mod.number
+                else
+                    modifiers[mod.action] += mod.number
+            }
+            else if (mod.action && mod.type)
+            {
+                if (!modifiers[mod.action])
+                {
+                    modifiers[mod.action] = {
+                        "D" : 0,
+                        "S" : 0,
+                        "T" : 0,
+                    }
+                }
+                modifiers[mod.action][mod.type] += mod.number;
+            }
+        })
+        if (!modifiers["action"])
+        {
+            modifiers.action = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        if (!modifiers["attack"])
+        {
+            modifiers.attack = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        if (!modifiers["p_defense"])
+        {
+            modifiers.p_defense = 0
+        }
+        if (!modifiers["a_defense"])
+        {
+            modifiers.a_defense = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        modifiers.action.D = this.data.data.state.state.motion ? modifiers.action.D - 2 : modifiers.action.D
+        modifiers.attack.D = modifiers.attack.D ? modifiers.attack.D + shieldAttackModifier : shieldAttackModifier
+        modifiers.p_defense = modifiers.p_defense ? modifiers.p_defense + shieldPassiveModifier : shieldPassiveModifier
+        modifiers.a_defense.D = modifiers.a_defense.D ? modifiers.a_defense.D + shieldActiveModifier : shieldActiveModifier
+        return modifiers
+    }    
     
     prepare() 
     {
@@ -197,6 +235,7 @@ export class DegenesisActor extends Actor {
         let inventory = {
             weapons: {header : game.i18n.localize("DGNS.Weapons") , type: 'weapon', items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
             armor: {header : game.i18n.localize("DGNS.Armor") , type: 'armor', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
+            shields: {header : game.i18n.localize("DGNS.Shields") , type: 'shield', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Equipped")},
             ammunition : {header : game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items : []},
             survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
@@ -213,6 +252,7 @@ export class DegenesisActor extends Actor {
         let rangedWeapons = [];
         let sonicWeapons = [];
         let equippedArmor = [];
+        let equippedShields = [];
         let encumbrance = actorData.data.general.encumbrance;
 
         for (let i of actorData.items)
@@ -227,6 +267,13 @@ export class DegenesisActor extends Actor {
                 inventory.armor.items.push(i);
                 if(i.data.equipped)
                     equippedArmor.push(this.prepareArmor(i));
+                encumbrance.current += i.data.encumbrance   
+            }
+            if (i.type == "shield")
+            {
+                inventory.shields.items.push(i);
+                if(i.data.equipped)
+                    equippedShields.push(this.prepareShield(i));
                 encumbrance.current += i.data.encumbrance   
             }
             if (i.type == "equipment")
@@ -306,8 +353,8 @@ export class DegenesisActor extends Actor {
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         if (!weapon.isSonic)
         {
-            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
-            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
+            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
+            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
         }
         weapon.qualities = weapon.data.qualities.map(q => { return {
                                                                 key : q.name,
@@ -319,7 +366,7 @@ export class DegenesisActor extends Actor {
         {
             weapon.caliber = DEGENESIS.calibers[weapon.data.caliber]
             weapon.totalAvailableAmmo = DegenesisItem.totalAmmoAvailable(weapon, ammo)
-            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
+            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
             weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
@@ -335,13 +382,21 @@ export class DegenesisActor extends Actor {
      })
         return armor
     }   
+    prepareShield(shield) {
+        shield.qualities = shield.data.qualities.map(q => { return {
+            key : q.name,
+            display : [q.values.length ? DEGENESIS.shieldQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.shieldQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
+        }
+     })
+        return shield
+    }  
 
 
 
     setupSkill(skill, options = {}) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
-            prefilled : this.calculateModifiers("skill", skill),
+            prefilled : this.applyModifiers("skill", skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -363,7 +418,7 @@ export class DegenesisActor extends Actor {
         weapon = this.prepareWeapon(duplicate(weapon));
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
-            prefilled : this.calculateModifiers("weapon", skill, options.use),
+            prefilled : this.applyModifiers("weapon", skill, options.use),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -385,7 +440,7 @@ export class DegenesisActor extends Actor {
         let skill = DEGENESIS.fightRolls[type]
         let dialogData = {
             title : DEGENESIS.skills[skill],
-            prefilled : this.calculateModifiers(type, skill),
+            prefilled : this.applyModifiers(type, skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -447,7 +502,7 @@ export class DegenesisActor extends Actor {
      * @param {String} skill Skill used
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
-    calculateModifiers(type, skill, use) {
+    applyModifiers(type, skill, use) {
         console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
