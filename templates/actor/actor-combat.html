@@ -249,7 +249,7 @@
                   <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.effectiveDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.farDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.extremeDice}}D)</a> </span>
                </div>
                <div class="legend-name magazine-ranged" title="{{localize 'DGNS.TotalAmmo'}}: {{weapon.totalAvailableAmmo}}">
-                  <a class="mag-count reload-click">{{weapon.data.mag.current}}</a><span>/{{weapon.data.mag.size}}</span>
+                  <a class="mag-count reload-click">{{weapon.data.mag.current}}</a><span>/{{weapon.data.mag.size}}</span> ({{weapon.caliber}})
                </div>
                <div class="legend-name dammage-ranged">
                   <span>{{weapon.data.damage}}</span>

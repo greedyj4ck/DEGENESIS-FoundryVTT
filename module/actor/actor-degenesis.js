@@ -44,6 +44,16 @@ export class DegenesisActor extends Actor {
                     modifiers[mod.action][mod.type] += mod.number;
                 }
             })
+            if (!modifiers["action"])
+            {
+                modifiers.action = {
+                    "D" : 0,
+                    "S" : 0,
+                    "T" : 0,
+                }
+            }
+            modifiers.action.D = data.data.state.state.motion ? modifiers.action.D - 2 : modifiers.action.D
+
             setProperty(this.data.flags, "degenesis.modifiers" ,  modifiers)
     
             data.data.condition.ego.max =           (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
@@ -51,13 +61,12 @@ export class DegenesisActor extends Actor {
             data.data.condition.fleshwounds.max =   (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
             data.data.condition.trauma.max =        (data.data.attributes.body.value + data.data.attributes.psyche.value);
 
+            data.data.general.actionModifier = modifiers.action.D
             data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value + (getProperty(this.data.flags, "degenesis.modifiers.movement") || 0);      
             data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
-            data.data.general.actionModifier =  data.data.state.state.motion ? -2 : 0 
-            //data.data.general.actionModifier += getProperty(modifiers, "action.D") || 0; 
-            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + data.data.general.actionModifier;
-            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + data.data.general.actionModifier;
-            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + data.data.general.actionModifier;
+            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D;
+            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D;
+            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D;
             data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
                                                 // Temporarily state.state, not sure why it's nested
 
@@ -297,8 +306,8 @@ export class DegenesisActor extends Actor {
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         if (!weapon.isSonic)
         {
-            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
-            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
+            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
+            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
         }
         weapon.qualities = weapon.data.qualities.map(q => { return {
                                                                 key : q.name,
@@ -308,8 +317,9 @@ export class DegenesisActor extends Actor {
 
         if (weapon.isRanged)
         {
+            weapon.caliber = DEGENESIS.calibers[weapon.data.caliber]
             weapon.totalAvailableAmmo = DegenesisItem.totalAmmoAvailable(weapon, ammo)
-            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling
+            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.calculateModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
             weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
@@ -353,7 +363,7 @@ export class DegenesisActor extends Actor {
         weapon = this.prepareWeapon(duplicate(weapon));
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
-            prefilled : this.calculateModifiers("weapon", skill),
+            prefilled : this.calculateModifiers("weapon", skill, options.use),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -441,7 +451,7 @@ export class DegenesisActor extends Actor {
         console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
-            diceModifier : this.data.data.general.actionModifier,
+            diceModifier : 0,
             successModifier : 0,
             triggerModifier : 0,
         }
