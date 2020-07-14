@@ -1541,6 +1541,7 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name,
 .app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name {
+    justify-content: flex-end;
     align-self: center;
     text-align: center;
     flex: 1;
@@ -1575,7 +1576,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .weapon-name{
-    width: 185px;
+    width: 180px;
     display: flex;
     /* align-self: center; */
     margin-left: 5px;
@@ -1584,7 +1585,7 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .armor-name{
-    flex: 2;
+    width: 180px;
     display: flex;
     /* align-self: center; */
     margin-left: 5px;
@@ -1604,8 +1605,8 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .arsenal-list .armor-characteristics > *,
 .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics > *{
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name{
@@ -1630,7 +1631,11 @@ padding-right: 4px;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.armor-value{
-    flex:0.25;
+    flex: 0.25;
+}
+
+.app.window-app.degenesis.sheet .arsenal-group .legend-name.armor-value{
+    flex: 0.25;
 }
 
 .app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage {
@@ -1793,8 +1798,8 @@ padding-right: 4px;
 
 .app.window-app.degenesis.sheet .armor-group .armor-legend > *,
 .app.window-app.degenesis.sheet .weapon-group .weapon-legend > *{
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 
