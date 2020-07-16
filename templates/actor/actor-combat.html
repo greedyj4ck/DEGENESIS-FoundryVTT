@@ -39,25 +39,25 @@
  
     <!-- * FIGHTING * -->
     <div class="combat-group fighting-group">
-       <div class="background">
+      <div class="background">
           <div class="black-title">
              <h3>{{localize "DGNS.Fighting"}}</h3>
           </div>
-       </div>
-       <div class="combat-list">
-        <a class="combat">
+      </div>
+      <div class="combat-list">
+         <a class="combat">
             <div class="general-name fight-roll" data-roll="initiative">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
-        </a>
-        <a class="combat">
+         </a>
+         <a class="combat">
             <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
-        </a>
-        <a class="combat">
+         </a>
+         <a class="combat">
             <div class="general-name fight-roll" data-roll="mentalDefense">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
-        </a>
-        <div class="combat">
+         </a>
+         <div class="combat">
             <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}</div>
-        </div>
-    </div>
+         </div>
+      </div>
     </div>
      
  
@@ -162,6 +162,8 @@
                <div class="legend-name uses">
                   <span>{{localize "DGNS.Uses"}}</span>
                </div>
+               <div class="legend-name empty-melee">
+               </div>
                <div class="legend-name dammage">
                   <span>{{localize "DGNS.Damage"}}</span>
                </div>
@@ -177,6 +179,8 @@
             <div class="weapon-characteristics">
                <div class="legend-name uses">
                   <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}} {{weapon.defenseDice}}D</a></span>
+               </div>
+               <div class="legend-name empty-melee">
                </div>
                <div class="legend-name dammage">
                   <span>{{weapon.data.damage}}</span>
@@ -367,17 +371,13 @@
                <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
                <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
             </svg>
-
-            <div class="empty">
-
-            </div>
+         </div>
             <div class="armor-legend legend">
                <div class="legend-name armor-value">
                   <span>{{localize "DGNS.ArmorValue"}}</span>
                </div>
             </div>
       </div>
-   </div>
 
       <div class="arsenal-list item-list">
          {{#each equippedArmor as |armor a|}}
@@ -410,6 +410,7 @@
          </div>
          {{/each}}
       </div>
+   </div>
 </div>
 {{/if}}
       
@@ -417,7 +418,6 @@
     <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
     {{/each}}-->
 
-</div>
 </div>
 <div class="footer-diamond">
    <div class="square little"></div>
