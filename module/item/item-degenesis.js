@@ -120,6 +120,15 @@ export class DegenesisItem extends Item {
             tags : tags        
         }
     }
+    _legacyDropdownData()
+    {
+        let data = duplicate(this.data.data);
+        let text = `<b>${game.i18n.localize("DGNS.Legacy").toUpperCase()}</b>: ${data.description}<br><br><b>${game.i18n.localize("DGNS.Drawback").toUpperCase()}</b>: ${data.drawback}`;
+
+        return {
+            text : text,
+        }
+    }
 
     static isMelee(data) 
     {

@@ -304,7 +304,8 @@
         "dodge" : 0,
         "mentalDefense" : 0,
         "passiveDefense" : 0
-      },
+      }
+    },
       "state": {
         "state" : {
           "dropBackpack" : false,
@@ -317,15 +318,20 @@
             "value" : 0
           }
         }
+      },
+      "biography" : {
+        "biography" : ""
+      },
+      "gmnotes" : {
+        "gmnotes" : ""
       }
-    }
-  },
+    },
   "character": {
-    "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state"]
+    "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state", "biography", "gmnotes"]
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier","shield", "complication"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -430,6 +436,10 @@
     "cost" : 0,
     "rating" : 0,
     "description" : ""
+  },
+  "legacy" : {
+    "description" : "",
+    "drawback" : ""
   }
 }
 }

@@ -29,8 +29,7 @@ export class DegenesisActor extends Actor {
             data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D;
             data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D;
             data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D;
-            data.data.fighting.passiveDefense = 1 + data.data.state.state.cover.value + (data.data.state.state.motion ? 1 : 0) + (data.data.state.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
-                                                // Temporarily state.state, not sure why it's nested
+            data.data.fighting.passiveDefense = 1 + data.data.state.cover.value + (data.data.state.motion ? 1 : 0) + (data.data.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
 
 
         }
@@ -109,7 +108,7 @@ export class DegenesisActor extends Actor {
                 "T" : 0,
             }
         }
-        modifiers.action.D = this.data.data.state.state.motion ? modifiers.action.D - 2 : modifiers.action.D
+        modifiers.action.D = this.data.data.state.motion ? modifiers.action.D - 2 : modifiers.action.D
         modifiers.attack.D = modifiers.attack.D ? modifiers.attack.D + shieldAttackModifier : shieldAttackModifier
         modifiers.p_defense = modifiers.p_defense ? modifiers.p_defense + shieldPassiveModifier : shieldPassiveModifier
         modifiers.a_defense.D = modifiers.a_defense.D ? modifiers.a_defense.D + shieldActiveModifier : shieldActiveModifier
@@ -127,8 +126,8 @@ export class DegenesisActor extends Actor {
         preparedData.spore =        DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 20)
         preparedData.fleshwounds =  DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 20)
         preparedData.trauma =       DEG_Utility.addDiamonds(duplicate(this.data.data.condition.trauma), 12)
-        preparedData.cover =        DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.cover), 3)
-        preparedData.spentEgo =     DEG_Utility.addDiamonds(duplicate(this.data.data.state.state.spentEgo), 3)
+        preparedData.cover =        DEG_Utility.addDiamonds(duplicate(this.data.data.state.cover), 3)
+        preparedData.spentEgo =     DEG_Utility.addDiamonds(duplicate(this.data.data.state.spentEgo), 3)
 
         preparedData.culture =  DEGENESIS.cultures[this.data.data.details.culture.value]
         preparedData.cult =     DEGENESIS.cults[this.data.data.details.cult.value]
@@ -247,6 +246,7 @@ export class DegenesisActor extends Actor {
         }
         let potentials = [];
         let modifiers = [];
+        let legacies = [];
         let complications = [];
         let meleeWeapons = [];
         let rangedWeapons = [];
@@ -296,6 +296,10 @@ export class DegenesisActor extends Actor {
             {
                 complications.push(i);
             }
+            if (i.type == "legacy")
+            {
+                legacies.push(i);
+            }
         }
 
         for (let wep of inventory.weapons.items)
@@ -325,6 +329,7 @@ export class DegenesisActor extends Actor {
             inventory,
             meleeWeapons,
             rangedWeapons,
+            legacies,
             sonicWeapons,
             equippedArmor,
             potentials,

@@ -69,33 +69,33 @@
           </div>
        </div>
        <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
-            {{#if data.state.state.dropBackpack}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
+            {{#if data.state.dropBackpack}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into"></div></a>
             {{/if}}
        </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
-            {{#if data.state.state.motion}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.motion"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
+            {{#if data.state.motion}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.motion"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.motion"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.motion"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
-            {{#if data.state.state.active}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.active"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
+            {{#if data.state.active}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.active"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.active"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.active"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
             <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.state.cover.value">
+               <div class = "diamond-row" data-target="data.state.cover.value">
                   {{#each cover.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -109,7 +109,7 @@
         <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.SpentEgo"}}: </a>
             <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.state.spentEgo.value">
+               <div class = "diamond-row" data-target="data.state.spentEgo.value">
                   {{#each spentEgo.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -411,14 +411,12 @@
          {{/each}}
       </div>
    </div>
-</div>
-{{/if}}
-      
-   <!-- {{#each equippedWeapons as |weapon w|}}
-    <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
-    {{/each}}-->
+   {{/if}}
 
 </div>
+
+</div>
+
 <div class="footer-diamond">
    <div class="square little"></div>
    <div class="square little"></div>

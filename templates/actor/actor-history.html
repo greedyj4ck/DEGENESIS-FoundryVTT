@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="history-list item-list">
-            {{#each legacy as |legacy l|}}
+            {{#each legacies as |legacy l|}}
             <div class="history item" data-item-id={{legacy._id}}>
                 <a class="legacy-name item-name dropdown">{{legacy.name}}</a>
                 <div class="legacy-characteristics item-characteristics">
@@ -50,25 +50,6 @@
                 <div class="break"></div>
             </div>
             {{/each}}
-            <!-- ! static legacy ! -->
-            <div class="history item" data-item-id={{legacy._id}}>
-                <a class="legacy-name item-name dropdown">Famous (Slayer of Ganaress)</a>
-                <div class="legacy-characteristics item-characteristics">
-                    <div class="empty"></div>
-                    <div class="vertical-bar">
-                        <svg height="15px" width="1px">
-                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                        </svg>
-                    </div>
-                    <div class="item-controls">
-                        <a class="icon item-post"><i class="fas fa-comment"></i></a>
-                        <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-                        <a class="icon item-delete"><i class="fas fa-times"></i></a>
-                    </div>
-                </div>
-                <div class="break"></div>
-            </div>
-            <!-- ! static legacy ! -->
         </div>
     </div>
 
@@ -87,8 +68,8 @@
             <div class="biography-legend legend">
                 <a class="editor-edit"><i class="fas fa-edit"></i></a>
             </div>
-        </div>
-        <div class="editor-content" data-edit="data.description"><p></p></div>
+    </div>
+    {{editor content=data.biography target="data.biography"button=true owner=owner editable=editable}}
     </div>
 
     <!-- * GM Notes  -->
@@ -108,7 +89,7 @@
                 <a class="editor-edit"><i class="fas fa-edit"></i></a>
             </div>
         </div>
-        <div class="editor-content" data-edit="data.description"><p></p></div>
+        {{editor content=data.gmnotes target="data.gmnotes"button=true owner=owner editable=editable}}
     </div>
     {{/if}}
 </div>
