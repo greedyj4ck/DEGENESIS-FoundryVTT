@@ -321,7 +321,7 @@
     }
   },
   "character": {
-    "templates" : ["details", "attributes", "skills", "condition", "backgrounds", "scars", "relationships", "general", "fighting", "state"]
+    "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state"]
   }
 },
 "Item": {

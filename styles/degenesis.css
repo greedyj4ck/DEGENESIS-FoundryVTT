@@ -1943,6 +1943,131 @@ margin-left: 12px;
     margin-top: 0;
 }
 
+
+/* * History tab */
+.app.window-app.degenesis.sheet .history-tab{
+    margin-top: 20px;
+}
+.app.window-app.degenesis.sheet .lt-group {
+    margin: 16px 13px;
+    flex: 1;
+}
+
+.degenesis.sheet .lt-group .lt-top{
+    display: flex;
+}
+
+.app.window-app.degenesis.sheet .lt-group .first-part {
+    display: flex;
+    width: 190px;
+}
+
+.app.window-app.degenesis.sheet .lt-group .black-title {
+    width: 100%;
+    background-image: url(../images/border\ short.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
+}
+
+
+
+.app.window-app.degenesis.sheet .lt-group h3 {
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.app.window-app.degenesis.sheet .lt-group .legend{
+    display: flex;
+    flex: 2;
+    border-bottom: 1px solid var(--dark-grey);
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.app.window-app.degenesis.sheet .lt-group .legend .legend-name{
+    justify-content: flex-end;
+    align-self: center;
+    text-align: center;
+    flex: 1;
+}
+
+
+.app.window-app.degenesis.sheet .lt-group .item-list .item {
+    margin-left: 5px;
+    border-bottom: 1px solid var(--dark-grey);
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.app.window-app.degenesis.sheet .lt-group .item-list .item-name{
+    width: 180px;
+    display: flex;
+    /* align-self: center; */
+    margin-left: 5px;
+    padding-bottom: 6px;
+}
+
+.app.window-app.degenesis.sheet .lt-group.empt .item-list .item-name{
+    flex: 2;
+}
+
+.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics {
+    flex: 3;
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
+    margin: 0;
+    padding-bottom: 6px;
+}
+
+
+.app.window-app.degenesis.sheet .lt-group.empt .item-list .item-characteristics{
+    flex: 0;
+}
+
+.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics > *{
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
+.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics .legend-name{
+    flex: 1;
+    align-self: center;
+    text-align: center;
+}
+
+.degenesis.sheet .lt-group .item-controls{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.app.window-app.degenesis.sheet .lt-group .editor-content{
+    display: block;
+    margin-left: 10px;
+}
+
+.app.window-app.degenesis.sheet .lt-group .legend .icon.item-add {
+    margin: 0;
+    font-size: 15px;
+    display: flex;
+    padding: 1px 4px;
+}
+
+.app.window-app.degenesis.sheet.actor a.editor-edit {
+    display: block;
+    position: static;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+
+
+
 /************************************ ITEM SHEET ********************************/
 
 .app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
