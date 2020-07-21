@@ -51,6 +51,10 @@ export class DegenesisItemSheet extends ItemSheet {
       data.weaponGroups = DEGENESIS.weaponGroups;
       data.calibers = DEGENESIS.calibers;
     }
+    if (data.item.type == "equipment")
+    {
+      data.equipmentGroups = DEGENESIS.equipmentGroups;
+    }
   }
 
 
