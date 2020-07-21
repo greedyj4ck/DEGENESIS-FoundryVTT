@@ -123,7 +123,7 @@ export class DegenesisItem extends Item {
     _legacyDropdownData()
     {
         let data = duplicate(this.data.data);
-        let text = `<b>${game.i18n.localize("DGNS.Legacy").toUpperCase()}</b>: ${data.description}<br><br><b>${game.i18n.localize("DGNS.Drawback").toUpperCase()}</b>: ${data.drawback}`;
+        let text = `<b>${game.i18n.localize("DGNS.Bonus").toUpperCase()}</b>: ${data.bonus}<br><br><b>${game.i18n.localize("DGNS.Legacy").toUpperCase()}</b>: ${data.legacy}<br><br><b>${game.i18n.localize("DGNS.Drawback").toUpperCase()}</b>: ${data.drawback}`;
 
         return {
             text : text,

@@ -424,7 +424,7 @@
     "slotCost" : 0
   },
   "potential" : {
-    "templates" : ["rules", "effect", "level", "origin"],
+    "templates" : ["prerequisite","rules", "effect", "level", "origin"],
     "level" : 1
   },
   "modifier" : {
@@ -438,6 +438,9 @@
     "description" : ""
   },
   "legacy" : {
+    "prerequisite" :"",
+    "bonus" : "",
+    "legacy" : "",
     "description" : "",
     "drawback" : ""
   }

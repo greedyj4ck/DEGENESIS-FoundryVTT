@@ -240,6 +240,7 @@ export class DegenesisActor extends Actor {
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
             medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
             elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), type: 'elysianOil', items : []},
+            burn : {header : game.i18n.localize("DGNS.Burn"), type: 'burn', items : []},
             primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
             other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},
             artifact : {header : game.i18n.localize("DGNS.Artifact"), type: 'artifact', items : []},
