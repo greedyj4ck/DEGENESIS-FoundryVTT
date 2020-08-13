@@ -41,71 +41,18 @@
         <div class="detail-container">
             <div class="column">
                 <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Handling"}}: </span>
+                    <span class="field-name">{{localize "DGNS.Defense"}}: </span>
                     <div class="field-inputs">
-                        <input class="handling field-input field-start" type="text" name="data.handling" value="{{data.handling}}" data-dtype="Number" /><span class="field-end">D</span>
+                        <input class="handling field-input field-start" type="text" name="data.defense.D" value="{{data.defense.D}}" data-dtype="Number" placeholder="{{localize 'DGNS.Defense'}}"/><span class="field-end">D</span>
+                        <span class="field-end"></span>+<input class="handling field-input field-start" type="text" name="data.defense.p_defense" value="{{data.defense.p_defense}}" placeholder="{{localize 'DGNS.PassiveDef'}}" data-dtype="Number" />
                     </div>
                 </div>
                 <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Distance"}}: </span>
+                    <span class="field-name">{{localize "DGNS.Attack"}}: </span>
                     <div class="field-inputs">
-                        {{#if isMelee}} <!--Is Melee determined by weapon group-->
-                        <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
-                        {{else if isSonic}}
-                        <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}" data-dtype="Number"/>
-                        {{else}}
-                        <input class="field-input distance-short" type="text" name="data.distance.short" value="{{data.distance.short}}" data-dtype="Number"/>
-                        <span class="field-separator">/</span>
-                        <input class="field-input distance-far" type="text" name="data.distance.far" value="{{data.distance.far}}" data-dtype="Number"/>
-                        {{/if}} 
+                        <input class="handling field-input field-start" type="text" name="data.attack.D" value="{{data.attack.D}}" data-dtype="Number" placeholder="{{localize 'DGNS.Modifier'}}"/><span class="field-end">D</span>
                     </div>
                 </div>
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Damage"}}: </span>
-                    <div class="field-inputs">
-                        <input class="field-input field-start" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/>
-                        <select class="cac-select" name="data.cac" data-dtype="String">
-                            <option value=""></option>
-                            <option value="F">+ F</option>
-                            <option value="F/2">+ F/2</option>
-                            <option value="F/3">+ F/3</option>
-                            <option value="T">+ T</option>
-                        </select>
-                    </div>
-                </div>
-                {{#unless isMelee}}
-               <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Caliber"}}: </span>
-                    <div class="field-inputs">
-                        <select name="data.caliber" data-dtype="String">
-                            <option value="">-</option>
-                            {{#select data.caliber}}
-                            {{#each calibers as |caliber c|}}
-                            <option value="{{c}}">{{caliber}}</option>
-                            {{/each}}
-                            {{/select}}
-                        </select>
-                    </div>
-                </div> 
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Magazine"}}: </span>
-                    <div class="field-inputs">
-                        {{#if data.mag.belt}}
-                        <input class=" field-start" type="text" value="-" data-dtype="Number" disabled="disabled"/>
-                        <div class="belt-field">
-                            <span class="belt-text">{{localize "DGNS.Belt"}}</span>
-                            <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
-                        </div>
-                        {{else}}
-                        <input class="field-start" type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
-                        <div class="belt-field">
-                            <span class="belt-text">{{localize "DGNS.Belt"}}</span>
-                            <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
-                        </div>
-                        {{/if}}
-                    </div>
-                </div>
-                {{/unless}}
             </div>
             <div class="column">
                 <div class="sheet-field">
@@ -127,6 +74,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
 <!-- Qualities and mods -->

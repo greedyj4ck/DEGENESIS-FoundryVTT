@@ -51,7 +51,7 @@ Hooks.once("init", async function() {
     "systems/degenesis/templates/actor/actor-advantages.html",
     "systems/degenesis/templates/actor/actor-condition.html",
     "systems/degenesis/templates/actor/actor-combat.html",
-    "systems/degenesis/templates/actor/actor-combat.html",
+    "systems/degenesis/templates/actor/actor-history.html",
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/chat/roll-card.html"

@@ -202,6 +202,12 @@ DEGENESIS.skillAttributes = {
   "taming" : "instinct"
 }
 
+DEGENESIS.fightRolls = {
+  "dodge" : "mobility",
+  "initiative" : "reaction",
+  "mentalDefense" : "willpower",
+}
+
 DEGENESIS.modifyTypes = {
   "D" : "D",
   "S" : "S",
@@ -244,6 +250,34 @@ DEGENESIS.weaponGroups = {
   "heavy" : "DGNS.HeavyWeapons",
   "explosives" : "DGNS.Explosives",
   "sonic" : "DGNS.SonicWeapons"
+}
+
+DEGENESIS.equipmentGroups = {
+  "getting food" : "DGNS.GettingFood",
+  "traps": "DGNS.Traps",
+  "sourcesOfLight" : "DGNS.SourceOfLightFire",
+  "orienteeringTracking" : "DGNS.OrienteeringTracking",
+  "climbing" : "DGNS.Climbing",
+  "overnight" : "DGNS.Overnight",
+  "inTheShadows" : "DGNS.InTheShadows",
+  "gasMasks" : "DGNS.GazMasks",
+  "survivalGear" : "DGNS.SurvivalGear",
+  "technology" : "DGNS.Technology",
+  "sunDiscs" : "DGNS.SunDiscs",
+  "chroniclerSuitModules"  : "DGNS.ChroniclerSuitModules",
+  "heavyDutyModules" : "DGNS.HeavyDutyModules",
+  "communication" : "DGNS.Communication",
+  "energyManagement" : "DGNS.EnergyManagement",
+  "medicalEquipment" : "DGNS.MedicalEquipment",
+  "pharmaceutics" : "DGNS.Pharmaceutics",
+  "elysianOils" : "DGNS.ElysianOils",
+  "psychonauticRemains" : "DGNS.PsychonauticRemains",
+  "huntingPsychonauts" : "DGNS.HuntingPsychonauts",
+  "commonPrimalism" : "DGNS.CommonPrimalism",
+  "talismansInsignia" : "DGNS.TalismansInsignia",
+  "scrap" : "DGNS.Scrap",
+  "other" : "DGNS.Other",
+  "transportation" : "DGNS.Transportation"
 }
 
 DEGENESIS.weaponGroupSkill = {
@@ -314,6 +348,8 @@ DEGENESIS.armorQualities = {
   "sealed" : "DGNS.Sealed",
 }
 
+DEGENESIS.shieldQualities = {}
+
 DEGENESIS.weaponQualitiesValues = {
   "areaDamage" : ["angle"],
   "armorPiercing" : [],
@@ -357,7 +393,7 @@ DEGENESIS.agentQualitiesValues = {
   "pseudoDesporeing" : ["desporeing", "duration"],
 },
 DEGENESIS.armorQualitiesValues = {
-  "respected" : ["target group", "bonusDice"],
+  "respected" : ["targetGroup", "bonusDice"],
   "firstImpression" : ["bonus"],
   "fireResistant" : ["armor"],
   "terrifying" : ["difficulty"],
@@ -367,7 +403,7 @@ DEGENESIS.armorQualitiesValues = {
   "bulletproof" : ["armor"],
   "massive" : ["armor"],
   "brittle" : ["criticalDamageRating"],
-  "sealed" : ["bonus successes"],
+  "sealed" : ["bonusSuccesses"],
 }
 
 DEGENESIS.qualityValues = {
@@ -376,7 +412,7 @@ DEGENESIS.qualityValues = {
   "time" : "DGNS.Time",
   "damage" : "DGNS.QualityDamage",
   "amountOfTime" : "DGNS.AmountOfTime",
-  "movementPenalty" : "DGNS.Movement",
+  "movementPenalty" : "DGNS.MovementPenalty",
   "egoDamage" : "DGNS.EgoDamage",
   "radius" : "DGNS.Radius",
   "penalty" : "DGNS.Penalty",
@@ -391,7 +427,7 @@ DEGENESIS.qualityValues = {
   "target" : "DGNS.Target",
   "desporeing" : "DGNS.Desporeing",
   "duration" : "DGNS.Duration",
-  "targetGroup" :"DGNS.Target",
+  "targetGroup" :"DGNS.TargetGroup",
   "bonusDice" : "DGNS.BonusDice",
   "armor" : "DGNS.QualityArmor",
   "criticalDamageRating" : "DGNS.CriticalDamageRating",
@@ -484,24 +520,16 @@ DEGENESIS.calibers = {
   "rifleBarrel" : "CALIBER 12 (Rifle barrel ammo)",
   "blackpowder" : "Lead bullet and black powder",
   "Ecube" : "E-Cube",
-  "EcubeRecharging" : "E-Cube recharging",
   "arrow" : "Arrow",
   "bolt" : "Bolt",
   "petro" : "Can of Petro",
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+CONST.CLICK = {
+  LEFT: 0,
+  RIGHT: 2
+}
 
 
 
