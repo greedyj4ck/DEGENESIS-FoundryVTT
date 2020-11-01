@@ -252,6 +252,34 @@ DEGENESIS.weaponGroups = {
   "sonic" : "DGNS.SonicWeapons"
 }
 
+DEGENESIS.equipmentGroups = {
+  "getting food" : "DGNS.GettingFood",
+  "traps": "DGNS.Traps",
+  "sourcesOfLight" : "DGNS.SourceOfLightFire",
+  "orienteeringTracking" : "DGNS.OrienteeringTracking",
+  "climbing" : "DGNS.Climbing",
+  "overnight" : "DGNS.Overnight",
+  "inTheShadows" : "DGNS.InTheShadows",
+  "gasMasks" : "DGNS.GazMasks",
+  "survivalGear" : "DGNS.SurvivalGear",
+  "technology" : "DGNS.Technology",
+  "sunDiscs" : "DGNS.SunDiscs",
+  "chroniclerSuitModules"  : "DGNS.ChroniclerSuitModules",
+  "heavyDutyModules" : "DGNS.HeavyDutyModules",
+  "communication" : "DGNS.Communication",
+  "energyManagement" : "DGNS.EnergyManagement",
+  "medicalEquipment" : "DGNS.MedicalEquipment",
+  "pharmaceutics" : "DGNS.Pharmaceutics",
+  "elysianOils" : "DGNS.ElysianOils",
+  "psychonauticRemains" : "DGNS.PsychonauticRemains",
+  "huntingPsychonauts" : "DGNS.HuntingPsychonauts",
+  "commonPrimalism" : "DGNS.CommonPrimalism",
+  "talismansInsignia" : "DGNS.TalismansInsignia",
+  "scrap" : "DGNS.Scrap",
+  "other" : "DGNS.Other",
+  "transportation" : "DGNS.Transportation"
+}
+
 DEGENESIS.weaponGroupSkill = {
   "brawl" : "brawl",
   "armedMelee" : "melee",

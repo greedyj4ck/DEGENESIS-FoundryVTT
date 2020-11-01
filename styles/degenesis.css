@@ -339,6 +339,7 @@ a.diamond:hover .square.red.perma {
     border-bottom: 1px solid var(--dark-grey);
 }
 
+
 .app.window-app.degenesis.sheet .condition .condition-item:hover,
 .app.window-app.degenesis.sheet .condition .condition-section:hover 
 .app.window-app.degenesis.sheet .sheet-field-stack:hover,
@@ -348,6 +349,38 @@ a.diamond:hover .square.red.perma {
     -ms-transition: color 100ms linear;
     transition: color 100ms linear;
 }
+
+.app.window-app.degenesis.sheet .sheet-field.textarea {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+.app.window-app.degenesis.sheet .sheet-field.textarea textarea:hover {
+    border-color: var(--degenesis-red);
+}
+.app.window-app.degenesis.sheet .sheet-field.textarea:hover {
+    border: none;
+}
+
+.app.window-app.degenesis.sheet .sheet-field.textarea > * {
+    display: flex;
+    align-self: flex-start;
+}
+
+.app.window-app.degenesis.sheet .sheet-field.textarea span {
+    padding-bottom: 3px;
+}
+
+.app.window-app.degenesis.sheet .sheet-field.textarea textarea {
+    height: 100px;
+}
+
+.app.window-app.degenesis.sheet .details {
+    display: flex;
+    flex-direction: column;
+    height: 292px;
+}
+
 
 .app.window-app.degenesis.sheet .condition-title {
     text-transform: uppercase;
