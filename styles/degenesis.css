@@ -630,13 +630,8 @@ a.diamond:hover .square.red.perma {
 /* * Navigation Tabs */
 .app.window-app.degenesis.sheet .tabs {
     flex: 0 0 40px;
-<<<<<<< HEAD
-    height: 24px;
-    border: none;
-=======
     height: unset;
     border: none
->>>>>>> origin/master
 }
 
 .app.window-app.degenesis.sheet .tabs .item {
@@ -2571,7 +2566,7 @@ span.nocaps{
     border-top: 1px solid rgb(65, 65, 65);
     border-bottom: 1px solid rgb(65, 65, 65);
     background: none;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 #sidebar button:hover {
