@@ -126,19 +126,20 @@ Hooks.on("chatMessage", (html, content, msg) => {
         console.error(error)
         ui.notifications.error(error)
       })
+      return false
+
   }
-  return false
 })
 
 // Activate chat listeners defined in dice-wfrp4e.js
 Hooks.on('renderChatLog', (log, html, data) => {
 
-  html.find(".roll-type-select").click(ev => {
+  html.find(".chat-control-icon").click(ev => {
      let cl = new ClusterInterface();
      cl.render(true);
   })
 
-  html.find(".roll-type-select").mouseover(ev => {
+  html.find(".chat-control-icon").mouseover(ev => {
     $(ev.currentTarget).attr("title", "Access The Cluster")
  })
 

@@ -20,17 +20,17 @@ export class DegenesisDice
             actionNumber = 12;
         }
         let roll = new Roll(`${actionNumber}d6cs>3`);
+        roll.roll();        
         if (game.dice3d)
             await game.dice3d.showForRoll(roll);
-        
 
-        rolls = roll.parts[0].rolls;
+        rolls = roll.terms[0].rolls;
         successes = roll.total + autoSuccesses + successModifier;
 
         rolls.forEach(r => {
-            if (r.roll == 6)
+            if (r.result == 6)
                 triggers++;
-            if (r.roll == 1)
+            if (r.result == 1)
                 ones++;
         })
 
