@@ -126,8 +126,9 @@ Hooks.on("chatMessage", (html, content, msg) => {
         console.error(error)
         ui.notifications.error(error)
       })
+      return false
+
   }
-  return false
 })
 
 // Activate chat listeners defined in dice-wfrp4e.js

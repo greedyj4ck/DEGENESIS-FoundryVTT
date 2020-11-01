@@ -2657,7 +2657,7 @@ span.nocaps{
     transition: background 0.5s
 }
 
-#chat-controls div.roll-type-select select {
+#chat-controls .roll-type-select {
     background: none;
     border: none;
     padding: 0px;
@@ -2672,7 +2672,7 @@ span.nocaps{
     transition: border 0.2s, background 0.2s;
 }
 
-#chat-controls div.roll-type-select select:hover {
+#chat-controls .roll-type-select:hover {
     border: 1px solid var(--degenesis-red);
     background-color: var(--degenesis-red);
 }
