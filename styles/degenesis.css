@@ -596,6 +596,8 @@ a.diamond:hover .square.red.perma {
 /* * Navigation Tabs */
 .app.window-app.degenesis.sheet .tabs {
     flex: 0 0 40px;
+    height: unset;
+    border: none
 }
 
 .app.window-app.degenesis.sheet .tabs .item {
@@ -2283,6 +2285,16 @@ margin-left: 12px;
     content:url(../icons/degenesis.png)
 }
 
+#pause img {
+    content: url(../icons/logo.png)
+}
+
+#pause h3{
+    font-family: "Avenir";
+    color: white;
+    text-shadow: 1px 1px 30px var(--degenesis-red);
+}
+
 
 .app.window-app .window-content {
     background: white;
@@ -2312,6 +2324,7 @@ input[type="text"] {
 
 form button,
 .dialog .dialog-buttons button,
+.dialog .dialog-buttons button.default,
 button {
     background-color: black;
     border-radius: 0px;
@@ -2358,6 +2371,7 @@ span.nocaps{
     border-top: 1px solid rgb(65, 65, 65);
     border-bottom: 1px solid rgb(65, 65, 65);
     background: none;
+    font-size: 13px;
 }
 
 #sidebar button:hover {
@@ -2423,6 +2437,16 @@ span.nocaps{
 #sidebar .directory-header a:hover,
 #chat-controls a:hover{
     color: white;
+}
+
+#combat #combat-round .encounters h3 {
+    font-size: 14px;
+}
+
+#combat #combat-controls .center {
+    font-family: "Avenir";
+    text-transform: uppercase;
+    font-size: 19px
 }
 
 #chat-controls .roll-type-select label i {

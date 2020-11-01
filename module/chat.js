@@ -7,7 +7,7 @@ export class DegenesisChat {
     static renderRollCard(rollResult, cardData)
     {
         rollResult.rolls.forEach(r => {
-            r.img = `systems/degenesis/icons/dice-faces/d${r.roll}.svg`
+            r.img = `systems/degenesis/icons/dice-faces/d${r.result}.svg`
         })
 
         rollResult.result = DEGENESIS.rollResults[rollResult.result]

@@ -4,9 +4,9 @@
   "description": "DEGENESIS",
   "version": 0.1,
   "minimumCoreVersion": "0.5.4",
-  "compatibleCoreVersion": "0.5.5",
+  "compatibleCoreVersion": "0.7.5",
   "templateVersion": 2,
-  "author": "Moo Man",
+  "author": "Moo Man, Darkhan, ClemEvilzz",
   "esmodules": ["degenesis.js"],
   "styles": ["styles/degenesis.css"],
   "scripts" : [
