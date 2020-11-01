@@ -24,25 +24,26 @@
                <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
                <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
             </svg>
-            <div class="enc-all">
+         </div>
+         <div class="enc-all">
             <div class="enc-container">
-               <div class="enc-bar" style="width: {{encumbrance.pct}}%"></div>
+               <div class="enc-bar" style="background-color: {{encumbrance.color}}; width: {{encumbrance.pct}}%"></div>
             </div>
                <div class="encumbrance-legend">
                   <span>{{encumbrance.current}} / {{encumbrance.max}}</span>
                </div>
-            </div>
          </div>
-         </div>
+      </div>
    </div>
 
    {{#each inventory as |section s|}}
+   {{#if section.items.length}}
    <div class="inventory-group weapon-group">
       <div class="weapon">
          <div class="first-part">
             <div class="black-title">
                <h3>{{localize section.header}}</h3>
-               <a class="icon item-add" data-item="weapon">+</a>
+               <a class="icon item-add" data-item="{{localize section.type}}">+</a>
             </div>
             <svg class="tab-start-line" height="23" width="26">
                <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
@@ -54,13 +55,18 @@
             </div>
          </div>
          <div class="weapon-legend legend">
-            {{#if section.equippable}}
+            {{#if section.toggleable}}
             <div class="legend-name equipped">
-               <span>{{localize "DGNS.Equipped"}}</span>
+               <span>{{toggleDisplay}}</span>
+            </div>
+            {{else}}
+            <div class="legend-name equipped">
+            </div>
+            <div class="legend-name">
             </div>
             {{/if}}
             <div class="legend-name qty">
-               <span>{{localize "DGNS.Qty"}}</span>
+               <a class="aggregate">{{localize "DGNS.Qty"}}</a>
             </div>
             <div class="legend-name enc">
                <span>{{localize "DGNS.Enc"}}</span>
@@ -68,18 +74,21 @@
             <div class="legend-name tech">
                <span>{{localize "DGNS.Tech"}}</span>
             </div>
+            {{#if section.toggleable}}
             <div class="legend-name slots">
                <span2>{{localize "DGNS.Slots"}}</span>
             </div>
+            {{/if}}
             <div class="empty"> </div>
-            </div>
          </div>
+      </div>      
    <div class="inventory-list item-list">
       {{#each section.items as |item w|}}
       <div class="weapon item" data-item-id="{{item._id}}">
          <a class="weapon-name dropdown">{{item.name}}</a>
+         {{log item}}
          <div class="weapon-characteristics">
-            {{#if ../equippable}}
+            {{#if ../toggleable}}
             <div class="legend-name equipped">
                 {{#if item.data.equipped}}
                   <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
@@ -87,9 +96,14 @@
                   <a class="square button-position checkbox" data-target="item" data-item-target="data.equipped" ><div class="square-into"></div></a>
                {{/if}}
             </div>
+            {{else}}
+            <div class="legend-name equipped">
+            </div>
+            <div class="legend-name ">
+            </div>
             {{/if}}
             <div class="legend-name qty">
-               <span>{{item.data.quantity}}</span>
+               <a class="quantity-click">{{item.data.quantity}}</a>
             </div>
             <div class="legend-name enc">
                <span>{{item.data.encumbrance}}</span>
@@ -97,9 +111,11 @@
             <div class="legend-name tech">
                <span>{{lookup ../../techValues item.data.tech}}</span>
             </div>
+            {{#if section.toggleable}}
             <div class="legend-name slot">
-               <span>0/{{item.data.slots.total}}</span>
+               <span>{{item.data.slots.used}}/{{item.data.slots.total}}</span>
             </div>
+            {{/if}}
             <div class="vertical-bar">
                <svg height="15px" width="1px">
                   <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
@@ -116,7 +132,10 @@
       {{/each}}
    </div>
 </div>
+{{/if}}
 {{/each}}
+
+</div>
 
 
       <!-- *ARMOR*

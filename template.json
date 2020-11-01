@@ -304,7 +304,8 @@
         "dodge" : 0,
         "mentalDefense" : 0,
         "passiveDefense" : 0
-      },
+      }
+    },
       "state": {
         "state" : {
           "dropBackpack" : false,
@@ -317,15 +318,20 @@
             "value" : 0
           }
         }
+      },
+      "biography" : {
+        "biography" : ""
+      },
+      "gmnotes" : {
+        "gmnotes" : ""
       }
-    }
-  },
+    },
   "character": {
-    "templates" : ["details", "attributes", "skills", "condition", "backgrounds", "scars", "relationships", "general", "fighting", "state"]
+    "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state", "biography", "gmnotes"]
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier", "complication"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -389,13 +395,25 @@
     },
     "mag" : {
       "belt": false,
-      "size" : 0
+      "size" : 0,
+      "current" : 0
     },
-    "group" : ""
+    "group" : "",
+    "caliber" : ""
   },
   "armor" : {
-    "templates" : ["description", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "AP" : 0
+  },
+  "shield" : {
+    "templates" : ["description", "equipped", "quantity", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "defense" : {
+        "D": 0,
+        "p_defense" : 0
+    },
+    "attack" : {
+      "D" : 0
+    }
   },
   "equipment" : {
     "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"]
@@ -418,6 +436,10 @@
     "cost" : 0,
     "rating" : 0,
     "description" : ""
+  },
+  "legacy" : {
+    "description" : "",
+    "drawback" : ""
   }
 }
 }

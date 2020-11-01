@@ -39,25 +39,25 @@
  
     <!-- * FIGHTING * -->
     <div class="combat-group fighting-group">
-       <div class="background">
+      <div class="background">
           <div class="black-title">
              <h3>{{localize "DGNS.Fighting"}}</h3>
           </div>
-       </div>
-       <div class="combat-list">
-        <a class="combat">
-            <div class="general-name">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
-        </a>
-        <a class="combat">
-            <div class="general-name">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
-        </a>
-        <a class="combat">
-            <div class="general-name">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
-        </a>
-        <div class="combat">
+      </div>
+      <div class="combat-list">
+         <a class="combat">
+            <div class="general-name fight-roll" data-roll="initiative">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
+         </a>
+         <a class="combat">
+            <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
+         </a>
+         <a class="combat">
+            <div class="general-name fight-roll" data-roll="mentalDefense">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
+         </a>
+         <div class="combat">
             <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}</div>
-        </div>
-    </div>
+         </div>
+      </div>
     </div>
      
  
@@ -69,33 +69,33 @@
           </div>
        </div>
        <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
-            {{#if data.state.state.dropBackpack}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
+            {{#if data.state.dropBackpack}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.dropBackpack"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into"></div></a>
             {{/if}}
        </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
-            {{#if data.state.state.motion}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.motion"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
+            {{#if data.state.motion}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.motion"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.motion"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.motion"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
-            {{#if data.state.state.active}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.state.active"><div class="square-into black"></div></a>
+            <a class="general-name checkbox" data-target="data.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
+            {{#if data.state.active}} 
+            <a class="square border-black button-position checkbox" data-target="data.state.active"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.state.active"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="data.state.active"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
             <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.state.cover.value">
+               <div class = "diamond-row" data-target="data.state.cover.value">
                   {{#each cover.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -109,7 +109,7 @@
         <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.SpentEgo"}}: </a>
             <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.state.spentEgo.value">
+               <div class = "diamond-row" data-target="data.state.spentEgo.value">
                   {{#each spentEgo.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -162,6 +162,8 @@
                <div class="legend-name uses">
                   <span>{{localize "DGNS.Uses"}}</span>
                </div>
+               <div class="legend-name empty-melee">
+               </div>
                <div class="legend-name dammage">
                   <span>{{localize "DGNS.Damage"}}</span>
                </div>
@@ -177,6 +179,8 @@
             <div class="weapon-characteristics">
                <div class="legend-name uses">
                   <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}} {{weapon.defenseDice}}D</a></span>
+               </div>
+               <div class="legend-name empty-melee">
                </div>
                <div class="legend-name dammage">
                   <span>{{weapon.data.damage}}</span>
@@ -246,10 +250,10 @@
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses-ranged">
-                  <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.attackDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.attackDice}}D)</a> </span>
+                  <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.data.distance.short}}m({{weapon.effectiveDice}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.data.distance.far}}m({{weapon.farDice}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.data.distance.far}}m({{weapon.extremeDice}}D)</a> </span>
                </div>
-               <div class="legend-name magazine-ranged">
-                  <a class="mag-count">10</a><span>/{{weapon.data.mag.size}}</span>
+               <div class="legend-name magazine-ranged" title="{{localize 'DGNS.TotalAmmo'}}: {{weapon.totalAvailableAmmo}}">
+                  <a class="mag-count reload-click">{{weapon.data.mag.current}}</a><span>/{{weapon.data.mag.size}}</span> ({{weapon.caliber}})
                </div>
                <div class="legend-name dammage-ranged">
                   <span>{{weapon.data.damage}}</span>
@@ -283,6 +287,7 @@
    {{/if}}
       <!--* SONIC WEAPON-->
       {{#if sonicWeapons.length}}
+      {{ log sonicWeapons}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -328,7 +333,7 @@
                   <span>{{weapon.data.damage}}</span>
                </div>
                <div class="legend-name distance-ranged-sonic">
-                  <span>{{weapon.data.distance.short}}</span>
+                  <span>{{weapon.data.distance.melee}}</span>
                </div>
             </div>
             <div class="break"></div>
@@ -366,17 +371,13 @@
                <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
                <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
             </svg>
-
-            <div class="empty">
-
-            </div>
+         </div>
             <div class="armor-legend legend">
                <div class="legend-name armor-value">
                   <span>{{localize "DGNS.ArmorValue"}}</span>
                </div>
             </div>
       </div>
-   </div>
 
       <div class="arsenal-list item-list">
          {{#each equippedArmor as |armor a|}}
@@ -409,15 +410,13 @@
          </div>
          {{/each}}
       </div>
-</div>
-{{/if}}
-      
-   <!-- {{#each equippedWeapons as |weapon w|}}
-    <div>{{weapon.name}} {{log weapon}} {{log weapon.data.isMelee}}</div>
-    {{/each}}-->
+   </div>
+   {{/if}}
 
 </div>
+
 </div>
+
 <div class="footer-diamond">
    <div class="square little"></div>
    <div class="square little"></div>
