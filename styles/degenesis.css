@@ -2644,14 +2644,14 @@ span.nocaps{
     font-size: 19px
 }
 
-#chat-controls .roll-type-select label i {
+#chat-controls .chat-control-icon i {
     width: 25px;
     height: 25px;
     color: #f0f8ff00;
     background: url(../icons/logo-small.png);
 }
 
-#chat-controls .roll-type-select label i:hover {
+#chat-controls .chat-control-icon i:hover {
     cursor:pointer;
     background: url(../icons/cluster/logo-small.png);
     transition: background 0.5s
