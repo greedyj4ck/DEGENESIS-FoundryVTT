@@ -122,9 +122,9 @@ export class DegenesisActor extends Actor {
         preparedData.backgrounds = this.prepareBackgrounds();
 
         preparedData.infamy =       DEG_Utility.addDiamonds(duplicate(this.data.data.scars.infamy), 6)
-        preparedData.ego =          DEG_Utility.addDiamonds(duplicate(this.data.data.condition.ego), 20)
-        preparedData.spore =        DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 20)
-        preparedData.fleshwounds =  DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 20)
+        preparedData.ego =          DEG_Utility.addDiamonds(duplicate(this.data.data.condition.ego), 24)
+        preparedData.spore =        DEG_Utility.addDiamonds(duplicate(this.data.data.condition.spore), 24)
+        preparedData.fleshwounds =  DEG_Utility.addDiamonds(duplicate(this.data.data.condition.fleshwounds), 24)
         preparedData.trauma =       DEG_Utility.addDiamonds(duplicate(this.data.data.condition.trauma), 12)
         preparedData.cover =        DEG_Utility.addDiamonds(duplicate(this.data.data.state.cover), 3)
         preparedData.spentEgo =     DEG_Utility.addDiamonds(duplicate(this.data.data.state.spentEgo), 3)
@@ -236,13 +236,14 @@ export class DegenesisActor extends Actor {
             armor: {header : game.i18n.localize("DGNS.Armor") , type: 'armor', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
             shields: {header : game.i18n.localize("DGNS.Shields") , type: 'shield', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Equipped")},
             ammunition : {header : game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items : []},
-            survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
+            equipment : {header : game.i18n.localize("DGNS.Equipments"), type: 'equipment', items : []},
+            /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
             medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
             elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), type: 'elysianOil', items : []},
             burn : {header : game.i18n.localize("DGNS.Burn"), type: 'burn', items : []},
             primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
-            other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},
+            other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},*/
             artifact : {header : game.i18n.localize("DGNS.Artifact"), type: 'artifact', items : []},
         }
         let potentials = [];

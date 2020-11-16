@@ -53,7 +53,7 @@ export class DegenesisItem extends Item {
 
     _potentialDropdownData()
     {
-        return {text :`<b>EFFECT</b>: ${this.data.data.effect}<br><br><b>RULES</b>: ${this.data.data.rules}`}
+        return {text :`<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>:${this.data.data.effect}<br><br><b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.data.data.rules}`}
     }
     _modifierDropdownData()
     {
@@ -65,10 +65,10 @@ export class DegenesisItem extends Item {
         }
         let text;
         if (this.data.data.action == "custom")
-            text = `<b>NAME</b>: ${this.data.name}<br>
-                <b>RULES</b>: ${this.displayNumber}${this.data.data.type} `+this.data.data.description;
-            else text = `<b>NAME</b>: ${this.data.name}<br>
-                <b>RULES</b>: ${this.displayNumber}${this.data.data.type} on `+ DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
+            text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.displayNumber}${this.data.data.type} `+this.data.data.description;
+            else text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.displayNumber}${this.data.data.type} on `+ DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
 
         return {text}
 
@@ -129,7 +129,22 @@ export class DegenesisItem extends Item {
             text : text,
         }
     }
-
+    _equipmentDropdownData()
+    {
+        let tags = [];
+        let data = duplicate(this.data.data);
+        let text = `${data.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
+       
+        tags.push(`${game.i18n.localize("DGNS.Group")}: ${data.group}`)
+        tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
+        if(data.cult){tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`)};
+        if(data.resources){tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`)};
+        tags.filter(t => !!t)
+        return {
+            text : text,
+            tags : tags        
+        }
+    }
     static isMelee(data) 
     {
         if (data.type = "weapon")

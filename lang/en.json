@@ -415,5 +415,6 @@
     "DGNS.TalismansInsignia" : "Talismans / Insigna",
     "DGNS.Scrap" : "Scrap",
     "DGNS.Transportation" : "Transportation",
-    "DGNS.OrienteeringTracking" : "Orienteering / Tracking"
+    "DGNS.OrienteeringTracking" : "Orienteering / Tracking",
+    "DGNS.Equipments" : "Equipments"
 }
