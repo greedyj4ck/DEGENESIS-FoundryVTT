@@ -490,6 +490,13 @@ DEGENESIS.armorQualityDescription = {
   "sealed" : "DGNS.SealedDescription",
 }
 
+DEGENESIS.damageModifiers = {
+  "F": {blueprint: "+F", calculate: (force, triggers) => force},
+  "F2": {blueprint: "+F/2", calculate: (force, triggers) => Math.ceil(force / 2)},
+  "F3": {blueprint: "+F/3", calculate: (force, triggers) => Math.ceil(force / 3)},
+  "T": {blueprint: "+T", calculate: (force, triggers) => triggers},
+}
+
 DEGENESIS.techValues = {
   1 : "I",
   2 : "II",

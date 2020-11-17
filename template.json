@@ -383,11 +383,13 @@
     }
   },
   "ammunition" : {
-    "templates": ["description", "quantity", "damage", "tech", "value"]
+    "templates": ["description", "quantity", "damage", "tech", "value"],
+    "damageBonus": ""
   },
   "weapon" : {
     "templates" : ["description", "equipped", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
     "handling": 0,
+    "damageBonus": "",
     "distance": {
       "short" : 0,
       "far" : 0,

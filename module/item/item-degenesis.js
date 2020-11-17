@@ -90,7 +90,7 @@ export class DegenesisItem extends Item {
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
         tags.push(`${game.i18n.localize("DGNS.Handling")}: ${data.handling}D`)
-        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${data.damage}`)
+        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${DegenesisItem.damageFormula(data)}`)
         tags.push(`${game.i18n.localize("DGNS.Distance")}: ${DegenesisItem.isMelee(this.data) ? data.distance.melee : `${data.distance.short} / ${data.distance.far}` }`)
         if(DegenesisItem.isMelee(this.data)==false){tags.push(data.mag.belt ? `${game.i18n.localize("DGNS.Magazine")}: ${game.i18n.localize("DGNS.Belt")}` : `${game.i18n.localize("DGNS.Magazine")}: ${data.mag.size}`)};
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
@@ -145,7 +145,7 @@ export class DegenesisItem extends Item {
             tags : tags        
         }
     }
-    static isMelee(data) 
+    static isMelee(data)
     {
         if (data.type = "weapon")
             return DEGENESIS.weaponGroupSkill[data.data.group] == "projectiles" || data.data.group =="sonic" ? false : true 
@@ -162,6 +162,30 @@ export class DegenesisItem extends Item {
     {
         if (data.type = "weapon")
             return data.data.group == "sonic" 
+    }
+
+    static damageFormula(weaponData) {
+        const baseDamage = `${weaponData.damage}`;
+        if (!weaponData.damageBonus) {
+            return baseDamage;
+        }
+        const damageModifier = DEGENESIS.damageModifiers[weaponData.damageBonus];
+        if (!damageModifier) {
+            return baseDamage;
+        }
+        return baseDamage + damageModifier.blueprint;
+    }
+
+    static fullDamage(weaponData, force, triggers) {
+        const baseValue = parseInt(weaponData.damage);
+        if (!weaponData.damageBonus) {
+            return baseValue;
+        }
+        const damageModifier = DEGENESIS.damageModifiers[weaponData.damageBonus];
+        if (!damageModifier) {
+            return baseValue;
+        }
+        return baseValue + damageModifier.calculate(force, triggers);
     }
 
     static matchAmmo(weapon, ammo)
