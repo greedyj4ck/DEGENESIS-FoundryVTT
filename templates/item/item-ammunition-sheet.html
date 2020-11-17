@@ -64,12 +64,13 @@
                     <span class="field-name">{{localize "DGNS.Damage"}}: </span>
                     <div class="field-inputs">
                         <input class="field-input field-start" type="text" name="data.damage" value="{{data.damage}}" data-dtype="Number"/>
-                        <select class="cac-select" name="data.cac" data-dtype="String">
+                        <select class="damageBonus-select" name="data.damageBonus" data-dtype="String">
                             <option value=""></option>
-                            <option value="F">+ F</option>
-                            <option value="F/2">+ F/2</option>
-                            <option value="F/3">+ F/3</option>
-                            <option value="T">+ T</option>
+                            {{#select data.damageBonus}}
+                            {{#each damageModifiers as |modifier bonus|}}
+                            <option value="{{bonus}}">{{modifier.blueprint}}</option>
+                            {{/each}}
+                            {{/select}}
                         </select>
                     </div>
                 </div>

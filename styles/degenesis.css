@@ -1674,15 +1674,15 @@ padding-right: 4px;
     flex: 0.25;
 }
 
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage {
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.damage {
     flex: 1;
 }
 
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged {
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.damage-ranged {
 }
 
 
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.dammage-ranged-sonic {
+.app.window-app.degenesis.sheet .arsenal-list .legend-name.damage-ranged-sonic {
     flex: 1;
 }
 
@@ -2236,7 +2236,7 @@ margin-left: 12px;
     
 }
 
-.app.window-app.degenesis.sheet.item .detail-container select.cac-select{
+.app.window-app.degenesis.sheet.item .detail-container select.damageBonus-select{
     width: auto;
     flex: 1;
 }

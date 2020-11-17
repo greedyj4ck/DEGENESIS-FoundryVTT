@@ -1,7 +1,7 @@
-import { DEGENESIS } from "../config.js";
-import { DEG_Utility } from "../utility.js";
-import { DegenesisDice } from "../dice.js";
-import { DegenesisItem } from "../item/item-degenesis.js";
+import {DEGENESIS} from "../config.js";
+import {DEG_Utility} from "../utility.js";
+import {DegenesisDice} from "../dice.js";
+import {DegenesisItem} from "../item/item-degenesis.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -382,6 +382,7 @@ export class DegenesisActor extends Actor {
             weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
+        weapon.damageFormula = DegenesisItem.damageFormula(weapon.data);
 
         return weapon
     }
@@ -492,6 +493,11 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupWeapon(weapon)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        const bodyValue = this.data.data.attributes.body.value;
+        const forceValue = this.data.data.skills.force.value;
+        const bodyForceValue = bodyValue + forceValue;
+        const fullDamage = DegenesisItem.fullDamage(weapon.data, bodyForceValue, rollResults.triggers);
+        cardData.damageFull = `${fullDamage}`;
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
             this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
