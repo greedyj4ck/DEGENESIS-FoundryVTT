@@ -416,7 +416,9 @@
     }
   },
   "equipment" : {
-    "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"]
+    "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"],
+    "group" : "",
+    "effect" :""
   },
   "mod" : {
     "templates" : ["description", "effect"],

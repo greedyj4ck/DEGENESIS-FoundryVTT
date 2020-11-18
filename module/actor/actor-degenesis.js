@@ -281,6 +281,8 @@ export class DegenesisActor extends Actor {
             if (i.type == "equipment")
             {
                 inventory.equipment.items.push(i);
+                encumbrance.current += i.data.encumbrance   
+
             }
             if (i.type == "ammunition")
             {
