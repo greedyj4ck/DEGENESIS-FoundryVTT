@@ -19,6 +19,7 @@ export class DegenesisDice
             autoSuccesses = actionNumber - 12;
             actionNumber = 12;
         }
+        autoSuccesses += triggers;
         let roll = new Roll(`${actionNumber}d6cs>3`);
         roll.roll();        
         if (game.dice3d)

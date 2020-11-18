@@ -84,6 +84,8 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data);
         let text = `${data.description}`
+        console.log(this)
+
         if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
             text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
         tags.push(DEGENESIS.weaponGroups[data.group])
@@ -134,8 +136,8 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data);
         let text = `${data.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
-       
-        tags.push(`${game.i18n.localize("DGNS.Group")}: ${data.group}`)
+       console.log(this)
+        tags.push(`${game.i18n.localize("DGNS.Group")}: ${DEGENESIS.equipmentGroups[data.group]}`)
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
         if(data.cult){tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`)};
         if(data.resources){tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`)};
