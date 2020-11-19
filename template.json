@@ -301,6 +301,7 @@
     "fighting": {
       "fighting" : {
         "initiative" : 0,
+        "actionsCurrent" : 1,
         "dodge" : 0,
         "mentalDefense" : 0,
         "passiveDefense" : 0

@@ -5,21 +5,34 @@
  */
 
 // Import Modules
-import { DegenesisItemSheet } from "./module/item/item-sheet.js";
-import { DegenesisItem } from "./module/item/item-degenesis.js";
-import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
-import { DegenesisActor } from "./module/actor/actor-degenesis.js";
-import { DEGENESIS } from "./module/config.js";
-import { DegenesisImporter } from "./module/importer.js"
-import { ClusterInterface } from "./module/apps/cluster.js"
+import {DegenesisItemSheet} from "./module/item/item-sheet.js";
+import {DegenesisItem} from "./module/item/item-degenesis.js";
+import {DegenesisActorSheet} from "./module/actor/actor-sheet.js";
+import {DegenesisActor} from "./module/actor/actor-degenesis.js";
+import {DEGENESIS} from "./module/config.js";
+import {DegenesisImporter} from "./module/importer.js"
+import {ClusterInterface} from "./module/apps/cluster.js"
+import {DegenesisDice} from "./module/dice.js";
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
 
+const _getInitiativeFormula = combatant => {
+  const actor = combatant.actor;
+  if (!actor) return "0";
+  const actionNumber = actor.data.data.fighting.initiative;
+  const rollResults = DegenesisDice.rollWithout3dDice({actionNumber});
+  if (rollResults.triggers > 1) {
+    actor.data.data.fighting.actionsCurrent = 1 + Math.floor(rollResults.triggers / 2);
+  } else {
+    actor.data.data.fighting.actionsCurrent = 1;
+  }
+  return rollResults.successes.toFixed(0);
+};
+
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
 /* -------------------------------------------- */
-
 Hooks.once("init", async function() {
   console.log(`%cDEGENESIS` + `%c | Initializing`, "color: #ed1d27", "color: unset");
 
@@ -32,10 +45,10 @@ Hooks.once("init", async function() {
 	 * @type {String}
 	 */
 	CONFIG.Combat.initiative = {
-	  formula: "1d20",
+	  formula: "0",
     decimals: 2
   };
-
+  Combat.prototype._getInitiativeFormula = _getInitiativeFormula;
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("dnd5e", DegenesisActorSheet, { makeDefault: true });
