@@ -13,6 +13,7 @@ import {DEGENESIS} from "./module/config.js";
 import {DegenesisImporter} from "./module/importer.js"
 import {ClusterInterface} from "./module/apps/cluster.js"
 import {DegenesisDice} from "./module/dice.js";
+import { DegenesisChat } from "./module/chat.js";
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
@@ -20,13 +21,13 @@ import {DegenesisDice} from "./module/dice.js";
 const _getInitiativeFormula = combatant => {
   const actor = combatant.actor;
   if (!actor) return "0";
-  const actionNumber = actor.data.data.fighting.initiative;
-  const rollResults = DegenesisDice.rollWithout3dDice({actionNumber});
+  const {rollResults, cardData} = actor.rollFightRollSync("initiative");
   if (rollResults.triggers > 1) {
     actor.data.data.fighting.actionsCurrent = 1 + Math.floor(rollResults.triggers / 2);
   } else {
     actor.data.data.fighting.actionsCurrent = 1;
   }
+  DegenesisChat.renderRollCard(rollResults, cardData)
   return rollResults.successes.toFixed(0);
 };
 

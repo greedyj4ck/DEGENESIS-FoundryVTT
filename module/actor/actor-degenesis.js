@@ -490,6 +490,13 @@ export class DegenesisActor extends Actor {
         return {rollResults, cardData}
     }
 
+    rollSkillSync(skill) 
+    {
+        let {dialogData, rollData} = this.setupSkill(skill)
+        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        return {rollResults, cardData}
+    }
+
     async rollWeapon(weapon) 
     {
         let {dialogData, cardData, rollData} = this.setupWeapon(weapon)
@@ -512,6 +519,13 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        return {rollResults, cardData}
+    }
+
+    rollFightRollSync(type) 
+    {
+        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
         return {rollResults, cardData}
     }
 
