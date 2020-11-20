@@ -301,7 +301,6 @@
     "fighting": {
       "fighting" : {
         "initiative" : 0,
-        "actionsCurrent" : 1,
         "dodge" : 0,
         "mentalDefense" : 0,
         "passiveDefense" : 0
@@ -318,6 +317,10 @@
           "spentEgo" : {
             "value" : 0,
             "actionBonus" : 0
+          },
+          "initiative" : {
+            "value" : 0,
+            "actions" : 1
           }
         }
       },

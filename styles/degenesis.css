@@ -1537,10 +1537,6 @@ padding-right: 4px;
     flex: 0 0 9px;
 }
 
-.app.window-app.degenesis.sheet .title.arsenal-title{
-    margin-top: -25px;
-}
-
 .app.window-app.degenesis.sheet .combat .diamond-position{
     margin-right: auto;
     margin-top: 2px;

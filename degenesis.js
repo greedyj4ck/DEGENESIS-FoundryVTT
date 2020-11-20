@@ -12,36 +12,10 @@ import {DegenesisActor} from "./module/actor/actor-degenesis.js";
 import {DEGENESIS} from "./module/config.js";
 import {DegenesisImporter} from "./module/importer.js"
 import {ClusterInterface} from "./module/apps/cluster.js"
-import {DegenesisDice} from "./module/dice.js";
-import { DegenesisChat } from "./module/chat.js";
+import {DegenesisCombat} from "./module/combat-degenesis.js";
 
 // import tippy from './node_modules/tippy.js';
 // import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
-
-const _getInitiativeFormula = combatant => {
-  const actor = combatant.actor;
-  if (!actor) return "0";
-  const {rollResults, cardData} = actor.rollFightRollSync("initiative");
-  if (rollResults.triggers > 1) {
-    actor.data.data.fighting.actionsCurrent = 1 + Math.floor(rollResults.triggers / 2);
-  } else {
-    actor.data.data.fighting.actionsCurrent = 1;
-  }
-
-  let spentEgo = actor.data.data.state.spentEgo.value;
-  let newEgo = actor.data.data.condition.ego.value + spentEgo;
-  if (newEgo > actor.data.data.condition.ego.max)
-    newEgo = actor.data.data.condition.ego.max;
-  
-  actor.update({
-    "data.condition.ego.value" : newEgo, 
-    "data.state.spentEgo.actionBonus" : spentEgo,
-    "data.state.spentEgo.value" : 0
-  })
-
-  DegenesisChat.renderRollCard(rollResults, cardData)
-  return rollResults.successes.toFixed(0);
-};
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -53,15 +27,16 @@ Hooks.once("init", async function() {
     if (e.keyCode == 123)
       console.log(`%cDEGENESIS` + `%c | Welcome, Chronicler`, "color: #ed1d27", "color: unset"); 
     }
-	/**
-	 * Set an initiative formula for the system
-	 * @type {String}
-	 */
-	CONFIG.Combat.initiative = {
-	  formula: "0",
-    decimals: 2
+
+  /**
+   * Set an initiative formula for the system
+   * @type {String}
+   */
+  CONFIG.Combat.initiative = {
+    formula: "0",
+    decimals: 0
   };
-  Combat.prototype._getInitiativeFormula = _getInitiativeFormula;
+
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("dnd5e", DegenesisActorSheet, { makeDefault: true });
@@ -86,6 +61,7 @@ Hooks.once("init", async function() {
     // Assign the actor class to the CONFIG
   CONFIG.Actor.entityClass = DegenesisActor;
   CONFIG.Item.entityClass = DegenesisItem;
+  CONFIG.Combat.entityClass = DegenesisCombat;
 });
 
 Hooks.on("setup", () => {

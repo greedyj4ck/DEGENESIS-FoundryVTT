@@ -46,8 +46,30 @@
       </div>
       <div class="combat-list">
          <a class="combat">
-            <div class="general-name fight-roll" data-roll="initiative">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
+             <div class="general-name initiative-roll">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)
+                 {{#if (gt data.state.initiative.value 0)}}
+                     <span>:</span>
+                     <span>{{data.state.initiative.value}}</span>
+                 {{/if}}
+                 {{#if (gt data.state.initiative.actions 1)}}
+                     <span class="nocaps">({{data.state.initiative.actions}} {{localize "DGNS.ActionsAbbreviation"}})</span>
+                 {{/if}}
+             </div>
          </a>
+      <div class="combat">
+          <a class="general-name checkbox">{{localize "DGNS.SpendEgo"}}: </a>
+          <div class="diamond-position">
+              <div class = "diamond-row" data-target="data.state.spentEgo.value">
+                  {{#each spentEgo.diamonds as |diamond index|}}
+                      {{#if diamond.filled}}
+                          <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
+                      {{else}}
+                          <a class = "diamond" data-index={{index}}><div class="square"></div></a>
+                      {{/if}}
+                  {{/each}}
+              </div>
+          </div>
+      </div>
          <a class="combat">
             <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
          </a>
@@ -105,25 +127,6 @@
                   {{/each}}
                </div>
             </div>
-         </div>
-        <div class="combat">
-            <a class="general-name checkbox">{{localize "DGNS.SpentEgo"}}: </a>
-            <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.spentEgo.value">
-                  {{#each spentEgo.diamonds as |diamond index|}}
-                  {{#if diamond.filled}}
-                     <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
-                  {{else}}
-                     <a class = "diamond" data-index={{index}}><div class="square"></div></a>
-                  {{/if}}
-                  {{/each}}
-               </div>
-            </div>
-            <span>
-               {{#if data.state.spentEgo.actionBonus}}
-               (+{{data.state.spentEgo.actionBonus}}D)
-               {{/if}}
-            </span>
          </div>
       </div>
  
