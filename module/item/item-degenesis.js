@@ -84,7 +84,6 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data);
         let text = `${data.description}`
-        console.log(this)
 
         if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
             text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)

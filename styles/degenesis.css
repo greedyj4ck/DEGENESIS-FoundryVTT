@@ -1114,6 +1114,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .potentials-group .item-summary{
 padding-left: 4px;
 padding-right: 4px;
+text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .item-controls {
