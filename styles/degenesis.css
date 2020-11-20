@@ -1965,7 +1965,7 @@ margin-left: 12px;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
     margin-right: 0px;
-    
+    text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
