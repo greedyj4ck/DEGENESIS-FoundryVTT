@@ -468,6 +468,14 @@ export class DegenesisActor extends Actor {
             actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
         }
 
+        if (type == "initiative")
+        {
+            rollData.diceModifier = this.data.data.state.spentEgo.value;
+            if (this.data.data.state.spentEgo.value)
+                cardData.flavor = `${this.data.name} spent ${this.data.data.state.spentEgo.value} Ego` // Temporary - don't like this here
+            cardData.title += " - Initiative"
+        }
+
         //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
@@ -537,7 +545,6 @@ export class DegenesisActor extends Actor {
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
     applyModifiers(type, skill, use) {
-        console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,

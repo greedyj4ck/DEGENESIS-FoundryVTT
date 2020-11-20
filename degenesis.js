@@ -27,6 +27,18 @@ const _getInitiativeFormula = combatant => {
   } else {
     actor.data.data.fighting.actionsCurrent = 1;
   }
+
+  let spentEgo = actor.data.data.state.spentEgo.value;
+  let newEgo = actor.data.data.condition.ego.value + spentEgo;
+  if (newEgo > actor.data.data.condition.ego.max)
+    newEgo = actor.data.data.condition.ego.max;
+  
+  actor.update({
+    "data.condition.ego.value" : newEgo, 
+    "data.state.spentEgo.actionBonus" : spentEgo,
+    "data.state.spentEgo.value" : 0
+  })
+
   DegenesisChat.renderRollCard(rollResults, cardData)
   return rollResults.successes.toFixed(0);
 };
