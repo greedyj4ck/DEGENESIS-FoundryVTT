@@ -43,6 +43,15 @@ export class DegenesisItem extends Item {
 
         
         }
+        if (this.data.type == "armor")
+        {
+          preparedData.qualities = [];
+          this.data.data.qualities.forEach(q => {
+            let qualityString = DEGENESIS.armorQualities[q.name] + " "
+            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
+            preparedData.qualities.push(qualityString)
+        })
+        }
         return preparedData
     }
 
