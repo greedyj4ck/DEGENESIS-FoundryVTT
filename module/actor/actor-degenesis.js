@@ -463,12 +463,14 @@ export class DegenesisActor extends Actor {
 
         let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
 
+        if (type == "initiative")
+            cardData = this.constructCardData("systems/degenesis/templates/chat/initiative-roll-card.html", DEGENESIS.skills[skill] + " - " + "Initiative") 
+
         let rollData = {
             skill : this.data.data.skills[skill],
             actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
         }
 
-        //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
 
@@ -487,6 +489,7 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupSkill(skill)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
@@ -494,6 +497,7 @@ export class DegenesisActor extends Actor {
     {
         let {dialogData, rollData} = this.setupSkill(skill)
         let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
@@ -510,6 +514,7 @@ export class DegenesisActor extends Actor {
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
             this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
@@ -519,9 +524,31 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
+    rollFightRollSync(type) 
+    {
+        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        this.postRollChecks(rollResults)
+        return {rollResults, cardData}
+    }
+
+    postRollChecks(rollResults)
+    {
+        let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier")
+        if (egoModifierId)
+        {
+            this.deleteEmbeddedEntity("OwnedItem", egoModifierId).then(a => {
+                this.update({"flags.degenesis.-=spentEgoActionModifier" : null})
+                ui.notifications.notify("Used Ego Spend Action Modifier")
+            })
+        }
+        if (this.data.data.state.initiative.actions > 1)
+            this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
+    }
 
     /**
      * 
