@@ -1545,7 +1545,6 @@ text-align: justify;
 }
 /* *ARSENAL */
 .app.window-app.degenesis.sheet .arsenal.scrollable {
-    overflow: auto;
     display: block;
     height: 183px;
     width: 100%;
@@ -2508,7 +2507,8 @@ margin-left: 12px;
 }
 
 .app.window-app .window-header {
-    font-family: Calluna
+    font-family: Calluna;
+    background-image: url(../ui/header.jpg);
 }
 
 h1,h2,h3 {
@@ -2780,7 +2780,8 @@ a:hover {
 
 #chat-log .message {
     border-radius: 0px;
-    background: url(../ui/degenesis_parchment.jpg)
+    background: url(../ui/degenesis_parchment.jpg);
+    margin: 5px
 }
 
 .dice-tooltip .dice-rolls .roll.d6.max {
@@ -2831,3 +2832,39 @@ a:hover {
 .app.window-app.journal-sheet .window-content {
 background: url(../ui/degenesis_parchment.jpg);
 }
+
+
+#token-hud {
+    font-family: "Calluna";
+}
+
+#token-hud .attribute.bar2 input {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--dark-grey)  inset;
+    border: 4px double #FFFFFF;
+  }
+  #token-hud .attribute.bar1 input {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--blackred) inset;
+    border: 4px double var(--degenesis-red);
+  }
+
+  .placeable-hud .control-icon {
+    background: #0000004f;
+    box-shadow: 0 0 23px #000000 inset;
+  }
+
+  .placeable-hud .control-icon i.fas {
+    position: relative;
+    opacity: 0.8;
+  }
+
+  .placeable-hud .control-icon input[name="elevation"] {
+    opacity: 1;
+    box-shadow: 0 0 8px #675e00 inset;
+    border: 4px double #9c5f00;
+  }
+
+  .placeable-hud .control-icon.active {
+    border: 1px solid var(--degenesis-red);
+  }
