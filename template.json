@@ -315,7 +315,12 @@
             "value" : 0
           },
           "spentEgo" : {
-            "value" : 0
+            "value" : 0,
+            "actionBonus" : 0
+          },
+          "initiative" : {
+            "value" : 0,
+            "actions" : 1
           }
         }
       },

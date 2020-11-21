@@ -1114,6 +1114,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .potentials-group .item-summary{
 padding-left: 4px;
 padding-right: 4px;
+text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .item-controls {
@@ -1537,10 +1538,6 @@ padding-right: 4px;
     flex: 0 0 9px;
 }
 
-.app.window-app.degenesis.sheet .title.arsenal-title{
-    margin-top: -25px;
-}
-
 .app.window-app.degenesis.sheet .combat .diamond-position{
     margin-right: auto;
     margin-top: 2px;
@@ -1548,7 +1545,6 @@ padding-right: 4px;
 }
 /* *ARSENAL */
 .app.window-app.degenesis.sheet .arsenal.scrollable {
-    overflow: auto;
     display: block;
     height: 183px;
     width: 100%;
@@ -1964,7 +1960,7 @@ margin-left: 12px;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
     margin-right: 0px;
-    
+    text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
@@ -1988,8 +1984,22 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .lt-group {
     margin: 16px 13px;
     flex: 1;
-    height: 30%
+    /*height: 30%*/
 }
+
+.app.window-app.degenesis.sheet .legacy-group{
+    height: auto;
+}
+
+.app.window-app.degenesis.sheet .gmnotes-group,
+.app.window-app.degenesis.sheet .biography-group{
+    height: 70%;
+}
+
+.app.window-app.degenesis.sheet .lt-group .editor .editor-content{
+    height:90%;
+}
+
 
 .degenesis.sheet .lt-group .lt-top{
     display: flex;
@@ -2497,7 +2507,8 @@ margin-left: 12px;
 }
 
 .app.window-app .window-header {
-    font-family: Calluna
+    font-family: Calluna;
+    background-image: url(../ui/header.jpg);
 }
 
 h1,h2,h3 {
@@ -2769,7 +2780,8 @@ a:hover {
 
 #chat-log .message {
     border-radius: 0px;
-    background: url(../ui/degenesis_parchment.jpg)
+    background: url(../ui/degenesis_parchment.jpg);
+    margin: 5px
 }
 
 .dice-tooltip .dice-rolls .roll.d6.max {
@@ -2820,3 +2832,39 @@ a:hover {
 .app.window-app.journal-sheet .window-content {
 background: url(../ui/degenesis_parchment.jpg);
 }
+
+
+#token-hud {
+    font-family: "Calluna";
+}
+
+#token-hud .attribute.bar2 input {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--dark-grey)  inset;
+    border: 4px double #FFFFFF;
+  }
+  #token-hud .attribute.bar1 input {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--blackred) inset;
+    border: 4px double var(--degenesis-red);
+  }
+
+  .placeable-hud .control-icon {
+    background: #0000004f;
+    box-shadow: 0 0 23px #000000 inset;
+  }
+
+  .placeable-hud .control-icon i.fas {
+    position: relative;
+    opacity: 0.8;
+  }
+
+  .placeable-hud .control-icon input[name="elevation"] {
+    opacity: 1;
+    box-shadow: 0 0 8px #675e00 inset;
+    border: 4px double #9c5f00;
+  }
+
+  .placeable-hud .control-icon.active {
+    border: 1px solid var(--degenesis-red);
+  }

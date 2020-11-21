@@ -1,9 +1,24 @@
-import {DegenesisChat} from "./chat.js"
-
-export class DegenesisDice 
+export class DegenesisDice
 {
-    static async rollAction({actionNumber, difficulty=0, diceModifier=0, successModifier=0, triggerModifier=0})
-    {
+    static async rollAction({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}) {
+        const [rollResult, roll] = this.rollInner({
+            actionNumber,
+            difficulty,
+            diceModifier,
+            successModifier,
+            triggerModifier
+        });
+        if (game.dice3d)
+            await game.dice3d.showForRoll(roll);
+        return rollResult;
+    }
+
+    static rollWithout3dDice({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}) {
+        const [rollResult] = this.rollInner({actionNumber, difficulty, diceModifier, successModifier, triggerModifier});
+        return rollResult;
+    }
+
+    static rollInner({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}) {
         let rollResult = {}
 
         let successes;
@@ -14,18 +29,15 @@ export class DegenesisDice
 
         actionNumber += diceModifier
         let autoSuccesses = 0;
-        if (actionNumber > 12)
-        {
+        if (actionNumber > 12) {
             autoSuccesses = actionNumber - 12;
             actionNumber = 12;
         }
         autoSuccesses += triggers;
         let roll = new Roll(`${actionNumber}d6cs>3`);
-        roll.roll();        
-        if (game.dice3d)
-            await game.dice3d.showForRoll(roll);
+        roll.roll();
 
-        rolls = roll.terms[0].rolls;
+        rolls = roll.terms[0].results;
         successes = roll.total + autoSuccesses + successModifier;
 
         rolls.forEach(r => {
@@ -35,14 +47,10 @@ export class DegenesisDice
                 ones++;
         })
 
-        if (difficulty > 0)
-        {
-            if (successes >= difficulty)
-            {
+        if (difficulty > 0) {
+            if (successes >= difficulty) {
                 result = "success"
-            }
-            else 
-            {
+            } else {
                 result = "failure"
                 if (ones > successes)
                     result = "botch"
@@ -56,9 +64,8 @@ export class DegenesisDice
             result,
             rolls
         }
-        return rollResult;
+        return [rollResult, roll];
     }
-
 
     static async showRollDialog({dialogData, rollData, cardData})
     {

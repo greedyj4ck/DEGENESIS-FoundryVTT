@@ -256,6 +256,9 @@ export class DegenesisActor extends Actor {
         let equippedArmor = [];
         let equippedShields = [];
         let encumbrance = actorData.data.general.encumbrance;
+        let totalArmor = actorData.data.general.combat;
+        let equipmentArmor = 0;
+        let modifierArmor = 0;
 
         for (let i of actorData.items)
         {
@@ -267,9 +270,23 @@ export class DegenesisActor extends Actor {
             if (i.type == "armor")
             {
                 inventory.armor.items.push(i);
-                if(i.data.equipped)
+                if(i.data.equipped){
                     equippedArmor.push(this.prepareArmor(i));
+                    
+                    if(equipmentArmor == 0){
+                        equipmentArmor += i.data.AP;
+                    }
+                    else if(equipmentArmor <= 3 && i.data.AP <= equipmentArmor){
+                        equipmentArmor += 1;
+                    }
+                    else if(equipmentArmor <= 3 && i.data.AP >= equipmentArmor){
+                        equipmentArmor = i.data.AP+1;
+                    }
+                    else if (i.data.AP >= equipmentArmor && equipmentArmor >=4){
+                        equipmentArmor = i.data.AP;
+                    }
                 encumbrance.current += i.data.encumbrance   
+            }
             }
             if (i.type == "shield")
             {
@@ -295,6 +312,9 @@ export class DegenesisActor extends Actor {
             if (i.type == "modifier")
             {
                 modifiers.push(this.prepareModifier(i));
+                if(i.data.action == "armor"){
+                    modifierArmor +=i.data.number;
+                }
             }
             if (i.type == "complication")
             {
@@ -329,6 +349,8 @@ export class DegenesisActor extends Actor {
             encumbrance.color = "black";
         }
 
+        totalArmor = equipmentArmor + modifierArmor;
+
         return {
             inventory,
             meleeWeapons,
@@ -340,6 +362,7 @@ export class DegenesisActor extends Actor {
             modifiers,
             complications,
             encumbrance,
+            totalArmor,
         }
     }
 
@@ -463,12 +486,14 @@ export class DegenesisActor extends Actor {
 
         let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
 
+        if (type == "initiative")
+            cardData = this.constructCardData("systems/degenesis/templates/chat/initiative-roll-card.html", DEGENESIS.skills[skill] + " - " + "Initiative") 
+
         let rollData = {
             skill : this.data.data.skills[skill],
             actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
         }
 
-        //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
 
@@ -487,6 +512,15 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupSkill(skill)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        this.postRollChecks(rollResults)
+        return {rollResults, cardData}
+    }
+
+    rollSkillSync(skill) 
+    {
+        let {dialogData, rollData} = this.setupSkill(skill)
+        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
@@ -503,6 +537,7 @@ export class DegenesisActor extends Actor {
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
             this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
@@ -512,9 +547,31 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
+        this.postRollChecks(rollResults)
         return {rollResults, cardData}
     }
 
+    rollFightRollSync(type) 
+    {
+        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        this.postRollChecks(rollResults)
+        return {rollResults, cardData}
+    }
+
+    postRollChecks(rollResults)
+    {
+        let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier")
+        if (egoModifierId)
+        {
+            this.deleteEmbeddedEntity("OwnedItem", egoModifierId).then(a => {
+                this.update({"flags.degenesis.-=spentEgoActionModifier" : null})
+                ui.notifications.notify("Used Ego Spend Action Modifier")
+            })
+        }
+        if (this.data.data.state.initiative.actions > 1)
+            this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
+    }
 
     /**
      * 
@@ -523,7 +580,6 @@ export class DegenesisActor extends Actor {
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
     applyModifiers(type, skill, use) {
-        console.log(type, skill)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,

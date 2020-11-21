@@ -532,6 +532,15 @@ DEGENESIS.calibers = {
   "petro" : "Can of Petro",
 }
 
+DEGENESIS.systemItems = {
+  spentEgoActionModifier : {
+    type : "modifier",
+    data : {
+      action : "action",
+      type : "D"
+    }
+  }
+}
 
 CONST.CLICK = {
   LEFT: 0,
