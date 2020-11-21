@@ -1114,6 +1114,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .potentials-group .item-summary{
 padding-left: 4px;
 padding-right: 4px;
+text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .potentials-group .item-controls {
@@ -1960,7 +1961,7 @@ margin-left: 12px;
     border-top: 1px solid var( --dark-grey);
     margin-left: 0px;
     margin-right: 0px;
-    
+    text-align: justify;
 }
 
 .app.window-app.degenesis.sheet .inventory-list .item-summary .tag{
@@ -1984,8 +1985,22 @@ margin-left: 12px;
 .app.window-app.degenesis.sheet .lt-group {
     margin: 16px 13px;
     flex: 1;
-    height: 30%
+    /*height: 30%*/
 }
+
+.app.window-app.degenesis.sheet .legacy-group{
+    height: auto;
+}
+
+.app.window-app.degenesis.sheet .gmnotes-group,
+.app.window-app.degenesis.sheet .biography-group{
+    height: 70%;
+}
+
+.app.window-app.degenesis.sheet .lt-group .editor .editor-content{
+    height:90%;
+}
+
 
 .degenesis.sheet .lt-group .lt-top{
     display: flex;

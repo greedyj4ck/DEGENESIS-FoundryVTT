@@ -256,6 +256,9 @@ export class DegenesisActor extends Actor {
         let equippedArmor = [];
         let equippedShields = [];
         let encumbrance = actorData.data.general.encumbrance;
+        let totalArmor = actorData.data.general.combat;
+        let equipmentArmor = 0;
+        let modifierArmor = 0;
 
         for (let i of actorData.items)
         {
@@ -267,9 +270,23 @@ export class DegenesisActor extends Actor {
             if (i.type == "armor")
             {
                 inventory.armor.items.push(i);
-                if(i.data.equipped)
+                if(i.data.equipped){
                     equippedArmor.push(this.prepareArmor(i));
+                    
+                    if(equipmentArmor == 0){
+                        equipmentArmor += i.data.AP;
+                    }
+                    else if(equipmentArmor <= 3 && i.data.AP <= equipmentArmor){
+                        equipmentArmor += 1;
+                    }
+                    else if(equipmentArmor <= 3 && i.data.AP >= equipmentArmor){
+                        equipmentArmor = i.data.AP+1;
+                    }
+                    else if (i.data.AP >= equipmentArmor && equipmentArmor >=4){
+                        equipmentArmor = i.data.AP;
+                    }
                 encumbrance.current += i.data.encumbrance   
+            }
             }
             if (i.type == "shield")
             {
@@ -295,6 +312,9 @@ export class DegenesisActor extends Actor {
             if (i.type == "modifier")
             {
                 modifiers.push(this.prepareModifier(i));
+                if(i.data.action == "armor"){
+                    modifierArmor +=i.data.number;
+                }
             }
             if (i.type == "complication")
             {
@@ -329,6 +349,8 @@ export class DegenesisActor extends Actor {
             encumbrance.color = "black";
         }
 
+        totalArmor = equipmentArmor + modifierArmor;
+
         return {
             inventory,
             meleeWeapons,
@@ -340,6 +362,7 @@ export class DegenesisActor extends Actor {
             modifiers,
             complications,
             encumbrance,
+            totalArmor,
         }
     }
 

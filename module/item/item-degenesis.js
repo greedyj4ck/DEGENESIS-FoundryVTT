@@ -43,6 +43,15 @@ export class DegenesisItem extends Item {
 
         
         }
+        if (this.data.type == "armor")
+        {
+          preparedData.qualities = [];
+          this.data.data.qualities.forEach(q => {
+            let qualityString = DEGENESIS.armorQualities[q.name] + " "
+            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
+            preparedData.qualities.push(qualityString)
+        })
+        }
         return preparedData
     }
 
@@ -84,7 +93,6 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = duplicate(this.data.data);
         let text = `${data.description}`
-        console.log(this)
 
         if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
             text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)

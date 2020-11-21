@@ -89,6 +89,7 @@
     "DGNS.Effect" : "Effect",
     "DGNS.Level" : "Level",
     "DGNS.Origin" : "Origin",
+    "DGNS.Prerequisite" : "Prerequisite",
     "DGNS.Advantage" : "Advantage",
     "DGNS.Advantages" : "Advantages",
     "DGNS.Condition" : "Condition",
