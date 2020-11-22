@@ -292,7 +292,7 @@ export class DegenesisActor extends Actor {
                         equipmentArmor = i.data.AP;
                     }  
                 }
-                encumbrance.current += i.data.encumbrance 
+                encumbrance.current += i.data.encumbrance * i.data.quantity
             }
             if (i.type == "shield") {
                 inventory.shields.items.push(i);
