@@ -124,26 +124,34 @@ Hooks.once("init", async function () {
   })
 
   Hooks.once('diceSoNiceReady', (dice3d) => {
-    dice3d.addSystem({ id: "degenesis", name: "DEGENESIS: Rebirth" }, true);
+    dice3d.addSystem({ id: "degenesis", name: "DEGENESIS: Rebirth" }, "exclusive");
     dice3d.addDicePreset({
       type: "d6",
       labels: [
-        'systems/degenesis/icons/dice-faces/d1c.png',
-        'systems/degenesis/icons/dice-faces/d2c.png',
-        'systems/degenesis/icons/dice-faces/d3c.png',
-        'systems/degenesis/icons/dice-faces/d4c.png',
-        'systems/degenesis/icons/dice-faces/d5c.png',
-        'systems/degenesis/icons/dice-faces/d6c.png'
+        'systems/degenesis/icons/dice-faces/d1.png',
+        'systems/degenesis/icons/dice-faces/d2.png',
+        'systems/degenesis/icons/dice-faces/d3.png',
+        'systems/degenesis/icons/dice-faces/d4.png',
+        'systems/degenesis/icons/dice-faces/d5.png',
+        'systems/degenesis/icons/dice-faces/d6.png'
       ],
       bumpMaps: [
-        'systems/degenesis/icons/dice-faces/d1c_bump.png',
-        'systems/degenesis/icons/dice-faces/d2c_bump.png',
-        'systems/degenesis/icons/dice-faces/d3c_bump.png',
-        'systems/degenesis/icons/dice-faces/d4c_bump.png',
-        'systems/degenesis/icons/dice-faces/d5c_bump.png',
-        'systems/degenesis/icons/dice-faces/d6c_bump.png'
+        'systems/degenesis/icons/dice-faces/d1_bump.png',
+        'systems/degenesis/icons/dice-faces/d2_bump.png',
+        'systems/degenesis/icons/dice-faces/d3_bump.png',
+        'systems/degenesis/icons/dice-faces/d4_bump.png',
+        'systems/degenesis/icons/dice-faces/d5_bump.png',
+        'systems/degenesis/icons/dice-faces/d6_bump.png'
       ],
       system: "degenesis"
+    });
+
+    dice3d.addSystem({ id: "degenesis3d", name: "DEGENESIS: Rebirth 3D" }, "exclusive");
+    dice3d.addDicePreset({
+    type: "d6",
+      labels: "",
+      modelFile: "systems/degenesis/icons/dice-faces/degedice_rounded.glb",
+      system: "degenesis3d"
     });
 
   });
