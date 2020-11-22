@@ -43,6 +43,7 @@
     "DGNS.Leadership" : "Leadership",
     "DGNS.Negotiation" : "Negotiation",
     "DGNS.Seduction" : "Seduction",
+    "DGNS.ArtifactLore" : "Artifact Lore",
     "DGNS.Artifact" : "Artifact",
     "DGNS.Engineering" : "Engineering",
     "DGNS.Focus" : "Focus",

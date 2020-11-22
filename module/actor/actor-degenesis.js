@@ -284,9 +284,9 @@ export class DegenesisActor extends Actor {
                     }
                     else if (i.data.AP >= equipmentArmor && equipmentArmor >=4){
                         equipmentArmor = i.data.AP;
-                    }
-                encumbrance.current += i.data.encumbrance   
-            }
+                    }  
+                }
+                encumbrance.current += i.data.encumbrance 
             }
             if (i.type == "shield")
             {
