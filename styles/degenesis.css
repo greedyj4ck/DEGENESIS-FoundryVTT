@@ -2877,3 +2877,14 @@ background: url(../ui/degenesis_parchment.jpg);
   .placeable-hud .control-icon.active {
     border: 1px solid var(--degenesis-red);
   }
+
+  #menu {
+    background-image: url(../ui/header.jpg);
+    font-family: "Calluna";
+    border-radius: 3px;
+  }
+
+  #menu #menu-items li:hover {
+    text-shadow: none;
+    color: var(--degenesis-red)
+  }

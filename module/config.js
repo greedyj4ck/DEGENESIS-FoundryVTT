@@ -542,6 +542,31 @@ DEGENESIS.systemItems = {
   }
 }
 
+DEGENESIS.transportationEncumbranceCalculation = {
+  wholeReduction : (items, reductionValue) => {
+    let totalEnc = items.reduce((a, b) => a + (b.data.encumbrance || 0), 0)
+    totalEnc -= reductionValue
+    if (totalEnc < 0) totalEnc = 0;
+    return totalEnc
+  },
+  eachReduction : (items, reductionValue) => {
+      let totalEnc = items.reduce((a, b) => {
+      let enc = (b.data.encumbrance || 0) - reductionValue
+      if (enc < 0) enc = 0;
+      return a + enc
+    }, 0)
+    if (totalEnc < 0) totalEnc = 0;
+    return totalEnc
+  }
+}
+
+
+DEGENESIS.transportationEncumbranceModes = {
+  wholeReduction : "DGNS.WholeReduction",
+  eachReduction : "DGNS.EachReduction"
+}
+
+
 CONST.CLICK = {
   LEFT: 0,
   RIGHT: 2

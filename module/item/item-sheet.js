@@ -30,7 +30,7 @@ export class DegenesisItemSheet extends ItemSheet {
   getData() {
     const data = super.getData();
     this.loadConfigData(data)
-    mergeObject(data, this.item.prepare())
+    mergeObject(data, this.item.prepareDisplayData())
     return data;
   }
 
@@ -59,6 +59,10 @@ export class DegenesisItemSheet extends ItemSheet {
     {
       data.equipmentGroups = DEGENESIS.equipmentGroups;
     }
+    if (data.item.type == "transportation")
+    {
+      data.modes = DEGENESIS.transportationEncumbranceModes;
+    }
   }
 
 
@@ -79,7 +83,7 @@ export class DegenesisItemSheet extends ItemSheet {
     super.activateListeners(html);
 
     html.find(".checkbox").click(ev => {
-      let itemData = duplicate(this.item)
+      let itemData = duplicate(this.item.data)
       let target = $(ev.currentTarget).attr("data-target")
 
       if (target == "quality")

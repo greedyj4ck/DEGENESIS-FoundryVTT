@@ -20,9 +20,14 @@ export class DegenesisItem extends Item {
 
             data.data.slots.used = slotsUsed;
         }
+        if (this.type == "transportation")
+        {
+            if (!data.data.droppable && data.data.dropped)
+                data.data.dropped = false;
+        }
     }
 
-    prepare() {
+    prepareDisplayData() {
         let preparedData = {};
         if (this.data.type == "modifier")
         {
@@ -155,6 +160,17 @@ export class DegenesisItem extends Item {
             tags : tags        
         }
     }
+
+    _transportationDropdownData()
+    {
+        return {
+            text : this.data.data.description,
+            tags : this.data.items.map(i => i.name)
+        }
+
+    }
+
+
     static isMelee(data)
     {
         if (data.type = "weapon")

@@ -26,14 +26,11 @@ export class DegenesisActorSheet extends ActorSheet {
     getData() {
         const data = super.getData();
         this.addConfigData(data);
-        // data.data.condition.ego.pct = (1 - data.data.condition.ego.value / data.data.condition.ego.max)*100;
-        // data.data.condition.fleshwounds.pct = (1 - data.data.condition.fleshwounds.value / data.data.condition.fleshwounds.max)*100;
-        // data.data.condition.spore.pct = (1 - data.data.condition.spore.value / data.data.condition.spore.max)*100;
-        // data.data.condition.trauma.pct = (1 - data.data.condition.trauma.value / data.data.condition.trauma.max)*100;
+
         // Used for Modifier item list
         data.modifyActions = DEG_Utility.getModificationActions()
         data.isGM = game.user.isGM;
-        mergeObject(data, this.actor.prepare());
+        mergeObject(data, this.actor.prepareDisplayData());
         return data;
     }
 
@@ -76,6 +73,23 @@ export class DegenesisActorSheet extends ActorSheet {
             div.slideDown(200);
         }
         li.toggleClass("expanded");
+    }
+
+    // Handle custom drop events (currently just putting items into containers)
+    _onDrop(event) {
+        let transportTarget = $(event.target).parent(".transport-drop")[0]
+        if (transportTarget)
+        {
+            let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"))
+            let itemData = jsonData.data;
+            if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
+            {
+                itemData.data.location = transportTarget.dataset["itemId"]
+                this.actor.updateEmbeddedEntity("OwnedItem", itemData)
+            }
+        }
+        else
+            super._onDrop(event);
     }
 
     /* -------------------------------------------- */
@@ -165,8 +179,9 @@ export class DegenesisActorSheet extends ActorSheet {
             let target = $(ev.currentTarget).attr("data-target")
             if (target == "item") {
                 target = $(ev.currentTarget).attr("data-item-target")
-                let itemData = duplicate(this.actor.items.find(i => i._id == $(ev.currentTarget).parents(".item").attr("data-item-id")))
+                let itemData = duplicate(this.actor.getEmbeddedEntity("OwnedItem", $(ev.currentTarget).parents(".item").attr("data-item-id")))
                 setProperty(itemData, target, !getProperty(itemData, target));
+                console.log(getProperty(itemData, target))
                 this.actor.updateEmbeddedEntity("OwnedItem", itemData);
                 return;
             }
@@ -302,6 +317,19 @@ export class DegenesisActorSheet extends ActorSheet {
                 }
                 this.actor.createEmbeddedEntity("OwnedItem", compiledAmmo)
             }
+        })
+
+        html.find(".tag.container-item").mousedown(ev => {
+            let itemId = $(ev.currentTarget).attr("data-item-id")
+            let item = duplicate(this.actor.getEmbeddedEntity("OwnedItem", itemId))
+            if (ev.button == CONST.CLICK.RIGHT)
+            {
+                item.data.location = "";
+                this.actor.updateEmbeddedEntity("OwnedItem", item)
+            }
+            else 
+                new CONFIG.Item.entityClass(item).sheet.render(true)
+
         })
     }
 

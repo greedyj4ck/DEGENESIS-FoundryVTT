@@ -122,7 +122,7 @@
          </div>
          <div class="modifiers-data conditions-data">
             <ol class="modifiers-ol conditions-ol">
-            {{#each modifiers as |mod m|}}
+            {{#each actor.modifiers as |mod m|}}
                <li class="conditions-li modifiers-li item" data-item-id="{{mod._id}}">
                   <div class="conditions-characteristics">
                      <div class='item-data'>
@@ -155,7 +155,7 @@
          </div>
          <div class="complications-data conditions-data">
             <ol class="complications-ol conditions-ol">
-            {{#each complications as |complication c|}}
+            {{#each actor.complications as |complication c|}}
                <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
                   <div class="conditions-characteristics">
                      {{#if ../isGM}}
