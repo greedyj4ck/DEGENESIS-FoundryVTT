@@ -336,7 +336,7 @@
   }
 },
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "transportation", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -385,14 +385,17 @@
     },
     "equipped": {
       "equipped" : false
+    },
+    "location" : {
+      "location" : ""
     }
   },
   "ammunition" : {
-    "templates": ["description", "quantity", "damage", "tech", "value"],
+    "templates": ["description", "quantity", "damage", "tech", "value", "location"],
     "damageBonus": ""
   },
   "weapon" : {
-    "templates" : ["description", "equipped", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity", "damage", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult", "location"],
     "handling": 0,
     "damageBonus": "",
     "distance": {
@@ -409,11 +412,11 @@
     "caliber" : ""
   },
   "armor" : {
-    "templates" : ["description", "equipped", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult", "location"],
     "AP" : 0
   },
   "shield" : {
-    "templates" : ["description", "equipped", "quantity", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult"],
+    "templates" : ["description", "equipped", "quantity", "qualities", "encumbrance", "tech", "slots", "value", "resources", "cult", "location"],
     "defense" : {
         "D": 0,
         "p_defense" : 0
@@ -423,12 +426,19 @@
     }
   },
   "equipment" : {
-    "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult"],
+    "templates" : ["description", "quantity", "encumbrance", "tech", "value", "resources", "cult", "location"],
     "group" : "",
     "effect" :""
   },
+  "transportation" : {
+    "templates" : ["description", "encumbrance", "tech", "value", "resources", "cult"],
+    "mode" : "",
+    "transportValue" : 0,
+    "droppable" : true,
+    "dropped" : false
+  },
   "mod" : {
-    "templates" : ["description", "effect"],
+    "templates" : ["description", "effect", "location"],
     "augmentation" : "",
     "slotCost" : 0
   },

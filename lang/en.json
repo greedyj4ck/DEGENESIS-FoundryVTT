@@ -219,6 +219,9 @@
     "DGNS.CriticalDamageRating" : "Critical Damage Rating",
     "DGNS.BonusSuccesses" : "Bonus Successes",
     "DGNS.Value" : "Value",
+    "DGNS.TransportValue" : "Transport Value",
+    "DGNS.Droppable" : "Droppable",
+    "DGNS.Dropped" : "Dropped",
     "DGNS.Quantity" : "Quantity", 
     "DGNS.Caliber" : "Caliber",
     "DGNS.Specialty" : "Specialty",
@@ -248,8 +251,9 @@
     "DGNS.Drawback": "Drawback",
     "DGNS.Biography": "Biography",
     "DGNS.GMNotes": "GM Notes",
-    "DGNS.Legacies" :"Legacies",
-    
+    "DGNS.EncumbranceCalc" :"Mode",    
+    "DGNS.WholeReduction" :"Reduce Whole",    
+    "DGNS.EachReduction" :"Reduce Each",    
  
     "DGNS.AreaDamageDescription" : "The weapon doesn’t aim directly at an enemy: it covers an area stated in degrees. Everything inside this area can take Damage.",
     "DGNS.ArmorpiercingDescription" : "The projectile used is highly compact and fast. It pierces armor as if it were made of paper. Armor piercing projectiles do not necessarily cause more Damage, but they ignore the special Qualities like “Massive” or “Bulletproof” the target’s armor might have.",

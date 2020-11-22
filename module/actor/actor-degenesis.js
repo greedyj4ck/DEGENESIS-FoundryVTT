@@ -31,6 +31,7 @@ export class DegenesisActor extends Actor {
             data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D;
             data.data.fighting.passiveDefense = 1 + data.data.state.cover.value + (data.data.state.motion ? 1 : 0) + (data.data.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
 
+            this.prepareItems();
 
         }
         catch(e)
@@ -115,7 +116,7 @@ export class DegenesisActor extends Actor {
         return modifiers
     }    
     
-    prepare() 
+    prepareDisplayData() 
     {
         let preparedData = {};
         preparedData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
@@ -141,7 +142,6 @@ export class DegenesisActor extends Actor {
         preparedData.cultIcon =     this.data.data.details.cult.value    ?  `systems/degenesis/icons/cult/${this.data.data.details.cult.value}.svg`       : "systems/degenesis/icons/blank.png";
         preparedData.cultureIcon =  this.data.data.details.culture.value ?  `systems/degenesis/icons/culture/${this.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png";
 
-        mergeObject(preparedData, this.prepareItems())
         return preparedData;
     }
 
@@ -228,15 +228,14 @@ export class DegenesisActor extends Actor {
     }
 
 
-    prepareItems() 
-    {
-        let actorData = duplicate(this.data)
+    prepareItems() {
+        let actorData = duplicate(this.data);
         let inventory = {
-            weapons: {header : game.i18n.localize("DGNS.Weapons") , type: 'weapon', items : [], toggleable : true, toggleDisplay: game.i18n.localize("DGNS.Equipped")},
-            armor: {header : game.i18n.localize("DGNS.Armor") , type: 'armor', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Worn")},
-            shields: {header : game.i18n.localize("DGNS.Shields") , type: 'shield', items : [], toggleable : true, toggleDisplay : game.i18n.localize("DGNS.Equipped")},
-            ammunition : {header : game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items : []},
-            equipment : {header : game.i18n.localize("DGNS.Equipments"), type: 'equipment', items : []},
+            weapons: { header: game.i18n.localize("DGNS.Weapons"), type: 'weapon', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            armor: { header: game.i18n.localize("DGNS.Armor"), type: 'armor', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Worn") },
+            shields: { header: game.i18n.localize("DGNS.Shields"), type: 'shield', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            ammunition: { header: game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items: [] },
+            equipment: { header: game.i18n.localize("DGNS.Equipments"), type: 'equipment', items: [] },
             /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
             medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
@@ -244,8 +243,10 @@ export class DegenesisActor extends Actor {
             burn : {header : game.i18n.localize("DGNS.Burn"), type: 'burn', items : []},
             primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
             other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},*/
-            artifact : {header : game.i18n.localize("DGNS.Artifact"), type: 'artifact', items : []},
+            artifact: { header: game.i18n.localize("DGNS.Artifact"), type: 'artifact', items: [] },
         }
+
+        let transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: [], toggleDisplay: game.i18n.localize("DGNS.Dropped") } // Separate transportation from inventory because it has a different format
         let potentials = [];
         let modifiers = [];
         let legacies = [];
@@ -260,76 +261,76 @@ export class DegenesisActor extends Actor {
         let equipmentArmor = 0;
         let modifierArmor = 0;
 
-        for (let i of actorData.items)
-        {
-            if (i.type == "weapon")
+        let inContainers = [];
+
+        for (let i of actorData.items) {
+            if (i.data.location)
             {
-                inventory.weapons.items.push(i);
-             
+                inContainers.push(i);
+                continue
             }
-            if (i.type == "armor")
-            {
+
+            if (i.type == "weapon") {
+                inventory.weapons.items.push(i);
+                encumbrance.current += i.data.encumbrance * i.data.quantity
+            }
+            if (i.type == "armor") {
                 inventory.armor.items.push(i);
-                if(i.data.equipped){
+                if (i.data.equipped) {
                     equippedArmor.push(this.prepareArmor(i));
-                    
-                    if(equipmentArmor == 0){
+
+                    if (equipmentArmor == 0) {
                         equipmentArmor += i.data.AP;
                     }
-                    else if(equipmentArmor <= 3 && i.data.AP <= equipmentArmor){
+                    else if (equipmentArmor <= 3 && i.data.AP <= equipmentArmor) {
                         equipmentArmor += 1;
                     }
-                    else if(equipmentArmor <= 3 && i.data.AP >= equipmentArmor){
-                        equipmentArmor = i.data.AP+1;
+                    else if (equipmentArmor <= 3 && i.data.AP >= equipmentArmor) {
+                        equipmentArmor = i.data.AP + 1;
                     }
-                    else if (i.data.AP >= equipmentArmor && equipmentArmor >=4){
+                    else if (i.data.AP >= equipmentArmor && equipmentArmor >= 4) {
                         equipmentArmor = i.data.AP;
                     }
-                encumbrance.current += i.data.encumbrance   
-            }
-            }
-            if (i.type == "shield")
-            {
-                inventory.shields.items.push(i);
-                if(i.data.equipped)
-                    equippedShields.push(this.prepareShield(i));
-                encumbrance.current += i.data.encumbrance   
-            }
-            if (i.type == "equipment")
-            {
-                inventory.equipment.items.push(i);
-                encumbrance.current += i.data.encumbrance   
-
-            }
-            if (i.type == "ammunition")
-            {
-                inventory.ammunition.items.push(i);
-            }
-            if (i.type == "potential")
-            {
-                potentials.push(this.preparePotential(i));
-            }
-            if (i.type == "modifier")
-            {
-                modifiers.push(this.prepareModifier(i));
-                if(i.data.action == "armor"){
-                    modifierArmor +=i.data.number;
+                    encumbrance.current += i.data.encumbrance * i.data.quantity
                 }
             }
-            if (i.type == "complication")
-            {
+            if (i.type == "shield") {
+                inventory.shields.items.push(i);
+                if (i.data.equipped)
+                    equippedShields.push(this.prepareShield(i));
+                encumbrance.current += i.data.encumbrance * i.data.quantity
+            }
+            if (i.type == "equipment") {
+                inventory.equipment.items.push(i);
+                encumbrance.current += i.data.encumbrance * i.data.quantity
+
+            }
+            if (i.type == "ammunition") {
+                inventory.ammunition.items.push(i);
+            }
+            if (i.type == "transportation") {
+                transportation.items.push(i);
+                encumbrance.current += i.data.encumbrance
+            }
+            if (i.type == "potential") {
+                potentials.push(this.preparePotential(i));
+            }
+            if (i.type == "modifier") {
+                modifiers.push(this.prepareModifier(i));
+                if (i.data.action == "armor") {
+                    modifierArmor += i.data.number;
+                }
+            }
+            if (i.type == "complication") {
                 complications.push(i);
             }
-            if (i.type == "legacy")
-            {
+            if (i.type == "legacy") {
                 legacies.push(i);
             }
         }
 
-        for (let wep of inventory.weapons.items)
-        {
-            if(wep.data.equipped)
-            {
+        for (let wep of inventory.weapons.items) {
+            if (wep.data.equipped) {
                 let weapon = this.prepareWeapon(wep, inventory.ammunition.items);
                 if (weapon.isSonic)
                     sonicWeapons.push(weapon);
@@ -338,12 +339,12 @@ export class DegenesisActor extends Actor {
                 else
                     rangedWeapons.push(weapon)
             }
-            encumbrance.current += wep.data.encumbrance   
         }
 
+        transportation.items.map(i => encumbrance.current += this.prepareTransport(i))
 
-        encumbrance.pct = encumbrance.current/encumbrance.max * 100;
-        if(encumbrance.pct>100){
+        encumbrance.pct = encumbrance.current / encumbrance.max * 100;
+        if (encumbrance.pct > 100) {
             encumbrance.color = "var(--degenesis-red)";
         } else {
             encumbrance.color = "black";
@@ -351,19 +352,21 @@ export class DegenesisActor extends Actor {
 
         totalArmor = equipmentArmor + modifierArmor;
 
-        return {
-            inventory,
-            meleeWeapons,
-            rangedWeapons,
-            legacies,
-            sonicWeapons,
-            equippedArmor,
-            potentials,
-            modifiers,
-            complications,
-            encumbrance,
-            totalArmor,
-        }
+        mergeObject(this.data,
+            {
+                inventory,
+                transportation,
+                meleeWeapons,
+                rangedWeapons,
+                legacies,
+                sonicWeapons,
+                equippedArmor,
+                potentials,
+                modifiers,
+                complications,
+                encumbrance,
+                totalArmor
+            })
     }
 
     preparePotential(potential) {
@@ -428,6 +431,16 @@ export class DegenesisActor extends Actor {
      })
         return shield
     }  
+
+    prepareTransport(transportation) {
+        transportation.totalEnc = transportation.data.encumbrance;
+        transportation.items = this.data.items.filter(i => i.data.location == transportation._id )
+        if (transportation.data.mode && !transportation.data.dropped)
+            transportation.totalEnc += game.degenesis.config.transportationEncumbranceCalculation[transportation.data.mode](transportation.items, transportation.data.transportValue)
+        else if (transportation.data.dropped)
+            transportation.totalEnc = 0;
+        return transportation.totalEnc;
+    }
 
 
 

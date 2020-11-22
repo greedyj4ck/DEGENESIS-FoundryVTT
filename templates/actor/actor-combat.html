@@ -26,10 +26,10 @@
                 <div class="general-name">{{localize "DGNS.Movement"}}: {{data.general.movement}}<span class="nocaps">m</span></div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Encumbrance"}}: {{encumbrance.current}} / {{data.general.encumbrance.max}}</div>
+                <div class="general-name">{{localize "DGNS.Encumbrance"}}: {{actor.encumbrance.current}} / {{data.general.encumbrance.max}}</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Armor"}}: {{totalArmor}}</div>
+                <div class="general-name">{{localize "DGNS.Armor"}}: {{actor.totalArmor}}</div>
             </div>
             <div class="combat">
                 <div class="general-name">{{localize "DGNS.ActionMod"}}: {{data.general.actionModifier}}D</div>
@@ -150,7 +150,7 @@
       
       
       <!--* MELEE WEAPON -->      
-      {{#if meleeWeapons.length}}
+      {{#if actor.meleeWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -181,7 +181,7 @@
             </div>
       </div>
       <div class="arsenal-list item-list">
-         {{#each meleeWeapons as |weapon w|}}
+         {{#each actor.meleeWeapons as |weapon w|}}
          <div class="weapon item" data-item-id="{{weapon._id}}">
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -221,7 +221,7 @@
    </div>
    {{/if}}
       <!--* RANGED WEAPON -->     
-      {{#if rangedWeapons.length}} 
+      {{#if actor.rangedWeapons.length}} 
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -253,7 +253,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each rangedWeapons as |weapon w|}}
+            {{#each actor.rangedWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon._id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -294,8 +294,7 @@
    </div>
    {{/if}}
       <!--* SONIC WEAPON-->
-      {{#if sonicWeapons.length}}
-      {{ log sonicWeapons}}
+      {{#if actor.sonicWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -327,7 +326,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each sonicWeapons as |weapon w|}}
+            {{#each actor.sonicWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon._id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -368,7 +367,7 @@
    </div>
 {{/if}}
       <!--* ARMOR -->      
-   {{#if equippedArmor.length}}
+   {{#if actor.equippedArmor.length}}
    <div class="arsenal-group armor-group">
       <div class="armor">
          <div class="first-part">
@@ -388,7 +387,7 @@
       </div>
 
       <div class="arsenal-list item-list">
-         {{#each equippedArmor as |armor a|}}
+         {{#each actor.equippedArmor as |armor a|}}
          <div class="armor item" data-item-id="{{armor._id}}">
             <a class="armor-name">{{armor.name}}</a>
             <div class="armor-characteristics">
@@ -414,7 +413,6 @@
 
 
             <div class="break"></div>
-            {{log weapon.data.qualities}} {{log weapon}}
          </div>
          {{/each}}
       </div>

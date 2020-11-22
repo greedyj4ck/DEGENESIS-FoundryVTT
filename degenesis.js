@@ -49,7 +49,6 @@ Hooks.once("init", async function () {
 
   // Pre-load templates
   loadTemplates([
-    "systems/degenesis/templates/actor/actor-main.html",
     "systems/degenesis/templates/actor/actor-attributes-skills.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
@@ -59,6 +58,7 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/actor/actor-history.html",
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
+    "systems/degenesis/templates/item/item-header-physical-no-qty.html",
     "systems/degenesis/templates/chat/roll-card.html"
   ]);
 
