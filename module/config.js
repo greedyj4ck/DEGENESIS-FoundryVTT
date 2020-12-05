@@ -495,6 +495,9 @@ DEGENESIS.damageModifiers = {
   "F2": {blueprint: "+F/2", calculate: (force, triggers) => Math.ceil(force / 2)},
   "F3": {blueprint: "+F/3", calculate: (force, triggers) => Math.ceil(force / 3)},
   "T": {blueprint: "+T", calculate: (force, triggers) => triggers},
+  "D2": {blueprint: "+1D/2", calculate: (force, triggers) => Math.ceil(new Die({faces: 6, number: 1}).evaluate().total / 2)},
+  "D": {blueprint: "+1D", calculate: (force, triggers) => new Die({faces: 6, number: 1}).evaluate().total},
+  "2D": {blueprint: "+2D", calculate: (force, triggers) => new Die({faces: 6, number: 2}).evaluate().total},
 }
 
 DEGENESIS.techValues = {
