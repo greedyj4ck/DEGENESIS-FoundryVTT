@@ -204,14 +204,15 @@ export class DegenesisItem extends Item {
 
     static fullDamage(weaponData, force, triggers) {
         const baseValue = parseInt(weaponData.damage);
+        const damageWithTriggers = baseValue + triggers;
         if (!weaponData.damageBonus) {
-            return baseValue;
+            return damageWithTriggers;
         }
         const damageModifier = DEGENESIS.damageModifiers[weaponData.damageBonus];
         if (!damageModifier) {
-            return baseValue;
+            return damageWithTriggers;
         }
-        return baseValue + damageModifier.calculate(force, triggers);
+        return damageWithTriggers + damageModifier.calculate(force, triggers);
     }
 
     static matchAmmo(weapon, ammo)
