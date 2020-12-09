@@ -551,11 +551,12 @@ a.diamond:hover .square.red.perma {
 } 
 
 /* * Sheet titles */
-.app.window-app.degenesis.sheet.item .tittle,
+.app.window-app.degenesis.sheet.item .title,
 .app.window-app.degenesis.sheet .title{
     align-self: center;
     margin-left: 1px;
     margin-right: 1px;
+    width: 99%;
 }
 
 .app.window-app.degenesis.sheet.item .title-line,
@@ -2571,7 +2572,8 @@ span.nocaps{
     text-transform: none;
 }
 
-#sidebar button {
+
+.sidebar-tab button {
     color: white;
     background-color: none;
     border-top: 1px solid rgb(65, 65, 65);
@@ -2580,7 +2582,7 @@ span.nocaps{
     font-size: 11px;
 }
 
-#sidebar button:hover {
+.sidebar-tab button:hover {
     box-shadow: none;
     background-color: var(--degenesis-red);
     border-color: var(--degenesis-red);
@@ -2603,6 +2605,7 @@ span.nocaps{
     color: var(--degenesis-red)
 }
 
+.app.window-app.sidebar-popout .window-content,
 #sidebar {
     /*background : rgb(0, 0, 0, 0.90);*/
     background: url(../ui/degenesis_parchment_black.jpg);
@@ -2611,7 +2614,7 @@ span.nocaps{
 }
 
 
- #sidebar h2 {
+ .sidebar-tab h2 {
      font-family: "Avenir";
      border-bottom: 0px;
      color: var(--degenesis-red);
@@ -2624,7 +2627,7 @@ span.nocaps{
 } */
 
 
-#sidebar .directory-footer button {
+.sidebar-tab .directory-footer button {
     font-size: 12px
 }
 
@@ -2878,4 +2881,16 @@ background: url(../ui/degenesis_parchment.jpg);
   #menu #menu-items li:hover {
     text-shadow: none;
     color: var(--degenesis-red)
+  }
+
+  #context-menu {
+    background-image: url(../ui/header.jpg);
+    border: 1px solid var(--degenesis-red);
+    border-top: 0px;
+    border-bottom: 0px;
+  }
+
+ #context-menu li.context-item:hover {
+      text-shadow: none;
+      color: var(--degenesis-red)
   }
