@@ -2,11 +2,11 @@
   "name": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": 0.1,
+  "version": "0.1.0",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.9",
   "templateVersion": 2,
-  "author": "Moo Man, Darkhan, ClemEvilzz",
+  "author": "Moo Man, Darkhan, ClemEvilzz, KristjanLaane",
   "esmodules": ["degenesis.js"],
   "styles": ["styles/degenesis.css"],
   "scripts" : [
@@ -24,10 +24,8 @@
   "gridDistance": 5,
   "gridUnits": "ft",
   "background" : "ui/falberg.webp",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
   "url": "",
-  "manifest": "",
-  "download": "",
+  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
+  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/archive/master.zip",
   "license": "LICENSE.txt"
 }

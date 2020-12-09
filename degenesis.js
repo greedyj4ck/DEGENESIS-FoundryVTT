@@ -146,13 +146,54 @@ Hooks.once("init", async function () {
       system: "degenesis"
     });
 
-    dice3d.addSystem({ id: "degenesis3d", name: "DEGENESIS: Rebirth 3D" }, "exclusive");
+    dice3d.addSystem(
+      { id: "degenesis3d-black", name: "DEGENESIS: Rebirth Black 3D" },
+      "exclusive"
+    );
+    dice3d.addSystem(
+      { id: "degenesis3d-white", name: "DEGENESIS: Rebirth White 3D" },
+      "exclusive"
+    );
+    dice3d.addSystem(
+      { id: "degenesis3d-pureBlood", name: "DEGENESIS: Rebirth Pure Blood 3D" },
+      "exclusive"
+    );
+    dice3d.addSystem(
+      {
+        id: "degenesis3d-taintedBlood",
+        name: "DEGENESIS: Rebirth Tainted Blood 3D",
+      },
+      "exclusive"
+    );
+  
     dice3d.addDicePreset({
-    type: "d6",
+      type: "d6",
       labels: "",
-      modelFile: "systems/degenesis/icons/dice-faces/degedice_rounded.glb",
-      system: "degenesis3d"
+      modelFile: "systems/degenesis/icons/dice-faces/degenesix_black.gltf",
+      system: "degenesis3d-black",
     });
+  
+    dice3d.addDicePreset({
+      type: "d6",
+      labels: "",
+      modelFile: "systems/degenesis/icons/dice-faces/degenesix_white.gltf",
+      system: "degenesis3d-white",
+    });
+  
+    dice3d.addDicePreset({
+      type: "d6",
+      labels: "",
+      modelFile: "systems/degenesis/icons/dice-faces/degenesix_pureBlood.gltf",
+      system: "degenesis3d-pureBlood",
+    });
+  
+    dice3d.addDicePreset({
+      type: "d6",
+      labels: "",
+      modelFile: "systems/degenesis/icons/dice-faces/degenesix_taintedBlood.gltf",
+      system: "degenesis3d-taintedBlood",
+    });
+    
 
   });
 
