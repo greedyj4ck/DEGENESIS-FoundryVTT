@@ -568,6 +568,9 @@ export class DegenesisActor extends Actor {
     {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
         rollData.actionNumber += spentEgo;
+        rollData.diceModifier = dialogData.prefilled.diceModifier;
+        rollData.successModifier = dialogData.prefilled.successModifier;
+        rollData.triggerModifier = dialogData.prefilled.triggerModifier;
         let rollResults = DegenesisDice.rollWithout3dDice(rollData)
         this.postRollChecks(rollResults, type)
         return {rollResults, cardData}
