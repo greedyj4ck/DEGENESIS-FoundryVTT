@@ -13,7 +13,14 @@
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js",
     "systems/degenesis/node_modules/dist/tippy.cjs"
 ],
-  "packs": [],
+  "packs": [    {
+    "label": "Weapons",
+    "entity": "Item",
+    "name": "weapons",
+    "path": "packs/weapons.db",
+    "system": "degenesis",
+    "package": "degenesis"
+  }],
   "languages": [
     {
       "lang": "en",
