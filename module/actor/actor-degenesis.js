@@ -22,16 +22,21 @@ export class DegenesisActor extends Actor {
             data.data.condition.spore.max =         (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
             data.data.condition.fleshwounds.max =   (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
             data.data.condition.trauma.max =        (data.data.attributes.body.value + data.data.attributes.psyche.value);
+            data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
+
+            this.prepareItems();
+            if (this.data.encumbrance.current > this.data.encumbrance.max) // I feel like this should be in `getModifiers` but this requires prepareItems to have been run
+                modifiers.action.D -= (this.data.encumbrance.current - this.data.encumbrance.max)
 
             data.data.general.actionModifier = modifiers.action.D
             data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value + (getProperty(this.data.flags, "degenesis.modifiers.movement") || 0);      
-            data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
             data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D;
             data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D;
             data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D;
             data.data.fighting.passiveDefense = 1 + data.data.state.cover.value + (data.data.state.motion ? 1 : 0) + (data.data.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
 
-            this.prepareItems();
+
+                
 
         }
         catch(e)
@@ -110,6 +115,7 @@ export class DegenesisActor extends Actor {
             }
         }
         modifiers.action.D = this.data.data.state.motion ? modifiers.action.D - 2 : modifiers.action.D
+        modifiers.action.D -= this.data.data.condition.trauma.value
         modifiers.attack.D = modifiers.attack.D ? modifiers.attack.D + shieldAttackModifier : shieldAttackModifier
         modifiers.p_defense = modifiers.p_defense ? modifiers.p_defense + shieldPassiveModifier : shieldPassiveModifier
         modifiers.a_defense.D = modifiers.a_defense.D ? modifiers.a_defense.D + shieldActiveModifier : shieldActiveModifier
