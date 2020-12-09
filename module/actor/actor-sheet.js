@@ -257,7 +257,7 @@ export class DegenesisActorSheet extends ActorSheet {
             let weaponId = $(ev.currentTarget).parents(".weapon").attr("data-item-id")
             let use = $(ev.currentTarget).attr("data-use");
             let weapon = this.actor.getEmbeddedEntity("OwnedItem", weaponId)
-            let {rollResults, cardData} = await this.actor.rollWeapon(weapon)
+            let {rollResults, cardData} = await this.actor.rollWeapon(weapon, {use})
             DegenesisChat.renderRollCard(rollResults, cardData)
         })
         html.find(".quantity-click").mousedown(ev => {

@@ -2,18 +2,25 @@
   "name": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": 0.1,
+  "version": "0.1.0",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.9",
   "templateVersion": 2,
-  "author": "Moo Man, Darkhan, ClemEvilzz",
+  "author": "Moo Man, Darkhan, ClemEvilzz, KristjanLaane",
   "esmodules": ["degenesis.js"],
   "styles": ["styles/degenesis.css"],
   "scripts" : [
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js",
     "systems/degenesis/node_modules/dist/tippy.cjs"
 ],
-  "packs": [],
+  "packs": [    {
+    "label": "Weapons",
+    "entity": "Item",
+    "name": "weapons",
+    "path": "packs/weapons.db",
+    "system": "degenesis",
+    "package": "degenesis"
+  }],
   "languages": [
     {
       "lang": "en",
@@ -24,10 +31,8 @@
   "gridDistance": 5,
   "gridUnits": "ft",
   "background" : "ui/falberg.webp",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
   "url": "",
-  "manifest": "",
-  "download": "",
+  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
+  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/archive/master.zip",
   "license": "LICENSE.txt"
 }
