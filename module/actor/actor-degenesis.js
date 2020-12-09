@@ -483,6 +483,16 @@ export class DegenesisActor extends Actor {
             weapon : weapon
         }
 
+        if (options.use && weapon.isRanged)
+        {
+            if (options.use == "attack-short")
+                rollData.actionNumber = weapon.effectiveDice
+            else if (options.use == "attack-far")
+                rollData.actionNumber = weapon.farDice
+            else if (options.use == "attack-extreme")
+                rollData.actionNumber = weapon.extremeDice
+        }
+
         return {dialogData, cardData, rollData}
     }
 
@@ -537,9 +547,9 @@ export class DegenesisActor extends Actor {
         return {rollResults, cardData}
     }
 
-    async rollWeapon(weapon) 
+    async rollWeapon(weapon, options = {}) 
     {
-        let {dialogData, cardData, rollData} = this.setupWeapon(weapon)
+        let {dialogData, cardData, rollData} = this.setupWeapon(weapon, options)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
         const bodyValue = this.data.data.attributes.body.value;
