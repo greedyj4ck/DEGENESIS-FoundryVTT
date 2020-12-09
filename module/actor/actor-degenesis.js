@@ -290,9 +290,9 @@ export class DegenesisActor extends Actor {
                     }
                     else if (i.data.AP >= equipmentArmor && equipmentArmor >= 4) {
                         equipmentArmor = i.data.AP;
-                    }
-                    encumbrance.current += i.data.encumbrance * i.data.quantity
+                    }  
                 }
+                encumbrance.current += i.data.encumbrance * i.data.quantity
             }
             if (i.type == "shield") {
                 inventory.shields.items.push(i);
@@ -525,7 +525,7 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupSkill(skill)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
-        this.postRollChecks(rollResults)
+        this.postRollChecks(rollResults, skill)
         return {rollResults, cardData}
     }
 
@@ -533,7 +533,7 @@ export class DegenesisActor extends Actor {
     {
         let {dialogData, rollData} = this.setupSkill(skill)
         let rollResults = DegenesisDice.rollWithout3dDice(rollData)
-        this.postRollChecks(rollResults)
+        this.postRollChecks(rollResults, skill)
         return {rollResults, cardData}
     }
 
@@ -550,7 +550,7 @@ export class DegenesisActor extends Actor {
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
             this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weapon._id, "data.mag.current" : rollData.weapon.data.mag.current - 1})
-        this.postRollChecks(rollResults)
+        this.postRollChecks(rollResults, "weapon")
         return {rollResults, cardData}
     }
 
@@ -560,19 +560,20 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
-        this.postRollChecks(rollResults)
+        this.postRollChecks(rollResults, type)
         return {rollResults, cardData}
     }
 
-    rollFightRollSync(type) 
+    rollFightRollSync(type, spentEgo)
     {
         let {dialogData, cardData, rollData} = this.setupFightRoll(type)
+        rollData.actionNumber += spentEgo;
         let rollResults = DegenesisDice.rollWithout3dDice(rollData)
-        this.postRollChecks(rollResults)
+        this.postRollChecks(rollResults, type)
         return {rollResults, cardData}
     }
 
-    postRollChecks(rollResults)
+    postRollChecks(rollResults, type)
     {
         let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier")
         if (egoModifierId)
@@ -582,7 +583,7 @@ export class DegenesisActor extends Actor {
                 ui.notifications.notify("Used Ego Spend Action Modifier")
             })
         }
-        if (this.data.data.state.initiative.actions > 1)
+        if (type !== "initiative" && this.data.data.state.initiative.actions > 1)
             this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
     }
 

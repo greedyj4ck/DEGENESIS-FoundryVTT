@@ -143,7 +143,7 @@ DEGENESIS.skills = {
   "leadership" : "DGNS.Leadership",
   "negotiation" : "DGNS.Negotiation",
   "seduction" : "DGNS.Seduction",
-  "artifact" : "DGNS.Artifact",
+  "artifact" : "DGNS.ArtifactLore",
   "engineering" : "DGNS.Engineering",
   "focus" : "DGNS.Focus",
   "legends" : "DGNS.Legends",

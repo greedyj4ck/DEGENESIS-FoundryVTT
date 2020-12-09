@@ -1,5 +1,4 @@
 import {DegenesisChat} from "./chat.js";
-import {DegenesisDice} from "./dice.js";
 import {DEGENESIS} from "./config.js";
 
 export class DegenesisCombat extends Combat {
@@ -37,42 +36,29 @@ export class DegenesisCombat extends Combat {
         this.data.combatants.forEach(c => {
             const actor = c.actor;
             if (!actor) return;
-            DegenesisCombat.resetInitiativeState(actor);
-            if (actor.data.data.state.spentEgo.actionBonus > 0) {
-                actor.update({
-                    "data.state.spentEgo.actionBonus": 0,
-                    "data.state.initiative.actions": 1
-                });
-            }
-            else {
-                actor.update({
-                    "data.state.initiative.actions": 1
-                });
-            }
+            actor.update({
+                "data.state.initiative.value": 0,
+                "data.state.initiative.actions": 1
+            });
         });
         return await super.resetAll();
     }
 
     static rollInitiative(actor) {
         if (!actor) return 0;
-        this.resetInitiativeState(actor);
-        const skill = DEGENESIS.fightRolls.initiative;
         const spentEgo = actor.data.data.state.spentEgo.value;
-        const rollData = {
-            skill: actor.data.data.skills[skill],
-            actionNumber: actor.data.data.attributes[actor.data.data.skills[skill].attribute].value + actor.data.data.skills[skill].value + spentEgo
-        };
-        const {rollResults, cardData} = actor.rollFightRollSync("initiative");
+        const {rollResults, cardData} = actor.rollFightRollSync("initiative", spentEgo);
         let actionCount = 1;
         if (rollResults.triggers > 1) {
             actionCount = 1 + Math.floor(rollResults.triggers / 2);
         }
+        let newEgo = actor.data.data.condition.ego.value;
         if (spentEgo > 0) {
-            let newEgo = actor.data.data.condition.ego.value + spentEgo;
+            newEgo += spentEgo;
             if (newEgo > actor.data.data.condition.ego.max)
                 newEgo = actor.data.data.condition.ego.max;
-            
-            // Create a "modifier" item to give a bonus on the first roll. Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
+            // Create a "modifier" item to give a bonus on the first roll.
+            // Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
             let spentEgoActionModifier = duplicate(DEGENESIS.systemItems.spentEgoActionModifier)
             spentEgoActionModifier.data.number = spentEgo;
             spentEgoActionModifier.name = "Spent Ego Bonus"
@@ -80,26 +66,20 @@ export class DegenesisCombat extends Combat {
                 actor.setFlag("degenesis", "spentEgoActionModifier", i._id)
                 ui.notifications.notify("Ego Spent Action Modifier Added")
             })
-            actor.update({
-                "data.condition.ego.value": newEgo,
-                "data.state.spentEgo.actionBonus": spentEgo,
-                "data.state.spentEgo.value": 0,
-                "data.state.initiative.actions": actionCount
-            });
             cardData.spentEgo = spentEgo;
         }
         const initiativeValue = rollResults.successes;
-        // console.log(`${actor.name} has initiative ${actor.data.data.state.initiative.value} and ${actor.data.data.state.initiative.actions} action(s) this round`);
+        actor.update({
+            "data.condition.ego.value": newEgo,
+            "data.state.spentEgo.actionBonus": spentEgo,
+            "data.state.spentEgo.value": 0,
+            "data.state.initiative.value": initiativeValue,
+            "data.state.initiative.actions": actionCount
+        });
         cardData.initiative = initiativeValue;
         cardData.actions = actionCount;
         DegenesisChat.renderRollCard(rollResults, cardData);
+        // console.log(`${actor.name} has initiative ${actor.data.data.state.initiative.value} and ${actor.data.data.state.initiative.actions} action(s) this round`);
         return initiativeValue;
-    }
-
-    static resetInitiativeState(actor) {
-        actor.update({
-            "data.state.initiative.value": 0,
-            "data.state.initiative.actions": 1
-        });
     }
 }

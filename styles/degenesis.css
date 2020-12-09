@@ -609,6 +609,7 @@ a.diamond:hover .square.red.perma {
     width: 100%;
     left: 0%;
     padding: 0px 5px;
+    background-color: white;
 }
 
 .app.window-app.degenesis.sheet .footer-line .square.little{
@@ -626,6 +627,7 @@ a.diamond:hover .square.red.perma {
     display: flex;
     left: 50%;
     transform: translate(-50%);
+    z-index: 1;
 
 }
 /* * Navigation Tabs */
@@ -799,6 +801,7 @@ a.diamond:hover .square.red.perma {
 
 .app.window-app.degenesis.sheet .attribute-tab {
     text-transform: uppercase;
+    font-size: 11.5px;
 }
 
  .app.window-app.degenesis.sheet .attribute-tab .attribute-skill-group {
@@ -887,7 +890,7 @@ a.diamond:hover .square.red.perma {
  }
 
  .app.window-app.degenesis.sheet .skill-name{
-    margin-left: 10px;
+    margin-left: 8px;
  }
 
  .app.window-app.degenesis.sheet .skill-name.unused{
@@ -1520,6 +1523,7 @@ text-align: justify;
 .app.window-app.degenesis.sheet .combat-tab {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
  }
 
  .app.window-app.degenesis.sheet .combat {
@@ -1545,10 +1549,15 @@ text-align: justify;
     margin-left: 5px;
 }
 /* *ARSENAL */
+.app.window-app.degenesis.sheet .title.arsenal-title {
+    margin-top: -25px;
+}
+
 .app.window-app.degenesis.sheet .arsenal.scrollable {
     display: block;
     height: 183px;
     width: 100%;
+    overflow: auto;
 }
 
 .app.window-app.degenesis.sheet .combat-tab .arsenal-group.armor-group,
