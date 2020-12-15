@@ -33,7 +33,6 @@
             <div class="sheet-field">
                 <span class="field-name">{{localize "DGNS.Group"}}: </span>
                 <select name="data.group" data-dtype="String">
-                    <option value="{{g}}">{{group}}</option>
                     {{#select data.group}}
                     {{#each weaponGroups as |group g|}}
                     <option value="{{g}}">{{group}}</option>

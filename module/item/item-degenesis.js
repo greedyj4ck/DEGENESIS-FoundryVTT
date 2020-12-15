@@ -14,6 +14,9 @@ export class DegenesisItem extends Item {
 
         if (this.type == "weapon")
         {
+            if (!this.data.data.group)
+                this.data.data.group = "brawl"
+
             let slotsUsed = 0;
             if (this.getFlag("degenesis", "mods"))
                 this.data.flags.degenesis.mods.forEach(m => {slotsUsed += m.data.slotCost})
