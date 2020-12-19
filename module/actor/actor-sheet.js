@@ -328,7 +328,7 @@ export class DegenesisActorSheet extends ActorSheet {
                 this.actor.updateEmbeddedEntity("OwnedItem", item)
             }
             else 
-                new CONFIG.Item.entityClass(item).sheet.render(true)
+                this.actor.items.get(itemId).sheet.render(true)
 
         })
     }

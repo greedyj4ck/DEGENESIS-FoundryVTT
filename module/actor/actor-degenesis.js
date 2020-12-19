@@ -316,7 +316,6 @@ export class DegenesisActor extends Actor {
             }
             if (i.type == "transportation") {
                 transportation.items.push(i);
-                encumbrance.current += i.data.encumbrance
             }
             if (i.type == "potential") {
                 potentials.push(this.preparePotential(i));
