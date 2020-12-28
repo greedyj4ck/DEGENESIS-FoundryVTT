@@ -398,8 +398,8 @@ export class DegenesisActor extends Actor {
         let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
         if (!weapon.isSonic)
         {
-            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
-            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
+            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.sheetModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
+            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.sheetModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
         }
         weapon.qualities = weapon.data.qualities.map(q => { return {
                                                                 key : q.name,
@@ -411,7 +411,7 @@ export class DegenesisActor extends Actor {
         {
             weapon.caliber = DEGENESIS.calibers[weapon.data.caliber]
             weapon.totalAvailableAmmo = DegenesisItem.totalAmmoAvailable(weapon, ammo)
-            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.applyModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
+            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.sheetModifiers("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
             weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
@@ -452,7 +452,7 @@ export class DegenesisActor extends Actor {
     setupSkill(skill, options = {}) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
-            prefilled : this.applyModifiers("skill", skill),
+            prefilled : this.dialogModifiers("skill", skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -474,7 +474,7 @@ export class DegenesisActor extends Actor {
         weapon = this.prepareWeapon(duplicate(weapon));
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
-            prefilled : this.applyModifiers("weapon", skill, options.use),
+            prefilled : this.dialogModifiers("weapon", skill, options.use),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -506,7 +506,7 @@ export class DegenesisActor extends Actor {
         let skill = DEGENESIS.fightRolls[type]
         let dialogData = {
             title : DEGENESIS.skills[skill],
-            prefilled : this.applyModifiers(type, skill),
+            prefilled : this.dialogModifiers(type, skill),
             customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
@@ -521,6 +521,13 @@ export class DegenesisActor extends Actor {
             skill : this.data.data.skills[skill],
             actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
         }
+
+        // Accounts for the action modifier
+        if (type == "mentalDefense")
+            rollData.actionNumber = this.data.data.fighting.mentalDefense
+        else if (type == "dodge")
+            rollData.actionNumber = this.data.data.fighting.dodge
+        
 
         return {dialogData, cardData, rollData}
     }
@@ -611,7 +618,56 @@ export class DegenesisActor extends Actor {
      * @param {String} skill Skill used
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
-    applyModifiers(type, skill, use) {
+    dialogModifiers(type, skill, use) {
+        let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
+        let prefilled = {
+            diceModifier : 0,
+            successModifier : 0,
+            triggerModifier : 0,
+        }
+        for (let modifier in modifiers)
+        {
+            let useModifier = false;
+            if ( (modifier == "action" && (type != "weapon" && type != "dodge" &&  type != "mentalDefense")) ||
+                (modifier == "initiative" && type == "initiative") ||
+                (modifier == "dodge" && type == "dodge") ||
+                (modifier == "attack" && use == "attack") ||
+                (modifier == "a_defense" && use == "defense"))
+            {
+                useModifier = true;
+            }
+            else if (modifier.includes("attr:"))
+            {
+                let attrMod = modifier.split(":")[1]
+                if (attrMod == DEGENESIS.skillAttributes[skill])
+                    useModifier = true;
+            }
+            else if (modifier.includes("skill:"))
+            {
+                let skillMod = modifier.split(":")[1]
+                if (skillMod == skill)
+                    useModifier = true;
+            }
+
+            if (useModifier)
+            {   
+                prefilled.diceModifier += modifiers[modifier].D
+                prefilled.successModifier += modifiers[modifier].S
+                prefilled.triggerModifier += modifiers[modifier].T
+            }
+
+        }
+        return prefilled
+    }
+
+
+        /**
+     * 
+     * @param {String} type "weapon", "skill"  "initiative", "dodge", "action", 
+     * @param {String} skill Skill used
+     * @param {String} use Some specifiec, "attack", "defense", etc
+     */
+    sheetModifiers(type, skill, use) {
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,

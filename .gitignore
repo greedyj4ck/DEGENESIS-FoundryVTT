@@ -1,3 +1,5 @@
 # IDE
 .idea/
 .vs/
+.vscode/launch.json
+debug.log
