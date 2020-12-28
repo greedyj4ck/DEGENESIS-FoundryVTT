@@ -20,6 +20,14 @@
     "path": "packs/weapons.db",
     "system": "degenesis",
     "package": "degenesis"
+  },
+  {
+    "label": "Legacies",
+    "entity": "Item",
+    "name": "legacies",
+    "path": "packs/legacies.db",
+    "system": "degenesis",
+    "package": "degenesis"
   }],
   "languages": [
     {
