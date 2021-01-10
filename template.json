@@ -240,27 +240,27 @@
     "backgrounds": {
       "backgrounds" : {
         "allies" : {
-          "label" : "Allies",
+          "label" : "DGNS.Allies",
           "value" : 0
         },
         "authority" : {
-          "label" : "Authority",
+          "label" : "DGNS.Authority",
           "value" : 0
         },
         "network" : {
-          "label" : "Network",
+          "label" : "DGNS.Network",
           "value" : 0
         },
         "renown" : {
-          "label" : "Renown",
+          "label" : "DGNS.Renown",
           "value" : 0
         },
         "resources" : {
-          "label" : "Resources",
+          "label" : "DGNS.Resources",
           "value" : 0
         },
         "secrets" : {
-          "label" : "Secrets",
+          "label" : "DGNS.Secrets",
           "value" : 0
         }
       }
