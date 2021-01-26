@@ -298,6 +298,7 @@ DEGENESIS.weaponQualities = {
   "biometricallyEncoded" : "DGNS.BiometricallyEncoded",
   "blunt" : "DGNS.Blunt",
   "camo" : "DGNS.WeaponCamo",
+  "cutting": "DGNS.Cutting",
   "cloud" : "DGNS.Cloud",
   "dazed" : "DGNS.Dazed",
   "deviation" : "DGNS.Deviation",
@@ -346,6 +347,7 @@ DEGENESIS.armorQualities = {
   "massive" : "DGNS.Massive",
   "brittle" : "DGNS.Brittle",
   "sealed" : "DGNS.Sealed",
+  "special" : "DGNS.ArmorSpecial",
 }
 
 DEGENESIS.shieldQualities = {}
@@ -357,6 +359,7 @@ DEGENESIS.weaponQualitiesValues = {
   "blunt" : [],
   "camo" : ["difficulty"],
   "cloud" : ["radius", "amountOfTime"],
+  "cutting": ["trigger", "damage"],
   "dazed" : ["egoDamage"],
   "deviation" : [],
   "doubleBarreled" : [],
@@ -404,6 +407,7 @@ DEGENESIS.armorQualitiesValues = {
   "massive" : ["armor"],
   "brittle" : ["criticalDamageRating"],
   "sealed" : ["bonusSuccesses"],
+  "special" : []
 }
 
 DEGENESIS.qualityValues = {
@@ -519,20 +523,34 @@ DEGENESIS.calibers = {
   "50gl": ".50 GL",
   "357": ".357",
   "44": ".44",
+  "410sh" : ".410 shot",
+  "410sl" : ".410 slug",
   "556": "5.56x45mm",
   "jacket": "HF Full Jacket",
   "hollowPoint": "HF Hollow Point",
-  "flechette": "5.56 mm HUNTER Flechette",
-  "46x30": "4.6x30 mm",
+  "flechette": "5.56mm HUNTER Flechette",
+  "46x30": "4.6x30mm",
   "9mm": "9mm",
-  "5x30": "5x30 mm Caseless",
+  "5x30": "5x30mm Caseless",
+  "762" : "7.62",
+  "14" : "14mm",
   "buckshot" : "CALIBER 12 (Buckshot)",
   "rifleBarrel" : "CALIBER 12 (Rifle barrel ammo)",
-  "blackpowder" : "Lead bullet and black powder",
+  "cartridge": "Cartridge",
+  "grenade" : "Grenade",
+  "missle" : "Missle",
+  "fragger" : "Fragger Round",
+  "blackpowder" : "Black Powder",
+  "leadbullet" : "Lead Bullet",
   "Ecube" : "E-Cube",
   "arrow" : "Arrow",
   "bolt" : "Bolt",
   "petro" : "Can of Petro",
+  "harpoon" : "Harpoon",
+  "nail" : "Nail",
+  "coal" : "Coal",
+  "boltcoal" : "Bolt & Coal",
+  "special" : "Special"
 }
 
 DEGENESIS.systemItems = {
