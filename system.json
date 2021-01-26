@@ -23,58 +23,10 @@
     "package": "degenesis"
   },
   {
-    "label": "Weapons - Brawl",
+    "label": "Weapons",
     "entity": "Item",
-    "name": "weapons-brawl",
-    "path": "packs/weapons-brawl.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Melee",
-    "entity": "Item",
-    "name": "weapons-melee",
-    "path": "packs/weapons-melee.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Thrown",
-    "entity": "Item",
-    "name": "weapons-thrown",
-    "path": "packs/weapons-thrown.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Projectiles",
-    "entity": "Item",
-    "name": "weapons-projectiles",
-    "path": "packs/weapons-projectiles.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Handguns",
-    "entity": "Item",
-    "name": "weapons-handguns",
-    "path": "packs/weapons-handguns.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Rifles",
-    "entity": "Item",
-    "name": "weapons-rifles",
-    "path": "packs/weapons-rifles.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons - Heavy Weapons",
-    "entity": "Item",
-    "name": "weapons-heavy-weapons",
-    "path": "packs/weapons-heavy-weapons.db",
+    "name": "weapons",
+    "path": "packs/weapons.db",
     "system": "degenesis",
     "package": "degenesis"
   },
