@@ -2,7 +2,7 @@
   "name": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.9",
   "templateVersion": 2,
@@ -51,6 +51,11 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Spanish",
+      "path": "lang/es.json"
     }
   ],
   "gridDistance": 5,
