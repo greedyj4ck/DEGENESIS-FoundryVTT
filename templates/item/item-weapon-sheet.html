@@ -72,6 +72,13 @@
                             {{/each}}
                             {{/select}}
                         </select>
+                        <select class="damageType-select" name="data.damageType" data-dtype="String">
+                            {{#select data.damageType}}
+                            {{#each damageTypes as |type t|}}
+                            <option value="{{t}}">{{type}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
                     </div>
                 </div>
                 {{#unless isMelee}}

@@ -416,6 +416,7 @@ export class DegenesisActor extends Actor {
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
         weapon.damageFormula = DegenesisItem.damageFormula(weapon.data);
+        weapon.damageType = game.i18n.localize(DEGENESIS.damageTypes[weapon.data.damageType])
 
         return weapon
     }
