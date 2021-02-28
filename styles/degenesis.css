@@ -2714,6 +2714,25 @@ span.nocaps{
 }
 /*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
 
+
+
+#chat-log .chat-message.message.whisper,
+#chat-log .chat-message.message.blind {
+    background: url(../ui/degenesis_parchment_black.jpg);
+    color: #CCC
+}
+
+
+#chat-log .chat-message.message.whisper .message-header,
+#chat-log .chat-message.message.blind .message-header {
+    color: #CCC
+}
+
+#chat-log .chat-message.message.whisper h2,
+#chat-log .chat-message.message.blind h2 {
+    color: goldenrod
+}
+
 select {
     background: none;
     border: none;
