@@ -1,0 +1,38 @@
+<form>
+    {{localize "DGNS.ConfigureActorInstructions"}}
+    <div class="form-group">
+        <label>{{localize "DGNS.Ego"}}</label>
+        <div class="form-fields">
+            <input type="text" data-dtype="Number" name="data.condition.ego.override" value="{{object.data.condition.ego.override}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "DGNS.Spore"}}</label>
+        <div class="form-fields">
+            <input type="text" data-dtype="Number" name="data.condition.spore.override" value="{{object.data.condition.spore.override}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "DGNS.Fleshwounds"}}</label>
+        <div class="form-fields">
+            <input type="text" data-dtype="Number" name="data.condition.fleshwounds.override" value="{{object.data.condition.fleshwounds.override}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "DGNS.Trauma"}}</label>
+        <div class="form-fields">
+            <input type="text" data-dtype="Number" name="data.condition.trauma.override" value="{{object.data.condition.trauma.override}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "DGNS.Encumbrance"}}</label>
+        <div class="form-fields">
+            <input type="text" data-dtype="Number" name="data.general.encumbrance.override" value="{{object.data.general.encumbrance.override}}">
+        </div>
+    </div>
+    <button type="submit" name="submit"><i class="far fa-save"></i> {{ localize "Save"}}</button>
+</form>

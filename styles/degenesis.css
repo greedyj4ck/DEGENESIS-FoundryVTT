@@ -2130,10 +2130,23 @@ margin-left: 12px;
 
 
 
+/********************************** ACTOR CONFIGURE APP *************************/
+
+.app.window-app.degenesis.actor-configure {
+    width: 250px;
+    height: 300px;
+}
+
+.app.window-app.degenesis.actor-configure .form-fields {
+    flex: 0.3
+}
+
+.app.window-app.degenesis.actor-configure .form-fields input {
+    text-align: center;
+}
 
 
 /************************************ ITEM SHEET ********************************/
-
 .app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
     margin-top: -15px;
     margin-bottom: -20px;

@@ -427,5 +427,9 @@
     "DGNS.Scrap" : "Scrap",
     "DGNS.Transportation" : "Transportation",
     "DGNS.OrienteeringTracking" : "Orienteering / Tracking",
-    "DGNS.Equipments" : "Equipments"
+    "DGNS.Equipments" : "Equipments",
+
+    "DGNS.ConfigureActorInstructions" : "Here you can override various properties calculated by the sheet. Leaving a value as blank or 0 will have the sheet calculate it automatically.",
+    "DGNS.ConfigureActor" : "Configure Actor",
+    "DGNS.Configure" : "Configure"
 }
