@@ -228,7 +228,7 @@ export class DegenesisActor extends Actor {
         for (let bg in backgrounds)
         {
             DEG_Utility.addDiamonds(backgrounds[bg], 6);
-            backgrounds[bg].label = backgrounds[bg].label.toUpperCase()
+            backgrounds[bg].label = game.i18n.localize(backgrounds[bg].label).toUpperCase()
         }
         return backgrounds
     }

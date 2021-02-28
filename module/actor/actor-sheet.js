@@ -41,6 +41,7 @@ export class DegenesisActorSheet extends ActorSheet {
         sheetData.cultures = DEGENESIS.cultures
         sheetData.modifyTypes = DEGENESIS.modifyTypes;
         sheetData.techValues = DEGENESIS.techValues;
+        sheetData.backgrounds = DEGENESIS.backgrounds;
     }
 
     _dropdown(event, dropdownData) {
