@@ -485,7 +485,7 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value + weapon.data.handling,
+            actionNumber : weapon.attackDice,
             weapon : weapon
         }
 
