@@ -220,20 +220,25 @@
       "condition" : {
         "ego": {
           "max": 0,
-          "value": 0
+          "value": 0,
+          "override" : 0
         },
         "spore": {
           "max": 0,
           "value": 0,
-          "permanent" : 0
+          "permanent" : 0,
+          "override" : 0
+
         },
         "fleshwounds": {
           "max": 0,
-          "value": 0
+          "value": 0,
+          "override" : 0
         },
         "trauma": {
           "max": 0,
-          "value": 0
+          "value": 0,
+          "override" : 0
         }
       }
     },
@@ -292,7 +297,8 @@
         "movement" : 8,
         "encumbrance" : {
           "max" : 0,
-          "current" : 0
+          "current" : 0,
+          "override": 0
         },
         "armor" : 0,
         "actionModifier" : 0
@@ -378,7 +384,8 @@
       "cult" : ""
     },
     "damage" : {
-      "damage" : 0
+      "damage" : 0,
+      "damageType" : "fleshwounds"
     },
     "group" : {
       "group" : ""

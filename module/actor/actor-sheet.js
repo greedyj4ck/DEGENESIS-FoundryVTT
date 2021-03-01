@@ -3,6 +3,7 @@ import {DEG_Utility} from "../utility.js";
 import {DegenesisChat} from "../chat.js"
 import {DegenesisItem} from "../item/item-degenesis.js"
 import {DegenesisCombat} from "../combat-degenesis.js";
+import ActorConfigure from "../apps/actor-configure.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -34,6 +35,20 @@ export class DegenesisActorSheet extends ActorSheet {
         return data;
     }
 
+    _getHeaderButtons() {
+        let buttons = super._getHeaderButtons();
+        if (this.actor.owner) {
+            buttons.unshift(
+                {
+                    label: "DGNS.Configure",
+                    class: "configure",
+                    icon: "fas fa-wrench",
+                    onclick: ev => new ActorConfigure(this.actor).render(true)
+                })
+        }
+        return buttons
+    }
+
     /* -------------------------------------------- */
     addConfigData(sheetData) {
         sheetData.concepts = DEGENESIS.concepts
@@ -41,6 +56,7 @@ export class DegenesisActorSheet extends ActorSheet {
         sheetData.cultures = DEGENESIS.cultures
         sheetData.modifyTypes = DEGENESIS.modifyTypes;
         sheetData.techValues = DEGENESIS.techValues;
+        sheetData.backgrounds = DEGENESIS.backgrounds;
     }
 
     _dropdown(event, dropdownData) {

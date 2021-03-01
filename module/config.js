@@ -494,6 +494,12 @@ DEGENESIS.armorQualityDescription = {
   "sealed" : "DGNS.SealedDescription",
 }
 
+DEGENESIS.damageTypes = {
+  "fleshwounds" : "DGNS.Fleshwounds",
+  "ego" : "DGNS.Ego",
+  "trauma" : "DGNS.Trauma",
+}
+
 DEGENESIS.damageModifiers = {
   "F": {blueprint: "+F", calculate: (force, triggers) => force},
   "F2": {blueprint: "+F/2", calculate: (force, triggers) => Math.ceil(force / 2)},

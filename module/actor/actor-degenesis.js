@@ -18,11 +18,11 @@ export class DegenesisActor extends Actor {
             let modifiers = this.getModifiers();
             setProperty(this.data.flags, "degenesis.modifiers", modifiers)
     
-            data.data.condition.ego.max =           (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
-            data.data.condition.spore.max =         (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
-            data.data.condition.fleshwounds.max =   (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
-            data.data.condition.trauma.max =        (data.data.attributes.body.value + data.data.attributes.psyche.value);
-            data.data.general.encumbrance.max = data.data.attributes.body.value + data.data.skills.force.value;      
+            data.data.condition.ego.max =           data.data.condition.ego.override || (this.getFocusOrPrimal().value + data.data.attributes[this.getFocusOrPrimal().attribute].value) * 2;
+            data.data.condition.spore.max =         data.data.condition.spore.override || (this.getFaithOrWillpower().value + data.data.attributes[this.getFaithOrWillpower().attribute].value) * 2
+            data.data.condition.fleshwounds.max =   data.data.condition.fleshwounds.override || (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
+            data.data.condition.trauma.max =        data.data.condition.trauma.override || (data.data.attributes.body.value + data.data.attributes.psyche.value);
+            data.data.general.encumbrance.max =     data.data.general.encumbrance.override || (data.data.attributes.body.value + data.data.skills.force.value);
 
             this.prepareItems();
             if (this.data.encumbrance.current > this.data.encumbrance.max) // I feel like this should be in `getModifiers` but this requires prepareItems to have been run
@@ -228,7 +228,7 @@ export class DegenesisActor extends Actor {
         for (let bg in backgrounds)
         {
             DEG_Utility.addDiamonds(backgrounds[bg], 6);
-            backgrounds[bg].label = backgrounds[bg].label.toUpperCase()
+            backgrounds[bg].label = game.i18n.localize(backgrounds[bg].label).toUpperCase()
         }
         return backgrounds
     }
@@ -416,6 +416,7 @@ export class DegenesisActor extends Actor {
             weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
         }
         weapon.damageFormula = DegenesisItem.damageFormula(weapon.data);
+        weapon.damageType = game.i18n.localize(DEGENESIS.damageTypes[weapon.data.damageType])
 
         return weapon
     }
@@ -484,7 +485,7 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value + weapon.data.handling,
+            actionNumber : weapon.attackDice,
             weapon : weapon
         }
 

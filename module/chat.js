@@ -1,4 +1,5 @@
 import { DEGENESIS } from "./config.js"
+import { DEG_Utility } from "./utility.js";
 
 export class DegenesisChat {
 
@@ -15,11 +16,9 @@ export class DegenesisChat {
         mergeObject(cardData, rollResult);
 
         renderTemplate(cardData.template, cardData).then(html => {
-            ChatMessage.create({
-                content : html,
-                //sound : CONFIG.sounds.dice,
-                speaker : cardData.speaker,
-            })
+            let chatData = DEG_Utility.chatDataSetup(html);
+            chatData.speaker = cardData.speaker;
+            ChatMessage.create(chatData)
         })
     }
 }

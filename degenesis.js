@@ -16,6 +16,7 @@ import { DegenesisCombat } from "./module/combat-degenesis.js";
 import { DegenesisDice } from "./module/dice.js";
 import { DEG_Utility } from "./module/utility.js";
 import { DegenesisChat } from "./module/chat.js";
+import ActorConfigure from "./module/apps/actor-configure.js"
 import hooks from "./module/hooks/hooks.js"
 
 // import tippy from './node_modules/tippy.js';
@@ -73,7 +74,8 @@ Hooks.once("init", async function () {
       DegenesisActorSheet,
       DegenesisItemSheet,
       ClusterInterface,
-      DegenesisImporter
+      DegenesisImporter,
+      ActorConfigure
     },
     entities : {
       DegenesisActor,
