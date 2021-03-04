@@ -473,6 +473,7 @@ DEGENESIS.weaponQualityDescription = {
   "stun" : "DGNS.StunDescription",
   "panic" : "DGNS.PanicDescription",
   "singleLoader" : "DGNS.SingleLoaderDescription",
+  "cutting" : "DGNS.CuttingDescription"
 },
 DEGENESIS.agentQualityDescription = {
   "poisoned" : "DGNS.PoisonedDescription",

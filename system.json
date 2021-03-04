@@ -45,7 +45,33 @@
     "path": "packs/ammunitions.db",
     "system": "degenesis",
     "package": "degenesis"
-  }],
+  },
+  {
+    "label": "Equipment",
+    "entity": "Item",
+    "name": "equipment",
+    "path": "packs/equipment.db",
+    "system": "degenesis",
+    "package": "degenesis"
+  },
+{
+    "label": "Potentials",
+    "entity": "Item",
+    "name": "potentials",
+    "path": "packs/potentials.db",
+    "system": "degenesis",
+    "package": "degenesis"
+  },
+  {
+    "label": "Maps",
+    "entity": "Scene",
+    "name": "maps",
+    "path": "packs/maps.db",
+    "system": "degenesis",
+    "package": "degenesis"
+  }
+
+],
   "languages": [
     {
       "lang": "en",
