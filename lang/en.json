@@ -432,5 +432,8 @@
 
     "DGNS.ConfigureActorInstructions" : "Here you can override various properties calculated by the sheet. Leaving a value as blank or 0 will have the sheet calculate it automatically.",
     "DGNS.ConfigureActor" : "Configure Actor",
-    "DGNS.Configure" : "Configure"
+    "DGNS.Configure" : "Configure",
+    "DGNS.ModValue" : "Mod Value",
+    "DGNS.ModAdd" : "Add",
+    "DGNS.ModOverride" : "Override"
 }

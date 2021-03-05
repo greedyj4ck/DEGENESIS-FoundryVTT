@@ -28,6 +28,10 @@ export class DegenesisItem extends Item {
             if (!data.data.droppable && data.data.dropped)
                 data.data.dropped = false;
         }
+
+        if (data.data.slots)
+            this.applyMods()
+        
     }
 
     prepareDisplayData() {
@@ -47,9 +51,7 @@ export class DegenesisItem extends Item {
         })
           preparedData.isMelee = DegenesisItem.isMelee(this.data);
           preparedData.isSonic = DegenesisItem.isSonic(this.data);
-          preparedData.specialty = !!this.data.data.qualities.find(q => q.name == "special")
-
-        
+          preparedData.specialty = !!this.data.data.qualities.find(q => q.name == "special")        
         }
         if (this.data.type == "armor")
         {
@@ -60,7 +62,47 @@ export class DegenesisItem extends Item {
             preparedData.qualities.push(qualityString)
         })
         }
+        if (this.data.type == "mod")
+        {
+          preparedData.qualities = [];
+          this.data.data.qualities.forEach(q => {
+            let qualityString = DEGENESIS[`${this.data.data.modType}Qualities`][q.name] + " "
+            qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
+            preparedData.qualities.push(qualityString)
+        })
+        }
+        
         return preparedData
+    }
+
+
+    applyMods()
+    {
+        let mods = getProperty(this, "data.flags.degenesis.mods") || []
+
+        for(let mod of mods)
+        {
+            for (let change of mod.data.changes)
+            {
+                if (change.mode == "add" && change.value) 
+                {
+                    let current = getProperty(this.data, change.key)
+                    if (current)
+                    {
+                        setProperty(this.data, change.key, current + change.value)
+                    }
+                }
+                else if (change.mode == "overwrite" && change.value)
+                {
+                    setProperty(this.data, change.key, change.value)
+                }
+            }
+
+            if (mod.data.qualities.length)
+            {
+                this.data.data.qualities = this.data.data.qualities.concat(mod.data.qualities)
+            }
+        }
     }
 
     dropdownData()

@@ -22,6 +22,7 @@ export class ItemQualities extends BaseEntitySheet {
     constructor(object, options) {
       super(object, options)
       this.tempData = duplicate(this.object.data)
+      this.qualityType = this.object.type
 
     }
 
@@ -40,9 +41,12 @@ export class ItemQualities extends BaseEntitySheet {
       let qualityDescriptions;
       let qualityValues;
 
-      qualityList = DEGENESIS[`${this.object.type}Qualities`]
-      qualityDescriptions = DEGENESIS[`${this.object.type}QualityDescription`]
-      qualityValues = DEGENESIS[`${this.object.type}QualitiesValues`]
+      if (this.qualityType == "mod")
+        this.qualityType = this.object.data.data.modType
+
+      qualityList = DEGENESIS[`${this.qualityType}Qualities`]
+      qualityDescriptions = DEGENESIS[`${this.qualityType}QualityDescription`]
+      qualityValues = DEGENESIS[`${this.qualityType}QualitiesValues`]
 
       // For each weapon quality in configuration (we want to display all of them to show checkboxes)
         for (let q in qualityList)
@@ -86,7 +90,7 @@ export class ItemQualities extends BaseEntitySheet {
 
         let quality = {}
         quality.name = $(ev.currentTarget).attr("data-quality");
-        quality.values = duplicate(DEGENESIS[`${this.object.type}QualitiesValues`][quality.name]);
+        quality.values = duplicate(DEGENESIS[`${this.qualityType}QualitiesValues`][quality.name]);
         
         let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
 

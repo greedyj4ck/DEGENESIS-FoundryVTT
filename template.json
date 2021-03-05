@@ -366,7 +366,7 @@
       }
     },
     "quantity" : {
-      "quantity" : 0
+      "quantity" : 1
     },
     "qualities" : {
       "qualities" : []
@@ -445,9 +445,11 @@
     "dropped" : false
   },
   "mod" : {
-    "templates" : ["description", "effect", "location"],
+    "templates" : ["description", "effect", "location", "qualities"],
     "augmentation" : "",
-    "slotCost" : 0
+    "slotCost" : 0,
+    "changes" : [],
+    "modType" : "weapon"
   },
   "potential" : {
     "templates" : ["prerequisite","rules", "effect", "level", "origin"],

@@ -242,6 +242,7 @@ export class DegenesisActor extends Actor {
             shields: { header: game.i18n.localize("DGNS.Shields"), type: 'shield', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
             ammunition: { header: game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items: [] },
             equipment: { header: game.i18n.localize("DGNS.Equipments"), type: 'equipment', items: [] },
+            mods: { header: game.i18n.localize("DGNS.Mods"), type: 'mod', items: [] },
             /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
             medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
@@ -325,6 +326,9 @@ export class DegenesisActor extends Actor {
                 if (i.data.action == "armor") {
                     modifierArmor += i.data.number;
                 }
+            }
+            if (i.type == "mod") {
+                inventory.mods.items.push(i);
             }
             if (i.type == "complication") {
                 complications.push(i);

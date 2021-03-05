@@ -1415,7 +1415,7 @@ text-align: justify;
     width: 45%;
 }
 
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-characteristics {
+    .app.window-app.degenesis.sheet .conditions-characteristics {
     padding-right: 5px;
     padding-left: 5px;
     display: flex;
@@ -1436,7 +1436,7 @@ text-align: justify;
     margin-bottom: -10px;
 }
 
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-ol{
+.app.window-app.degenesis.sheet .conditions-ol{
     border-collapse: collapse;
     background: white;
     border: none;
@@ -1448,25 +1448,25 @@ text-align: justify;
     list-style-type: none;
 }
 
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-value{
+.app.window-app.degenesis.sheet  .conditions-value{
     display: flex;
     flex: 0 0 35px;
     justify-content: space-evenly;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-name{
+.app.window-app.degenesis.sheet  .conditions-name{
     text-align: left;
     width: 40%;
     border: none;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-action{
+.app.window-app.degenesis.sheet  .conditions-action{
     text-align: center;
     width: 30%;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-number{
+.app.window-app.degenesis.sheet  .conditions-number{
     text-align: center;
     width: 15%;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-type{
+.app.window-app.degenesis.sheet  .conditions-type{
     text-align: center;
     width: 15%;
 }
@@ -1484,7 +1484,7 @@ text-align: justify;
     width: 100%
 }
 
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-li{
+.app.window-app.degenesis.sheet  .conditions-li{
     border-bottom: 1px solid var(--dark-grey);
     margin-bottom: 3px;
 }
@@ -2436,6 +2436,18 @@ margin-left: 12px;
 .app.window-app.degenesis.quality-selector form button:hover {
     background-color: var(--degenesis-red);
     border: none;
+}
+
+
+/***** EFFECT SECTION OF MOD TYPE ITEM ****/
+
+
+.app.window-app.degenesis.sheet.item .effects-header{
+    color: var(--light-grey);
+    background-color: black;
+}
+.app.window-app.degenesis.sheet.item .effects-header > *{
+    text-align: center;
 }
 
 

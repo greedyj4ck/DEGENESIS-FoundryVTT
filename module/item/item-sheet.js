@@ -129,6 +129,33 @@ export class DegenesisItemSheet extends ItemSheet {
       new ItemQualities(this.item).render(true)
     })
 
+    html.find(".mod-control").click(ev => {
+      let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
+      let action = $(ev.currentTarget).attr("data-action");
+      let changes = duplicate(this.item.data.data.changes)
+      if (action=="delete")
+      {
+        changes = changes.splice(index, 1)
+      }
+      else if (action=="add")
+      {
+        changes.push({key : "", mode : "", value : ""})
+      }
+      this.item.update({"data.changes" : changes})
+    })
+
+    html.find(".mod-change").change(ev => {
+      let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
+      let type = $(ev.currentTarget).attr("data-type");
+      let changes = duplicate(this.item.data.data.changes)
+      let newValue = ev.target.value
+      if (Number.isNumeric(newValue))
+        newValue = Number(newValue)
+
+      changes[index][type] = newValue
+      this.item.update({"data.changes" : changes})
+    })
+
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 

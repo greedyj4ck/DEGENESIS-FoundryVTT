@@ -5,24 +5,91 @@
         <a class="item" data-tab="description">{{localize "DGNS.Description"}}</a>
         <a class="item active" data-tab="details">{{localize "DGNS.Details"}}</a>
     </nav>
-        
+
     {{!-- Sheet Body --}}
-    <section class="sheet-body" >
+    <section class="sheet-body">
         <div class="tab" data-tab="description">
             {{editor content=data.description target="data.description"button=true owner=owner editable=editable}}
         </div>
 
         <div class="tab" data-tab="details">
 
-        <div class = "form-group">
-            <label>Slot Cost</label>
-            <input name = "data.slotCost" value="{{data.slotCost}}" data-dtype="Number">
+            <div class="form-group">
+                <label>Slot Cost</label>
+                <input name="data.slotCost" value="{{data.slotCost}}" data-dtype="Number">
+            </div>
+
+            <div class="form-group">
+                <label>Effect</label>
+                <textarea name="data.effect">{{data.effect}}</textarea>
+            </div>
+
+
+            <div class="form-group">
+
+            <label>Mod Type</label>
+
+            <select class="modType-select" name="data.modType" data-dtype="String">
+                {{#select data.modType}}
+                <option value="weapon">{{localize "DGNS.Weapon"}}</option>
+                <option value="armour">{{localize "DGNS.Armor"}}</option>
+                {{/select}}
+            </select>
         </div>
+
+            <header class="effect-change effects-header flexrow">
+                <div class="key">{{ localize "EFFECT.ChangeKey" }}</div>
+                <div class="mode">{{ localize "EFFECT.ChangeMode" }}</div>
+                <div class="value">{{ localize "DGNS.ModValue" }}</div>
+                <div class="effect-controls">
+                    <a class="effect-control mod-control" data-action="add"><i class="far fa-plus-square"></i></a>
+                </div>
+            </header>
             
-        <div class = "form-group">
-            <label>Effect</label>
-            <textarea name="data.effect">{{data.effect}}</textarea>
-        </div>
+            <ol class="changes-list">
+                {{#each data.changes as |change i|}}
+                <li class="effect-change flexrow" data-index="{{i}}">
+                    <div class="key">
+                        <input type="text" class="mod-change" data-type="key" value="{{change.key}}"/>
+                    </div>
+                    <div class="mode">
+                        <select class="mod-change" data-type="mode">
+                            {{#select change.mode}}
+                            <option value="add">{{localize "DGNS.ModAdd"}}</option>
+                            <option value="override">{{localize "DGNS.ModOverride"}}</option>
+                            {{/select}}
+                        </select>
+                    </div>
+                    <div class="value">
+                        <input class="mod-change" data-type="value" type="text" value="{{change.value}}"/>
+                    </div>
+                    <div class="effect-controls">
+                        <a class="effect-control mod-control" data-action="delete"><i class="fas fa-trash"></i></a>
+                    </div>
+                </li>
+                {{/each}}
+            </ol>
+
+
+            <div class="qualities-group conditions-group">
+                <div class="black-title">
+                   <h3>{{localize "DGNS.Qualities"}}</h3>
+                   <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
+                </div>
+                <div class="qualities-data conditions-data">
+                   <ol class="qualities-ol conditions-ol">
+                     {{#each qualities as |quality q|}}
+                         <li class="conditions-li qualities-li item">
+                             <div class="conditions-characteristics">
+                             <div class='quality'>
+                                 {{quality}}
+                             </div>
+                             </div>
+                         </li>
+                     {{/each}}
+                     </ol>
+                </div>
+             </div>
 
         </div>
 
