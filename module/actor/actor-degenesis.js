@@ -58,7 +58,7 @@ export class DegenesisActor extends Actor {
             shieldAttackModifier += s.data.attack.D
         })
 
-        let modifierArray = this.data.items.filter(i => i.type == "modifier").map(m => m.data);
+        let modifierArray = this.data.items.filter(i => i.type == "modifier" && i.data.disabled != true).map(m => m.data);
         let modifiers = {};
         modifiers.custom = [];
         modifierArray.forEach(mod => {

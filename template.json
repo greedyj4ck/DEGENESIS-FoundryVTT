@@ -458,7 +458,8 @@
   "modifier" : {
     "action" : "",
     "number" : 0,
-    "type" : ""
+    "type" : "",
+    "disabled" : false
   },
   "complication" : {
     "cost" : 0,
