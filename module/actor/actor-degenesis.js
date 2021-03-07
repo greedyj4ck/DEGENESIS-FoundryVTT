@@ -489,7 +489,7 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : weapon.attackDice,
+            actionNumber : options.use.includes("attack") ? weapon.attackDice : weapon.defenseDice,
             weapon : weapon
         }
 
@@ -630,38 +630,43 @@ export class DegenesisActor extends Actor {
             successModifier : 0,
             triggerModifier : 0,
         }
-        for (let modifier in modifiers)
+
+        if (game.user.targets.size)
         {
-            let useModifier = false;
-            if ( (modifier == "action" && (type != "weapon" && type != "dodge" &&  type != "mentalDefense")) ||
-                (modifier == "initiative" && type == "initiative") ||
-                (modifier == "dodge" && type == "dodge") ||
-                (modifier == "attack" && use == "attack") ||
-                (modifier == "a_defense" && use == "defense"))
-            {
-                useModifier = true;
-            }
-            else if (modifier.includes("attr:"))
-            {
-                let attrMod = modifier.split(":")[1]
-                if (attrMod == DEGENESIS.skillAttributes[skill])
-                    useModifier = true;
-            }
-            else if (modifier.includes("skill:"))
-            {
-                let skillMod = modifier.split(":")[1]
-                if (skillMod == skill)
-                    useModifier = true;
-            }
-
-            if (useModifier)
-            {   
-                prefilled.diceModifier += modifiers[modifier].D
-                prefilled.successModifier += modifiers[modifier].S
-                prefilled.triggerModifier += modifiers[modifier].T
-            }
-
+           prefilled.difficulty = Array.from(game.user.targets)[0].actor.data.data.fighting.passiveDefense
         }
+        // for (let modifier in modifiers)
+        // {
+        //     let useModifier = false;
+        //     if ( (modifier == "action" && (type != "weapon" && type != "dodge" &&  type != "mentalDefense")) ||
+        //         (modifier == "initiative" && type == "initiative") ||
+        //         (modifier == "dodge" && type == "dodge") ||
+        //         (modifier == "attack" && use == "attack") ||
+        //         (modifier == "a_defense" && use == "defense"))
+        //     {
+        //         useModifier = true;
+        //     }
+        //     else if (modifier.includes("attr:"))
+        //     {
+        //         let attrMod = modifier.split(":")[1]
+        //         if (attrMod == DEGENESIS.skillAttributes[skill])
+        //             useModifier = true;
+        //     }
+        //     else if (modifier.includes("skill:"))
+        //     {
+        //         let skillMod = modifier.split(":")[1]
+        //         if (skillMod == skill)
+        //             useModifier = true;
+        //     }
+
+        //     if (useModifier)
+        //     {   
+        //         prefilled.diceModifier += modifiers[modifier].D
+        //         prefilled.successModifier += modifiers[modifier].S
+        //         prefilled.triggerModifier += modifiers[modifier].T
+        //     }
+
+        // }
         return prefilled
     }
 
