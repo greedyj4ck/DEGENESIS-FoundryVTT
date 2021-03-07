@@ -223,7 +223,8 @@ DEGENESIS.modifyActions = {
   "attack" : "DGNS.Attack",
   "damage" : "DGNS.Damage",
   "a_defense" : "DGNS.ActiveDefense",
-  "p_defense" : "DGNS.PassiveDefense"
+  "p_defense" : "DGNS.PassiveDefense",
+  "mentalDefense" : "DGNS.MentalDef"
 }
 
 DEGENESIS.noType = ["movement", "armor", "damage", "p_defense"]

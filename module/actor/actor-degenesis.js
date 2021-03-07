@@ -30,13 +30,10 @@ export class DegenesisActor extends Actor {
 
             data.data.general.actionModifier = modifiers.action.D
             data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value + (getProperty(this.data.flags, "degenesis.modifiers.movement") || 0);      
-            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D;
-            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D;
-            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D;
+            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D + modifiers.initiative.D;
+            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D + modifiers.dodge.D;
+            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.getFaithOrWillpower().value + modifiers.action.D + modifiers.mentalDefense.D;
             data.data.fighting.passiveDefense = 1 + data.data.state.cover.value + (data.data.state.motion ? 1 : 0) + (data.data.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
-
-
-                
 
         }
         catch(e)
@@ -106,9 +103,37 @@ export class DegenesisActor extends Actor {
         {
             modifiers.p_defense = 0
         }
+        if (!modifiers["damage"])
+        {
+            modifiers.damage = 0
+        }
         if (!modifiers["a_defense"])
         {
             modifiers.a_defense = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        if (!modifiers["dodge"])
+        {
+            modifiers.dodge = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        if (!modifiers["mentalDefense"])
+        {
+            modifiers.mentalDefense = {
+                "D" : 0,
+                "S" : 0,
+                "T" : 0,
+            }
+        }
+        if (!modifiers["initiative"])
+        {
+            modifiers.initiative = {
                 "D" : 0,
                 "S" : 0,
                 "T" : 0,
@@ -528,11 +553,9 @@ export class DegenesisActor extends Actor {
         }
 
         // Accounts for the action modifier
-        if (type == "mentalDefense")
-            rollData.actionNumber = this.data.data.fighting.mentalDefense
-        else if (type == "dodge")
-            rollData.actionNumber = this.data.data.fighting.dodge
-        
+        rollData.actionNumber = this.data.data.fighting[type]
+
+
 
         return {dialogData, cardData, rollData}
     }
@@ -572,7 +595,7 @@ export class DegenesisActor extends Actor {
         const bodyValue = this.data.data.attributes.body.value;
         const forceValue = this.data.data.skills.force.value;
         const bodyForceValue = bodyValue + forceValue;
-        const fullDamage = DegenesisItem.fullDamage(weapon.data, bodyForceValue, rollResults.triggers);
+        const fullDamage = DegenesisItem.fullDamage(weapon.data, bodyForceValue, rollResults.triggers) + this.data.flags.degenesis.modifiers.damage;
         cardData.damageFull = `${fullDamage}`;
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
@@ -599,6 +622,7 @@ export class DegenesisActor extends Actor {
         rollData.successModifier = dialogData.prefilled.successModifier;
         rollData.triggerModifier = dialogData.prefilled.triggerModifier;
         let rollResults = DegenesisDice.rollWithout3dDice(rollData)
+        console.log(rollResults)
         this.postRollChecks(rollResults, type)
         return {rollResults, cardData}
     }
@@ -624,6 +648,7 @@ export class DegenesisActor extends Actor {
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
     dialogModifiers(type, skill, use) {
+        console.log(type, skill, use)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,
@@ -635,38 +660,34 @@ export class DegenesisActor extends Actor {
         {
            prefilled.difficulty = Array.from(game.user.targets)[0].actor.data.data.fighting.passiveDefense
         }
-        // for (let modifier in modifiers)
-        // {
-        //     let useModifier = false;
-        //     if ( (modifier == "action" && (type != "weapon" && type != "dodge" &&  type != "mentalDefense")) ||
-        //         (modifier == "initiative" && type == "initiative") ||
-        //         (modifier == "dodge" && type == "dodge") ||
-        //         (modifier == "attack" && use == "attack") ||
-        //         (modifier == "a_defense" && use == "defense"))
-        //     {
-        //         useModifier = true;
-        //     }
-        //     else if (modifier.includes("attr:"))
-        //     {
-        //         let attrMod = modifier.split(":")[1]
-        //         if (attrMod == DEGENESIS.skillAttributes[skill])
-        //             useModifier = true;
-        //     }
-        //     else if (modifier.includes("skill:"))
-        //     {
-        //         let skillMod = modifier.split(":")[1]
-        //         if (skillMod == skill)
-        //             useModifier = true;
-        //     }
+        for (let modifier in modifiers)
+        {
+            let useModifier = false;
+            if (modifier == "action" && (type != "weapon" && type != "dodge" &&  type != "mentalDefense" && type != "initiative"))
+            {
+                useModifier = true;
+            }
+            else if (modifier.includes("attr:"))
+            {
+                let attrMod = modifier.split(":")[1]
+                if (attrMod == DEGENESIS.skillAttributes[skill])
+                    useModifier = true;
+            }
+            else if (modifier.includes("skill:"))
+            {
+                let skillMod = modifier.split(":")[1]
+                if (skillMod == skill)
+                    useModifier = true;
+            }
 
-        //     if (useModifier)
-        //     {   
-        //         prefilled.diceModifier += modifiers[modifier].D
-        //         prefilled.successModifier += modifiers[modifier].S
-        //         prefilled.triggerModifier += modifiers[modifier].T
-        //     }
+            if (useModifier)
+            {   
+                prefilled.diceModifier += modifiers[modifier].D
+                prefilled.successModifier += modifiers[modifier].S
+                prefilled.triggerModifier += modifiers[modifier].T
+            }
 
-        // }
+        }
         return prefilled
     }
 
@@ -678,6 +699,7 @@ export class DegenesisActor extends Actor {
      * @param {String} use Some specifiec, "attack", "defense", etc
      */
     sheetModifiers(type, skill, use) {
+        console.log(type, skill, use)
         let modifiers = getProperty(this, "data.flags.degenesis.modifiers");
         let prefilled = {
             diceModifier : 0,
@@ -690,6 +712,7 @@ export class DegenesisActor extends Actor {
             if ( modifier == "action" ||
                 (modifier == "initiative" && type == "initiative") ||
                 (modifier == "dodge" && type == "dodge") ||
+                (modifier == "mentalDefense" && type == "mentalDefense") ||
                 (modifier == "attack" && use == "attack") ||
                 (modifier == "a_defense" && use == "defense"))
             {
