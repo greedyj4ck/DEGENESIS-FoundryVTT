@@ -4,6 +4,25 @@
 
     "ACTOR.TypeCharacter" : "Character",
 
+
+    "ITEM.Type" : "Character",
+
+    "ITEM.TypeWeapon" : "Weapon",
+    "ITEM.TypeArmor" : "Armor",
+    "ITEM.TypeEquipment" : "Equipment",
+    "ITEM.TypeArtifact" : "Artifact",
+    "ITEM.TypeAmmunition" : "Ammunition",
+    "ITEM.TypeTransportation" : "Transportation",
+    "ITEM.TypeMod" : "Modification",
+    "ITEM.TypeBurn" : "Burn",
+    "ITEM.TypePotential" : "Potential",
+    "ITEM.TypeModifier" : "Modifier",
+    "ITEM.TypeShield" : "Shield",
+    "ITEM.TypeComplication" : "Complication",
+    "ITEM.TypeLegacy" : "Legacy",
+
+
+
     "DGNS.Name" : "Name",
     "DGNS.Age" : "Age",
     "DGNS.Rank" : "Rank",
