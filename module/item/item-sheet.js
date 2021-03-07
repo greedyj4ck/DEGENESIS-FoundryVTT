@@ -129,13 +129,29 @@ export class DegenesisItemSheet extends ItemSheet {
       new ItemQualities(this.item).render(true)
     })
 
+    html.find(".mod-delete").click(ev => {
+      let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
+      let mods = duplicate(this.item.data.flags.degenesis.mods)
+      mods.splice(index, 1);
+      this.item.setFlag("degenesis", "mods", mods)
+    })
+
+    html.find(".mod-edit").click(ev => {
+      let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
+      let mod = this.item.data.flags.degenesis.mods[index]
+      ui.notifications.warn(game.i18n.localize("DGNS.ModEditWarning"))
+      new game.degenesis.entities.DegenesisItem(mod).sheet.render(true)
+    })
+
+
+
     html.find(".mod-control").click(ev => {
       let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
       let action = $(ev.currentTarget).attr("data-action");
       let changes = duplicate(this.item.data.data.changes)
       if (action=="delete")
       {
-        changes = changes.splice(index, 1)
+        changes.splice(index, 1)
       }
       else if (action=="add")
       {

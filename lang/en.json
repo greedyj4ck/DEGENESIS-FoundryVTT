@@ -1,6 +1,9 @@
 {
     "DEGENESIS.SystemName" : "DEGENESIS: Rebirth",
 
+
+    "ACTOR.TypeCharacter" : "Character",
+
     "DGNS.Name" : "Name",
     "DGNS.Age" : "Age",
     "DGNS.Rank" : "Rank",
@@ -435,5 +438,6 @@
     "DGNS.Configure" : "Configure",
     "DGNS.ModValue" : "Mod Value",
     "DGNS.ModAdd" : "Add",
-    "DGNS.ModOverride" : "Override"
+    "DGNS.ModOverride" : "Override",
+    "DGNS.ModEditWarning" : "Changes made on an attached modification will not be saved."
 }

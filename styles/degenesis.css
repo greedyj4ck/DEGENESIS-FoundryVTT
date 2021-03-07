@@ -2450,6 +2450,36 @@ margin-left: 12px;
     text-align: center;
 }
 
+.app.window-app.degenesis.sheet.item .tab.active .mod-qualities h3 {
+    margin-left: 5px;
+    align-self: unset
+}
+
+.app.window-app.degenesis.sheet.item .changes-list input {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.app.window-app.degenesis.sheet.item .changes-list .effect-change > * {
+    margin: 5px
+}
+    .app.window-app.degenesis.sheet.item .changes-list select {
+background: none;
+border: none;
+padding: 5px;
+border-bottom: 1px solid black;
+border-radius: 0px;
+text-transform: uppercase;
+width: 100%;
+
+}
+
+.app.window-app.degenesis.sheet.item .changes-list .effect-change .effect-controls {
+justify-self: flex-start;
+margin-top: 12px;
+}
+
+
 
 /****************************** CHAT *****************************/
 
