@@ -395,6 +395,9 @@
     },
     "location" : {
       "location" : ""
+    },
+    "prerequisite": {
+      "prerequisite": ""
     }
   },
   "ammunition" : {
@@ -467,7 +470,7 @@
     "description" : ""
   },
   "legacy" : {
-    "prerequisite" :"",
+    "templates": ["prerequisite"],
     "bonus" : "",
     "legacy" : "",
     "description" : "",
