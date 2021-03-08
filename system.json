@@ -2,7 +2,7 @@
   "name": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "minimumCoreVersion": "0.7.0",
   "compatibleCoreVersion": "0.7.9",
   "templateVersion": 2,
@@ -89,6 +89,6 @@
   "background" : "ui/falberg.webp",
   "url": "",
   "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
-  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.1.3/degenesis.zip",
+  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.2.0/degenesis.zip",
   "license": "LICENSE.txt"
 }
