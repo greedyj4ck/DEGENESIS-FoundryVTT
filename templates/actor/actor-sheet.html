@@ -70,13 +70,13 @@
                <div class="title-Cs">CULTURE</div>
                <img class ="culture-img" height="80" width="80" src = "{{cultureIcon}}"/>
                <div class="c-popout culture">
-                <h2>{{culture}}</h2>
-                {{{cultureDescription}}}
+                <h2>{{actor.culture}}</h2>
+                {{{configLookup "cultureDescription" actor.details.culture.value}}}
                 </div>
                <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
                     {{#select data.details.culture.value}}
                     <option value=""></option>
-                    {{#each cultures as |culture c|}}
+                    {{#each (config "cultures") as |culture c|}}
                     <option value="{{c}}">{{culture}}</option>
                     {{/each}}
                     {{/select}}
@@ -86,13 +86,13 @@
                <div class="title-Cs">CONCEPT</div>
                <img class="concept-img" height="80" width="80" src = "{{conceptIcon}}"/>
                 <div class="c-popout concept">
-                <h2>{{concept}}</h2>
-                {{{conceptDescription}}}
+                    <h2>{{actor.concept}}</h2>
+                    {{{configLookup "conceptDescription" actor.details.concept.value}}}
                 </div>
                <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
                     {{#select data.details.concept.value}}
                     <option value=""></option>
-                    {{#each concepts as |concept c|}}
+                    {{#each (config "concepts") as |concept c|}}
                     <option value="{{c}}">{{concept}}</option>
                     {{/each}}
                     {{/select}}
@@ -103,13 +103,13 @@
                <div class="title-Cs">CULT</div>
                <img class="cult-img" height="80" width="80" src = "{{cultIcon}}"/>
                <div class="c-popout cult">
-                <h2>{{cult}}</h2>
-                {{{cultDescription}}}
+                <h2>{{actor.cult}}</h2>
+                {{{configLookup "cultDescription" actor.details.cult.value}}}
                 </div>
                <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
                     {{#select data.details.cult.value}}
                     <option value=""></option>
-                    {{#each cults as |cult c|}}
+                    {{#each (config "cults") as |cult c|}}
                     <option value="{{c}}">{{cult}}</option>
                     {{/each}}
                     {{/select}}

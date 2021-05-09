@@ -32,7 +32,7 @@
         </div>
         <div class="history-list item-list">
             {{#each actor.legacies as |legacy l|}}
-            <div class="history item" data-item-id={{legacy._id}}>
+            <div class="history item" data-item-id={{legacyid}}>
                 <a class="legacy-name item-name dropdown">{{legacy.name}}</a>
                 <div class="legacy-characteristics item-characteristics">
                     <div class="empty"></div>
@@ -73,7 +73,7 @@
     </div>
 
     <!-- * GM Notes  -->
-    {{#if isGM}}
+    {{#isGM}}
     <div class="lt-group history-group gmnotes-group">
         <div class="gmnotes lt-top">
             <div class="first-part">
@@ -91,7 +91,7 @@
         </div>
         {{editor content=data.gmnotes target="data.gmnotes"button=true owner=owner editable=editable}}
     </div>
-    {{/if}}
+    {{/isGM}}
 </div>
 
 

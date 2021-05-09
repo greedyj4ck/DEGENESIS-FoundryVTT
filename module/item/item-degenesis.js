@@ -7,7 +7,6 @@ import { DEGENESIS } from "../config.js"
  */
 export class DegenesisItem extends Item {
 
-
     prepareData() {
         super.prepareData();
         const data = this.data;
@@ -87,7 +86,7 @@ export class DegenesisItem extends Item {
                 if (change.mode == "add" && change.value) 
                 {
                     let current = getProperty(this.data, change.key)
-                    if (current)
+                    if (Number.isNumeric(current))
                     {
                         setProperty(this.data, change.key, current + change.value)
                     }
@@ -141,7 +140,7 @@ export class DegenesisItem extends Item {
     _weaponDropdownData()
     {
         let tags = [];
-        let data = duplicate(this.data.data);
+        let data = foundry.utils.deepClone(this.data.data);
         let text = `${data.description}`
 
         if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
@@ -166,7 +165,7 @@ export class DegenesisItem extends Item {
     _armorDropdownData()
     {
         let tags = [];
-        let data = duplicate(this.data.data);
+        let data = foundry.utils.deepClone(this.data.data);
         let text = `${data.description}`;
 
         tags.push(`${game.i18n.localize("DGNS.ArmorValue")}: ${data.AP}`)
@@ -182,7 +181,7 @@ export class DegenesisItem extends Item {
     }
     _legacyDropdownData()
     {
-        let data = duplicate(this.data.data);
+        let data = foundry.utils.deepClone(this.data.data);
         let text = `<b>${game.i18n.localize("DGNS.Bonus").toUpperCase()}</b>: ${data.bonus}<br><br><b>${game.i18n.localize("DGNS.Legacy").toUpperCase()}</b>: ${data.legacy}<br><br><b>${game.i18n.localize("DGNS.Drawback").toUpperCase()}</b>: ${data.drawback}`;
 
         return {
@@ -192,7 +191,7 @@ export class DegenesisItem extends Item {
     _equipmentDropdownData()
     {
         let tags = [];
-        let data = duplicate(this.data.data);
+        let data = foundry.utils.deepClone(this.data.data);
         let text = `${data.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
        console.log(this)
         tags.push(`${game.i18n.localize("DGNS.Group")}: ${DEGENESIS.equipmentGroups[data.group]}`)
@@ -262,7 +261,7 @@ export class DegenesisItem extends Item {
 
     static matchAmmo(weapon, ammo)
     {
-        let ammoName = DEGENESIS.calibers[weapon.data.caliber]
+        let ammoName = DEGENESIS.calibers[weapon.caliber]
         let matchingCalibers = ammo.filter(a => a.name == ammoName)
         return matchingCalibers
     }
@@ -285,4 +284,56 @@ export class DegenesisItem extends Item {
         })
         return qualitiesFormatted
     }
+
+
+
+    // @@@@@@@@ GETTERS @@@@@@@@@@
+
+
+    get description()    {return this.data.data.description}
+    get equipped()       {return this.data.data.equipped}
+    get quantity()       {return this.data.data.quantity}
+    get damage()         {return this.data.data.damage}
+    get damageType()     {return this.data.data.damageType}
+    get qualities()      {return this.data.data.qualities}
+    get encumbrance()    {return this.data.data.encumbrance}
+    get tech()           {return this.data.data.tech}
+    get slots()          {return this.data.data.slots}
+    get value()          {return this.data.data.value}
+    get resources()      {return this.data.data.resources}
+    get cult()           {return this.data.data.cult}
+    get location()       {return this.data.data.location}
+    get handling()       {return this.data.data.handling}
+    get damageBonus()    {return this.data.data.damageBonus}
+    get distance()       {return this.data.data.distance}
+    get mag()            {return this.data.data.mag}
+    get group()          {return this.data.data.group}
+    get caliber()        {return this.data.data.caliber}
+    get AP()             {return this.data.data.AP}
+    get effect()         {return this.data.data.effect}
+    get mode()           {return this.data.data.mode}
+    get transportValue() {return this.data.data.transportValue}
+    get droppable()      {return this.data.data.droppable}
+    get dropped()        {return this.data.data.dropped}
+    get augmentation()   {return this.data.data.augmentation}
+    get slotCost()       {return this.data.data.slotCost}
+    get changes()        {return this.data.data.changes}
+    get modType()        {return this.data.data.modType}
+    get prerequisite()   {return this.data.data.prerequisite}
+    get rules()          {return this.data.data.rules}
+    get origin()         {return this.data.data.origin}
+    get level()          {return this.data.data.level}
+    get action()         {return this.data.data.action}
+    get number()         {return this.data.data.number}
+    get type()           {return this.data.data.type}
+    get disabled()       {return this.data.data.disabled}
+    get enabled()        {return !this.data.data.disabled}
+    get defense()        {return this.data.data.defense}
+    get attack()         {return this.data.data.attack}
+    get cost()           {return this.data.data.cost}
+    get rating()         {return this.data.data.rating}
+    get bonus()          {return this.data.data.bonus}
+    get legacy()         {return this.data.data.legacy}
+    get drawback()       {return this.data.data.drawback}
+
 }

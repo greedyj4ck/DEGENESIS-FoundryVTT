@@ -41,7 +41,7 @@
             <select name="data.type">
                 {{#select data.type}}
                 <option value="">-</option>
-                {{#each modifyTypes as |type t|}}
+                {{#each (config "modifyTypes") as |type t|}}
                 <option value="{{t}}">{{type}}</option>
                 {{/each}}
                 {{/select}}
@@ -49,7 +49,7 @@
         </div>
         {{/if}}
 
-        {{#if customAction}}
+        {{#if (eq data.data.action "custom")}}
         <div class = "form-group">
             <label>Action Description</label>
             <textarea name="data.description">{{data.description}}</textarea>

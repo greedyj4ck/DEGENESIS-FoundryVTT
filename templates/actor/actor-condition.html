@@ -19,20 +19,20 @@
 
       <div class="ego bar-group">
          <div class="diamond-row bar" data-target="data.condition.ego.value">
-            {{#each ego.diamonds as |diamond index|}}
-            {{#if diamond.locked}}
-            <div class="diamond" data-index={{index}}>
-               <div class="square black"></div>
-            </div>
-            {{else if diamond.filled}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square"></div>
-            </a>
-            {{/if}}
+            {{#each data.condition.ego.diamonds as |diamond index|}}
+               {{#if diamond.locked}}
+               <div class="diamond" data-index={{index}}>
+                  <div class="square black"></div>
+               </div>
+               {{else if diamond.filled}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square red"></div>
+               </a>
+               {{else}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square"></div>
+               </a>
+               {{/if}}
             {{/each}}
          </div>
          <div class="text condition-title">
@@ -42,24 +42,24 @@
 
       <div class="spore bar-group">
          <div class="diamond-row bar" data-target="data.condition.spore.value">
-            {{#each spore.diamonds as |diamond index|}}
-            {{#if diamond.locked}}
-            <div class="diamond" data-index={{index}}>
-               <div class="square black"></div>
-            </div>
-            {{else if diamond.permanent}}
-            <a class="diamond perma" data-index={{index}}>
-               <div class="square red perma" data-index={{index}}><div class="square-into black mid-size"></div></div>
-            </a>
-            {{else if diamond.filled}}
-            <a class="diamond perma" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square"></div>
-            </a>
-            {{/if}}
+            {{#each data.condition.spore.diamonds as |diamond index|}}
+               {{#if diamond.locked}}
+               <div class="diamond" data-index={{index}}>
+                  <div class="square black"></div>
+               </div>
+               {{else if diamond.permanent}}
+               <a class="diamond perma" data-index={{index}}>
+                  <div class="square red perma" data-index={{index}}><div class="square-into black mid-size"></div></div>
+               </a>
+               {{else if diamond.filled}}
+               <a class="diamond perma" data-index={{index}}>
+                  <div class="square red"></div>
+               </a>
+               {{else}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square"></div>
+               </a>
+               {{/if}}
             {{/each}}
          </div>
          <div class="text condition-title">
@@ -69,20 +69,20 @@
 
       <div class="fleshwounds bar-group">
          <div class="diamond-row bar" data-target="data.condition.fleshwounds.value">
-            {{#each fleshwounds.diamonds as |diamond index|}}
-            {{#if diamond.locked}}
-            <div class="diamond" data-index={{index}}>
-               <div class="square black"></div>
-            </div>
-            {{else if diamond.filled}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square"></div>
-            </a>
-            {{/if}}
+            {{#each data.condition.fleshwounds.diamonds as |diamond index|}}
+               {{#if diamond.locked}}
+               <div class="diamond" data-index={{index}}>
+                  <div class="square black"></div>
+               </div>
+               {{else if diamond.filled}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square red"></div>
+               </a>
+               {{else}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square"></div>
+               </a>
+               {{/if}}
             {{/each}}
          </div>
          <div class="text condition-title">
@@ -92,20 +92,20 @@
 
       <div class="trauma bar-group">
          <div class="diamond-row bar" data-target="data.condition.trauma.value">
-            {{#each trauma.diamonds as |diamond index|}}
-            {{#if diamond.locked}}
-            <div class="diamond" data-index={{index}}>
-               <div class="square black"></div>
-            </div>
-            {{else if diamond.filled}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square red"></div>
-            </a>
-            {{else}}
-            <a class="diamond" data-index={{index}}>
-               <div class="square"></div>
-            </a>
-            {{/if}}
+            {{#each data.condition.trauma.diamonds as |diamond index|}}
+               {{#if diamond.locked}}
+               <div class="diamond" data-index={{index}}>
+                  <div class="square black"></div>
+               </div>
+               {{else if diamond.filled}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square red"></div>
+               </a>
+               {{else}}
+               <a class="diamond" data-index={{index}}>
+                  <div class="square"></div>
+               </a>
+               {{/if}}
             {{/each}}
          </div>
          <div class="text condition-title">
@@ -123,7 +123,7 @@
          <div class="modifiers-data conditions-data">
             <ol class="modifiers-ol conditions-ol">
             {{#each actor.modifiers as |mod m|}}
-               <li class="conditions-li modifiers-li item" data-item-id="{{mod._id}}" {{#if mod.data.disabled}} style="opacity : 0.5" {{/if}}>
+               <li class="conditions-li modifiers-li item" data-item-id="{{modid}}" {{#if mod.data.disabled}} style="opacity : 0.5" {{/if}}>
                   <div class="conditions-characteristics">
                         {{#if mod.data.disabled}}
                           <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.disabled"><div class="square-into"></div></a>
@@ -161,7 +161,7 @@
          <div class="complications-data conditions-data">
             <ol class="complications-ol conditions-ol">
             {{#each actor.complications as |complication c|}}
-               <li class="complications-li conditions-li item" data-item-id="{{complication._id}}">
+               <li class="complications-li conditions-li item" data-item-id="{{complicationid}}">
                   <div class="conditions-characteristics">
                      {{#if ../isGM}}
                      <div class='item-data'>

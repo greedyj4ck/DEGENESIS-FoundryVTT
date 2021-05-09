@@ -96,7 +96,7 @@
             <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
             <div class="diamond-position">
                <div class = "diamond-row" data-target="data.state.cover.value">
-                  {{#each cover.diamonds as |diamond index|}}
+                  {{#each data.state.cover.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
                   {{else}}
@@ -110,7 +110,7 @@
             <a class="general-name checkbox">{{localize "DGNS.SpendEgo"}}: </a>
             <div class="diamond-position">
                 <div class = "diamond-row" data-target="data.state.spentEgo.value">
-                    {{#each spentEgo.diamonds as |diamond index|}}
+                    {{#each data.state.spentEgo.diamonds as |diamond index|}}
                         {{#if diamond.filled}}
                             <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
                         {{else}}
@@ -174,7 +174,7 @@
       </div>
       <div class="arsenal-list item-list">
          {{#each actor.meleeWeapons as |weapon w|}}
-         <div class="weapon item" data-item-id="{{weapon._id}}">
+         <div class="weapon item" data-item-id="{{weaponid}}">
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses">
@@ -246,7 +246,7 @@
          </div>
          <div class="arsenal-list item-list">
             {{#each actor.rangedWeapons as |weapon w|}}
-            <div class="weapon item" data-item-id="{{weapon._id}}">
+            <div class="weapon item" data-item-id="{{weaponid}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses-ranged">
@@ -319,7 +319,7 @@
          </div>
          <div class="arsenal-list item-list">
             {{#each actor.sonicWeapons as |weapon w|}}
-            <div class="weapon item" data-item-id="{{weapon._id}}">
+            <div class="weapon item" data-item-id="{{weaponid}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses-ranged-sonic">
@@ -380,7 +380,7 @@
 
       <div class="arsenal-list item-list">
          {{#each actor.equippedArmor as |armor a|}}
-         <div class="armor item" data-item-id="{{armor._id}}">
+         <div class="armor item" data-item-id="{{armorid}}">
             <a class="armor-name">{{armor.name}}</a>
             <div class="armor-characteristics">
                <div class="legend-name armor-value">

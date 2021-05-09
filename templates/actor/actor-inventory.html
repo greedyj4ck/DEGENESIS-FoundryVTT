@@ -84,7 +84,7 @@
       </div>      
    <div class="inventory-list item-list">
       {{#each section.items as |item w|}}
-      <div class="weapon item" data-item-id="{{item._id}}">
+      <div class="weapon item" data-item-id="{{itemid}}">
          <a class="weapon-name dropdown">{{item.name}}</a>
          <div class="weapon-characteristics">
             {{#if ../toggleable}}
@@ -169,7 +169,7 @@
    </div>      
 <div class="inventory-list item-list">
    {{#each actor.transportation.items as |item w|}}
-      <div class="weapon item transport-drop" data-item-id="{{item._id}}" {{#if item.data.dropped}} style="opacity: 0.5" {{/if}}>
+      <div class="weapon item transport-drop" data-item-id="{{itemid}}" {{#if item.data.dropped}} style="opacity: 0.5" {{/if}}>
       <a class="weapon-name dropdown">{{item.name}}</a>
       <div class="weapon-characteristics">
          <div class="legend-name equipped">
@@ -203,7 +203,7 @@
          <div class="item-summary">
             <div class="tags">
                {{#each item.items as |containerItem i|}}
-               <a class="tag container-item" data-item-id="{{containerItem._id}}">{{containerItem.name}} ({{containerItem.data.encumbrance}})</a>
+               <a class="tag container-item" data-item-id="{{containerItemid}}">{{containerItem.name}} ({{containerItem.data.encumbrance}})</a>
                {{/each}}
             </div>
          </div>
@@ -255,7 +255,7 @@
             </div>
    <div class="inventory-list item-list">
       {{#each inventory.armor.items as |armor w|}}
-      <div class="armor item" data-item-id="{{armor._id}}">
+      <div class="armor item" data-item-id="{{armorid}}">
          <a class="armor-name dropdown">{{armor.name}}</a>
          <div class="armor-characteristics">
             <div class="legend-name equipped">

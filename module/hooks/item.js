@@ -4,7 +4,7 @@ export default function () {
     Hooks.on("deleteOwnedItem", (actor, item) => {
         if (item.type == "transportation")
         {
-            let items = duplicate(actor.data.items.filter(i => i.data.location  == item._id));
+            let items = foundry.utils.deepClone(actor.data.items.filter(i => i.data.location  == itemid));
             items.forEach(i => i.data.location = "");
             console.log(items);
             actor.updateEmbeddedEntity("OwnedItem", items);

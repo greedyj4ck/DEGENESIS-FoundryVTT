@@ -64,9 +64,9 @@ Hooks.once("init", async function () {
   ]);
 
   // Assign the actor class to the CONFIG
-  CONFIG.Actor.entityClass = DegenesisActor;
-  CONFIG.Item.entityClass = DegenesisItem;
-  CONFIG.Combat.entityClass = DegenesisCombat;
+  CONFIG.Actor.documentClass = DegenesisActor;
+  CONFIG.Item.documentClass = DegenesisItem;
+  CONFIG.Combat.documentClass = DegenesisCombat;
 
 
   game.degenesis = {
@@ -92,7 +92,7 @@ Hooks.once("init", async function () {
       fetch("systems/degenesis/tb_weapons_melee.json").then(r => r.json().then(json => {
       for (let item of json.items)
       {
-        let itemData = duplicate(game.system.model.Item.weapon)
+        let itemData = foundry.utils.deepClone(game.system.model.Item.weapon)
         itemData.cult = item.cult.join(", ")
         itemData.damage = item.damage
         itemData.description = item.description

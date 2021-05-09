@@ -35,10 +35,10 @@
                 <select name="data.group" data-dtype="String">
                     <option value="{{g}}">{{group}}</option>
                     {{#select data.group}}
-                    {{#each weaponGroups as |group g|}}
+                    {{#each (config "weaponGroups") as |group g|}}
                     <option value="{{g}}">{{group}}</option>
                     {{/each}}
-                    {{#each equipmentGroups as |group g|}}
+                    {{#each (config "equipmentGroups") as |group g|}}
                     <option value="{{g}}">{{group}}</option>
                     {{/each}}
                     {{/select}}
@@ -49,7 +49,7 @@
                 <select name="data.tech" data-dtype="Number">
                     <option value="">-</option>
                     {{#select data.tech}}
-                    {{#each techValues as |tech t|}}
+                    {{#each (config "techValues") as |tech t|}}
                     <option value="{{t}}">{{tech}}</option>
                     {{/each}}
                     {{/select}}

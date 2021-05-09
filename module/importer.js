@@ -27,7 +27,7 @@ export class DegenesisImporter
           },
             body : "uid="+id
         })
-        let actor = { name : "", data : duplicate(game.system.model.Actor.character)}
+        let actor = { name : "", data : foundry.utils.deepClone(game.system.model.Actor.character)}
         let importString = await response.text();
         let importValues = importString.split("|")
         actor.name = importValues[1]

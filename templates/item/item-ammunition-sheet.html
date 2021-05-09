@@ -67,7 +67,7 @@
                         <select class="damageBonus-select" name="data.damageBonus" data-dtype="String">
                             <option value=""></option>
                             {{#select data.damageBonus}}
-                            {{#each damageModifiers as |modifier bonus|}}
+                            {{#each (config "damageModifiers") as |modifier bonus|}}
                             <option value="{{bonus}}">{{modifier.blueprint}}</option>
                             {{/each}}
                             {{/select}}
@@ -81,7 +81,7 @@
                         <select name="data.caliber" data-dtype="String">
                             <option value="">-</option>
                             {{#select data.caliber}}
-                            {{#each calibers as |caliber c|}}
+                            {{#each (config "calibers") as |caliber c|}}
                             <option value="{{c}}">{{caliber}}</option>
                             {{/each}}
                             {{/select}}
@@ -164,7 +164,7 @@
                    <div class="mods-data conditions-data">
                       <ol class="mods-ol conditions-ol">
                       {{#each mods as |mod m|}}
-                         <li class="mods-li conditions-li item" data-item-id="{{mod._id}}">
+                         <li class="mods-li conditions-li item" data-item-id="{{modid}}">
                             <div class="conditions-characteristics">
                                {{#if ../isGM}}
                                <div class='item-data'>

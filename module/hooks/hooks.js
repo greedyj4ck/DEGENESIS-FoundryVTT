@@ -1,13 +1,15 @@
-import actor from "./actor.js"
-import chat from "./chat.js"
-import context from "./context.js"
+import actorHooks from "./actor.js"
+import chatHooks from "./chat.js"
+import contextHooks from "./context.js"
 import tokenOverrides from "./tokenOverrides.js"
-import item from "./item.js";
+import itemHooks from "./item.js";
+import handlebars from "./handlebars.js"
 
 export default function () {
-    actor();
-    item();
-    chat();
-    context();
+    actorHooks();
+    itemHooks();
+    chatHooks();
+    contextHooks();
     tokenOverrides();
+    handlebars();
 }

@@ -14,7 +14,7 @@ export class DegenesisCombat extends Combat {
         // Iterate over Combatants, performing an initiative roll for each
         const updates = ids.reduce((updates, id) => {
             const c = this.getCombatant(id);
-            if (!c || !c.owner) return updates;
+            if (!c || !c.isOwner) return updates;
             const actor = c.actor;
             const initiativeValue = DegenesisCombat.rollInitiative(actor);
             updates.push({_id: id, initiative: initiativeValue});
@@ -25,8 +25,8 @@ export class DegenesisCombat extends Combat {
         await this.updateEmbeddedEntity("Combatant", updates);
         // Ensure the turn order remains with the same combatant
         if (updateTurn) {
-            const currentId = this.combatant._id;
-            await this.update({turn: this.turns.findIndex(t => t._id === currentId)});
+            const currentId = this.combatantid;
+            await this.update({turn: this.turns.findIndex(t => tid === currentId)});
         }
         return this;
     }
@@ -59,11 +59,11 @@ export class DegenesisCombat extends Combat {
                 newEgo = actor.data.data.condition.ego.max;
             // Create a "modifier" item to give a bonus on the first roll.
             // Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
-            let spentEgoActionModifier = duplicate(DEGENESIS.systemItems.spentEgoActionModifier)
+            let spentEgoActionModifier = foundry.utils.deepClone(DEGENESIS.systemItems.spentEgoActionModifier)
             spentEgoActionModifier.data.number = spentEgo;
             spentEgoActionModifier.name = "Spent Ego Bonus"
-            actor.createEmbeddedEntity("OwnedItem", spentEgoActionModifier).then(i => {
-                actor.setFlag("degenesis", "spentEgoActionModifier", i._id)
+            actor.createEmbeddedDocuments("Item", [spentEgoActionModifier]).then(i => {
+                actor.setFlag("degenesis", "spentEgoActionModifier", iid)
                 ui.notifications.notify("Ego Spent Action Modifier Added")
             })
             cardData.spentEgo = spentEgo;
