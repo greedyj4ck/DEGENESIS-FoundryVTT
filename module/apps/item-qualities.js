@@ -21,7 +21,7 @@ export class ItemQualities extends BaseEntitySheet {
 
     constructor(object, options) {
       super(object, options)
-      this.tempData = foundry.utils.deepClone(this.object.data)
+      this.tempData = this.object.toObject()
       this.qualityType = this.object.type
 
     }
@@ -42,7 +42,7 @@ export class ItemQualities extends BaseEntitySheet {
       let qualityValues;
 
       if (this.qualityType == "mod")
-        this.qualityType = this.object.data.data.modType
+        this.qualityType = this.object.modType
 
       qualityList = DEGENESIS[`${this.qualityType}Qualities`]
       qualityDescriptions = DEGENESIS[`${this.qualityType}QualityDescription`]

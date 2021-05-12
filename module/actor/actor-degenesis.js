@@ -32,31 +32,32 @@ export class DegenesisActor extends Actor {
         }
     }
   
+
+    //#region Data Preparation
     prepareData() 
     {
         try
         {
             super.prepareData();
-            const data = this.data;
+            const data = this.data.data;
             this.itemCategories = this.itemTypes
             this.modifiers = new ModifierManager(this);
-            //setProperty(this.data.flags, "degenesis.modifiers", modifiers)
     
-            data.data.condition.ego.max =           data.data.condition.ego.override || (this.focusOrPrimal.value + data.data.attributes[this.focusOrPrimal.attribute].value) * 2;
-            data.data.condition.spore.max =         data.data.condition.spore.override || (this.faithOrWillpower.value + data.data.attributes[this.faithOrWillpower.attribute].value) * 2
-            data.data.condition.fleshwounds.max =   data.data.condition.fleshwounds.override || (data.data.attributes.body.value + data.data.skills.toughness.value) * 2 
-            data.data.condition.trauma.max =        data.data.condition.trauma.override || (data.data.attributes.body.value + data.data.attributes.psyche.value);
-            data.data.general.encumbrance.max =     data.data.general.encumbrance.override || (data.data.attributes.body.value + data.data.skills.force.value);
+           data.condition.ego.max =           data.condition.ego.override || (this.focusOrPrimal.value + data.attributes[this.focusOrPrimal.attribute].value) * 2;
+           data.condition.spore.max =         data.condition.spore.override || (this.faithOrWillpower.value + data.attributes[this.faithOrWillpower.attribute].value) * 2
+           data.condition.fleshwounds.max =   data.condition.fleshwounds.override || (data.attributes.body.value + data.skills.toughness.value) * 2 
+           data.condition.trauma.max =        data.condition.trauma.override || (data.attributes.body.value + data.attributes.psyche.value);
+           data.general.encumbrance.max =     data.general.encumbrance.override || (data.attributes.body.value + data.skills.force.value);
 
             this.prepareItems();
             this.modifiers.addEncumbranceModifiers(this)
 
-            data.data.general.actionModifier = modifiers.action.D
-            data.data.general.movement =        data.data.attributes.body.value + data.data.skills.athletics.value + (getProperty(this.data.flags, "degenesis.modifiers.movement") || 0);      
-            data.data.fighting.initiative =     data.data.attributes.psyche.value + data.data.skills.reaction.value + modifiers.action.D + modifiers.initiative.D;
-            data.data.fighting.dodge =          data.data.attributes.agility.value + data.data.skills.mobility.value + modifiers.action.D + modifiers.dodge.D;
-            data.data.fighting.mentalDefense =  data.data.attributes.psyche.value + this.faithOrWillpower.value + modifiers.action.D + modifiers.mentalDefense.D;
-            data.data.fighting.passiveDefense = 1 + data.data.state.cover.value + (data.data.state.motion ? 1 : 0) + (data.data.state.active ? 1 : 0) + (getProperty(this.data.flags, "degenesis.modifiers.p_defense") || 0);
+            data.general.actionModifier = this.modifiers.action.D
+            data.general.movement =        data.attributes.body.value + data.skills.athletics.value + (this.modifiers.movement || 0)
+            data.fighting.initiative =     data.attributes.psyche.value + data.skills.reaction.value + this.modifiers.action.D + this.modifiers.initiative.D;
+            data.fighting.dodge =          data.attributes.agility.value + data.skills.mobility.value + this.modifiers.action.D + this.modifiers.dodge.D;
+            data.fighting.mentalDefense =  data.attributes.psyche.value + this.faithOrWillpower.value + this.modifiers.action.D + this.modifiers.mentalDefense.D;
+            data.fighting.passiveDefense = 1 + data.state.cover.value + (data.state.motion ? 1 : 0) + (data.state.active ? 1 : 0) + (this.modifiers.p_defense || 0);
 
         }
         catch(e)
@@ -64,250 +65,90 @@ export class DegenesisActor extends Actor {
             console.error(e);
         }
     }
-    
+     
 
-
-    
-
-   
-    get faithOrWillpower()
-    {
-        if (this.data.data.skills.willpower.value)
-            return this.data.data.skills.willpower
-        else if (this.data.data.skills.faith.value)
-            return this.data.data.skills.faith
-        else return this.data.data.skills.willpower
-    }
-
-    get focusOrPrimal(){
-        if (this.data.data.skills.focus.value)
-            return this.data.data.skills.focus
-        else if (this.data.data.skills.primal.value)
-            return this.data.data.skills.primal
-        else return this.data.data.skills.focus
-    }
 
 
     prepareItems() {
-        this.itemCategories
-        let inventory = {
-            weapons: { header: game.i18n.localize("DGNS.Weapons"), type: 'weapon', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
-            armor: { header: game.i18n.localize("DGNS.Armor"), type: 'armor', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Worn") },
-            shields: { header: game.i18n.localize("DGNS.Shields"), type: 'shield', items: [], toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
-            ammunition: { header: game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items: [] },
-            equipment: { header: game.i18n.localize("DGNS.Equipments"), type: 'equipment', items: [] },
-            mods: { header: game.i18n.localize("DGNS.Mods"), type: 'mod', items: [] },
-            /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
-            technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
-            medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
-            elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), type: 'elysianOil', items : []},
-            burn : {header : game.i18n.localize("DGNS.Burn"), type: 'burn', items : []},
-            primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
-            other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},*/
-            artifact: { header: game.i18n.localize("DGNS.Artifact"), type: 'artifact', items: [] },
+
+        let encumbrance = this.general.encumbrance
+
+        let armor = {
+            equipment : 0,
+            modifier : 0,
         }
 
-        let transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: [], toggleDisplay: game.i18n.localize("DGNS.Dropped") } // Separate transportation from inventory because it has a different format
-        let potentials = [];
-        let modifiers = [];
-        let legacies = [];
-        let complications = [];
-        let meleeWeapons = [];
-        let rangedWeapons = [];
-        let sonicWeapons = [];
-        let equippedArmor = [];
-        let equippedShields = [];
-        let encumbrance = actorData.data.general.encumbrance;
-        let totalArmor = actorData.data.general.combat;
-        let equipmentArmor = 0;
-        let modifierArmor = 0;
-
         let inContainers = [];
-
-        for (let i of actorData.items) {
-            if (i.data.location)
+        for (let i of this.items) 
+        {
+            i.prepareOwnedData()
+            if (i.location)
             {
                 inContainers.push(i);
                 continue
             }
-
-            if (i.type == "weapon") {
-                inventory.weapons.items.push(i);
-                encumbrance.current += i.data.encumbrance * i.data.quantity
+            else if (i.encumbrance && i.type != "transportation")
+            {
+                encumbrance.current += i.encumbrance * i.quantity
             }
-            if (i.type == "armor") {
-                inventory.armor.items.push(i);
-                if (i.data.equipped) {
-                    equippedArmor.push(this.prepareArmor(i));
 
-                    if (equipmentArmor == 0) {
-                        equipmentArmor += i.data.AP;
-                    }
-                    else if (equipmentArmor <= 3 && i.data.AP <= equipmentArmor) {
-                        equipmentArmor += 1;
-                    }
-                    else if (equipmentArmor <= 3 && i.data.AP >= equipmentArmor) {
-                        equipmentArmor = i.data.AP + 1;
-                    }
-                    else if (i.data.AP >= equipmentArmor && equipmentArmor >= 4) {
-                        equipmentArmor = i.data.AP;
-                    }  
+            if (i.type == "armor" && i.equipped)
+            {
+                if (armor.equipment == 0) {
+                    armor.equipment += i.data.AP;
                 }
-                encumbrance.current += i.data.encumbrance * i.data.quantity
+                else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
+                    armor.equipment += 1;
+                }
+                else if (armor.equipment <= 3 && i.AP >= armor.equipment) {
+                    armor.equipment = i.AP + 1;
+                }
+                else if (i.AP >= armor.equipment && armor.equipment >= 4) {
+                    armor.equipment = i.AP;
+                }  
             }
-            if (i.type == "shield") {
-                inventory.shields.items.push(i);
-                if (i.data.equipped)
-                    equippedShields.push(this.prepareShield(i));
-                encumbrance.current += i.data.encumbrance * i.data.quantity
-            }
-            if (i.type == "equipment") {
-                inventory.equipment.items.push(i);
-                encumbrance.current += i.data.encumbrance * i.data.quantity
 
-            }
-            if (i.type == "ammunition") {
-                inventory.ammunition.items.push(i);
-            }
-            if (i.type == "transportation") {
-                transportation.items.push(i);
-            }
-            if (i.type == "potential") {
-                potentials.push(this.preparePotential(i));
-            }
             if (i.type == "modifier") {
-                modifiers.push(this.prepareModifier(i));
-                if (i.data.action == "armor") {
-                    modifierArmor += i.data.number;
+                if (i.action == "armor") {
+                    armor.modifier += i.modifyNumber;
                 }
             }
-            if (i.type == "mod") {
-                inventory.mods.items.push(i);
-            }
-            if (i.type == "complication") {
-                complications.push(i);
-            }
-            if (i.type == "legacy") {
-                legacies.push(i);
-            }
         }
 
-        for (let wep of inventory.weapons.items) {
-            if (wep.data.equipped) {
-                let weapon = this.prepareWeapon(wep, inventory.ammunition.items);
-                if (weapon.isSonic)
-                    sonicWeapons.push(weapon);
-                else if (weapon.isMelee)
-                    meleeWeapons.push(weapon);
-                else
-                    rangedWeapons.push(weapon)
-            }
-        }
-
-        transportation.items.map(i => encumbrance.current += this.prepareTransport(i))
+        this.getItemTypes("transportation").map(i => encumbrance.current += this.processTransportation().total)
 
         encumbrance.pct = encumbrance.current / encumbrance.max * 100;
+
         if (encumbrance.pct > 100) {
-            encumbrance.color = "var(--degenesis-red)";
+            encumbrance.over = true// = "var(--degenesis-red)";
         } else {
-            encumbrance.color = "black";
+            encumbrance.over = false;
         }
 
-        totalArmor = equipmentArmor + modifierArmor;
+        this.general.armor += armor.equipment + armor.modifier
 
-        mergeObject(this.data,
-            {
-                inventory,
-                transportation,
-                meleeWeapons,
-                rangedWeapons,
-                legacies,
-                sonicWeapons,
-                equippedArmor,
-                potentials,
-                modifiers,
-                complications,
-                encumbrance,
-                totalArmor
-            })
-    }
-
-    preparePotential(potential) {
-        DEG_Utility.addDiamonds(potential, 3, "data.level")
-        return potential
-    }
-    
-    prepareModifier(modifier) {
-        modifier.actionType = DEG_Utility.getModificationActions()[modifier.data.action]
-        modifier.modifyType = DEGENESIS.modifyTypes[modifier.data.type]
-        if(modifier.data.number>0){
-            modifier.displayNumber = '+'+modifier.data.number;
-        }
-        else {
-            modifier.displayNumber = modifier.data.number;
-        }
-        return modifier
-    }
-
-    prepareWeapon(weapon, ammo = []) {
-        weapon.isMelee = DegenesisItem.isMelee(weapon);
-        weapon.isSonic = DegenesisItem.isSonic(weapon);
-        weapon.isRanged = DegenesisItem.isRanged(weapon);
-        let skill = this.data.data.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]]
-        if (!weapon.isSonic)
-        {
-            weapon.attackDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
-            weapon.defenseDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "defense").diceModifier
-        }
-        weapon.qualities = weapon.data.qualities.map(q => { return {
-                                                                key : q.name,
-                                                                display : [q.values.length ? DEGENESIS.weaponQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.weaponQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
-                                                            }
-                                                         })
-
-        if (weapon.isRanged)
-        {
-            weapon.caliber = DEGENESIS.calibers[weapon.data.caliber]
-            weapon.totalAvailableAmmo = DegenesisItem.totalAmmoAvailable(weapon, ammo)
-            weapon.effectiveDice = skill.value + this.data.data.attributes[skill.attribute].value + weapon.data.handling + this.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[weapon.data.group], "attack").diceModifier
-            weapon.farDice = weapon.effectiveDice - 4 > 0  ? weapon.effectiveDice - 4 : 0 
-            weapon.extremeDice = weapon.effectiveDice - 8 > 0  ? weapon.effectiveDice - 8 : 0 
-        }
-        weapon.damageFormula = DegenesisItem.damageFormula(weapon.data);
-        weapon.damageType = game.i18n.localize(DEGENESIS.damageTypes[weapon.data.damageType])
-
-        return weapon
     }
 
     prepareArmor(armor) {
-        armor.qualities = armor.data.qualities.map(q => { return {
-            key : q.name,
-            display : [q.values.length ? DEGENESIS.armorQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.armorQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
-        }
-     })
-        return armor
+    //     armor.qualities = armor.data.qualities.map(q => { return {
+    //         key : q.name,
+    //         display : [q.values.length ? DEGENESIS.armorQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.armorQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
+    //     }
+    //  })
+    //     return armor
     }   
     prepareShield(shield) {
-        shield.qualities = shield.data.qualities.map(q => { return {
-            key : q.name,
-            display : [q.values.length ? DEGENESIS.shieldQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.shieldQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
-        }
-     })
-        return shield
+    //     shield.qualities = shield.data.qualities.map(q => { return {
+    //         key : q.name,
+    //         display : [q.values.length ? DEGENESIS.shieldQualities[q.name] + " (" + q.values.map(v => `${v.value}`).join(", ")+")" : DEGENESIS.shieldQualities[q.name] ] // Without the ternary, empty parentheses would be displayed if no quality values
+    //     }
+    //  })
+    //     return shield
     }  
 
-    prepareTransport(transportation) {
-        transportation.totalEnc = transportation.data.encumbrance;
-        transportation.items = this.data.items.filter(i => i.data.location == transportationid )
-        if (transportation.data.mode && !transportation.data.dropped)
-            transportation.totalEnc += game.degenesis.config.transportationEncumbranceCalculation[transportation.data.mode](transportation.items, transportation.data.transportValue)
-        else if (transportation.data.dropped)
-            transportation.totalEnc = 0;
-        return transportation.totalEnc;
-    }
+    //#endregion
 
-
-
+    //#region Roll Setup
     setupSkill(skill, options = {}) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
@@ -321,7 +162,7 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
+            actionNumber : this.getSkillTotal(skill)
         }
 
         //let rollResult = await DegenesisDice.rollAction(rollData)
@@ -330,7 +171,6 @@ export class DegenesisActor extends Actor {
 
     setupWeapon(weapon, options = {}) {
         let skill = DEGENESIS.weaponGroupSkill[weapon.data.group]
-        weapon = this.prepareWeapon(foundry.utils.deepClone(weapon));
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
             prefilled : this.modifiers.forDialog("weapon", skill, options.use),
@@ -339,10 +179,10 @@ export class DegenesisActor extends Actor {
         }
         dialogData.rollMethod = this.rollWeapon;
 
-        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[DEGENESIS.weaponGroupSkill[weapon.data.group]])
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[DEGENESIS.weaponGroupSkill[weapon.group]])
 
         let rollData = {
-            skill : this.data.data.skills[skill],
+            skill : this.skills[skill],
             actionNumber : options.use.includes("attack") ? weapon.attackDice : weapon.defenseDice,
             weapon : weapon
         }
@@ -378,11 +218,11 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.data.data.attributes[this.data.data.skills[skill].attribute].value + this.data.data.skills[skill].value
+            actionNumber : this.getSkillTotal(skill)
         }
 
         // Accounts for the action modifier
-        rollData.actionNumber = this.data.data.fighting[type]
+        rollData.actionNumber = this.fighting[type]
 
 
 
@@ -399,6 +239,9 @@ export class DegenesisActor extends Actor {
         }
     }
 
+    //#endregion
+
+    //#region Roll Processing
     async rollSkill(skill) 
     {
         let {dialogData, cardData, rollData} = this.setupSkill(skill)
@@ -421,10 +264,7 @@ export class DegenesisActor extends Actor {
         let {dialogData, cardData, rollData} = this.setupWeapon(weapon, options)
         rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
         let rollResults = await DegenesisDice.rollAction(rollData)
-        const bodyValue = this.data.data.attributes.body.value;
-        const forceValue = this.data.data.skills.force.value;
-        const bodyForceValue = bodyValue + forceValue;
-        const fullDamage = DegenesisItem.fullDamage(weapon.data, bodyForceValue, rollResults.triggers) + this.data.flags.degenesis.modifiers.damage;
+        const fullDamage = DegenesisItem.fullDamage(rollResults.triggers, {modifier : this.data.flags.degenesis.modifiers.damage})
         cardData.damageFull = `${fullDamage}`;
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
@@ -469,43 +309,72 @@ export class DegenesisActor extends Actor {
         if (type !== "initiative" && this.data.data.state.initiative.actions > 1)
             this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
     }
+    //#endregion
 
+    //#region Convenience Helpers
     getItemTypes(type)
     {
         return (this.itemCategories || this.itemTypes)[type]
     }
 
+    getSkillTotal(skill, options = {modifiers : false})
+    {
+        let total =  this.attributes[this.skills[skill].attribute].value + this.skills[skill].value
+        return options.modifiers ? total + this.modifiers.forDialog("skill", skill).diceModifier : total
+    }
+    //#endregion
 
-    get concept(){
-        return DEGENESIS.concepts[this.details.concept.value]
-    }
-    get cult(){
-        return DEGENESIS.cults[this.details.cult.value]
-    }
-    get culture(){
-        return DEGENESIS.cultures[this.details.culture.value]
-    }
-
-    get details() {
-        return this.data.data.details
-    }
-    get attributes() {
-        return this.data.data.attributes
-    }
-    get skills() {
-        return this.data.data.skills
-    }
-    get condition() {
-        return this.data.data.condition
-    }
-    get backgrounds() {
-        return this.data.data.backgrounds
-    }
-    get scars() {
-        return this.data.data.scars
-    }
-    get relationships() {
-        return this.data.data.relationships
+    //#region Getters
+    // @@@@@@@@ CALCULATION GETTERS @@@@@@
+    get faithOrWillpower() {
+        if (this.data.data.skills.willpower.value)
+            return this.data.data.skills.willpower
+        else if (this.data.data.skills.faith.value)
+            return this.data.data.skills.faith
+        else return this.data.data.skills.willpower
     }
 
+    get focusOrPrimal() {
+        if (this.data.data.skills.focus.value) return this.data.data.skills.focus
+        else if (this.data.data.skills.primal.value)
+            return this.data.data.skills.primal
+        else return this.data.data.skills.focus
+    }
+
+    // @@@@@@@@ FORMATTED GETTERS @@@@@@@@
+    get Concept() { return DEGENESIS.concepts[this.details.concept.value] }
+    get Cult() { return DEGENESIS.cults[this.details.cult.value] }
+    get Culture() { return DEGENESIS.cultures[this.details.culture.value] }
+
+    // @@@@@@@ ITEM GETTERS @@@@@@@@@
+    get weaponItems() {return this.getItemTypes("weapon")}
+    get armorItems() {return this.getItemTypes("armor")}
+    get equipmentItems() {return this.getItemTypes("equipment")}
+    get artifactItems() {return this.getItemTypes("artifact")}
+    get ammunitionItems() {return this.getItemTypes("ammunition")}
+    get transportationItems() {return this.getItemTypes("transportation")}
+    get modItems() {return this.getItemTypes("mod")}
+    get burnItems() {return this.getItemTypes("burn")}
+    get potentialItems() {return this.getItemTypes("potential")}
+    get modifierItems() {return this.getItemTypes("modifier")}
+    get shieldItems() {return this.getItemTypes("shield")}
+    get complicationItems() {return this.getItemTypes("complication")}
+    get legacyItems() {return this.getItemTypes("legacy")}
+
+    get meleeWeapons() { return this.weaponItems.filter(i => i.isMelee)}
+    get rangedWeapons() { return this.weaponItems.filter(i => i.isRanged)}
+    get sonicWeapons() { return this.weaponItems.filter(i => i.isSonic)}
+    
+    // @@@@@@@@ DATA GETTERS @@@@@@@@@@
+    get general() { return this.data.data.general}
+    get fighting() { return this.data.data.fighting}
+    get state() { return this.data.data.state}
+    get details() { return this.data.data.details}
+    get attributes() { return this.data.data.attributes}
+    get skills() { return this.data.data.skills}
+    get condition() { return this.data.data.condition}
+    get backgrounds() { return this.data.data.backgrounds}
+    get scars() { return this.data.data.scars}
+    get relationships() { return this.data.data.relationships}
+    //#endregion
 }

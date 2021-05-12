@@ -16,11 +16,11 @@ export default class ModifierManager
         let modifierArray = actor.getItemTypes("modifier").filter(i => i.enabled)
         this.custom = [];
         modifierArray.forEach(mod => {
-            if (mod.get("action") == "custom")
+            if (mod.action == "custom")
             {
                 this.custom.push(mod);
             }
-            else if (DEGENESIS.noType.includes(mod.get("action")))
+            else if (DEGENESIS.noType.includes(mod.action))
             {
                 if (!this[mod.action])
                     this[mod.action] = mod.number

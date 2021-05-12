@@ -164,8 +164,8 @@
          </div>
       </div>
       <div class="advantage-list item-list">
-         {{#each actor.potentials as |potential p|}}
-         <div class="advantage item" data-item-id={{potentialid}}>
+         {{#each actor.potentialItems as |potential p|}}
+         <div class="advantage item" data-item-id={{potential.id}}>
             <a class="potential-name dropdown">{{potential.name}}</a>
             <div class="potential-characteristics">
                <div class="origin">
@@ -174,7 +174,7 @@
                <div class="level">
                   <div class="diamond-position">
                      <div class="diamond-row" data-target="item" data-item-target="data.level">
-                        {{#each potential.diamonds as |diamond index|}}
+                        {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>
                            <div class="square black"></div>

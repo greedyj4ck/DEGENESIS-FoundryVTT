@@ -241,18 +241,6 @@ DEGENESIS.weaponGroups = {
   "sonic" : "DGNS.SonicWeapons"
 }
 
-DEGENESIS.weaponGroups = {
-  "brawl" : "DGNS.Brawl",
-  "armedMelee" : "DGNS.ArmedMelee",
-  "thrown" : "DGNS.ThrownWeapons",
-  "projectiles" : "DGNS.Projectiles",
-  "handguns" : "DGNS.Handguns",
-  "rifles" : "DGNS.Rifles",
-  "heavy" : "DGNS.HeavyWeapons",
-  "explosives" : "DGNS.Explosives",
-  "sonic" : "DGNS.SonicWeapons"
-}
-
 DEGENESIS.equipmentGroups = {
   "getting food" : "DGNS.GettingFood",
   "traps": "DGNS.Traps",

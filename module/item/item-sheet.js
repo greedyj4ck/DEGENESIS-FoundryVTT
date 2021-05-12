@@ -3,7 +3,7 @@ import { DEG_Utility } from "../utility.js";
 import { ItemQualities } from "../apps/item-qualities.js"
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
+ * Extend the basic ItemSheet with for Degenesis
  * @extends {ItemSheet}
  */
 export class DegenesisItemSheet extends ItemSheet {
@@ -31,7 +31,6 @@ export class DegenesisItemSheet extends ItemSheet {
     const data = super.getData();
     data.data = data.data.data
     this.processTypes(data)
-    mergeObject(data, this.item.prepareDisplayData())
     return data;
   }
 
@@ -63,100 +62,110 @@ export class DegenesisItemSheet extends ItemSheet {
 	activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".checkbox").click(ev => {
-      let itemData = foundry.utils.deepClone(this.item.data)
-      let target = $(ev.currentTarget).attr("data-target")
+    if (!this.options.editable) return;
 
-      if (target == "quality")
-      {
-        let quality = {}
-        quality.name = $(ev.currentTarget).attr("data-quality");
-        quality.values = foundry.utils.deepClone(DEGENESIS[`${this.item.type}QualitiesValues`][quality.name]);
-        
-        let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
-
-        for(let i = 0 ; i < valueInputs.length; i++)
-          quality.values[i] = {name : quality.values[i], value : valueInputs[i].value}
-
-        let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
-        if (qualities.find(q => q.name == quality.name))
-          qualities.splice(qualities.findIndex(q => q.name == quality.name), 1)
-        else
-          qualities.push(quality)
-
-        this.item.update({"data.qualities" : qualities})
-        return;
-      }
-
-      if (target)
-        setProperty(itemData, target, !getProperty(itemData, target))
-      this.item.update(itemData);
-    })
-
-    html.find(".quality-value").change(ev => {
-      let target = $(ev.currentTarget).parents(".quality-inputs").attr("data-quality");
-      let valueKey = $(ev.currentTarget).attr("data-value-key");
-      let qualities = foundry.utils.deepClone(this.item.data.data.qualities)
-      let existingQuality = qualities.find(q => q.name == target)
-      if (!existingQuality)
-        return
-      existingQuality.values.find(v => v.name == valueKey).value = ev.target.value
-      this.item.update({"data.qualities" : qualities});
-    })
-
+    html.find(".checkbox").click(ev, _onCheckboxClick.bind(this)) 
+    html.find(".quality-value").change(ev, _onQualityValueChange.bind(this)) 
+    html.find(".mod-delete").click(ev, _onModDelete.bind(this)) 
+    html.find(".mod-edit").click(ev, _onModEdit.bind(this)) 
+    html.find(".mod-control").click(ev, _onModControlClick.bind(this)) 
+    html.find(".mod-change").change(ev, _onModChanges.bind(this)) 
 
     html.find(".item-quality-config").click(ev => {
       new ItemQualities(this.item).render(true)
     })
 
-    html.find(".mod-delete").click(ev => {
-      let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
-      let mods = foundry.utils.deepClone(this.item.data.flags.degenesis.mods)
-      mods.splice(index, 1);
-      this.item.setFlag("degenesis", "mods", mods)
-    })
-
-    html.find(".mod-edit").click(ev => {
-      let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
-      let mod = this.item.data.flags.degenesis.mods[index]
-      ui.notifications.warn(game.i18n.localize("DGNS.ModEditWarning"))
-      new game.degenesis.entities.DegenesisItem(mod).sheet.render(true)
-    })
-
-
-
-    html.find(".mod-control").click(ev => {
-      let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
-      let action = $(ev.currentTarget).attr("data-action");
-      let changes = foundry.utils.deepClone(this.item.data.data.changes)
-      if (action=="delete")
-      {
-        changes.splice(index, 1)
-      }
-      else if (action=="add")
-      {
-        changes.push({key : "", mode : "", value : ""})
-      }
-      this.item.update({"data.changes" : changes})
-    })
-
-    html.find(".mod-change").change(ev => {
-      let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
-      let type = $(ev.currentTarget).attr("data-type");
-      let changes = foundry.utils.deepClone(this.item.data.data.changes)
-      let newValue = ev.target.value
-      if (Number.isNumeric(newValue))
-        newValue = Number(newValue)
-
-      changes[index][type] = newValue
-      this.item.update({"data.changes" : changes})
-    })
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
-
   }
 
-  /* -------------------------------------------- */
+  _onCheckboxClick(ev)
+  {
+    let itemData = foundry.utils.deepClone(this.item.data)
+    let target = $(ev.currentTarget).attr("data-target")
+
+    if (target == "quality")
+    {
+      let quality = {}
+      quality.name = $(ev.currentTarget).attr("data-quality");
+      quality.values = foundry.utils.deepClone(DEGENESIS[`${this.item.type}QualitiesValues`][quality.name]);
+      
+      let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
+
+      for(let i = 0 ; i < valueInputs.length; i++)
+        quality.values[i] = {name : quality.values[i], value : valueInputs[i].value}
+
+      let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
+      if (qualities.find(q => q.name == quality.name))
+        qualities.splice(qualities.findIndex(q => q.name == quality.name), 1)
+      else
+        qualities.push(quality)
+
+      this.item.update({"data.qualities" : qualities})
+      return;
+    }
+
+    if (target)
+      setProperty(itemData, target, !getProperty(itemData, target))
+    this.item.update(itemData);
+  }
+
+
+  _onQualityValueChange(ev)
+  {
+    let target = $(ev.currentTarget).parents(".quality-inputs").attr("data-quality");
+    let valueKey = $(ev.currentTarget).attr("data-value-key");
+    let qualities = foundry.utils.deepClone(this.item.data.data.qualities)
+    let existingQuality = qualities.find(q => q.name == target)
+    if (!existingQuality)
+      return
+    existingQuality.values.find(v => v.name == valueKey).value = ev.target.value
+    this.item.update({"data.qualities" : qualities});
+  }
+
+
+  _onModDelete(ev)
+  {
+    let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
+    let mods = foundry.utils.deepClone(this.item.data.flags.degenesis.mods)
+    mods.splice(index, 1);
+    this.item.setFlag("degenesis", "mods", mods)
+  }
+
+  _onModEdit(ev)
+  {
+    let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
+    let mod = this.item.data.flags.degenesis.mods[index]
+    ui.notifications.warn(game.i18n.localize("DGNS.ModEditWarning"))
+    new game.degenesis.entities.DegenesisItem(mod).sheet.render(true)
+  }
+
+
+  _onModControlClick(ev)
+  {
+    let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
+    let action = $(ev.currentTarget).attr("data-action");
+    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    if (action=="delete")
+    {
+      changes.splice(index, 1)
+    }
+    else if (action=="add")
+    {
+      changes.push({key : "", mode : "", value : ""})
+    }
+    this.item.update({"data.changes" : changes})
+  }
+
+  _onModChanges(ev)
+  {
+    let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
+    let type = $(ev.currentTarget).attr("data-type");
+    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    let newValue = ev.target.value
+    if (Number.isNumeric(newValue))
+      newValue = Number(newValue)
+
+    changes[index][type] = newValue
+    this.item.update({"data.changes" : changes})
+  }
 
 }

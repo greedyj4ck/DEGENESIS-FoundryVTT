@@ -103,7 +103,7 @@
                    <div class="mods-data conditions-data">
                       <ol class="mods-ol conditions-ol">
                       {{#each mods as |mod m|}}
-                         <li class="mods-li conditions-li item" data-item-id="{{modid}}">
+                         <li class="mods-li conditions-li item" data-item-id="{{mod.id}}">
                             <div class="conditions-characteristics">
                                {{#if ../isGM}}
                                <div class='item-data'>
@@ -135,7 +135,7 @@
                 </div>
              </div>
           
-             {{#if specialty}}
+             {{#if item.hasSpecialty}}
              {{localize "DGNS.Specialty"}}
              <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
              {{/if}}

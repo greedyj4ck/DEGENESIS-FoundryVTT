@@ -53,9 +53,11 @@ export class DegenesisActorSheet extends ActorSheet {
     prepareSheetData(sheetData) {
         sheetData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
 
-        sheetData.conceptIcon = this.actor.data.data.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.data.data.details.concept.value}.svg` : "systems/degenesis/icons/blank.png"
-        sheetData.cultIcon = this.actor.data.data.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.data.data.details.cult.value}.svg` : "systems/degenesis/icons/blank.png"
-        sheetData.cultureIcon = this.actor.data.data.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.data.data.details.culture.value}.svg` : "systems/degenesis/icons/blank.png"
+        sheetData.conceptIcon = this.actor.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg` : "systems/degenesis/icons/blank.png"
+        sheetData.cultIcon = this.actor.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.details.cult.value}.svg` : "systems/degenesis/icons/blank.png"
+        sheetData.cultureIcon = this.actor.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.details.culture.value}.svg` : "systems/degenesis/icons/blank.png"
+
+        sheetData.data.general.encumbrance.color = this.actor
 
         DEG_Utility.addDiamonds(sheetData.data.scars.infamy, 6)
         DEG_Utility.addDiamonds(sheetData.data.condition.ego, 24)
@@ -69,6 +71,8 @@ export class DegenesisActorSheet extends ActorSheet {
             DEG_Utility.addDiamonds(sheetData.data.backgrounds[bg], 6);
             sheetData.data.backgrounds[bg].label = game.i18n.localize(sheetData.data.backgrounds[bg].label).toUpperCase()
         }
+
+        sheetData.inventory = this.constructInventory()
 
     }
 
@@ -115,6 +119,26 @@ export class DegenesisActorSheet extends ActorSheet {
             }
         }
         return attributeSkillGroups;
+    }
+
+    constructInventory() {
+        return {        
+            weapons:     { header: game.i18n.localize("DGNS.Weapons"),     type: 'weapon',     items: this.actor.weaponItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            armor:       { header: game.i18n.localize("DGNS.Armor"),       type: 'armor',      items: this.actor.armorItems.filter(i => !i.inContainer),  toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Worn") },
+            shields:     { header: game.i18n.localize("DGNS.Shields"),     type: 'shield',     items: this.actor.shieldItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            ammunition:  { header: game.i18n.localize("DGNS.Ammunition"),  type: 'ammunition', items: this.actor.ammunitionItems.filter(i => !i.inContainer) },
+            equipment:   { header: game.i18n.localize("DGNS.Equipments"),  type: 'equipment',  items: this.actor.equipmentItems.filter(i => !i.inContainer) },
+            mods:        { header: game.i18n.localize("DGNS.Mods"),        type: 'mod',        items: this.actor.modItems.filter(i => !i.inContainer) },
+            artifact:    { header: game.i18n.localize("DGNS.Artifact"),    type: 'artifact',   items: this.actor.artifactItems.filter(i => !i.inContainer) },
+
+            /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
+            technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
+            medicalEquipment : {header : game.i18n.localize("DGNS.Medicine"), type: 'medicalEquipment', items : []},
+            elysianOils : {header : game.i18n.localize("DGNS.ElysianOils"), type: 'elysianOil', items : []},
+            burn : {header : game.i18n.localize("DGNS.Burn"), type: 'burn', items : []},
+            primalIngenuity : {header : game.i18n.localize("DGNS.PrimalIngenuity"), type: 'primalIngenuity', items : []},
+            other : {header : game.i18n.localize("DGNS.Other"), type: 'other', items : []},*/
+        }
     }
 
     _dropdown(event, dropdownData) {
@@ -266,11 +290,11 @@ export class DegenesisActorSheet extends ActorSheet {
         if (target == "item") {
             target = $(event.currentTarget).attr("data-item-target")
             let item = this.actor.items.get($(event.currentTarget).parents(".item").attr("data-item-id"))
-            item.update({ target: !getProperty(item.data, target) })
+            item.update({ [`${target}`]: !getProperty(item.data, target) })
             return;
         }
         if (target)
-            this.actor.update(target, !getProperty(actor.data, target));
+            this.actor.update({[`${target}`] : !getProperty(this.actor.data, target)});
     }
     _onRelationshipEdit(event) {
         let elem = $(event.currentTarget)
