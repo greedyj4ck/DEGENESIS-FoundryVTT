@@ -73,6 +73,7 @@ export class DegenesisActorSheet extends ActorSheet {
         }
 
         sheetData.inventory = this.constructInventory()
+        sheetData.arsenal = this.constructArnseal()
 
     }
 
@@ -141,6 +142,15 @@ export class DegenesisActorSheet extends ActorSheet {
         }
     }
 
+    constructArnseal() {
+        return {
+            meleeWeapons: this.actor.weaponItems.filter(i => i.isMelee && i.equipped && !i.inContainer),
+            rangedWeapons: this.actor.weaponItems.filter(i => i.isRanged && i.equipped && !i.inContainer),
+            sonicWeapons: this.actor.weaponItems.filter(i => i.isSonic && i.equipped && !i.inContainer),
+            armor : this.actor.armorItems.filter(i => i.equipped && !i.inCointaer)
+        }
+    }
+
     _dropdown(event, dropdownData) {
         let dropdownHTML = ""
         event.preventDefault()
@@ -185,7 +195,7 @@ export class DegenesisActorSheet extends ActorSheet {
             $(this).select();
         });
         // Update Inventory Item
-        html.find(".item-edit").click(this._onItemEdit.bind(this))
+        html.find(".item-edit,.weapon-name").click(this._onItemEdit.bind(this))
         html.find(".item-delete").click(this._onItemDelete.bind(this))
         html.find(".item-add").click(this._onItemCreate.bind(this))
         html.find(".item-post").click()
@@ -222,7 +232,7 @@ export class DegenesisActorSheet extends ActorSheet {
 
     _onItemEdit(event) {
         let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
-        this.actor.items.find(i => iid == itemId).sheet.render(true)
+        this.actor.items.get(itemId).sheet.render(true)
     }
     _onItemDelete(event) {
         let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
@@ -244,7 +254,7 @@ export class DegenesisActorSheet extends ActorSheet {
                 setProperty(itemData, target, index)
             else // Otherwise, value = index clicked 
                 setProperty(itemData, target, index + 1)
-            this.actor.updateEmbeddedDocuments("OwnedItem", [itemData])
+            this.actor.updateEmbeddedDocuments("Item", [itemData])
             return
         }
         let value = getProperty(actorData, target)
@@ -362,7 +372,7 @@ export class DegenesisActorSheet extends ActorSheet {
     async _onWeaponClick(event) {
         let weaponId = $(event.currentTarget).parents(".weapon").attr("data-item-id")
         let use = $(event.currentTarget).attr("data-use");
-        let weapon = this.actor.get(weaponId)
+        let weapon = this.actor.items.get(weaponId)
         let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
@@ -371,7 +381,7 @@ export class DegenesisActorSheet extends ActorSheet {
         let value = event.button == 0 ? 1 : -1
         value = event.ctrlKey ? value * 10 : value
         let item = this.actor.items.get(itemId)
-        let newQty = item.data.quantity + value
+        let newQty = item.quantity + value
         newQty = newQty < 0 ? 0 : newQty
         item.update({ "data.quantity": newQty })
     }

@@ -64,12 +64,12 @@ export class DegenesisItemSheet extends ItemSheet {
 
     if (!this.options.editable) return;
 
-    html.find(".checkbox").click(ev, _onCheckboxClick.bind(this)) 
-    html.find(".quality-value").change(ev, _onQualityValueChange.bind(this)) 
-    html.find(".mod-delete").click(ev, _onModDelete.bind(this)) 
-    html.find(".mod-edit").click(ev, _onModEdit.bind(this)) 
-    html.find(".mod-control").click(ev, _onModControlClick.bind(this)) 
-    html.find(".mod-change").change(ev, _onModChanges.bind(this)) 
+    html.find(".checkbox").click(this._onCheckboxClick.bind(this)) 
+    html.find(".quality-value").change(this._onQualityValueChange.bind(this)) 
+    html.find(".mod-delete").click(this._onModDelete.bind(this)) 
+    html.find(".mod-edit").click(this._onModEdit.bind(this)) 
+    html.find(".mod-control").click(this._onModControlClick.bind(this)) 
+    html.find(".mod-change").change(this._onModChanges.bind(this)) 
 
     html.find(".item-quality-config").click(ev => {
       new ItemQualities(this.item).render(true)

@@ -268,7 +268,7 @@ export class DegenesisActor extends Actor {
         cardData.damageFull = `${fullDamage}`;
         rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
-            this.updateEmbeddedEntity("OwnedItem", {_id : rollData.weaponid, "data.mag.current" : rollData.weapon.data.mag.current - 1})
+            this.updateEmbeddedDocuments("Item", [{_id : rollData.weaponid, "data.mag.current" : rollData.weapon.data.mag.current - 1}])
         this.postRollChecks(rollResults, "weapon")
         return {rollResults, cardData}
     }
@@ -360,10 +360,6 @@ export class DegenesisActor extends Actor {
     get shieldItems() {return this.getItemTypes("shield")}
     get complicationItems() {return this.getItemTypes("complication")}
     get legacyItems() {return this.getItemTypes("legacy")}
-
-    get meleeWeapons() { return this.weaponItems.filter(i => i.isMelee)}
-    get rangedWeapons() { return this.weaponItems.filter(i => i.isRanged)}
-    get sonicWeapons() { return this.weaponItems.filter(i => i.isSonic)}
     
     // @@@@@@@@ DATA GETTERS @@@@@@@@@@
     get general() { return this.data.data.general}

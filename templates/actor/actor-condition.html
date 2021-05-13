@@ -133,7 +133,7 @@
                      <div class='item-data'>
                         <div class="conditions-value">
                            <a class="modifiers-number dropdown">{{mod.ModifyNumber}}</a>
-                           <a class="modifiers-type dropdown">{{mod.ModifyType}}</ol>a>
+                           <a class="modifiers-type dropdown">{{mod.ModifyType}}</a>
                         </div>
                         <a class="modifiers-action dropdown">{{mod.ActionType}}</a>
                         <div class="vertical-bar">
@@ -163,7 +163,7 @@
             {{#each actor.complicationItems as |complication c|}}
                <li class="complications-li conditions-li item" data-item-id="{{complication.id}}">
                   <div class="conditions-characteristics">
-                     {{#if ../isGM}}
+                     {{#if (isGM)}}
                      <div class='item-data'>
                         <a class="complications-name conditions-name dropdown">{{complication.name}}</a>
                         <a class="complications-rating conditions-number dropdown">{{complication.cost}}T</a>

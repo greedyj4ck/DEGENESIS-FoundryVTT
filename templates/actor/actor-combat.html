@@ -23,16 +23,16 @@
        </div>
         <div class="combat-list">
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Movement"}}: {{data.general.movement}}<span class="nocaps">m</span></div>
+                <div class="general-name">{{localize "DGNS.Movement"}}: {{actor.general.movement}}<span class="nocaps">m</span></div>
             </div>
             <div class="combat">
                 <div class="general-name">{{localize "DGNS.Encumbrance"}}: {{actor.encumbrance.current}} / {{data.general.encumbrance.max}}</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.Armor"}}: {{actor.totalArmor}}</div>
+                <div class="general-name">{{localize "DGNS.Armor"}}: {{actor.general.armor}}</div>
             </div>
             <div class="combat">
-                <div class="general-name">{{localize "DGNS.ActionMod"}}: {{data.general.actionModifier}}D</div>
+                <div class="general-name">{{localize "DGNS.ActionMod"}}: {{actor.general.actionModifier}}D</div>
             </div>
         </div>
     </div>
@@ -46,16 +46,16 @@
       </div>
       <div class="combat-list">
          <a class="combat">
-             <div class="general-name initiative-roll">{{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)</div>
+             <div class="general-name initiative-roll">{{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}D)</div>
          </a>
          <a class="combat">
-            <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)</div>
+            <div class="general-name fight-roll" data-roll="dodge">{{localize "DGNS.Dodge"}} ({{actor.fighting.dodge}}D)</div>
          </a>
          <a class="combat">
-            <div class="general-name fight-roll" data-roll="mentalDefense">{{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)</div>
+            <div class="general-name fight-roll" data-roll="mentalDefense">{{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}D)</div>
          </a>
          <div class="combat">
-            <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}</div>
+            <div class="general-name">{{localize "DGNS.PassiveDef"}}: {{actor.fighting.passiveDefense}}</div>
          </div>
       </div>
     </div>
@@ -67,14 +67,6 @@
           <div class="black-title">
              <h3>{{localize "DGNS.State"}}</h3>
           </div>
-       </div>
-       <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.dropBackpack">{{localize "DGNS.DropBackpack"}}</a> 
-            {{#if actor.state.dropBackpack}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into black"></div></a>
-            {{else}}
-            <a class="square button-position checkbox" data-target="data.state.dropBackpack"><div class="square-into"></div></a>
-            {{/if}}
        </div>
         <div class="combat">
             <a class="general-name checkbox" data-target="data.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
@@ -142,7 +134,7 @@
       
       
       <!--* MELEE WEAPON -->      
-      {{#if actor.meleeWeapons.length}}
+      {{#if arsenal.meleeWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -173,18 +165,17 @@
             </div>
       </div>
       <div class="arsenal-list item-list">
-         {{#each actor.meleeWeapons as |weapon w|}}
-         {{#unless weapon.inContainer}}
+         {{#each arsenal.meleeWeapons as |weapon w|}}
          <div class="weapon item" data-item-id="{{weapon.id}}">
             <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
                <div class="legend-name uses">
-                  <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.attackDice}}D</a> <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}} {{weapon.defenseDice}}D</a></span>
+                  <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.dice.attack}}D</a> <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}} {{weapon.dice.defense}}D</a></span>
                </div>
                <div class="legend-name empty-melee">
                </div>
                <div class="legend-name damage">
-                  <span>{{weapon.damageFormula}}</span>
+                  <span>{{weapon.DamageFormula}}</span>
                </div>
                <div class="legend-name distance">
                   <span>{{weapon.distance.melee}}</span>
@@ -198,8 +189,8 @@
                </div>
                <div class="qualities-name">
                   <span>
-                  {{#each weapon.qualities as |quality q|}}
-                     <a class="capitalize quality-dropdown" data-key="{{quality.key}}" data-type="weapon">{{quality.display}}</a>
+                  {{#each weapon.Qualities as |quality q|}}
+                     <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="weapon">{{quality}}</a>
                   {{/each}}
                   </span>
                </div>
@@ -209,13 +200,13 @@
 
             <div class="break"></div>
          </div>
-         {{/unless}}
+         
          {{/each}}
       </div>
    </div>
    {{/if}}
       <!--* RANGED WEAPON -->     
-      {{#if actor.rangedWeapons.length}} 
+      {{#if arsenal.rangedWeapons.length}} 
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -247,9 +238,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each actor.rangedWeapons as |weapon w|}}
-            {{#unless weapon.inContainer}}
-
+            {{#each arsenal.rangedWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon.id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -257,7 +246,7 @@
                   <span><a class="roll-weapon" data-use="attack-short">≤{{weapon.distance.short}}m({{weapon.dice.effective}}D) </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.distance.far}}m({{weapon.dice.far}}D) </a><a class="roll-weapon" data-use="attack-extreme">>{{weapon.distance.far}}m({{weapon.dice.extreme}}D)</a> </span>
                </div>
                <div class="legend-name magazine-ranged" title="{{localize 'DGNS.TotalAmmo'}}: {{weapon.totalAvailableAmmo}}">
-                  <a class="mag-count reload-click">{{weapon.mag.current}}</a><span>/{{weapon.mag.size}}</span> ({{weapon.caliber}})
+                  <a class="mag-count reload-click">{{weapon.mag.current}}</a><span>/{{weapon.mag.size}}</span> ({{weapon.Caliber}})
                </div>
                <div class="legend-name damage-ranged">
                   <span>{{weapon.DamageFormula}}</span>
@@ -285,13 +274,13 @@
 
             <div class="break"></div>
          </div>
-         {{/unless}}
+         
          {{/each}}
       </div>
    </div>
    {{/if}}
       <!--* SONIC WEAPON-->
-      {{#if actor.sonicWeapons.length}}
+      {{#if arsenal.sonicWeapons.length}}
       <div class="arsenal-group weapon-group">
          <div class="weapon">
             <div class="first-part">
@@ -323,8 +312,7 @@
             </div>
          </div>
          <div class="arsenal-list item-list">
-            {{#each actor.sonicWeapons as |weapon w|}}
-            {{#unless weapon.inContainer}}
+            {{#each arsenal.sonicWeapons as |weapon w|}}
             <div class="weapon item" data-item-id="{{weapon.id}}">
                <a class="weapon-name">{{weapon.name}}</a>
             <div class="weapon-characteristics">
@@ -360,13 +348,13 @@
 
             <div class="break"></div>
          </div>
-         {{/unless}}
+         
          {{/each}}
       </div>
    </div>
 {{/if}}
       <!--* ARMOR -->      
-   {{#if actor.armor.length}}
+   {{#if arsenal.armor.length}}
    <div class="arsenal-group armor-group">
       <div class="armor">
          <div class="first-part">
@@ -386,7 +374,7 @@
       </div>
 
       <div class="arsenal-list item-list">
-         {{#each actor.armorItems as |armor a|}}
+         {{#each arsenal.armorItems as |armor a|}}
          {{#if armor.equipped}}
          <div class="armor item" data-item-id="{{armor.id}}">
             <a class="armor-name">{{armor.name}}</a>

@@ -73,7 +73,7 @@
     </div>
 
     <!-- * GM Notes  -->
-    {{#isGM}}
+    {{#if (isGM)}}
     <div class="lt-group history-group gmnotes-group">
         <div class="gmnotes lt-top">
             <div class="first-part">
@@ -91,7 +91,7 @@
         </div>
         {{editor content=data.gmnotes target="data.gmnotes"button=true owner=owner editable=editable}}
     </div>
-    {{/isGM}}
+    {{/if}}
 </div>
 
 

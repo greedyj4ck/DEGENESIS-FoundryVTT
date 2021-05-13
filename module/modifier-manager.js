@@ -1,3 +1,5 @@
+import { DEGENESIS } from "./config.js";
+
 export default class ModifierManager
 {
     constructor(actor)
@@ -37,7 +39,7 @@ export default class ModifierManager
                         "T" : 0,
                     }
                 }
-                this[mod.action][mod.type] += mod.number;
+                this[mod.action][mod.modType] += mod.modifyNumber;
             }
         })
         if (!this["action"])

@@ -277,7 +277,7 @@ export class DegenesisItem extends Item {
     }
 
     get hasSpecialty() {
-        return !!this.data.data.qualities.find(q => q.name == "special")
+        return !!(this.qualities && this.qualities.find(q => q.name == "special"))
     }
 
     get skill() {
@@ -295,7 +295,7 @@ export class DegenesisItem extends Item {
     get potentialDiamonds() {
         let data = this.toObject();
         DEG_Utility.addDiamonds(data, 3, "data.level")
-        return data.data.level
+        return data.diamonds
     }
 
     get inContainer() {
@@ -338,7 +338,7 @@ export class DegenesisItem extends Item {
 
     get Qualities() {
 
-        let formattedQualities = []
+        let formattedQualities = {}
         let type = this.data.type
         if (type == "mod")
             type = this.data.data.modType;
@@ -347,7 +347,7 @@ export class DegenesisItem extends Item {
             this.data.data.qualities.forEach(q => {
                 let qualityString = DEGENESIS[`${type}Qualities`][q.name] + " "
                 qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
-                formattedQualities.push(qualityString)
+                formattedQualities[q.name] = qualityString
             })
         }
         

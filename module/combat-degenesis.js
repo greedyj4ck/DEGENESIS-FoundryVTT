@@ -22,7 +22,7 @@ export class DegenesisCombat extends Combat {
         }, []);
         if (!updates.length) return this;
         // Update multiple combatants
-        await this.updateEmbeddedEntity("Combatant", updates);
+        await this.updateEmbeddedDocuments("Combatant", [updates]);
         // Ensure the turn order remains with the same combatant
         if (updateTurn) {
             const currentId = this.combatantid;
