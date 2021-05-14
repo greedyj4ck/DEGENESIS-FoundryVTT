@@ -12,11 +12,11 @@ export class DegenesisCombat extends Combat {
         // Structure input data
         ids = typeof ids === "string" ? [ids] : ids;
         // Iterate over Combatants, performing an initiative roll for each
-        const updates = ids.reduce((updates, id) => {
+        const updates = ids.reduce(async (updates, id) => {
             const c = this.getCombatant(id);
             if (!c || !c.isOwner) return updates;
             const actor = c.actor;
-            const initiativeValue = DegenesisCombat.rollInitiative(actor);
+            const initiativeValue = await DegenesisCombat.rollInitiativeFor(actor);
             updates.push({_id: id, initiative: initiativeValue});
             return updates;
         }, []);
@@ -26,7 +26,7 @@ export class DegenesisCombat extends Combat {
         // Ensure the turn order remains with the same combatant
         if (updateTurn) {
             const currentId = this.combatantid;
-            await this.update({turn: this.turns.findIndex(t => tid === currentId)});
+            await this.update({turn: this.turns.findIndex(t => t.id === currentId)});
         }
         return this;
     }
@@ -44,28 +44,28 @@ export class DegenesisCombat extends Combat {
         return await super.resetAll();
     }
 
-    static rollInitiative(actor) {
+    static async rollInitiativeFor(actor) {
         if (!actor) return 0;
-        const spentEgo = actor.data.data.state.spentEgo.value;
-        const {rollResults, cardData} = actor.rollFightRollSync("initiative", spentEgo);
+        const spentEgo = actor.state.spentEgo.value;
+        const {rollResults, cardData} = await actor.rollFightRoll("initiative", {skipDialog : true, spentEgo});
         let actionCount = 1;
         if (rollResults.triggers > 1) {
             actionCount = 1 + Math.floor(rollResults.triggers / 2);
         }
-        let newEgo = actor.data.data.condition.ego.value;
+        let newEgo = actor.condition.ego.value;
         if (spentEgo > 0) {
             newEgo += spentEgo;
-            if (newEgo > actor.data.data.condition.ego.max)
-                newEgo = actor.data.data.condition.ego.max;
+            if (newEgo > actor.condition.ego.max)
+                newEgo = actor.condition.ego.max;
             // Create a "modifier" item to give a bonus on the first roll.
             // Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
             let spentEgoActionModifier = foundry.utils.deepClone(DEGENESIS.systemItems.spentEgoActionModifier)
             spentEgoActionModifier.data.number = spentEgo;
             spentEgoActionModifier.name = "Spent Ego Bonus"
-            actor.createEmbeddedDocuments("Item", [spentEgoActionModifier]).then(i => {
-                actor.setFlag("degenesis", "spentEgoActionModifier", iid)
-                ui.notifications.notify("Ego Spent Action Modifier Added")
-            })
+            let modifier = await actor.createEmbeddedDocuments("Item", [spentEgoActionModifier])
+            await actor.setFlag("degenesis", "spentEgoActionModifier", modifier[0].id)
+            ui.notifications.notify("Ego Spent Action Modifier Added")
+
             cardData.spentEgo = spentEgo;
         }
         const initiativeValue = rollResults.successes;

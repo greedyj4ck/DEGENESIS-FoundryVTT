@@ -57,7 +57,11 @@ export class DegenesisActorSheet extends ActorSheet {
         sheetData.cultIcon = this.actor.details.cult.value ? `systems/degenesis/icons/cult/${this.actor.details.cult.value}.svg` : "systems/degenesis/icons/blank.png"
         sheetData.cultureIcon = this.actor.details.culture.value ? `systems/degenesis/icons/culture/${this.actor.details.culture.value}.svg` : "systems/degenesis/icons/blank.png"
 
-        sheetData.data.general.encumbrance.color = this.actor
+        if (sheetData.data.general.encumbrance.pct > 100) {
+            sheetData.data.general.encumbrance.color = "var(--degenesis-red)";
+        } else {
+            sheetData.data.general.encumbrance.color = "black";
+        }
 
         DEG_Utility.addDiamonds(sheetData.data.scars.infamy, 6)
         DEG_Utility.addDiamonds(sheetData.data.condition.ego, 24)
@@ -74,6 +78,7 @@ export class DegenesisActorSheet extends ActorSheet {
 
         sheetData.inventory = this.constructInventory()
         sheetData.arsenal = this.constructArnseal()
+        sheetData.transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: this.actor.transportationItems, toggleDisplay: game.i18n.localize("DGNS.Dropped") }
 
     }
 
@@ -222,9 +227,9 @@ export class DegenesisActorSheet extends ActorSheet {
         if (transportTarget) 
         {
             let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"))
-            let item = new Item(jsonData.data);
+            let itemData = jsonData.data;
             if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
-                item.update({"data.location" : transportTarget.dataset["itemId"]})
+                this.actor.updateEmbeddedDocuments("Item", [{_id : itemData._id, "data.location" : transportTarget.dataset["itemId"]}])
         }
         else
             super._onDrop(event);
@@ -267,14 +272,6 @@ export class DegenesisActorSheet extends ActorSheet {
             if (getProperty(actorData, target) <= 0)
                 setProperty(actorData, target, 1)
         }
-        if (target == "data.skills.faith.value")
-            setProperty(actorData, "data.skills.willpower.value", 0)
-        else if (target == "data.skills.willpower.value")
-            setProperty(actorData, "data.skills.faith.value", 0)
-        else if (target == "data.skills.focus.value")
-            setProperty(actorData, "data.skills.primal.value", 0)
-        else if (target == "data.skills.primal.value")
-            setProperty(actorData, "data.skills.focus.value", 0)
         this.actor.update(actorData);
     }
     _onPermaDiamondClick(event) {
@@ -353,27 +350,32 @@ export class DegenesisActorSheet extends ActorSheet {
     }
     async _onSkillClick(event) {
         let skill = $(event.currentTarget).parents(".skill").attr("data-target")
-        let { rollResults, cardData } = await this.actor.rollSkill(skill)
+        let skipDialog = event.ctrlKey
+        let { rollResults, cardData } = await this.actor.rollSkill(skill, {skipDialog})
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     async _onInitiativeClick(event) {
         const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens();
         if (tokens.length > 0) {
             const initiativeConfiguration = { createCombatants: true, rerollInitiative: true, initiativeOptions: {} };
-            await this.actor.rollInitiative(initiativeConfiguration);
+            this.actor.rollInitiative(initiativeConfiguration);
         }
-        else { DegenesisCombat.rollInitiative(this.actor); }
+        else { 
+            DegenesisCombat.rollInitiativeFor(this.actor); 
+        }
     }
     async _onFightClick(event) {
         let type = $(event.currentTarget).attr("data-roll")
-        let { rollResults, cardData } = await this.actor.rollFightRoll(type)
+        let skipDialog = event.ctrlKey
+        let { rollResults, cardData } = await this.actor.rollFightRoll(type, {skipDialog})
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     async _onWeaponClick(event) {
         let weaponId = $(event.currentTarget).parents(".weapon").attr("data-item-id")
+        let skipDialog = event.ctrlKey
         let use = $(event.currentTarget).attr("data-use");
         let weapon = this.actor.items.get(weaponId)
-        let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use })
+        let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use, skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     _onQualityClick(event) {

@@ -4,6 +4,7 @@ import contextHooks from "./context.js"
 import tokenOverrides from "./tokenOverrides.js"
 import itemHooks from "./item.js";
 import handlebars from "./handlebars.js"
+import diceSoNiceHooks from "./dsn.js"
 
 export default function () {
     actorHooks();
@@ -12,4 +13,5 @@ export default function () {
     contextHooks();
     tokenOverrides();
     handlebars();
+    diceSoNiceHooks();
 }

@@ -561,14 +561,14 @@ DEGENESIS.systemItems = {
 
 DEGENESIS.transportationEncumbranceCalculation = {
   wholeReduction : (items, reductionValue) => {
-    let totalEnc = items.reduce((a, b) => a + (b.data.encumbrance || 0), 0)
+    let totalEnc = items.reduce((a, b) => a + (b.encumbrance || 0), 0)
     totalEnc -= reductionValue
     if (totalEnc < 0) totalEnc = 0;
     return totalEnc
   },
   eachReduction : (items, reductionValue) => {
       let totalEnc = items.reduce((a, b) => {
-      let enc = (b.data.encumbrance || 0) - reductionValue
+      let enc = ((b.encumbrance * b.quantity) || 0) - (reductionValue * b.quantity)
       if (enc < 0) enc = 0;
       return a + enc
     }, 0)

@@ -4,7 +4,7 @@ export default function () {
     Hooks.on("deleteItem", (item) => {
         if (item.isOwned && item.type == "transportation")
         {
-            let items = actor.items.filter(i => i.location  == itemid).map(i => {
+            let items = item.actor.items.filter(i => i.location  == item.id).map(i => {
                 return {_id : i.id, "data.location" : ""}
             });
             item.actor.updateEmbeddedDocuments("Item", items);

@@ -17,7 +17,7 @@
 <div>
     <select name="customModifiers" class = "custom-modifiers" multiple>
         {{#each customModifiers as |modifier m|}}
-        <option value="{{m}}">{{modifier.description}} {{modifier.number}}{{modifier.type}}</option>
+        <option value="{{m}}">{{modifier.description}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
         {{/each}}
     </select>
 </div>

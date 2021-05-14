@@ -31,7 +31,24 @@ export class DegenesisActor extends Actor {
             data.token.actorLink = true;
         }
     }
-  
+
+    async _preUpdate(updateData, options, user) {
+
+        // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
+        if (getProperty(updateData, "data.skills.faith.value"))
+            setProperty(updateData, "data.skills.willpower.value", 0)
+
+        else if (getProperty(updateData, "data.skills.willpower.value"))
+            setProperty(updateData, "data.skills.faith.value", 0)
+
+        else if (getProperty(updateData, "data.skills.focus.value"))
+            setProperty(updateData, "data.skills.primal.value", 0)
+
+        else if (getProperty(updateData, "data.skills.primal.value"))
+            setProperty(updateData, "data.skills.focus.value", 0)
+
+    }
+
 
     //#region Data Preparation
     prepareData() 
@@ -115,7 +132,7 @@ export class DegenesisActor extends Actor {
             }
         }
 
-        this.getItemTypes("transportation").map(i => encumbrance.current += this.processTransportation().total)
+        this.getItemTypes("transportation").map(i => encumbrance.current += i.processTransportation().total)
 
         encumbrance.pct = encumbrance.current / encumbrance.max * 100;
 
@@ -149,11 +166,11 @@ export class DegenesisActor extends Actor {
     //#endregion
 
     //#region Roll Setup
-    setupSkill(skill, options = {}) {
+    setupSkill(skill) {
         let dialogData = {
             title : DEGENESIS.skills[skill],
             prefilled : this.modifiers.forDialog("skill", skill),
-            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            customModifiers : his.modifiers.custom,
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
         dialogData.rollMethod = this.rollSkill;
@@ -162,19 +179,24 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.getSkillTotal(skill)
+            actionNumber : this.getSkillTotal(skill),
+            difficulty : 0,
+            diceModifier : 0,
+            successModifier : 0,
+            triggerModifier : 0
         }
 
         //let rollResult = await DegenesisDice.rollAction(rollData)
         return {dialogData, cardData, rollData}
     }
 
-    setupWeapon(weapon, options = {}) {
-        let skill = DEGENESIS.weaponGroupSkill[weapon.data.group]
+    setupWeapon(weapon, {use="attack"}) {
+        console.log(use)
+        let skill = DEGENESIS.weaponGroupSkill[weapon.group]
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
-            prefilled : this.modifiers.forDialog("weapon", skill, options.use),
-            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            prefilled : this.modifiers.forDialog("weapon", skill, use),
+            customModifiers : this.modifiers.custom,
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
         dialogData.rollMethod = this.rollWeapon;
@@ -183,30 +205,34 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.skills[skill],
-            actionNumber : options.use.includes("attack") ? weapon.attackDice : weapon.defenseDice,
-            weapon : weapon
+            actionNumber : use.includes("attack") ? weapon.dice.attack : weapon.dice.defense,
+            weapon : weapon,
+            difficulty : 0,
+            diceModifier : 0,
+            successModifier : 0,
+            triggerModifier : 0
         }
 
-        if (options.use && weapon.isRanged)
+        if (use && weapon.isRanged)
         {
-            if (options.use == "attack-short")
-                rollData.actionNumber = weapon.effectiveDice
-            else if (options.use == "attack-far")
-                rollData.actionNumber = weapon.farDice
-            else if (options.use == "attack-extreme")
-                rollData.actionNumber = weapon.extremeDice
+            if (use == "attack-short")
+                rollData.actionNumber = weapon.dice.effective
+            else if (use == "attack-far")
+                rollData.actionNumber = weapon.dice.far
+            else if (use == "attack-extreme")
+                rollData.actionNumber = weapon.dice.extremes
         }
 
         return {dialogData, cardData, rollData}
     }
 
-    setupFightRoll(type, options = {})
+    setupFightRoll(type)
     {
         let skill = DEGENESIS.fightRolls[type]
         let dialogData = {
             title : DEGENESIS.skills[skill],
             prefilled : this.modifiers.forDialog(type, skill),
-            customModifiers : getProperty(this, "data.flags.degenesis.modifiers.custom"),
+            customModifiers : this.modifiers.custom,
             template : "systems/degenesis/templates/apps/roll-dialog.html",
         }
         dialogData.rollMethod = this.rollSkill;
@@ -218,7 +244,11 @@ export class DegenesisActor extends Actor {
 
         let rollData = {
             skill : this.data.data.skills[skill],
-            actionNumber : this.getSkillTotal(skill)
+            actionNumber : this.getSkillTotal(skill),
+            difficulty : 0,
+            diceModifier : 0,
+            successModifier : 0,
+            triggerModifier : 0
         }
 
         // Accounts for the action modifier
@@ -242,58 +272,53 @@ export class DegenesisActor extends Actor {
     //#endregion
 
     //#region Roll Processing
-    async rollSkill(skill) 
+    async rollSkill(skill, {skipDialog = false}) 
     {
-        let {dialogData, cardData, rollData} = this.setupSkill(skill)
-        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+        let { dialogData, cardData, rollData } = this.setupSkill(skill)
+        if (!skipDialog)
+            rollData = await DegenesisDice.showRollDialog({ dialogData, rollData })
+        else {
+            rollData.diceModifier = dialogData.prefilled.diceModifier;
+            rollData.successModifier = dialogData.prefilled.successModifier;
+            rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+        }
         let rollResults = await DegenesisDice.rollAction(rollData)
         this.postRollChecks(rollResults, skill)
-        return {rollResults, cardData}
+        return { rollResults, cardData }
     }
 
-    rollSkillSync(skill) 
-    {
-        let {dialogData, rollData} = this.setupSkill(skill)
-        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
-        this.postRollChecks(rollResults, skill)
-        return {rollResults, cardData}
-    }
-
-    async rollWeapon(weapon, options = {}) 
-    {
-        let {dialogData, cardData, rollData} = this.setupWeapon(weapon, options)
-        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+    async rollWeapon(weapon, { skipDialog = false, use = "attack" }) {
+        let { dialogData, cardData, rollData } = this.setupWeapon(weapon, { use })
+        if (!skipDialog)
+            rollData = await DegenesisDice.showRollDialog({ dialogData, rollData })
+        else {
+            rollData.diceModifier = dialogData.prefilled.diceModifier;
+            rollData.successModifier = dialogData.prefilled.successModifier;
+            rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+        }
         let rollResults = await DegenesisDice.rollAction(rollData)
-        const fullDamage = DegenesisItem.fullDamage(rollResults.triggers, {modifier : this.data.flags.degenesis.modifiers.damage})
+        const fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
         cardData.damageFull = `${fullDamage}`;
-        rollResults.weapon = rollData.weapon
         if (rollData.weapon.isRanged)
-            this.updateEmbeddedDocuments("Item", [{_id : rollData.weaponid, "data.mag.current" : rollData.weapon.data.mag.current - 1}])
+            this.updateEmbeddedDocuments("Item", [{ _id: rollData.weapon.id, "data.mag.current": rollData.weapon.mag.current - 1 }])
         this.postRollChecks(rollResults, "weapon")
-        return {rollResults, cardData}
+        return { rollResults, cardData }
     }
 
-        
-    async rollFightRoll(type) 
-    {
-        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
-        rollData = await DegenesisDice.showRollDialog({dialogData, rollData})
+
+    async rollFightRoll(type, { skipDialog = false, spentEgo = 0 }) {
+        let { dialogData, cardData, rollData } = this.setupFightRoll(type)
+        rollData.actionNumber += spentEgo;
+        if (!skipDialog)
+            rollData = await DegenesisDice.showRollDialog({ dialogData, rollData })
+        else {
+            rollData.diceModifier = dialogData.prefilled.diceModifier;
+            rollData.successModifier = dialogData.prefilled.successModifier;
+            rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+        }
         let rollResults = await DegenesisDice.rollAction(rollData)
         this.postRollChecks(rollResults, type)
-        return {rollResults, cardData}
-    }
-
-    rollFightRollSync(type, spentEgo)
-    {
-        let {dialogData, cardData, rollData} = this.setupFightRoll(type)
-        rollData.actionNumber += spentEgo;
-        rollData.diceModifier = dialogData.prefilled.diceModifier;
-        rollData.successModifier = dialogData.prefilled.successModifier;
-        rollData.triggerModifier = dialogData.prefilled.triggerModifier;
-        let rollResults = DegenesisDice.rollWithout3dDice(rollData)
-        console.log(rollResults)
-        this.postRollChecks(rollResults, type)
-        return {rollResults, cardData}
+        return { rollResults, cardData }
     }
 
     postRollChecks(rollResults, type)

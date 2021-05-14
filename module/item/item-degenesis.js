@@ -35,6 +35,8 @@ export class DegenesisItem extends Item {
     {
         if (this.type == "weapon")
             this.prepareWeapon()
+        if (this.type == "transportation")
+            this.itemsWithin = this.actor.items.filter(i => i.location == this.id)    
 
     }
 
@@ -117,17 +119,15 @@ export class DegenesisItem extends Item {
 
     fullDamage(triggers, {body, force, modifier}) 
     {
-        let bodyForce = (body || 0) + (force || 0)
-
-        if (this.isOwned)
-            bodyForce += this.actor.attributes.body.value + this.actor.attributes.force.value   
+        let bodyTotal = this.actor.attributes.body.value + (body || 0)
+        let forceTotal = this.actor.skills.force.value + (force || 0)
 
         const baseValue = parseInt(this.damage) + (modifier || 0);
         const damageWithTriggers = baseValue + triggers;
         if (!this.DamageBonus) {
             return damageWithTriggers;
         }
-        return damageWithTriggers + this.DamageBonus.calculate(force, triggers);
+        return damageWithTriggers + this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
     }
 
     static matchAmmo(weapon, ammo) {
@@ -146,7 +146,7 @@ export class DegenesisItem extends Item {
         }
         enc.items = this.actor.items.filter(i => i.location == this.id)
         if (this.mode && !this.dropped)
-            enc.carrying += DEGENESIS.transportationEncumbranceCalculation[transportation.data]
+            enc.carrying += DEGENESIS.transportationEncumbranceCalculation[this.mode](enc.items, this.transportValue)
         else if (this.dropped)
         {
             enc.total = 0
@@ -403,8 +403,8 @@ export class DegenesisItem extends Item {
     get location() { return this.data.data.location }
     get mag() { return this.data.data.mag }
     get modType() { return this.data.data.modType }
-    get modType() { return this.data.data.type }
     get mode() { return this.data.data.mode }
+    get modifyType() { return this.data.data.type }
     get modifyNumber() { return this.data.data.number }
     get origin() { return this.data.data.origin }
     get prerequisite() { return this.data.data.prerequisite }

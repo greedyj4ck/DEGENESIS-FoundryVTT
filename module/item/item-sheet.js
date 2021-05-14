@@ -56,8 +56,6 @@ export class DegenesisItemSheet extends ItemSheet {
     await this.item.setFlag("degenesis", "mods", mods);
   }
 
-  /* -------------------------------------------- */
-
   /** @override */
 	activateListeners(html) {
     super.activateListeners(html);
