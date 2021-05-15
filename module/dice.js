@@ -2,7 +2,7 @@ import RollDialog from "./apps/roll-dialog.js"
 
 export class DegenesisDice
 {
-    static async rollAction({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}={}, {dsn = true}={}) {
+    static async rollAction({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}={}, {dsn = true, secondaryRollData=undefined}={}) {
         const [rollResult, roll] = await this.calculateRollResult({
             actionNumber,
             difficulty,
@@ -12,6 +12,7 @@ export class DegenesisDice
         });
         if (game.dice3d && dsn)
             await game.dice3d.showForRoll(roll);
+            
         return rollResult;
     }
 

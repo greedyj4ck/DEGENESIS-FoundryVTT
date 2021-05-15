@@ -190,9 +190,8 @@ export class DegenesisActor extends Actor {
         return {dialogData, cardData, rollData}
     }
 
-    setupWeapon(weapon, {use="attack"}) {
-        console.log(use)
-        let skill = DEGENESIS.weaponGroupSkill[weapon.group]
+    setupWeapon(weapon, {use="attack", secondary=false}) {
+        let skill = secondary ? weapon.secondarySkill : weapon.skill
         let dialogData = {
             title : `Weapon - ${weapon.name}`,
             prefilled : this.modifiers.forDialog("weapon", skill, use),
@@ -201,7 +200,7 @@ export class DegenesisActor extends Actor {
         }
         dialogData.rollMethod = this.rollWeapon;
 
-        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[DEGENESIS.weaponGroupSkill[weapon.group]])
+        let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[weapon.skill])
 
         let rollData = {
             skill : this.skills[skill],
@@ -222,6 +221,9 @@ export class DegenesisActor extends Actor {
             else if (use == "attack-extreme")
                 rollData.actionNumber = weapon.dice.extremes
         }
+
+        if (secondary)
+            rollData.actionNumber = this.getSkillTotal(weapon.secondarySkill) // weapon.dice uses primary skill, so override with secondary skill if using secondarry
 
         return {dialogData, cardData, rollData}
     }
@@ -296,7 +298,43 @@ export class DegenesisActor extends Actor {
             rollData.successModifier = dialogData.prefilled.successModifier;
             rollData.triggerModifier = dialogData.prefilled.triggerModifier;
         }
-        let rollResults = await DegenesisDice.rollAction(rollData)
+        let rollResults = await DegenesisDice.rollAction(rollData, {secondaryRollData : rollData.secondaryRollData})
+        rollResults.weapon = weapon
+
+        // @@@@@ Secondary Roll @@@@@@ //
+        if (weapon.secondarySkill && rollResults.result == "success")
+        {
+            let { dialogData : secondaryDialogData, cardData : secondaryCardData, rollData : secondaryRollData } = this.setupWeapon(weapon, { use , secondary : true})
+            dialogData.title += " - " + game.i18n.localize("DGNS.Secondary")
+            if (!skipDialog)
+                rollData = await DegenesisDice.showRollDialog({ dialogData : secondaryDialogData, rollData : secondaryRollData })
+            else {
+                secondaryRollData.diceModifier =    secondaryDialogData.prefilled.diceModifier;
+                secondaryRollData.successModifier = secondaryDialogData.prefilled.successModifier;
+                secondaryRollData.triggerModifier = secondaryDialogData.prefilled.triggerModifier;
+            }
+
+            // Don't use ego action modifier on secondary roll
+            let actionModifier = this.getFlag("degenesis", "spentEgoActionModifier");
+            if (actionModifier)
+                secondaryRollData.diceModifier -= (this.items.get(actionModifier)?.modifyNumber || 0)
+
+            let secondaryRollResults = await DegenesisDice.rollAction(secondaryRollData)
+
+            rollResults.triggers += secondaryRollResults.triggers;
+            rollResults.successes = secondaryRollResults.successes;
+            rollResults.result = secondaryRollResults.result
+            rollResults.secondaryRolls = secondaryRollResults.rolls
+        }
+        else if (weapon.secondarySkill && !rollData.difficulty)
+            ui.notifications.notify(game.i18n.localize("DGNS.SecondaryNeedsDifficulty"))
+
+
+        if (weapon.secondarySkill)
+            cardData.title = `${weapon.name}<br>(${DEGENESIS.skills[weapon.skill]} + ${DEGENESIS.skills[weapon.secondarySkill]})`
+        
+        // @@@@@ Secondary Roll @@@@@@ //
+
         const fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
         cardData.damageFull = `${fullDamage}`;
         if (rollData.weapon.isRanged)
@@ -321,18 +359,17 @@ export class DegenesisActor extends Actor {
         return { rollResults, cardData }
     }
 
-    postRollChecks(rollResults, type)
+    async postRollChecks(rollResults, type)
     {
         let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier")
         if (egoModifierId)
         {
-            this.deleteEmbeddedDocuments("Item", [egoModifierId]).then(a => {
-                this.update({"flags.degenesis.-=spentEgoActionModifier" : null})
-                ui.notifications.notify("Used Ego Spend Action Modifier")
-            })
+           await this.deleteEmbeddedDocuments("Item", [egoModifierId])
+           await this.update({"flags.degenesis.-=spentEgoActionModifier" : null})
+           ui.notifications.notify("Used Ego Spend Action Modifier")
         }
         if (type !== "initiative" && this.data.data.state.initiative.actions > 1)
-            this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
+            await this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
     }
     //#endregion
 

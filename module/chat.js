@@ -11,6 +11,13 @@ export class DegenesisChat {
             r.img = `systems/degenesis/icons/dice-faces/d${r.result}.svg`
         })
 
+        if (rollResult.secondaryRolls)
+        {
+            rollResult.secondaryRolls.forEach(r => {
+                r.img = `systems/degenesis/icons/dice-faces/d${r.result}.svg`
+            })
+        }
+
         rollResult.result = DEGENESIS.rollResults[rollResult.result]
 
         mergeObject(cardData, rollResult);

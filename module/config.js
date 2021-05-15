@@ -278,7 +278,7 @@ DEGENESIS.weaponGroupSkill = {
   "rifles" : "projectiles",
   "heavy" : "projectiles",
   "explosives" : "projectiles",
-  "sonic" : "engineering + domination"
+  "sonic" : "engineering"
 }
 
 DEGENESIS.weaponQualities = {

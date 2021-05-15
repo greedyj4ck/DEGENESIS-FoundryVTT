@@ -134,6 +134,32 @@
                         <input class="field-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="Number"/>
                     </div>
                 </div>
+                <div class="sheet-field">
+                    <span class="field-name skill-selection">{{localize "DGNS.PrimarySkill"}}: </span>
+                    <div class="field-inputs">
+                        <select name="data.primarySkill" data-dtype="String">
+                            {{#select data.primarySkill}}
+                            <option value="">{{localize "Default"}}</option>
+                            {{#each (config "skills") as |skill s|}}
+                            <option value="{{s}}">{{skill}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                </div> 
+                <div class="sheet-field">
+                    <span class="field-name skill-selection">{{localize "DGNS.SecondarySkill"}}: </span>
+                    <div class="field-inputs">
+                        <select name="data.secondarySkill" data-dtype="String">
+                            {{#select data.secondarySkill}}
+                            <option value="">-</option>
+                            {{#each (config "skills") as |skill s|}}
+                            <option value="{{s}}">{{skill}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                </div> 
             </div>
         </div>
 

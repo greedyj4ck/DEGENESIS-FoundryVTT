@@ -51,13 +51,17 @@ export class DegenesisItem extends Item {
 
         if (!this.isSonic)
         {
-            dice.attack = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[this.group], "attack").diceModifier
-            dice.defense = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[this.group], "defense").diceModifier
+            dice.attack = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier
+            dice.defense = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "defense").diceModifier
+        }
+        else if (this.isSonic)
+        {
+            dice.attack = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier
         }
 
         if (this.isRanged)
         {
-            dice.effective = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", DEGENESIS.weaponGroupSkill[this.group], "attack").diceModifier,
+            dice.effective = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier,
             dice.far = dice.effective - 4 > 0  ? dice.effective - 4 : 0 ,
             dice.extreme = dice.effective - 8 > 0  ? dice.effective - 8 : 0 
         }
@@ -281,11 +285,11 @@ export class DegenesisItem extends Item {
     }
 
     get skill() {
-        return DEGENESIS.weaponGroupSkill[this.group]
+        return this.primarySkill || DEGENESIS.weaponGroupSkill[this.group]
     }
 
     get ownerSkill() {
-        return this.actor.skills[DEGENESIS.weaponGroupSkill[this.group]]
+        return this.actor.skills[this.skill]
     }
 
     get ownerSkillTotal() {
@@ -321,7 +325,7 @@ export class DegenesisItem extends Item {
     }
 
     get DamageType() {
-        return DEGENESIS.damageTypes[weapon.data.damageType]   
+        return DEGENESIS.damageTypes[this.damageType]   
     }
 
     get DamageBonus() {
@@ -418,6 +422,8 @@ export class DegenesisItem extends Item {
     get tech() { return this.data.data.tech }
     get transportValue() { return this.data.data.transportValue }
     get value() { return this.data.data.value }
+    get primarySkill() { return this.data.data.primarySkill }
+    get secondarySkill() { return this.data.data.secondarySkill }
 
     //      Processed data getters
     get dice() { return this.data.dice}

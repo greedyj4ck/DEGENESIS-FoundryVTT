@@ -2239,6 +2239,10 @@ margin-left: 12px;
     /* min-width: 72px; */
 }
 
+.app.window-app.degenesis.sheet .sheet-field .field-name.skill-selection {
+    width: 100%
+}
+
 .app.window-app.degenesis.sheet.item .detail-container select,
 .app.window-app.degenesis.sheet.item .header-column select{
     width: 100%;
