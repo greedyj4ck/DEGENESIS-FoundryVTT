@@ -37,9 +37,24 @@ export default class RollDialog extends Dialog {
         return totalMods
     }
 
+    submit(button)
+    {   
+        let difficulty = this.element.find("input[name='difficulty']").val()
+        let secondary = this.element.find(".secondary-select").val()
+
+        if (secondary && !difficulty)
+            return ui.notifications.error(game.i18n.localize("DGNS.SecondaryNeedsDifficulty"))
+
+        super.submit(button)
+    }
+
     activateListeners(html)
     {
         super.activateListeners(html)
+
+        $("input[type=text]").focusin(function () {
+            $(this).select();
+        });
         
         this.userEntry = {
             diceModifier : 0,

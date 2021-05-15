@@ -2494,19 +2494,56 @@ margin-top: 12px;
 
 /***************************** DIALOG ***************************/
 
-.roll-dialog .dialog-content {
+.roll-dialog .window-content {
+    overflow-x:hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.roll-dialog .dialog-bonuses {
     display: flex;
 }
 
-.roll-dialog .dialog-content > div {
+.roll-dialog .dialog-bonuses > div {
     width: 50%;
+}
+
+.roll-dialog .dialog-inputs > * {
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.roll-dialog .dialog-input {
+    width: 10%;
+    border-radius: 0px;
+    border: 1px solid black;
+    text-align: center;
+    width: 50%
+}
+
+.roll-dialog .input-label {
+    width:100%;
+    text-align: center;
+}
+
+.roll-dialog .custom-modifier-section {
+    text-align: center;
 }
 
 .roll-dialog .custom-modifiers {
     width: 100%;
-    height: 100%;
+    height: 75%;
+    overflow: auto;
+    border: 1px solid black
 }
 
+.roll-dialog .secondary-selection {
+    width: 100%;
+    justify-content: center;
+    margin: 5px
+}
 
 
 /**************************** THE CLUSTER ***************************/

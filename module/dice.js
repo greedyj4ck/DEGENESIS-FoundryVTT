@@ -2,7 +2,7 @@ import RollDialog from "./apps/roll-dialog.js"
 
 export class DegenesisDice
 {
-    static async rollAction({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}={}, {dsn = true, secondaryRollData=undefined}={}) {
+    static async rollAction({actionNumber, difficulty = 0, diceModifier = 0, successModifier = 0, triggerModifier = 0}={}, {dsn = true}={}) {
         const [rollResult, roll] = await this.calculateRollResult({
             actionNumber,
             difficulty,
@@ -81,10 +81,10 @@ export class DegenesisDice
                             rollData.diceModifier = parseInt(dlg.find('[name="diceModifier"]').val() || 0)
                             rollData.successModifier = parseInt(dlg.find('[name="successModifier"]').val() || 0)
                             rollData.triggerModifier = parseInt(dlg.find('[name="triggerModifier"]').val() || 0)
+                            rollData.secondary = dlg.find(".secondary-select").val()
                             resolve(rollData)
                         }
-                    },
-                close : reject
+                    }
                 },
                 default: "roll",
                 dialogData
