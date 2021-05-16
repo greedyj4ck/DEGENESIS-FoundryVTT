@@ -74,6 +74,24 @@ export class DegenesisItem extends Item {
 
     //#region General Functions
 
+    async postToChat()
+    {
+        let chatData = this.dropdownData();
+
+        chatData.item = this;
+
+        chatData.showGeneral = this.isWeapon
+
+        let html = await renderTemplate("systems/degenesis/templates/chat/post-item.html", chatData)
+        let cardData = DEG_Utility.chatDataSetup(html)
+        cardData.flags = {
+            degenesis : {
+                transfer : this.toObject()
+            }
+        }
+        ChatMessage.create(cardData);
+    }
+
     _applyMods() {
         let mods = (this.getFlag("degenesis", "mods") || []).map(i => new Item(i))
 
@@ -161,38 +179,38 @@ export class DegenesisItem extends Item {
         return enc
     }
     //#endregion
-
-    
+ 
     //#region Dropdown Data
     _potentialDropdownData() {
         return { text: `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>:${this.data.data.effect}<br><br><b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.data.data.rules}` }
     }
     _modifierDropdownData() {
-        if (this.data.data.number > 0) {
-            this.displayNumber = '+' + this.data.data.number;
+        let displayNumber
+        if (this.modifyNumber > 0) {
+            displayNumber = '+' + this.data.data.number;
         }
         else {
-            this.displayNumber = this.data.data.number;
+            displayNumber = this.data.data.number;
         }
         let text;
         if (this.data.data.action == "custom")
             text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
-                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.displayNumber}${this.data.data.type} ` + this.data.data.description;
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.data.data.type} ` + this.data.this.description;
         else text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
-                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.displayNumber}${this.data.data.type} on ` + DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.data.data.type} on ` + DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
 
         return { text }
 
     }
 
     _complicationDropdownData() {
-        return { text: this.data.data.description }
+        return { text: this.data.this.description }
     }
 
     _weaponDropdownData() {
         let tags = [];
         let data = foundry.utils.deepClone(this.data.data);
-        let text = `${data.description}`
+        let text = `${this.description}`
 
         if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
             text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
@@ -200,13 +218,13 @@ export class DegenesisItem extends Item {
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
         tags.push(`${game.i18n.localize("DGNS.Handling")}: ${data.handling}D`)
-        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${DegenesisItem.damageFormula(data)}`)
+        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${this.DamageFormula}`)
         tags.push(`${game.i18n.localize("DGNS.Distance")}: ${this.isMelee ? data.distance.melee : `${data.distance.short} / ${data.distance.far}`}`)
         if (this.isMelee == false) { tags.push(data.mag.belt ? `${game.i18n.localize("DGNS.Magazine")}: ${game.i18n.localize("DGNS.Belt")}` : `${game.i18n.localize("DGNS.Magazine")}: ${data.mag.size}`) };
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
         if (data.cult) { tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`) };
         if (data.resources) { tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`) };
-        tags = tags.concat(DegenesisItem.formatQualities(this.data));
+        tags = tags.concat(Object.values(this.Qualities));
         tags.filter(t => !!t)
         return {
             text: text,
@@ -216,13 +234,13 @@ export class DegenesisItem extends Item {
     _armorDropdownData() {
         let tags = [];
         let data = foundry.utils.deepClone(this.data.data);
-        let text = `${data.description}`;
+        let text = `${this.description}`;
 
         tags.push(`${game.i18n.localize("DGNS.ArmorValue")}: ${data.AP}`)
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
         if (data.cult) { tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`) };
         if (data.resources) { tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`) };
-        tags = tags.concat(DegenesisItem.formatQualities(this.data));
+        tags = tags.concat(Object.values(this.Qualities));
         tags.filter(t => !!t)
         return {
             text: text,
@@ -240,7 +258,7 @@ export class DegenesisItem extends Item {
     _equipmentDropdownData() {
         let tags = [];
         let data = foundry.utils.deepClone(this.data.data);
-        let text = `${data.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
+        let text = `${this.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
         console.log(this)
         tags.push(`${game.i18n.localize("DGNS.Group")}: ${DEGENESIS.equipmentGroups[data.group]}`)
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
@@ -255,10 +273,23 @@ export class DegenesisItem extends Item {
 
     _transportationDropdownData() {
         return {
-            text: this.data.data.description,
+            text: this.data.this.description,
             tags: this.data.items.map(i => i.name)
         }
+    }
 
+    _ammunitionDropdownData() {
+        let tags = [];
+        let data = foundry.utils.deepClone(this.data.data);
+        let text = `${this.description}`
+
+        tags.push(`${game.i18n.localize("DGNS.Damage")}: ${this.DamageFormula}`)
+        tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
+        tags.filter(t => !!t)
+        return {
+            text: text,
+            tags: tags
+        }
     }
     //#endregion
 
@@ -321,7 +352,8 @@ export class DegenesisItem extends Item {
     }
 
     get Group() {
-        return DEGENESIS[`${this.data.type}Groups`][this.group]       
+        if (this.group)
+            return DEGENESIS[`${this.data.type}Groups`][this.group]       
     }
 
     get DamageType() {

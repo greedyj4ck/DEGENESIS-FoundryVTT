@@ -27,6 +27,18 @@ export default function () {
             html.find(".message-header").remove(); // Remove header so Foundry does not attempt to update its timestamp
             html.html("").css("display", "none");
         }
+
+
+        let postedItem = html.find(".post-item")[0]
+        if (postedItem)
+        {
+            postedItem.setAttribute("draggable", true)
+            postedItem.addEventListener("dragstart", ev => {
+                ev.dataTransfer.setData("text/plain", JSON.stringify({type: "item", payload : app.getFlag("degenesis", "transfer")}))
+            })
+        }
+
+    
     })
 
     // Activate chat listeners defined in dice-wfrp4e.js

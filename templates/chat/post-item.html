@@ -1,0 +1,118 @@
+<div class="post-item">
+    <h2>{{item.name}}</h2>
+    <img src={{item.img}} width="100px" height="100px" />
+    {{{text}}}
+    <div class="item-details">
+        <hr>
+        {{#if item.cult}}
+        <b>{{localize "DGNS.Cult"}}</b>: {{item.cult}}<br>
+        {{/if}}
+
+        {{#if item.encumbrance}}
+        <b>{{localize "DGNS.Encumbrance"}}</b>: {{item.encumbrance}}<br>
+        {{/if}}
+
+        {{#if item.value}}
+        <b>{{localize "DGNS.Value"}}</b>: {{item.value}}<br>
+        {{/if}}
+
+        {{#if item.tech}}
+        <b>{{localize "DGNS.Tech"}}</b>: {{item.Tech}}<br>
+        {{/if}}
+
+        {{#if item.origin}}
+        <b>{{localize "DGNS.Origin"}}</b>: {{item.origin}}<br>
+        {{/if}}
+
+        {{#if item.resources}}
+        <b>{{localize "DGNS.Resources"}}</b>: {{item.resources}}<br>
+        {{/if}}
+
+        {{#if item.prerequisite}}
+        <b>{{localize "DGNS.Prerequisite"}}</b>: {{item.prerequisite}}<br>
+        {{/if}}
+
+        {{#if item.slots}}
+        <b>{{localize "DGNS.Slots"}}</b>: {{item.slots.used}} / {{item.slots.total}}<br>
+        {{/if}}
+
+        {{#if item.quantity}}
+        <b>{{localize "DGNS.Quantity"}}</b>: {{item.quantity}}<br>
+        {{/if}}
+
+        {{#if item.group}}
+        <b>{{localize "DGNS.Group"}}</b>: {{item.Group}}<br>
+        {{/if}}
+
+        <hr>
+        {{#if item.damage}}
+        <b>{{localize "DGNS.Damage"}}</b>: {{item.DamageFormula}} {{item.DamageType}}<br>
+        {{/if}}
+        
+        {{#if item.defense}}
+        <b>{{localize "DGNS.ActiveDefense"}}</b> : {{item.defense.D}}<br>
+        <b>{{localize "DGNS.PassiveDefense"}}</b> : {{item.defense.p_defense}}<br>
+        <b>{{localize "DGNS.Attack"}}</b> : {{item.attack}}<br>
+        {{/if}}
+
+        {{#if item.transportvalue}}
+        <b>{{localize "DGNS.TransportValue"}}</b>: {{item.transportValue}}<br>
+        {{/if}}
+
+        {{#if item.slotCost}}
+        <b>{{localize "DGNS.SlotCost"}}</b>: {{item.SlotCost}}<br>
+        {{/if}}
+
+        {{#if item.level}}
+        <b>{{localize "DGNS.Level"}}</b>: {{item.level}}<br>
+        {{/if}}
+
+        {{#if item.modifyAction}}
+        <b>{{localize "DGNS.Action"}}</b>: {{item.modifyAction}}<br>
+        {{/if}}
+
+        {{#if item.modifyNumber}}
+        <b>{{localize "DGNS.Number"}}</b>: {{item.modifyNumber}}<br>
+        {{/if}}
+
+        {{#if item.modifyType}}
+        <b>{{localize "DGNS.Type"}}</b>: {{item.modifyType}}<br>
+        {{/if}}
+
+        {{#if item.cost}}
+        <b>{{localize "DGNS.Cost"}}</b>: {{item.cost}}<br>
+        {{/if}}
+
+        {{#if item.rating}}
+        <b>{{localize "DGNS.Rating"}}</b>: {{item.rating}}<br>
+        {{/if}}
+
+        {{#if item.bonus}}
+        <b>{{localize "DGNS.Bonus"}}</b>: {{item.bonus}}<br>
+        {{/if}}
+
+        {{#if item.drawback}}
+        <b>{{localize "DGNS.Drawback"}}</b>: {{item.drawback}}<br>
+        {{/if}}
+
+        {{#if item.distance}}
+        <b>{{localize "DGNS.Distance"}}</b>: {{item.distance.short}} / {{item.distance.far}} / {{item.distance.melee}}<br>
+        {{/if}}
+
+        {{#if item.caliber}}
+        <b>{{localize "DGNS.Caliber"}}</b>: {{item.Caliber}}<br>
+        {{/if}}
+
+        {{#if item.handling}}D
+        <b>{{localize "DGNS.Handling"}}</b>: {{item.handling}}D<br>
+        {{/if}}
+
+        {{#if item.mag}}
+        <b>{{localize "DGNS.Magazine"}}</b>: {{item.mag.size}}<br>
+        {{/if}}
+
+    </div>
+    {{#if item.qualities}}
+    <b>{{localize "DGNS.Qualities"}}</b>: {{#each item.Qualities as |quality q|}} <br> {{quality}} {{/each}}
+    {{/if}}
+</div>

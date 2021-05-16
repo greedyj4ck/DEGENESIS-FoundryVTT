@@ -200,10 +200,10 @@ export class DegenesisActorSheet extends ActorSheet {
             $(this).select();
         });
         // Update Inventory Item
-        html.find(".item-edit,.weapon-name").click(this._onItemEdit.bind(this))
+        html.find(".item-edit").click(this._onItemEdit.bind(this))
         html.find(".item-delete").click(this._onItemDelete.bind(this))
         html.find(".item-add").click(this._onItemCreate.bind(this))
-        html.find(".item-post").click()
+        html.find(".item-post").click(this._onPostItem.bind(this))
         html.find(".diamond").click(this._onDiamondClick.bind(this))
         html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this))
         html.find(".checkbox").click(this._onCheckboxClick.bind(this))
@@ -231,7 +231,14 @@ export class DegenesisActorSheet extends ActorSheet {
             if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
                 this.actor.updateEmbeddedDocuments("Item", [{_id : itemData._id, "data.location" : transportTarget.dataset["itemId"]}])
         }
-        else
+        else 
+        {
+            let dropData =  JSON.parse(event.dataTransfer.getData("text/plain"))
+            if (dropData.type == "item")
+            {
+                return this.actor.createEmbeddedDocuments("Item", [dropData.payload])
+            }
+        }
             super._onDrop(event);
     }
 
@@ -246,6 +253,11 @@ export class DegenesisActorSheet extends ActorSheet {
     _onItemCreate(event) {
         let type = $(event.currentTarget).attr("data-item");
         this.actor.createEmbeddedDocuments("Item", [{ name: `New ${type.capitalize()}`, type: type }])
+    }
+
+    _onPostItem(event) {
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        this.actor.items.get(itemId).postToChat()
     }
     _onDiamondClick(event) {
         let actorData = this.actor.toObject()

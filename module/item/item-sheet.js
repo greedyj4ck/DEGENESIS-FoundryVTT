@@ -24,7 +24,21 @@ export class DegenesisItemSheet extends ItemSheet {
     return `systems/degenesis/templates/item/item-${this.item.type}-sheet.html`
   }
 
-  /* -------------------------------------------- */
+ 
+  _getHeaderButtons() {
+    let buttons = super._getHeaderButtons();
+    if (this.item.isOwner) {
+        buttons.unshift(
+            {
+                label: "DGNS.Post",
+                class: "post",
+                icon: "fas fa-comment",
+                onclick: ev => this.item.postToChat()
+            })
+    }
+    return buttons
+}
+
 
   /** @override */
   getData() {
