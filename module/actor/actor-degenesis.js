@@ -112,7 +112,7 @@ export class DegenesisActor extends Actor {
             if (i.type == "armor" && i.equipped)
             {
                 if (armor.equipment == 0) {
-                    armor.equipment += i.data.AP;
+                    armor.equipment += i.AP;
                 }
                 else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
                     armor.equipment += 1;

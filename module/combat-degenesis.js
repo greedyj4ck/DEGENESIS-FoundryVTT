@@ -12,7 +12,7 @@ export class DegenesisCombat extends Combat {
         // Structure input data
         ids = typeof ids === "string" ? [ids] : ids;
         // Iterate over Combatants, performing an initiative roll for each
-        const updates = ids.reduce(async (updates, id) => {
+        const updates = await ids.reduce(async (updates, id) => {
             const c = this.getCombatant(id);
             if (!c || !c.isOwner) return updates;
             const actor = c.actor;
@@ -20,12 +20,13 @@ export class DegenesisCombat extends Combat {
             updates.push({_id: id, initiative: initiativeValue});
             return updates;
         }, []);
+        debugger
         if (!updates.length) return this;
         // Update multiple combatants
-        await this.updateEmbeddedDocuments("Combatant", [updates]);
+        await this.updateEmbeddedDocuments("Combatant", updates)
         // Ensure the turn order remains with the same combatant
         if (updateTurn) {
-            const currentId = this.combatantid;
+            const currentId = this.combatant.id;
             await this.update({turn: this.turns.findIndex(t => t.id === currentId)});
         }
         return this;

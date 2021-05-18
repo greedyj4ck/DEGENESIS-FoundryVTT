@@ -39,7 +39,7 @@ export default class ModifierManager
                         "T" : 0,
                     }
                 }
-                this[mod.action][mod.modType] += mod.modifyNumber;
+                this[mod.action][mod.modifyType] += mod.modifyNumber;
             }
         })
         if (!this["action"])

@@ -104,7 +104,7 @@ export class DegenesisItem extends Item {
                         setProperty(this.data, change.key, current + change.value)
                     }
                 }
-                else if (change.mode == "overwrite" && change.value) {
+                else if (change.mode == "override" && change.value) {
                     setProperty(this.data, change.key, change.value)
                 }
             }
@@ -117,6 +117,14 @@ export class DegenesisItem extends Item {
             // Calculate slot cost for the mod
             this.data.data.slots.used += mod.slotCost
         }
+    }
+
+    getModChanges() {
+        let changes = (this.getFlag("degenesis", "mods") || []).map(i => new DegenesisItem(i)).reduce((acc, current) => {
+            acc = acc.concat(current.changes)
+            return acc
+        }, [])
+        return changes
     }
 
     dropdownData() {
