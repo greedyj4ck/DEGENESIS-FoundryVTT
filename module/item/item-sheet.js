@@ -66,7 +66,7 @@ export class DegenesisItemSheet extends ItemSheet {
     if (!item || item.type != "mod") return;
     let mods = foundry.utils.deepClone(this.item.getFlag("degenesis", "mods") || []);
     mods.push(item.data);
-    this.item.unsetFlag("degenesis", "mods")
+    await this.item.unsetFlag("degenesis", "mods")
     await this.item.setFlag("degenesis", "mods", mods);
   }
 
@@ -162,7 +162,7 @@ export class DegenesisItemSheet extends ItemSheet {
     }
     else if (action=="add")
     {
-      changes.push({key : "", mode : "", value : ""})
+      changes.push({key : "", mode : "add", value : 0})
     }
     this.item.update({"data.changes" : changes})
   }

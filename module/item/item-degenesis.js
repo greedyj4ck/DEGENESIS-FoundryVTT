@@ -93,7 +93,7 @@ export class DegenesisItem extends Item {
     }
 
     _applyMods() {
-        let mods = (this.getFlag("degenesis", "mods") || []).map(i => new Item(i))
+        let mods = (this.getFlag("degenesis", "mods") || []).map(i => new DegenesisItem(i))
 
         for (let mod of mods) {
             // Apply the mod's changes, adding or overwriting as specified
@@ -111,7 +111,7 @@ export class DegenesisItem extends Item {
 
             // Append the mod's qualities to the item's
             if (mod.qualities.length) {
-                this.data.data.qualities = this.data.data.qualities.concat(mod.data.qualities)
+                this.data.data.qualities = this.qualities.concat(mod.qualities)
             }
 
             // Calculate slot cost for the mod
