@@ -52,7 +52,7 @@ export default class RollDialog extends Dialog {
     {
         super.activateListeners(html)
 
-        $("input[type=text]").focusin(function () {
+        $("input").focusin(function () {
             $(this).select();
         });
         

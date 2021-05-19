@@ -12,27 +12,30 @@ export class DegenesisActor extends Actor {
 
 
     async _preCreate(data, options, user) {
-
+        await super._preCreate(data, options, user)
         // Set wounds, advantage, and display name visibility
         if (!data.token)
-            mergeObject(data,
+            this.data.update(
                 {
-                    //"token.bar1": { "attribute": "status.wounds" },                 // Default Bar 1 to Wounds
-                    //"token.bar2": { "attribute": "status.advantage" },               // Default Bar 2 to Advantage
-                    "token.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,    // Default display name to be on owner hover
-                    "token.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,    // Default display bars to be on owner hover
                     "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL,         // Default disposition to neutral
-                    "token.name": data.name                                       // Set token name to actor name
+                    "token.name": data.name,                                       // Set token name to actor name
+                    "token.img" : "systems/degenesis/assets/tokens/default.png",
                 })
 
         // Default characters to HasVision = true and Link Data = true
         if (data.type == "character") {
-            data.token.vision = true;
-            data.token.actorLink = true;
+            this.data.update({"token.vision" :  true});
+            this.data.update({"token.actorLink" :  true});
         }
+
+        if (!data.img)
+            this.data.update({img : "systems/degenesis/assets/tokens/default.png"})
+
     }
 
     async _preUpdate(updateData, options, user) {
+
+        await super._preUpdate(updateData, options, user)
 
         // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
         if (getProperty(updateData, "data.skills.faith.value"))
