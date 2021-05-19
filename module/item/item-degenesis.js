@@ -360,7 +360,7 @@ export class DegenesisItem extends Item {
     }
 
     get Group() {
-        if (this.group)
+        if (this.group && DEGENESIS[`${this.data.type}Groups`])
             return DEGENESIS[`${this.data.type}Groups`][this.group]       
     }
 
@@ -430,7 +430,7 @@ export class DegenesisItem extends Item {
     get damageBonus() { return this.data.data.damageBonus }
     get damageType() { return this.data.data.damageType }
     get defense() { return this.data.data.defense }
-    get description() { return this.data.data.description }
+    get description() { return this.data.data.description || "" }
     get disabled() { return this.data.data.disabled }
     get distance() { return this.data.data.distance }
     get drawback() { return this.data.data.drawback }
