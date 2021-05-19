@@ -374,7 +374,7 @@
       </div>
 
       <div class="arsenal-list item-list">
-         {{#each arsenal.armorItems as |armor a|}}
+         {{#each arsenal.armor as |armor a|}}
          {{#if armor.equipped}}
          <div class="armor item" data-item-id="{{armor.id}}">
             <a class="armor-name">{{armor.name}}</a>
@@ -391,8 +391,8 @@
                </div>
                <div class="qualities-name">
                   <span>
-                  {{#each armor.qualities as |quality q|}}
-                     <a class="capitalize quality-dropdown" data-key="{{quality.key}}" data-type="armor">{{quality.display}}</a>
+                  {{#each armor.Qualities as |quality q|}}
+                     <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="armor">{{quality}}</a>
                   {{/each}}
                   </span>
                </div>

@@ -153,11 +153,11 @@ export class DegenesisItem extends Item {
         let forceTotal = this.actor.skills.force.value + (force || 0)
 
         const baseValue = parseInt(this.damage) + (modifier || 0);
-        const damageWithTriggers = baseValue + triggers;
-        if (!this.DamageBonus) {
-            return damageWithTriggers;
-        }
-        return damageWithTriggers + this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
+        // const damageWithTriggers = baseValue + triggers;
+        // if (!this.DamageBonus) {
+        //     return damageWithTriggers;
+        // }
+        return baseValue + this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
     }
 
     static matchAmmo(weapon, ammo) {
@@ -387,7 +387,7 @@ export class DegenesisItem extends Item {
         if (type == "mod")
             type = this.data.data.modType;
 
-        if (type == "weapon" || type == "armour") {
+        if (type == "weapon" || type == "armor") {
             this.data.data.qualities.forEach(q => {
                 let qualityString = DEGENESIS[`${type}Qualities`][q.name] + " "
                 qualityString = qualityString.concat(q.values.map(v => `(${v.value})`).join(", "))
