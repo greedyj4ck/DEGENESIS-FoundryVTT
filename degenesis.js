@@ -50,7 +50,6 @@ Hooks.once("init", async function () {
 
   // Pre-load templates
   loadTemplates([
-    "systems/degenesis/templates/actor/actor-attributes-skills.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",
@@ -64,9 +63,9 @@ Hooks.once("init", async function () {
   ]);
 
   // Assign the actor class to the CONFIG
-  CONFIG.Actor.entityClass = DegenesisActor;
-  CONFIG.Item.entityClass = DegenesisItem;
-  CONFIG.Combat.entityClass = DegenesisCombat;
+  CONFIG.Actor.documentClass = DegenesisActor;
+  CONFIG.Item.documentClass = DegenesisItem;
+  CONFIG.Combat.documentClass = DegenesisCombat;
 
 
   game.degenesis = {
@@ -87,40 +86,40 @@ Hooks.once("init", async function () {
     chat : DegenesisChat
   }
 
-  game.importData = function() {
-      let weapons = []
-      fetch("systems/degenesis/tb_weapons_melee.json").then(r => r.json().then(json => {
-      for (let item of json.items)
-      {
-        let itemData = duplicate(game.system.model.Item.weapon)
-        itemData.cult = item.cult.join(", ")
-        itemData.damage = item.damage
-        itemData.description = item.description
-        itemData.encumbrance = item.encumbrance || 0
-        itemData.distance.melee = item.distance || 0
-        itemData.handling = item.handling || 0
+  // game.importData = function() {
+  //     let weapons = []
+  //     fetch("systems/degenesis/tb_weapons_melee.json").then(r => r.json().then(json => {
+  //     for (let item of json.items)
+  //     {
+  //       let itemData = foundry.utils.deepClone(game.system.model.Item.weapon)
+  //       itemData.cult = item.cult.join(", ")
+  //       itemData.damage = item.damage
+  //       itemData.description = item.description
+  //       itemData.encumbrance = item.encumbrance || 0
+  //       itemData.distance.melee = item.distance || 0
+  //       itemData.handling = item.handling || 0
 
-        itemData.qualities = item.qualities.map(q => {
-          let qualityObj = {
-            name : q.name = DEG_Utility.findKey(q.name, DEGENESIS.weaponQualities),
-          }
-          qualityObj.values = DEGENESIS.weaponQualitiesValues[qualityObj.name].map(name => {return {name}})
-          if (q.property)
-            qualityObj.values[0].value = q.property
-          return qualityObj
-        })
-        itemData.resources = item.resources || 0
-        itemData.slots = {total: item.slots || 0, used : 0}
-        itemData.value = item.value || 0
-        let newItem = {name : item.name, data : itemData, type : "weapon"}
-        if (item.specialty)
-          setProperty(newItem, "flags.degenesis.specialty", item.specialty)
+  //       itemData.qualities = item.qualities.map(q => {
+  //         let qualityObj = {
+  //           name : q.name = DEG_Utility.findKey(q.name, DEGENESIS.weaponQualities),
+  //         }
+  //         qualityObj.values = DEGENESIS.weaponQualitiesValues[qualityObj.name].map(name => {return {name}})
+  //         if (q.property)
+  //           qualityObj.values[0].value = q.property
+  //         return qualityObj
+  //       })
+  //       itemData.resources = item.resources || 0
+  //       itemData.slots = {total: item.slots || 0, used : 0}
+  //       itemData.value = item.value || 0
+  //       let newItem = {name : item.name, data : itemData, type : "weapon"}
+  //       if (item.specialty)
+  //         setProperty(newItem, "flags.degenesis.specialty", item.specialty)
 
-        weapons.push(newItem);
-      }
-    }))
-    return weapons
-  }
+  //       weapons.push(newItem);
+  //     }
+  //   }))
+  //   return weapons
+  // }
 
   
   CONFIG.fontFamilies.push("Calluna")
@@ -158,80 +157,6 @@ Hooks.once("init", async function () {
           DEGENESIS[group][key] = game.i18n.localize(DEGENESIS[group][key])
     }
   })
-
-  Hooks.once('diceSoNiceReady', (dice3d) => {
-    dice3d.addSystem({ id: "degenesis", name: "DEGENESIS: Rebirth" }, "exclusive");
-    dice3d.addDicePreset({
-      type: "d6",
-      labels: [
-        'systems/degenesis/icons/dice-faces/d1.png',
-        'systems/degenesis/icons/dice-faces/d2.png',
-        'systems/degenesis/icons/dice-faces/d3.png',
-        'systems/degenesis/icons/dice-faces/d4.png',
-        'systems/degenesis/icons/dice-faces/d5.png',
-        'systems/degenesis/icons/dice-faces/d6.png'
-      ],
-      bumpMaps: [
-        'systems/degenesis/icons/dice-faces/d1_bump.png',
-        'systems/degenesis/icons/dice-faces/d2_bump.png',
-        'systems/degenesis/icons/dice-faces/d3_bump.png',
-        'systems/degenesis/icons/dice-faces/d4_bump.png',
-        'systems/degenesis/icons/dice-faces/d5_bump.png',
-        'systems/degenesis/icons/dice-faces/d6_bump.png'
-      ],
-      system: "degenesis"
-    });
-
-    dice3d.addSystem(
-      { id: "degenesis3d-black", name: "DEGENESIS: Rebirth Black 3D" },
-      "exclusive"
-    );
-    dice3d.addSystem(
-      { id: "degenesis3d-white", name: "DEGENESIS: Rebirth White 3D" },
-      "exclusive"
-    );
-    dice3d.addSystem(
-      { id: "degenesis3d-pureBlood", name: "DEGENESIS: Rebirth Pure Blood 3D" },
-      "exclusive"
-    );
-    dice3d.addSystem(
-      {
-        id: "degenesis3d-taintedBlood",
-        name: "DEGENESIS: Rebirth Tainted Blood 3D",
-      },
-      "exclusive"
-    );
-  
-    dice3d.addDicePreset({
-      type: "d6",
-      labels: "",
-      modelFile: "systems/degenesis/icons/dice-faces/degenesix_black.gltf",
-      system: "degenesis3d-black",
-    });
-  
-    dice3d.addDicePreset({
-      type: "d6",
-      labels: "",
-      modelFile: "systems/degenesis/icons/dice-faces/degenesix_white.gltf",
-      system: "degenesis3d-white",
-    });
-  
-    dice3d.addDicePreset({
-      type: "d6",
-      labels: "",
-      modelFile: "systems/degenesis/icons/dice-faces/degenesix_pureBlood.gltf",
-      system: "degenesis3d-pureBlood",
-    });
-  
-    dice3d.addDicePreset({
-      type: "d6",
-      labels: "",
-      modelFile: "systems/degenesis/icons/dice-faces/degenesix_taintedBlood.gltf",
-      system: "degenesis3d-taintedBlood",
-    });
-    
-
-  });
 
   // Register all other hooks
   hooks();

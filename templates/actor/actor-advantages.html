@@ -22,21 +22,21 @@
       </div>
 
       <div class="advantage-list">
-         {{#each backgrounds as |background bg|}}
+         {{#each data.backgrounds as |background bg|}}
          <div class="advantage">
             <div class="background-name">{{background.label}}</div>
             <div class="diamond-position">
                <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
                   {{#each background.diamonds as |diamond index|}}
-                  {{#if diamond.filled}}
-                  <a class="diamond" data-index={{index}}>
-                     <div class="square black"></div>
-                  </a>
-                  {{else}}
-                  <a class="diamond" data-index={{index}}>
-                     <div class="square"></div>
-                  </a>
-                  {{/if}}
+                     {{#if diamond.filled}}
+                     <a class="diamond" data-index={{index}}>
+                        <div class="square black"></div>
+                     </a>
+                     {{else}}
+                     <a class="diamond" data-index={{index}}>
+                        <div class="square"></div>
+                     </a>
+                     {{/if}}
                   {{/each}}
                </div>
             </div>
@@ -116,7 +116,7 @@
             <a class="background-name">{{localize "DGNS.Infamy"}}</a>
             <div class="diamond-position">
                <div class="diamond-row" data-target="data.scars.infamy.value">
-                  {{#each infamy.diamonds as |diamond index|}}
+                  {{#each data.scars.infamy.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                   <a class="diamond" data-index={{index}}>
                      <div class="square black"></div>
@@ -164,17 +164,17 @@
          </div>
       </div>
       <div class="advantage-list item-list">
-         {{#each actor.potentials as |potential p|}}
-         <div class="advantage item" data-item-id={{potential._id}}>
+         {{#each actor.potentialItems as |potential p|}}
+         <div class="advantage item" data-item-id={{potential.id}}>
             <a class="potential-name dropdown">{{potential.name}}</a>
             <div class="potential-characteristics">
                <div class="origin">
-                  {{potential.data.origin}}
+                  {{potential.origin}}
                </div>
                <div class="level">
                   <div class="diamond-position">
                      <div class="diamond-row" data-target="item" data-item-target="data.level">
-                        {{#each potential.diamonds as |diamond index|}}
+                        {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>
                            <div class="square black"></div>

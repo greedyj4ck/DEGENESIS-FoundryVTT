@@ -241,18 +241,6 @@ DEGENESIS.weaponGroups = {
   "sonic" : "DGNS.SonicWeapons"
 }
 
-DEGENESIS.weaponGroups = {
-  "brawl" : "DGNS.Brawl",
-  "armedMelee" : "DGNS.ArmedMelee",
-  "thrown" : "DGNS.ThrownWeapons",
-  "projectiles" : "DGNS.Projectiles",
-  "handguns" : "DGNS.Handguns",
-  "rifles" : "DGNS.Rifles",
-  "heavy" : "DGNS.HeavyWeapons",
-  "explosives" : "DGNS.Explosives",
-  "sonic" : "DGNS.SonicWeapons"
-}
-
 DEGENESIS.equipmentGroups = {
   "getting food" : "DGNS.GettingFood",
   "traps": "DGNS.Traps",
@@ -290,7 +278,7 @@ DEGENESIS.weaponGroupSkill = {
   "rifles" : "projectiles",
   "heavy" : "projectiles",
   "explosives" : "projectiles",
-  "sonic" : "engineering + domination"
+  "sonic" : "engineering"
 }
 
 DEGENESIS.weaponQualities = {
@@ -573,14 +561,14 @@ DEGENESIS.systemItems = {
 
 DEGENESIS.transportationEncumbranceCalculation = {
   wholeReduction : (items, reductionValue) => {
-    let totalEnc = items.reduce((a, b) => a + (b.data.encumbrance || 0), 0)
+    let totalEnc = items.reduce((a, b) => a + (b.encumbrance || 0), 0)
     totalEnc -= reductionValue
     if (totalEnc < 0) totalEnc = 0;
     return totalEnc
   },
   eachReduction : (items, reductionValue) => {
       let totalEnc = items.reduce((a, b) => {
-      let enc = (b.data.encumbrance || 0) - reductionValue
+      let enc = ((b.encumbrance * b.quantity) || 0) - (reductionValue * b.quantity)
       if (enc < 0) enc = 0;
       return a + enc
     }, 0)
@@ -596,10 +584,10 @@ DEGENESIS.transportationEncumbranceModes = {
 }
 
 
-CONST.CLICK = {
-  LEFT: 0,
-  RIGHT: 2
-}
+// CONST.CLICK = {
+//   LEFT: 0,
+//   RIGHT: 2
+// }
 
 
 

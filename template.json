@@ -419,7 +419,9 @@
       "current" : 0
     },
     "group" : "",
-    "caliber" : ""
+    "caliber" : "",
+    "primarySkill" : "",
+    "secondarySkill" : ""
   },
   "armor" : {
     "templates" : ["description", "equipped", "quantity","qualities", "encumbrance", "tech", "slots", "value", "resources", "cult", "location"],

@@ -32,7 +32,7 @@ export class DEG_Utility {
 
     static getModificationActions()
     {
-        let actions = duplicate(DEGENESIS.modifyActions);
+        let actions = foundry.utils.deepClone(DEGENESIS.modifyActions);
 
         for(let attr in DEGENESIS.attributeAbbrev)
             actions[`attr:${attr}`] = `All ${DEGENESIS.attributeAbbrev[attr]}`
@@ -62,7 +62,7 @@ export class DEG_Utility {
    */
   static chatDataSetup(content, modeOverride, isRoll = false, forceWhisper) {
     let chatData = {
-      user: game.user._id,
+      user: game.userid,
       rollMode: modeOverride || game.settings.get("core", "rollMode"),
       content: content
     };

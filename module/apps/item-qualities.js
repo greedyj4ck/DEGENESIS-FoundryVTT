@@ -21,7 +21,7 @@ export class ItemQualities extends BaseEntitySheet {
 
     constructor(object, options) {
       super(object, options)
-      this.tempData = duplicate(this.object.data)
+      this.tempData = this.object.toObject()
       this.qualityType = this.object.type
 
     }
@@ -42,7 +42,7 @@ export class ItemQualities extends BaseEntitySheet {
       let qualityValues;
 
       if (this.qualityType == "mod")
-        this.qualityType = this.object.data.data.modType
+        this.qualityType = this.object.modType
 
       qualityList = DEGENESIS[`${this.qualityType}Qualities`]
       qualityDescriptions = DEGENESIS[`${this.qualityType}QualityDescription`]
@@ -55,7 +55,7 @@ export class ItemQualities extends BaseEntitySheet {
             "checked" : !!this.tempData.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
             "name" : qualityList[q],                                                       // Display name  
             "description" : qualityDescriptions[q],                                        // Description (to be used for tooltip/dropdown)
-            "values" : duplicate(qualityValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
+            "values" : foundry.utils.deepClone(qualityValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
           }
           // Map each quality to a function to determine how the values are filled.
           // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
@@ -90,7 +90,7 @@ export class ItemQualities extends BaseEntitySheet {
 
         let quality = {}
         quality.name = $(ev.currentTarget).attr("data-quality");
-        quality.values = duplicate(DEGENESIS[`${this.qualityType}QualitiesValues`][quality.name]);
+        quality.values = foundry.utils.deepClone(DEGENESIS[`${this.qualityType}QualitiesValues`][quality.name]);
         
         let valueInputs = $(ev.currentTarget).parents(".item-quality").find(".quality-value")
 

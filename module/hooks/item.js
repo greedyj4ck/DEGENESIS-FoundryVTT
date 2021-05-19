@@ -1,13 +1,13 @@
 export default function () {
 
     // If a container is deleted, reset location of all items within it.
-    Hooks.on("deleteOwnedItem", (actor, item) => {
-        if (item.type == "transportation")
+    Hooks.on("deleteItem", (item) => {
+        if (item.isOwned && item.type == "transportation")
         {
-            let items = duplicate(actor.data.items.filter(i => i.data.location  == item._id));
-            items.forEach(i => i.data.location = "");
-            console.log(items);
-            actor.updateEmbeddedEntity("OwnedItem", items);
+            let items = item.actor.items.filter(i => i.location  == item.id).map(i => {
+                return {_id : i.id, "data.location" : ""}
+            });
+            item.actor.updateEmbeddedDocuments("Item", items);
         }
     })
 }

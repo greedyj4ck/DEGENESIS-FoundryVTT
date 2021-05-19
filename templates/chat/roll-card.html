@@ -1,8 +1,14 @@
-<h2>{{title}}</h2>
+<h2>{{{title}}}</h2>
 <div>
     {{#each rolls as |roll r|}}
-    <img src="{{roll.img}}" width=25 height=25/>
+        <img src="{{roll.img}}" width=25 height=25/>
     {{/each}}
+    {{#if secondaryRolls}}
+        <hr>
+        {{#each secondaryRolls as |roll r|}}
+            <img src="{{roll.img}}" width=25 height=25/>
+        {{/each}}
+    {{/if}}
 </div>
 
     <div>Successes: {{successes}}</div>

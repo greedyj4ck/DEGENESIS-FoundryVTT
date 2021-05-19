@@ -53,7 +53,7 @@
                                 <select class="encMode-select" name="data.mode" data-dtype="String">
                                     <option value=""></option>
                                     {{#select data.mode}}
-                                    {{#each modes as |mode m|}}
+                                    {{#each (config "transportationEncumbranceModes") as |mode m|}}
                                     <option value="{{m}}">{{mode}}</option>
                                     {{/each}}
                                     {{/select}}

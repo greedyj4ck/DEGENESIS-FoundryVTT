@@ -27,16 +27,16 @@
          </div>
          <div class="enc-all">
             <div class="enc-container">
-               <div class="enc-bar" style="background-color: {{actor.encumbrance.color}}; width: {{actor.encumbrance.pct}}%"></div>
+               <div class="enc-bar" style="background-color: {{data.general.encumbrance.color}}; width: {{data.general.encumbrance.pct}}%"></div>
             </div>
                <div class="encumbrance-legend">
-                  <span>{{actor.encumbrance.current}} / {{actor.encumbrance.max}}</span>
+                  <span>{{data.general.encumbrance.current}} / {{data.general.encumbrance.max}}</span>
                </div>
          </div>
       </div>
    </div>
 
-   {{#each actor.inventory as |section s|}}
+   {{#each inventory as |section s|}}
    {{#if section.items.length}}
    <div class="inventory-group weapon-group">
       <div class="weapon">
@@ -84,12 +84,12 @@
       </div>      
    <div class="inventory-list item-list">
       {{#each section.items as |item w|}}
-      <div class="weapon item" data-item-id="{{item._id}}">
+      <div class="weapon item" data-item-id="{{item.id}}">
          <a class="weapon-name dropdown">{{item.name}}</a>
          <div class="weapon-characteristics">
             {{#if ../toggleable}}
             <div class="legend-name equipped">
-                {{#if item.data.equipped}}
+                {{#if item.equipped}}
                   <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.equipped"><div class="square-into black"></div></a>
                {{else}}
                   <a class="square button-position checkbox" data-target="item" data-item-target="data.equipped" ><div class="square-into"></div></a>
@@ -102,17 +102,17 @@
             </div>
             {{/if}}
             <div class="legend-name qty">
-               <a class="quantity-click">{{item.data.quantity}}</a>
+               <a class="quantity-click">{{item.quantity}}</a>
             </div>
             <div class="legend-name enc">
-               <span>{{item.data.encumbrance}}</span>
+               <span>{{item.encumbrance}}</span>
             </div>
             <div class="legend-name tech">
-               <span>{{lookup ../../techValues item.data.tech}}</span>
+               <span>{{item.Tech}}</span>
             </div>
             {{#if section.toggleable}}
             <div class="legend-name slot">
-               <span>{{item.data.slots.used}}/{{item.data.slots.total}}</span>
+               <span>{{item.slots.used}}/{{item.slots.total}}</span>
             </div>
             {{/if}}
             <div class="vertical-bar">
@@ -137,12 +137,12 @@
 
 
 <!-- CONTAINERS -->
-{{#if actor.transportation.items.length}}
+{{#if transportation.items.length}}
 <div class="inventory-group weapon-group">
    <div class="weapon">
       <div class="first-part">
          <div class="black-title">
-            <h3>{{localize actor.transportation.header}}</h3>
+            <h3>{{transportation.header}}</h3>
             <a class="icon item-add" data-item="{{localize section.type}}">+</a>
          </div>
          <svg class="tab-start-line" height="23" width="26">
@@ -156,7 +156,7 @@
       </div>
       <div class="weapon-legend legend">
          <div class="legend-name equipped">
-            <span>{{actor.transportation.toggleDisplay}}</span>
+            <span>{{transportation.toggleDisplay}}</span>
          </div>
          <div class="legend-name enc">
             <span>{{localize "DGNS.Enc"}}</span>
@@ -168,13 +168,13 @@
       </div>
    </div>      
 <div class="inventory-list item-list">
-   {{#each actor.transportation.items as |item w|}}
-      <div class="weapon item transport-drop" data-item-id="{{item._id}}" {{#if item.data.dropped}} style="opacity: 0.5" {{/if}}>
+   {{#each transportation.items as |item w|}}
+      <div class="weapon item transport-drop" data-item-id="{{item.id}}" {{#if item.dropped}} style="opacity: 0.5" {{/if}}>
       <a class="weapon-name dropdown">{{item.name}}</a>
       <div class="weapon-characteristics">
          <div class="legend-name equipped">
-            {{#if item.data.droppable}}
-             {{#if item.data.dropped}}
+            {{#if item.droppable}}
+             {{#if item.dropped}}
                <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.dropped"><div class="square-into black"></div></a>
             {{else}}
                <a class="square button-position checkbox" data-target="item" data-item-target="data.dropped" ><div class="square-into"></div></a>
@@ -182,10 +182,10 @@
             {{/if}}
          </div>
          <div class="legend-name enc">
-            <span>{{item.totalEnc}}</span>
+            <span>{{item.encumbrance}}</span>
          </div>
          <div class="legend-name tech">
-            <span>{{lookup ../../techValues item.data.tech}}</span>
+            <span>{{item.Tech}}</span>
          </div>
          <div class="vertical-bar">
             <svg height="15px" width="1px">
@@ -199,11 +199,11 @@
          </div>
       </div>
       <div class="break"></div>
-      {{#if item.items.length}}
+      {{#if item.itemsWithin.length}}
          <div class="item-summary">
             <div class="tags">
-               {{#each item.items as |containerItem i|}}
-               <a class="tag container-item" data-item-id="{{containerItem._id}}">{{containerItem.name}} ({{containerItem.data.encumbrance}})</a>
+               {{#each item.itemsWithin as |containerItem i|}}
+               <a class="tag container-item" data-item-id="{{containerItem.id}}">{{containerItem.name}} ({{containerItem.encumbrance}})</a>
                {{/each}}
             </div>
          </div>
@@ -255,7 +255,7 @@
             </div>
    <div class="inventory-list item-list">
       {{#each inventory.armor.items as |armor w|}}
-      <div class="armor item" data-item-id="{{armor._id}}">
+      <div class="armor item" data-item-id="{{armor.id}}">
          <a class="armor-name dropdown">{{armor.name}}</a>
          <div class="armor-characteristics">
             <div class="legend-name equipped">

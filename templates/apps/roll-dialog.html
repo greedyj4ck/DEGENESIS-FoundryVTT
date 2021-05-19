@@ -1,23 +1,40 @@
-<div class = "dialog-inputs">
-    <span>
-        <label>{{localize "DGNS.Difficulty"}}</label>
-        <input name="difficulty" value="{{prefilled.difficulty}}"/>
-    </span>
-    <div>
-        <input name="diceModifier" value="{{prefilled.diceModifier}}"/>D
+<div class="dialog-bonuses">
+    <div class = "dialog-inputs">
+        <span>
+            <label class="input-label">{{localize "DGNS.Difficulty"}}</label>
+            <input class="dialog-input" name="difficulty" value="{{prefilled.difficulty}}"/>
+        </span>
+        <div>
+            <span class="input-label">Add Dice</span><input class="dialog-input" name="diceModifier" value="{{prefilled.diceModifier}}"/>
+        </div>
+        <div>
+            <span class="input-label">Add Successes</span><input class="dialog-input" name="successModifier" value="{{prefilled.successModifier}}"/>
+        </div>
+        <div>
+            <span class="input-label">Add Triggers</span><input class="dialog-input" name="triggerModifier" value="{{prefilled.triggerModifier}}"/>
+        </div>
     </div>
-    <div>
-        <input name="successModifier" value="{{prefilled.successModifier}}"/>S
-    </div>
-    <div>
-        <input name="triggerModifier" value="{{prefilled.triggerModifier}}"/>T
+
+    <div class="custom-modifier-section">
+        <label>{{localize "DGNS.Modifiers"}}</label>
+        <select name="customModifiers" class = "custom-modifiers" multiple>
+            {{#each customModifiers as |modifier m|}}
+            <option value="{{m}}">{{modifier.description}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
+            {{/each}}
+        </select>
     </div>
 </div>
 
-<div>
-    <select name="customModifiers" class = "custom-modifiers" multiple>
-        {{#each customModifiers as |modifier m|}}
-        <option value="{{m}}">{{modifier.description}} {{modifier.number}}{{modifier.type}}</option>
+{{#if showSecondaryOption}}
+<div class="secondary-selection">
+    <label>{{localize "DGNS.SecondarySkill"}}:</label>
+    <select name="secondarySkill" class = "secondary-select">
+        {{#select secondarySkill}}
+        <option value="">None</option>
+        {{#each (config "skills") as |skill s|}}
+        <option value="{{s}}">{{skill}}</option>
         {{/each}}
+        {{/select}}
     </select>
 </div>
+{{/if}}

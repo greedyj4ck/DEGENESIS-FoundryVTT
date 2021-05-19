@@ -67,14 +67,14 @@
                         <select class="damageBonus-select" name="data.damageBonus" data-dtype="String">
                             <option value=""></option>
                             {{#select data.damageBonus}}
-                            {{#each damageModifiers as |modifier bonus|}}
+                            {{#each (config "damageModifiers") as |modifier bonus|}}
                             <option value="{{bonus}}">{{modifier.blueprint}}</option>
                             {{/each}}
                             {{/select}}
                         </select>
                         <select class="damageType-select" name="data.damageType" data-dtype="String">
                             {{#select data.damageType}}
-                            {{#each damageTypes as |type t|}}
+                            {{#each (config "damageTypes") as |type t|}}
                             <option value="{{t}}">{{type}}</option>
                             {{/each}}
                             {{/select}}
@@ -88,7 +88,7 @@
                         <select name="data.caliber" data-dtype="String">
                             <option value="">-</option>
                             {{#select data.caliber}}
-                            {{#each calibers as |caliber c|}}
+                            {{#each (config "calibers") as |caliber c|}}
                             <option value="{{c}}">{{caliber}}</option>
                             {{/each}}
                             {{/select}}
@@ -134,6 +134,32 @@
                         <input class="field-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="Number"/>
                     </div>
                 </div>
+                <div class="sheet-field">
+                    <span class="field-name skill-selection">{{localize "DGNS.PrimarySkill"}}: </span>
+                    <div class="field-inputs">
+                        <select name="data.primarySkill" data-dtype="String">
+                            {{#select data.primarySkill}}
+                            <option value="">{{localize "Default"}}</option>
+                            {{#each (config "skills") as |skill s|}}
+                            <option value="{{s}}">{{skill}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                </div> 
+                <div class="sheet-field">
+                    <span class="field-name skill-selection">{{localize "DGNS.SecondarySkill"}}: </span>
+                    <div class="field-inputs">
+                        <select name="data.secondarySkill" data-dtype="String">
+                            {{#select data.secondarySkill}}
+                            <option value="">-</option>
+                            {{#each (config "skills") as |skill s|}}
+                            <option value="{{s}}">{{skill}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                    </div>
+                </div> 
             </div>
         </div>
 
@@ -147,7 +173,7 @@
                    </div>
                    <div class="qualities-data conditions-data">
                       <ol class="qualities-ol conditions-ol">
-                        {{#each qualities as |quality q|}}
+                        {{#each item.Qualities as |quality q|}}
                             <li class="conditions-li qualities-li item">
                                 <div class="conditions-characteristics">
                                 <div class='quality'>
@@ -169,7 +195,7 @@
                     </div>
                    <div class="mods-data conditions-data">
                       <ol class="mods-ol conditions-ol">
-                      {{#each item.flags.degenesis.mods as |mod m|}}
+                      {{#each item.data.flags.degenesis.mods as |mod m|}}
                          <li class="mods-li conditions-li item" data-item-id="{{m}}">
                             <div class="conditions-characteristics">
                                <div class='item-data'>
@@ -193,7 +219,7 @@
                 </div>
              </div>
           
-             {{#if specialty}}
+             {{#if item.hasSpecialty}}
              {{localize "DGNS.Specialty"}}
              <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
              {{/if}}
