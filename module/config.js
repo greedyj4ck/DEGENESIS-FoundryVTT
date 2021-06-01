@@ -124,6 +124,15 @@ DEGENESIS.attributeAbbrev = {
   "instinct" : "DGNS.InstinctAbbrev",
 }
 
+DEGENESIS.attributeType = {
+  "body" :  "DGNS.Primal",
+  "agility" :  "DGNS.Focus",
+  "charisma" :  "DGNS.Primal",
+  "intellect" :  "DGNS.Focus",
+  "psyche" :  "DGNS.Focus",
+  "instinct" : "DGNS.Primal",
+}
+
 DEGENESIS.skills = {
   "athletics" : "DGNS.Athletics",
   "brawl" : "DGNS.Brawl",

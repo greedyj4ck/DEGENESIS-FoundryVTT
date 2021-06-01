@@ -22,6 +22,9 @@
          <!-- black-title -->
          <div class="attribute-name">
             <h3>{{group.label}}</h3>
+            {{#if group.isPreferred}}
+            <h3>•</h3>
+            {{/if}}
          </div>
          
          <div class = "diamond-row" data-target="data.attributes.{{g}}.value">
