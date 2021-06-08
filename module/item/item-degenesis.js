@@ -191,29 +191,29 @@ export class DegenesisItem extends Item {
  
     //#region Dropdown Data
     _potentialDropdownData() {
-        return { text: `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>:${this.data.data.effect}<br><br><b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.data.data.rules}` }
+        return { text: `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>:${this.effect}<br><br><b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.rules}` }
     }
     _modifierDropdownData() {
         let displayNumber
         if (this.modifyNumber > 0) {
-            displayNumber = '+' + this.data.data.number;
+            displayNumber = '+' + this.modifyNumber;
         }
         else {
-            displayNumber = this.data.data.number;
+            displayNumber = this.modifyNumber;
         }
         let text;
-        if (this.data.data.action == "custom")
-            text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
-                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.data.data.type} ` + this.data.this.description;
+        if (this.action == "custom")
+            text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.name}<br>
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.modifyType} ` + this.description;
         else text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
-                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.data.data.type} on ` + DEG_Utility.getModificationActions()[this.data.data.action] + ` tests`
+                <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.modifyType} on ` + DEG_Utility.getModificationActions()[this.action] + ` tests`
 
         return { text }
 
     }
 
     _complicationDropdownData() {
-        return { text: this.data.this.description }
+        return { text: this.description }
     }
 
     _weaponDropdownData() {
@@ -221,7 +221,7 @@ export class DegenesisItem extends Item {
         let data = foundry.utils.deepClone(this.data.data);
         let text = `${this.description}`
 
-        if (this.data.data.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
+        if (this.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
             text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
         tags.push(DEGENESIS.weaponGroups[data.group])
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
@@ -282,7 +282,7 @@ export class DegenesisItem extends Item {
 
     _transportationDropdownData() {
         return {
-            text: this.data.this.description,
+            text: this.description,
             tags: this.data.items.map(i => i.name)
         }
     }
@@ -361,8 +361,8 @@ export class DegenesisItem extends Item {
     }
 
     get Group() {
-        if (this.group && DEGENESIS[`${this.data.type}Groups`])
-            return DEGENESIS[`${this.data.type}Groups`][this.group]       
+        if (this.group && DEGENESIS[`${this.type}Groups`])
+            return DEGENESIS[`${this.type}Groups`][this.group]       
     }
 
     get DamageType() {
@@ -386,7 +386,7 @@ export class DegenesisItem extends Item {
         let formattedQualities = {}
         let type = this.data.type
         if (type == "mod")
-            type = this.data.data.modType;
+            type = this.modType;
 
         if (type == "weapon" || type == "armor") {
             this.data.data.qualities.forEach(q => {
@@ -401,7 +401,7 @@ export class DegenesisItem extends Item {
     }
 
     get ModifyType() {
-        return DEGENESIS.modifyTypes[this.modType]
+        return DEGENESIS.modifyTypes[this.modifyType]
     }
 
     get ModifyNumber() {

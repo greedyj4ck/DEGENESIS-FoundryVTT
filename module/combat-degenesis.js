@@ -20,7 +20,6 @@ export class DegenesisCombat extends Combat {
             updates.push({_id: id, initiative: initiativeValue});
             return updates;
         }, []);
-        debugger
         if (!updates.length) return this;
         // Update multiple combatants
         await this.updateEmbeddedDocuments("Combatant", updates)

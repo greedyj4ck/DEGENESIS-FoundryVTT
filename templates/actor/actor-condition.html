@@ -135,7 +135,11 @@
                            <a class="modifiers-number dropdown">{{mod.ModifyNumber}}</a>
                            <a class="modifiers-type dropdown">{{mod.ModifyType}}</a>
                         </div>
+                        {{#if (eq mod.action "custom")}}
+                        <a class="modifiers-action dropdown">{{mod.name}}</a>
+                        {{else}}
                         <a class="modifiers-action dropdown">{{mod.ActionType}}</a>
+                        {{/if}}
                         <div class="vertical-bar">
                            <svg height="15px" width="1px">
                               <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>

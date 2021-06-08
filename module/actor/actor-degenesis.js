@@ -59,25 +59,24 @@ export class DegenesisActor extends Actor {
         try
         {
             super.prepareData();
-            const data = this.data.data;
             this.itemCategories = this.itemTypes
             this.modifiers = new ModifierManager(this);
     
-           data.condition.ego.max =           data.condition.ego.override || (this.focusOrPrimal.value + data.attributes[this.focusOrPrimal.attribute].value) * 2;
-           data.condition.spore.max =         data.condition.spore.override || (this.faithOrWillpower.value + data.attributes[this.faithOrWillpower.attribute].value) * 2
-           data.condition.fleshwounds.max =   data.condition.fleshwounds.override || (data.attributes.body.value + data.skills.toughness.value) * 2 
-           data.condition.trauma.max =        data.condition.trauma.override || (data.attributes.body.value + data.attributes.psyche.value);
-           data.general.encumbrance.max =     data.general.encumbrance.override || (data.attributes.body.value + data.skills.force.value);
+           this.condition.ego.max =           this.condition.ego.override || (this.focusOrPrimal.value + this.attributes[this.focusOrPrimal.attribute].value) * 2;
+           this.condition.spore.max =         this.condition.spore.override || (this.faithOrWillpower.value + this.attributes[this.faithOrWillpower.attribute].value) * 2
+           this.condition.fleshwounds.max =   this.condition.fleshwounds.override || (this.attributes.body.value + this.skills.toughness.value) * 2 
+           this.condition.trauma.max =        this.condition.trauma.override || (this.attributes.body.value + this.attributes.psyche.value);
+           this.general.encumbrance.max =     this.general.encumbrance.override || (this.attributes.body.value + this.skills.force.value);
 
             this.prepareItems();
             this.modifiers.addEncumbranceModifiers(this)
 
-            data.general.actionModifier = this.modifiers.action.D
-            data.general.movement =        data.attributes.body.value + data.skills.athletics.value + (this.modifiers.movement || 0)
-            data.fighting.initiative =     data.attributes.psyche.value + data.skills.reaction.value + this.modifiers.action.D + this.modifiers.initiative.D;
-            data.fighting.dodge =          data.attributes.agility.value + data.skills.mobility.value + this.modifiers.action.D + this.modifiers.dodge.D;
-            data.fighting.mentalDefense =  data.attributes.psyche.value + this.faithOrWillpower.value + this.modifiers.action.D + this.modifiers.mentalDefense.D;
-            data.fighting.passiveDefense = 1 + data.state.cover.value + (data.state.motion ? 1 : 0) + (data.state.active ? 1 : 0) + (this.modifiers.p_defense || 0);
+            this.general.actionModifier = this.modifiers.action.D
+            this.general.movement =        this.attributes.body.value + this.skills.athletics.value + (this.modifiers.movement || 0)
+            this.fighting.initiative =     this.attributes.psyche.value + this.skills.reaction.value + this.modifiers.action.D + this.modifiers.initiative.D;
+            this.fighting.dodge =          this.attributes.agility.value + this.skills.mobility.value + this.modifiers.action.D + this.modifiers.dodge.D;
+            this.fighting.mentalDefense =  this.attributes.psyche.value + this.faithOrWillpower.value + this.modifiers.action.D + this.modifiers.mentalDefense.D;
+            this.fighting.passiveDefense = 1 + this.state.cover.value + (this.state.motion ? 1 : 0) + (this.state.active ? 1 : 0) + (this.modifiers.p_defense || 0);
 
         }
         catch(e)
@@ -212,7 +211,7 @@ export class DegenesisActor extends Actor {
         }
 
         if (secondary)
-            rollData.actionNumber = this.getSkillTotal(weapon.secondarySkill) // weapon.dice uses primary skill, so override with secondary skill if using secondarry
+            rollData.actionNumber = this.getSkillTotal(secondarySkill || weapon.secondarySkill) // weapon.dice uses primary skill, so override with secondary skill if using secondarry
 
         return {dialogData, cardData, rollData}
     }
@@ -298,7 +297,7 @@ export class DegenesisActor extends Actor {
         if (rollData.secondary)
         {
             await this.handleSecondaryRoll({ dialogData, cardData, rollData, rollResults }, this.setupWeapon(weapon, { use , secondary : true, secondarySkill : rollData.secondary}) )   
-            cardData.title = `${weapon.name}<br>(${DEGENESIS.skills[weapon.skill]} + ${DEGENESIS.skills[weapon.secondarySkill]})`
+            cardData.title = `${weapon.name}<br>(${DEGENESIS.skills[weapon.skill]} + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`
         }
 
         const fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
@@ -371,8 +370,8 @@ export class DegenesisActor extends Actor {
            await this.update({"flags.degenesis.-=spentEgoActionModifier" : null})
            ui.notifications.notify("Used Ego Spend Action Modifier")
         }
-        if (type !== "initiative" && this.data.data.state.initiative.actions > 1)
-            await this.update({"data.state.initiative.actions" : this.data.data.state.initiative.actions - 1})
+        if (type !== "initiative" && this.state.initiative.actions > 1)
+            await this.update({"data.state.initiative.actions" : this.state.initiative.actions - 1})
     }
     //#endregion
 
@@ -392,18 +391,18 @@ export class DegenesisActor extends Actor {
     //#region Getters
     // @@@@@@@@ CALCULATION GETTERS @@@@@@
     get faithOrWillpower() {
-        if (this.data.data.skills.willpower.value)
-            return this.data.data.skills.willpower
-        else if (this.data.data.skills.faith.value)
-            return this.data.data.skills.faith
-        else return this.data.data.skills.willpower
+        if (this.skills.willpower.value)
+            return this.skills.willpower
+        else if (this.skills.faith.value)
+            return this.skills.faith
+        else return this.skills.willpower
     }
 
     get focusOrPrimal() {
-        if (this.data.data.skills.focus.value) return this.data.data.skills.focus
-        else if (this.data.data.skills.primal.value)
-            return this.data.data.skills.primal
-        else return this.data.data.skills.focus
+        if (this.skills.focus.value) return this.skills.focus
+        else if (this.skills.primal.value)
+            return this.skills.primal
+        else return this.skills.focus
     }
 
     // @@@@@@@@ FORMATTED GETTERS @@@@@@@@
