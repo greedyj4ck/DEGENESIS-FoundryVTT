@@ -30,6 +30,14 @@ export class DEG_Utility {
         return data
     }
 
+    static addAttributeType(data, attribute, condition){
+        const currentType = DEGENESIS.attributeType[attribute];
+
+        data.isPreferred = currentType === condition;
+
+        return data;
+    }
+    
     static getModificationActions()
     {
         let actions = foundry.utils.deepClone(DEGENESIS.modifyActions);

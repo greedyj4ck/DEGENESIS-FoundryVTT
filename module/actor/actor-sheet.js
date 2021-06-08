@@ -99,10 +99,13 @@ export class DegenesisActorSheet extends ActorSheet {
     sortAttributesSkillsDiamonds() {
         let attributeSkillGroups = this.sortAttributesSkills()
 
+        const isFocus = !!attributeSkillGroups.intellect.skills.focus.value;
+        const type = isFocus ? DEGENESIS.skills['focus'] : DEGENESIS.skills['primal'];
+
         for (let attrKey in attributeSkillGroups) {
             let attrGroup = attributeSkillGroups[attrKey]
             DEG_Utility.addDiamonds(attrGroup, 6)
-
+            DEG_Utility.addAttributeType(attrGroup, attrKey, type);
             for (let skillKey in attrGroup.skills) {
                 DEG_Utility.addDiamonds(attrGroup.skills[skillKey], 6)
 
