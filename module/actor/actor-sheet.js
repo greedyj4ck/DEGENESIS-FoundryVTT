@@ -100,7 +100,7 @@ export class DegenesisActorSheet extends ActorSheet {
         let attributeSkillGroups = this.sortAttributesSkills()
 
         const isFocus = !!attributeSkillGroups.intellect.skills.focus.value;
-        const type = isFocus ? DEGENESIS.skills['focus'] : DEGENESIS.skills['primal'];
+        const type = isFocus ? 'focus' : 'primal';
 
         for (let attrKey in attributeSkillGroups) {
             let attrGroup = attributeSkillGroups[attrKey]
