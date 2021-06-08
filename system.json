@@ -98,7 +98,7 @@
   "gridUnits": "ft",
   "background" : "ui/falberg.webp",
   "url": "",
-  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/08-support/system.json",
-  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/archive/refs/heads/08-support.zip",
+  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
+  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.3.1/degenesis.zip",
   "license": "LICENSE.txt"
 }
