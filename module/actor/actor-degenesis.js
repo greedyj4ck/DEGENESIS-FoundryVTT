@@ -208,7 +208,7 @@ export class DegenesisActor extends Actor {
             else if (use == "attack-far")
                 rollData.actionNumber = weapon.dice.far
             else if (use == "attack-extreme")
-                rollData.actionNumber = weapon.dice.extremes
+                rollData.actionNumber = weapon.dice.extreme
         }
 
         if (secondary)

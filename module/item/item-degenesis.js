@@ -153,11 +153,12 @@ export class DegenesisItem extends Item {
         let forceTotal = this.actor.skills.force.value + (force || 0)
 
         const baseValue = parseInt(this.damage) + (modifier || 0);
-        // const damageWithTriggers = baseValue + triggers;
-        // if (!this.DamageBonus) {
-        //     return damageWithTriggers;
-        // }
-        return baseValue + this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
+
+        let damage = baseValue
+        if (this.DamageBonus)
+            damage += this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
+
+        return damage
     }
 
     static matchAmmo(weapon, ammo) {
