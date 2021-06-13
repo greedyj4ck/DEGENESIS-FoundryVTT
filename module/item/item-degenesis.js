@@ -451,6 +451,7 @@ export class DegenesisItem extends Item {
     get mode() { return this.data.data.mode }
     get modifyType() { return this.data.data.type }
     get modifyNumber() { return this.data.data.number }
+    get modifyShowName() { return this.data.data.showName}
     get origin() { return this.data.data.origin }
     get prerequisite() { return this.data.data.prerequisite }
     get qualities() { return this.data.data.qualities }

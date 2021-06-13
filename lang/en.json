@@ -135,6 +135,7 @@
     "DGNS.PassiveDef" : "Passive Defense",
     "DGNS.DropBackpack" : "Drop Backpack",
     "DGNS.InMotion" : "In Motion",
+    "DGNS.ShowName": "Show Name",
     "DGNS.ActiveAndOnMyFeet" : "Active And On My Feet",
     "DGNS.Cover" : "Cover",
     "DGNS.SpendEgo" : "Spend Ego",
