@@ -465,8 +465,7 @@
     "action" : "",
     "number" : 0,
     "type" : "",
-    "disabled" : false,
-    "showName": false
+    "disabled" : false
   },
   "complication" : {
     "cost" : 0,
