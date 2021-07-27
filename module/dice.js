@@ -10,8 +10,14 @@ export class DegenesisDice
             successModifier,
             triggerModifier
         });
-        if (game.dice3d && dsn)
-            await game.dice3d.showForRoll(roll);
+        if (game.dice3d && dsn){
+            let rollMode = game.settings.get("core", "rollMode");
+            let whisper =null, blind = false, sync=true;
+            if (["gmroll", "blindroll"].includes(rollMode)) whisper = ChatMessage.getWhisperRecipients("GM").map(u => u.id);
+            if (rollMode === "blindroll" && !game.user.isGM) blind = true;
+            else if (rollMode === "selfroll") sync=false;
+            await game.dice3d.showForRoll(roll, game.user, sync, whisper, blind);
+        }
             
         return rollResult;
     }
