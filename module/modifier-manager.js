@@ -10,9 +10,9 @@ export default class ModifierManager
         let shieldAttackModifier = 0;
 
         shields.forEach(s => {
-            shieldActiveModifier += s.data.defense.D
-            shieldPassiveModifier += s.data.defense.p_defense
-            shieldAttackModifier += s.data.attack.D
+            shieldActiveModifier += s.defense.D
+            shieldPassiveModifier += s.defense.p_defense
+            shieldAttackModifier += s.attack.D
         })
 
         let modifierArray = actor.getItemTypes("modifier").filter(i => i.enabled)
