@@ -55,5 +55,15 @@
             <textarea name="data.description">{{data.description}}</textarea>
         </div>
         {{/if}}
+
+        <div class="form-group">
+            <label>{{localize "DGNS.ShowName"}}</label>
+            <select name="data.showName">
+                {{#select data.showName}}
+                <option value="">✘</option>
+                <option value="true">✔</option>
+                {{/select}}
+            </select>
+        </div>
     </section>
 </form>

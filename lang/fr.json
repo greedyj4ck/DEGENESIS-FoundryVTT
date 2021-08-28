@@ -112,6 +112,7 @@
     "DGNS.PassiveDef" : "Défense Passive",
     "DGNS.DropBackpack" : "Equipem. lâché",
     "DGNS.InMotion" : "En mouvement",
+    "DGNS.ShowName": "Afficher le nom",
     "DGNS.ActiveAndOnMyFeet" : "Actif et debout",
     "DGNS.Cover" : "Couverture",
     "DGNS.SpendEgo" : "Dépense Ego",
