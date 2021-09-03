@@ -10,8 +10,38 @@ export class DegenesisDice
             successModifier,
             triggerModifier
         });
-        if (game.dice3d && dsn)
-            await game.dice3d.showForRoll(roll);
+
+        if (game.dice3d && dsn){
+
+            // Temporary DiceSoNice Fix 
+            
+            let usersArr = []
+            let gmArr = []
+            let isBlind =false
+
+            let rollMode = game.settings.get("core", "rollMode");
+
+            for (User of game.users ){if (User.isGM == true){gmArr.push(User);}}
+    
+            switch(rollMode){
+
+                case 'roll':
+                    usersArr = null;
+                    break;
+                case 'selfroll':
+                    usersArr.push(game.user);
+                    break;
+                case 'blindroll':
+                    usersArr = gmArr;
+                    isBlind=true;               // This will break a blind roll for GM
+                    break;
+                case 'gmroll':
+                    usersArr = gmArr
+                    usersArr.push(game.user);
+                    break;
+            }
+            
+            await game.dice3d.showForRoll(roll,game.user,true,usersArr,isBlind);}
             
         return rollResult;
     }

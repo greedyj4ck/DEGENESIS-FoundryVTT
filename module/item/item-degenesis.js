@@ -300,6 +300,30 @@ export class DegenesisItem extends Item {
             tags: tags
         }
     }
+
+    _shieldDropdownData() {
+        let tags = [];
+        let data = foundry.utils.deepClone(this.data.data);
+        let text = `${this.description}`
+
+        if (this.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
+            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
+
+        tags.push(`${game.i18n.localize("DGNS.Armor")}: ${data.defense.D}`)
+        tags.push(`${game.i18n.localize("DGNS.PassiveDef")}: ${data.defense.p_defense}`)
+        tags.push(`${game.i18n.localize("DGNS.Attack")}: ${data.attack.D}`)
+        tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
+
+        if (data.cult) { tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`) };
+        if (data.resources) { tags.push(`${game.i18n.localize("DGNS.Resources")}: ${data.resources}`) };
+        tags = tags.concat(Object.values(this.Qualities));
+        tags.filter(t => !!t)
+        return {
+            text: text,
+            tags: tags
+        }
+    }
+
     //#endregion
 
     //#region Getters

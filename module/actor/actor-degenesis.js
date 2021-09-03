@@ -127,10 +127,11 @@ export class DegenesisActor extends Actor {
                 }  
             }
 
-            if (i.type == "modifier") {
-                if (i.action == "armor") {
-                    armor.modifier += i.modifyNumber;
-                }
+            // Modifiers fix
+
+            if (i.type == "modifier" && i.enabled) {
+                if (i.action == "armor") {armor.modifier += i.modifyNumber;}
+                if (i.action == "p_defense") {this.modifiers.p_defense += i.modifyNumber;}
             }
         }
 
