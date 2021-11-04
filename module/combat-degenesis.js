@@ -12,14 +12,26 @@ export class DegenesisCombat extends Combat {
         // Structure input data
         ids = typeof ids === "string" ? [ids] : ids;
         // Iterate over Combatants, performing an initiative roll for each
-        const updates = await ids.reduce(async (updates, id) => {
-            const c = this.getCombatant(id);
-            if (!c || !c.isOwner) return updates;
-            const actor = c.actor;
-            const initiativeValue = await DegenesisCombat.rollInitiativeFor(actor);
+       
+        const updates = []
+        
+        for ( let [i, id] of ids.entries() ) {
+
+            // Get Combatant data (non-strictly)
+            const combatant = this.combatants.get(id);
+            if ( !combatant?.isOwner ) return results;
+      
+            // Produce an initiative roll for the Combatant
+            const initiativeValue = DegenesisCombat.rollInitiativeFor(combatant.actor);
             updates.push({_id: id, initiative: initiativeValue});
-            return updates;
-        }, []);
+        } 
+
+        const initiativeValues = await Promise.all(updates.map(object => object.initiative))
+
+        updates.forEach((object, index) => {
+        object.initiative = initiativeValues[index]
+        })
+            
         if (!updates.length) return this;
         // Update multiple combatants
         await this.updateEmbeddedDocuments("Combatant", updates)

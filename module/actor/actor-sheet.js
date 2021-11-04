@@ -370,15 +370,31 @@ export class DegenesisActorSheet extends ActorSheet {
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     async _onInitiativeClick(event) {
-        const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens();
-        if (tokens.length > 0) {
+        const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens(true);     
+        if (tokens.length > 0 && game.combat !== null && game.combat.combatants.contents.length !== 0) {
+            
             const initiativeConfiguration = { createCombatants: true, rerollInitiative: true, initiativeOptions: {} };
-            this.actor.rollInitiative(initiativeConfiguration);
+            const combatantToken = game.combat.combatants.reduce((arr, c) => {
+                
+                if (this.actor.isToken == true){
+                    if (c.data.tokenId !== this.token.id ) return arr;
+                } else {
+                    if (c.data.actorId !== this.actor.id ) return arr;
+                    if (c.token.isLinked !== true) return arr;
+                }
+
+                if ( !initiativeConfiguration.rerollInitiative && c.initiative !== null ) return arr;
+                arr.push(c.id);
+                return arr;
+              }, []);
+           await game.combat.rollInitiative(combatantToken,initiativeConfiguration);
+           return game.combat;
         }
         else { 
             DegenesisCombat.rollInitiativeFor(this.actor); 
         }
     }
+
     async _onFightClick(event) {
         let type = $(event.currentTarget).attr("data-roll")
         let skipDialog = event.ctrlKey
@@ -427,7 +443,7 @@ export class DegenesisActorSheet extends ActorSheet {
             }
         }
         this.actor.updateEmbeddedDocuments("Item", [itemData])
-        this.actor.updateEmbeddedDocuments("Item", [ammo])
+        this.actor.updateEmbeddedDocuments("Item", [ammo][0]) 
     }
     async _onAggregateClick(event) {
         let group = $(event.currentTarget).parents(".inventory-group").attr("data-group")
