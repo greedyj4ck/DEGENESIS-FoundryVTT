@@ -99,6 +99,6 @@
   "background" : "ui/falberg.webp",
   "url": "",
   "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
-  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.3.2/degenesis.zip",
+  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.3.3/degenesis.zip",
   "license": "LICENSE.txt"
 }
