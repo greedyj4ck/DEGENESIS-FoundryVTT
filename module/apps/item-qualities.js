@@ -4,7 +4,7 @@ import {DEGENESIS} from "../config.js";
  * A specialized form used to select item qualities and their values
  * @extends {FormApplication}
  */
-export class ItemQualities extends BaseEntitySheet {
+export class ItemQualities extends DocumentSheet {
 
     /** @override */
       static get defaultOptions() {
