@@ -1,7 +1,7 @@
 export default function () {
     Hooks.on("init", () => {
         Token.prototype._refreshTarget = function () {
-            this.target.clear();
+            this.targeted.clear();
             if (!this.targeted.size) return;
 
             // Determine whether the current user has target and any other users
