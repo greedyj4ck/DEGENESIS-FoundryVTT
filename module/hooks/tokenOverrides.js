@@ -1,7 +1,7 @@
 export default function () {
     Hooks.on("init", () => {
-        Token.prototype._refreshTarget = function () {
-            this.targeted.clear();
+         Token.prototype._refreshTarget = function () {
+            this.hud.target.clear();
             if (!this.targeted.size) return;
 
             // Determine whether the current user has target and any other users
@@ -17,7 +17,7 @@ export default function () {
                 let w = this.w;
                 let hw = w / 2;
                 let ah = canvas.dimensions.size / 3;
-                this.target.beginFill(0xed1d27, 1.0).lineStyle(1, 0x000000)
+                this.hud.target.beginFill(0xed1d27, 1.0).lineStyle(1, 0x000000)
                     .drawPolygon([-p, hh, -p - aw, hh - ah, -p - aw, hh + ah])
                     .drawPolygon([w + p, hh, w + p + aw, hh - ah, w + p + aw, hh + ah])
                     .drawPolygon([hw, -p, hw - ah, -p - aw, hw + ah, -p - aw])
@@ -51,5 +51,5 @@ export default function () {
             let posY = number === 0 ? this.h - h : 0;
             bar.position.set(0, posY);
         }
-    });
+    }); 
 }
