@@ -103,7 +103,7 @@ export class DegenesisActor extends Actor {
                 this.modifiers.action.D += encumbranceOver;
             }
             else {
-                window.alert("You are at max carrying weight, going over will affect your rolls!");
+                ui.notifications.warn("You are over encumbered!");
             }
     }
     
@@ -332,7 +332,7 @@ export class DegenesisActor extends Actor {
         }
         // notifies player that mag is empty and returns null to prevent mag size from going below 0
         else {
-            window.alert("Mag is empty);
+            ui.notifications.warn("Mag is empty");
             return null;
         }
     }
