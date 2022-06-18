@@ -69,7 +69,8 @@ export class DegenesisActor extends Actor {
            this.general.encumbrance.max =     this.general.encumbrance.override || (this.attributes.body.value + this.skills.force.value);
 
             this.prepareItems();
-            this.modifiers.addEncumbranceModifiers(this)
+            this.prepareEncumbranceModifiers();
+            
 
             this.general.actionModifier = this.modifiers.action.D
             this.general.movement =        this.attributes.body.value + this.skills.athletics.value + (this.modifiers.movement || 0)
@@ -84,10 +85,29 @@ export class DegenesisActor extends Actor {
             console.error(e);
         }
     }
-     
+  
+    
+    prepareEncumbranceModifiers(){
+        //set variable for difference between current and max encumbrance
+            let encumbranceOver = (this.general.encumbrance.current - this.general.encumbrance.max);
 
-
-
+        // if encumbranceOver is positive (you are over max encumbrance), if it's negative you are below max encumbrance
+        
+            if (encumbranceOver > 0){
+                //fixes the encumbrance modifiers that were previously not being added
+                 this.modifiers.action.D -= encumbranceOver;
+            }
+            else if (encumbranceOver < 0) {
+                // prevents resetting D completely to 0 in case other things affect the action modifiers
+                encumbranceOver = 0
+                this.modifiers.action.D += encumbranceOver;
+            }
+            else {
+                window.alert("You are at max carrying weight, going over will affect your rolls!");
+            }
+    }
+    
+    
     prepareItems() {
 
         let encumbrance = this.general.encumbrance
