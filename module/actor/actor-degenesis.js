@@ -323,10 +323,18 @@ export class DegenesisActor extends Actor {
 
         const fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
         cardData.damageFull = `${fullDamage}`;
-        if (rollData.weapon.isRanged)
+        
+        //stops current mag size from going below 0
+        if (rollData.weapon.isRanged && rollData.weapon.mag.current > 0){
             this.updateEmbeddedDocuments("Item", [{ _id: rollData.weapon.id, "data.mag.current": rollData.weapon.mag.current - 1 }])
-        this.postRollChecks(rollResults, "weapon")
-        return { rollResults, cardData }
+            this.postRollChecks(rollResults, "weapon")
+            return { rollResults, cardData }
+        }
+        // notifies player that mag is empty and returns null to prevent mag size from going below 0
+        else {
+            window.alert("Mag is empty);
+            return null;
+        }
     }
 
 
