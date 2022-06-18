@@ -105,10 +105,12 @@ export default class ModifierManager
         this.a_defense.D = this.a_defense.D ? this.a_defense.D + shieldActiveModifier : shieldActiveModifier
     }
 
+    // not sure why lines 112-115 didnt work, but I added the same functionality for encumbrance modifiers in actor-degenesis.js @ lines 72 &  90-108
 
+    /*
     addEncumbranceModifiers(actor) {
         if (actor.data.encumbrance && (actor.data.encumbrance.current > actor.data.encumbrance.max))
-            this.action.D -= (actor.data.encumbrance.current - actor.data.encumbrance.max)
+            return (actor.data.encumbrance.current - actor.data.encumbrance.max)
     }
 
 
