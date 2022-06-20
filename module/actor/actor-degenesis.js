@@ -96,6 +96,8 @@ export class DegenesisActor extends Actor {
             if (encumbranceOver > 0){
                 //fixes the encumbrance modifiers that were previously not being added
                  this.modifiers.action.D -= encumbranceOver;
+                //repeats warning when you continue to add weight (feel free to remove)
+                 ui.notifications.warn("You are over encumbered!");
             }
             else if (encumbranceOver < 0) {
                 // prevents resetting D completely to 0 in case other things affect the action modifiers
