@@ -19,8 +19,7 @@ import { DegenesisChat } from "./module/chat.js";
 import ActorConfigure from "./module/apps/actor-configure.js"
 import hooks from "./module/hooks/hooks.js"
 
-// import tippy from './node_modules/tippy.js';
-// import './node_modules/tippy.js/dist/tippy.css'; // optional for styling
+
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */

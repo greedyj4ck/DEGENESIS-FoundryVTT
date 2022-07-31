@@ -18,7 +18,7 @@
    <div class="column-flex">
 
       <div class="ego bar-group">
-         <div class="diamond-row bar" data-target="data.condition.ego.value">
+         <div class="diamond-row bar" data-target="system.condition.ego.value">
             {{#each data.condition.ego.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="spore bar-group">
-         <div class="diamond-row bar" data-target="data.condition.spore.value">
+         <div class="diamond-row bar" data-target="system.condition.spore.value">
             {{#each data.condition.spore.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -68,7 +68,7 @@
       </div>
 
       <div class="fleshwounds bar-group">
-         <div class="diamond-row bar" data-target="data.condition.fleshwounds.value">
+         <div class="diamond-row bar" data-target="system.condition.fleshwounds.value">
             {{#each data.condition.fleshwounds.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -91,7 +91,7 @@
       </div>
 
       <div class="trauma bar-group">
-         <div class="diamond-row bar" data-target="data.condition.trauma.value">
+         <div class="diamond-row bar" data-target="system.condition.trauma.value">
             {{#each data.condition.trauma.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>

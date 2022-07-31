@@ -69,25 +69,25 @@
           </div>
        </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
+            <a class="general-name checkbox" data-target="system.state.motion">{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a>             
             {{#if actor.state.motion}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.motion"><div class="square-into black"></div></a>
+            <a class="square border-black button-position checkbox" data-target="system.state.motion"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.motion"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="system.state.motion"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
-            <a class="general-name checkbox" data-target="data.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
+            <a class="general-name checkbox" data-target="system.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
             {{#if actor.state.active}} 
-            <a class="square border-black button-position checkbox" data-target="data.state.active"><div class="square-into black"></div></a>
+            <a class="square border-black button-position checkbox" data-target="system.state.active"><div class="square-into black"></div></a>
             {{else}}
-            <a class="square button-position checkbox" data-target="data.state.active"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="system.state.active"><div class="square-into"></div></a>
             {{/if}}
         </div>
         <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
             <div class="diamond-position">
-               <div class = "diamond-row" data-target="data.state.cover.value">
+               <div class = "diamond-row" data-target="system.state.cover.value">
                   {{#each data.state.cover.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -101,7 +101,7 @@
          <div class="combat">
             <a class="general-name checkbox">{{localize "DGNS.SpendEgo"}}: </a>
             <div class="diamond-position">
-                <div class = "diamond-row" data-target="data.state.spentEgo.value">
+                <div class = "diamond-row" data-target="system.state.spentEgo.value">
                     {{#each data.state.spentEgo.diamonds as |diamond index|}}
                         {{#if diamond.filled}}
                             <a class = "diamond" data-index={{index}}><div class="square black"></div></a>

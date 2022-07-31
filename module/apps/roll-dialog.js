@@ -57,9 +57,9 @@ export default class RollDialog extends Dialog {
         });
         
         this.userEntry = {
-            diceModifier : 0,
-            successModifier : 0,
-            triggerModifier : 0
+            diceModifier : 0 + this.data.dialogData.prefilled.diceModifier,
+            successModifier : 0 + this.data.dialogData.prefilled.successModifier,
+            triggerModifier : 0 + this.data.dialogData.prefilled.triggerModifier,
         }
         this.diceModifierInput = html.find("input[name='diceModifier']").change(ev => {
             this.userEntry.diceModifier = Number(ev.target.value)

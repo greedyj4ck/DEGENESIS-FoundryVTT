@@ -10,12 +10,14 @@ import ModifierManager from "../modifier-manager.js";
  */
 export class DegenesisActor extends Actor {
 
+    // TODO: CHECK IF UPDATESOURCE IS VALID METHOD FOR TOKEN
+    // this.data.update -> this.updateSource
 
     async _preCreate(data, options, user) {
         await super._preCreate(data, options, user)
         // Set wounds, advantage, and display name visibility
         if (!data.token)
-            this.data.update(
+            this.updateSource(
                 {
                     "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL,         // Default disposition to neutral
                     "token.name": data.name,                                       // Set token name to actor name
@@ -24,12 +26,12 @@ export class DegenesisActor extends Actor {
 
         // Default characters to HasVision = true and Link Data = true
         if (data.type == "character") {
-            this.data.update({"token.vision" :  true});
-            this.data.update({"token.actorLink" :  true});
+            this.updateSource({"token.vision" :  true});
+            this.updateSource({"token.actorLink" :  true});
         }
 
         if (!data.img)
-            this.data.update({img : "systems/degenesis/assets/tokens/default.png"})
+            this.updateSource({img : "systems/degenesis/assets/tokens/default.png"})
 
     }
 
@@ -38,17 +40,17 @@ export class DegenesisActor extends Actor {
         await super._preUpdate(updateData, options, user)
 
         // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
-        if (getProperty(updateData, "data.skills.faith.value"))
-            setProperty(updateData, "data.skills.willpower.value", 0)
+        if (getProperty(updateData, "system.skills.faith.value"))
+            setProperty(updateData, "system.skills.willpower.value", 0)
 
-        else if (getProperty(updateData, "data.skills.willpower.value"))
-            setProperty(updateData, "data.skills.faith.value", 0)
+        else if (getProperty(updateData, "system.skills.willpower.value"))
+            setProperty(updateData, "system.skills.faith.value", 0)
 
-        else if (getProperty(updateData, "data.skills.focus.value"))
-            setProperty(updateData, "data.skills.primal.value", 0)
+        else if (getProperty(updateData, "system.skills.focus.value"))
+            setProperty(updateData, "system.skills.primal.value", 0)
 
-        else if (getProperty(updateData, "data.skills.primal.value"))
-            setProperty(updateData, "data.skills.focus.value", 0)
+        else if (getProperty(updateData, "system.skills.primal.value"))
+            setProperty(updateData, "system.skills.focus.value", 0)
 
     }
 
@@ -165,7 +167,7 @@ export class DegenesisActor extends Actor {
         let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
 
         let rollData = {
-            skill : this.data.data.skills[skill],
+            skill : this.system.skills[skill],
             actionNumber : this.getSkillTotal(skill),
             difficulty : 0,
             diceModifier : 0,
@@ -235,7 +237,7 @@ export class DegenesisActor extends Actor {
             cardData = this.constructCardData("systems/degenesis/templates/chat/initiative-roll-card.html", DEGENESIS.skills[skill] + " - " + "Initiative") 
 
         let rollData = {
-            skill : this.data.data.skills[skill],
+            skill : this.system.skills[skill],
             actionNumber : this.getSkillTotal(skill),
             difficulty : 0,
             diceModifier : 0,
@@ -256,7 +258,7 @@ export class DegenesisActor extends Actor {
             title : cardTitle,
             template,
             speaker : {
-                alias : this.data.name
+                alias : this.system.name
             }
         }
     }
@@ -427,15 +429,15 @@ export class DegenesisActor extends Actor {
     get legacyItems() {return this.getItemTypes("legacy")}
     
     // @@@@@@@@ DATA GETTERS @@@@@@@@@@
-    get general() { return this.data.data.general}
-    get fighting() { return this.data.data.fighting}
-    get state() { return this.data.data.state}
-    get details() { return this.data.data.details}
-    get attributes() { return this.data.data.attributes}
-    get skills() { return this.data.data.skills}
-    get condition() { return this.data.data.condition}
-    get backgrounds() { return this.data.data.backgrounds}
-    get scars() { return this.data.data.scars}
-    get relationships() { return this.data.data.relationships}
+    get general() { return this.system.general}
+    get fighting() { return this.system.fighting}
+    get state() { return this.system.state}
+    get details() { return this.system.details}
+    get attributes() { return this.system.attributes}
+    get skills() { return this.system.skills}
+    get condition() { return this.system.condition}
+    get backgrounds() { return this.system.backgrounds}
+    get scars() { return this.system.scars}
+    get relationships() { return this.system.relationships}
     //#endregion
 }

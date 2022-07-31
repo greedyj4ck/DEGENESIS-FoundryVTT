@@ -98,8 +98,8 @@ export default class ModifierManager
                 "T" : 0,
             }
         }
-        this.action.D = actor.data.data.state.motion ? this.action.D - 2 : this.action.D
-        this.action.D -= actor.data.data.condition.trauma.value
+        this.action.D = actor.system.state.motion ? this.action.D - 2 : this.action.D
+        this.action.D -= actor.system.condition.trauma.value
         this.attack.D = this.attack.D ? this.attack.D + shieldAttackModifier : shieldAttackModifier
         this.p_defense = this.p_defense ? this.p_defense + shieldPassiveModifier : shieldPassiveModifier
         this.a_defense.D = this.a_defense.D ? this.a_defense.D + shieldActiveModifier : shieldActiveModifier
@@ -107,8 +107,8 @@ export default class ModifierManager
 
 
     addEncumbranceModifiers(actor) {
-        if (actor.data.encumbrance && (actor.data.encumbrance.current > actor.data.encumbrance.max))
-            this.action.D -= (actor.data.encumbrance.current - actor.data.encumbrance.max)
+        if (actor.system.encumbrance && (actor.system.encumbrance.current > actor.system.encumbrance.max))
+            this.action.D -= (actor.system.encumbrance.current - actor.system.encumbrance.max)
     }
 
 
@@ -127,7 +127,7 @@ export default class ModifierManager
 
         if (game.user.targets.size)
         {
-           prefilled.difficulty = Array.from(game.user.targets)[0].actor.data.data.fighting.passiveDefense
+           prefilled.difficulty = Array.from(game.user.targets)[0].actor.system.fighting.passiveDefense
         }
         for (let modifier in this)
         {
