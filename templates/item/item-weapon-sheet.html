@@ -20,7 +20,7 @@
                 </svg>
                 <div class="square little right"></div>
             </div>
-            {{editor data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor data.description target="system.description" button=true owner=owner editable=editable}}
             <div class="footer-diamond">
                 <div class="square little"></div>
              </div>
@@ -102,13 +102,13 @@
                         <input class=" field-start" type="text" value="-" data-dtype="Number" disabled="disabled"/>
                         <div class="belt-field">
                             <span class="belt-text">{{localize "DGNS.Belt"}}</span>
-                            <a class="square border-black button-position checkbox" data-target="data.mag.belt"><div class="square-into black"></div></a>
+                            <a class="square border-black button-position checkbox" data-target="system.mag.belt"><div class="square-into black"></div></a>
                         </div>
                         {{else}}
                         <input class="field-start" type="text" name="data.mag.size" value="{{data.mag.size}}" data-dtype="Number"/>
                         <div class="belt-field">
                             <span class="belt-text">{{localize "DGNS.Belt"}}</span>
-                            <a class="square button-position checkbox" data-target="data.mag.belt"><div class="square-into"></div></a>
+                            <a class="square button-position checkbox" data-target="system.mag.belt"><div class="square-into"></div></a>
                         </div>
                         {{/if}}
                     </div>
@@ -195,12 +195,12 @@
                     </div>
                    <div class="mods-data conditions-data">
                       <ol class="mods-ol conditions-ol">
-                      {{#each item.data.flags.degenesis.mods as |mod m|}}
+                      {{#each item.flags.degenesis.mods as |mod m|}}
                          <li class="mods-li conditions-li item" data-item-id="{{m}}">
                             <div class="conditions-characteristics">
                                <div class='item-data'>
                                   <span class="mods-name conditions-name">{{mod.name}}</span>
-                                  <span class="mods-slots conditions-number">{{mod.data.slotCost}}</span>
+                                  <span class="mods-slots conditions-number">{{mod.system.slotCost}}</span>
                                   <div class="vertical-bar">
                                      <svg height="15px" width="1px">
                                         <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
@@ -221,7 +221,7 @@
           
              {{#if item.hasSpecialty}}
              {{localize "DGNS.Specialty"}}
-             <textarea name="flags.degenesis.specialty">{{item.data.flags.degenesis.specialty}}</textarea>
+             <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
              {{/if}}
              <div class="footer-diamond">
                 <div class="square little"></div>

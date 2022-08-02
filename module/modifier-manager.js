@@ -107,8 +107,8 @@ export default class ModifierManager
 
 
     addEncumbranceModifiers(actor) {
-        if (actor.system.encumbrance && (actor.system.encumbrance.current > actor.system.encumbrance.max))
-            this.action.D -= (actor.system.encumbrance.current - actor.system.encumbrance.max)
+        if (actor.system.general.encumbrance && (actor.system.general.encumbrance.current > actor.system.general.encumbrance.max))
+            this.action.D -= (actor.system.general.encumbrance.current - actor.system.general.encumbrance.max)
     }
 
 

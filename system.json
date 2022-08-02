@@ -118,7 +118,7 @@
     }
   ],
   "gridDistance": 5,
-  "gridUnits": "ft",
+  "gridUnits": "m",
   "background" : "ui/falberg.webp",
   "url": "",
   "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",

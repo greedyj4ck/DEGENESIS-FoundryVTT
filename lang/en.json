@@ -3,6 +3,8 @@
 
 
     "ACTOR.TypeCharacter" : "Character",
+    "ACTOR.TypeNpc" : "NPC",
+    "ACTOR.TypeAbberant" : "From Hell",
 
 
     "ITEM.Type" : "Character",
@@ -467,5 +469,12 @@
     "DGNS.ModValue" : "Mod Value",
     "DGNS.ModAdd" : "Add",
     "DGNS.ModOverride" : "Override",
-    "DGNS.ModEditWarning" : "Changes made on an attached modification will not be saved."
+    "DGNS.ModEditWarning" : "Changes made on an attached modification will not be saved.",
+
+    "DGNS.SettingsEncumbrancePenalty": "Automatic penalty for Encumbrance",
+    "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls. Refresh client (F5) after changing this setting."
+
+
+
+
 }

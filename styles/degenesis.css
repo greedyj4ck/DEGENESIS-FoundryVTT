@@ -715,7 +715,8 @@ a.diamond:hover .square.red.perma {
 }
 
 .app.window-app.degenesis.sheet .section-header.row h3{
-    padding-top:10px
+    padding-top:10px;
+   
 }
 
 .app.window-app.degenesis.sheet .condition {
@@ -795,6 +796,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .tab.active h3 {
     font-size: 12px;
     font-weight: 300;
+    border-bottom: 0px;
 }
 
 /* * Attributes tab * */

@@ -52,7 +52,7 @@ export class ItemQualities extends DocumentSheet {
         for (let q in qualityList)
         {
           qualities[q] = {
-            "checked" : !!this.tempData.data.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
+            "checked" : !!this.tempData.system.qualities.find(quality => quality.name == q), // Should be checked if weapon has it
             "name" : qualityList[q],                                                       // Display name  
             "description" : qualityDescriptions[q],                                        // Description (to be used for tooltip/dropdown)
             "values" : foundry.utils.deepClone(qualityValues[q])                   // Array of possible values for each quality (eg. Dazed (3) )
@@ -61,7 +61,7 @@ export class ItemQualities extends DocumentSheet {
           // If the user specified 3 for Dazed, we need to retrieve that and fill the input with that value
           qualities[q].values = qualities[q].values.map(val => {
             // If the weapon has the quality
-            let existingQuality = this.tempData.data.qualities.find(quality => q == quality.name)
+            let existingQuality = this.tempData.system.qualities.find(quality => q == quality.name)
             if (existingQuality) // Set the value to an object with the specified value, placeholder, and config key object
               return {value : existingQuality.values.find(v => v.name == val).value, placeholder : DEGENESIS.qualityValues[val], key : val}
             else                 // Set the value to an object with with no value, but with the placeholder and the config key
@@ -82,7 +82,7 @@ export class ItemQualities extends DocumentSheet {
 
       html.submit(e => {
         e.preventDefault()
-        this.object.update({"data.qualities" : this.tempData.data.qualities});
+        this.object.update({"data.qualities" : this.tempData.system.qualities});
         this.close();
       })
 
@@ -97,7 +97,7 @@ export class ItemQualities extends DocumentSheet {
         for(let i = 0 ; i < valueInputs.length; i++)
           quality.values[i] = {name : quality.values[i], value : valueInputs[i].value}
 
-        let qualities = this.tempData.data.qualities
+        let qualities = this.tempData.system.qualities
         if (qualities.find(q => q.name == quality.name))
           qualities.splice(qualities.findIndex(q => q.name == quality.name), 1)
         else
@@ -109,7 +109,7 @@ export class ItemQualities extends DocumentSheet {
       html.find(".quality-value").change(ev => {
         let target = $(ev.currentTarget).parents(".quality-inputs").attr("data-quality");
         let valueKey = $(ev.currentTarget).attr("data-value-key");
-        let qualities = this.tempData.data.qualities
+        let qualities = this.tempData.system.qualities
         let existingQuality = qualities.find(q => q.name == target)
         if (!existingQuality)
           return

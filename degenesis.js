@@ -16,6 +16,7 @@ import { DegenesisCombat } from "./module/combat-degenesis.js";
 import { DegenesisDice } from "./module/dice.js";
 import { DEG_Utility } from "./module/utility.js";
 import { DegenesisChat } from "./module/chat.js";
+import { DegenesisSystemSettings } from "./module/settings.js"
 import ActorConfigure from "./module/apps/actor-configure.js"
 import hooks from "./module/hooks/hooks.js"
 
@@ -32,6 +33,9 @@ Hooks.once("init", async function () {
       console.log(`%cDEGENESIS` + `%c | Welcome, Chronicler`, "color: #ed1d27", "color: unset");
   }
 
+  // REGISTER SYSTEM SETTINGS
+  DegenesisSystemSettings();
+
   /**
    * Set an initiative formula for the system
    * @type {String}
@@ -43,9 +47,9 @@ Hooks.once("init", async function () {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("dnd5e", DegenesisActorSheet, { makeDefault: true });
+  Actors.registerSheet("degenesis", DegenesisActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("dnd5e", DegenesisItemSheet, { makeDefault: true });
+  Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
 
   // Pre-load templates
   loadTemplates([
@@ -121,13 +125,17 @@ Hooks.once("init", async function () {
   // }
 
   
-  CONFIG.fontFamilies.push("Calluna")
-  FONTS["Calluna"] = {
-    custom: {
-      families: ['Calluna'],
-      urls: ['systems/degenesis/fonts/Calluna-Regular.otf']
+ 
+ CONFIG.fontDefinitions = 
+  {
+    "Calluna": {
+      editor: true,
+      fonts: [
+        {urls: ["systems/degenesis/fonts/Calluna-Regular.otf"]},
+      ]
     }
   }
+
 
   CONFIG.canvasTextStyle = new PIXI.TextStyle({
     fontFamily: "Calluna",
@@ -143,8 +151,6 @@ Hooks.once("init", async function () {
     align: "center",
     wordWrap: false
   })
-
-  loadFont("Calluna")
 
 });
 

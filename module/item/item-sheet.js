@@ -43,7 +43,7 @@ export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    data.data = data.item.data._source.data
+    data.data = data.item.system
     console.log(data)
     this.processTypes(data)
     return data;
@@ -63,10 +63,10 @@ export class DegenesisItemSheet extends ItemSheet {
 
   async _onDrop(event) {
     let data = JSON.parse(event.dataTransfer.getData('text/plain'));
-    let item = game.items.get(data.id);
+    let item = await Item.implementation.fromDropData(data);
     if (!item || item.type != "mod") return;
     let mods = foundry.utils.deepClone(this.item.getFlag("degenesis", "mods") || []);
-    mods.push(item.data);
+    mods.push(item);
     await this.item.unsetFlag("degenesis", "mods")
     await this.item.setFlag("degenesis", "mods", mods);
   }
@@ -92,7 +92,7 @@ export class DegenesisItemSheet extends ItemSheet {
 
   _onCheckboxClick(ev)
   {
-    let itemData = foundry.utils.deepClone(this.item.data)
+    let itemData = this.item.toObject()
     let target = $(ev.currentTarget).attr("data-target")
 
     if (target == "quality")
@@ -117,9 +117,9 @@ export class DegenesisItemSheet extends ItemSheet {
     }
 
     if (target)
-      setProperty(itemData, target, !getProperty(itemData, target))
-    this.item.update(itemData);
-  }
+    setProperty(itemData, target, !getProperty(itemData, target))
+  this.item.update(itemData);
+}
 
 
   _onQualityValueChange(ev)
@@ -138,7 +138,7 @@ export class DegenesisItemSheet extends ItemSheet {
   _onModDelete(ev)
   {
     let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
-    let mods = foundry.utils.deepClone(this.item.data.flags.degenesis.mods)
+    let mods = foundry.utils.deepClone(this.item.flags.degenesis.mods)
     mods.splice(index, 1);
     this.item.setFlag("degenesis", "mods", mods)
   }
@@ -146,7 +146,7 @@ export class DegenesisItemSheet extends ItemSheet {
   _onModEdit(ev)
   {
     let index = Number($(ev.currentTarget).parents(".item").attr("data-item-id"));
-    let mod = this.item.data.flags.degenesis.mods[index]
+    let mod = this.item.flags.degenesis.mods[index]
     ui.notifications.warn(game.i18n.localize("DGNS.ModEditWarning"))
     new game.degenesis.entities.DegenesisItem(mod).sheet.render(true)
   }
