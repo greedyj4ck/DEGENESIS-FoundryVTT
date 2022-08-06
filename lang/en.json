@@ -1,10 +1,19 @@
 {
     "DEGENESIS.SystemName" : "DEGENESIS: Rebirth",
 
-
     "ACTOR.TypeCharacter" : "Character",
     "ACTOR.TypeNpc" : "NPC",
     "ACTOR.TypeAbberant" : "From Hell",
+
+    "UI.SlotCost": "Slot Cost",
+    "UI.Effect": "Effect",
+    "UI.ModType": "Mod Type",
+    "UI.AttributeKey": "Attribute Key",
+    "UI.ChangeMode": "Change Mode",
+    "UI.TriggerCostRating": "Trigger Cost/Rating",
+    "UI.Number" : "Number",
+    "UI.Type" :"Type",
+    "UI.ActionDescription": "Action Description",
 
 
     "ITEM.Type" : "Character",
@@ -22,8 +31,6 @@
     "ITEM.TypeShield" : "Shield",
     "ITEM.TypeComplication" : "Complication",
     "ITEM.TypeLegacy" : "Legacy",
-
-
 
     "DGNS.Name" : "Name",
     "DGNS.Age" : "Age",
@@ -472,9 +479,8 @@
     "DGNS.ModEditWarning" : "Changes made on an attached modification will not be saved.",
 
     "DGNS.SettingsEncumbrancePenalty": "Automatic penalty for Encumbrance",
-    "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls. Refresh client (F5) after changing this setting."
-
-
-
+    "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls. Refresh client (F5) after changing this setting.",
+    "DGNS.SettingsMinimumOneAN": "Single die roll for negative Action Number",
+    "DGNS.SettingsMinimumOneANHelper": "For negative modifiers exceeding the Action Number, force a single die roll."
 
 }

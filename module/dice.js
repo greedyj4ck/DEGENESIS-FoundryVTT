@@ -1,4 +1,5 @@
 import RollDialog from "./apps/roll-dialog.js"
+import { MinimumOneAN } from "./settings.js";
 
 export class DegenesisDice
 {
@@ -63,8 +64,11 @@ export class DegenesisDice
             autoSuccesses = actionNumber - 12;
             actionNumber = 12;
         }
+
+        if (actionNumber <= 0 & MinimumOneAN()){actionNumber = 1}
+
         let roll = new Roll(`${actionNumber}d6cs>3`);
-        await roll.roll();
+        await roll.evaluate({async: true});
 
         rolls = roll.terms[0].results;
         successes = roll.total + autoSuccesses + successModifier;

@@ -123,12 +123,12 @@
          <div class="modifiers-data conditions-data">
             <ol class="modifiers-ol conditions-ol">
             {{#each actor.modifierItems as |mod m|}}
-               <li class="conditions-li modifiers-li item" data-item-id="{{mod.id}}" {{#if mod.data.disabled}} style="opacity : 0.5" {{/if}}>
+               <li class="conditions-li modifiers-li item" data-item-id="{{mod.id}}" {{#if mod.system.disabled}} style="opacity : 0.5" {{/if}}>
                   <div class="conditions-characteristics">
                         {{#if mod.disabled}}
-                          <a class="square border-black button-position checkbox" data-target="item" data-item-target="data.disabled"><div class="square-into"></div></a>
+                          <a class="square border-black button-position checkbox" data-target="item" data-item-target="system.disabled"><div class="square-into"></div></a>
                            {{else}}
-                          <a class="square button-position checkbox" data-target="item" data-item-target="data.disabled" ><div class="square-into black"></div></a>
+                          <a class="square button-position checkbox" data-target="item" data-item-target="system.disabled" ><div class="square-into black"></div></a>
                            {{/if}}
                      <div class='item-data'>
                         <div class="conditions-value">

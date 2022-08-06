@@ -5,7 +5,7 @@
   "version": "0.5.0",
   "compatibility": {
     "minimum": 10,
-    "verified": "10.276"
+    "verified": "10.277"
   },
   "templateVersion": 2,
   "authors": 
@@ -119,9 +119,9 @@
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "background" : "ui/falberg.webp",
+  "background" : "systems/degenesis/ui/falberg.webp",
   "url": "",
-  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
-  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.4.1/degenesis.zip",
+  "manifest": "https://raw.githubusercontent.com/greedyj4ck/DEGENESIS-FoundryVTT/master/system.json",
+  "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/download/0.5.0/degenesis.zip",
   "license": "LICENSE.txt"
 }

@@ -20,5 +20,10 @@ export default function () {
         Handlebars.registerHelper("configLookup", function (obj, key) {
             return DEGENESIS[obj][key]
         })
+
+        Handlebars.registerHelper('capitalize', function (aString) {
+            return aString.charAt(0).toUpperCase() + aString.slice(1);
+        })
+
     })
 }

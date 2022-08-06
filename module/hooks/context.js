@@ -1,6 +1,12 @@
+// HOOKS FOR CONTEXT MENUS
+
+// ACTOR CONTEXT MENU
 export default function() {
 Hooks.on("getActorDirectoryEntryContext", async (html, options) => {
-    options.push( 
+    
+    // DEPRECATRED - REMOVE WITH NEXT RELEASE 
+
+    /* options.push( 
     {
       name : "Import KatharSys Character",
       condition: true,
@@ -9,6 +15,6 @@ Hooks.on("getActorDirectoryEntryContext", async (html, options) => {
         DegenesisImporter.KatharSysCharacterImportDialog(target.attr('data-entity-id'))
       }
       
-    })
+    }) */
   })
 }

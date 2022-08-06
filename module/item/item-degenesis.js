@@ -66,7 +66,7 @@ export class DegenesisItem extends Item {
             dice.extreme = dice.effective - 8 > 0  ? dice.effective - 8 : 0 
         }
 
-        this.data.dice = dice // CHECK FOR DATA.DICE
+        this.system.dice = dice // CHECK FOR DATA.DICE
     }
 
 
@@ -306,8 +306,8 @@ export class DegenesisItem extends Item {
         let data = foundry.utils.deepClone(this.system);
         let text = `${this.description}`
 
-        if (this.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
-            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
+        if (this.qualities.find(q => q.name == "special") && getProperty(this, "flags.degenesis.specialty"))
+            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.flags.degenesis.specialty}`)
 
         tags.push(`${game.i18n.localize("DGNS.Armor")}: ${data.defense.D}`)
         tags.push(`${game.i18n.localize("DGNS.PassiveDef")}: ${data.defense.p_defense}`)
@@ -329,18 +329,18 @@ export class DegenesisItem extends Item {
     //#region Getters
     // @@@@@@@@ CALCULATION GETTERS @@@@@@@
     get isMelee() {
-        if (this.data.type = "weapon")
+        if (this.system.type = "weapon")
             return DEGENESIS.weaponGroupSkill[this.group] == "projectiles" || this.group == "sonic" ? false : true
     }
 
     get isRanged() {
-        if (this.data.type = "weapon")
+        if (this.system.type = "weapon")
             return DEGENESIS.weaponGroupSkill[this.group] == "projectiles" && this.group != "sonic"
     }
 
 
     get isSonic() {
-        if (this.data.type = "weapon")
+        if (this.system.type = "weapon")
             return this.group == "sonic"
     }
 
@@ -492,7 +492,7 @@ export class DegenesisItem extends Item {
     get secondarySkill() { return this.system.secondarySkill }
 
     //      Processed data getters
-    get dice() { return this.data.dice}
+    get dice() { return this.system.dice}
 
     //#endregion
 

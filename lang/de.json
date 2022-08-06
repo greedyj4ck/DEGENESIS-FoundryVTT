@@ -1,7 +1,22 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
+
   "ACTOR.TypeCharacter": "Character",
+  "ACTOR.TypeNpc" : "NPC",
+  "ACTOR.TypeAbberant" : "From Hell",
+  
+  "UI.SlotCost": "Slot-Kosten",
+  "UI.Effect": "Effekt",
+  "UI.ModType": "Art der Modifikation",
+  "UI.AttributeKey": "Zielangabe",
+  "UI.ChangeMode": "Modus wechseln",
+  "UI.TriggerCostRating": "Trigger/Stufe",
+  "UI.Number" : "Anzahl",
+  "UI.Type" :"Art",
+  "UI.ActionDescription": "Aktionsbeschreibung",
+  
   "ITEM.Type": "Character",
+
   "ITEM.TypeWeapon": "Waffen",
   "ITEM.TypeArmor": "Rüstung",
   "ITEM.TypeEquipment": "Ausrüstung",

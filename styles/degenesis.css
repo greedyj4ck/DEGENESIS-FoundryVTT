@@ -683,6 +683,7 @@ a.diamond:hover .square.red.perma {
     font-size: 17px;
     font-weight: 200;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .app.window-app.degenesis.sheet .three-Cs .sheet-field-stack{

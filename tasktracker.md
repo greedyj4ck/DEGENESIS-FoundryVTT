@@ -9,11 +9,12 @@
 
 ## TODO
 ### BUGS
-- [ ] When penalty dice is bigger than base die, it will throw an error (system trying to roll negative number of dice)
+- [x] When penalty dice is bigger than base die, it will throw an error (system trying to roll negative number of dice)
 - [ ] Item description entry error ```onloadwff.js:71 Assertion failed: Input argument is not an HTMLInputElement```
-- [ ] Fix deprecated entries for internal functions like weaponhandling etc. 
+- [x] Fix deprecated entries for internal functions like weaponhandling etc. 
 - [ ] Cannot add modifications directly on itemSheet
 - [ ] Additional Journal styling
+- [x] Additional translation fixes
 
 ### FEATURES
 - [ ] Re-do roll window with split modifiers

@@ -313,7 +313,7 @@ export class DegenesisActorSheet extends ActorSheet {
         if (target == "item") {
             target = $(event.currentTarget).attr("data-item-target")
             let item = this.actor.items.get($(event.currentTarget).parents(".item").attr("data-item-id"))
-            item.update({ [`${target}`]: !getProperty(item.data, target) })
+            item.update({ [`${target}`]: !getProperty(item, target) })
             return;
         }
         if (target)

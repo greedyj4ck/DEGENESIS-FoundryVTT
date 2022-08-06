@@ -15,19 +15,19 @@
         <div class="tab" data-tab="details">
 
             <div class="form-group">
-                <label>Slot Cost</label>
+                <label>{{localize "UI.SlotCost"}}</label>
                 <input name="data.slotCost" value="{{data.slotCost}}" data-dtype="Number">
             </div>
 
             <div class="form-group">
-                <label>Effect</label>
+                <label>{{localize "UI.Effect"}}</label>
                 <textarea name="data.effect">{{data.effect}}</textarea>
             </div>
 
 
             <div class="form-group">
 
-            <label>Mod Type</label>
+            <label>{{localize "UI.ModType"}}</label>
 
             <select class="modType-select" name="data.modType" data-dtype="String">
                 {{#select data.modType}}
@@ -38,8 +38,8 @@
         </div>
 
             <header class="effect-change effects-header flexrow">
-                <div class="key">{{ localize "EFFECT.ChangeKey" }}</div>
-                <div class="mode">{{ localize "EFFECT.ChangeMode" }}</div>
+                <div class="key">{{ localize "UI.AttributeKey" }}</div>
+                <div class="mode">{{ localize "UI.ChangeMode" }}</div>
                 <div class="value">{{ localize "DGNS.ModValue" }}</div>
                 <div class="effect-controls">
                     <a class="effect-control mod-control" data-action="add"><i class="far fa-plus-square"></i></a>
