@@ -1,5 +1,5 @@
 {
-  "name": "degenesis",
+  "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
   "version": "0.5.0",
@@ -119,9 +119,9 @@
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "background" : "systems/degenesis/ui/falberg.webp",
+  "background" : "systems/degenesis/ui/artifacts.jpg",
   "url": "",
-  "manifest": "https://raw.githubusercontent.com/greedyj4ck/DEGENESIS-FoundryVTT/master/system.json",
-  "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/download/0.5.0/degenesis.zip",
+  "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
+  "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
   "license": "LICENSE.txt"
 }

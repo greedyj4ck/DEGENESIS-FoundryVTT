@@ -2619,6 +2619,9 @@ margin-top: 12px;
     content:url(../icons/degenesis.png)
 }
 
+#pause
+{background: none;}
+
 #pause img {
     content: url(../icons/logo.png)
 }
@@ -2628,6 +2631,22 @@ margin-top: 12px;
     color: white;
     text-shadow: 1px 1px 30px var(--degenesis-red);
 }
+
+#pause > figcaption
+{
+    font-family: 'Avenir';
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0px 3px 12px rgba(0, 0, 0, 1);
+
+}
+
+#pause > img
+{
+    opacity: 1.0;
+}
+
 
 
 .app.window-app .window-content {
@@ -2983,6 +3002,9 @@ a:hover {
 background: url(../ui/degenesis_parchment.jpg);
 }
 
+.sheet.journal-entry .sidebar {
+    color:#000000;
+}
 
 #token-hud {
     font-family: "Calluna";
