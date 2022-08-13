@@ -221,8 +221,8 @@ export class DegenesisItem extends Item {
         let data = foundry.utils.deepClone(this.system);
         let text = `${this.description}`
 
-        if (this.qualities.find(q => q.name == "special") && getProperty(this.data, "flags.degenesis.specialty"))
-            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.data.flags.degenesis.specialty}`)
+        if (this.qualities.find(q => q.name == "special") && getProperty(this, "flags.degenesis.specialty"))
+            text = text.concat(`<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${this.flags.degenesis.specialty}`)
         tags.push(DEGENESIS.weaponGroups[data.group])
         /*tags.push(`TECH: ${DEGENESIS.techValues[data.tech]}`)*/
         /*tags.push(`SLOTS: ${data.slots.used}/${data.slots.total}`)*/
@@ -268,7 +268,6 @@ export class DegenesisItem extends Item {
         let tags = [];
         let data = foundry.utils.deepClone(this.system);
         let text = `${this.description}` + `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${data.effect}`;
-        console.log(this)
         tags.push(`${game.i18n.localize("DGNS.Group")}: ${DEGENESIS.equipmentGroups[data.group]}`)
         tags.push(`${game.i18n.localize("DGNS.Value")}: ${data.value}`)
         if (data.cult) { tags.push(`${game.i18n.localize("DGNS.Cult")}: ${data.cult}`) };

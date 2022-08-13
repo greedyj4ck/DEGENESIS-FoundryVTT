@@ -44,7 +44,7 @@ export class DegenesisItemSheet extends ItemSheet {
   getData() {
     const data = super.getData();
     data.data = data.item.system
-    console.log(data)
+    // console.log(data)
     this.processTypes(data)
     return data;
   }
