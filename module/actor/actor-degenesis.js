@@ -188,9 +188,17 @@ export class DegenesisActor extends Actor {
             prefilled: this.modifiers.forDialog("skill", skill),
             customModifiers: this.modifiers.custom,
             template: "systems/degenesis/templates/apps/roll-dialog.html",
-            showSecondaryOption: true
+            showSecondaryOption: true,
+            totalRollModifiers:{
+                diceModifier: 0,
+                successModifier: 0,
+                triggerModifier: 0}
         }
         dialogData.rollMethod = this.rollSkill;
+        // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+        dialogData.totalRollModifiers.diceModifier += dialogData.prefilled.diceModifier;
+        dialogData.totalRollModifiers.successModifier += dialogData.prefilled.successModifier;
+        dialogData.totalRollModifiers.triggerModifier += dialogData.prefilled.triggerModifier;
 
         let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
 
@@ -215,9 +223,17 @@ export class DegenesisActor extends Actor {
             secondarySkill: weapon.secondarySkill,
             customModifiers: this.modifiers.custom,
             template: "systems/degenesis/templates/apps/roll-dialog.html",
-            showSecondaryOption: true
+            showSecondaryOption: true,
+            totalRollModifiers:{
+                diceModifier: 0,
+                successModifier: 0,
+                triggerModifier: 0}
         }
         dialogData.rollMethod = this.rollWeapon;
+         // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+         dialogData.totalRollModifiers.diceModifier += dialogData.prefilled.diceModifier;
+         dialogData.totalRollModifiers.successModifier += dialogData.prefilled.successModifier;
+         dialogData.totalRollModifiers.triggerModifier += dialogData.prefilled.triggerModifier;
 
         let cardData = this.constructCardData("systems/degenesis/templates/chat/weapon-roll-card.html", weapon.name + " - " + DEGENESIS.skills[weapon.skill])
 
@@ -253,9 +269,17 @@ export class DegenesisActor extends Actor {
             prefilled: this.modifiers.forDialog(type, skill),
             customModifiers: this.modifiers.custom,
             template: "systems/degenesis/templates/apps/roll-dialog.html",
-            showSecondaryOption: true
+            showSecondaryOption: true,
+            totalRollModifiers:{
+                diceModifier: 0,
+                successModifier: 0,
+                triggerModifier: 0}
         }
         dialogData.rollMethod = this.rollSkill;
+         // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+         dialogData.totalRollModifiers.diceModifier += dialogData.prefilled.diceModifier;
+         dialogData.totalRollModifiers.successModifier += dialogData.prefilled.successModifier;
+         dialogData.totalRollModifiers.triggerModifier += dialogData.prefilled.triggerModifier;
 
         let cardData = this.constructCardData("systems/degenesis/templates/chat/roll-card.html", DEGENESIS.skills[skill])
 
