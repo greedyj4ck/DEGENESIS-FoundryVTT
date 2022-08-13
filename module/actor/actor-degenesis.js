@@ -321,7 +321,10 @@ export class DegenesisActor extends Actor {
         let rollResults = await DegenesisDice.rollAction(rollData)
         rollResults.weapon = weapon
         if (rollData.secondary) {
-            await this.handleSecondaryRoll({ dialogData, cardData, rollData, rollResults }, this.setupWeapon(weapon, { use, secondary: true, secondarySkill: rollData.secondary }))
+            if (use == "attack-sonic") // Call with sonic flag so the card holds the relevant target difficulty information. More details in the method itself
+                await this.handleSecondaryRoll({ dialogData, cardData, rollData, rollResults }, this.setupWeapon(weapon, { use, secondary: true, secondarySkill: rollData.secondary }), {isSonicAttack: true})
+            else
+                await this.handleSecondaryRoll({ dialogData, cardData, rollData, rollResults }, this.setupWeapon(weapon, { use, secondary: true, secondarySkill: rollData.secondary }))
             cardData.title = `${weapon.name}<br>(${DEGENESIS.skills[weapon.skill]} + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`
         }
 
@@ -353,7 +356,7 @@ export class DegenesisActor extends Actor {
         return { rollResults, cardData }
     }
 
-    async handleSecondaryRoll({ dialogData, cardData, rollData, rollResults } = {}, secondary, { skipDialog = false } = {}) {
+    async handleSecondaryRoll({ dialogData, cardData, rollData, rollResults } = {}, secondary, { skipDialog = false, isSonicAttack = false } = {}) {
         if (rollResults.result == "success") {
             secondary.dialogData.title += " - " + game.i18n.localize("DGNS.Secondary")
             secondary.dialogData.prefilled.difficulty = rollData.difficulty
@@ -374,6 +377,11 @@ export class DegenesisActor extends Actor {
                 secondary.rollData.diceModifier -= (this.items.get(actionModifier)?.modifyNumber || 0)
 
             let secondaryRollResults = await DegenesisDice.rollAction(secondary.rollData)
+
+            // Sonic weaponry The target makes a mental defense roll gainst the highest roll of the Engineering + Domination combo (KAT166). Rendered in roll-card.html chat template
+            let mostSuccesses = rollResults.successes > secondaryRollResults.successes ? rollResults.successes : secondaryRollResults.successes;
+            if (isSonicAttack)
+                cardData.mostSuccesses = mostSuccesses
 
             rollResults.triggers += secondaryRollResults.triggers;
             rollResults.successes = secondaryRollResults.successes;
