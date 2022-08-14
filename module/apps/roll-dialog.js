@@ -44,6 +44,30 @@ export default class RollDialog extends Dialog {
         return totalMods
     }
 
+
+    resetValues() {
+
+        // RESET BUTTON FUNCTIONALITY INSTEAD USING DEFAULT FORM RESET (ISSUES WITH REFRESHING VALUES)
+
+        this.customModifiers.val(null);
+
+        // SET USER ENTRY VALUES TO 0
+
+        this.userEntry = {
+            diceModifier : 0,
+            successModifier: 0,
+            triggerModifier : 0}
+
+        this.diceModifierInput.val(0);
+        this.successModifierInput.val(0)
+        this.triggerModifierInput.val(0)
+
+        // LAUNCH NEW CALCULATION
+        this._onValueChange();
+
+    }
+
+
     submit(button)
     {   
         let difficulty = this.element.find("input[name='difficulty']").val()
@@ -98,6 +122,10 @@ export default class RollDialog extends Dialog {
 
         this.customModifiers = html.find(".custom-modifiers").change(ev => {
             this._onValueChange()
+        })
+
+        this.resetButton = html.find(".custom-modifiers-reset-button").click(ev => {
+            this.resetValues()
         })
     }
 }

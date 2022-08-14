@@ -17,6 +17,8 @@ export const DegenesisSystemSettings = () =>
         default: true,
       });  
 
+    // Allow rolls with minimum one Action Number
+    
       game.settings.register(system, "MinimumOneAN",
       {
         name: "DGNS.SettingsMinimumOneAN",
@@ -26,6 +28,18 @@ export const DegenesisSystemSettings = () =>
         type: Boolean,
         default: true,
       });
+
+      game.settings.register(system, "ShowInventoryHeaders",
+      {
+        name: "DGNS.SettingsShowInventoryHeaders",
+        hint: "DGNS.SettingsShowInventoryHeadersHelper",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+      });
+
+
 
 
 
@@ -39,4 +53,8 @@ export const DegenesisSystemSettings = () =>
 
  export const MinimumOneAN = () => {
   return game.settings.get(system, "MinimumOneAN");
+}; 
+
+export const ShowInventoryHeaders = () => {
+  return game.settings.get(system, "ShowInventoryHeaders");
 }; 

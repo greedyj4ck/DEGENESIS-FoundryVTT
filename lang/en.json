@@ -16,6 +16,18 @@
     "UI.ActionDescription": "Action Description",
     "UI.CustomModifiers": "Custom Modifiers",
     "UI.RollSettings": "Roll Settings",
+    "UI.AddDice": "Add Dice",
+    "UI.AddSuccesses": "Add Successes",
+    "UI.AddTriggers": "Add Triggers",
+    "UI.ResetAll": "Reset All",
+    "UI.StaticModifiers": "Static Modifiers",
+    "UI.TotalModifiers": "Total Modifiers",
+    "UI.Successes": "Successes",
+    "UI.Triggers": "Triggers",
+    "UI.Result" : "Result",
+
+
+
 
 
     "ITEM.Type" : "Character",
@@ -483,6 +495,8 @@
     "DGNS.SettingsEncumbrancePenalty": "Automatic penalty for Encumbrance",
     "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls. Refresh client (F5) after changing this setting.",
     "DGNS.SettingsMinimumOneAN": "Single die roll for negative Action Number",
-    "DGNS.SettingsMinimumOneANHelper": "For negative modifiers exceeding the Action Number, force a single die roll."
+    "DGNS.SettingsMinimumOneANHelper": "For negative modifiers exceeding the Action Number, force a single die roll.",
+    "DGNS.SettingsShowInventoryHeaders": "Show headers in inventory",
+    "DGNS.SettingsShowInventoryHeadersHelper": "Display inventory headers even if there are not items in respective category."
 
 }

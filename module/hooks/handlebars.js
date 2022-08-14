@@ -1,4 +1,5 @@
 import {DEGENESIS} from "../config.js"
+import { ShowInventoryHeaders } from "../settings.js"
 
 export default function () {
 
@@ -23,6 +24,10 @@ export default function () {
 
         Handlebars.registerHelper('capitalize', function (aString) {
             return aString.charAt(0).toUpperCase() + aString.slice(1);
+        })
+
+        Handlebars.registerHelper('showHeaders', function (options) {
+            return ShowInventoryHeaders()
         })
 
     })

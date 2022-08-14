@@ -282,7 +282,7 @@ export class DegenesisItem extends Item {
     _transportationDropdownData() {
         return {
             text: this.description,
-            tags: this.data.items.map(i => i.name)
+            tags: this.itemsWithin.map(i => i.name)
         }
     }
 
