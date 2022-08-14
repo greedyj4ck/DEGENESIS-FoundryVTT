@@ -205,7 +205,7 @@ export class DegenesisItem extends Item {
         if (this.action == "custom")
             text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.name}<br>
                 <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.modifyType} ` + this.description;
-        else text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.data.name}<br>
+        else text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.name}<br>
                 <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${displayNumber}${this.modifyType} on ` + DEG_Utility.getModificationActions()[this.action] + ` tests`
 
         return { text }
@@ -282,7 +282,7 @@ export class DegenesisItem extends Item {
     _transportationDropdownData() {
         return {
             text: this.description,
-            tags: this.data.items.map(i => i.name)
+            tags: this.itemsWithin.map(i => i.name)
         }
     }
 

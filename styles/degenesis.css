@@ -2517,21 +2517,84 @@ margin-top: 12px;
     overflow-x:hidden;
     display: flex;
     flex-direction: column;
+    padding-top: 0;
 }
 
 .roll-dialog .dialog-bonuses {
     display: flex;
 }
 
+
+.roll-dialog .title
+{
+    align-self: center;
+    width: 99%;
+    margin: -8px 1px 0 1px;
+}
+
+.app.window-app.roll-dialog .square.little.left, .app.window-app.degenesis.sheet .square.little.left {
+    margin-left: 2px;
+    margin-right: 0px;
+}
+
+.app.window-app.roll-dialog .square.little, .app.window-app.roll-dialog .title .square.little, .app.window-app.degenesis.roll-dialog .header-line .square.little {
+    align-self: center;
+    margin-bottom: 1px;
+    height: 7px;
+    width: 7px;
+}
+
+.app.window-app.roll-dialog .title-line, .app.window-app.roll-dialog .title-line {
+    display: flex;
+    background-size: 100%;
+    flex: 1;
+}
+
+.app.window-app.roll-dialog .middle-name {
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-end;
+    font-size: 15px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: "Avenir";
+    border: 2px solid transparent;
+}
+
+
+.roll-dialog .body-line
+{
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
 .roll-dialog .dialog-bonuses > div {
     width: 50%;
 }
 
+
+.roll-dialog .dialog-inputs{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
 .roll-dialog .dialog-inputs > * {
-    margin: 5px;
+    margin: 0 5px 3px 5px;
     display: flex;
     justify-content: space-between;
-    width: 70%;
+    width: 95%;
 }
 
 .roll-dialog .dialog-input {
@@ -2548,19 +2611,23 @@ margin-top: 12px;
 
 .roll-dialog .custom-modifier-section {
     text-align: center;
+    padding-right: 5px;
+
 }
 
 .roll-dialog .custom-modifiers {
     width: 100%;
-    height: 75%;
+    height: -webkit-fill-available;
     overflow: auto;
-    border: 1px solid black
+    border: 1px solid black;
+    margin-bottom: 3px;
 }
 
 .roll-dialog .secondary-selection {
     width: 100%;
     justify-content: center;
-    margin: 5px
+    margin: 5px;
+    text-align: center;
 }
 
 .roll-dialog .custom-modifiers > *{
@@ -2568,6 +2635,85 @@ margin-top: 12px;
     background-color: white;
 }
 
+.roll-dialog div.custom-modifier-header > label{
+   padding-right: 10px;
+}
+
+.roll-dialog .custom-modifier-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-start;
+    padding-right: 5px;
+    padding-bottom: 3px;
+}
+
+.roll-dialog .custom-modifiers-reset-button {
+    font-size: 10px;
+    padding: 0px 10px 0px 10px;
+    margin: 0 0 0 0;
+    width: auto;
+    height: auto
+}
+
+.roll-dialog .dialog-bonuses-modifiers{
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: space-between;
+align-items: center;
+align-content: center;
+padding-bottom: 5px;
+}
+
+.roll-dialog .dialog-static-modifiers{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 3px;
+    color:rgba(0, 0, 0, 0.5);
+}
+
+.roll-dialog .dialog-total-modifiers{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.roll-dialog .type-modifier-header{
+    
+    width: 50%;
+    text-align: right;
+    padding-right: 10px;
+    border-right: 1px solid #000;
+}
+
+.roll-dialog .type-modifier-values
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: center;
+    width: 50%;
+    padding-left: 10px;
+}
+
+.roll-dialog .type-modifier-values > div {
+    padding-right: 20px;
+}
 
 /**************************** THE CLUSTER ***************************/
 

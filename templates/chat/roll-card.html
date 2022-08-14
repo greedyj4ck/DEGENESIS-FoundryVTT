@@ -9,10 +9,11 @@
   {{/each}} {{/if}}
 </div>
 
-<div>Successes: {{successes}}</div>
-<div>Triggers: {{triggers}}</div>
+<div>{{localize "UI.Successes"}}: {{successes}}</div>
+<div>{{localize "UI.Triggers"}}: {{triggers}}</div>
 {{#if result}}
-<div>Result: {{result}}</div>
+<div>{{localize "UI.Result"}}: {{result}}</div>
+{{/if}}
 <!-- Sonic weaponry: Target mentally defends against highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
 {{/if}} {{#if mostSuccesses}}
 <div>Defend against: {{mostSuccesses}}</div>

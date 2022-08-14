@@ -4,8 +4,6 @@
 
 An unoffical, community-supported system for playing [Degenesis](https://degenesis.com/) on [Foundry VTT](http://foundryvtt.com/).
 
-
-
 Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module contains information and graphics from Katharsys that have been used with permission from the publisher. All used content from the handbook belong to the respective authors.
 
 ## Credits 
@@ -20,6 +18,10 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
    * Renart de Maupertuis (Renart de Maupertuis#1302)
    * Pablo Ruiz Valls (Pabruva#1968)
 
+## Artwork 
+Default world background **Potentials** by **Claudiu-Antoniu Magherusan** https://www.artstation.com/artwork/PmA5aB  
+Github banner **Homo Degenesis** by **Marko Djurdjevic** https://www.sixmorevodka.com/
+
 ## Work in progress disclaimer
 
 The system module represented is not in its final version. Functionality and content will be subject to change. 
@@ -28,3 +30,5 @@ The system module represented is not in its final version. Functionality and con
 
 - Git clone the repo.
 - Rename the directory to "deathinspace" under your Foundry _Data/systems_ directory.
+
+

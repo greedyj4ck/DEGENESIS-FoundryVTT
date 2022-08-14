@@ -112,9 +112,10 @@ export class DegenesisDice
                         label : "Roll",
                         callback : async (dlg) => {
                             rollData.difficulty = parseInt(dlg.find('[name="difficulty"]').val() || 0)
-                            rollData.diceModifier = parseInt(dlg.find('[name="diceModifier"]').val() || 0)
-                            rollData.successModifier = parseInt(dlg.find('[name="successModifier"]').val() || 0)
-                            rollData.triggerModifier = parseInt(dlg.find('[name="triggerModifier"]').val() || 0)
+                            // CHANGE CALLBACK VALUES FOR TOTALMODIFIERS
+                            rollData.diceModifier = parseInt(dialogData.totalRollModifiers.diceModifier || 0)
+                            rollData.successModifier = parseInt(dialogData.totalRollModifiers.successModifier || 0)
+                            rollData.triggerModifier = parseInt(dialogData.totalRollModifiers.triggerModifier || 0)
                             rollData.secondary = dlg.find(".secondary-select").val()
                             resolve(rollData)
                         }

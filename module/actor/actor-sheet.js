@@ -226,12 +226,12 @@ export class DegenesisActorSheet extends ActorSheet {
     }
 
     // Handle custom drop events (currently just putting items into containers)
-    _onDrop(event) {
+    async _onDrop(event) {
         let transportTarget = $(event.target).parent(".transport-drop")[0]
         if (transportTarget) 
         {
             let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"))
-            let itemData = jsonData.data;
+            let itemData = await fromUuid(jsonData.uuid);
             if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
                 this.actor.updateEmbeddedDocuments("Item", [{_id : itemData._id, "data.location" : transportTarget.dataset["itemId"]}])
         }
