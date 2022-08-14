@@ -120,15 +120,19 @@ export default class ModifierManager
      */
     forDialog(type, skill, use) {
         let prefilled = {
+            difficulty : 0,
             diceModifier : 0,
             successModifier : 0,
             triggerModifier : 0,
         }
 
-        if (game.user.targets.size)
+        if (game.user.targets.size && use != "attack-sonic") // Attack difficulty is target's passive defense by default
         {
            prefilled.difficulty = Array.from(game.user.targets)[0].actor.system.fighting.passiveDefense
         }
+        else if (use == "attack-sonic") // Sonic attacks have no intrinsic difficulty (always are defended mentally), a simple success should suffice
+           prefilled.difficulty = 1
+
         for (let modifier in this)
         {
             let useModifier = false;
