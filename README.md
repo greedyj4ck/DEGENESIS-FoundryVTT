@@ -29,6 +29,6 @@ The system module represented is not in its final version. Functionality and con
 ## Developer Installation
 
 - Git clone the repo.
-- Rename the directory to "deathinspace" under your Foundry _Data/systems_ directory.
+- Rename the directory to "degenesis" under your Foundry _Data/systems_ directory.
 
 
