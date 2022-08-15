@@ -32,3 +32,31 @@ The system module represented is not in its final version. Functionality and con
 - Rename the directory to "degenesis" under your Foundry _Data/systems_ directory.
 
 
+### Live SASS Compiler settings
+The new version of the system uses SCSS to compile the resulting CSS file. We recommend using VSCode with the Live SASS Compiler extension installed and the following settings.
+
+    Insert settings inside .vscode/settings.json
+
+```json
+{
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/styles"
+        }
+    ],
+    "liveSassCompile.settings.excludeList": [
+        "**/node_modules/**",
+        ".vscode/**"
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    //autoprefix, will auto add perfix like -webkit- -moz-..
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions"
+    ]
+}
+```
+
+

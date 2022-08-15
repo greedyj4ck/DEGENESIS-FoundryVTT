@@ -156,7 +156,7 @@ export class DegenesisItemSheet extends ItemSheet {
   {
     let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
     let action = $(ev.currentTarget).attr("data-action");
-    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    let changes = foundry.utils.deepClone(this.item.system.changes)
     if (action=="delete")
     {
       changes.splice(index, 1)
@@ -172,7 +172,7 @@ export class DegenesisItemSheet extends ItemSheet {
   {
     let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
     let type = $(ev.currentTarget).attr("data-type");
-    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    let changes = foundry.utils.deepClone(this.item.system.changes)
     let newValue = ev.target.value
     if (Number.isNumeric(newValue))
       newValue = Number(newValue)
