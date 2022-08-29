@@ -22,7 +22,7 @@ export class DegenesisActor extends Actor {
     async _preCreate(data, options, user) {
         await super._preCreate(data, options, user)
         // Set wounds, advantage, and display name visibility
-        if (!data.token)
+        if (!data.prototypeToken)
             this.updateSource(
                 {
                     "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL,         // Default disposition to neutral

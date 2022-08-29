@@ -25,10 +25,6 @@ export class DegenesisItem extends Item {
                 this.system.dropped = false;
         }
 
-        // Apply item modifications
-        if (this.slots)
-            this._applyMods()
-
     }
 
     prepareOwnedData() 
@@ -37,7 +33,10 @@ export class DegenesisItem extends Item {
             this.prepareWeapon()
         if (this.type == "transportation")
             this.itemsWithin = this.actor.items.filter(i => i.location == this.id)    
-
+         // Apply item modifications
+        
+            if (this.slots)
+            this._applyMods()
     }
 
     prepareWeapon() {
@@ -67,6 +66,8 @@ export class DegenesisItem extends Item {
         }
 
         this.system.dice = dice // CHECK FOR DATA.DICE
+
+        
     }
 
 
@@ -95,6 +96,10 @@ export class DegenesisItem extends Item {
     _applyMods() {
         let mods = (this.getFlag("degenesis", "mods") || []).map(i => new DegenesisItem(i))
 
+        // reset slot calculation data
+        this.system.slots.used = 0
+        this._source.system.slots.used = 0
+
         for (let mod of mods) {
             // Apply the mod's changes, adding or overwriting as specified
             for (let change of mod.changes) {
@@ -116,6 +121,7 @@ export class DegenesisItem extends Item {
 
             // Calculate slot cost for the mod
             this.system.slots.used += mod.slotCost
+            this._source.system.slots.used = this.system.slots.used
         }
     }
 

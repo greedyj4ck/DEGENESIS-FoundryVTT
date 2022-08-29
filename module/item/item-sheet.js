@@ -43,8 +43,8 @@ export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    data.data = data.item.system
-    // console.log(data)
+    data.data = data.item._source.system
+    // console.log(data)  
     this.processTypes(data)
     return data;
   }
@@ -141,7 +141,7 @@ export class DegenesisItemSheet extends ItemSheet {
     let mods = foundry.utils.deepClone(this.item.flags.degenesis.mods)
     mods.splice(index, 1);
     this.item.setFlag("degenesis", "mods", mods)
-  }
+    }
 
   _onModEdit(ev)
   {
