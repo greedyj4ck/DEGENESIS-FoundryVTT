@@ -27,7 +27,7 @@
             {{/if}}
          </div>
          
-         <div class = "diamond-row" data-target="data.attributes.{{g}}.value">
+         <div class = "diamond-row" data-target="system.attributes.{{g}}.value">
             {{#each group.diamonds as |diamond index|}}
                {{#if diamond.filled}}
                   <a class = "diamond" data-index={{index}}><div class="square black"></div></a>
@@ -48,7 +48,7 @@
             {{else}}
             <a class="skill-name">{{skill.label}}</a>
             {{/if}}
-            <div class = "diamond-row" data-target="data.skills.{{sk}}.value">
+            <div class = "diamond-row" data-target="system.skills.{{sk}}.value">
                {{#each skill.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                      <a class = "diamond" data-index={{index}}><div class="square black"></div></a>

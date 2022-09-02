@@ -1,0 +1,41 @@
+/* 
+
+8""""8 8"""" 8""""8 8"""" 8"""8 8"""" 8""""8 8  8""""8 
+8    8 8     8    " 8     8   8 8     8      8  8      
+8e   8 8eeee 8e     8eeee 8e  8 8eeee 8eeeee 8e 8eeeee 
+88   8 88    88  ee 88    88  8 88        88 88     88 
+88   8 88    88   8 88    88  8 88    e   88 88 e   88 
+88eee8 88eee 88eee8 88eee 88  8 88eee 8eee88 88 8eee88
+FOUNDRY VTT SYSTEM STYLESHEET V.01 */
+
+
+
+// IMPORTS
+@import 'base/variables';
+@import 'base/fonts'; 
+@import 'base/experimental'; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
+
+// MAIN COMPONENTS
+@import 'components/scrollbar';
+@import 'components/squares';
+
+// APPS 
+@import 'apps/app';
+@import 'apps/actor_configure';
+@import 'apps/rolldialog';
+@import 'apps/chat';
+@import 'apps/cluster'; // IS THIS FEATURE STILL WORKING ?
+
+
+// SHEET DESIGNS 
+
+// ACTOR SHEETS
+@import 'sheets/character';
+
+// ITEM SHEETS
+@import 'sheets/item';
+
+// Just for testing the conversion
+// @import 'base/oldcss';
+
+

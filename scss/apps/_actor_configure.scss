@@ -1,0 +1,12 @@
+/* APPS: _ACTOR_CONFIGURE.SCSS */ 
+
+.app.window-app.degenesis.actor-configure {
+	width: 250px;
+	height: 300px;
+	.form-fields {
+		flex: 0.3;
+		input {
+			text-align: center;
+		}
+	}
+}

@@ -1,7 +1,7 @@
 export default function () {
     Hooks.on("init", () => {
          Token.prototype._refreshTarget = function () {
-            this.hud.target.clear();
+            this.target.clear();
             if (!this.targeted.size) return;
 
             // Determine whether the current user has target and any other users
@@ -10,18 +10,20 @@ export default function () {
 
             // For the current user, draw the target arrows
             if (userTarget) {
-                let p = 4;
-                let aw = 12;
+                let p = 10;
+                let a = canvas.dimensions.size / 3; // size of triangle
+                let ah = 0.5 * a * Math.sqrt(3); // height of triangle
+                let off = canvas.dimensions.size / 8; // offset of triangles
+                
                 let h = this.h;
                 let hh = h / 2;
                 let w = this.w;
                 let hw = w / 2;
-                let ah = canvas.dimensions.size / 3;
-                this.hud.target.beginFill(0xed1d27, 1.0).lineStyle(1, 0x000000)
-                    .drawPolygon([-p, hh, -p - aw, hh - ah, -p - aw, hh + ah])
-                    .drawPolygon([w + p, hh, w + p + aw, hh - ah, w + p + aw, hh + ah])
-                    .drawPolygon([hw, -p, hw - ah, -p - aw, hw + ah, -p - aw])
-                    .drawPolygon([hw, h + p, hw - ah, h + p + aw, hw + ah, h + p + aw]);
+
+                this.target.lineStyle(2, 0x83754e)
+                    .drawPolygon([hw, -p, hw + a/2, -p - ah, hw - a/2, -p - ah]) // draw first triangle
+                    .drawPolygon([hw, -p - off, hw + a/2, -p - off - ah, hw - a/2, -p - off - ah]) // draw second triangle with offset
+                    .drawPolygon([hw, -p - 2*off, hw + a/2, -p - 2*off - ah, hw - a/2, -p - 2*off - ah]) // draw third triangle with double offset
             }
 
             // For other users, draw offset pips
@@ -35,7 +37,7 @@ export default function () {
             const val = Number(data.value);
             const pct = Math.clamped(val, 0, data.max) / data.max;
             let h = Math.max((canvas.dimensions.size / 12), 8);
-            if (this.data.height >= 2) h *= 1.6;  // Enlarge the bar for large tokens
+            if (this.height >= 2) h *= 1.6;  // Enlarge the bar for large tokens
 
             // Draw the bar
             let color = (number === 0) ? [0.777, 0.0951, 0.1279] : [1, 1, 1];

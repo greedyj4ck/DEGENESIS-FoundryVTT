@@ -1,0 +1,1905 @@
+/* ENTITY SHEET: _CHARACTER.SCSS */ 
+
+.app.window-app.degenesis.sheet {
+    .break {
+      flex-basis: 100%;
+      height: 0;
+    }
+  
+    .tab {
+      font-size: 12px;
+      height: 96%;
+    }
+  
+    .break.break-line {
+      flex-basis: 100%;
+      border: 1px solid black;
+      padding-top: 4px;
+      height: 0;
+    }
+  
+    .window-content {
+      padding: 5px;
+      overflow-y: hidden;
+      background: white;
+      font-family: $sans-serif-conent-font;
+      font-weight: 300;
+      color: black;
+    }
+  
+    .editable {
+      height: 100%;
+    }
+  
+    a:hover {
+      text-shadow: none;
+    }
+  
+    .item-controls a:hover {
+      color: $dgns-red;
+    }
+  
+    h2 {
+      border: none;
+      color: $dgns-red;
+      font-weight: 400;
+    }
+  
+    .progress-bar {
+      background-color: $dgns-red;
+      height: 2px;
+    }
+  
+    input {
+      background: none;
+      border: none;
+      padding-top: 5px;
+  
+      &:focus {
+        box-shadow: none;
+      }
+  
+      &:hover {
+        color: $dgns-red;
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+    }
+  
+    .inline-input {
+      display: flex;
+      align-items: center;
+  
+      > input {
+        width: 30px;
+      }
+  
+      input {
+        &:first-of-type {
+          border-right: 1px solid black;
+          border-radius: 0px;
+        }
+  
+        &:last-of-type {
+          border-left: 1px solid black;
+          border-radius: 0px;
+        }
+      }
+    }
+  
+    textarea {
+      outline: $dgns-red;
+      box-shadow: none;
+      font-family: $serif-content-font;
+  
+      &:focus {
+        outline: $dgns-red;
+        box-shadow: none;
+      }
+    }
+  
+    select {
+      background: none;
+      border: none;
+      padding: 0px;
+      text-align-last: center;
+  
+      &:focus {
+        border-bottom: 1px solid $dgns-red;
+        box-shadow: none;
+      }
+  
+      > * {
+        color: white;
+        background-color: black;
+      }
+    }
+  
+    .sheet-field {
+      display: flex;
+      border-bottom: 1px solid $grey-164;
+    }
+  
+    .condition {
+      .condition-item:hover, .condition-section:hover .app.window-app.degenesis.sheet .sheet-field-stack:hover {
+        color: $dgns-red;
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+    }
+  
+    .sheet-field {
+      &:hover {
+        color: $dgns-red;
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+  
+      &.textarea {
+        display: flex;
+        flex-direction: column;
+        border: none;
+  
+        textarea:hover {
+          border-color: $dgns-red;
+        }
+  
+        &:hover {
+          border: none;
+        }
+  
+        > * {
+          display: flex;
+          align-self: flex-start;
+        }
+  
+        span {
+          padding-bottom: 3px;
+        }
+  
+        textarea {
+          height: 100px;
+        }
+      }
+    }
+  
+    .details {
+      display: flex;
+      flex-direction: column;
+      height: 292px;
+    }
+  
+    .condition-title {
+      text-transform: uppercase;
+    }
+  
+    .sheet-field-stack .field-input-stacked:hover, .sheet-field:hover {
+      border-bottom: 1px solid $dgns-red;
+      -webkit-transition: border-bottom 100ms linear;
+      -ms-transition: border-bottom 100ms linear;
+      transition: border-bottom 100ms linear;
+    }
+  
+    .sheet-field-stack .field-input-stacked {
+      border-bottom: 1px solid black;
+      text-align: center;
+    }
+  
+    .sheet-field span {
+      text-transform: uppercase;
+      padding-top: 5px;
+      padding-bottom: 1px;
+      display: flex;
+      align-self: center;
+    }
+  
+    .sheet-header {
+      overflow: hidden;
+      flex: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      flex: 0 0 100px;
+    }
+  
+    .header-line {
+      /* background-color: $dgns-red; */
+      /* border: 1px solid transparent; */
+      align-self: start;
+      display: flex;
+    }
+  
+    .archetype-line {
+      display: flex;
+      height: 22px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      flex: 1;
+    }
+  
+    .middle-name {
+      text-transform: uppercase;
+      display: flex;
+      align-items: flex-end;
+      font-size: 15px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+  
+    .legend {
+      text-transform: uppercase;
+    }
+  
+    .archetype-line {
+      &.line-left {
+        background-image: url(../images/header\ line\ left.svg);
+      }
+  
+      &.line-right {
+        background-image: url(../images/header\ line\ right.svg);
+      }
+    }
+  
+    .header-column.char-info {
+      &.left {
+        margin-left: 7px;
+        margin-right: 2px;
+      }
+  
+      &.right {
+        margin-right: 7px;
+        margin-left: 2px;
+      }
+    }
+  
+    .img-container {
+      flex: 0 0 115spx;
+    }
+  
+    .img-frame {
+      display: flex;
+      flex: 0 0 108px;
+      z-index: 1000;
+      height: 108px;
+      background-image: url(../images/character\ frame.svg);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+      border: none;
+    }
+  
+    .profile-img {
+      height: 96px;
+      width: 96px;
+      margin: auto;
+      border: none;
+      display: flex;
+      border-radius: 0;
+    }
+  
+    hr {
+      border: solid;
+      border-top: 1px solid $grey-164;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      margin: 2px 2px 0px;
+    }
+  }
+  
+  /* * Sheet Header */
+  
+  .c-popout {
+    position: absolute;
+    top: 290px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 300px;
+    z-index: 20;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s linear;
+  
+    &.culture {
+      left: 25%;
+    }
+  
+    &.concept {
+      left: 50%;
+    }
+  
+    &.cult {
+      left: 75%;
+    }
+  }
+  
+  .culture-img:hover ~ .c-popout.culture, .cult-img:hover ~ .c-popout.cult, .concept-img:hover ~ .c-popout.concept {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* * Sheet titles */
+  
+  .app.window-app.degenesis.sheet {
+    &.item .title, .title {
+      align-self: center;
+      margin-left: 1px;
+      margin-right: 1px;
+      width: 99%;
+    }
+  
+    &.item .title-line, .title-line {
+      display: flex;
+      background-size: 100%;
+      flex: 1;
+    }
+  
+    .header-column.header-line .square.little {
+      margin-bottom: 12px;
+    }
+  
+    &.item .square.little, .title .square.little, .header-line .square.little {
+      align-self: center;
+      margin-bottom: 1px;
+      height: 7px;
+      width: 7px;
+    }
+  
+    &.item .square.little.left, .square.little.left {
+      margin-left: 2px;
+      margin-right: 0px;
+    }
+  
+    &.item .square.little.right, .square.little.right {
+      margin-right: 2px;
+      margin-left: 0px;
+    }
+  
+    .sheet-footer {
+      overflow: hidden;
+      flex: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex: 0 0 100px;
+    }
+  
+    .footer-line {
+      /* background-image: url(../images/footer\ line.svg); */
+      display: flex;
+      height: 20px;
+      flex: 1;
+      position: absolute;
+      bottom: 0%;
+      width: 100%;
+      left: 0%;
+      padding: 0px 5px;
+      background-color: white;
+  
+      .square.little {
+        margin-top: 7px;
+        flex: none;
+      }
+    }
+  
+    &.item .footer-line .square.little {
+      margin-top: 3px;
+    }
+  
+    .footer-diamond {
+      position: absolute;
+      bottom: 0.7%;
+      display: flex;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: 1;
+    }
+  
+    .tabs {
+      flex: 0 0 40px;
+      height: unset;
+      border: none;
+  
+      .item {
+        color: white;
+        background-color: black;
+        margin: 2px;
+        line-height: 20px;
+        font-weight: 100;
+        font-size: 13px;
+        letter-spacing: 1px;
+        transition: background-color 0.1s ease-out;
+        padding: 0px 8px;
+  
+        &:hover {
+          background-color: $dgns-red;
+        }
+  
+        &.active {
+          background-color: $dgns-red;
+          text-shadow: none;
+        }
+      }
+    }
+  
+    &.item .body-line, .body-line {
+      width: 100%;
+  
+      /*height: calc(100% - 300px);*/
+    }
+  
+    .row {
+      display: flex;
+    }
+  
+    .three-Cs {
+      height: 35%;
+      min-height: 130px;
+    }
+  
+    .title-Cs {
+      font-size: 17px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  
+    .three-Cs {
+      .sheet-field-stack {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      > {
+        * {
+          width: 33%;
+          margin: 5px;
+        }
+  
+        input {
+          width: 33%;
+          margin: 15px;
+        }
+      }
+  
+      img {
+        border: none;
+        margin: 5px;
+        flex: none;
+      }
+    }
+  
+    .section-header.row {
+      .row-divide {
+        width: 40%;
+        border-bottom: 1px solid black;
+        margin: 20px;
+      }
+  
+      h3 {
+        padding-top: 10px;
+      }
+    }
+  
+    .condition {
+      height: 50%;
+    }
+  
+    .skill:hover {
+      color: $dgns-red;
+      -webkit-transition: color 100ms linear;
+      -ms-transition: color 100ms linear;
+      transition: color 100ms linear;
+    }
+  
+    .condition {
+      .condition-item:hover, .condition-section:hover {
+        color: $dgns-red;
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+  
+      > * {
+        width: 33%;
+        text-align: center;
+      }
+  
+      .inline-input {
+        border-bottom: 2px solid black;
+        margin-bottom: 3px;
+      }
+  
+      .divider {
+        font-size: 20px;
+      }
+    }
+  
+    .condition-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-items: center;
+      margin-top: 5px;
+    }
+  
+    .condition textarea {
+      height: 100%;
+      overflow-x: hidden;
+      background: none;
+      border-radius: 0px;
+      background-attachment: local;
+      background-image: linear-gradient(to right, white 10px, transparent 10px), linear-gradient(to left, white 10px, transparent 10px), repeating-linear-gradient(white, white 20px, #ccc 20px, #ccc 20px, white 21px);
+      line-height: 21px;
+      padding: 1px 8px;
+      resize: none;
+    }
+  
+    .body-line {
+      align-self: start;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+  
+    .tab ol input {
+      &:hover {
+        /* border: 1px dotted $dgns-red */
+        background-color: rgb(240, 240, 240);
+      }
+  
+      &:focus {
+        background-color: rgb(230, 230, 230);
+      }
+    }
+  
+    .tab-content {
+      font-size: 12px;
+      letter-spacing: 1px;
+      width: 100%;
+      height: calc(100% - 300px);
+      overflow: auto;
+  
+      h3 {
+        font-size: 12px;
+        font-weight: 300;
+        border-bottom: 0px;
+      }
+    }
+  
+    .tab.active h3 {
+      font-size: 12px;
+      font-weight: 300;
+      border-bottom: 0px;
+    }
+  
+    .attribute-tab {
+      text-transform: uppercase;
+      font-size: 11.5px;
+  
+      .attribute-skill-group {
+        margin: 16px 18px;
+        flex: 1;
+      }
+  
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .attribute {
+      /*border-bottom: 1px solid black*/
+    }
+  
+    .attribute-name {
+      height: 100%;
+      width: 100%;
+      background-image: url(../images/attribut\ border.svg);
+      background-repeat: no-repeat;
+      color: white;
+      background-size: 100%;
+      background-position: center;
+    }
+  
+    .skill {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .attribute {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+  
+    .skill > *, .attribute > * {
+      display: flex;
+    }
+  
+    .diamond-row {
+      justify-content: flex-end;
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .skill .diamond, .attribute .diamond-row {
+      align-self: center;
+    }
+  
+    .skill {
+      margin-top: 5px;
+      align-self: center;
+    }
+  
+    .skill-list {
+      margin-top: 10px;
+    }
+  
+    .skill input[type="text"], .attribute input[type="text"] {
+      border: 1px solid black;
+      border-radius: 0px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+  
+    .skill input[type="text"] {
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+    }
+  
+    .attribute h3 {
+      margin-bottom: 0px;
+      margin-left: 10px;
+      display: flex;
+      align-self: center;
+    }
+  
+    .skill-name {
+      margin-left: 8px;
+  
+      &.unused {
+        color: #CCC;
+      }
+    }
+  
+    .advantage-tab {
+      .advantage-group {
+        margin: 16px 13px;
+        flex: 1;
+      }
+  
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .black-title {
+      text-transform: uppercase;
+      width: 100%;
+      background-image: url(../images/title\ border.svg);
+      background-repeat: no-repeat;
+      color: white;
+      background-size: 100%;
+      background-position: center;
+      height: 14px;
+    }
+  
+    .advantage, .background, .advantage, .background {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .scars-group .background {
+      margin-bottom: 10px;
+    }
+  
+    .background {
+      margin-bottom: 15px;
+    }
+  
+    .advantage > *, .background > * {
+      display: flex;
+    }
+  
+    .advantage .diamond {
+      align-self: center;
+    }
+  
+    .diamond-position > * {
+      display: flex;
+      margin-right: 10px;
+    }
+  
+    .background .diamond-row {
+      align-self: center;
+    }
+  
+    .advantage {
+      margin-top: 5px;
+      align-self: center;
+    }
+  
+    .advantage-list {
+      margin-top: 10px;
+    }
+  
+    .item-controls {
+      /* border-left: 1px solid $grey-164;
+      padding-left: 5px */
+      flex: 0;
+      margin-left: 1.7%;
+    }
+  
+    .icon {
+      margin-right: 2px;
+      margin-left: 2px;
+  
+      &.item-add {
+        margin-right: 10px;
+      }
+    }
+  
+    .cadre-tab {
+      width: 180px;
+      height: 107px;
+      overflow: auto;
+    }
+  
+    .relationships-group {
+      .advantage {
+        height: 118px;
+        overflow: auto;
+        display: block;
+  
+        &::-webkit-scrollbar, &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track {
+          /* width: 10px;
+          border: none;
+          background-color: transparent; */
+          margin-top: -17px;
+          margin-bottom: -10px;
+        }
+      }
+  
+      .background {
+        margin-bottom: 10px;
+      }
+    }
+  
+    .relationships-ol {
+      border-collapse: collapse;
+      background: white;
+      border: none;
+      margin: 0;
+      flex: auto;
+      display: table;
+      margin: 0 10px 0 10px;
+      list-style-type: none;
+    }
+  
+    .relationships-cultes {
+      text-align: left;
+      width: 80%;
+      border: none;
+    }
+  
+    .relationships-bonus {
+      text-align: right;
+      width: 20%;
+      border: none;
+    }
+  
+    .relationships-li {
+      border-bottom: 1px solid $grey-164;
+      margin-bottom: 3px;
+      padding-bottom: 2px;
+      display: flex;
+    }
+  
+    .tab-line {
+      flex: 1;
+    }
+  
+    .potentials-group {
+      .advantage-list .potential-name {
+        flex: 2;
+        display: flex;
+        align-self: center;
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+  
+      .potentials-legend {
+        display: flex;
+        flex: 1;
+        border-bottom: 1px solid $grey-164;
+        width: 100%;
+      }
+  
+      .first-part {
+        display: flex;
+        flex: 2;
+      }
+  
+      .potentials-legend .origin {
+        flex: 2;
+        margin-right: 1.5%;
+        margin-left: 1.5%;
+      }
+  
+      .empty {
+        flex: 1;
+        border-bottom: 1px solid $grey-164;
+      }
+  
+      .potentials-legend {
+        .empty {
+          flex: 1.17;
+          margin-right: 0px;
+        }
+  
+        > * {
+          justify-content: flex-end;
+          flex: 1;
+          text-align: center;
+          border-bottom: 0px;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+        }
+      }
+  
+      .item-summary {
+        display: inline-block;
+        background-color: $grey-240;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 100%;
+        border-top: 1px solid $grey-164;
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+  
+      .advantage-list {
+        margin: 0;
+      }
+  
+      .advantage {
+        margin-left: 5px;
+        border-bottom: 1px solid $grey-164;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+  
+        &.expanded {
+          padding-bottom: 0px;
+        }
+      }
+  
+      .item-summary {
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: justify;
+      }
+  
+      .item-controls {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+      }
+  
+      .advantage-list .background-name {
+        flex: 2;
+        display: flex;
+        align-self: center;
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+  
+      .potential-characteristics {
+        display: flex;
+        flex: 1;
+        padding-bottom: 6px;
+      }
+  
+      .advantage-list {
+        .origin {
+          flex: 2;
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+        }
+  
+        .level {
+          flex: 1;
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+  
+          .diamond-row {
+            justify-content: center;
+            margin-right: 3%;
+            margin: 0px;
+          }
+        }
+      }
+    }
+  
+    .vertical-bar {
+      flex: 0 0 7px;
+      display: flex;
+      margin-top: -0px;
+      margin-bottom: -7px;
+      text-align: center;
+      justify-content: center;
+    }
+  
+    .potentials-group .advantage-list .diamond-position > * {
+      margin: 0px;
+    }
+  
+    .advantage input[type="text"], .background input[type="text"] {
+      border: 1px solid black;
+      border-radius: 0px;
+      height: 20px;
+      text-align: left;
+      flex: 1;
+    }
+  
+    .advantage-tab .sheet-field {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  
+    .advantage input[type="text"] {
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      border-bottom: 0px;
+  
+      /* flex: 1.58; */
+    }
+  
+    .combat-group h3, .advantage-group h3 {
+      margin-bottom: 0px;
+      margin-left: 10px;
+    }
+  
+    .background-name {
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+  }
+    
+  .degenesis.sheet {
+    .potentials {
+      display: flex;
+  
+      .black-title {
+        max-width: 199px;
+        align-self: flex-start;
+      }
+    }
+  
+    .black-title {
+      display: flex;
+      justify-content: space-between;
+  
+      h3 {
+        display: flex;
+        align-self: center;
+      }
+    }
+  }
+  
+  /* * Items */
+  
+  .app.window-app.degenesis.sheet {
+    .items-list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .inventory-tab {
+      margin-top: 20px;
+    }
+  
+    .items-list {
+      .item {
+        height: 30px;
+        line-height: 24px;
+  
+        img {
+          flex: 0 0 24px;
+          margin-right: 5px;
+        }
+      }
+  
+      .item-controls {
+        flex: 0 0 36px;
+      }
+    }
+  
+    .item-header .item-controls {
+      flex: 0 0 50px;
+    }
+  
+    .item-data {
+      display: contents;
+  
+      &:hover {
+        color: red;
+      }
+    }
+  
+    .item-section {
+      border: 1px solid black;
+    }
+  
+    .item-header {
+      .item-equipped, .item-tech, .item-encumbrance {
+        flex: 0 0 40px;
+      }
+    }
+  
+    .items-list {
+      .item-equipped, .item-tech, .item-encumbrance {
+        flex: 0 0 40px;
+      }
+    }
+  
+    .item-equipped, .item-tech, .item-encumbrance {
+      text-align: center;
+    }
+  
+    .header-details {
+      border-bottom: 1px solid black;
+  
+      > * {
+        margin: 0px 5px 0px 5px;
+      }
+    }
+  
+    .item-header .header-type {
+      background-color: black;
+      color: white;
+      text-align: center;
+      height: 24px;
+      line-height: 24px;
+    }
+  
+    .attributes-header {
+      padding: 5px;
+      margin: 5px 0;
+      background: $bg-attributes-header;
+      border: 1px solid $grey-165;
+      border-radius: 2px;
+      text-align: center;
+      font-weight: bold;
+    }
+  
+    .attribute-label {
+      flex: 1.5;
+    }
+  
+    .attribute-control {
+      flex: 0 0 20px;
+    }
+  
+    .attributes-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  
+      li > * {
+        margin: 0 3px;
+        height: 28px;
+        line-height: 24px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $grey-165;
+      }
+    }
+  
+    .attribute-value.checkbox {
+      text-align: center;
+    }
+  
+    .attributes-list li a.attribute-control {
+      border: none;
+    }
+  
+    .column-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  
+    .bar.diamond-row {
+      justify-content: center;
+    }
+  
+    .bar-group {
+      margin-top: 10px;
+      margin-bottom: 10px;
+  
+      .text {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+      }
+  
+      &.trauma {
+        margin-bottom: 4px;
+      }
+    }
+  
+    .bottom-conditions {
+      .item-controls {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 0;
+      }
+  
+      li {
+        padding-bottom: 6px;
+        border-bottom: 1px solid $grey-164;
+        margin-top: 7px;
+  
+        &.expanded {
+          padding-bottom: 0;
+        }
+      }
+  
+      .item-summary {
+        display: inline-block;
+        background-color: $grey-240;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 6px;
+        width: 100%;
+        border-top: 1px solid $grey-164;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+  
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  
+      .black-title h3 {
+        margin: 0 0 0 10px;
+      }
+  
+      .conditions-group {
+        width: 45%;
+      }
+    }
+  
+    .conditions-characteristics {
+      padding-right: 5px;
+      padding-left: 5px;
+      display: flex;
+      width: 100%;
+      margin: 0;
+    }
+  
+    .bottom-conditions .conditions-group .conditions-data {
+      max-height: 118px;
+      display: block;
+  
+      &::-webkit-scrollbar, &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track {
+        margin-top: -17px;
+        margin-bottom: -10px;
+      }
+    }
+  
+    .conditions-ol {
+      border-collapse: collapse;
+      background: white;
+      border: none;
+      margin: 0;
+      flex: auto;
+  
+      /* display: table; */
+      padding: 0;
+      margin: 0 10px 0 10px;
+      list-style-type: none;
+    }
+  
+    .conditions-value {
+      display: flex;
+      flex: 0 0 35px;
+      justify-content: space-evenly;
+    }
+  
+    .conditions-name {
+      text-align: left;
+      width: 40%;
+      border: none;
+    }
+  
+    .conditions-action {
+      text-align: center;
+      width: 30%;
+    }
+  
+    .conditions-number, .conditions-type {
+      text-align: center;
+      width: 15%;
+    }
+  
+    .modifiers-action.dropdown, .qualities-action.dropdown {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+  
+    .modifiers-description, .qualities-description {
+      border-bottom: 1px solid $grey-164;
+      width: 100%;
+    }
+  
+    .conditions-li {
+      border-bottom: 1px solid $grey-164;
+      margin-bottom: 3px;
+    }
+  
+    .bottom-conditions .conditions-name.long {
+      width: 100%;
+    }
+  
+    .complications-group, .mods-group {
+      width: 50%;
+    }
+  
+    .bottom-conditions {
+      .complications-name, .mods-name {
+        flex: 1;
+      }
+  
+      .complications-rating, .mods-rating {
+        width: 10%;
+      }
+    }
+  
+    .combat-tab {
+      .combat-group {
+        text-transform: uppercase;
+        margin: 16px 13px;
+        flex: 1;
+  
+        &.state-group .combat:hover {
+          color: $dgns-red;
+        }
+      }
+  
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+  
+    .combat {
+      margin-top: 5px;
+      align-self: center;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .general-name {
+      margin-left: 10px;
+    }
+  
+    .square.button-position {
+      margin-right: 10px;
+      margin-top: 2px;
+      flex: 0 0 9px;
+    }
+  
+    .combat .diamond-position {
+      margin-right: auto;
+      margin-top: 2px;
+      margin-left: 5px;
+    }
+  
+    .title.arsenal-title {
+      margin-top: -25px;
+    }
+  
+    .arsenal.scrollable {
+      display: block;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+    }
+  
+    .combat-tab .arsenal-group {
+      &.armor-group, &.weapon-group {
+        margin: 16px 13px;
+        flex: 1;
+      }
+  
+      .black-title {
+        width: 100%;
+        background-image: url(../images/border\ short.svg);
+        background-repeat: no-repeat;
+        color: white;
+        background-size: 100%;
+        background-position: center;
+      }
+    }
+  
+    .arsenal-group {
+      h3 {
+        margin-bottom: 0px;
+        margin-left: 10px;
+      }
+  
+      .armor-legend .legend-name, .weapon-legend .legend-name {
+        justify-content: flex-end;
+        align-self: center;
+        text-align: center;
+        flex: 1;
+      }
+  
+      .armor-legend .legend-name.uses {
+        flex: 3;
+      }
+  
+      .weapon-legend .legend-name {
+        &.uses {
+          flex: 3;
+        }
+  
+        &.empty-melee {
+          flex: 1;
+          height: 14px;
+        }
+      }
+    }
+  
+    .arsenal-list .legend-name.empty-melee {
+      flex: 1;
+      height: 14px;
+    }
+  
+    .arsenal-group .weapon-legend .legend-name.uses-ranged {
+      flex: 3;
+    }
+  
+    .arsenal-list {
+      .armor.item, .weapon.item {
+        margin-left: 5px;
+        border-bottom: 1px solid $grey-164;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+  
+      .weapon-name {
+        width: 180px;
+        display: flex;
+  
+        /* align-self: center; */
+        margin-left: 5px;
+        padding-bottom: 6px;
+        max-width: 190px;
+      }
+  
+      .armor-name {
+        width: 180px;
+        display: flex;
+  
+        /* align-self: center; */
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+  
+      .armor-characteristics, .weapon-characteristics {
+        flex: 3;
+        display: flex;
+        align-self: center;
+        justify-content: flex-end;
+        margin: 0;
+        padding-bottom: 6px;
+      }
+  
+      .armor-characteristics > * {
+        padding-right: 2px;
+        padding-left: 2px;
+      }
+  
+      .weapon-characteristics {
+        > * {
+          padding-right: 2px;
+          padding-left: 2px;
+        }
+  
+        .legend-name {
+          flex: 1;
+        }
+      }
+  
+      .armor-characteristics .legend-name, .weapon-characteristics .legend-name {
+        align-self: center;
+        text-align: center;
+      }
+  
+      .legend-name {
+        &.distance {
+          flex: 1;
+        }
+  
+        &.distance-ranged {}
+  
+        &.distance-ranged-sonic {
+          flex: 1;
+        }
+  
+        &.armor-value {
+          flex: 0.25;
+        }
+      }
+    }
+  
+    .arsenal-group .legend-name.armor-value {
+      flex: 0.25;
+    }
+  
+    .arsenal-list .legend-name {
+      &.damage {
+        flex: 1;
+      }
+  
+      &.damage-ranged {}
+  
+      &.damage-ranged-sonic {
+        flex: 1;
+      }
+  
+      &.magazine-ranged {}
+  
+      &.magazine-ranged-sonic {
+        flex: 1;
+      }
+  
+      &.uses, &.uses-ranged, &.uses-ranged-sonic {
+        flex: 3;
+      }
+    }
+  
+    .armor-properties, .weapon-properties {
+      margin-left: 3%;
+      margin-bottom: 5px;
+      display: flex;
+    }
+  
+    .name-rotate {
+      -ms-transform: rotate(-45deg);
+  
+      /* Internet Explorer */
+      -moz-transform: rotate(-45deg);
+  
+      /* Firefox */
+      -webkit-transform: rotate(-45deg);
+  
+      /* Safari et Chrome */
+      -o-transform: rotate(-45deg);
+    }
+  
+    .qualities-name {
+      margin-left: 5px;
+    }
+  
+    .arsenal-list .item-summary {
+      display: inline-block;
+      background-color: $grey-240;
+      padding: 5px 4px 5px 4px;
+      width: 100%;
+      border-top: 1px solid $grey-164;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  
+    .inventory-group {
+      &.armor-group, &.weapon-group {
+        margin: 16px 13px;
+        flex: 1;
+      }
+    }
+  
+    .inventory-tab .encumbrance-group {
+      margin: 16px 13px;
+      flex: 1;
+  
+      .enc-all {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin-left: -7px;
+      }
+  
+      .enc-container {
+        width: calc(100% - 5px);
+        flex: 3;
+        border: 1px solid $grey-164;
+        margin-left: 2px;
+        margin-bottom: 0px;
+        order: 2;
+        display: flex;
+        transform: skew(45deg, 0deg);
+      }
+  
+      .enc-bar {
+        border: none;
+        background-color: black;
+        max-width: 100%;
+      }
+    }
+  
+    .encumbrance-group .encumbrance-legend span {
+      margin-right: 20px;
+    }
+  }
+  
+  .degenesis.sheet {
+    .armor, .weapon, .encumbrance {
+      display: flex;
+    }
+  }
+  
+  .app.window-app.degenesis.sheet .inventory-tab .black-title {
+    width: 100%;
+    background-image: url(../images/border\ short.svg);
+    background-repeat: no-repeat;
+    color: white;
+    background-size: 100%;
+    background-position: center;
+  }
+  
+  .degenesis.sheet {
+    .armor .black-title, .weapon .black-title, .encumbrance .black-title {
+      max-width: 164px;
+      max-height: 14px;
+      align-self: flex-start;
+    }
+  }
+  
+  .app.window-app.degenesis.sheet {
+    .inventory-group h3 {
+      margin-bottom: 0px;
+      margin-left: 10px;
+    }
+  
+    .armor-group .first-part, .weapon-group .first-part, .encumbrance-group .first-part {
+      display: flex;
+      width: 190px;
+    }
+  
+    .armor-group .empty, .weapon-group .empty, .encumbrance-group .empty {
+      flex: 1;
+      border-bottom: 1px solid $grey-164;
+    }
+  
+    .armor-group .armor-legend, .weapon-group .weapon-legend {
+      display: flex;
+      flex: 2;
+      border-bottom: 1px solid $grey-164;
+      width: 100%;
+      justify-content: flex-end;
+    }
+  
+    .armor-group .armor-legend > *, .weapon-group .weapon-legend > * {
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+  
+    .encumbrance-group .encumbrance-legend {
+      display: flex;
+  
+      /* flex: 0 0 38px; */
+      /* border-bottom: 1px solid $grey-164; */
+      width: 100%;
+      justify-content: flex-end;
+    }
+  
+    .inventory-group {
+      .weapon-legend > * {
+        justify-content: flex-end;
+        flex: 1;
+        text-align: center;
+        border-bottom: 0px;
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+  
+      .armor-legend {
+        > * {
+          justify-content: flex-end;
+          flex: 1;
+          text-align: center;
+          border-bottom: 0px;
+          padding-right: 5px;
+          padding-left: 5px;
+        }
+  
+        .legend-name {
+          flex: 1;
+          align-self: center;
+          text-align: center;
+          max-width: 50px;
+        }
+      }
+  
+      .weapon-legend .legend-name {
+        flex: 1;
+        align-self: center;
+        text-align: center;
+        max-width: 50px;
+      }
+    }
+  
+    .inventory-list .armor-characteristics .legend-name .slots, .inventory-group .armor-legend .legend-name .slots, .inventory-list .weapon-characteristics .legend-name .slots, .inventory-group .weapon-legend .legend-name .slots {
+      margin-left: 12px;
+    }
+  
+    .inventory-list {
+      .armor-characteristics .legend-name, .weapon-characteristics .legend-name {
+        flex: 1;
+        max-width: 50px;
+        padding-right: 5px;
+        padding-left: 5px;
+        align-self: center;
+        text-align: center;
+      }
+  
+      .armor-characteristics .legend-name.equipped, .weapon-characteristics .legend-name.equipped {
+        display: flex;
+        justify-content: center;
+        flex: 1.7;
+        max-width: 75px;
+      }
+  
+      .armor-characteristics .item-controls, .weapon-characteristics .item-controls {
+        flex: 0 0 49px;
+      }
+    }
+  
+    .inventory-group {
+      .armor-legend .equipped, .weapon-legend .equipped {
+        flex: 1.7;
+        max-width: 75px;
+      }
+  
+      .armor-legend .empty, .weapon-legend .empty {
+        flex: 0 0 64px;
+        display: flex;
+        height: 14px;
+        align-self: center;
+      }
+    }
+  
+    .inventory-list {
+      .armor.item, .weapon.item {
+        margin-left: 5px;
+        border-bottom: 1px solid $grey-164;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+  
+      .square.button-position {
+        margin: 0;
+      }
+  
+      .armor.item .armor-name, .weapon.item .weapon-name {
+        width: 185px;
+        display: flex;
+        align-self: center;
+        margin-right: 0;
+        padding-bottom: 6px;
+      }
+  
+      .armor-characteristics, .weapon-characteristics {
+        flex: 2;
+        display: flex;
+        align-self: center;
+        justify-content: flex-end;
+        margin: 0;
+        padding-bottom: 6px;
+      }
+  
+      .item-controls {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+      }
+  
+      .item-summary {
+        display: inline-block;
+        background-color: $grey-240;
+        padding: 5px 4px 5px 4px;
+        width: 100%;
+        border-top: 1px solid $grey-164;
+        margin-left: 0px;
+        margin-right: 0px;
+        text-align: justify;
+  
+        .tag {
+          border: 1px solid $grey-164;
+          background: white;
+          margin: 2px 5px;
+          display: inline-block;
+          padding: 2px 7px;
+        }
+  
+        p {
+          margin-top: 0;
+        }
+      }
+    }
+  
+    .history-tab {
+      margin-top: 20px;
+      height: 80%;
+    }
+  
+    .lt-group {
+      margin: 16px 13px;
+      flex: 1;
+  
+      /*height: 30%*/
+    }
+  
+    .legacy-group {
+      height: auto;
+    }
+  
+    .gmnotes-group, .biography-group {
+      height: 70%;
+    }
+  
+    .lt-group .editor .editor-content {
+      height: 90%;
+    }
+  }
+  
+  /* * History tab */
+  
+  .degenesis.sheet .lt-group .lt-top {
+    display: flex;
+  }
+  
+  .app.window-app.degenesis.sheet .lt-group {
+    .first-part {
+      display: flex;
+      width: 190px;
+    }
+  
+    .black-title {
+      width: 100%;
+      background-image: url(../images/border\ short.svg);
+      background-repeat: no-repeat;
+      color: white;
+      background-size: 100%;
+      background-position: center;
+    }
+  
+    h3 {
+      margin-bottom: 0px;
+      margin-left: 10px;
+    }
+  
+    .legend {
+      display: flex;
+      flex: 2;
+      border-bottom: 1px solid $grey-164;
+      width: 100%;
+      justify-content: flex-end;
+  
+      .legend-name {
+        justify-content: flex-end;
+        align-self: center;
+        text-align: center;
+        flex: 1;
+      }
+    }
+  
+    .item-list {
+      .item {
+        margin-left: 5px;
+        border-bottom: 1px solid $grey-164;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+  
+      .item-name {
+        width: 180px;
+        display: flex;
+  
+        /* align-self: center; */
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+    }
+  
+    &.empt .item-list .item-name {
+      flex: 2;
+    }
+  
+    .item-list .item-characteristics {
+      flex: 3;
+      display: flex;
+      align-self: center;
+      justify-content: flex-end;
+      margin: 0;
+      padding-bottom: 6px;
+    }
+  
+    &.empt .item-list .item-characteristics {
+      flex: 0;
+    }
+  
+    .item-list .item-characteristics {
+      > * {
+        padding-right: 2px;
+        padding-left: 2px;
+      }
+  
+      .legend-name {
+        flex: 1;
+        align-self: center;
+        text-align: center;
+      }
+    }
+  }
+  
+  .degenesis.sheet .lt-group .item-controls {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+  }
+  
+  .app.window-app.degenesis.sheet {
+    .lt-group .legend .icon.item-add {
+      margin: 0;
+      font-size: 15px;
+      display: flex;
+      padding: 1px 4px;
+    }
+  
+    &.actor .editor {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  

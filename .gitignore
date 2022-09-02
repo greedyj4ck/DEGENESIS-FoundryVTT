@@ -3,3 +3,11 @@
 .vs/
 .vscode/launch.json
 debug.log
+degenesis.lock
+packs/ammunitions.db
+packs/armor-and-shields.db
+packs/equipment.db
+packs/legacies.db
+packs/maps.db
+packs/potentials.db
+packs/weapons.db

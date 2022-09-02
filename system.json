@@ -1,22 +1,46 @@
 {
-  "name": "degenesis",
+  "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.4.1",
-  "minimumCoreVersion": "9",
-  "compatibleCoreVersion": "9",
+  "version": "0.5.0",
+  "compatibility": {
+    "minimum": 10,
+    "verified": "10.284",
+    "maximum": 10
+  },
   "templateVersion": 2,
-  "author": "Moo Man, Darkhan, ClemEvilzz, KristjanLaane",
+  "authors": 
+  [{
+    "name": "Moo Man",
+    "discord": "Moo Man#7518"
+  },
+  {
+    "name": "Darkhan",
+    "discord": "Darkhan#1534"
+  },
+  {
+    "name": "ClemEvilzz",
+    "discord": "societe simulator#2110"
+  },
+  {
+    "name": "KristjanLaane"
+  },
+  {
+    "name": "Greedyj4ck",
+    "discord": "GЯΣΣDYJΛCK#2690"
+  }],
+
+
   "esmodules": ["degenesis.js"],
   "styles": ["styles/degenesis.css"],
   "scripts" : [
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js",
-    "systems/degenesis/node_modules/dist/tippy.cjs"
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
+   
 ],
   "packs": [    
   {
     "label": "Legacies",
-    "entity": "Item",
+    "type": "Item",
     "name": "legacies",
     "path": "packs/legacies.db",
     "system": "degenesis",
@@ -24,7 +48,7 @@
   },
   {
     "label": "Weapons",
-    "entity": "Item",
+    "type": "Item",
     "name": "weapons",
     "path": "packs/weapons.db",
     "system": "degenesis",
@@ -32,7 +56,7 @@
   },
   {
     "label": "Armor & Shields",
-    "entity": "Item",
+    "type": "Item",
     "name": "armor-and-shields",
     "path": "packs/armor-and-shields.db",
     "system": "degenesis",
@@ -40,7 +64,7 @@
   },
   {
     "label": "Ammunitions",
-    "entity": "Item",
+    "type": "Item",
     "name": "ammunitions",
     "path": "packs/ammunitions.db",
     "system": "degenesis",
@@ -48,7 +72,7 @@
   },
   {
     "label": "Equipment",
-    "entity": "Item",
+    "type": "Item",
     "name": "equipment",
     "path": "packs/equipment.db",
     "system": "degenesis",
@@ -56,7 +80,7 @@
   },
 {
     "label": "Potentials",
-    "entity": "Item",
+    "type": "Item",
     "name": "potentials",
     "path": "packs/potentials.db",
     "system": "degenesis",
@@ -64,7 +88,7 @@
   },
   {
     "label": "Maps",
-    "entity": "Scene",
+    "type": "Scene",
     "name": "maps",
     "path": "packs/maps.db",
     "system": "degenesis",
@@ -92,13 +116,18 @@
       "lang": "de",
       "name": "German",
       "path": "lang/de.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json"
     }
   ],
   "gridDistance": 5,
-  "gridUnits": "ft",
-  "background" : "ui/falberg.webp",
+  "gridUnits": "m",
+  "background" : "systems/degenesis/ui/artifacts.jpg",
   "url": "",
-  "manifest": "https://raw.githubusercontent.com/moo-man/DEGENESIS-FoundryVTT/master/system.json",
-  "download": "https://github.com/moo-man/DEGENESIS-FoundryVTT/releases/download/0.4.1/degenesis.zip",
+  "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
+  "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
   "license": "LICENSE.txt"
 }

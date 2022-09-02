@@ -20,7 +20,7 @@
                 </svg>
                 <div class="square little right"></div>
             </div>
-            {{editor content=data.description target="data.description"button=true owner=owner editable=editable}}
+            {{editor data.description target="system.description" button=true owner=owner editable=editable}}
             <div class="footer-diamond">
                 <div class="square little"></div>
             </div>
@@ -80,10 +80,10 @@
                         <div class="sheet-field">
                             <span class="field-name">{{localize "DGNS.Droppable"}}: </span>
                             <div class="field-inputs">
-                                {{#if item.data.droppable}}
-                                <a class="square border-black button-position checkbox" data-target="data.droppable"><div class="square-into black"></div></a>
+                                {{#if item.system.droppable}}
+                                <a class="square border-black button-position checkbox" data-target="system.droppable"><div class="square-into black"></div></a>
                                 {{else}}
-                                <a class="square button-position checkbox" data-target="data.droppable"><div class="square-into"></div></a>
+                                <a class="square button-position checkbox" data-target="system.droppable"><div class="square-into"></div></a>
                                 {{/if}}
                             </div>
                         </div>

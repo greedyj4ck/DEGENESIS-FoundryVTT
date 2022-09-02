@@ -98,8 +98,8 @@ export default class ModifierManager
                 "T" : 0,
             }
         }
-        this.action.D = actor.data.data.state.motion ? this.action.D - 2 : this.action.D
-        this.action.D -= actor.data.data.condition.trauma.value
+        this.action.D = actor.system.state.motion ? this.action.D - 2 : this.action.D
+        this.action.D -= actor.system.condition.trauma.value
         this.attack.D = this.attack.D ? this.attack.D + shieldAttackModifier : shieldAttackModifier
         this.p_defense = this.p_defense ? this.p_defense + shieldPassiveModifier : shieldPassiveModifier
         this.a_defense.D = this.a_defense.D ? this.a_defense.D + shieldActiveModifier : shieldActiveModifier
@@ -107,8 +107,8 @@ export default class ModifierManager
 
 
     addEncumbranceModifiers(actor) {
-        if (actor.data.encumbrance && (actor.data.encumbrance.current > actor.data.encumbrance.max))
-            this.action.D -= (actor.data.encumbrance.current - actor.data.encumbrance.max)
+        if (actor.system.general.encumbrance && (actor.system.general.encumbrance.current > actor.system.general.encumbrance.max))
+            this.action.D -= (actor.system.general.encumbrance.current - actor.system.general.encumbrance.max)
     }
 
 
@@ -120,15 +120,19 @@ export default class ModifierManager
      */
     forDialog(type, skill, use) {
         let prefilled = {
+            difficulty : 0,
             diceModifier : 0,
             successModifier : 0,
             triggerModifier : 0,
         }
 
-        if (game.user.targets.size)
+        if (game.user.targets.size && use != "attack-sonic") // Attack difficulty is target's passive defense by default
         {
-           prefilled.difficulty = Array.from(game.user.targets)[0].actor.data.data.fighting.passiveDefense
+           prefilled.difficulty = Array.from(game.user.targets)[0].actor.system.fighting.passiveDefense
         }
+        else if (use == "attack-sonic") // Sonic attacks have no intrinsic difficulty (always are defended mentally), a simple success should suffice
+           prefilled.difficulty = 1
+
         for (let modifier in this)
         {
             let useModifier = false;

@@ -1,0 +1,483 @@
+/* BASE: _EXPERIMENTAL.SCSS */ 
+
+#logo {
+  content: url(../icons/degenesis.png);
+}
+
+#pause {
+  background: none;
+
+  img {
+    content: url(../icons/logo.png);
+  }
+
+  h3 {
+    font-family: $primary-header-font;
+    color: white;
+    text-shadow: 1px 1px 30px $dgns-red;
+  }
+
+  > {
+    figcaption {
+      font-family: 'Avenir';
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0px 3px 12px rgba(0, 0, 0, 1);
+    }
+
+    img {
+      opacity: 1.0;
+    }
+  }
+}
+
+.app.window-app {
+  .window-content {
+    background: white;
+    font-family: $serif-content-font;
+  }
+
+  .window-header {
+    font-family: Calluna;
+    background-image: url(../ui/header.jpg);
+  }
+}
+
+h1, h2, h3 {
+  font-family: $primary-header-font;
+  text-transform: uppercase;
+}
+
+/* .window-title {
+    font-family: "Calluna";
+    text-transform: unset;
+} */
+
+input[type="text"] {
+    background: none;
+    border: 0px;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+  }
+  
+  form button {
+    background-color: black;
+    border-radius: 0px;
+    font-family: $sans-serif-conent-font;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    transition: color 0.2s, border 0.2s, background 0.2s;
+  }
+  
+  .dialog .dialog-buttons button {
+    background-color: black;
+    border-radius: 0px;
+    font-family: $sans-serif-conent-font;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    transition: color 0.2s, border 0.2s, background 0.2s;
+  
+    &.default {
+      background-color: black;
+      border-radius: 0px;
+      font-family: $sans-serif-conent-font;
+      text-transform: uppercase;
+      border: none;
+      color: white;
+      transition: color 0.2s, border 0.2s, background 0.2s;
+    }
+  }
+  
+  button {
+    background-color: black;
+    border-radius: 0px;
+    font-family: $sans-serif-conent-font;
+    text-transform: uppercase;
+    border: none;
+    color: white;
+    transition: color 0.2s, border 0.2s, background 0.2s;
+  }
+  
+  form button:hover, .dialog .dialog-buttons button:hover, button:hover {
+    box-shadow: none;
+    background-color: $dgns-red;
+  }
+  
+  .sheet-tabs.tabs .item {
+    font-family: $sans-serif-conent-font;
+    text-transform: uppercase;
+    font-size: 13px;
+  
+    &.active {
+      color: $dgns-red;
+      text-shadow: none;
+    }
+  }
+  
+  .caps {
+    text-transform: uppercase;
+  }
+  
+  .capitalize {
+    text-transform: capitalize;
+  }
+  
+  span.nocaps {
+    text-transform: none;
+  }
+  
+  .sidebar-tab button {
+    color: white;
+    background-color: none;
+    border-top: 1px solid $grey-070;
+    border-bottom: 1px solid $grey-070;
+    background: none;
+    font-size: 11px;
+  
+    &:hover {
+      box-shadow: none;
+      background-color: $dgns-red;
+      border-color: $dgns-red;
+    }
+  }
+  
+  #sidebar-tabs {
+    border-bottom: 1px solid $dgns-red;
+    box-shadow: 0 0 10px $dgns-blackred;
+  
+    > .item.active {
+      box-shadow: none;
+      border: 0px solid $dgns-red;
+    }
+  }
+  
+  #sidebar .tabs .item.active {
+    text-shadow: none;
+    color: $dgns-red;
+  }
+  
+  .app.window-app.sidebar-popout .window-content, #sidebar {
+    background: url(../ui/degenesis_parchment_black.jpg);
+    border-radius: 0px;
+    font-family: $serif-content-font;
+  }
+  
+  .sidebar-tab {
+    h2 {
+      font-family: $primary-header-font;
+      border-bottom: 0px;
+      color: $dgns-red;
+      text-transform: uppercase;
+    }
+  
+    .directory-footer button {
+      font-size: 12px;
+    }
+  }
+  
+  /* #sidebar .directory-list .directory-item h4 {
+      font-family: "Calluna";
+      text-transform: unset
+  } */
+  
+  #chat-form textarea {
+    background: white;
+    border-radius: 0px;
+    border: 1px solid $dgns-red;
+    margin-top: 3px;
+  }
+  
+  #sidebar .directory-header a, #chat-controls a {
+    color: $dgns-red;
+  }
+  
+  #sidebar .directory-header a:hover, #chat-controls a:hover {
+    color: white;
+  }
+  
+  #combat {
+    #combat-round .encounters h3 {
+      font-size: 14px;
+    }
+  
+    #combat-controls .center {
+      font-family: $sans-serif-conent-font;
+      text-transform: uppercase;
+      font-size: 19px;
+    }
+  }
+  
+  #chat-controls {
+    .chat-control-icon i {
+      width: 25px;
+      height: 25px;
+      color: #f0f8ff00;
+      background: url(../icons/logo-small.png);
+  
+      &:hover {
+        cursor: pointer;
+        background: url(../icons/cluster/logo-small.png);
+        transition: background 0.5s;
+      }
+    }
+  
+    .roll-type-select {
+      background: none;
+      border: none;
+      padding: 0px;
+      color: white;
+      border-top: 1px solid $grey-070;
+      border-bottom: 1px solid $grey-070;
+      border-right: 1px solid transparent;
+      border-left: 1px solid transparent;
+      border-radius: 0px;
+      font-family: $sans-serif-conent-font;
+      text-transform: uppercase;
+      transition: border 0.2s, background 0.2s;
+  
+      &:hover {
+        border: 1px solid $dgns-red;
+        background-color: $dgns-red;
+      }
+    }
+  }
+  
+  /*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
+  
+  #chat-log .chat-message.message {
+    &.whisper, &.blind {
+      background: url(../ui/degenesis_parchment_black.jpg);
+      color: #CCC;
+    }
+  
+    &.whisper .message-header, &.blind .message-header {
+      color: #CCC;
+    }
+  
+    &.whisper h2, &.blind h2 {
+      color: goldenrod;
+    }
+  }
+  
+  select {
+    background: none;
+    border: none;
+    padding: 0px;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+  
+    &:focus {
+      box-shadow: none;
+    }
+  
+    > * {
+      color: white;
+      background-color: black;
+    }
+  }
+  
+  textarea:focus {
+    outline: 2px solid $dgns-red;
+    box-shadow: 0 0 10px $dgns-red;
+  }
+  
+  a:hover {
+    text-shadow: none;
+    color: $dgns-red;
+  }
+  
+  .sidebar-tab .directory-header .header-search input {
+    background: none;
+    border-radius: 0px;
+    border: 1px solid $dgns-red;
+    color: white;
+  
+    &:focus {
+      box-shadow: none;
+      color: $dgns-red;
+    }
+  }
+  
+  #sidebar .directory-header .header-search i {
+    color: $dgns-red;
+  }
+  
+  #hotbar {
+    .bar-controls, #macro-list {
+      background-color: black;
+      border-radius: 0px;
+      border: 1px solid white;
+    }
+  }
+  
+  #navigation {
+    #nav-toggle, #scene-list #nav-item {
+      background-color: black;
+      border-radius: 0px;
+      border: 1px solid white;
+    }
+  }
+  
+  #controls {
+    .scene-control, .control-tool {
+      background-color: black;
+      border-radius: 0px;
+      border: 1px solid white;
+    }
+  
+    .scene-control, .control-tool {
+      box-shadow: none;
+    }
+  }
+  
+  #navigation #scene-list .scene {
+    border: 1px solid white;
+    border-radius: 0px;
+  
+    /*background: url(../ui/degenesis_parchment_black.jpg);*/
+    background: black;
+  
+    &.gm {
+      border: 1px solid $dgns-red;
+  
+      /*background: url(../ui/degenesis_parchment_black.jpg);*/
+      background: black;
+    }
+  
+    &.view {
+      border: 1px solid $dgns-red;
+      box-shadow: none;
+      color: $dgns-red;
+  
+      /*background: url(../ui/degenesis_parchment_black.jpg);*/
+      background: black;
+    }
+  }
+  
+  #controls {
+    .scene-control.active, .control-tool.active, .scene-control:hover, .control-tool:hover {
+      color: $dgns-red;
+      box-shadow: none;
+    }
+  }
+  
+  #chat-log .message {
+    border-radius: 0px;
+    background: url(../ui/degenesis_parchment.jpg);
+    margin: 5px;
+  }
+  
+  .dice-tooltip .dice-rolls .roll.d6 {
+    &.max {
+      color: $dgns-red;
+      filter: none;
+      content: url(../icons/logo-small.png);
+      padding: 2px;
+    }
+  
+    background-image: none;
+    border: 1px solid black;
+    line-height: 22px;
+  }
+  
+  #players {
+    background: url(../ui/degenesis_parchment_black.jpg);
+    font-family: $sans-serif-conent-font;
+    text-transform: uppercase;
+    border-radius: 0px;
+  
+    ol .player-name.self {
+      color: $dgns-red;
+    }
+  }
+  
+  #hotbar {
+    font-family: $sans-serif-conent-font;
+  
+    #macro-list {
+      background: url(../ui/degenesis_parchment_black.jpg);
+    }
+  
+    .macro {
+      background: none;
+      border-radius: 0px;
+      border: 1px solid #CCC;
+  
+      &:hover {
+        box-shadow: none;
+        border: 1px solid $dgns-red;
+      }
+    }
+  }
+  
+  .app.window-app.journal-sheet .window-content {
+    background: url(../ui/degenesis_parchment.jpg);
+  }
+  
+  .sheet.journal-entry .sidebar {
+    color: #000000;
+  }
+  
+  #token-hud {
+    font-family: $serif-content-font;
+  
+    .attribute {
+      &.bar2 input {
+        opacity: 1;
+        box-shadow: 0 0 8px $grey-164 inset;
+        border: 4px double #FFFFFF;
+      }
+  
+      &.bar1 input {
+        opacity: 1;
+        box-shadow: 0 0 8px $dgns-blackred inset;
+        border: 4px double $dgns-red;
+      }
+    }
+  }
+  
+  .placeable-hud .control-icon {
+    background: rgba(0, 0, 0, 0.31);
+    box-shadow: 0 0 23px #000000 inset;
+  
+    i.fas {
+      position: relative;
+      opacity: 0.8;
+    }
+  
+    input[name="elevation"] {
+      opacity: 1;
+      box-shadow: 0 0 8px #675e00 inset;
+      border: 4px double #9c5f00;
+    }
+  
+    &.active {
+      border: 1px solid $dgns-red;
+    }
+  }
+  
+  #menu {
+    background-image: url(../ui/header.jpg);
+    font-family: $serif-content-font;
+    border-radius: 3px;
+  
+    #menu-items li:hover {
+      text-shadow: none;
+      color: $dgns-red;
+    }
+  }
+  
+  #context-menu {
+    background-image: url(../ui/header.jpg);
+    border: 1px solid $dgns-red;
+    border-top: 0px;
+    border-bottom: 0px;
+  
+    li.context-item:hover {
+      text-shadow: none;
+      color: $dgns-red;
+    }
+  }

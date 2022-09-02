@@ -1,0 +1,149 @@
+/* COMPONENTS: _SQUARES.SCSS */
+
+.square {
+  height: 9px;
+  width: 9px;
+  border: 1px solid $grey-165;
+  margin: 0px 2px 0px 2px;
+  -ms-transform: rotate(45deg);
+
+  /* Internet Explorer */
+  -moz-transform: rotate(45deg);
+
+  /* Firefox */
+  -webkit-transform: rotate(45deg);
+
+  /* Safari et Chrome */
+  -o-transform: rotate(45deg);
+
+  /* Opera */
+  display: flex;
+  justify-content: center;
+  border-radius: 1px;
+}
+
+.square-into {
+  height: 80%;
+  width: 80%;
+  align-self: center;
+  border: 1px solid $grey-165;
+}
+
+.square.little {
+  height: 7px;
+  width: 7px;
+  border: 1px solid $grey-165;
+  margin: 0px 2px 0px 2px;
+  -ms-transform: rotate(45deg);
+
+  /* Internet Explorer */
+  -moz-transform: rotate(45deg);
+
+  /* Firefox */
+  -webkit-transform: rotate(45deg);
+
+  /* Safari et Chrome */
+  -o-transform: rotate(45deg);
+
+  /* Opera */
+}
+
+.properties.square {
+  height: 14px;
+  width: 14px;
+  border: 1px solid $grey-165;
+  margin: 0px 2px 0px 2px;
+  -ms-transform: rotate(45deg);
+
+  /* Internet Explorer */
+  -moz-transform: rotate(45deg);
+
+  /* Firefox */
+  -webkit-transform: rotate(45deg);
+
+  /* Safari et Chrome */
+  -o-transform: rotate(45deg);
+
+  /* Opera */
+  flex: none;
+}
+
+.square.black {
+  background-color: black;
+  border: 1px solid black;
+}
+
+.square-into {
+  &.black {
+    background-color: black;
+    border: 1px solid black;
+  }
+
+  &.mid-size {
+    background-color: black;
+    border: none;
+    height: 70%;
+    width: 70%;
+    border-radius: 1px;
+  }
+}
+
+.square {
+  &.red {
+    background-color: $dgns-red;
+    border: 1px solid $dgns-red;
+  }
+
+  &.border-black {
+    border-color: black;
+  }
+}
+
+a {
+  &.square.checkbox {
+    transition: border-color 0.1s linear, background-color 0.1s linear;
+
+    &:hover {
+      border: 1px solid $dgns-red;
+
+      .square-into {
+        &.black {
+          background-color: $dgns-red;
+          border: 1px solid $dgns-red;
+        }
+
+        &:not(.black) {
+          border: 1px solid $dgns-red;
+        }
+      }
+    }
+  }
+
+  &.diamond .square {
+    transition: border-color 0.1s linear, background-color 0.1s linear;
+  }
+}
+
+.square-into {
+  transition: border-color 0.1s linear, background-color 0.1s linear;
+}
+
+a.diamond:hover .square {
+  border: 1px solid $dgns-red;
+
+  &.perma {
+    background-color: black;
+
+    .square-into.black {
+      background-color: $dgns-red;
+    }
+  }
+
+  &.red {
+    border: 1px solid $grey-070;
+
+    &.perma {
+      border: 1px solid black;
+    }
+  }
+}

@@ -1,18 +1,20 @@
 <h2>{{{title}}}</h2>
 <div>
-    {{#each rolls as |roll r|}}
-        <img src="{{roll.img}}" width=25 height=25/>
-    {{/each}}
-    {{#if secondaryRolls}}
-        <hr>
-        {{#each secondaryRolls as |roll r|}}
-            <img src="{{roll.img}}" width=25 height=25/>
-        {{/each}}
-    {{/if}}
+  {{#each rolls as |roll r|}}
+  <img src="{{roll.img}}" width="25" height="25" />
+  {{/each}} {{#if secondaryRolls}}
+  <hr />
+  {{#each secondaryRolls as |roll r|}}
+  <img src="{{roll.img}}" width="25" height="25" />
+  {{/each}} {{/if}}
 </div>
 
-    <div>Successes: {{successes}}</div>
-    <div>Triggers: {{triggers}}</div>
-    {{#if result}}
-        <div>Result: {{result}}</div>
-    {{/if}}
+<div>{{localize "UI.Successes"}}: {{successes}}</div>
+<div>{{localize "UI.Triggers"}}: {{triggers}}</div>
+{{#if result}}
+<div>{{localize "UI.Result"}}: {{result}}</div>
+{{/if}}
+<!-- Sonic weaponry: Target mentally defends against the highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
+{{#if mostSuccesses}}
+<div>{{localize "UI.SonicDefenseDifficulty"}}: {{mostSuccesses}}</div>
+{{/if}}
