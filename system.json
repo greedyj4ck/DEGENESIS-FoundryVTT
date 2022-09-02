@@ -5,7 +5,8 @@
   "version": "0.5.0",
   "compatibility": {
     "minimum": 10,
-    "verified": "10.279"
+    "verified": "10.284",
+    "maximum": 10
   },
   "templateVersion": 2,
   "authors": 
@@ -115,6 +116,11 @@
       "lang": "de",
       "name": "German",
       "path": "lang/de.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json"
     }
   ],
   "gridDistance": 5,
