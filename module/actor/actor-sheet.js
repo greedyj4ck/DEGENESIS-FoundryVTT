@@ -15,7 +15,7 @@ export class DegenesisActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["degenesis", "sheet", "actor"],
             template: "systems/degenesis/templates/actor/actor-sheet.html",
-            width: 685,
+            width: 720,
             height: 723,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main" }],
             scrollY: [".relationship", ".tab-content"]
@@ -40,7 +40,8 @@ export class DegenesisActorSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
-        data.data = data.data.data
+       
+        data.data = data.actor.system
 
         // Used for Modifier item list
         data.modifyActions = DEG_Utility.getModificationActions()
@@ -225,12 +226,12 @@ export class DegenesisActorSheet extends ActorSheet {
     }
 
     // Handle custom drop events (currently just putting items into containers)
-    _onDrop(event) {
+    async _onDrop(event) {
         let transportTarget = $(event.target).parent(".transport-drop")[0]
         if (transportTarget) 
         {
             let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"))
-            let itemData = jsonData.data;
+            let itemData = await fromUuid(jsonData.uuid);
             if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
                 this.actor.updateEmbeddedDocuments("Item", [{_id : itemData._id, "data.location" : transportTarget.dataset["itemId"]}])
         }
@@ -312,16 +313,16 @@ export class DegenesisActorSheet extends ActorSheet {
         if (target == "item") {
             target = $(event.currentTarget).attr("data-item-target")
             let item = this.actor.items.get($(event.currentTarget).parents(".item").attr("data-item-id"))
-            item.update({ [`${target}`]: !getProperty(item.data, target) })
+            item.update({ [`${target}`]: !getProperty(item, target) })
             return;
         }
         if (target)
-            this.actor.update({[`${target}`] : !getProperty(this.actor.data, target)});
+            this.actor.update({[`${target}`] : !getProperty(this.actor, target)});
     }
     _onRelationshipEdit(event) {
         let elem = $(event.currentTarget)
         let editType = elem.hasClass("relationships-cultes") ? "group" : "modifier"
-        let relationships = foundry.utils.deepClone(this.actor.data.data.relationships)
+        let relationships = foundry.utils.deepClone(this.actor.system.relationships)
         let index = Number(elem.parents(".relationships-li").attr("data-index"))
         if (isNaN(index)) // New relationship 
         {
@@ -331,7 +332,7 @@ export class DegenesisActorSheet extends ActorSheet {
         }
         else relationships[index][editType] = elem[0].value
         relationships = relationships.filter(r => !!r.group)
-        this.actor.update({ "data.relationships": relationships })
+        this.actor.update({ "system.relationships": relationships })
     }
     _onDropdown(event) {
         let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")

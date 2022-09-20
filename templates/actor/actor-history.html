@@ -69,7 +69,7 @@
                 <a class="editor-edit"><i class="fas fa-edit"></i></a>
             </div>
         </div>
-        {{editor content=data.biography target="data.biography"button=true owner=owner editable=editable}}
+        {{editor data.biography target="system.biography"button=true owner=owner editable=editable}}
     </div>
 
     <!-- * GM Notes  -->
@@ -89,7 +89,7 @@
                 <a class="editor-edit"><i class="fas fa-edit"></i></a>
             </div>
         </div>
-        {{editor content=data.gmnotes target="data.gmnotes"button=true owner=owner editable=editable}}
+        {{editor data.gmnotes target="system.gmnotes"button=true owner=owner editable=editable}}
     </div>
     {{/if}}
 </div>

@@ -1,4 +1,5 @@
 import RollDialog from "./apps/roll-dialog.js"
+import { MinimumOneAN } from "./settings.js";
 
 export class DegenesisDice
 {
@@ -63,8 +64,11 @@ export class DegenesisDice
             autoSuccesses = actionNumber - 12;
             actionNumber = 12;
         }
+
+        if (actionNumber <= 0 & MinimumOneAN()){actionNumber = 1}
+
         let roll = new Roll(`${actionNumber}d6cs>3`);
-        await roll.roll();
+        await roll.evaluate({async: true});
 
         rolls = roll.terms[0].results;
         successes = roll.total + autoSuccesses + successModifier;
@@ -108,9 +112,10 @@ export class DegenesisDice
                         label : "Roll",
                         callback : async (dlg) => {
                             rollData.difficulty = parseInt(dlg.find('[name="difficulty"]').val() || 0)
-                            rollData.diceModifier = parseInt(dlg.find('[name="diceModifier"]').val() || 0)
-                            rollData.successModifier = parseInt(dlg.find('[name="successModifier"]').val() || 0)
-                            rollData.triggerModifier = parseInt(dlg.find('[name="triggerModifier"]').val() || 0)
+                            // CHANGE CALLBACK VALUES FOR TOTALMODIFIERS
+                            rollData.diceModifier = parseInt(dialogData.totalRollModifiers.diceModifier || 0)
+                            rollData.successModifier = parseInt(dialogData.totalRollModifiers.successModifier || 0)
+                            rollData.triggerModifier = parseInt(dialogData.totalRollModifiers.triggerModifier || 0)
                             rollData.secondary = dlg.find(".secondary-select").val()
                             resolve(rollData)
                         }

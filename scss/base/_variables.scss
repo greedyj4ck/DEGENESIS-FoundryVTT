@@ -1,0 +1,33 @@
+// SECTION: VARIABLES 
+
+// FONTS VARIABLES
+
+$primary-header-font: "Avenir";
+
+$sans-serif-conent-font : "Avenir";
+$serif-content-font: "Calluna";
+
+// COLORS
+// Replace all:
+// --degenesis-red with $dgns-red
+// --blackred with $dgns-blackred
+// --light-grey with $grey-240
+// --dark-grey with $grey-164
+
+$dgns-red: rgb(237, 29, 39);
+$dgns-blackred: rgb(154, 12, 19);
+
+// GRAYS
+$grey-243: rgb(243, 243, 243);
+$grey-240: rgb(240, 240, 240);
+$grey-230: rgb(230, 230, 230);
+$grey-220: rgb(220,220,220);
+
+$grey-165: rgb(165, 165, 165);
+$grey-164: rgb(164, 164, 164);
+$grey-070: rgb(70 70 70);
+
+// BACKGROUNDS 
+
+$bg-window-header: rgba(0, 0, 0, 0.2);
+$bg-attributes-header: rgba(0, 0, 0, 0.05);

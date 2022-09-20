@@ -26,7 +26,7 @@
          <div class="advantage">
             <div class="background-name">{{background.label}}</div>
             <div class="diamond-position">
-               <div class="diamond-row" data-target="data.backgrounds.{{bg}}.value">
+               <div class="diamond-row" data-target="system.backgrounds.{{bg}}.value">
                   {{#each background.diamonds as |diamond index|}}
                      {{#if diamond.filled}}
                      <a class="diamond" data-index={{index}}>
@@ -115,7 +115,7 @@
          <div class="advantage">
             <a class="background-name">{{localize "DGNS.Infamy"}}</a>
             <div class="diamond-position">
-               <div class="diamond-row" data-target="data.scars.infamy.value">
+               <div class="diamond-row" data-target="system.scars.infamy.value">
                   {{#each data.scars.infamy.diamonds as |diamond index|}}
                   {{#if diamond.filled}}
                   <a class="diamond" data-index={{index}}>
@@ -173,7 +173,7 @@
                </div>
                <div class="level">
                   <div class="diamond-position">
-                     <div class="diamond-row" data-target="item" data-item-target="data.level">
+                     <div class="diamond-row" data-target="item" data-item-target="system.level">
                         {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>

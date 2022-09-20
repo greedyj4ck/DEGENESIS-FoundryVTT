@@ -1,3 +1,5 @@
+// MODULE DEPRECATED - REMOVE WITH NEXT RELEASE
+
 import { DEGENESIS } from "./config.js"
 
 export class DegenesisImporter 
