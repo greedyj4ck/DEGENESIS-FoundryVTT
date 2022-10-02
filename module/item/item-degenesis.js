@@ -29,14 +29,17 @@ export class DegenesisItem extends Item {
 
     prepareOwnedData() 
     {
+
+        // Apply item modifications first, not after values are set for weapons.
+        if (this.slots)
+        this._applyMods()
+
+        // If item is a weapon: prepare weapon data.        
         if (this.type == "weapon")
             this.prepareWeapon()
+
         if (this.type == "transportation")
             this.itemsWithin = this.actor.items.filter(i => i.location == this.id)    
-         // Apply item modifications
-        
-            if (this.slots)
-            this._applyMods()
     }
 
     prepareWeapon() {
