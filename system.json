@@ -4,8 +4,9 @@
   "description": "DEGENESIS",
   "version": "0.5.0",
   "compatibility": {
-    "minimum": "10",
-    "verified": "10.284"
+    "minimum": 10,
+    "verified": "10.284",
+    "maximum": 10
   },
   "authors": [
     {
@@ -33,15 +34,9 @@
       "flags": {}
     }
   ],
-  "esmodules": [
-    "degenesis.js"
-  ],
-  "styles": [
-    "styles/degenesis.css"
-  ],
-  "scripts": [
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
-  ],
+  "esmodules": ["degenesis.js"],
+  "styles": ["styles/degenesis.css"],
+  "scripts": ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"],
   "packs": [
     {
       "label": "Legacies",
@@ -130,6 +125,12 @@
       "lang": "de",
       "name": "German",
       "path": "lang/de.json",
+      "flags": {}
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json",
       "flags": {}
     }
   ],

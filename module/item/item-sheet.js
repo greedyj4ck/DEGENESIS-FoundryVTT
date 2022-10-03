@@ -43,8 +43,8 @@ export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    data.data = data.item.system
-    // console.log(data)
+    data.data = data.item._source.system
+    // console.log(data)  
     this.processTypes(data)
     return data;
   }
@@ -141,7 +141,7 @@ export class DegenesisItemSheet extends ItemSheet {
     let mods = foundry.utils.deepClone(this.item.flags.degenesis.mods)
     mods.splice(index, 1);
     this.item.setFlag("degenesis", "mods", mods)
-  }
+    }
 
   _onModEdit(ev)
   {
@@ -156,7 +156,7 @@ export class DegenesisItemSheet extends ItemSheet {
   {
     let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
     let action = $(ev.currentTarget).attr("data-action");
-    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    let changes = foundry.utils.deepClone(this.item.system.changes)
     if (action=="delete")
     {
       changes.splice(index, 1)
@@ -172,7 +172,7 @@ export class DegenesisItemSheet extends ItemSheet {
   {
     let index = $(ev.currentTarget).parents(".effect-change").attr("data-index");
     let type = $(ev.currentTarget).attr("data-type");
-    let changes = foundry.utils.deepClone(this.item.data.data.changes)
+    let changes = foundry.utils.deepClone(this.item.system.changes)
     let newValue = ev.target.value
     if (Number.isNumeric(newValue))
       newValue = Number(newValue)
