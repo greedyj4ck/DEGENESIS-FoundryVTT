@@ -78,7 +78,7 @@ export class DegenesisActorSheet extends ActorSheet {
         }
 
         sheetData.inventory = this.constructInventory()
-        sheetData.arsenal = this.constructArnseal()
+        sheetData.arsenal = this.constructArsenal()
         sheetData.transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: this.actor.transportationItems, toggleDisplay: game.i18n.localize("DGNS.Dropped") }
 
     }
@@ -151,7 +151,7 @@ export class DegenesisActorSheet extends ActorSheet {
         }
     }
 
-    constructArnseal() {
+    constructArsenal() {
         return {
             meleeWeapons: this.actor.weaponItems.filter(i => i.isMelee && i.equipped && !i.inContainer),
             rangedWeapons: this.actor.weaponItems.filter(i => i.isRanged && i.equipped && !i.inContainer),

@@ -1,0 +1,31 @@
+<!-- * GM Notes  -->
+<div class="lt-group history-group gmnotes-group">
+  <div class="gmnotes lt-top">
+    <div class="first-part">
+      <div class="black-title">
+        <h3>{{localize "DGNS.GMNotes"}}</h3>
+      </div>
+      <svg class="tab-start-line" height="23" width="29">
+        <line
+          x1="0"
+          y1="7"
+          x2="10"
+          y2="7"
+          style="stroke: rgb(164, 164, 164); stroke-width: 1"
+        ></line>
+        <line
+          x1="10"
+          y1="7"
+          x2="26"
+          y2="23"
+          style="stroke: rgb(164, 164, 164); stroke-width: 1"
+        ></line>
+      </svg>
+    </div>
+    <div class="gmnotes-legend legend">
+      <a class="editor-edit"><i class="fas fa-edit"></i></a>
+    </div>
+  </div>
+  {{editor data.gmnotes target="system.gmnotes"button=true owner=owner
+  editable=editable}}
+</div>

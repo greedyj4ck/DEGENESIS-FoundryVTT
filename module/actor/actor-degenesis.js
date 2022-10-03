@@ -100,8 +100,8 @@ export class DegenesisActor extends Actor {
 
             try {
                 super.prepareData();
-
                 // Here will come data preparation code for NPC actor
+                // Need to have an input for the max conditions (FW, Ego, Trauma, etc)
 
             }
             catch (e) { console.error(e); }

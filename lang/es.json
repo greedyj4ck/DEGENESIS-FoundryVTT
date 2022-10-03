@@ -26,6 +26,7 @@
   "UI.Triggers": "Desencadenantes",
   "UI.Result": "Resultado",
   "UI.SonicDefenseDifficulty": "Defender contra",
+  "UI.DefaultAN": "NA por defecto",
 
   "ITEM.Type": "Personaje",
 
@@ -176,6 +177,7 @@
   "DGNS.Group": "Grupo",
   "DGNS.Handling": "Manejo",
   "DGNS.Distance": "Distancia",
+  "DGNS.Type": "Tipo",
   "DGNS.Magazine": "Carga",
   "DGNS.AP": "AP",
   "DGNS.Mods": "Ensamblajes",

@@ -26,6 +26,7 @@
   "UI.Triggers": "Triggers",
   "UI.Result": "Result",
   "UI.SonicDefenseDifficulty": "Defend against",
+  "UI.DefaultAN": "Default AN",
 
   "ITEM.Type": "Character",
 
@@ -178,6 +179,7 @@
   "DGNS.Group": "Group",
   "DGNS.Handling": "Handling",
   "DGNS.Distance": "Distance",
+  "DGNS.Type": "Type",
   "DGNS.Magazine": "Magazine",
   "DGNS.AP": "AP",
   "DGNS.Mods": "Mods",
@@ -463,7 +465,7 @@
   "DGNS.Climbing": "Climbing",
   "DGNS.Overnight": "Overnight",
   "DGNS.InTheShadows": "In The Shadows",
-  "DGNS.GazMasks": "Gaz Masks",
+  "DGNS.GazMasks": "Gas Masks",
   "DGNS.SurvivalGear": "Survival Gear",
   "DGNS.SunDiscs": "Sun Discs",
   "DGNS.ChroniclerSuitModules": "Chronicler Suit Modules",
