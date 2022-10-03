@@ -38,20 +38,24 @@ export class DegenesisActorSheet extends ActorSheet {
 
     /* -------------------------------------------- */
     /** @override */
-    getData() {
-        const data = super.getData();
+
+    // Experimental ASYNC 
+
+    async getData() {
+        const data = await super.getData();
        
         data.data = data.actor.system
 
         // Used for Modifier item list
         data.modifyActions = DEG_Utility.getModificationActions()
-
-
-        this.prepareSheetData(data);
+        
+        await this.prepareSheetData(data);
         return data;
     }
 
-    prepareSheetData(sheetData) {
+    // Experimental ASYNC 
+
+    async prepareSheetData(sheetData) {
         sheetData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
 
         sheetData.conceptIcon = this.actor.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg` : "systems/degenesis/icons/blank.png"
@@ -81,7 +85,24 @@ export class DegenesisActorSheet extends ActorSheet {
         sheetData.arsenal = this.constructArnseal()
         sheetData.transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: this.actor.transportationItems, toggleDisplay: game.i18n.localize("DGNS.Dropped") }
 
-    }
+        // Enrich raw HTML for Text Editor and expand for new functionalities like links...
+        // Borrowed from moo-man's WRFP implementation ^_^ <3
+
+        sheetData.enrichment = await this._handleEnrichment()
+
+      }
+    
+    async _handleEnrichment()
+      {
+          let enrichment = {}
+          enrichment["system.biography.value"] = await TextEditor.enrichHTML(this.actor.system.biography, {async: true, secrets: this.actor.isOwner, relativeTo: this.actor})
+          enrichment["system.gmnotes.value"] =  await TextEditor.enrichHTML(this.actor.system.gmnotes, {async: true, secrets: this.actor.isOwner, relativeTo: this.actor})
+    
+          return expandObject(enrichment)
+      }
+        
+
+
 
 
     sortAttributesSkills() {
@@ -407,6 +428,10 @@ export class DegenesisActorSheet extends ActorSheet {
         let skipDialog = event.ctrlKey
         let use = $(event.currentTarget).attr("data-use");
         let weapon = this.actor.items.get(weaponId)
+
+        // Add conditional for range weapons without ammo
+
+
         let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use, skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
@@ -432,15 +457,15 @@ export class DegenesisActorSheet extends ActorSheet {
         for (let a of ammo) {
             if (magLeft <= 0)
                 break;
-            if (magLeft <= a.data.quantity) {
-                itemData.data.mag.current += magLeft;
-                a.data.quantity -= magLeft;
+            if (magLeft <= a.system.quantity) {
+                itemData.system.mag.current += magLeft;
+                a.system.quantity -= magLeft;
                 magLeft = 0;
             }
             else {
-                itemData.data.mag.current += a.data.quantity;
+                itemData.system.mag.current += a.system.quantity;
                 magLeft -= a.quantity;
-                a.data.quantity = 0;
+                a.system.quantity = 0;
             }
         }
         this.actor.updateEmbeddedDocuments("Item", [itemData])

@@ -20,7 +20,7 @@
                 </svg>
                 <div class="square little right"></div>
             </div>
-            {{editor data.description target="system.description" button=true owner=owner editable=editable}}
+            {{editor enrichment.system.description.value target="system.description" button=true owner=owner editable=editable}}
             <div class="footer-diamond">
                 <div class="square little"></div>
              </div>
@@ -176,7 +176,7 @@
         <div class="tab" data-tab="mods">
             <div>Slots Used: {{data.slots.used}}/{{data.slots.total}}</div>
             {{#each item.flags.degenesis.mods as |mod m|}}
-                <span><b>{{mod.name}}</b>: {{{mod.data.description}}}</span>
+                <span><b>{{mod.name}}</b>: {{{mod.enrichment.system.description.value}}}</span>
                 <div>{{mod.data.effect}}</div>
             {{/each}}
         </div>

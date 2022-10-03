@@ -306,7 +306,7 @@ export class DegenesisActor extends Actor {
             title: cardTitle,
             template,
             speaker: {
-                alias: this.system.name
+                alias: this.name
             }
         }
     }
