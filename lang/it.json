@@ -3,7 +3,7 @@
 
   "ACTOR.TypeCharacter": "Personaggio",
   "ACTOR.TypeNpc": "PNG",
-  "ACTOR.TypeAbberant": "Venuti dall'Inferno",
+  "ACTOR.TypeAberrant": "Venuti dall'Inferno",
 
   "UI.SlotCost": "Costo dello Slot",
   "UI.Effect": "Effetto",

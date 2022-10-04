@@ -10,13 +10,13 @@ import ActorConfigure from "../apps/actor-configure.js";
  * @extends {ActorSheet}
  */
 
- export class DegenesisAbberantSheet extends ActorSheet {
+ export class DegenesisaberrantSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["degenesis", "sheet", "abberant"],
-            template: "systems/degenesis/templates/actor/abberant-sheet.html",
+            classes: ["degenesis", "sheet", "aberrant"],
+            template: "systems/degenesis/templates/actor/aberrant-sheet.html",
             width: 685,
             height: 723,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main" }],

@@ -115,14 +115,14 @@ export class DegenesisActor extends Actor {
             catch (e) { console.error(e); }
         }
 
-        // Abberant actor type
+        // aberrant actor type
 
-        if (this.type === "abberant") {
+        if (this.type === "aberrant") {
 
             try {
                 super.prepareData();
 
-                // Here will come data preparation code for Abberant actor
+                // Here will come data preparation code for aberrant actor
 
             }
             catch (e) { console.error(e); }
@@ -452,7 +452,7 @@ export class DegenesisActor extends Actor {
 
 
    
-    // REGION | ABBERANT VARIANT
+    // REGION | aberrant VARIANT
  
 
 

@@ -3,7 +3,7 @@
 
   "ACTOR.TypeCharacter": "Personaje",
   "ACTOR.TypeNpc": "PNJ",
-  "ACTOR.TypeAbberant": "Desde el Infierno",
+  "ACTOR.TypeAberrant": "Desde el Infierno",
 
   "UI.SlotCost": "Coste en PE",
   "UI.Effect": "Efecto",
