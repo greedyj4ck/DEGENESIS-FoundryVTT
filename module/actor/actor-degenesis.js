@@ -102,6 +102,14 @@ export class DegenesisActor extends Actor {
                 super.prepareData();
                 // Here will come data preparation code for NPC actor
                 // Need to have an input for the max conditions (FW, Ego, Trauma, etc)
+                this.itemCategories = this.itemTypes
+                this.modifiers = new ModifierManager(this);
+
+                this.condition.ego.max = this.condition.ego.override
+                this.condition.spore.max = this.condition.spore.override
+                this.condition.fleshwounds.max = this.condition.fleshwounds.override 
+                this.condition.trauma.max = this.condition.trauma.override
+                // Default AN is stored in this.general.defaultAN
 
             }
             catch (e) { console.error(e); }
