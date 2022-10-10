@@ -6,8 +6,8 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.condition.ego.override"
-        value="{{object.condition.ego.override}}"
+        name="data.condition.ego.max"
+        value="{{object.condition.ego.max}}"
       />
     </div>
   </div>
@@ -18,8 +18,8 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.condition.spore.override"
-        value="{{object.condition.spore.override}}"
+        name="data.condition.spore.max"
+        value="{{object.condition.spore.max}}"
       />
     </div>
   </div>
@@ -30,8 +30,8 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.condition.fleshwounds.override"
-        value="{{object.condition.fleshwounds.override}}"
+        name="data.condition.fleshwounds.max"
+        value="{{object.condition.fleshwounds.max}}"
       />
     </div>
   </div>
@@ -42,8 +42,8 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.condition.trauma.override"
-        value="{{object.condition.trauma.override}}"
+        name="data.condition.trauma.max"
+        value="{{object.condition.trauma.max}}"
       />
     </div>
   </div>
@@ -116,7 +116,7 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.attackMelee"
-        value="{{object.simpleStats.attackMelee}}"
+        value="{{object.system.simpleStats.attackMelee}}"
       />
     </div>
   </div>
@@ -128,7 +128,7 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.defenseMelee"
-        value="{{object.simpleStats.defenseMelee}}"
+        value="{{object.system.simpleStats.defenseMelee}}"
       />
     </div>
   </div>
@@ -140,7 +140,7 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.damageMelee"
-        value="{{object.simpleStats.damageMelee}}"
+        value="{{object.system.simpleStats.damageMelee}}"
       />
     </div>
   </div>
@@ -152,7 +152,7 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.attackRanged"
-        value="{{object.simpleStats.attackRanged}}"
+        value="{{object.system.simpleStats.attackRanged}}"
       />
     </div>
   </div>
@@ -164,7 +164,7 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.damageRanged"
-        value="{{object.simpleStats.damageRanged}}"
+        value="{{object.system.simpleStats.damageRanged}}"
       />
     </div>
   </div>
@@ -177,8 +177,11 @@
         type="text"
         data-dtype="Number"
         name="data.simpleStats.defaultAN"
-        value="{{object.simpleStats.defaultAN}}"
+        value="{{object.system.simpleStats.defaultAN}}"
       />
     </div>
   </div>
+  <button type="submit" name="submit">
+    <i class="far fa-save"></i> {{ localize "Save"}}
+  </button>
 </form>

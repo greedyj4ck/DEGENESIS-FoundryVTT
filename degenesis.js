@@ -49,10 +49,25 @@ Hooks.once("init", async function () {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("degenesis", DegenesisActorSheet, { makeDefault: true });
-  Actors.registerSheet("degenesis", DegenesisNPCSheet, { makeDefault: false });
+  Actors.registerSheet("degenesis", DegenesisActorSheet, { types: ["character"], makeDefault: true });
+  Actors.registerSheet("degenesis", DegenesisNPCSheet, { types: ["npc"], makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
+  Items.registerSheet("degenesis", DegenesisItemSheet, {
+    types: [
+      "weapon",
+      "armor",
+      "equipment",
+      "artifact",
+      "ammunition",
+      "transportation",
+      "mod",
+      "burn",
+      "potential",
+      "modifier",
+      "shield",
+      "complication",
+      "legacy"
+    ], makeDefault: true });
 
   // Pre-load templates
   loadTemplates([

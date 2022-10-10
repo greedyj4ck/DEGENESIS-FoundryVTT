@@ -238,23 +238,27 @@
           "ego": {
             "max": 0,
             "value": 0,
-            "override": 0
+            "override": 0,
+            "pct": 0
           },
           "spore": {
             "max": 0,
             "value": 0,
             "permanent": 0,
-            "override": 0
+            "override": 0,
+            "pct": 0
           },
           "fleshwounds": {
             "max": 0,
             "value": 0,
-            "override": 0
+            "override": 0,
+            "pct": 0
           },
           "trauma": {
             "max": 0,
             "value": 0,
-            "override": 0
+            "override": 0,
+            "pct": 0
           }
         }
       },
