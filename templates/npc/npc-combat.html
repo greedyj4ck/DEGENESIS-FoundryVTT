@@ -242,17 +242,17 @@
               <span
                 ><a class="roll-weapon" data-use="attack"
                   >{{localize "DGNS.Attack"}}
-                  {{actor.system.simpleStats.attackMelee}}D</a
+                  {{actor.system.simpleStats.attackMelee.value}}D</a
                 >
                 <a class="roll-weapon" data-use="defense"
                   >{{localize "DGNS.Defense"}}
-                  {{actor.system.simpleStats.defenseMelee}}D</a
+                  {{actor.system.simpleStats.defenseMelee.value}}D</a
                 ></span
               >
             </div>
             <div class="legend-name empty-melee"></div>
             <div class="legend-name damage">
-              <span>{{actor.system.simpleStats.damageMelee}}</span>
+              <span>{{actor.system.simpleStats.damageMelee.value}}</span>
             </div>
             <div class="legend-name distance">
               <span>{{weapon.distance.melee}}</span>
@@ -356,7 +356,7 @@
               ><span>/{{weapon.mag.size}}</span> ({{weapon.Caliber}})
             </div>
             <div class="legend-name damage-ranged">
-              <span>{{actor.system.simpleStats.damageRanged}}</span>
+              <span>{{actor.system.simpleStats.damageRanged.value}}</span>
             </div>
             <div class="legend-name distance-ranged">
               <span>{{weapon.distance.short}}/{{weapon.distance.far}}</span>

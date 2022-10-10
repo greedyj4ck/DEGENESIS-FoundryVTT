@@ -105,26 +105,35 @@ export class DegenesisActor extends Actor {
                 this.itemCategories = this.itemTypes
                 this.modifiers = new ModifierManager(this);
 
-                this.condition.ego.max = this.condition.ego.override
-                this.condition.spore.max = this.condition.spore.override
-                this.condition.fleshwounds.max = this.condition.fleshwounds.override
-                this.condition.trauma.max = this.condition.trauma.override
+                this.condition.ego.value = this.condition.ego.max * 0.75
+                this.condition.spore.value = this.condition.spore.max * 0.75
+                this.condition.fleshwounds.value = this.condition.fleshwounds.max * 0.75
+                this.condition.trauma.value = this.condition.trauma.max * 0.75
+
+                this.condition.ego.pct = this.condition.ego.value / this.condition.ego.max * 100
+                this.condition.spore.pct = this.condition.spore.value / this.condition.spore.max * 100
+                this.condition.fleshwounds.pct = this.condition.fleshwounds.value / this.condition.fleshwounds.max * 100
+                this.condition.trauma.pct = this.condition.trauma.value / this.condition.trauma.max * 100
                 // Default AN and attack values are stored in this.simpleStats.defaultAN
                 // Override all precalc dice throws, calculate ranged penalties for distance
 
+
                 let npcDice = {
-                    defaultAN : this.simpleStats.defaultAN,
-                    attackMelee : this.simpleStats.attackMelee,
-                    defenseMelee: this.simpleStats.defenseMelee,
-                    effective : this.simpleStats.attackRanged,
+                    defaultAN : this.system.simpleStats.defaultAN.value,
+                    attackMelee : this.system.simpleStats.attackMelee.value,
+                    defenseMelee: this.system.simpleStats.defenseMelee.value,
+                    effective : this.system.simpleStats.attackRanged.value,
                     far : undefined,
                     extreme : undefined
                 }
+                console.log(npcDice)
 
                 npcDice.far = npcDice.effective - 4 > 0 ? npcDice.effective - 4 : 0
                 npcDice.extreme = npcDice.effective - 8 > 0 ? npcDice.effective - 8 : 0
 
                 this.npcDice = npcDice
+
+                console.log(this)
 
             }
             catch (e) { console.error(e); }

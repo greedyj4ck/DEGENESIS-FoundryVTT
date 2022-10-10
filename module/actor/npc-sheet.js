@@ -16,7 +16,7 @@ import NPCConfigure from "../apps/npc-configure.js";
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["degenesis", "sheet", "npc"],
-            template: "systems/degenesis/templates/actor/npc-sheet.html",
+            template: "systems/degenesis/templates/npc/npc-sheet.html",
             width: 685,
             height: 723, // Adjust to minimize scroll
             // No tab nav in NPC sheet first iteration
