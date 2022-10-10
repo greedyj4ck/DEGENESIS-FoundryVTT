@@ -34,7 +34,7 @@
           class="field-input"
           type="text"
           name="name"
-          value="{{npc.name}}"
+          value="{{actor.name}}"
         />
       </div>
       <svg class="title-line middle-right" height="11" width="100%">
@@ -67,14 +67,19 @@
     <!-- Start new row -->
     <div class="sheet-field">
       <span class="field-name">{{localize "DGNS.Name"}}:</span>
-      <input class="field-input" type="text" name="name" value="{{npc.name}}" />
+      <input
+        class="field-input"
+        type="text"
+        name="name"
+        value="{{actor.name}}"
+      />
     </div>
     <div class="img-frame">
       <img
         class="profile-img"
-        src="{{npc.img}}"
+        src="{{actor.img}}"
         data-edit="img"
-        title="{{npc.name}}"
+        title="{{actor.name}}"
         height="100"
         width="100"
       />

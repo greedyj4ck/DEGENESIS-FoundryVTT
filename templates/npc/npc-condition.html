@@ -48,15 +48,21 @@
   </div>
   <div class="fleshwound-all">
     <div class="fleshwound-container">
+      <a class="icon condition-edit fleshwound-minus"
+        ><i class="fas fa-minus"></i
+      ></a>
       <div
         class="fleshwound-bar"
-        style="background-color: black; width: {{system.condition.fleshwounds.pct}}%"
+        style="background-color: black; width: {{data.condition.fleshwounds.pct}}%"
       ></div>
+      <a class="icon condition-edit fleshwound-plus"
+        ><i class="fas fa-plus"></i
+      ></a>
     </div>
     <div class="fleshwound-legend">
       <span
-        >{{system.condition.fleshwounds.value}} /
-        {{system.condition.fleshwounds.max}}</span
+        >{{data.condition.fleshwounds.value}} /
+        {{data.condition.fleshwounds.max}}</span
       >
     </div>
   </div>
@@ -85,15 +91,18 @@
   </div>
   <div class="trauma-all">
     <div class="trauma-container">
+      <a class="icon condition-edit trauma-minus"
+        ><i class="fas fa-minus"></i
+      ></a>
       <div
         class="trauma-bar"
-        style="background-color: black; width: {{system.condition.trauma.pct}}%"
+        style="background-color: black; width: {{data.condition.trauma.pct}}%"
       ></div>
+      <a class="icon condition-edit trauma-plus"><i class="fas fa-plus"></i></a>
     </div>
     <div class="trauma-legend">
       <span
-        >{{system.condition.trauma.value}} /
-        {{system.condition.trauma.max}}</span
+        >{{data.condition.trauma.value}} / {{data.condition.trauma.max}}</span
       >
     </div>
   </div>
@@ -122,15 +131,17 @@
   </div>
   <div class="spore-all">
     <div class="spore-container">
+      <a class="icon condition-edit spore-minus"
+        ><i class="fas fa-minus"></i
+      ></a>
       <div
         class="spore-bar"
-        style="background-color: black; width: {{system.condition.spore.pct}}%"
+        style="background-color: black; width: {{data.condition.spore.pct}}%"
       ></div>
+      <a class="icon condition-edit spore-plus"><i class="fas fa-plus"></i></a>
     </div>
     <div class="spore-legend">
-      <span
-        >{{system.condition.spore.value}} / {{system.condition.spore.max}}</span
-      >
+      <span>{{data.condition.spore.value}} / {{data.condition.spore.max}}</span>
     </div>
   </div>
 </div>
@@ -158,13 +169,15 @@
   </div>
   <div class="ego-all">
     <div class="ego-container">
+      <a class="icon condition-edit ego-minus"><i class="fas fa-minus"></i></a>
       <div
         class="ego-bar"
-        style="background-color: black; width: {{system.condition.ego.pct}}%"
+        style="background-color: black; width: {{data.condition.ego.pct}}%"
       ></div>
+      <a class="icon condition-edit ego-plus"><i class="fas fa-plus"></i></a>
     </div>
     <div class="ego-legend">
-      <span>{{system.condition.ego.value}} / {{system.condition.ego.max}}</span>
+      <span>{{data.condition.ego.value}} / {{data.condition.ego.max}}</span>
     </div>
   </div>
 </div>

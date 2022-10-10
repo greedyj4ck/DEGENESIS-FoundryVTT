@@ -29,7 +29,7 @@
 <!-- default AN -->
 <div class="default-an">
    <div class="default-an-group">
-      {{localize "UI.DefaultAN"}}: {{actor.general.defaultAN}}D
+      {{localize "UI.DefaultAN"}}: {{system.simpleStats.defaultAN}}D
    </div>
    <div class="vertical-bar">
       <svg height="15px" width="1px">
@@ -48,7 +48,7 @@
    </div>
    <div class="npc-skills-data">
       <ol class="npc-skills-ol">
-      {{#each actor.skills as | skill s|}}
+      {{#each system.skills as | skill s|}}
          <li class="npc-skills-li item" data-item-id="{{skill.id}}">
             <div class="special-npc-skill">
                <div class='item-data'>
@@ -62,10 +62,10 @@
                      </svg>
                   </div>
                </div>
-               <div class="item-controls">
-                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
-                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+               <div class="skill-controls">
+                  <a class="icon skill-post"><i class="fas fa-comment"></i></a>
+                  <a class="icon skill-edit"><i class="fas fa-edit"></i></a>
+                  <a class="icon skill-delete"><i class="fas fa-times"></i></a>
                </div>
             </div>
          </li>

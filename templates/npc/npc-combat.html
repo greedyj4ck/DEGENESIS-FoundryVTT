@@ -35,7 +35,7 @@
     <div class="combat-list">
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.Movement"}}: {{actor.general.movement}}<span
+          {{localize "DGNS.Movement"}}: {{system.general.movement}}<span
             class="nocaps"
             >m</span
           >
@@ -43,12 +43,12 @@
       </div>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.Armor"}}: {{actor.general.armor}}
+          {{localize "DGNS.Armor"}}: {{system.general.armor}}
         </div>
       </div>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.ActionMod"}}: {{actor.general.actionModifier}}D
+          {{localize "DGNS.ActionMod"}}: {{system.general.actionModifier}}D
         </div>
       </div>
     </div>
@@ -64,22 +64,22 @@
     <div class="combat-list">
       <a class="combat">
         <div class="general-name initiative-roll">
-          {{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}D)
+          {{localize "DGNS.Initiative"}} ({{system.fighting.initiative}}D)
         </div>
       </a>
       <a class="combat">
         <div class="general-name fight-roll" data-roll="dodge">
-          {{localize "DGNS.Dodge"}} ({{actor.fighting.dodge}}D)
+          {{localize "DGNS.Dodge"}} ({{system.fighting.dodge}}D)
         </div>
       </a>
       <a class="combat">
         <div class="general-name fight-roll" data-roll="mentalDefense">
-          {{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}D)
+          {{localize "DGNS.MentalDef"}} ({{system.fighting.mentalDefense}}D)
         </div>
       </a>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.PassiveDef"}}: {{actor.fighting.passiveDefense}}
+          {{localize "DGNS.PassiveDef"}}: {{system.fighting.passiveDefense}}
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
       <a class="general-name checkbox" data-target="system.state.motion"
         >{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a
       >
-      {{#if actor.state.motion}}
+      {{#if system.state.motion}}
       <a
         class="square border-black button-position checkbox"
         data-target="system.state.motion"
@@ -114,7 +114,7 @@
       <a class="general-name checkbox" data-target="system.state.active"
         >{{localize "DGNS.ActiveAndOnMyFeet"}}</a
       >
-      {{#if actor.state.active}}
+      {{#if system.state.active}}
       <a
         class="square border-black button-position checkbox"
         data-target="system.state.active"
@@ -241,20 +241,26 @@
             <div class="legend-name uses">
               <span
                 ><a class="roll-weapon" data-use="attack"
-                  >{{localize "DGNS.Attack"}} {{weapon.dice.attack}}D</a
+                  >{{localize "DGNS.Attack"}}
+                  {{system.simpleStats.attackMelee}}D</a
                 >
                 <a class="roll-weapon" data-use="defense"
-                  >{{localize "DGNS.Defense"}} {{weapon.dice.defense}}D</a
+                  >{{localize "DGNS.Defense"}}
+                  {{system.simpleStats.defenseMelee}}D</a
                 ></span
               >
             </div>
             <div class="legend-name empty-melee"></div>
             <div class="legend-name damage">
-              <span>{{weapon.DamageFormula}}</span>
+              <span>{{system.simpleStats.damageMelee}}</span>
             </div>
             <div class="legend-name distance">
               <span>{{weapon.distance.melee}}</span>
             </div>
+          </div>
+          <div class="weapon-controls">
+            <a class="icon weapon-edit"><i class="fas fa-edit"></i></a>
+            <a class="icon weapon-delete"><i class="fas fa-times"></i></a>
           </div>
           <div class="break"></div>
           {{#if weapon.qualities.length}}
@@ -334,11 +340,11 @@
             <div class="legend-name uses-ranged">
               <span
                 ><a class="roll-weapon" data-use="attack-short"
-                  >≤{{weapon.distance.short}}m({{weapon.dice.effective}}D) </a
+                  >≤{{weapon.distance.short}}m({{system.npcDice.effective}}D) </a
                 ><a class="roll-weapon" data-use="attack-far"
-                  >≤{{weapon.distance.far}}m({{weapon.dice.far}}D) </a
+                  >≤{{weapon.distance.far}}m({{system.npcDice.far}}D) </a
                 ><a class="roll-weapon" data-use="attack-extreme"
-                  >>{{weapon.distance.far}}m({{weapon.dice.extreme}}D)</a
+                  >>{{weapon.distance.far}}m({{system.npcDice.extreme}}D)</a
                 >
               </span>
             </div>
@@ -350,11 +356,15 @@
               ><span>/{{weapon.mag.size}}</span> ({{weapon.Caliber}})
             </div>
             <div class="legend-name damage-ranged">
-              <span>{{weapon.DamageFormula}}</span>
+              <span>{{system.simpleStats.damageRanged}}</span>
             </div>
             <div class="legend-name distance-ranged">
               <span>{{weapon.distance.short}}/{{weapon.distance.far}}</span>
             </div>
+          </div>
+          <div class="weapon-controls">
+            <a class="icon weapon-edit"><i class="fas fa-edit"></i></a>
+            <a class="icon weapon-delete"><i class="fas fa-times"></i></a>
           </div>
           <div class="break"></div>
           {{#if weapon.qualities.length}}
@@ -447,6 +457,10 @@
             <div class="legend-name distance-ranged-sonic">
               <span>{{weapon.distance.melee}}</span>
             </div>
+          </div>
+          <div class="weapon-controls">
+            <a class="icon weapon-edit"><i class="fas fa-edit"></i></a>
+            <a class="icon weapon-delete"><i class="fas fa-times"></i></a>
           </div>
           <div class="break"></div>
           {{#if weapon.qualities.length}}

@@ -107,9 +107,24 @@ export class DegenesisActor extends Actor {
 
                 this.condition.ego.max = this.condition.ego.override
                 this.condition.spore.max = this.condition.spore.override
-                this.condition.fleshwounds.max = this.condition.fleshwounds.override 
+                this.condition.fleshwounds.max = this.condition.fleshwounds.override
                 this.condition.trauma.max = this.condition.trauma.override
-                // Default AN is stored in this.general.defaultAN
+                // Default AN and attack values are stored in this.simpleStats.defaultAN
+                // Override all precalc dice throws, calculate ranged penalties for distance
+
+                let npcDice = {
+                    defaultAN : this.simpleStats.defaultAN,
+                    attackMelee : this.simpleStats.attackMelee,
+                    defenseMelee: this.simpleStats.defenseMelee,
+                    effective : this.simpleStats.attackRanged,
+                    far : undefined,
+                    extreme : undefined
+                }
+
+                npcDice.far = npcDice.effective - 4 > 0 ? npcDice.effective - 4 : 0
+                npcDice.extreme = npcDice.effective - 8 > 0 ? npcDice.effective - 8 : 0
+
+                this.npcDice = npcDice
 
             }
             catch (e) { console.error(e); }

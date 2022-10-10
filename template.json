@@ -211,6 +211,28 @@
           }
         }
       },
+      "simpleStats": {
+        "simpleStats": {
+          "defaultAN": {
+            "value": 0
+          },
+          "attackMelee": {
+            "value": 0
+          },
+          "defenseMelee": {
+            "value": 0
+          },
+          "damageMelee": {
+            "value": 0
+          },
+          "attackRanged": {
+            "value": 0
+          },
+          "damageRanged": {
+            "value": 0
+          }
+        }
+      },
       "condition": {
         "condition": {
           "ego": {
@@ -351,7 +373,7 @@
     "npc": {
       "templates": [
         "details",
-        "attributes",
+        "simpleStats",
         "skills",
         "condition",
         "general",

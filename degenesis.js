@@ -8,6 +8,7 @@
 import { DegenesisItemSheet } from "./module/item/item-sheet.js";
 import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
+import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DEGENESIS } from "./module/config.js";
 import { DegenesisImporter } from "./module/importer.js"
@@ -18,6 +19,7 @@ import { DEG_Utility } from "./module/utility.js";
 import { DegenesisChat } from "./module/chat.js";
 import { DegenesisSystemSettings } from "./module/settings.js"
 import ActorConfigure from "./module/apps/actor-configure.js"
+import NPCConfigure from "./module/apps/npc-configure.js"
 import hooks from "./module/hooks/hooks.js"
 
 
@@ -48,6 +50,7 @@ Hooks.once("init", async function () {
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("degenesis", DegenesisActorSheet, { makeDefault: true });
+  Actors.registerSheet("degenesis", DegenesisNPCSheet, { makeDefault: false });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
 
@@ -59,6 +62,10 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/actor/actor-condition.html",
     "systems/degenesis/templates/actor/actor-combat.html",
     "systems/degenesis/templates/actor/actor-history.html",
+    "systems/degenesis/templates/npc/npc-skills.html",
+    "systems/degenesis/templates/npc/npc-condition.html",
+    "systems/degenesis/templates/npc/npc-combat.html",
+    "systems/degenesis/templates/npc/npc-history.html",
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/item/item-header-physical-no-qty.html",
@@ -74,10 +81,12 @@ Hooks.once("init", async function () {
   game.degenesis = {
     apps : {
       DegenesisActorSheet,
+      DegenesisNPCSheet,
       DegenesisItemSheet,
       ClusterInterface,
       DegenesisImporter,
-      ActorConfigure
+      ActorConfigure,
+      NPCConfigure
     },
     entities : {
       DegenesisActor,

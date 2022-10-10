@@ -110,13 +110,13 @@
   </div>
 
   <div class="form-group">
-    <label>{{localize "DGNS.Melee"}}/{{localize "DGNS.Brawl"}}</label>
+    <label>{{localize "DGNS.Melee"}}</label>
     <div class="form-fields">
       <input
         type="text"
         data-dtype="Number"
-        name="data.fighting.attackMelee"
-        value="{{object.fighting.attackMelee}}"
+        name="data.simpleStats.attackMelee"
+        value="{{object.simpleStats.attackMelee}}"
       />
     </div>
   </div>
@@ -127,8 +127,20 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.fighting.defenseMelee"
-        value="{{object.fighting.defenseMelee}}"
+        name="data.simpleStats.defenseMelee"
+        value="{{object.simpleStats.defenseMelee}}"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "DGNS.Melee"}}: {{localize "DGNS.Damage"}}</label>
+    <div class="form-fields">
+      <input
+        type="text"
+        data-dtype="Number"
+        name="data.simpleStats.damageMelee"
+        value="{{object.simpleStats.damageMelee}}"
       />
     </div>
   </div>
@@ -139,8 +151,20 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.fighting.projectiles"
-        value="{{object.fighting.projectiles}}"
+        name="data.simpleStats.attackRanged"
+        value="{{object.simpleStats.attackRanged}}"
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize "DGNS.Projectiles"}}: {{localize "DGNS.Damage"}}</label>
+    <div class="form-fields">
+      <input
+        type="text"
+        data-dtype="Number"
+        name="data.simpleStats.damageRanged"
+        value="{{object.simpleStats.damageRanged}}"
       />
     </div>
   </div>
@@ -152,8 +176,8 @@
       <input
         type="text"
         data-dtype="Number"
-        name="data.general.defaultAN"
-        value="{{object.general.defaultAN}}"
+        name="data.simpleStats.defaultAN"
+        value="{{object.simpleStats.defaultAN}}"
       />
     </div>
   </div>
