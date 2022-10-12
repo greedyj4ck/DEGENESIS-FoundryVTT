@@ -117,6 +117,22 @@ export class DegenesisActor extends Actor {
                 // Default AN and attack values are stored in this.simpleStats.defaultAN
                 // Override all precalc dice throws, calculate ranged penalties for distance
 
+                // NPCs have all attributes at 0, following skills are overriden in the config dialog from their fighting derived quantities,
+                // They are however modifiable by context.
+
+
+                Object.keys(this.attributes).forEach(key => {
+                    this.attributes[key].value = 0
+                });
+
+                this.prepareItems();
+
+                this.general.actionModifier = this.modifiers.action.D
+                this.general.movement = this.skills.athletics.value + (this.modifiers.movement || 0)
+                this.fighting.initiative = this.skills.reaction.value + this.modifiers.action.D + this.modifiers.initiative.D;
+                this.fighting.dodge = this.skills.mobility.value + this.modifiers.action.D + this.modifiers.dodge.D;
+                this.fighting.mentalDefense = this.faithOrWillpower.value + this.modifiers.action.D + this.modifiers.mentalDefense.D;
+                this.fighting.passiveDefense = this.system.simpleStats.passiveDefBase.value + this.state.cover.value + (this.state.motion ? 1 : 0) + (this.state.active ? 1 : 0) + (this.modifiers.p_defense || 0);
 
                 let npcDice = {
                     defaultAN : this.system.simpleStats.defaultAN.value,
@@ -126,14 +142,12 @@ export class DegenesisActor extends Actor {
                     far : undefined,
                     extreme : undefined
                 }
-                console.log(npcDice)
 
                 npcDice.far = npcDice.effective - 4 > 0 ? npcDice.effective - 4 : 0
                 npcDice.extreme = npcDice.effective - 8 > 0 ? npcDice.effective - 8 : 0
 
                 this.npcDice = npcDice
 
-                console.log(this)
 
             }
             catch (e) { console.error(e); }
@@ -287,6 +301,18 @@ export class DegenesisActor extends Actor {
             else if (use == "attack-extreme")
                 rollData.actionNumber = weapon.dice.extreme
         }
+        if (this.type === "npc") {
+            // Override action number with NPC simplestats
+            rollData.actionNumber = use.includes("attack") ? this.npcDice.attackMelee : this.npcDice.defenseMelee
+            if (use && weapon.isRanged) {
+                if (use == "attack-short")
+                    rollData.actionNumber = this.npcDice.effective
+                else if (use == "attack-far")
+                    rollData.actionNumber = this.npcDice.far
+                else if (use == "attack-extreme")
+                    rollData.actionNumber = this.npcDice.extreme
+            }
+        }
 
         if (secondary)
             rollData.actionNumber = this.getSkillTotal(secondarySkill || weapon.secondarySkill) // weapon.dice uses primary skill, so override with secondary skill if using secondarry
@@ -384,7 +410,12 @@ export class DegenesisActor extends Actor {
             cardData.title = `${weapon.name}<br>(${DEGENESIS.skills[weapon.skill]} + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`
         }
 
-        const fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
+        let fullDamage = weapon.fullDamage(rollResults.triggers, { modifier: this.modifiers.damage })
+        if (this.type === "npc") {
+            // override damage
+            fullDamage = rollData.weapon.isRanged ? this.system.simpleStats.damageRanged.value : this.system.simpleStats.damageMelee.value
+            fullDamage += rollResults.triggers
+        }
         cardData.damageFull = `${fullDamage}`;
         if (rollData.weapon.isRanged)
             this.updateEmbeddedDocuments("Item", [{ _id: rollData.weapon.id, "data.mag.current": rollData.weapon.mag.current - 1 }])

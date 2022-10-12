@@ -219,7 +219,7 @@ export class DegenesisActorSheet extends ActorSheet {
         html.find(".initiative-roll").click(this._onInitiativeClick.bind(this))
         html.find(".fight-roll").click(this._onFightClick.bind(this))
         html.find(".roll-weapon").click(this._onWeaponClick.bind(this))
-        html.find(".quantity-click").mousedown(this._onQualityClick.bind(this))
+        html.find(".quantity-click").mousedown(this._onQuantityClick.bind(this))
         html.find(".reload-click").mousedown(this._onReloadClick.bind(this))
         html.find(".aggregate").click(this._onAggregateClick.bind(this))
         html.find(".tag.container-item").mousedown(this._onContainerItemClick.bind(this))
@@ -410,7 +410,7 @@ export class DegenesisActorSheet extends ActorSheet {
         let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use, skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
-    _onQualityClick(event) {
+    _onQuantityClick(event) {
         let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
         let value = event.button == 0 ? 1 : -1
         value = event.ctrlKey ? value * 10 : value

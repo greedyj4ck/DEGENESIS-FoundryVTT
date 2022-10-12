@@ -230,6 +230,9 @@
           },
           "damageRanged": {
             "value": 0
+          },
+          "passiveDefBase": {
+            "value": 1
           }
         }
       },
@@ -314,7 +317,7 @@
       },
       "general": {
         "general": {
-          "movement": 8,
+          "movement": 0,
           "encumbrance": {
             "max": 0,
             "current": 0,
@@ -376,8 +379,8 @@
     },
     "npc": {
       "templates": [
-        "details",
         "simpleStats",
+        "attributes",
         "skills",
         "condition",
         "general",

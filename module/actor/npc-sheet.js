@@ -112,22 +112,158 @@ import NPCConfigure from "../apps/npc-configure.js";
         // Update Inventory Item
         html.find(".item-edit").click(this._onItemEdit.bind(this))
         html.find(".item-delete").click(this._onItemDelete.bind(this))
-        html.find(".item-add").click(this._onItemCreate.bind(this))
-        html.find(".item-post").click(this._onPostItem.bind(this))
-        html.find(".diamond").click(this._onDiamondClick.bind(this))
-        html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this))
-        html.find(".checkbox").click(this._onCheckboxClick.bind(this))
-        html.find(".relationships-cultes,.relationships-bonus").change(this._onRelationshipEdit.bind(this))
-        html.find(".dropdown").click(this._onDropdown.bind(this))
+        html.find(".item-add").click(this._onItemCreate.bind(this)) // needed?
+        html.find(".item-post").click(this._onPostItem.bind(this)) // needed?
+
+        // Condition & combat listeners
+        html.find(".diamond").click(this._onDiamondClick.bind(this)) // ego and cover tracking
+        // html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this)) // needed?
+        html.find(".checkbox").click(this._onCheckboxClick.bind(this)) // combat state
+        // html.find(".dropdown").click(this._onDropdown.bind(this)) // used for mods
         html.find(".quality-dropdown").click(this._onQualityDropdown.bind(this))
-        html.find(".complications-name, .complications-rating").change(this._onComplicationEdit.bind(this))
         html.find(".skill-name").click(this._onSkillClick.bind(this))
         html.find(".initiative-roll").click(this._onInitiativeClick.bind(this))
         html.find(".fight-roll").click(this._onFightClick.bind(this))
         html.find(".roll-weapon").click(this._onWeaponClick.bind(this))
-        html.find(".quantity-click").mousedown(this._onQualityClick.bind(this))
+        html.find(".quantity-click").mousedown(this._onQuantityClick.bind(this)) // used for ammo, recycle for condition
         html.find(".reload-click").mousedown(this._onReloadClick.bind(this))
-        html.find(".aggregate").click(this._onAggregateClick.bind(this))
-        html.find(".tag.container-item").mousedown(this._onContainerItemClick.bind(this))
+        // html.find(".aggregate").click(this._onAggregateClick.bind(this)) // was is das?
+        // html.find(".tag.container-item").mousedown(this._onContainerItemClick.bind(this))
+     }
+     
+    _onItemEdit(event) {
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        this.actor.items.get(itemId).sheet.render(true)
     }
- }
+    _onItemDelete(event) {
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        this.actor.deleteEmbeddedDocuments("Item", [itemId])
+    }
+    _onItemCreate(event) {
+        let type = $(event.currentTarget).attr("data-item");
+        this.actor.createEmbeddedDocuments("Item", [{ name: `New ${type.capitalize()}`, type: type }])
+     }
+    _onPostItem(event) {
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        this.actor.items.get(itemId).postToChat()
+     }
+    _onDiamondClick(event) { // TODO adjust
+        let actorData = this.actor.toObject()
+        let index = Number($(event.currentTarget).attr("data-index"));
+        let target = $(event.currentTarget).parents(".diamond-row").attr("data-target")
+        // if (target == "item") {
+        //     let itemData = this.actor.items.get($(event.currentTarget).parents(".item").attr("data-item-id")).toObject()
+        //     target = $(event.currentTarget).parents(".diamond-row").attr("data-item-target")
+        //     let value = getProperty(itemData, target)
+        //     if (value == index + 1) // If the last one was clicked, decrease by 1 
+        //         setProperty(itemData, target, index)
+        //     else // Otherwise, value = index clicked 
+        //         setProperty(itemData, target, index + 1)
+        //     this.actor.updateEmbeddedDocuments("Item", [itemData])
+        //     return
+        // }
+        let value = getProperty(actorData, target)
+        if (value == index + 1) // If the last one was clicked, decrease by 1 
+            setProperty(actorData, target, index)
+        else // Otherwise, value = index clicked 
+            setProperty(actorData, target, index + 1) // If attribute selected 
+        let attributeElement = $(event.currentTarget).parents(".attribute");
+        if (attributeElement.length) { // Constrain attributes to be greater than 0 
+            if (getProperty(actorData, target) <= 0)
+                setProperty(actorData, target, 1)
+        }
+        this.actor.update(actorData);
+    }
+    _onCheckboxClick(event) {
+        let target = $(event.currentTarget).attr("data-target")
+        // if (target == "item") {
+        //     target = $(event.currentTarget).attr("data-item-target")
+        //     let item = this.actor.items.get($(event.currentTarget).parents(".item").attr("data-item-id"))
+        //     item.update({ [`${target}`]: !getProperty(item, target) })
+        //     return;
+        // }
+        if (target)
+            this.actor.update({[`${target}`] : !getProperty(this.actor, target)});
+     }
+    _onQualityDropdown(event) {
+        let type = $(event.currentTarget).attr("data-type")
+        let key = $(event.currentTarget).attr("data-key")
+        let valueObject = DEGENESIS[`${type}QualitiesValues`]
+        let nameObject = DEGENESIS[`${type}Qualities`]
+        let descriptionObject = DEGENESIS[`${type}QualityDescription`]
+        let text = `<b>${nameObject[key]} `
+        if (Object.keys(valueObject[key]).length) text = text.concat("(" + valueObject[key].map(value => `${DEGENESIS.qualityValues[value]}`).join(", ")) + "):</b> "
+        else
+            text = text.concat(": </b>")
+        text = text.concat(descriptionObject[key])
+        this._dropdown(event, { text })
+     }
+    async _onSkillClick(event) {
+        let skill = $(event.currentTarget).parents(".skill").attr("data-target")
+        let skipDialog = event.ctrlKey
+        let { rollResults, cardData } = await this.actor.rollSkill(skill, {skipDialog})
+        DegenesisChat.renderRollCard(rollResults, cardData)
+    }
+    async _onInitiativeClick(event) {
+        const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens(true);     
+        if (tokens.length > 0 && game.combat !== null && game.combat.combatants.contents.length !== 0) {
+            
+            const initiativeConfiguration = { createCombatants: true, rerollInitiative: true, initiativeOptions: {} };
+            const combatantToken = game.combat.combatants.reduce((arr, c) => {
+                
+                if (this.actor.isToken == true){
+                    if (c.data.tokenId !== this.token.id ) return arr;
+                } else {
+                    if (c.data.actorId !== this.actor.id ) return arr;
+                    if (c.token.isLinked !== true) return arr;
+                }
+
+                if ( !initiativeConfiguration.rerollInitiative && c.initiative !== null ) return arr;
+                arr.push(c.id);
+                return arr;
+              }, []);
+           await game.combat.rollInitiative(combatantToken,initiativeConfiguration);
+           return game.combat;
+        }
+        else { 
+            DegenesisCombat.rollInitiativeFor(this.actor); 
+        }
+     }
+    async _onFightClick(event) {
+        let type = $(event.currentTarget).attr("data-roll")
+        let skipDialog = event.ctrlKey
+        let { rollResults, cardData } = await this.actor.rollFightRoll(type, {skipDialog})
+        DegenesisChat.renderRollCard(rollResults, cardData)
+     }
+    async _onWeaponClick(event) {
+        let weaponId = $(event.currentTarget).parents(".weapon").attr("data-item-id")
+        let skipDialog = event.ctrlKey
+        let use = $(event.currentTarget).attr("data-use");
+        let weapon = this.actor.items.get(weaponId)
+        let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use, skipDialog })
+        DegenesisChat.renderRollCard(rollResults, cardData)
+    }
+    _onQuantityClick(event) {
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        let value = event.button == 0 ? 1 : -1
+        value = event.ctrlKey ? value * 10 : value
+        let item = this.actor.items.get(itemId)
+        let newQty = item.quantity + value
+        newQty = newQty < 0 ? 0 : newQty
+        item.update({ "data.quantity": newQty })
+    }
+    _onReloadClick(event) { // NPCs have infinite ammo, remove ammo retrieval
+        let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
+        let item = this.actor.items.get(itemId)
+        let itemData = item.toObject()
+        let magLeft = item.mag.size - item.mag.current
+        if (event.button == 2)
+            return item.update({ "data.mag.current": 0 })
+
+        if (magLeft > 0) {
+            itemData.data.mag.current += magLeft;
+            magLeft = 0;
+        }
+        this.actor.updateEmbeddedDocuments("Item", [itemData])
+    }
+}
