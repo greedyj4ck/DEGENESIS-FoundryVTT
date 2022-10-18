@@ -6,26 +6,24 @@
 88   8 88    88  ee 88    88  8 88        88 88     88 
 88   8 88    88   8 88    88  8 88    e   88 88 e   88 
 88eee8 88eee 88eee8 88eee 88  8 88eee 8eee88 88 8eee88
-FOUNDRY VTT SYSTEM STYLESHEET V.01 */
-
-
+FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
 
 // IMPORTS
-@import 'base/variables';
+@import 'base/SCSSvariables';
+@import 'base/CSSvariables';
 @import 'base/fonts'; 
 @import 'base/experimental'; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
 
 // MAIN COMPONENTS
 @import 'components/scrollbar';
 @import 'components/squares';
-
+@import 'components/chatMessage'; // MOVED _CHAT.SCSS  into _CHATMESSAGE.SCSS
+@import 'components/journals';
 // APPS 
 @import 'apps/app';
 @import 'apps/actor_configure';
 @import 'apps/rolldialog';
-@import 'apps/chat';
-@import 'apps/cluster'; // IS THIS FEATURE STILL WORKING ?
-
+@import 'apps/proseMirror'; // ADDED IN 0.5.1 RELEASE
 
 // SHEET DESIGNS 
 
@@ -34,8 +32,5 @@ FOUNDRY VTT SYSTEM STYLESHEET V.01 */
 
 // ITEM SHEETS
 @import 'sheets/item';
-
-// Just for testing the conversion
-// @import 'base/oldcss';
 
 

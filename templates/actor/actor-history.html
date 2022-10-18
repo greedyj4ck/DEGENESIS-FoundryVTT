@@ -69,7 +69,7 @@
                 <a class="editor-edit"><i class="fas fa-edit"></i></a>
             </div>
         </div>
-        {{editor enrichment.system.biography.value target="system.biography" button=true owner=owner editable=editable}}
+        {{editor enrichment.system.biography.value target="system.biography" engine="prosemirror" button=true owner=owner editable=editable}}
     </div>
 
     <!-- * GM Notes  -->
@@ -90,7 +90,7 @@
             </div>
         </div>
     
-        {{editor enrichment.system.gmnotes.value target="system.gmnotes" button=true owner=owner editable=editable}}
+        {{editor enrichment.system.gmnotes.value target="system.gmnotes" engine="prosemirror" button=true owner=owner editable=editable}}
     </div>
     {{/if}}
 </div>

@@ -1,58 +1,54 @@
+
+
+
 export default function () {
 
     //Hooks.on("chatMessage", (html, content, msg) => {
-    //   let command = content.split(" ");
-    //   if (command[0].includes("/name"))
-    //   {
-    //         let response = fetch("http://localhost:3000/name", {
-    //             method: "POST"
-    //         }).then(r => r.text())
-    //         .then(text => {
-    //             let name = `${text} 
-    //             <span class="cluster-credits">Powered by <a href="https://degenesis-cluster.com">Degenesis Cluster</a></span>` 
-    //             // send request
-    //             ChatMessage.create({content : name})
-    //       }).catch(error => {
-    //         console.error(error)
-    //         ui.notifications.error(error)
-    //       })
-    //       return false
-
+    //  
     //   }
     // })
 
+
+
     Hooks.on("renderChatMessage", async (app, html, msg) => {
         // Do not display "Blind" chat cards to non-gm
+
+        let portraitPath = app.flags.portrait
+
+        if (app.flags.portrait) {
+            html[0].innerHTML = `<div class="portrait-wrapper" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('/` + portraitPath + `')">\n` + html[0].innerHTML + "\n</div>"
+
+        } else { html[0].innerHTML = `<div class="portrait-wrapper">\n` + html[0].innerHTML + "\n</div>" }
+
         if (html.hasClass("blind") && !game.user.isGM) {
             html.find(".message-header").remove(); // Remove header so Foundry does not attempt to update its timestamp
             html.html("").css("display", "none");
         }
 
-
         let postedItem = html.find(".post-item")[0]
-        if (postedItem)
-        {
+        if (postedItem) {
+
+            
+            let descriptionButton = html.find(".button-toggle-description")[0]
+            if (descriptionButton){
+                descriptionButton.addEventListener("click", ev => {
+
+                    let description = html.find(".description-text")
+                    
+                    description.addClass("animate__animated", "animate__bounceOutLeft");
+                    description.toggleClass("description-show");
+
+                })
+            }
+
             postedItem.setAttribute("draggable", true)
             postedItem.addEventListener("dragstart", ev => {
-                ev.dataTransfer.setData("text/plain", JSON.stringify({type: "item", payload : app.getFlag("degenesis", "transfer")}))
+            ev.dataTransfer.setData("text/plain", JSON.stringify({ type: "item", payload: app.getFlag("degenesis", "transfer") }))
             })
         }
-
-    
     })
 
     // Activate chat listeners defined in dice-wfrp4e.js
-    Hooks.on('renderChatLog', (log, html, data) => {
-
-        html.find(".chat-control-icon").click(ev => {
-            let cl = new game.degenesis.apps.ClusterInterface();
-            cl.render(true);
-        })
-
-        html.find(".chat-control-icon").mouseover(ev => {
-            $(ev.currentTarget).attr("title", "Access The Cluster")
-        })
-
-    });
+    Hooks.on('renderChatLog', (log, html, data) => { });
 
 }

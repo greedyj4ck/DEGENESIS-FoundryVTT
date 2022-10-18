@@ -8,21 +8,21 @@
     &.sheet {
       &.item {
         textarea {
-          border: 1px solid $grey-164;
+          border: 1px solid var(--grey-160);
           border-radius: 0;
         }
   
         input, select {
-          background-color: $grey-240;
+          background-color: var(--grey-240);
         }
   
         input {
           &:hover {
-            background-color: $grey-230;
+            background-color: var(--grey-230);
           }
   
           &:focus {
-            background-color: $grey-220;
+            background-color: var(--grey-220);
           }
         }
       }
@@ -277,7 +277,7 @@
         input[type="text"] {
           border: none;
           padding-top: 5px;
-          border-bottom: 1px solid $grey-164;
+          border-bottom: 1px solid var(--grey-160);
           transition: border-color 0.2s, color 0.2s;
   
           &:focus {
@@ -286,8 +286,8 @@
           }
   
           &:hover {
-            border-color: $dgns-red;
-            color: $dgns-red;
+            border-color: var(--degenesis-red);
+            color: var(--degenesis-red);
           }
         }
       }
@@ -306,7 +306,7 @@
         transition: color 0.2s, border-color 0.2s, background-color 0.2s;
   
         &:hover {
-          background-color: $dgns-red;
+          background-color: var(--degenesis-red);
           border: none;
         }
       }
@@ -314,7 +314,7 @@
   
     &.sheet.item {
       .effects-header {
-        color: $grey-240;
+        color: var(--grey-240);
         background-color: black;
   
         > * {

@@ -22,7 +22,7 @@
       padding: 5px;
       overflow-y: hidden;
       background: white;
-      font-family: $sans-serif-conent-font;
+      font-family: $sans-serif-content-font;
       font-weight: 300;
       color: black;
     }
@@ -36,17 +36,17 @@
     }
   
     .item-controls a:hover {
-      color: $dgns-red;
+      color: var(--degenesis-red);
     }
   
     h2 {
       border: none;
-      color: $dgns-red;
+      color: var(--degenesis-red);
       font-weight: 400;
     }
   
     .progress-bar {
-      background-color: $dgns-red;
+      background-color: var(--degenesis-red);
       height: 2px;
     }
   
@@ -60,7 +60,7 @@
       }
   
       &:hover {
-        color: $dgns-red;
+        color: var(--degenesis-red);
         -webkit-transition: color 100ms linear;
         -ms-transition: color 100ms linear;
         transition: color 100ms linear;
@@ -89,12 +89,12 @@
     }
   
     textarea {
-      outline: $dgns-red;
+      outline: var(--degenesis-red);
       box-shadow: none;
       font-family: $serif-content-font;
   
       &:focus {
-        outline: $dgns-red;
+        outline: var(--degenesis-red);
         box-shadow: none;
       }
     }
@@ -106,7 +106,7 @@
       text-align-last: center;
   
       &:focus {
-        border-bottom: 1px solid $dgns-red;
+        border-bottom: 1px solid var(--degenesis-red);
         box-shadow: none;
       }
   
@@ -118,12 +118,12 @@
   
     .sheet-field {
       display: flex;
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
     }
   
     .condition {
       .condition-item:hover, .condition-section:hover .app.window-app.degenesis.sheet .sheet-field-stack:hover {
-        color: $dgns-red;
+        color: var(--degenesis-red);
         -webkit-transition: color 100ms linear;
         -ms-transition: color 100ms linear;
         transition: color 100ms linear;
@@ -132,7 +132,7 @@
   
     .sheet-field {
       &:hover {
-        color: $dgns-red;
+        color: var(--degenesis-red);
         -webkit-transition: color 100ms linear;
         -ms-transition: color 100ms linear;
         transition: color 100ms linear;
@@ -144,7 +144,7 @@
         border: none;
   
         textarea:hover {
-          border-color: $dgns-red;
+          border-color: var(--degenesis-red);
         }
   
         &:hover {
@@ -177,7 +177,7 @@
     }
   
     .sheet-field-stack .field-input-stacked:hover, .sheet-field:hover {
-      border-bottom: 1px solid $dgns-red;
+      border-bottom: 1px solid var(--degenesis-red);
       -webkit-transition: border-bottom 100ms linear;
       -ms-transition: border-bottom 100ms linear;
       transition: border-bottom 100ms linear;
@@ -207,7 +207,7 @@
     }
   
     .header-line {
-      /* background-color: $dgns-red; */
+      /* background-color: var(--degenesis-red); */
       /* border: 1px solid transparent; */
       align-self: start;
       display: flex;
@@ -286,7 +286,7 @@
   
     hr {
       border: solid;
-      border-top: 1px solid $grey-164;
+      border-top: 1px solid var(--grey-160);
       border-bottom: none;
       border-left: none;
       border-right: none;
@@ -429,11 +429,11 @@
         padding: 0px 8px;
   
         &:hover {
-          background-color: $dgns-red;
+          background-color: var(--degenesis-red);
         }
   
         &.active {
-          background-color: $dgns-red;
+          background-color: var(--degenesis-red);
           text-shadow: none;
         }
       }
@@ -504,7 +504,7 @@
     }
   
     .skill:hover {
-      color: $dgns-red;
+      color: var(--degenesis-red);
       -webkit-transition: color 100ms linear;
       -ms-transition: color 100ms linear;
       transition: color 100ms linear;
@@ -512,7 +512,7 @@
   
     .condition {
       .condition-item:hover, .condition-section:hover {
-        color: $dgns-red;
+        color: var(--degenesis-red);
         -webkit-transition: color 100ms linear;
         -ms-transition: color 100ms linear;
         transition: color 100ms linear;
@@ -566,7 +566,7 @@
   
     .tab ol input {
       &:hover {
-        /* border: 1px dotted $dgns-red */
+        /* border: 1px dotted var(--degenesis-red) */
         background-color: rgb(240, 240, 240);
       }
   
@@ -746,7 +746,7 @@
     }
   
     .item-controls {
-      /* border-left: 1px solid $grey-164;
+      /* border-left: 1px solid var(--grey-160);
       padding-left: 5px */
       flex: 0;
       margin-left: 1.7%;
@@ -811,7 +811,7 @@
     }
   
     .relationships-li {
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
       margin-bottom: 3px;
       padding-bottom: 2px;
       display: flex;
@@ -833,7 +833,7 @@
       .potentials-legend {
         display: flex;
         flex: 1;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         width: 100%;
       }
   
@@ -850,7 +850,7 @@
   
       .empty {
         flex: 1;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
       }
   
       .potentials-legend {
@@ -871,11 +871,11 @@
   
       .item-summary {
         display: inline-block;
-        background-color: $grey-240;
+        background-color: var(--grey-240);
         padding-top: 5px;
         padding-bottom: 5px;
         width: 100%;
-        border-top: 1px solid $grey-164;
+        border-top: 1px solid var(--grey-160);
         margin-left: 0px;
         margin-right: 0px;
       }
@@ -886,7 +886,7 @@
   
       .advantage {
         margin-left: 5px;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         display: flex;
         flex-wrap: wrap;
         margin-top: 8px;
@@ -1095,8 +1095,8 @@
     .attributes-header {
       padding: 5px;
       margin: 5px 0;
-      background: $bg-attributes-header;
-      border: 1px solid $grey-165;
+      background: var(--bg-attributes-header);
+      border: 1px solid var(--grey-160);
       border-radius: 2px;
       text-align: center;
       font-weight: bold;
@@ -1122,7 +1122,7 @@
         background: transparent;
         border: none;
         border-radius: 0;
-        border-bottom: 1px solid $grey-165;
+        border-bottom: 1px solid var(--grey-160);
       }
     }
   
@@ -1169,7 +1169,7 @@
   
       li {
         padding-bottom: 6px;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         margin-top: 7px;
   
         &.expanded {
@@ -1179,12 +1179,12 @@
   
       .item-summary {
         display: inline-block;
-        background-color: $grey-240;
+        background-color: var(--grey-240);
         padding-top: 5px;
         padding-bottom: 5px;
         margin-top: 6px;
         width: 100%;
-        border-top: 1px solid $grey-164;
+        border-top: 1px solid var(--grey-160);
         margin-left: 0px;
         margin-right: 0px;
         padding-left: 4px;
@@ -1264,12 +1264,12 @@
     }
   
     .modifiers-description, .qualities-description {
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
       width: 100%;
     }
   
     .conditions-li {
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
       margin-bottom: 3px;
     }
   
@@ -1298,7 +1298,7 @@
         flex: 1;
   
         &.state-group .combat:hover {
-          color: $dgns-red;
+          color: var(--degenesis-red);
         }
       }
   
@@ -1398,7 +1398,7 @@
     .arsenal-list {
       .armor.item, .weapon.item {
         margin-left: 5px;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         display: flex;
         flex-wrap: wrap;
         margin-top: 8px;
@@ -1504,15 +1504,13 @@
   
     .name-rotate {
       -ms-transform: rotate(-45deg);
-  
       /* Internet Explorer */
       -moz-transform: rotate(-45deg);
-  
       /* Firefox */
       -webkit-transform: rotate(-45deg);
-  
       /* Safari et Chrome */
       -o-transform: rotate(-45deg);
+      transform: rotate(-45deg);
     }
   
     .qualities-name {
@@ -1521,10 +1519,10 @@
   
     .arsenal-list .item-summary {
       display: inline-block;
-      background-color: $grey-240;
+      background-color: var(--grey-240);
       padding: 5px 4px 5px 4px;
       width: 100%;
-      border-top: 1px solid $grey-164;
+      border-top: 1px solid var(--grey-160);
       margin-left: 0px;
       margin-right: 0px;
     }
@@ -1550,7 +1548,7 @@
       .enc-container {
         width: calc(100% - 5px);
         flex: 3;
-        border: 1px solid $grey-164;
+        border: 1px solid var(--grey-160);
         margin-left: 2px;
         margin-bottom: 0px;
         order: 2;
@@ -1606,13 +1604,13 @@
   
     .armor-group .empty, .weapon-group .empty, .encumbrance-group .empty {
       flex: 1;
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
     }
   
     .armor-group .armor-legend, .weapon-group .weapon-legend {
       display: flex;
       flex: 2;
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
       width: 100%;
       justify-content: flex-end;
     }
@@ -1626,7 +1624,7 @@
       display: flex;
   
       /* flex: 0 0 38px; */
-      /* border-bottom: 1px solid $grey-164; */
+      /* border-bottom: 1px solid var(--grey-160); */
       width: 100%;
       justify-content: flex-end;
     }
@@ -1710,7 +1708,7 @@
     .inventory-list {
       .armor.item, .weapon.item {
         margin-left: 5px;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         display: flex;
         flex-wrap: wrap;
         margin-top: 8px;
@@ -1745,16 +1743,16 @@
   
       .item-summary {
         display: inline-block;
-        background-color: $grey-240;
+        background-color: var(--grey-240);
         padding: 5px 4px 5px 4px;
         width: 100%;
-        border-top: 1px solid $grey-164;
+        border-top: 1px solid var(--grey-160);
         margin-left: 0px;
         margin-right: 0px;
         text-align: justify;
   
         .tag {
-          border: 1px solid $grey-164;
+          border: 1px solid var(--grey-160);
           background: white;
           margin: 2px 5px;
           display: inline-block;
@@ -1821,7 +1819,7 @@
     .legend {
       display: flex;
       flex: 2;
-      border-bottom: 1px solid $grey-164;
+      border-bottom: 1px solid var(--grey-160);
       width: 100%;
       justify-content: flex-end;
   
@@ -1836,7 +1834,7 @@
     .item-list {
       .item {
         margin-left: 5px;
-        border-bottom: 1px solid $grey-164;
+        border-bottom: 1px solid var(--grey-160);
         display: flex;
         flex-wrap: wrap;
         margin-top: 8px;

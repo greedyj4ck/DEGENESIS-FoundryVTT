@@ -5,7 +5,7 @@
   "version": "0.5.0",
   "compatibility": {
     "minimum": 10,
-    "verified": "10.284",
+    "verified": "10.287",
     "maximum": 10
   },
   "templateVersion": 2,
@@ -32,7 +32,7 @@
 
 
   "esmodules": ["degenesis.js"],
-  "styles": ["styles/degenesis.css"],
+  "styles": ["styles/degenesis.css", "styles/animate.min.css"],
   "scripts" : [
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
    
