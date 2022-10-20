@@ -1457,7 +1457,8 @@ a.diamond:hover .square.red.perma {
   display: flex;
   border-bottom: 1px solid var(--grey-160);
 }
-.app.window-app.degenesis.sheet .condition .condition-item:hover, .app.window-app.degenesis.sheet .condition .condition-section:hover .app.window-app.degenesis.sheet .sheet-field-stack:hover {
+.app.window-app.degenesis.sheet .condition .condition-item:hover,
+.app.window-app.degenesis.sheet .condition .condition-section:hover .app.window-app.degenesis.sheet .sheet-field-stack:hover {
   color: var(--degenesis-red);
   -webkit-transition: color 100ms linear;
   transition: color 100ms linear;
@@ -1509,7 +1510,18 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .condition-title {
   text-transform: uppercase;
 }
-.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked:hover, .app.window-app.degenesis.sheet .sheet-field:hover {
+.app.window-app.degenesis.sheet .condition-value {
+  padding-left: 5px;
+}
+.app.window-app.degenesis.sheet .condition-value-permanent {
+  padding-left: 5px;
+  color: var(--grey-160);
+  font-size: 9px;
+  top: -1px;
+  position: relative;
+}
+.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
+.app.window-app.degenesis.sheet .sheet-field:hover {
   border-bottom: 1px solid var(--degenesis-red);
   -webkit-transition: border-bottom 100ms linear;
   transition: border-bottom 100ms linear;
@@ -1671,20 +1683,24 @@ a.diamond:hover .square.red.perma {
   left: 75%;
 }
 
-.culture-img:hover ~ .c-popout.culture, .cult-img:hover ~ .c-popout.cult, .concept-img:hover ~ .c-popout.concept {
+.culture-img:hover ~ .c-popout.culture,
+.cult-img:hover ~ .c-popout.cult,
+.concept-img:hover ~ .c-popout.concept {
   visibility: visible;
   opacity: 1;
 }
 
 /* * Sheet titles */
-.app.window-app.degenesis.sheet.item .title, .app.window-app.degenesis.sheet .title {
+.app.window-app.degenesis.sheet.item .title,
+.app.window-app.degenesis.sheet .title {
   -ms-flex-item-align: center;
       align-self: center;
   margin-left: 1px;
   margin-right: 1px;
   width: 99%;
 }
-.app.window-app.degenesis.sheet.item .title-line, .app.window-app.degenesis.sheet .title-line {
+.app.window-app.degenesis.sheet.item .title-line,
+.app.window-app.degenesis.sheet .title-line {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1696,18 +1712,22 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .header-column.header-line .square.little {
   margin-bottom: 12px;
 }
-.app.window-app.degenesis.sheet.item .square.little, .app.window-app.degenesis.sheet .title .square.little, .app.window-app.degenesis.sheet .header-line .square.little {
+.app.window-app.degenesis.sheet.item .square.little,
+.app.window-app.degenesis.sheet .title .square.little,
+.app.window-app.degenesis.sheet .header-line .square.little {
   -ms-flex-item-align: center;
       align-self: center;
   margin-bottom: 1px;
   height: 7px;
   width: 7px;
 }
-.app.window-app.degenesis.sheet.item .square.little.left, .app.window-app.degenesis.sheet .square.little.left {
+.app.window-app.degenesis.sheet.item .square.little.left,
+.app.window-app.degenesis.sheet .square.little.left {
   margin-left: 2px;
   margin-right: 0px;
 }
-.app.window-app.degenesis.sheet.item .square.little.right, .app.window-app.degenesis.sheet .square.little.right {
+.app.window-app.degenesis.sheet.item .square.little.right,
+.app.window-app.degenesis.sheet .square.little.right {
   margin-right: 2px;
   margin-left: 0px;
 }
@@ -1793,7 +1813,8 @@ a.diamond:hover .square.red.perma {
   background-color: var(--degenesis-red);
   text-shadow: none;
 }
-.app.window-app.degenesis.sheet.item .body-line, .app.window-app.degenesis.sheet .body-line {
+.app.window-app.degenesis.sheet.item .body-line,
+.app.window-app.degenesis.sheet .body-line {
   width: 100%;
   /*height: calc(100% - 300px);*/
 }
@@ -1855,7 +1876,8 @@ a.diamond:hover .square.red.perma {
   -webkit-transition: color 100ms linear;
   transition: color 100ms linear;
 }
-.app.window-app.degenesis.sheet .condition .condition-item:hover, .app.window-app.degenesis.sheet .condition .condition-section:hover {
+.app.window-app.degenesis.sheet .condition .condition-item:hover,
+.app.window-app.degenesis.sheet .condition .condition-section:hover {
   color: var(--degenesis-red);
   -webkit-transition: color 100ms linear;
   transition: color 100ms linear;
@@ -1983,7 +2005,8 @@ a.diamond:hover .square.red.perma {
           justify-content: space-between;
   margin-bottom: 15px;
 }
-.app.window-app.degenesis.sheet .skill > *, .app.window-app.degenesis.sheet .attribute > * {
+.app.window-app.degenesis.sheet .skill > *,
+.app.window-app.degenesis.sheet .attribute > * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2000,7 +2023,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex-direction: row;
           flex-direction: row;
 }
-.app.window-app.degenesis.sheet .skill .diamond, .app.window-app.degenesis.sheet .attribute .diamond-row {
+.app.window-app.degenesis.sheet .skill .diamond,
+.app.window-app.degenesis.sheet .attribute .diamond-row {
   -ms-flex-item-align: center;
       align-self: center;
 }
@@ -2012,7 +2036,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .skill-list {
   margin-top: 10px;
 }
-.app.window-app.degenesis.sheet .skill input[type=text], .app.window-app.degenesis.sheet .attribute input[type=text] {
+.app.window-app.degenesis.sheet .skill input[type=text],
+.app.window-app.degenesis.sheet .attribute input[type=text] {
   border: 1px solid black;
   border-radius: 0px;
   width: 20px;
@@ -2062,7 +2087,10 @@ a.diamond:hover .square.red.perma {
   background-position: center;
   height: 14px;
 }
-.app.window-app.degenesis.sheet .advantage, .app.window-app.degenesis.sheet .background, .app.window-app.degenesis.sheet .advantage, .app.window-app.degenesis.sheet .background {
+.app.window-app.degenesis.sheet .advantage,
+.app.window-app.degenesis.sheet .background,
+.app.window-app.degenesis.sheet .advantage,
+.app.window-app.degenesis.sheet .background {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2076,7 +2104,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .background {
   margin-bottom: 15px;
 }
-.app.window-app.degenesis.sheet .advantage > *, .app.window-app.degenesis.sheet .background > * {
+.app.window-app.degenesis.sheet .advantage > *,
+.app.window-app.degenesis.sheet .background > * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2105,7 +2134,7 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet .item-controls {
   /* border-left: 1px solid var(--grey-160);
-  padding-left: 5px */
+    padding-left: 5px */
   -webkit-box-flex: 0;
       -ms-flex: 0;
           flex: 0;
@@ -2130,8 +2159,8 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar, .app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-thumb, .app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-track {
   /* width: 10px;
-  border: none;
-  background-color: transparent; */
+    border: none;
+    background-color: transparent; */
   margin-top: -17px;
   margin-bottom: -10px;
 }
@@ -2350,7 +2379,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .potentials-group .advantage-list .diamond-position > * {
   margin: 0px;
 }
-.app.window-app.degenesis.sheet .advantage input[type=text], .app.window-app.degenesis.sheet .background input[type=text] {
+.app.window-app.degenesis.sheet .advantage input[type=text],
+.app.window-app.degenesis.sheet .background input[type=text] {
   border: 1px solid black;
   border-radius: 0px;
   height: 20px;
@@ -2370,7 +2400,8 @@ a.diamond:hover .square.red.perma {
   border-bottom: 0px;
   /* flex: 1.58; */
 }
-.app.window-app.degenesis.sheet .combat-group h3, .app.window-app.degenesis.sheet .advantage-group h3 {
+.app.window-app.degenesis.sheet .combat-group h3,
+.app.window-app.degenesis.sheet .advantage-group h3 {
   margin-bottom: 0px;
   margin-left: 10px;
 }
@@ -2442,17 +2473,23 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .item-section {
   border: 1px solid black;
 }
-.app.window-app.degenesis.sheet .item-header .item-equipped, .app.window-app.degenesis.sheet .item-header .item-tech, .app.window-app.degenesis.sheet .item-header .item-encumbrance {
+.app.window-app.degenesis.sheet .item-header .item-equipped,
+.app.window-app.degenesis.sheet .item-header .item-tech,
+.app.window-app.degenesis.sheet .item-header .item-encumbrance {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 40px;
           flex: 0 0 40px;
 }
-.app.window-app.degenesis.sheet .items-list .item-equipped, .app.window-app.degenesis.sheet .items-list .item-tech, .app.window-app.degenesis.sheet .items-list .item-encumbrance {
+.app.window-app.degenesis.sheet .items-list .item-equipped,
+.app.window-app.degenesis.sheet .items-list .item-tech,
+.app.window-app.degenesis.sheet .items-list .item-encumbrance {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 40px;
           flex: 0 0 40px;
 }
-.app.window-app.degenesis.sheet .item-equipped, .app.window-app.degenesis.sheet .item-tech, .app.window-app.degenesis.sheet .item-encumbrance {
+.app.window-app.degenesis.sheet .item-equipped,
+.app.window-app.degenesis.sheet .item-tech,
+.app.window-app.degenesis.sheet .item-encumbrance {
   text-align: center;
 }
 .app.window-app.degenesis.sheet .header-details {
@@ -2641,11 +2678,13 @@ a.diamond:hover .square.red.perma {
   text-align: center;
   width: 30%;
 }
-.app.window-app.degenesis.sheet .conditions-number, .app.window-app.degenesis.sheet .conditions-type {
+.app.window-app.degenesis.sheet .conditions-number,
+.app.window-app.degenesis.sheet .conditions-type {
   text-align: center;
   width: 15%;
 }
-.app.window-app.degenesis.sheet .modifiers-action.dropdown, .app.window-app.degenesis.sheet .qualities-action.dropdown {
+.app.window-app.degenesis.sheet .modifiers-action.dropdown,
+.app.window-app.degenesis.sheet .qualities-action.dropdown {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2656,7 +2695,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .modifiers-description, .app.window-app.degenesis.sheet .qualities-description {
+.app.window-app.degenesis.sheet .modifiers-description,
+.app.window-app.degenesis.sheet .qualities-description {
   border-bottom: 1px solid var(--grey-160);
   width: 100%;
 }
@@ -2667,15 +2707,18 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-name.long {
   width: 100%;
 }
-.app.window-app.degenesis.sheet .complications-group, .app.window-app.degenesis.sheet .mods-group {
+.app.window-app.degenesis.sheet .complications-group,
+.app.window-app.degenesis.sheet .mods-group {
   width: 50%;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .complications-name, .app.window-app.degenesis.sheet .bottom-conditions .mods-name {
+.app.window-app.degenesis.sheet .bottom-conditions .complications-name,
+.app.window-app.degenesis.sheet .bottom-conditions .mods-name {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .complications-rating, .app.window-app.degenesis.sheet .bottom-conditions .mods-rating {
+.app.window-app.degenesis.sheet .bottom-conditions .complications-rating,
+.app.window-app.degenesis.sheet .bottom-conditions .mods-rating {
   width: 10%;
 }
 .app.window-app.degenesis.sheet .combat-tab {
@@ -2749,7 +2792,8 @@ a.diamond:hover .square.red.perma {
   margin-bottom: 0px;
   margin-left: 10px;
 }
-.app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name, .app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name {
+.app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name,
+.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
@@ -2787,7 +2831,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 3;
           flex: 3;
 }
-.app.window-app.degenesis.sheet .arsenal-list .armor.item, .app.window-app.degenesis.sheet .arsenal-list .weapon.item {
+.app.window-app.degenesis.sheet .arsenal-list .armor.item,
+.app.window-app.degenesis.sheet .arsenal-list .weapon.item {
   margin-left: 5px;
   border-bottom: 1px solid var(--grey-160);
   display: -webkit-box;
@@ -2816,7 +2861,8 @@ a.diamond:hover .square.red.perma {
   margin-left: 5px;
   padding-bottom: 6px;
 }
-.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics, .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics {
+.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics,
+.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics {
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
@@ -2844,7 +2890,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics .legend-name, .app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name {
+.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics .legend-name,
+.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name {
   -ms-flex-item-align: center;
       align-self: center;
   text-align: center;
@@ -2889,7 +2936,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 3;
           flex: 3;
 }
-.app.window-app.degenesis.sheet .armor-properties, .app.window-app.degenesis.sheet .weapon-properties {
+.app.window-app.degenesis.sheet .armor-properties,
+.app.window-app.degenesis.sheet .weapon-properties {
   margin-left: 3%;
   margin-bottom: 5px;
   display: -webkit-box;
@@ -2966,7 +3014,9 @@ a.diamond:hover .square.red.perma {
   margin-right: 20px;
 }
 
-.degenesis.sheet .armor, .degenesis.sheet .weapon, .degenesis.sheet .encumbrance {
+.degenesis.sheet .armor,
+.degenesis.sheet .weapon,
+.degenesis.sheet .encumbrance {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2981,7 +3031,9 @@ a.diamond:hover .square.red.perma {
   background-position: center;
 }
 
-.degenesis.sheet .armor .black-title, .degenesis.sheet .weapon .black-title, .degenesis.sheet .encumbrance .black-title {
+.degenesis.sheet .armor .black-title,
+.degenesis.sheet .weapon .black-title,
+.degenesis.sheet .encumbrance .black-title {
   max-width: 164px;
   max-height: 14px;
   -ms-flex-item-align: start;
@@ -2992,19 +3044,24 @@ a.diamond:hover .square.red.perma {
   margin-bottom: 0px;
   margin-left: 10px;
 }
-.app.window-app.degenesis.sheet .armor-group .first-part, .app.window-app.degenesis.sheet .weapon-group .first-part, .app.window-app.degenesis.sheet .encumbrance-group .first-part {
+.app.window-app.degenesis.sheet .armor-group .first-part,
+.app.window-app.degenesis.sheet .weapon-group .first-part,
+.app.window-app.degenesis.sheet .encumbrance-group .first-part {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 190px;
 }
-.app.window-app.degenesis.sheet .armor-group .empty, .app.window-app.degenesis.sheet .weapon-group .empty, .app.window-app.degenesis.sheet .encumbrance-group .empty {
+.app.window-app.degenesis.sheet .armor-group .empty,
+.app.window-app.degenesis.sheet .weapon-group .empty,
+.app.window-app.degenesis.sheet .encumbrance-group .empty {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   border-bottom: 1px solid var(--grey-160);
 }
-.app.window-app.degenesis.sheet .armor-group .armor-legend, .app.window-app.degenesis.sheet .weapon-group .weapon-legend {
+.app.window-app.degenesis.sheet .armor-group .armor-legend,
+.app.window-app.degenesis.sheet .weapon-group .weapon-legend {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3017,7 +3074,8 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.app.window-app.degenesis.sheet .armor-group .armor-legend > *, .app.window-app.degenesis.sheet .weapon-group .weapon-legend > * {
+.app.window-app.degenesis.sheet .armor-group .armor-legend > *,
+.app.window-app.degenesis.sheet .weapon-group .weapon-legend > * {
   padding-left: 2px;
   padding-right: 2px;
 }
@@ -3074,10 +3132,14 @@ a.diamond:hover .square.red.perma {
   text-align: center;
   max-width: 50px;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name .slots, .app.window-app.degenesis.sheet .inventory-group .armor-legend .legend-name .slots, .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name .slots, .app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name .slots {
+.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name .slots,
+.app.window-app.degenesis.sheet .inventory-group .armor-legend .legend-name .slots,
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name .slots,
+.app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name .slots {
   margin-left: 12px;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name, .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name {
+.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name,
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -3088,7 +3150,8 @@ a.diamond:hover .square.red.perma {
       align-self: center;
   text-align: center;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name.equipped, .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name.equipped {
+.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name.equipped,
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name.equipped {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3100,18 +3163,21 @@ a.diamond:hover .square.red.perma {
           flex: 1.7;
   max-width: 75px;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .item-controls, .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .item-controls {
+.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .item-controls,
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .item-controls {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 49px;
           flex: 0 0 49px;
 }
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .equipped, .app.window-app.degenesis.sheet .inventory-group .weapon-legend .equipped {
+.app.window-app.degenesis.sheet .inventory-group .armor-legend .equipped,
+.app.window-app.degenesis.sheet .inventory-group .weapon-legend .equipped {
   -webkit-box-flex: 1.7;
       -ms-flex: 1.7;
           flex: 1.7;
   max-width: 75px;
 }
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .empty, .app.window-app.degenesis.sheet .inventory-group .weapon-legend .empty {
+.app.window-app.degenesis.sheet .inventory-group .armor-legend .empty,
+.app.window-app.degenesis.sheet .inventory-group .weapon-legend .empty {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 64px;
           flex: 0 0 64px;
@@ -3122,7 +3188,8 @@ a.diamond:hover .square.red.perma {
   -ms-flex-item-align: center;
       align-self: center;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor.item, .app.window-app.degenesis.sheet .inventory-list .weapon.item {
+.app.window-app.degenesis.sheet .inventory-list .armor.item,
+.app.window-app.degenesis.sheet .inventory-list .weapon.item {
   margin-left: 5px;
   border-bottom: 1px solid var(--grey-160);
   display: -webkit-box;
@@ -3135,7 +3202,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .inventory-list .square.button-position {
   margin: 0;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor.item .armor-name, .app.window-app.degenesis.sheet .inventory-list .weapon.item .weapon-name {
+.app.window-app.degenesis.sheet .inventory-list .armor.item .armor-name,
+.app.window-app.degenesis.sheet .inventory-list .weapon.item .weapon-name {
   width: 185px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3145,7 +3213,8 @@ a.diamond:hover .square.red.perma {
   margin-right: 0;
   padding-bottom: 6px;
 }
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics, .app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
+.app.window-app.degenesis.sheet .inventory-list .armor-characteristics,
+.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
@@ -3204,7 +3273,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet .legacy-group {
   height: auto;
 }
-.app.window-app.degenesis.sheet .gmnotes-group, .app.window-app.degenesis.sheet .biography-group {
+.app.window-app.degenesis.sheet .gmnotes-group,
+.app.window-app.degenesis.sheet .biography-group {
   height: 70%;
 }
 .app.window-app.degenesis.sheet .lt-group .editor .editor-content {

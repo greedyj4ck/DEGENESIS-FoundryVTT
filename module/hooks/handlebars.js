@@ -38,5 +38,10 @@ export default function () {
             if(result ==='success'){return true;}else{return false}
         })
 
+        Handlebars.registerHelper('currentEgo', function(ego){
+            console.log(ego)
+            return (ego.max - ego.value)
+        })
+
     })
 }
