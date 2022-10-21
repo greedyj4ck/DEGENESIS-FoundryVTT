@@ -105,11 +105,6 @@ export class DegenesisActor extends Actor {
                 this.itemCategories = this.itemTypes
                 this.modifiers = new ModifierManager(this);
 
-                this.condition.ego.value = this.condition.ego.max * 0.75
-                this.condition.spore.value = this.condition.spore.max * 0.75
-                this.condition.fleshwounds.value = this.condition.fleshwounds.max * 0.75
-                this.condition.trauma.value = this.condition.trauma.max * 0.75
-
                 this.condition.ego.pct = this.condition.ego.value / this.condition.ego.max * 100
                 this.condition.spore.pct = this.condition.spore.value / this.condition.spore.max * 100
                 this.condition.fleshwounds.pct = this.condition.fleshwounds.value / this.condition.fleshwounds.max * 100
@@ -147,6 +142,8 @@ export class DegenesisActor extends Actor {
                 npcDice.extreme = npcDice.effective - 8 > 0 ? npcDice.effective - 8 : 0
 
                 this.npcDice = npcDice
+
+                console.log(this)
 
 
             }

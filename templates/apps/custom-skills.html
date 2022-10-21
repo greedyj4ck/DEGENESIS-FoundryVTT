@@ -1,0 +1,71 @@
+<form>
+  <div class="body-column body-line">
+    <!-- <div class="title-line middle-left"></div> -->
+    <div class="square little left"></div>
+    <svg class="title-line middle-left" height="11" width="100%">
+      <line
+        x1="0"
+        y1="11"
+        x2="100%"
+        y2="11"
+        style="stroke: black; stroke-width: 1"
+      ></line>
+    </svg>
+    <div class="middle-name">
+      {{localize "DGNS.Attributes"}} & {{localize "DGNS.Skills"}}
+    </div>
+    <svg class="title-line middle-right" height="11" width="100%">
+      <line
+        x1="0"
+        y1="11"
+        x2="100%"
+        y2="11"
+        style="stroke: black; stroke-width: 1"
+      ></line>
+    </svg>
+    <div class="square little right"></div>
+  </div>
+</div>
+<!-- advantage-tab -->
+<div class="attribute-tab">
+  {{#each object.system.attributeSkillGroups as |group g|}}
+  <!-- advantage-group -->
+  <div class="attribute-skill-group">
+    <!-- background -->
+    <div data-target="{{g}}" class="attribute">
+      <!-- black-title -->
+      <div class="attribute-name">
+        <h3>{{group.label}}</h3>
+      </div>
+    </div>
+    <!-- advantage-list -->
+    <div class="skill-list">
+      {{#each group.skills as |skill sk|}}
+      <!-- advantage -->
+      <div data-target="{{sk}}" class="skill">
+        <!-- background-name -->
+        {{#if skill.unused}}
+        <label class="skill-name unused">{{skill.label}}</label>
+        {{else}}
+        <label class="skill-name">{{skill.label}}</label>
+        {{/if}}
+        <div class="form-fields">
+          <input
+            type="text"
+            data-dtype="Number"
+            data-target="data.skills.{{skill}}.value"
+            value="{{object.system.skills.skill.value}}"
+            min="0"
+            oninput="validity.valid||(value='');"
+          />
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/each}}
+  <button type="submit" name="submit">
+    <i class="far fa-save"></i> {{ localize "Save"}}
+  </button>
+</form>
+

@@ -20,6 +20,7 @@ import { DegenesisChat } from "./module/chat.js";
 import { DegenesisSystemSettings } from "./module/settings.js"
 import ActorConfigure from "./module/apps/actor-configure.js"
 import NPCConfigure from "./module/apps/npc-configure.js"
+import CustomSkills from "./module/apps/custom-skills.js";
 import hooks from "./module/hooks/hooks.js"
 
 
@@ -101,7 +102,8 @@ Hooks.once("init", async function () {
       ClusterInterface,
       DegenesisImporter,
       ActorConfigure,
-      NPCConfigure
+      NPCConfigure,
+      CustomSkills
     },
     entities : {
       DegenesisActor,

@@ -35,7 +35,7 @@
     <div class="combat-list">
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.Movement"}}: {{data.general.movement}}<span
+          {{localize "DGNS.Movement"}}: {{actor.general.movement}}<span
             class="nocaps"
             >m</span
           >
@@ -43,12 +43,12 @@
       </div>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.Armor"}}: {{data.general.armor}}
+          {{localize "DGNS.Armor"}}: {{actor.general.armor}}
         </div>
       </div>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.ActionMod"}}: {{data.general.actionModifier}}D
+          {{localize "DGNS.ActionMod"}}: {{actor.general.actionModifier}}D
         </div>
       </div>
     </div>
@@ -64,22 +64,22 @@
     <div class="combat-list">
       <a class="combat">
         <div class="general-name initiative-roll">
-          {{localize "DGNS.Initiative"}} ({{data.fighting.initiative}}D)
+          {{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}D)
         </div>
       </a>
       <a class="combat">
         <div class="general-name fight-roll" data-roll="dodge">
-          {{localize "DGNS.Dodge"}} ({{data.fighting.dodge}}D)
+          {{localize "DGNS.Dodge"}} ({{actor.fighting.dodge}}D)
         </div>
       </a>
       <a class="combat">
         <div class="general-name fight-roll" data-roll="mentalDefense">
-          {{localize "DGNS.MentalDef"}} ({{data.fighting.mentalDefense}}D)
+          {{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}D)
         </div>
       </a>
       <div class="combat">
         <div class="general-name">
-          {{localize "DGNS.PassiveDef"}}: {{data.fighting.passiveDefense}}
+          {{localize "DGNS.PassiveDef"}}: {{actor.fighting.passiveDefense}}
         </div>
       </div>
     </div>
@@ -96,7 +96,7 @@
       <a class="general-name checkbox" data-target="system.state.motion"
         >{{localize "DGNS.InMotion"}} <span class="nocaps">(>2m)</span></a
       >
-      {{#if system.state.motion}}
+      {{#if actor.state.motion}}
       <a
         class="square border-black button-position checkbox"
         data-target="system.state.motion"
@@ -114,7 +114,7 @@
       <a class="general-name checkbox" data-target="system.state.active"
         >{{localize "DGNS.ActiveAndOnMyFeet"}}</a
       >
-      {{#if system.state.active}}
+      {{#if actor.state.active}}
       <a
         class="square border-black button-position checkbox"
         data-target="system.state.active"
