@@ -6,6 +6,8 @@ An unoffical, community-supported system for playing [Degenesis](https://degenes
 
 Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module contains information and graphics from Katharsys that have been used with permission from the publisher. All used content from the handbook belong to the respective authors.
 
+**WARNING**: Data compendiums (`/packs` folder) are hosted as a submodule in https://github.com/greedyj4ck/degenesis-db/ and are included in the zip releases, but if you download the source code you have to fetch them (either by cloning/pulling with `--recurse-submodules` flag on git or manually if you're downloading the source code that way).
+
 ## Credits 
 
  * Code and UI authors:
@@ -42,7 +44,7 @@ The system module represented is not in its final version. Functionality and con
 
 ## Developer Installation
 
-- Git clone the repo.
+- Git clone the repo. Use `--recurse-submodules` flag to get the packs.
 - Rename the directory to "degenesis" under your Foundry _Data/systems_ directory.
 
 
