@@ -677,6 +677,13 @@ a.diamond:hover .square.red.perma {
 .chat-message .portrait-wrapper .message-header .whisper-to {
   margin-top: -5px;
 }
+.chat-message .portrait-wrapper .damage-triggers {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  font-weight: 800;
+  text-align: center;
+  font-size: 12px;
+}
 .chat-message .portrait-wrapper h2 {
   font-size: 16px;
   font-weight: 900;
@@ -732,6 +739,7 @@ a.diamond:hover .square.red.perma {
 }
 .chat-message .portrait-wrapper .roll-details {
   padding-bottom: 5px;
+  text-align: center;
 }
 .chat-message .chat-roll-dice {
   text-align: center;

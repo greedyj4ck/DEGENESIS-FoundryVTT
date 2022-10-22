@@ -65,6 +65,14 @@
       }
     }
 
+    .damage-triggers{
+    font-family: $primary-header-font;
+    text-transform: uppercase;
+    font-weight: 800;
+    text-align: center;
+    font-size: 12px;
+    }
+
     h2 {
       font-size: 16px;
       font-weight: 900;
@@ -85,6 +93,7 @@
       }
 
 
+      
 
       &.result {
 
@@ -133,6 +142,7 @@
 
     .roll-details {
       padding-bottom: 5px;
+      text-align: center;
     }
 
   }

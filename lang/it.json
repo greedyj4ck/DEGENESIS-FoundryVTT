@@ -308,6 +308,8 @@
   "DGNS.SecondaryNeedsDifficulty": "Tiri di Abilità Secondarie richiedono una difficoltà per essere concatenati al primo tiro",
   "DGNS.Post": "Post",
   "DGNS.DamageType": "Tipo di Danno",
+  "DGNS.Type" : "Tipo",
+  "DGNS.Permanent":"Permanente",
 
   "DGNS.AreaDamageDescription": "L'arma non viene utilizzata puntandola direttamente contro il nemico, ma copre un'area espressa in gradi. Tutto ciò che si trova all'interno di quest'area può subire Danno",
   "DGNS.ArmorpiercingDescription": "Il proiettile utilizzato è molto compatto e veloce. Può bucare le armature come se fossero fatte di carta. I proiettili sfondacorazze non infliggono necessariamente un Danno maggiore, ma ignorano Qualità speciali come “Massiccia” o “Antiproiettile” che l'armatura del bersaglio potrebbe avere.",

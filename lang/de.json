@@ -301,6 +301,9 @@
   "DGNS.SecondaryNeedsDifficulty": "Bei sekundären Würfen muss eine Schwierigkeit auf dem ersten Wurf festgelegt werden",
   "DGNS.Post": "Post", 
   "DGNS.DamageType": "Schadenstyp",
+  "DGNS.Type" : "Typ",
+  "DGNS.Permanent":"Dauerhaft",
+
   "DGNS.AreaDamageDescription": "Die Waffe zielt nicht direkt auf einen Feind: Sie deckt einen in Grad angegebenen Bereich ab. Alles in diesem Bereich kann Schaden nehmen.",
   "DGNS.ArmorpiercingDescription": "Das verschossene Projektil ist hochkompakt und schnell. Es durchschlägt die Panzerung, als sei sie aus Papier. Panzerbrechende Geschosse verursachen nicht notwendigerweise mehr Schaden, aber sie ignorieren die besonderen Eigenschaften wie ‚massiv‘ oder ‚kugelsicher’ der Zielrüstung.",
   "DGNS.BiometricallyEncodedDescription": "Im Schaft sind biometrische Sensoren untergebracht, die nur auslösen, wenn die richtige Person die Waffe greift. Oftmals summt oder vibriert die Elektronik und bestätigt damit ihre Bereitschaft. In den Händen eines Fremden passiert gar nichts: Er kann die Waffe nicht abfeuern. Um diesen Schutzmechanismus auszuschalten oder die Kodierung zu ändern, müssen die Schaltkreise formatiert oder überbrückt werden. Beides erfordert einen fähigen Techniker mit einer Elektronikwerkstatt. Ihm muss erst ein Aktionswurf auf GES+Handwerk gegen die Schwierigkeit der Eigenschaft gelingen, um die Elektronik freizulegen. Mit VER+Technik (Schwierigkeit) identifiziert er die Schaltung, versteht ihre Funktionsweise und manipuliert sie. Misslingt einer der Würfe, steigt die Schwierigkeit um +1. Klettert sie auf 12, deaktiviert sich die Waffe. Sie hat jetzt nur noch Schrottwert.",
