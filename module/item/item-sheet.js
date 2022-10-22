@@ -41,11 +41,20 @@ export class DegenesisItemSheet extends ItemSheet {
 
 
   /** @override */
-  getData() {
-    const data = super.getData();
+  // Experimental ASYNC 
+  async getData() {
+    const data = await super.getData();
     data.data = data.item._source.system
     // console.log(data)  
     this.processTypes(data)
+    
+    
+    // Enrich raw HTML for Text Editor and expand for new functionalities like links...
+    // Borrowed from moo-man's WRFP implementation ^_^ <3
+
+    data.enrichment = await this._handleEnrichment()
+
+
     return data;
   }
 
@@ -59,6 +68,16 @@ export class DegenesisItemSheet extends ItemSheet {
     }
 
   }
+
+
+async _handleEnrichment()
+      {
+          let enrichment = {}
+          enrichment["system.description.value"] = await TextEditor.enrichHTML(this.item.system.description, {async: true})
+
+    
+          return expandObject(enrichment)
+      }
 
 
   async _onDrop(event) {

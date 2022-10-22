@@ -1,3 +1,5 @@
+// REGISTERING ALL THE NECESSARY HOOKS 
+
 import actorHooks from "./actor.js"
 import chatHooks from "./chat.js"
 import contextHooks from "./context.js"

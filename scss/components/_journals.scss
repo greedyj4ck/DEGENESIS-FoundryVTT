@@ -1,0 +1,152 @@
+// Journal styling
+
+.journal-sheet.journal-entry .journal-sidebar {
+    background: url(../ui/black_02.jpg);
+    background-position: top center;
+    background-size: auto;
+
+    .directory-header {
+        color: var(--text-white);
+    }
+
+    input {
+        background: none;
+        color: var(--text-white);
+        border: 1px solid var(--text-white);
+        transition: border 0.3s;
+
+        &:focus {
+            box-shadow: none;
+            border: 1px solid var(--degenesis-red);
+            transition: border 0.3s;
+        }
+    }
+
+    .pages-list {
+        color: var(--text-white);
+        transition: all 0.5s;
+
+        .page-heading {
+
+            &:hover {
+                color: var(--degenesis-red);
+                transition: all 0.3s;
+                text-shadow: none;
+            }
+        }
+
+        .heading {
+            &:hover {
+                color: var(--degenesis-red);
+                transition: all 0.3s;
+            }
+        }
+
+        .page-title:hover {
+            text-shadow: none;
+        }
+    }
+
+
+
+    .directory-item.active {
+        //border-color:var(--degenesis-blackred);
+
+        + :not(.active) {
+            border-top: 1px solid var(--degenesis-blackred);
+            transition: border 0.3s;
+
+            +.active {
+                border-top: 1px solid var(--degenesis-blackred);
+                transition: border 0.3s;
+            }
+        }
+    }
+
+    .directory-item:not(.active) {
+        +.active {
+            border-top: 1px solid var(--degenesis-blackred);
+            transition: border 0.3s;
+        }
+    }
+
+
+}
+
+.sheet.journal-entry .pages-list .directory-item.active {
+
+    &:first-of-type {
+
+        border-top: 1px solid var(--degenesis-blackred);
+        transition: border 0.3s;
+
+    }
+
+    &:last-of-type {
+
+        border-bottom: 1px solid var(--degenesis-blackred);
+        transition: border 0.3s;
+
+    }
+}
+
+.sheet.journal-entry .journal-entry-content {
+    border-radius: 0;
+    border: 0;
+    background: url(../ui/light_02.jpg);
+
+    .journal-header {
+
+        input {
+            background: none;
+            border-radius: 0;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border 0.3s;
+
+            &:focus {
+
+                box-shadow: none;
+            }
+        }
+    }
+
+    h1 {
+        border: none
+    }
+
+    h2 {
+        border: none
+    }
+
+}
+
+.app.window-app.journal-sheet .window-content {
+    background: url(../ui/light_02.jpg);
+
+    .journal-header {
+
+        input {
+            background: none;
+            border-radius: 0;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border 0.3s;
+
+            &:focus {
+
+                box-shadow: none;
+            }
+        }
+    }
+
+    h1 {
+        border: none
+    }
+
+    h2 {
+        border: none
+    }
+}
+
+.sheet.journal-entry .sidebar {
+    color: #000000;
+}

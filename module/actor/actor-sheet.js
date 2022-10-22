@@ -38,20 +38,24 @@ export class DegenesisActorSheet extends ActorSheet {
 
     /* -------------------------------------------- */
     /** @override */
-    getData() {
-        const data = super.getData();
-       
+
+    // Experimental ASYNC 
+
+    async getData() {
+        const data = await super.getData();
+
         data.data = data.actor.system
 
         // Used for Modifier item list
         data.modifyActions = DEG_Utility.getModificationActions()
 
-
-        this.prepareSheetData(data);
+        await this.prepareSheetData(data);
         return data;
     }
 
-    prepareSheetData(sheetData) {
+    // Experimental ASYNC 
+
+    async prepareSheetData(sheetData) {
         sheetData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
 
         sheetData.conceptIcon = this.actor.details.concept.value ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg` : "systems/degenesis/icons/blank.png"
@@ -81,7 +85,23 @@ export class DegenesisActorSheet extends ActorSheet {
         sheetData.arsenal = this.constructArnseal()
         sheetData.transportation = { header: game.i18n.localize("DGNS.Transportation"), type: 'transportation', items: this.actor.transportationItems, toggleDisplay: game.i18n.localize("DGNS.Dropped") }
 
+        // Enrich raw HTML for Text Editor and expand for new functionalities like links...
+        // Borrowed from moo-man's WRFP implementation ^_^ <3
+
+        sheetData.enrichment = await this._handleEnrichment()
+
     }
+
+    async _handleEnrichment() {
+        let enrichment = {}
+        enrichment["system.biography.value"] = await TextEditor.enrichHTML(this.actor.system.biography, { async: true, secrets: this.actor.isOwner, relativeTo: this.actor })
+        enrichment["system.gmnotes.value"] = await TextEditor.enrichHTML(this.actor.system.gmnotes, { async: true, secrets: this.actor.isOwner, relativeTo: this.actor })
+
+        return expandObject(enrichment)
+    }
+
+
+
 
 
     sortAttributesSkills() {
@@ -132,14 +152,14 @@ export class DegenesisActorSheet extends ActorSheet {
     }
 
     constructInventory() {
-        return {        
-            weapons:     { header: game.i18n.localize("DGNS.Weapons"),     type: 'weapon',     items: this.actor.weaponItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
-            armor:       { header: game.i18n.localize("DGNS.Armor"),       type: 'armor',      items: this.actor.armorItems.filter(i => !i.inContainer),  toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Worn") },
-            shields:     { header: game.i18n.localize("DGNS.Shields"),     type: 'shield',     items: this.actor.shieldItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
-            ammunition:  { header: game.i18n.localize("DGNS.Ammunition"),  type: 'ammunition', items: this.actor.ammunitionItems.filter(i => !i.inContainer) },
-            equipment:   { header: game.i18n.localize("DGNS.Equipments"),  type: 'equipment',  items: this.actor.equipmentItems.filter(i => !i.inContainer) },
-            mods:        { header: game.i18n.localize("DGNS.Mods"),        type: 'mod',        items: this.actor.modItems.filter(i => !i.inContainer) },
-            artifact:    { header: game.i18n.localize("DGNS.Artifact"),    type: 'artifact',   items: this.actor.artifactItems.filter(i => !i.inContainer) },
+        return {
+            weapons: { header: game.i18n.localize("DGNS.Weapons"), type: 'weapon', items: this.actor.weaponItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            armor: { header: game.i18n.localize("DGNS.Armor"), type: 'armor', items: this.actor.armorItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Worn") },
+            shields: { header: game.i18n.localize("DGNS.Shields"), type: 'shield', items: this.actor.shieldItems.filter(i => !i.inContainer), toggleable: true, toggleDisplay: game.i18n.localize("DGNS.Equipped") },
+            ammunition: { header: game.i18n.localize("DGNS.Ammunition"), type: 'ammunition', items: this.actor.ammunitionItems.filter(i => !i.inContainer) },
+            equipment: { header: game.i18n.localize("DGNS.Equipments"), type: 'equipment', items: this.actor.equipmentItems.filter(i => !i.inContainer) },
+            mods: { header: game.i18n.localize("DGNS.Mods"), type: 'mod', items: this.actor.modItems.filter(i => !i.inContainer) },
+            artifact: { header: game.i18n.localize("DGNS.Artifact"), type: 'artifact', items: this.actor.artifactItems.filter(i => !i.inContainer) },
 
             /**survivalEquipment : {header : game.i18n.localize("DGNS.Survival"), type: 'survivalEquipment', items : []},
             technology : {header : game.i18n.localize("DGNS.Technology"), type: 'technology', items : []},
@@ -156,7 +176,7 @@ export class DegenesisActorSheet extends ActorSheet {
             meleeWeapons: this.actor.weaponItems.filter(i => i.isMelee && i.equipped && !i.inContainer),
             rangedWeapons: this.actor.weaponItems.filter(i => i.isRanged && i.equipped && !i.inContainer),
             sonicWeapons: this.actor.weaponItems.filter(i => i.isSonic && i.equipped && !i.inContainer),
-            armor : this.actor.armorItems.filter(i => i.equipped && !i.inCointaer)
+            armor: this.actor.armorItems.filter(i => i.equipped && !i.inCointaer)
         }
     }
 
@@ -196,7 +216,7 @@ export class DegenesisActorSheet extends ActorSheet {
     /** @override */
     activateListeners(html) {
         super.activateListeners(html);
-        
+
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
 
@@ -228,22 +248,19 @@ export class DegenesisActorSheet extends ActorSheet {
     // Handle custom drop events (currently just putting items into containers)
     async _onDrop(event) {
         let transportTarget = $(event.target).parent(".transport-drop")[0]
-        if (transportTarget) 
-        {
+        if (transportTarget) {
             let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"))
             let itemData = await fromUuid(jsonData.uuid);
             if (itemData.type == "weapon" || itemData.type == "armor" || itemData.type == "ammunition" || itemData.type == "equipment" || itemData.type == "mod" || itemData.type == "shield" || itemData.type == "artifact")
-                this.actor.updateEmbeddedDocuments("Item", [{_id : itemData._id, "data.location" : transportTarget.dataset["itemId"]}])
+                this.actor.updateEmbeddedDocuments("Item", [{ _id: itemData._id, "data.location": transportTarget.dataset["itemId"] }])
         }
-        else 
-        {
-            let dropData =  JSON.parse(event.dataTransfer.getData("text/plain"))
-            if (dropData.type == "item")
-            {
+        else {
+            let dropData = JSON.parse(event.dataTransfer.getData("text/plain"))
+            if (dropData.type == "item") {
                 return this.actor.createEmbeddedDocuments("Item", [dropData.payload])
             }
         }
-            super._onDrop(event);
+        super._onDrop(event);
     }
 
     _onItemEdit(event) {
@@ -278,15 +295,44 @@ export class DegenesisActorSheet extends ActorSheet {
             this.actor.updateEmbeddedDocuments("Item", [itemData])
             return
         }
-        let value = getProperty(actorData, target)
-        if (value == index + 1) // If the last one was clicked, decrease by 1 
-            setProperty(actorData, target, index)
-        else // Otherwise, value = index clicked 
-            setProperty(actorData, target, index + 1) // If attribute selected 
-        let attributeElement = $(event.currentTarget).parents(".attribute");
-        if (attributeElement.length) { // Constrain attributes to be greater than 0 
-            if (getProperty(actorData, target) <= 0)
-                setProperty(actorData, target, 1)
+
+        // Fix for condition values being changed over their max/min value. 
+
+        if (target.split(".")[1] === "condition") {
+
+            let targetParent = $(event.currentTarget).parents(".diamond-row").attr("data-targetParent")
+            let parentValues = getProperty(this.actor, targetParent)
+
+            // Minimum is checked for permanent spore infestation, else 0
+            let minimum;
+            let maximum;
+
+            if (parentValues.override > 0) { maximum = parentValues.override } else { maximum = parentValues.max }
+            if (parentValues.permanent > 0) { minimum = parentValues.permanent } else { minimum = 0 }
+
+            if (index + 1 <= maximum && index + 1 > minimum) {
+                if (parentValues.value == index + 1) // If the last one was clicked, decrease by 1 
+                    setProperty(actorData, target, index)
+                else // Otherwise, value = index clicked 
+                    setProperty(actorData, target, index + 1) // If attribute selected 
+                let attributeElement = $(event.currentTarget).parents(".attribute");
+                if (attributeElement.length) { // Constrain attributes to be greater than 0 
+                    if (getProperty(actorData, target) <= 0)
+                        setProperty(actorData, target, 1)
+                }
+            }
+        } else {
+
+            let value = getProperty(actorData, target)
+            if (value == index + 1) // If the last one was clicked, decrease by 1 
+                setProperty(actorData, target, index)
+            else // Otherwise, value = index clicked 
+                setProperty(actorData, target, index + 1) // If attribute selected 
+            let attributeElement = $(event.currentTarget).parents(".attribute");
+            if (attributeElement.length) { // Constrain attributes to be greater than 0 
+                if (getProperty(actorData, target) <= 0)
+                    setProperty(actorData, target, 1)
+            }
         }
         this.actor.update(actorData);
     }
@@ -295,7 +341,7 @@ export class DegenesisActorSheet extends ActorSheet {
             return
         let actorData = this.actor.toObject()
         let index = Number($(event.currentTarget).attr("data-index"));
-        let target = "data.condition.spore.permanent"
+        let target = "system.condition.spore.permanent"
         let value = getProperty(actorData, target)
         if (value == index + 1) // If the last one was clicked, decrease by 1 
             setProperty(actorData, target, index)
@@ -317,7 +363,7 @@ export class DegenesisActorSheet extends ActorSheet {
             return;
         }
         if (target)
-            this.actor.update({[`${target}`] : !getProperty(this.actor, target)});
+            this.actor.update({ [`${target}`]: !getProperty(this.actor, target) });
     }
     _onRelationshipEdit(event) {
         let elem = $(event.currentTarget)
@@ -362,44 +408,44 @@ export class DegenesisActorSheet extends ActorSheet {
         let target = $(event.currentTarget).attr("data-target")
         if (target == "name" && !event.target.value)
             return this.actor.deleteEmbeddedDocuments("Item", [itemId])
-        item.update({target : event.target.value})
+        item.update({ target: event.target.value })
     }
     async _onSkillClick(event) {
         let skill = $(event.currentTarget).parents(".skill").attr("data-target")
         let skipDialog = event.ctrlKey
-        let { rollResults, cardData } = await this.actor.rollSkill(skill, {skipDialog})
+        let { rollResults, cardData } = await this.actor.rollSkill(skill, { skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     async _onInitiativeClick(event) {
-        const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens(true);     
+        const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens(true);
         if (tokens.length > 0 && game.combat !== null && game.combat.combatants.contents.length !== 0) {
-            
+
             const initiativeConfiguration = { createCombatants: true, rerollInitiative: true, initiativeOptions: {} };
             const combatantToken = game.combat.combatants.reduce((arr, c) => {
-                
-                if (this.actor.isToken == true){
-                    if (c.data.tokenId !== this.token.id ) return arr;
+
+                if (this.actor.isToken == true) {
+                    if (c.data.tokenId !== this.token.id) return arr;
                 } else {
-                    if (c.data.actorId !== this.actor.id ) return arr;
+                    if (c.data.actorId !== this.actor.id) return arr;
                     if (c.token.isLinked !== true) return arr;
                 }
 
-                if ( !initiativeConfiguration.rerollInitiative && c.initiative !== null ) return arr;
+                if (!initiativeConfiguration.rerollInitiative && c.initiative !== null) return arr;
                 arr.push(c.id);
                 return arr;
-              }, []);
-           await game.combat.rollInitiative(combatantToken,initiativeConfiguration);
-           return game.combat;
+            }, []);
+            await game.combat.rollInitiative(combatantToken, initiativeConfiguration);
+            return game.combat;
         }
-        else { 
-            DegenesisCombat.rollInitiativeFor(this.actor); 
+        else {
+            DegenesisCombat.rollInitiativeFor(this.actor);
         }
     }
 
     async _onFightClick(event) {
         let type = $(event.currentTarget).attr("data-roll")
         let skipDialog = event.ctrlKey
-        let { rollResults, cardData } = await this.actor.rollFightRoll(type, {skipDialog})
+        let { rollResults, cardData } = await this.actor.rollFightRoll(type, { skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
     async _onWeaponClick(event) {
@@ -407,6 +453,10 @@ export class DegenesisActorSheet extends ActorSheet {
         let skipDialog = event.ctrlKey
         let use = $(event.currentTarget).attr("data-use");
         let weapon = this.actor.items.get(weaponId)
+
+        // Add conditional for range weapons without ammo
+
+
         let { rollResults, cardData } = await this.actor.rollWeapon(weapon, { use, skipDialog })
         DegenesisChat.renderRollCard(rollResults, cardData)
     }
@@ -432,19 +482,19 @@ export class DegenesisActorSheet extends ActorSheet {
         for (let a of ammo) {
             if (magLeft <= 0)
                 break;
-            if (magLeft <= a.data.quantity) {
-                itemData.data.mag.current += magLeft;
-                a.data.quantity -= magLeft;
+            if (magLeft <= a.system.quantity) {
+                itemData.system.mag.current += magLeft;
+                a.system.quantity -= magLeft;
                 magLeft = 0;
             }
             else {
-                itemData.data.mag.current += a.data.quantity;
+                itemData.system.mag.current += a.system.quantity;
                 magLeft -= a.quantity;
-                a.data.quantity = 0;
+                a.system.quantity = 0;
             }
         }
         this.actor.updateEmbeddedDocuments("Item", [itemData])
-        this.actor.updateEmbeddedDocuments("Item", [ammo][0]) 
+        this.actor.updateEmbeddedDocuments("Item", [ammo][0])
     }
     async _onAggregateClick(event) {
         let group = $(event.currentTarget).parents(".inventory-group").attr("data-group")
@@ -471,7 +521,7 @@ export class DegenesisActorSheet extends ActorSheet {
         let itemId = $(event.currentTarget).attr("data-item-id")
         let item = this.actor.items.get(itemId);
         if (event.button == 2) {
-            item.update({"data.location" : ""})
+            item.update({ "data.location": "" })
         }
         else
             item.sheet.render(true)

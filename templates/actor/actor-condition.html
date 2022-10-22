@@ -18,7 +18,7 @@
    <div class="column-flex">
 
       <div class="ego bar-group">
-         <div class="diamond-row bar" data-target="system.condition.ego.value">
+         <div class="diamond-row bar" data-target="system.condition.ego.value" data-targetParent="system.condition.ego">
             {{#each data.condition.ego.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -36,12 +36,13 @@
             {{/each}}
          </div>
          <div class="text condition-title">
-            {{localize "DGNS.Ego"}}
+            {{localize "DGNS.Ego"}} <span class="condition-value">({{currentEgo data.condition.ego}}/{{data.condition.ego.max}})</span>
          </div>
+        
       </div>
 
       <div class="spore bar-group">
-         <div class="diamond-row bar" data-target="system.condition.spore.value">
+         <div class="diamond-row bar" data-target="system.condition.spore.value" data-targetParent="system.condition.spore">
             {{#each data.condition.spore.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -63,12 +64,12 @@
             {{/each}}
          </div>
          <div class="text condition-title">
-            {{localize "DGNS.Spore"}}
+            {{localize "DGNS.Spore"}} <span class="condition-value">({{data.condition.spore.value}}/{{data.condition.spore.max}})<span class="condition-value-permanent">{{data.condition.spore.permanent}} {{localize "DGNS.Permanent" }}</span></span>
          </div>
       </div>
 
       <div class="fleshwounds bar-group">
-         <div class="diamond-row bar" data-target="system.condition.fleshwounds.value">
+         <div class="diamond-row bar" data-target="system.condition.fleshwounds.value" data-targetParent="system.condition.fleshwounds">
             {{#each data.condition.fleshwounds.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -86,12 +87,12 @@
             {{/each}}
          </div>
          <div class="text condition-title">
-            {{localize "DGNS.Fleshwounds"}}
+            {{localize "DGNS.Fleshwounds"}}<span class="condition-value">({{data.condition.fleshwounds.value}}/{{data.condition.fleshwounds.max}})</span>
          </div>
       </div>
 
       <div class="trauma bar-group">
-         <div class="diamond-row bar" data-target="system.condition.trauma.value">
+         <div class="diamond-row bar" data-target="system.condition.trauma.value" data-targetParent="system.condition.trauma">
             {{#each data.condition.trauma.diamonds as |diamond index|}}
                {{#if diamond.locked}}
                <div class="diamond" data-index={{index}}>
@@ -109,7 +110,7 @@
             {{/each}}
          </div>
          <div class="text condition-title">
-            {{localize "DGNS.Trauma"}}
+            {{localize "DGNS.Trauma"}}<span class="condition-value">({{data.condition.trauma.value}}/{{data.condition.trauma.max}})</span>
          </div>
       </div>
    </div>

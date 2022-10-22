@@ -27,47 +27,46 @@ export class DegenesisItem extends Item {
 
     }
 
-    prepareOwnedData() 
-    {
+    prepareOwnedData() {
+
+        // Apply item modifications first, not after values are set for weapons.
+        if (this.slots)
+            this._applyMods()
+
+        // If item is a weapon: prepare weapon data.        
         if (this.type == "weapon")
             this.prepareWeapon()
+
         if (this.type == "transportation")
-            this.itemsWithin = this.actor.items.filter(i => i.location == this.id)    
-         // Apply item modifications
-        
-            if (this.slots)
-            this._applyMods()
+            this.itemsWithin = this.actor.items.filter(i => i.location == this.id)
     }
 
     prepareWeapon() {
         let dice = {
-            attack : undefined,
-            defense : undefined,
-            effective : undefined,
-            far : undefined,
-            extreme : undefined
+            attack: undefined,
+            defense: undefined,
+            effective: undefined,
+            far: undefined,
+            extreme: undefined
         }
 
-        if (!this.isSonic)
-        {
+        if (!this.isSonic) {
             dice.attack = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier
             dice.defense = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "defense").diceModifier
         }
-        else if (this.isSonic)
-        {
+        else if (this.isSonic) {
             dice.attack = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier
         }
 
-        if (this.isRanged)
-        {
+        if (this.isRanged) {
             dice.effective = this.ownerSkillTotal + this.handling + this.actor.modifiers.forSheet("weapon", this.skill, "attack").diceModifier,
-            dice.far = dice.effective - 4 > 0  ? dice.effective - 4 : 0 ,
-            dice.extreme = dice.effective - 8 > 0  ? dice.effective - 8 : 0 
+                dice.far = dice.effective - 4 > 0 ? dice.effective - 4 : 0,
+                dice.extreme = dice.effective - 8 > 0 ? dice.effective - 8 : 0
         }
 
         this.system.dice = dice // CHECK FOR DATA.DICE
 
-        
+
     }
 
 
@@ -75,8 +74,7 @@ export class DegenesisItem extends Item {
 
     //#region General Functions
 
-    async postToChat()
-    {
+    async postToChat() {
         let chatData = this.dropdownData();
 
         chatData.item = this;
@@ -86,8 +84,8 @@ export class DegenesisItem extends Item {
         let html = await renderTemplate("systems/degenesis/templates/chat/post-item.html", chatData)
         let cardData = DEG_Utility.chatDataSetup(html)
         cardData.flags = {
-            degenesis : {
-                transfer : this.toObject()
+            degenesis: {
+                transfer: this.toObject()
             }
         }
         ChatMessage.create(cardData);
@@ -153,8 +151,7 @@ export class DegenesisItem extends Item {
     }
 
 
-    fullDamage(triggers, {body, force, modifier}) 
-    {
+    fullDamage(triggers, { body, force, modifier }) {
         let bodyTotal = this.actor.attributes.body.value + (body || 0)
         let forceTotal = this.actor.skills.force.value + (force || 0)
 
@@ -169,23 +166,22 @@ export class DegenesisItem extends Item {
 
     static matchAmmo(weapon, ammo) {
         return ammo.filter(a => a.type == "ammunition" && a.name == weapon.Caliber)
-    }   
+    }
 
     //#endregion
 
     //#region Transportation Functions
     processTransportation() {
         let enc = {
-            total : this.encumbrance,
-            self : this.encumbrance,
-            carrying : 0,
-            items : []
+            total: this.encumbrance,
+            self: this.encumbrance,
+            carrying: 0,
+            items: []
         }
         enc.items = this.actor.items.filter(i => i.location == this.id)
         if (this.mode && !this.dropped)
             enc.carrying += DEGENESIS.transportationEncumbranceCalculation[this.mode](enc.items, this.transportValue)
-        else if (this.dropped)
-        {
+        else if (this.dropped) {
             enc.total = 0
             enc.carrying = 0
             enc.self = 0
@@ -194,7 +190,7 @@ export class DegenesisItem extends Item {
         return enc
     }
     //#endregion
- 
+
     //#region Dropdown Data
     _potentialDropdownData() {
         return { text: `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>:${this.effect}<br><br><b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${this.rules}` }
@@ -329,6 +325,36 @@ export class DegenesisItem extends Item {
         }
     }
 
+    _modDropdownData() {
+
+        let changes = [];
+
+        let text = `${this.description}`
+        let data = foundry.utils.deepClone(this.system);
+
+        for (let change of data.changes) {
+            changes.push(`${game.i18n.localize("DGNS." + this.capitalize(change.key))}: ${change.mode} ${change.value}`)
+        }
+
+        return { text: text + '\nChanges:\n' + changes}
+
+    }
+
+
+    //#endregion
+
+
+
+    //#region Helpers
+
+    capitalize(string) { // Capitalize first letter of a string
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+
+
+
+
     //#endregion
 
     //#region Getters
@@ -375,7 +401,7 @@ export class DegenesisItem extends Item {
         let container = this.actor.items.get(this.location)
         if (container && container.type == "transportation")
             return true
-        else 
+        else
             return false;
     }
 
@@ -391,11 +417,11 @@ export class DegenesisItem extends Item {
 
     get Group() {
         if (this.group && DEGENESIS[`${this.type}Groups`])
-            return DEGENESIS[`${this.type}Groups`][this.group]       
+            return DEGENESIS[`${this.type}Groups`][this.group]
     }
 
     get DamageType() {
-        return DEGENESIS.damageTypes[this.damageType]   
+        return DEGENESIS.damageTypes[this.damageType]
     }
 
     get DamageBonus() {
@@ -424,7 +450,7 @@ export class DegenesisItem extends Item {
                 formattedQualities[q.name] = qualityString
             })
         }
-        
+
         return formattedQualities
 
     }
@@ -434,8 +460,8 @@ export class DegenesisItem extends Item {
     }
 
     get ModifyNumber() {
-        if(this.modifyNumber>0){
-            return '+'+this.modifyNumber;
+        if (this.modifyNumber > 0) {
+            return '+' + this.modifyNumber;
         }
         else {
             return this.modifyNumber;
@@ -480,7 +506,7 @@ export class DegenesisItem extends Item {
     get mode() { return this.system.mode }
     get modifyType() { return this.system.type }
     get modifyNumber() { return this.system.number }
-    get modifyShowName() { return this.system.showName}
+    get modifyShowName() { return this.system.showName }
     get origin() { return this.system.origin }
     get prerequisite() { return this.system.prerequisite }
     get qualities() { return this.system.qualities }
@@ -497,7 +523,7 @@ export class DegenesisItem extends Item {
     get secondarySkill() { return this.system.secondarySkill }
 
     //      Processed data getters
-    get dice() { return this.system.dice}
+    get dice() { return this.system.dice }
 
     //#endregion
 

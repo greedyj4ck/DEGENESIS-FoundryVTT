@@ -30,5 +30,18 @@ export default function () {
             return ShowInventoryHeaders()
         })
 
+        Handlebars.registerHelper('moreThanSixDice', function(rolls) {
+            if(rolls.length > 6){return true;}else{return false;}
+                })
+
+        Handlebars.registerHelper('isSuccess', function(result){
+            if(result ==='success'){return true;}else{return false}
+        })
+
+        Handlebars.registerHelper('currentEgo', function(ego){
+            console.log(ego)
+            return (ego.max - ego.value)
+        })
+
     })
 }

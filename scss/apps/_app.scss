@@ -4,7 +4,7 @@
 	header.window-header.flexrow.draggable.resizable {
 		font-family: $primary-header-font;
 		font-weight: 100;
-		background-color: $bg-window-header;
+		background-color: var(--bg-window-header);
 	}
 }
 .app.window-app {

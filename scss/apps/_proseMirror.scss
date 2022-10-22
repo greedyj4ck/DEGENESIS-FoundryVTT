@@ -1,0 +1,47 @@
+/* Styling proseMirror editor */
+
+.editor.prosemirror {
+    margin-top: 2px;
+
+    .editor-menu {
+        background: none;
+    }
+
+
+    button {
+        color: #000;
+
+        &:hover,
+        &:active {
+            color: var(--text-white);
+            background-color: var(--degenesis-red);
+        }
+    }
+
+    button.pm-dropdown {
+        background-color: var(--bg-black);
+        color: var(--text-white);
+
+        .fa-chevron-down {
+            color: var(--text-white);
+
+            &:hover {
+                color: var(--text-white)
+            }
+        }
+
+        ul {
+            background-color: var(--bg-black);
+            color: var(--text-white)
+        }
+
+        li {
+
+            &:hover {
+                background-color: var(--degenesis-red);
+                color: var(--text-white);
+            }
+
+        }
+    }
+}

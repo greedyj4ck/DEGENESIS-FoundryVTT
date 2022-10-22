@@ -81,7 +81,7 @@ export class DegenesisActor extends Actor {
 
                 this.prepareItems();
 
-                // # Conditional for Automatic Encumbrance penalty
+                // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
                 if (AutomateEncumbrancePenalty()) { this.modifiers.addEncumbranceModifiers(this) }
 
                 this.general.actionModifier = this.modifiers.action.D
@@ -306,7 +306,8 @@ export class DegenesisActor extends Actor {
             title: cardTitle,
             template,
             speaker: {
-                alias: this.system.name
+                alias: this.name,
+                portrait: this.img,
             }
         }
     }

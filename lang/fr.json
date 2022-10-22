@@ -308,6 +308,8 @@
   "DGNS.SecondaryNeedsDifficulty": "Secondary rolls require a difficulty to be set on the first roll",
   "DGNS.Post": "Post",
   "DGNS.DamageType": "Damage Type",
+  "DGNS.Type" : "Type",
+  "DGNS.Permanent":"Permanent",
 
   "DGNS.AreaDamageDescription": "L’arme ne vise pas une cible directement, mais couvre une zone exprimée en degrés. Tout ce qui se trouve à l’intérieur de cette zone subit des dégâts.",
   "DGNS.ArmorpiercingDescription": "Ce projectile extrêmement compact et rapide perfore les armures comme du papier. Les projectiles antiblindage ne génèrent pas foncière-ment plus de dégâts, mais ils ignorent les propriétés spéciales qu’une armure peut posséder, comme Massif ou Pare-balles . cf KAT Edge p154",

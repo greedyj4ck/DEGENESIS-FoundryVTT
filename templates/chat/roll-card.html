@@ -1,20 +1,28 @@
 <h2>{{{title}}}</h2>
-<div>
+
+<div class="roll-summary">
+  <div>{{successes}}S</div>
+  <div>{{triggers}}T</div>
+</div>
+{{#if result}}<h2 class="result {{#if (isSuccess enResult)}}success{{else}}failure{{/if}}">{{result}}</h2>{{/if}}
+
+<!-- Sonic weaponry: Target mentally defends against the highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
+
+{{#if mostSuccesses}}
+<h2 class="defend">{{localize "UI.SonicDefenseDifficulty"}}: {{mostSuccesses}}</h2>
+{{/if}}
+
+<div class="chat-roll-dice{{#if (moreThanSixDice rolls) }} two-rows-dice {{/if}}">
   {{#each rolls as |roll r|}}
-  <img src="{{roll.img}}" width="25" height="25" />
-  {{/each}} {{#if secondaryRolls}}
-  <hr />
-  {{#each secondaryRolls as |roll r|}}
-  <img src="{{roll.img}}" width="25" height="25" />
-  {{/each}} {{/if}}
+  <img src="{{roll.img}}" class="chat-roll-die" />
+  {{/each}}
 </div>
 
-<div>{{localize "UI.Successes"}}: {{successes}}</div>
-<div>{{localize "UI.Triggers"}}: {{triggers}}</div>
-{{#if result}}
-<div>{{localize "UI.Result"}}: {{result}}</div>
-{{/if}}
-<!-- Sonic weaponry: Target mentally defends against the highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
-{{#if mostSuccesses}}
-<div>{{localize "UI.SonicDefenseDifficulty"}}: {{mostSuccesses}}</div>
-{{/if}}
+
+{{#if secondaryRolls}}
+<hr />
+<div class="chat-roll-dice{{#if (moreThanSixDice secondaryRolls) }} two-rows-dice {{/if}} style=" margin-top: -31px;">
+  {{#each secondaryRolls as |roll r|}}
+  <img src="{{roll.img}}" class="chat-roll-die" />
+  {{/each}}
+</div>{{/if}}
