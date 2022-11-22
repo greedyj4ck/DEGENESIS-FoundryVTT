@@ -32,4 +32,4 @@ game.importData = function () {
         }
     }))
     return weapons
-}
+} 
