@@ -492,7 +492,7 @@
   "DGNS.ModEditWarning": "Cambiamenti effettuati su una modifica asseggnata non verranno salvati.",
 
   "DGNS.SettingsEncumbrancePenalty": "Penalità automatica per l'Ingombro",
-  "DGNS.SettingsEncumbrancePenaltyHelper": "Seleziona per calcolare automaticamente la penalità del dado per tutti i tiri. Ricarica il client (F5) dopo aver modificato questa impostazione.",
+  "DGNS.SettingsEncumbrancePenaltyHelper": "Seleziona per calcolare automaticamente la penalità del dado per tutti i tiri.",
   "DGNS.SettingsMinimumOneAN": "Tiro di un singolo dado per un Numero Azione negativo",
   "DGNS.SettingsMinimumOneANHelper": "Per modificatori negativi che eccedono il Numero Azione, forza il tiro di un singolo dado.",
   "DGNS.SettingsShowInventoryHeaders": "Mostra le intestazioni nell'inventario",

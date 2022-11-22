@@ -492,7 +492,7 @@
   "DGNS.ModEditWarning": "Les changements effectués sur une modification jointe ne seront pas enregistrés.",
 
   "DGNS.SettingsEncumbrancePenalty": "Pénalité automatique pour les charges",
-  "DGNS.SettingsEncumbrancePenaltyHelper": "Sélectionnez cette option pour calculer automatiquement les dés de pénalité pour tous les jets. Rafraîchissez le client (F5) après avoir modifié ce paramètre.",
+  "DGNS.SettingsEncumbrancePenaltyHelper": "Sélectionnez cette option pour calculer automatiquement les dés de pénalité pour tous les jets.",
   "DGNS.SettingsMinimumOneAN": "Un seul jet de dé pour un nombre d'actions négatif",
   "DGNS.SettingsMinimumOneANHelper": "Pour les modificateurs négatifs dépassant le nombre d'actions, forcez un seul jet de dé.",
   "DGNS.SettingsShowInventoryHeaders": "Afficher les en-têtes dans l'inventaire",

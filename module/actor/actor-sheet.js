@@ -212,6 +212,24 @@ export class DegenesisActorSheet extends ActorSheet {
         li.toggleClass("expanded");
     }
 
+    // Special set of instructions for fixing transportation items 
+    _dropdownTransportation(event){
+        event.preventDefault()
+        let li = $(event.currentTarget).parents(".item")
+        let summary = li.children(".item-summary");
+        if (li.hasClass("expanded")) // If expansion already shown - remove
+        { 
+         summary.slideUp(200);
+        }
+
+
+        else {
+            // Add a div with the item summary belowe the item
+            summary.slideDown(200, ()=>{});
+        }
+        li.toggleClass("expanded");
+    }
+
     /* -------------------------------------------- */
     /** @override */
     activateListeners(html) {
@@ -383,7 +401,11 @@ export class DegenesisActorSheet extends ActorSheet {
     _onDropdown(event) {
         let itemId = $(event.currentTarget).parents(".item").attr("data-item-id")
         let item = this.actor.items.get(itemId)
-        this._dropdown(event, item.dropdownData())
+        if(item.type !== 'transportation'){this._dropdown(event, item.dropdownData())}else{
+            this._dropdownTransportation(event)
+
+        }
+        
     }
     _onQualityDropdown(event) {
         let type = $(event.currentTarget).attr("data-type")

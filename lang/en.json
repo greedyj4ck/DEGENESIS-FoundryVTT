@@ -492,7 +492,7 @@
   "DGNS.ModEditWarning": "Changes made on an attached modification will not be saved.",
 
   "DGNS.SettingsEncumbrancePenalty": "Automatic penalty for Encumbrance",
-  "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls. Refresh client (F5) after changing this setting.",
+  "DGNS.SettingsEncumbrancePenaltyHelper": "Select to automatically calculate penalty dice for all rolls.",
   "DGNS.SettingsMinimumOneAN": "Single die roll for negative Action Number",
   "DGNS.SettingsMinimumOneANHelper": "For negative modifiers exceeding the Action Number, force a single die roll.",
   "DGNS.SettingsShowInventoryHeaders": "Show headers in inventory",

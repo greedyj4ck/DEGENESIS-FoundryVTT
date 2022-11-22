@@ -475,7 +475,7 @@
   "DGNS.ModOverride": "Überschreiben",
   "DGNS.ModEditWarning": "Änderungen an einer montierten Modifikation werden nicht gespeichert.",
   "DGNS.SettingsEncumbrancePenalty": "Automatische Abzüge durch Belastung",
-  "DGNS.SettingsEncumbrancePenaltyHelper": "Auswählen, um automatisch sämtliche Mali durch Belastung zu berechnen. Anschließend Seite neu laden (F5).",
+  "DGNS.SettingsEncumbrancePenaltyHelper": "Auswählen, um automatisch sämtliche Mali durch Belastung zu berechnen.",
   "DGNS.SettingsMinimumOneAN": "Im Fall eines negativen Aktionswerts mindestens einen Würfel werfen",
   "DGNS.SettingsMinimumOneANHelper": "Ist der Aktionswert negativ, wird ein Würfel für den Mindestaktionswert geworfen",
   "DGNS.SettingsShowInventoryHeaders": "Überschriften im Inventar anzeigen",

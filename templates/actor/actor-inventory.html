@@ -170,7 +170,7 @@
    </div>      
 <div class="inventory-list item-list">
    {{#each transportation.items as |item w|}}
-      <div class="weapon item transport-drop" data-item-id="{{item.id}}" {{#if item.dropped}} style="opacity: 0.5" {{/if}}>
+      <div class="weapon item transport-drop expanded" data-item-id="{{item.id}}" {{#if item.dropped}} style="opacity: 0.5" {{/if}}>
       <a class="weapon-name dropdown">{{item.name}}</a>
       <div class="weapon-characteristics">
          <div class="legend-name equipped">
