@@ -413,8 +413,7 @@ export class DegenesisActorSheet extends ActorSheet {
     async _onSkillClick(event) {
         let skill = $(event.currentTarget).parents(".skill").attr("data-target")
         let skipDialog = event.ctrlKey
-        let { rollResults, cardData } = await this.actor.rollSkill(skill, { skipDialog })
-        DegenesisChat.renderRollCard(rollResults, cardData)
+        await this.actor.rollSkill(skill, { skipDialog })
     }
     async _onInitiativeClick(event) {
         const tokens = this.actor.isToken ? [this.actor.token] : this.actor.getActiveTokens(true);

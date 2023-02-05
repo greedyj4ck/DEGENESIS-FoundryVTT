@@ -3,6 +3,7 @@ import { DEG_Utility } from "../utility.js";
 import { DegenesisDice } from "../dice.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
 import ModifierManager from "../modifier-manager.js";
+import { DegenesisChat } from "../chat.js";
 
 import { AutomateEncumbrancePenalty } from "../settings.js"
 
@@ -315,8 +316,13 @@ export class DegenesisActor extends Actor {
     //#endregion
 
     //#region Roll Processing
-    async rollSkill(skill, { skipDialog = false }) {
+    async rollSkill(skill, { skipDialog = false, override = {}}) {
         let { dialogData, cardData, rollData } = this.setupSkill(skill)
+
+        for (const key in override) {
+            dialogData[key] = override[key]
+        }
+
         if (!skipDialog)
             rollData = await DegenesisDice.showRollDialog({ dialogData, rollData })
         else {
@@ -331,6 +337,9 @@ export class DegenesisActor extends Actor {
             await this.handleSecondaryRoll({ dialogData, cardData, rollData, rollResults }, this.setupSkill(rollData.secondary))
 
         this.postRollChecks(rollResults, skill)
+
+        DegenesisChat.renderRollCard(rollResults, cardData)
+
         return { rollResults, cardData }
     }
 
