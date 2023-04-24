@@ -1,0 +1,51 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        <div class="header-column header-line">
+            <div class="square little left"></div>
+            <svg class="start-line" height="11" width="9%">
+                <line x1="0%" y1="5" x2="88%" y2="5" style="stroke-width:1"></line>
+                <line x1="88%" y1="5" x2="100%" y2="11" style="stroke-width:1"></line>
+             </svg>
+            <svg class="title-line middle-left" height="11" width="100%">
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
+             </svg>
+            <div class="middle-name">{{localize "DGNS.TypeFromHell"}}</div>
+            <svg class="title-line middle-right" height="11" width="100%">
+               <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
+            </svg>
+            <svg class="end-line" height="11" width="9%">
+                <line x1="0%" y1="11" x2="12%" y2="5" style="stroke-width:1"></line>
+                <line x1="12%" y1="5" x2="100%" y2="5" style="stroke-width:1"></line>
+             </svg>
+            <div class="square little right"></div>
+        </div>
+        <!-- NEW ROW -->
+        <div class="break"></div>
+        <div class="header-column char-info left">
+            
+            <!-- PLACEHOLDER FOR INITIATIVE AND MOVEMENT STATS -->
+            just a place holder for stuff
+        </div>
+        <div class="img-frame">
+            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                width="100" />
+        </div>
+        <div class="header-column char-info right">
+            <div class="header-about">
+                <div class="white-title">
+                    <h3>{{ localize "DGNS.ABOUT" }}</h3>
+                </div>
+                <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
+            
+               
+        </div>
+        <div class="break" ></div>
+    
+        
+    
+    </header>
+
+
+</form>

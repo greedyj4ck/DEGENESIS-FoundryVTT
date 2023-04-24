@@ -14,6 +14,7 @@ AUTHORS: MOO MAN, DARKHAN, CLEMEVILZZ, KRISTJANLAANE, GREEDYJ4CK, PABRUVA
 import { DegenesisItemSheet } from "./module/item/item-sheet.js";
 import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
+import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DEGENESIS } from "./module/config.js";
 import { DegenesisCombat } from "./module/combat-degenesis.js";
@@ -51,8 +52,12 @@ Hooks.once("init", async function () {
   };
 
   // REGISTER SHEET APPLICATION CLASSES
+  // MOVED TO ARROW FUNCTION FOR BETTER HANDLING 
+
+
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("degenesis", DegenesisActorSheet, { makeDefault: true });
+  Actors.registerSheet("degenesis", DegenesisActorSheet, { types: ["character"], makeDefault: true });
+  Actors.registerSheet("degenesis", DegenesisFromHellSheet, { types: ["fromHell"], makeDefault: true})
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
 

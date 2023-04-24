@@ -4,6 +4,7 @@
   "ACTOR.TypeCharacter": "Character",
   "ACTOR.TypeNpc": "NPC",
   "ACTOR.TypeAbberant": "From Hell",
+  "ACTOR.TypeFromHell": "From Hell",
 
   "UI.SlotCost": "Slot Cost",
   "UI.Effect": "Effect",

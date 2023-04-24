@@ -3419,6 +3419,107 @@ a.diamond:hover .square.red.perma {
   height: 100%;
 }
 
+.app.window-app.degenesis.sheet.fromHell .window-content {
+  padding: 5px;
+  overflow-y: hidden;
+  background: rgb(32, 32, 32);
+  background: url(../ui/fromHell_BG.jpg);
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: "Avenir";
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell header .img-frame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 108px;
+          flex: 0 0 108px;
+  z-index: 1000;
+  height: 108px;
+  background-image: url(../images/character\ frame\ white.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  border: none;
+}
+.app.window-app.degenesis.sheet.fromHell header .char-info {
+  height: 108px;
+}
+.app.window-app.degenesis.sheet.fromHell header > div.header-column.header-line > svg > line {
+  stroke: rgb(255, 255, 255) !important;
+}
+.app.window-app.degenesis.sheet.fromHell .header-about {
+  padding: 5px;
+  height: 100%;
+}
+.app.window-app.degenesis.sheet.fromHell .header-about-textarea {
+  display: inline-block;
+  padding-top: 5px;
+  height: 100%;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea {
+  height: 100%;
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: white;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-button {
+  display: inline-block;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-track-piece {
+  display: none;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-corner {
+  display: none;
+}
+.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-resizer {
+  display: none;
+}
+.app.window-app.degenesis.sheet.fromHell .white-title {
+  text-transform: uppercase;
+  width: 100%;
+  background-image: url(../images/title\ border\ white.svg);
+  background-repeat: no-repeat;
+  color: black;
+  background-size: 100%;
+  background-position: center;
+  height: 14px;
+}
+.app.window-app.degenesis.sheet.fromHell .white-title h3 {
+  text-align: center;
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  font-weight: 300;
+  border-bottom: 0px;
+}
+
 /* SHEET: _ITEM.SCSS */
 .app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
   margin-top: -15px;

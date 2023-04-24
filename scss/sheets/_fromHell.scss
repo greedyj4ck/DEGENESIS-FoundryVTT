@@ -1,0 +1,137 @@
+// V.01 Early alpha
+// Main CSS selector for fromHell character sheet
+
+.app.window-app.degenesis.sheet.fromHell
+{
+
+    .window-content {
+        padding: 5px;
+        overflow-y: hidden;
+        background: $fh-window-bg;
+        background: url(../ui/fromHell_BG.jpg);
+        background-size: cover;
+        background-position: 50% 0%;
+        font-family: $sans-serif-content-font;
+        font-weight: 300;
+        color: $text-white;
+      }
+   
+  
+      header {
+
+
+        .img-frame {
+            display: flex;
+            flex: 0 0 108px;
+            z-index: 1000;
+            height: 108px;
+            background-image: url(../images/character\ frame\ white.svg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position: center;
+            border: none;
+          }
+
+
+        .char-info {
+          
+          height: 108px;
+
+          &.right {
+            
+          }
+
+        }
+
+        > div.header-column.header-line > svg > line {
+            stroke: $text-white !important;
+          }
+
+
+      }
+
+      // GENERAL UI
+
+      .header-about{padding: 5px;
+      height: 100%;}
+
+      .header-about-textarea{
+        display:inline-block;
+        padding-top: 5px;
+        height: 100%;
+      }
+
+      .fh-textarea {
+      
+        height: 100%;
+        color: $text-white;
+
+        &::-webkit-scrollbar {
+          width: 4px;
+          border: none;
+          background-color: transparent;
+        }
+        &::-webkit-scrollbar:hover::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          width: 4px;
+          border: none;
+          background-color: transparent;
+          border-radius: 0px;
+          background-color: white;
+        }
+        
+        &::-webkit-scrollbar-track {
+          width: 4px;
+          border: none;
+          background-color: transparent;
+          background-image: url("../images/scrolltrack.png");
+          background-position: center;
+          background-repeat: repeat-y;
+          border-radius: 0px;
+          -webkit-box-shadow: none;
+                  box-shadow: none;
+        }
+        
+        &::-webkit-scrollbar-button {
+          display: inline-block;
+        }
+        
+        &::-webkit-scrollbar-track-piece {
+          display: none;
+        }
+        
+        &::-webkit-scrollbar-corner {
+          display: none;
+        }
+        
+        &::-webkit-resizer {
+          display: none;
+        }
+        
+      }
+
+      .white-title {
+        text-transform: uppercase;
+        width: 100%;
+        background-image: url(../images/title\ border\ white.svg);
+        background-repeat: no-repeat;
+        color: black;
+        background-size: 100%;
+        background-position: center;
+        height: 14px;
+
+             h3 {
+              text-align: center;
+                margin: 0 0 0 10px; 
+                font-size: 12px;
+                font-weight: 300;
+                border-bottom: 0px;
+              }
+            
+        
+      }
+ 
+}

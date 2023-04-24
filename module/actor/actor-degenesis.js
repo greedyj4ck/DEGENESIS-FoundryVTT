@@ -95,6 +95,19 @@ export class DegenesisActor extends Actor {
             catch (e) { console.error(e); }
         }
 
+        // FromHell Actor Type
+
+        if (this.type === "fromHell") {
+
+            try {
+                 super.prepareData();
+
+                // Here will come data preparation code for  actor
+
+            }
+            catch (e) { console.error(e); }
+        }
+
         // Npc actor type
         if (this.type === "npc") {
 
@@ -106,6 +119,8 @@ export class DegenesisActor extends Actor {
             }
             catch (e) { console.error(e); }
         }
+
+
 
         // Abberant actor type
 
