@@ -26,7 +26,7 @@ export class DegenesisDice
     
             switch(rollMode){
 
-                case 'roll':
+                case 'publicroll':
                     usersArr = null;
                     break;
                 case 'selfroll':

@@ -39,7 +39,7 @@ export default function () {
         })
 
         Handlebars.registerHelper('currentEgo', function(ego){
-            console.log(ego)
+            
             return (ego.max - ego.value)
         })
 

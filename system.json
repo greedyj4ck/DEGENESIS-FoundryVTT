@@ -2,131 +2,156 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "compatibility": {
-    "minimum": 10,
-    "verified": "10.288",
-    "maximum": 10
+    "minimum": "11",
+    "verified": "11.299",
+    "maximum": "11"
   },
-  "templateVersion": 2,
-  "authors": 
-  [{
-    "name": "Moo Man",
-    "discord": "Moo Man#7518"
-  },
-  {
-    "name": "Darkhan",
-    "discord": "Darkhan#1534"
-  },
-  {
-    "name": "ClemEvilzz",
-    "discord": "societe simulator#2110"
-  },
-  {
-    "name": "KristjanLaane"
-  },
-  {
-    "name": "Greedyj4ck",
-    "discord": "GЯΣΣDYJΛCK#2690"
-  }],
-
-
-  "esmodules": ["degenesis.js"],
-  "styles": ["styles/degenesis.css", "styles/animate.min.css"],
-  "scripts" : [
+  "authors": [
+      {
+      "name": "Greedyj4ck",
+      "discord": "GЯΣΣDYJΛCK#2690",
+      "flags": {}
+    },
+    {
+      "name": "Moo Man",
+      "discord": "Moo Man#7518",
+      "flags": {}
+    },
+    {
+      "name": "Darkhan",
+      "discord": "Darkhan#1534",
+      "flags": {}
+    },
+    {
+      "name": "ClemEvilzz",
+      "discord": "societe simulator#2110",
+      "flags": {}
+    },
+    {
+      "name": "KristjanLaane",
+      "flags": {}
+    }
+  
+  ],
+  "esmodules": [
+    "degenesis.js"
+  ],
+  "styles": [
+    "styles/degenesis.css",
+    "styles/animate.min.css"
+  ],
+  "scripts": [
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
-   
-],
-  "packs": [    
-  {
-    "label": "Legacies",
-    "type": "Item",
-    "name": "legacies",
-    "path": "packs/legacies.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Weapons",
-    "type": "Item",
-    "name": "weapons",
-    "path": "packs/weapons.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Armor & Shields",
-    "type": "Item",
-    "name": "armor-and-shields",
-    "path": "packs/armor-and-shields.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Ammunitions",
-    "type": "Item",
-    "name": "ammunitions",
-    "path": "packs/ammunitions.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Equipment",
-    "type": "Item",
-    "name": "equipment",
-    "path": "packs/equipment.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-{
-    "label": "Potentials",
-    "type": "Item",
-    "name": "potentials",
-    "path": "packs/potentials.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  },
-  {
-    "label": "Maps",
-    "type": "Scene",
-    "name": "maps",
-    "path": "packs/maps.db",
-    "system": "degenesis",
-    "package": "degenesis"
-  }
-
-],
+  ],
+  "packs": [
+    {
+      "label": "Legacies",
+      "type": "Item",
+      "name": "legacies",
+      "banner": "/systems/degenesis/ui/packs/legacies-pack.webp",
+      "path": "packs/legacies.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Weapons",
+      "type": "Item",
+      "banner": "/systems/degenesis/ui/packs/weapons-pack.webp",
+      "name": "weapons",
+      "path": "packs/weapons.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Armor & Shields",
+      "type": "Item",
+      "name": "armor-and-shields",
+      "banner": "/systems/degenesis/ui/packs/armor-shields-pack.webp",
+      "path": "packs/armor-and-shields.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Ammunitions",
+      "type": "Item",
+      "name": "ammunitions",
+      "banner": "/systems/degenesis/ui/packs/ammo-pack.webp",
+      "path": "packs/ammunitions.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Equipment",
+      "type": "Item",
+      "name": "equipment",
+      "banner": "/systems/degenesis/ui/packs/equipment-pack.webp",
+      "path": "packs/equipment.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Potentials",
+      "type": "Item",
+      "name": "potentials",
+      "banner": "/systems/degenesis/ui/packs/potentials-pack.webp",
+      "path": "packs/potentials.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    },
+    {
+      "label": "Maps",
+      "type": "Scene",
+      "name": "maps",
+      "banner": "/systems/degenesis/ui/packs/maps-pack.webp",
+      "path": "packs/maps.db",
+      "system": "degenesis",
+      "private": false,
+      "flags": {}
+    }
+  ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "lang/en.json",
+      "flags": {}
     },
     {
       "lang": "es",
       "name": "Spanish",
-      "path": "lang/es.json"
+      "path": "lang/es.json",
+      "flags": {}
     },
     {
       "lang": "fr",
       "name": "French",
-      "path": "lang/fr.json"
+      "path": "lang/fr.json",
+      "flags": {}
     },
     {
       "lang": "de",
       "name": "German",
-      "path": "lang/de.json"
+      "path": "lang/de.json",
+      "flags": {}
     },
     {
       "lang": "it",
       "name": "Italian",
-      "path": "lang/it.json"
+      "path": "lang/it.json",
+      "flags": {}
     }
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "background" : "systems/degenesis/ui/artifacts.jpg",
-  "url": "",
+  "background": "systems/degenesis/ui/artifacts.jpg",
   "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
   "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
   "license": "LICENSE.txt"

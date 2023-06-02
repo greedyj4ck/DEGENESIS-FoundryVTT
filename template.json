@@ -1,6 +1,6 @@
 {
 "Actor": {
-  "types": ["character", "npc", "abberant"],
+  "types": ["character"],
   "templates" : {
     "details" : {
       "details" : {
@@ -228,7 +228,6 @@
           "value": 0,
           "permanent" : 0,
           "override" : 0
-
         },
         "fleshwounds": {
           "max": 0,
@@ -339,8 +338,16 @@
     },
   "character": {
     "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state", "biography", "gmnotes"]
-  }
-},
+  },
+  "npc":{
+    "templates": ["details"]
+  },
+  "fromhell":
+  {
+    "templates":["general","condition", "fighting", "state"],
+    "about": ""    
+}},
+
 "Item": {
   "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "transportation", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
   "templates" : {

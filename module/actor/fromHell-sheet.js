@@ -1,10 +1,9 @@
-// NPC Actor Sheet
+// From Hell Actor Sheet
 // V. 0.1 
 // Early prototyping phase
 
 
 // Required modules 
-
 import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { DegenesisChat } from "../chat.js"
@@ -12,18 +11,22 @@ import { DegenesisItem } from "../item/item-degenesis.js"
 import { DegenesisCombat } from "../combat-degenesis.js";
 import ActorConfigure from "../apps/actor-configure.js";
 
+
+
 /**
- * Extend the basic ActorSheet with some very simple modifications
+ * Extending default Foundry ActorSheet
  * @extends {ActorSheet}
  */
 
- export class DegenesisNPCSheet extends ActorSheet {
+
+// Main class definition 
+ export class DegenesisFromHellSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            classes: ["degenesis", "sheet", "npc"],
-            template: "systems/degenesis/templates/actor/npc/npc-sheet.html",
+            classes: ["degenesis", "sheet", "fromHell"],
+            template: "systems/degenesis/templates/actor/fromHell/fromHell-sheet.html",
             width: 685,
             height: 723,
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".tab-content", initial: "main" }],
@@ -70,23 +73,6 @@ import ActorConfigure from "../apps/actor-configure.js";
 
     /* ######## FUNCTIONALITY ########*/
 
+
     // END OF CLASS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  }

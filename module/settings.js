@@ -14,6 +14,9 @@ export const DegenesisSystemSettings = () => {
     config: true,
     type: Boolean,
     default: true,
+    onChange: () => {
+      location.reload();
+    },
   });
 
   // ALLOW ROLLS WITH MINIMUM ONE ACTION NUMBER
@@ -36,6 +39,9 @@ export const DegenesisSystemSettings = () => {
       config: true,
       type: Boolean,
       default: false,
+      onChange: () => {
+        location.reload();
+      },
     });
 
   console.log(`%cDEGENESIS` + `%c | Settings registered`, "color: #ed1d27", "color: unset");
