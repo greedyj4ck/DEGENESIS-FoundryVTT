@@ -14,6 +14,9 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
 @import 'base/fonts'; 
 @import 'base/experimental'; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
 
+// FOUNDRY UI OVERRIDES
+@import 'foundry/ui';
+
 // MAIN COMPONENTS
 @import 'components/scrollbar';
 @import 'components/squares';
@@ -30,6 +33,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
 // ACTOR SHEETS
 @import 'sheets/character';
 @import 'sheets/fromHell';
+@import 'sheets/npc';
 
 // ITEM SHEETS
 @import 'sheets/item';

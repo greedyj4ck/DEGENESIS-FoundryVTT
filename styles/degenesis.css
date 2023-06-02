@@ -456,6 +456,47 @@ a:hover {
   color: var(--degenesis-red);
 }
 
+.compendium-sidebar .directory-item.compendium .compendium-name {
+  background: none !important;
+  border: none !important;
+  font-family: "Avenir";
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgb(255, 255, 255);
+}
+.compendium-sidebar .directory-item.compendium .compendium-name i {
+  display: none;
+}
+
+.compendium-sidebar .directory-item.compendium .compendium-footer .source {
+  border-radius: none;
+  color: rgb(255, 255, 255);
+  font-family: "Avenir";
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.compendium.directory .directory-header .compendium-name {
+  background: none;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-family: "Avenir";
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-shadow: 0px 0px 5px rgb(0, 0, 0);
+}
+.compendium.directory .directory-header .compendium-name i {
+  display: none;
+}
+
+.compendium.directory .directory-header .header-banner {
+  mix-blend-mode: exclusion;
+}
+
 /* COMPONENTS: _SCROLLBAR.SCSS */
 ::-webkit-scrollbar {
   width: 4px;

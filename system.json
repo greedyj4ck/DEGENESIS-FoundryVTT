@@ -2,13 +2,18 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "compatibility": {
-    "minimum": "10",
-    "verified": "10.288",
-    "maximum": "10"
+    "minimum": "11",
+    "verified": "11.299",
+    "maximum": "11"
   },
   "authors": [
+      {
+      "name": "Greedyj4ck",
+      "discord": "GЯΣΣDYJΛCK#2690",
+      "flags": {}
+    },
     {
       "name": "Moo Man",
       "discord": "Moo Man#7518",
@@ -27,12 +32,8 @@
     {
       "name": "KristjanLaane",
       "flags": {}
-    },
-    {
-      "name": "Greedyj4ck",
-      "discord": "GЯΣΣDYJΛCK#2690",
-      "flags": {}
     }
+  
   ],
   "esmodules": [
     "degenesis.js"
@@ -49,6 +50,7 @@
       "label": "Legacies",
       "type": "Item",
       "name": "legacies",
+      "banner": "/systems/degenesis/ui/packs/legacies-pack.webp",
       "path": "packs/legacies.db",
       "system": "degenesis",
       "private": false,
@@ -57,6 +59,7 @@
     {
       "label": "Weapons",
       "type": "Item",
+      "banner": "/systems/degenesis/ui/packs/weapons-pack.webp",
       "name": "weapons",
       "path": "packs/weapons.db",
       "system": "degenesis",
@@ -67,6 +70,7 @@
       "label": "Armor & Shields",
       "type": "Item",
       "name": "armor-and-shields",
+      "banner": "/systems/degenesis/ui/packs/armor-shields-pack.webp",
       "path": "packs/armor-and-shields.db",
       "system": "degenesis",
       "private": false,
@@ -76,6 +80,7 @@
       "label": "Ammunitions",
       "type": "Item",
       "name": "ammunitions",
+      "banner": "/systems/degenesis/ui/packs/ammo-pack.webp",
       "path": "packs/ammunitions.db",
       "system": "degenesis",
       "private": false,
@@ -85,6 +90,7 @@
       "label": "Equipment",
       "type": "Item",
       "name": "equipment",
+      "banner": "/systems/degenesis/ui/packs/equipment-pack.webp",
       "path": "packs/equipment.db",
       "system": "degenesis",
       "private": false,
@@ -94,6 +100,7 @@
       "label": "Potentials",
       "type": "Item",
       "name": "potentials",
+      "banner": "/systems/degenesis/ui/packs/potentials-pack.webp",
       "path": "packs/potentials.db",
       "system": "degenesis",
       "private": false,
@@ -103,6 +110,7 @@
       "label": "Maps",
       "type": "Scene",
       "name": "maps",
+      "banner": "/systems/degenesis/ui/packs/maps-pack.webp",
       "path": "packs/maps.db",
       "system": "degenesis",
       "private": false,
