@@ -1,40 +1,33 @@
 <div class="title">
-    <div class="body-column body-line">
-      <div class="square little left"></div>
-      <svg class="title-line middle-left" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-       <div class="middle-name">{{localize "UI.RollSettings"}}</div>
-       <svg class="title-line middle-right" height="11" width="100%">
-          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-       </svg>
-       <div class="square little right"></div>
-    </div>
- </div>
- <div class="custom-modifier-header">
+    {{{drawSubtitle (localize "UI.RollSettings")}}}
+</div>
+<div class="custom-modifier-header">
     <label>{{localize "UI.CustomModifiers"}}</label>
     <button class="custom-modifiers-reset-button" type="reset">{{localize "UI.ResetAll"}}</button>
 </div>
 <div class="dialog-bonuses">
 
-    <div class = "dialog-inputs">
+    <div class="dialog-inputs">
         <span>
             <label class="input-label">{{localize "DGNS.Difficulty"}}</label>
-            <input class="dialog-input" name="difficulty" value="{{prefilled.difficulty}}"/>
+            <input class="dialog-input" name="difficulty" value="{{prefilled.difficulty}}" />
         </span>
         <div>
-            <span class="input-label">{{localize "UI.AddDice"}}</span><input class="dialog-input" name="diceModifier" value="0"/>
+            <span class="input-label">{{localize "UI.AddDice"}}</span><input class="dialog-input" name="diceModifier"
+                value="0" />
         </div>
         <div>
-            <span class="input-label">{{localize "UI.AddSuccesses"}}</span><input class="dialog-input" name="successModifier" value="0"/>
+            <span class="input-label">{{localize "UI.AddSuccesses"}}</span><input class="dialog-input"
+                name="successModifier" value="0" />
         </div>
         <div>
-            <span class="input-label">{{localize "UI.AddTriggers"}}</span><input class="dialog-input" name="triggerModifier" value="0"/>
+            <span class="input-label">{{localize "UI.AddTriggers"}}</span><input class="dialog-input"
+                name="triggerModifier" value="0" />
         </div>
     </div>
 
     <div class="custom-modifier-section">
-        <select name="customModifiers" class = "custom-modifiers" multiple>
+        <select name="customModifiers" class="custom-modifiers" multiple>
             {{#each customModifiers as |modifier m|}}
             <option value="{{m}}">{{modifier.description}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
             {{/each}}
@@ -46,7 +39,7 @@
 {{#if showSecondaryOption}}
 <div class="secondary-selection">
     <label>{{localize "DGNS.SecondarySkill"}}:</label>
-    <select name="secondarySkill" class = "secondary-select">
+    <select name="secondarySkill" class="secondary-select">
         {{#select secondarySkill}}
         <option value="">None</option>
         {{#each (config "skills") as |skill s|}}
@@ -58,43 +51,32 @@
 {{/if}}
 
 <div class="title">
-    <div class="body-column body-line">
-      <div class="square little left"></div>
-      <svg class="title-line middle-left" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-       <div class="middle-name">{{localize "DGNS.Modifiers"}}</div>
-       <svg class="title-line middle-right" height="11" width="100%">
-          <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-       </svg>
-       <div class="square little right"></div>
-    </div>
- </div>
+    {{{drawSubtitle (localize "DGNS.Modifiers")}}}
+</div>
 
-
- <!-- DISPLAYING ALL THE MODIFIERS APPLIED TO CURRENT ROLL -->
- <div class="dialog-bonuses-modifiers">
+<!-- DISPLAYING ALL THE MODIFIERS APPLIED TO CURRENT ROLL -->
+<div class="dialog-bonuses-modifiers">
 
     <!-- DISPLAY STATIC MODIFIERS -->
     <div class="dialog-static-modifiers">
 
-        <div class="type-modifier-header">{{localize "UI.StaticModifiers"}}</div>    
+        <div class="type-modifier-header">{{localize "UI.StaticModifiers"}}</div>
         <div class="type-modifier-values">
-                <div class="dice-modifiers">{{prefilled.diceModifier}}D</div>
-                <div class="success-modifiers">{{prefilled.successModifier}}S</div>
-                <div class="triggers-modifiers">{{prefilled.triggerModifier}}T</div>
+            <div class="dice-modifiers">{{prefilled.diceModifier}}D</div>
+            <div class="success-modifiers">{{prefilled.successModifier}}S</div>
+            <div class="triggers-modifiers">{{prefilled.triggerModifier}}T</div>
         </div>
 
     </div>
 
     <div class="dialog-total-modifiers">
 
-        <div class="type-modifier-header">{{localize "UI.TotalModifiers"}}</div>    
+        <div class="type-modifier-header">{{localize "UI.TotalModifiers"}}</div>
         <div class="type-modifier-values">
 
-                <div id="TotalRollDiceModifier" class="dice-modifiers">{{totalRollModifiers.diceModifier}}D</div>
-                <div id="TotalRollSuccessModifier" class="success-modifiers">{{totalRollModifiers.successModifier}}S</div>
-                <div id="TotalRollTriggerModifier" class="triggers-modifiers">{{totalRollModifiers.triggerModifier}}T</div>
+            <div id="TotalRollDiceModifier" class="dice-modifiers">{{totalRollModifiers.diceModifier}}D</div>
+            <div id="TotalRollSuccessModifier" class="success-modifiers">{{totalRollModifiers.successModifier}}S</div>
+            <div id="TotalRollTriggerModifier" class="triggers-modifiers">{{totalRollModifiers.triggerModifier}}T</div>
 
         </div>
 

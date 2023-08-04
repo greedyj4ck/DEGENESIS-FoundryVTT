@@ -54,6 +54,7 @@
   "DGNS.Attributes": "Attribute",
   "DGNS.Skills": "Fertigkeiten",
   "DGNS.Skill": "Fertigkeit",
+  "DGNS.AttributesSkills": "Attribute & Fertigkeiten",
   "DGNS.Body": "Körper",
   "DGNS.Agility": "Geschicklichkeit",
   "DGNS.Charisma": "Charisma",

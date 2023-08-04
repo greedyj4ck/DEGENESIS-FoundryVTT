@@ -9,34 +9,14 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         <div class="tab" data-tab="description">
-            <div class="body-column body-line">
-                <div class="square little left"></div>
-                <svg class="title-line middle-left" height="11" width="100%">
-                    <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-                </svg>
-                <div class="middle-name">{{localize "DGNS.Description"}}</div>
-                <svg class="title-line middle-right" height="11" width="100%">
-                    <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-                </svg>
-                <div class="square little right"></div>
-            </div>
+            {{{drawSubtitle (localize "DGNS.Description")}}}
             {{editor enrichment.system.description.value engine="prosemirror" target="system.description" button=true
             owner=owner editable=editable}}
             {{{drawPageSquare 0 2}}}
         </div>
         <!-- DETAILS TAB-->
         <div class="tab" data-tab="details">
-            <div class="body-column body-line">
-                <div class="square little left"></div>
-                <svg class="title-line middle-left" height="11" width="100%">
-                    <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-                </svg>
-                <div class="middle-name">{{localize "DGNS.Details"}}</div>
-                <svg class="title-line middle-right" height="11" width="100%">
-                    <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-                </svg>
-                <div class="square little right"></div>
-            </div>
+            {{{drawSubtitle (localize "DGNS.Details")}}}
             <div class="detail-container">
                 <div class="column">
                     <div class="sheet-field">
