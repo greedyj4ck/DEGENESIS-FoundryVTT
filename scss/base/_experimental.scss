@@ -114,6 +114,7 @@ button:hover {
   font-family: $sans-serif-content-font;
   text-transform: uppercase;
   font-size: 13px;
+  flex: 1 0 0;
 
   &.active {
     color: var(--degenesis-red);
