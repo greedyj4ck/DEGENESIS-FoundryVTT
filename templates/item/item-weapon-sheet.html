@@ -193,12 +193,7 @@
                                     <div class='item-data'>
                                         <span class="mods-name conditions-name">{{mod.name}}</span>
                                         <span class="mods-slots conditions-number">{{mod.system.slotCost}}</span>
-                                        <div class="vertical-bar">
-                                            <svg height="15px" width="1px">
-                                                <line x1="0%" y1="0%" x2="0%" y2="14px"
-                                                    style="stroke:black;stroke-width:1"></line>
-                                            </svg>
-                                        </div>
+                                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
                                     </div>
                                     <div class="item-controls">
                                         <a class="icon mod-edit"><i class="fas fa-edit"></i></a>

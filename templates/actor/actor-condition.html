@@ -135,11 +135,7 @@
                               <a class="modifiers-action dropdown">{{mod.ActionType}}</a>
                            {{/if}}
                         {{/if}}
-                        <div class="vertical-bar">
-                           <svg height="15px" width="1px">
-                              <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                           </svg>
-                        </div>
+                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
                      </div>
                      <div class="item-controls">
                         <a class="icon item-post"><i class="fas fa-comment"></i></a>
@@ -168,11 +164,7 @@
                         <a class="complications-rating conditions-number dropdown">{{complication.cost}}T</a>
                            /
                         <a class="complications-rating conditions-number dropdown">{{complication.rating}}</a>
-                        <div class="vertical-bar">
-                           <svg height="15px" width="1px">
-                              <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                           </svg>
-                        </div>
+                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
                      </div>
                      <div class="item-controls">
                         <a class="icon item-post"><i class="fas fa-comment"></i></a>

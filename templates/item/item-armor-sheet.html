@@ -5,71 +5,75 @@
         <a class="item" data-tab="description">{{localize "DGNS.Description"}}</a>
         <a class="item active" data-tab="details">{{localize "DGNS.Details"}}</a>
     </nav>
-        
+
     {{!-- Sheet Body --}}
-    <section class="sheet-body" >
+    <section class="sheet-body">
         <div class="tab" data-tab="description">
             {{{drawSubtitle (localize "DGNS.Description")}}}
-            {{editor enrichment.system.description.value engine="prosemirror" target="system.description" button=true owner=owner editable=editable}}
+            {{editor enrichment.system.description.value engine="prosemirror" target="system.description" button=true
+            owner=owner editable=editable}}
             {{{drawPageSquare 0 2}}}
         </div>
-<!-- DETAILS TAB-->
-    <div class="tab" data-tab="details">
-        {{{drawSubtitle (localize "DGNS.Details")}}}
-        <div class="detail-container">
-            <div class="column">
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.AP"}}: </span>
-                    <div class="field-inputs">
-                        <input class="handling field-input field-start" type="text" name="data.AP" value="{{data.AP}}" data-dtype="Number" />
+        <!-- DETAILS TAB-->
+        <div class="tab" data-tab="details">
+            {{{drawSubtitle (localize "DGNS.Details")}}}
+            <div class="detail-container">
+                <div class="column">
+                    <div class="sheet-field">
+                        <span class="field-name">{{localize "DGNS.AP"}}: </span>
+                        <div class="field-inputs">
+                            <input class="handling field-input field-start" type="text" name="data.AP"
+                                value="{{data.AP}}" data-dtype="Number" />
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="sheet-field">
+                        <span class="field-name">{{localize "DGNS.Slots"}}: </span>
+                        <div class="field-inputs">
+                            <input input class="field-input" type="text" name="data.slots.total"
+                                value="{{data.slots.total}}" data-dtype="Number" />
+                        </div>
+                    </div>
+                    <div class="sheet-field">
+                        <span class="field-name">{{localize "DGNS.Cult"}}: </span>
+                        <div class="field-inputs">
+                            <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
+                        </div>
+                    </div>
+                    <div class="sheet-field">
+                        <span class="field-name">{{localize "DGNS.Resources"}}:</span>
+                        <div class="field-inputs">
+                            <input class="field-input" type="text" name="data.resources" value="{{data.resources}}"
+                                data-dtype="Number" />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="column">
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Slots"}}: </span>
-                    <div class="field-inputs">
-                        <input input class="field-input" type="text" name="data.slots.total" value="{{data.slots.total}}" data-dtype="Number"/>
-                    </div>
-                </div>
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Cult"}}: </span>
-                    <div class="field-inputs">
-                        <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
-                    </div>
-                </div>
-                <div class="sheet-field">
-                    <span class="field-name">{{localize "DGNS.Resources"}}:</span>
-                    <div class="field-inputs">
-                        <input class="field-input" type="text" name="data.resources" value="{{data.resources}}" data-dtype="Number"/>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-<!-- Qualities and mods -->
+            <!-- Qualities and mods -->
             <div class="bottom-conditions spaced-conditions">
-<!-- Qualities -->
+                <!-- Qualities -->
                 <div class="qualities-group conditions-group">
-                   <div class="black-title">
-                      <h3>{{localize "DGNS.Qualities"}}</h3>
-                      <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
-                   </div>
-                   <div class="qualities-data conditions-data">
-                      <ol class="qualities-ol conditions-ol">
-                        {{#each item.Qualities as |quality q|}}
+                    <div class="black-title">
+                        <h3>{{localize "DGNS.Qualities"}}</h3>
+                        <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="qualities-data conditions-data">
+                        <ol class="qualities-ol conditions-ol">
+                            {{#each item.Qualities as |quality q|}}
                             <li class="conditions-li qualities-li item">
                                 <div class="conditions-characteristics">
-                                <div class='quality'>
-                                    {{quality}}
-                                </div>
+                                    <div class='quality'>
+                                        {{quality}}
+                                    </div>
                                 </div>
                             </li>
-                        {{/each}}
+                            {{/each}}
                         </ol>
-                   </div>
+                    </div>
                 </div>
-<!-- Mods -->
+                <!-- Mods -->
                 <div class="mods-group conditions-group">
                     <div class="black-title">
                         <h3>{{localize "DGNS.Mods"}}</h3>
@@ -78,36 +82,32 @@
                         </div>
                     </div>
                     <div class="mods-data conditions-data">
-                    <ol class="mods-ol conditions-ol">
-                    {{#each item.flags.degenesis.mods as |mod m|}}
-                        <li class="mods-li conditions-li item" data-item-id="{{m}}">
-                            <div class="conditions-characteristics">
-                                <div class='item-data'>
-                                <span class="mods-name conditions-name">{{mod.name}}</span>
-                                <span class="mods-slots conditions-number">{{mod.system.slotCost}}</span>
-                                <div class="vertical-bar">
-                                    <svg height="15px" width="1px">
-                                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                                    </svg>
+                        <ol class="mods-ol conditions-ol">
+                            {{#each item.flags.degenesis.mods as |mod m|}}
+                            <li class="mods-li conditions-li item" data-item-id="{{m}}">
+                                <div class="conditions-characteristics">
+                                    <div class='item-data'>
+                                        <span class="mods-name conditions-name">{{mod.name}}</span>
+                                        <span class="mods-slots conditions-number">{{mod.system.slotCost}}</span>
+                                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
+                                    </div>
+                                    <div class="item-controls">
+                                        <a class="icon mod-edit"><i class="fas fa-edit"></i></a>
+                                        <a class="icon mod-delete"><i class="fas fa-times"></i></a>
+                                    </div>
                                 </div>
-                                </div>
-                                <div class="item-controls">
-                                <a class="icon mod-edit"><i class="fas fa-edit"></i></a>
-                                <a class="icon mod-delete"><i class="fas fa-times"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                    {{/each}}
-                    </ol>
+                            </li>
+                            {{/each}}
+                        </ol>
                     </div>
                 </div>
-             </div>
-          
-             {{#if item.hasSpecialty}}
-             {{localize "DGNS.Specialty"}}
-             <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
-             {{/if}}
-             {{{drawPageSquare 1 2}}}
+            </div>
+
+            {{#if item.hasSpecialty}}
+            {{localize "DGNS.Specialty"}}
+            <textarea name="flags.degenesis.specialty">{{item.flags.degenesis.specialty}}</textarea>
+            {{/if}}
+            {{{drawPageSquare 1 2}}}
         </div>
     </section>
     {{> systems/degenesis/templates/common/sheet-footer.html }}

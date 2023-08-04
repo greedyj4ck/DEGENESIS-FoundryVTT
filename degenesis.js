@@ -108,6 +108,7 @@ Hooks.once("init", async function () {
   // PRE-LOAD TEMPLATES
   loadTemplates([
     "systems/degenesis/templates/common/sheet-footer.html",
+    "systems/degenesis/templates/common/sheet-vertical-bar.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",

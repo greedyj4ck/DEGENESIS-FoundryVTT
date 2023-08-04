@@ -113,11 +113,7 @@
                   <span>{{item.slots.used}}/{{item.slots.total}}</span>
                </div>
                {{/if}}
-               <div class="vertical-bar">
-                  <svg height="15px" width="1px">
-                     <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                  </svg>
-               </div>
+               {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
                <div class="item-controls">
                   <a class="icon item-post"><i class="fas fa-comment"></i></a>
                   <a class="icon item-edit"><i class="fas fa-edit"></i></a>
@@ -191,11 +187,7 @@
                <div class="legend-name tech">
                   <span>{{item.Tech}}</span>
                </div>
-               <div class="vertical-bar">
-                  <svg height="15px" width="1px">
-                     <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-                  </svg>
-               </div>
+               {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
                <div class="item-controls">
                   <a class="icon item-post"><i class="fas fa-comment"></i></a>
                   <a class="icon item-edit"><i class="fas fa-edit"></i></a>
