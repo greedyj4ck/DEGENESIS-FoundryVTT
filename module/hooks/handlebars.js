@@ -86,5 +86,12 @@ export default function () {
                     </div>`;
         })
         Handlebars.registerHelper('drawImage', (item) => `<div class="img-frame"><img class="profile-img" src="${item.img}" data-edit="img" title="${item.name}" height="100" width="100" /></div>`)
+        Handlebars.registerHelper('drawStartLine', function (width) {
+            return `<svg class="tab-start-line" height="23" width="${width}">
+                        <line x1="0" y1="7" x2="10" y2="7" style="stroke: rgb(164, 164, 164); stroke-width: 1"></line>
+                        <line x1="10" y1="7" x2="26" y2="23" style="stroke: rgb(164, 164, 164); stroke-width: 1"></line>
+                    </svg>`;
+        })
+
     })
 }
