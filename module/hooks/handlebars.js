@@ -43,5 +43,15 @@ export default function () {
             return (ego.max - ego.value)
         })
 
+        Handlebars.registerHelper('drawPageSquare', function (index, max) {
+            let result = '<div class="footer-diamond">';
+
+            for (let i = 0; i < max; i++) {
+                if (i == index) result += '<div class="square little black"></div>';
+                else result += '<div class="square little"></div>';
+            }
+
+            return result + '</div>';
+        });
     })
 }
