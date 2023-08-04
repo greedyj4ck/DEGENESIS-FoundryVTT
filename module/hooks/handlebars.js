@@ -52,6 +52,7 @@ export default function () {
             }
 
             return result + '</div>';
-        });
+        })
+        Handlebars.registerHelper('drawImage', (item) => `<div class="img-frame"><img class="profile-img" src="${item.img}" data-edit="img" title="${item.name}" height="100" width="100" /></div>`)
     })
 }
