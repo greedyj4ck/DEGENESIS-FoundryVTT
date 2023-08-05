@@ -3671,7 +3671,7 @@ a.diamond:hover .square.red.perma {
   background-color: transparent;
   -moz-text-align-last: left;
        text-align-last: left;
-  padding-top: 3px;
+  padding-top: 4px;
   height: 24px;
 }
 .app.window-app.degenesis.sheet.item .detail-container .field-inputs {
@@ -3701,6 +3701,7 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  margin-top: 1px;
 }
 .app.window-app.degenesis.sheet.item .detail-container input {
   background-color: transparent;
@@ -3713,6 +3714,9 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.item .detail-container input.field-start {
   padding-right: 0px;
+}
+.app.window-app.degenesis.sheet.item .detail-container input.field-right {
+  text-align: right;
 }
 .app.window-app.degenesis.sheet.item .tab .editor {
   font-size: 14px;

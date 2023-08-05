@@ -105,7 +105,7 @@
           width: 100%;
           background-color: transparent;
           text-align-last: left;
-          padding-top: 3px;
+          padding-top: 4px;
           height: 24px;
         }
   
@@ -133,6 +133,7 @@
           select.damageBonus-select {
             width: auto;
             flex: 1;
+            margin-top: 1px;
           }
   
           input {
@@ -149,6 +150,9 @@
   
           &.field-start {
             padding-right: 0px;
+          }
+          &.field-right {
+            text-align: right;
           }
         }
   
