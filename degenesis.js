@@ -112,6 +112,7 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/common/item-sheet-tabs.html",
     "systems/degenesis/templates/common/item-sheet-description.html",
     "systems/degenesis/templates/common/item-sheet-qualities.html",
+    "systems/degenesis/templates/common/item-sheet-mods.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",

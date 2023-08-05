@@ -5,7 +5,7 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{> systems/degenesis/templates/common/item-sheet-description.html }}
-        
+
         <!-- DETAILS TAB-->
         <div class="tab" data-tab="details">
             {{{drawSubtitle (localize "DGNS.Details")}}}
@@ -14,8 +14,8 @@
                     <div class="sheet-field">
                         <span class="field-name">{{localize "DGNS.Defense"}}: </span>
                         <div class="field-inputs">
-                            <input class="handling field-input field-start field-right" type="text" name="data.defense.D"
-                                value="{{data.defense.D}}" data-dtype="Number"
+                            <input class="handling field-input field-start field-right" type="text"
+                                name="data.defense.D" value="{{data.defense.D}}" data-dtype="Number"
                                 placeholder="{{localize 'DGNS.Defense'}}" /><span class="field-end">D</span>
                             <span class="field-end">+</span><input class="handling field-input field-start" type="text"
                                 name="data.defense.p_defense" value="{{data.defense.p_defense}}"
@@ -59,44 +59,7 @@
             <!-- Qualities and mods -->
             <div class="bottom-conditions spaced-conditions">
                 {{> systems/degenesis/templates/common/item-sheet-qualities.html }}
-                <!-- Mods -->
-                <div class="mods-group conditions-group">
-                    <div class="black-title">
-                        <h3>{{localize "DGNS.Mods"}}</h3>
-                        <div class="right" data-item="">
-                            <div class="slots">{{data.slots.used}}/{{data.slots.total}} </div>
-                            <a class="icon item-add" data-item="complication">+</a>
-                        </div>
-                    </div>
-                    <div class="mods-data conditions-data">
-                        <ol class="mods-ol conditions-ol">
-                            {{#each mods as |mod m|}}
-                            <li class="mods-li conditions-li item" data-item-id="{{mod.id}}">
-                                <div class="conditions-characteristics">
-                                    {{#if ../isGM}}
-                                    <div class='item-data'>
-                                        <a class="mods-name conditions-name dropdown">{{mod.name}}</a>
-                                        <a class="mods-rating conditions-number dropdown">{{mod.data.cost}}T</a>
-                                        /
-                                        <a class="mods-rating conditions-number dropdown">{{mod.data.rating}}</a>
-                                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
-                                    </div>
-                                    <div class="item-controls">
-                                        <a class="icon item-post"><i class="fas fa-comment"></i></a>
-                                        <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-                                        <a class="icon item-delete"><i class="fas fa-times"></i></a>
-                                    </div>
-                                    {{else}}
-                                    <div class='item-data'>
-                                        <span class="mods-name conditions-name">{{mod.name}}</span>
-                                    </div>
-                                    {{/if}}
-                                </div>
-                            </li>
-                            {{/each}}
-                        </ol>
-                    </div>
-                </div>
+                {{> systems/degenesis/templates/common/item-sheet-mods.html }}
             </div>
 
             {{#if item.hasSpecialty}}

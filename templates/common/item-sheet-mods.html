@@ -1,0 +1,28 @@
+<!-- Mods -->
+<div class="mods-group conditions-group">
+    <div class="black-title">
+        <h3>{{localize "DGNS.Mods"}}</h3>
+        <div class="right" data-item="">
+            <div class="slots">{{data.slots.used}}/{{data.slots.total}} </div>
+        </div>
+    </div>
+    <div class="mods-data conditions-data">
+        <ol class="mods-ol conditions-ol">
+            {{#each item.flags.degenesis.mods as |mod m|}}
+            <li class="mods-li conditions-li item" data-item-id="{{m}}">
+                <div class="conditions-characteristics">
+                    <div class='item-data'>
+                        <span class="mods-name conditions-name">{{mod.name}}</span>
+                        <span class="mods-slots conditions-number">{{mod.system.slotCost}}</span>
+                        {{> systems/degenesis/templates/common/sheet-vertical-bar.html }}
+                    </div>
+                    <div class="item-controls">
+                        <a class="icon mod-edit"><i class="fas fa-edit"></i></a>
+                        <a class="icon mod-delete"><i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</div>
