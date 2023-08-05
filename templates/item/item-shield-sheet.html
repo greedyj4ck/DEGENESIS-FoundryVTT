@@ -58,26 +58,7 @@
 
             <!-- Qualities and mods -->
             <div class="bottom-conditions spaced-conditions">
-                <!-- Qualities -->
-                <div class="qualities-group conditions-group">
-                    <div class="black-title">
-                        <h3>{{localize "DGNS.Qualities"}}</h3>
-                        <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
-                    </div>
-                    <div class="qualities-data conditions-data">
-                        <ol class="qualities-ol conditions-ol">
-                            {{#each qualities as |quality q|}}
-                            <li class="conditions-li qualities-li item">
-                                <div class="conditions-characteristics">
-                                    <div class='quality'>
-                                        {{quality}}
-                                    </div>
-                                </div>
-                            </li>
-                            {{/each}}
-                        </ol>
-                    </div>
-                </div>
+                {{> systems/degenesis/templates/common/item-sheet-qualities.html }}
                 <!-- Mods -->
                 <div class="mods-group conditions-group">
                     <div class="black-title">
