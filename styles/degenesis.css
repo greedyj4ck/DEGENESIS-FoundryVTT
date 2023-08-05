@@ -2678,7 +2678,8 @@ a.diamond:hover .square.red.perma {
   margin: 0 0 0 10px;
 }
 .app.window-app.degenesis.sheet .bottom-conditions .conditions-group {
-  width: 45%;
+  width: 100%;
+  padding: 5px;
 }
 .app.window-app.degenesis.sheet .conditions-characteristics {
   padding-right: 5px;
