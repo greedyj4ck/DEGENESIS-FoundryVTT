@@ -109,6 +109,7 @@ Hooks.once("init", async function () {
   loadTemplates([
     "systems/degenesis/templates/common/sheet-footer.html",
     "systems/degenesis/templates/common/sheet-vertical-bar.html",
+    "systems/degenesis/templates/common/item-sheet-tabs.html",
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",
