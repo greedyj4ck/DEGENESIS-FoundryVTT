@@ -4,9 +4,7 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <div class="tab" data-tab="description">
-            {{editor enrichment.system.description.value target="system.description" engine="prosemirror" button=true owner=owner editable=editable}}
-        </div>
+        {{> systems/degenesis/templates/common/item-sheet-description.html }}
 
         <div class="tab" data-tab="details">
 

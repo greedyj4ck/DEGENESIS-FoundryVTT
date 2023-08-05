@@ -4,12 +4,8 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <div class="tab" data-tab="description">
-            {{{drawSubtitle (localize "DGNS.Description")}}}
-            {{editor enrichment.system.description.value target="system.description" engine="prosemirror" button=true
-            owner=owner editable=editable}}
-            {{{drawPageSquare 0 2}}}
-        </div>
+        {{> systems/degenesis/templates/common/item-sheet-description.html }}
+        
         <!-- DETAILS TAB-->
         <div class="tab" data-tab="details">
             {{{drawSubtitle (localize "DGNS.Details")}}}
