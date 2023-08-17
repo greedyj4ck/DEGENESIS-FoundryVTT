@@ -1,6 +1,6 @@
 {
 "Actor": {
-  "types": ["character"],
+  "types": ["character","npc","fromhell"],
   "templates" : {
     "details" : {
       "details" : {
@@ -349,7 +349,7 @@
 }},
 
 "Item": {
-  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "transportation", "mod", "burn", "potential", "modifier","shield", "complication", "legacy"],
+  "types": ["weapon", "armor", "equipment", "artifact", "ammunition", "transportation", "mod", "burn", "potential", "modifier","shield", "complication", "legacy", "attack", "defense"],
   "templates" : {
     "description" : {
       "description" : ""
@@ -485,6 +485,21 @@
     "legacy" : "",
     "description" : "",
     "drawback" : ""
+  },
+  "attack":{
+    "templates": ["description", "damage", "rules", "effect"],
+    "distance": {
+      "short" : 0,
+      "far" : 0,
+      "melee" : 0
+    }
+
+  },
+  "defense":{
+    "templates": ["description", "rules", "effect"],
+    "defense":{
+      "D":0
+    }
   }
 }
 }

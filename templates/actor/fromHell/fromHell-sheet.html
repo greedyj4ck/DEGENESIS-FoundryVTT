@@ -7,45 +7,219 @@
             <svg class="start-line" height="11" width="9%">
                 <line x1="0%" y1="5" x2="88%" y2="5" style="stroke-width:1"></line>
                 <line x1="88%" y1="5" x2="100%" y2="11" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <svg class="title-line middle-left" height="11" width="100%">
                 <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <div class="middle-name">{{localize "DGNS.TypeFromHell"}}</div>
             <svg class="title-line middle-right" height="11" width="100%">
-               <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
             </svg>
             <svg class="end-line" height="11" width="9%">
                 <line x1="0%" y1="11" x2="12%" y2="5" style="stroke-width:1"></line>
                 <line x1="12%" y1="5" x2="100%" y2="5" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <div class="square little right"></div>
         </div>
         <!-- NEW ROW -->
         <div class="break"></div>
         <div class="header-column char-info left">
-            
+            <div class="general-name initiative-roll">
+                {{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}D)
+            </div>
+
+            <a class="general-name checkbox">{{localize "DGNS.SpendEgo"}}: </a>
+            <div class="diamond-position">
+                <div class="diamond-row" data-target="system.state.spentEgo.value">
+                    {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
+                    diamond.filled}}
+                    <a class="diamond" data-index="{{index}}">
+                        <div class="square black"></div>
+                    </a>
+                    {{else}}
+                    <a class="diamond" data-index="{{index}}">
+                        <div class="square"></div>
+                    </a>
+                    {{/if}} {{/each}}
+                </div>
+            </div>
+            <div class="general-name">
+                {{localize "DGNS.Movement"}} ({{actor.general.movement}}
+            </div>
             <!-- PLACEHOLDER FOR INITIATIVE AND MOVEMENT STATS -->
-            just a place holder for stuff
         </div>
         <div class="img-frame">
             <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
                 width="100" />
         </div>
         <div class="header-column char-info right">
-            <div class="header-about">
+            <div class="section-header">
                 <div class="white-title">
                     <h3>{{ localize "DGNS.ABOUT" }}</h3>
                 </div>
                 <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
-            
-               
-        </div>
-        <div class="break" ></div>
-    
-        
-    
+
+
+            </div>
+            <div class="break"></div>
     </header>
 
+    {{!-- Sheet FromHell Condition --}}
+
+    <div class="title">
+        <div class="body-column body-line">
+            <!-- <div class="title-line middle-left"></div> -->
+            <div class="square little left"></div>
+            <svg class="title-line middle-left" height="11" width="100%">
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke:white;stroke-width:1"></line>
+            </svg>
+            <div class="middle-name">{{localize "DGNS.Condition"}}</div>
+            <svg class="title-line middle-right" height="11" width="100%">
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke:white;stroke-width:1"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </div>
+
+    <div class="column-flex">
+
+        <div class="ego bar-group">
+            <div class="diamond-row bar" data-target="system.condition.ego.value"
+                data-targetParent="system.condition.ego">
+                {{#each data.condition.ego.diamonds as |diamond index|}}
+                {{#if diamond.locked}}
+                <div class="diamond" data-index={{index}}>
+                    <div class="square black"></div>
+                </div>
+                {{else if diamond.filled}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square red"></div>
+                </a>
+                {{else}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square"></div>
+                </a>
+                {{/if}}
+                {{/each}}
+            </div>
+            <div class="text condition-title">
+                {{localize "DGNS.Ego"}} <span class="condition-value">({{currentEgo
+                    data.condition.ego}}/{{data.condition.ego.max}})</span>
+            </div>
+
+        </div>
+
+
+        <div class="fleshwounds bar-group">
+            <div class="diamond-row bar" data-target="system.condition.fleshwounds.value"
+                data-targetParent="system.condition.fleshwounds">
+                {{#each data.condition.fleshwounds.diamonds as |diamond index|}}
+                {{#if diamond.locked}}
+                <div class="diamond" data-index={{index}}>
+                    <div class="square black"></div>
+                </div>
+                {{else if diamond.filled}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square red"></div>
+                </a>
+                {{else}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square"></div>
+                </a>
+                {{/if}}
+                {{/each}}
+            </div>
+            <div class="text condition-title">
+                {{localize "DGNS.Fleshwounds"}}<span
+                    class="condition-value">({{data.condition.fleshwounds.value}}/{{data.condition.fleshwounds.max}})</span>
+            </div>
+        </div>
+
+        <div class="trauma bar-group">
+            <div class="diamond-row bar" data-target="system.condition.trauma.value"
+                data-targetParent="system.condition.trauma">
+                {{#each data.condition.trauma.diamonds as |diamond index|}}
+                {{#if diamond.locked}}
+                <div class="diamond" data-index={{index}}>
+                    <div class="square black"></div>
+                </div>
+                {{else if diamond.filled}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square red"></div>
+                </a>
+                {{else}}
+                <a class="diamond" data-index={{index}}>
+                    <div class="square"></div>
+                </a>
+                {{/if}}
+                {{/each}}
+            </div>
+            <div class="text condition-title">
+                {{localize "DGNS.Trauma"}}<span
+                    class="condition-value">({{data.condition.trauma.value}}/{{data.condition.trauma.max}})</span>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Sheet FromHell Combat --}}
+
+    <div class="title">
+        <div class="body-column body-line">
+            <!-- <div class="title-line middle-left"></div> -->
+            <div class="square little left"></div>
+            <svg class="title-line middle-left" height="11" width="100%">
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke:white;stroke-width:1"></line>
+            </svg>
+            <div class="middle-name">{{localize "DGNS.Combat"}}</div>
+            <svg class="title-line middle-right" height="11" width="100%">
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke:white;stroke-width:1"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </div>
+
+
+    <div class="container-combat">
+        <!-- ATTACK COLUMN -->
+        <div class="container-column">
+
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <div class="white-title">
+                    <h3>{{ localize inventory.attack.header }}</h3>
+                </div>
+            </div>
+
+            <!-- ITEMS LIST -->
+
+            {{#each inventory.attack.items as |item w|}}
+
+            <div class="item attack" data-item-id="{{item.id}}">
+
+                <a class="item-name">{{item.name}}</a>
+
+            </div>
+
+            {{/each}}
+
+
+
+        </div>
+        <!-- DEFENSE COLUMN -->
+        <div class="container-column">
+
+            <div class="section-header">
+                <div class="white-title">
+                    <h3>{{ localize inventory.defense.header }}</h3>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
 
 </form>

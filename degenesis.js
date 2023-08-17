@@ -16,8 +16,8 @@ import { DEG_Utility } from "./module/utility.js";
 import { DegenesisItemSheet } from "./module/item/item-sheet.js";
 import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
-//import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
-//import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
+import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
+import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DegenesisCombat } from "./module/combat-degenesis.js";
 import { DegenesisDice } from "./module/dice.js";
@@ -91,17 +91,17 @@ Hooks.once("init", async function () {
   });
 
   // W.I.P - not for main release :) Gonna move this later into special dev branch ^_^
-
-  /*   Actors.registerSheet("degenesis", DegenesisFromHellSheet, {
-    types: ["fromhell"],
-    makeDefault: true,
-    label: "ACTOR.TypeFromHellSheet",
-  });
   Actors.registerSheet("degenesis", DegenesisNPCSheet, {
     types: ["npc"],
     makeDefault: true,
     label: "ACTOR.TypeNpcSheet",
-  }); */
+  });
+  Actors.registerSheet("degenesis", DegenesisFromHellSheet, {
+    types: ["fromhell"],
+    makeDefault: true,
+    label: "ACTOR.TypeFromHellSheet",
+  });
+
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
 

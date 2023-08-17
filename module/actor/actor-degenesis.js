@@ -122,13 +122,14 @@ export class DegenesisActor extends Actor {
       }
     }
 
-    // FromHell Actor Type
+    // DATA PREPARATION | FROM HELL ACTOR
 
     if (this.type === "fromhell") {
       try {
         super.prepareData();
-
-        // Here will come data preparation code for  actor
+        this.itemCategories = this.itemTypes;
+        this.modifiers = new ModifierManager(this);
+        //this.prepareFromHellItems();
       } catch (e) {
         console.error(e);
       }
@@ -215,9 +216,7 @@ export class DegenesisActor extends Actor {
     this.general.armor += armor.equipment + armor.modifier;
   }
 
-  //#endregion
-
-  //#region Roll Setup
+  // ROLL SETUP
   setupSkill(skill) {
     let dialogData = {
       title: DEGENESIS.skills[skill],
@@ -379,9 +378,7 @@ export class DegenesisActor extends Actor {
     };
   }
 
-  //#endregion
-
-  //#region Roll Processing
+  // REGION | ROLL PROCESSING
   async rollSkill(skill, { skipDialog = false, override = {} }) {
     let { dialogData, cardData, rollData } = this.setupSkill(skill);
 
@@ -551,7 +548,6 @@ export class DegenesisActor extends Actor {
         "data.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
-  //#endregion
 
   // REGION | CONVENIENCE HELPERS
 
@@ -567,12 +563,6 @@ export class DegenesisActor extends Actor {
       ? total + this.modifiers.forDialog("skill", skill).diceModifier
       : total;
   }
-
-  // REGION | NPC VARIANT
-
-  // REGION | ABBERANT VARIANT
-
-  // REGION | CALCULATION GETTERS
 
   get faithOrWillpower() {
     if (this.skills.willpower.value) return this.skills.willpower;
@@ -638,6 +628,14 @@ export class DegenesisActor extends Actor {
   }
   get legacyItems() {
     return this.getItemTypes("legacy");
+  }
+
+  get attackItems() {
+    return this.getItemTypes("attack");
+  }
+
+  get defenseItems() {
+    return this.getItemTypes("defense");
   }
 
   // REGION | DATA GETTERS
