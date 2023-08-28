@@ -1,0 +1,29 @@
+.item-weapon {
+  .belt-text {
+    margin-right: 10px;
+    justify-content: flex-end;
+    flex: 0;
+  }
+
+  .mag-size {
+    text-align: right;
+  }
+
+  .belt-field {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .field-inputs select {
+    padding-top: 5px;
+  }
+
+  .field-inputs {
+    select,
+    input {
+      text-transform: uppercase;
+    }
+  }
+}

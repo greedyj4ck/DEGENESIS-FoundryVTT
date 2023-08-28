@@ -1,3 +1,81 @@
+#logo {
+  content: url(../icons/degenesis.png);
+}
+
+#pause {
+  background: none;
+
+  img {
+    content: url(../icons/logo.png);
+  }
+
+  h3 {
+    font-family: $primary-header-font;
+    color: white;
+    text-shadow: 1px 1px 30px var(--degenesis-red);
+  }
+
+  > {
+    figcaption {
+      font-family: "Avenir";
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0px 3px 12px rgba(0, 0, 0, 1);
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+}
+
+// DEFAULT WINDOW SETTINGS
+.app.window-app {
+  .app.degenesis.sheet {
+    border-radius: 0px;
+  }
+
+  .window-content {
+    background: white;
+    font-family: $serif-content-font;
+  }
+
+  .window-header {
+    font-family: $primary-header-font !important;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-image: url(../ui/header.jpg);
+  }
+
+  .window-title {
+    font-family: "Calluna";
+    text-transform: unset;
+    font-size: 14px;
+  }
+
+  .window-resizable-handle {
+    border-radius: 0;
+    background: black;
+  }
+}
+
+.app {
+  header.window-header.flexrow.draggable.resizable {
+    font-family: $primary-header-font;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  input,
+  select {
+    border-bottom: 1px solid var(--grey-160);
+    border-radius: 0;
+  }
+}
+
 // SIDEBAR
 // UGLY SELECTORS FOR QUICK RELEASE :(
 

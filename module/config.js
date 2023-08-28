@@ -343,9 +343,8 @@ DEGENESIS.weaponGroupSkill = {
     brittle: "DGNS.Brittle",
     sealed: "DGNS.Sealed",
     special: "DGNS.ArmorSpecial",
-  });
-
-DEGENESIS.shieldQualities = {};
+  }),
+  (DEGENESIS.shieldQualities = { special: "DGNS.Special" });
 
 (DEGENESIS.weaponQualitiesValues = {
   areaDamage: ["angle"],
@@ -403,7 +402,8 @@ DEGENESIS.shieldQualities = {};
     brittle: ["criticalDamageRating"],
     sealed: ["bonusSuccesses"],
     special: [],
-  });
+  }),
+  (DEGENESIS.shieldQualitiesValues = { special: [] });
 
 DEGENESIS.qualityValues = {
   angle: "DGNS.Angle",
@@ -488,6 +488,9 @@ DEGENESIS.qualityValues = {
     massive: "DGNS.MassiveDescription",
     brittle: "DGNS.BrittleDescription",
     sealed: "DGNS.SealedDescription",
+  }),
+  (DEGENESIS.shieldQualityDescription = {
+    special: "DGNS.SpecialDescription",
   });
 
 DEGENESIS.damageTypes = {

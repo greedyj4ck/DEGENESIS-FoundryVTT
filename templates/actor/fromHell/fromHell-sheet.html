@@ -23,7 +23,7 @@
         </div>
         <!-- NEW ROW -->
         <div class="break"></div>
-        <div class="header-column char-info left">
+        <div class="section-column char-info left">
             <div class="general-name initiative-roll">
                 {{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}D)
             </div>
@@ -52,14 +52,14 @@
             <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
                 width="100" />
         </div>
-        <div class="header-column char-info right">
+        <div class="section-column char-info right">
             <div class="section-header">
                 <div class="white-title">
                     <h3>{{ localize "DGNS.ABOUT" }}</h3>
                 </div>
+            </div>
+            <div class="char-info section-container">
                 <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
-
-
             </div>
             <div class="break"></div>
     </header>
@@ -214,7 +214,17 @@
                 </div>
             </div>
 
+            <!-- ITEMS LIST -->
 
+            {{#each inventory.defense.items as |item w|}}
+
+            <div class="item defense" data-item-id="{{item.id}}">
+
+                <a class="item-name">{{item.name}}</a>
+
+            </div>
+
+            {{/each}}
 
         </div>
 

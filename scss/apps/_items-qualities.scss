@@ -1,0 +1,40 @@
+.app.window-app.degenesis.quality-selector {
+  min-width: 390px;
+  min-height: 720px;
+
+  .item-qualities {
+    .item-quality {
+      display: grid;
+      grid-template-columns: min-content 0.9fr 1fr;
+      align-items: center;
+      min-height: 22px;
+    }
+
+    .quality-inputs {
+      display: flex;
+      flex-direction: row;
+      height: 22px;
+    }
+
+    a.square {
+      margin-right: 5px;
+    }
+
+    .quality-name {
+      font-family: $sans-serif-content-font;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--grey-120);
+    }
+
+    .quality-value {
+      font-family: $sans-serif-content-font;
+      font-size: 13px;
+      color: var(--grey-120);
+    }
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}

@@ -6,7 +6,7 @@
 88   8 88    88  ee 88    88  8 88        88 88     88 
 88   8 88    88   8 88    88  8 88    e   88 88 e   88 
 88eee8 88eee 88eee8 88eee 88  8 88eee 8eee88 88 8eee88
-FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
+FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
 :root {
   --degenesis-red: rgb(237, 29, 39);
   --degenesis-blackred: rgb(154, 12, 19);
@@ -17,6 +17,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
   --grey-220: rgb(220, 220, 220);
   --grey-160: rgb(160, 160, 160);
   --grey-70: rgb(70, 70, 70);
+  --grey-30: rgb(30, 30, 30);
   --bg-window-header: rgba(0, 0, 0, 0.2);
   --bg-attributes-header: rgba(0, 0, 0, 0.05);
   --bg-black: rgb(0, 0, 0);
@@ -62,41 +63,6 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
   src: url("../fonts/DG-Medium.otf");
 }
 /* BASE: _EXPERIMENTAL.SCSS */
-#logo {
-  content: url(../icons/degenesis.png);
-}
-
-#pause {
-  background: none;
-}
-#pause img {
-  content: url(../icons/logo.png);
-}
-#pause h3 {
-  font-family: "Avenir";
-  color: white;
-  text-shadow: 1px 1px 30px var(--degenesis-red);
-}
-#pause > figcaption {
-  font-family: "Avenir";
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0px 3px 12px rgb(0, 0, 0);
-}
-#pause > img {
-  opacity: 1;
-}
-
-.app.window-app .window-content {
-  background: white;
-  font-family: "Calluna";
-}
-.app.window-app .window-header {
-  font-family: Calluna;
-  background-image: url(../ui/header.jpg);
-}
-
 h1,
 h2,
 h3 {
@@ -104,15 +70,22 @@ h3 {
   text-transform: uppercase;
 }
 
-/* .window-title {
-    font-family: "Calluna";
-    text-transform: unset;
-} */
 input[type=text] {
   background: none;
   border: 0px;
-  border-bottom: 1px solid black;
-  border-radius: 0px;
+}
+input[type=text]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+input[type=select] {
+  background: none;
+  border: 0px;
+}
+input[type=select]:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 form button {
@@ -164,16 +137,6 @@ button:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
   background-color: var(--degenesis-red);
-}
-
-.sheet-tabs.tabs .item {
-  font-family: "Avenir";
-  text-transform: uppercase;
-  font-size: 13px;
-}
-.sheet-tabs.tabs .item.active {
-  color: var(--degenesis-red);
-  text-shadow: none;
 }
 
 .caps {
@@ -266,8 +229,6 @@ select {
   background: none;
   border: none;
   padding: 0px;
-  border-bottom: 1px solid black;
-  border-radius: 0px;
 }
 select:focus {
   -webkit-box-shadow: none;
@@ -392,7 +353,7 @@ a:hover {
 #hotbar .macro {
   background: none;
   border-radius: 0px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
 }
 #hotbar .macro:hover {
   -webkit-box-shadow: none;
@@ -407,7 +368,7 @@ a:hover {
   opacity: 1;
   -webkit-box-shadow: 0 0 8px var(--grey-160) inset;
           box-shadow: 0 0 8px var(--grey-160) inset;
-  border: 4px double #FFFFFF;
+  border: 4px double #ffffff;
 }
 #token-hud .attribute.bar1 input {
   opacity: 1;
@@ -454,6 +415,76 @@ a:hover {
 #context-menu li.context-item:hover {
   text-shadow: none;
   color: var(--degenesis-red);
+}
+
+.directory-list .folder-header h3 {
+  font-family: "Calluna";
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+#logo {
+  content: url(../icons/degenesis.png);
+}
+
+#pause {
+  background: none;
+}
+#pause img {
+  content: url(../icons/logo.png);
+}
+#pause h3 {
+  font-family: "Avenir";
+  color: white;
+  text-shadow: 1px 1px 30px var(--degenesis-red);
+}
+#pause > figcaption {
+  font-family: "Avenir";
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0px 3px 12px rgb(0, 0, 0);
+}
+#pause > img {
+  opacity: 1;
+}
+
+.app.window-app .app.degenesis.sheet {
+  border-radius: 0px;
+}
+.app.window-app .window-content {
+  background: white;
+  font-family: "Calluna";
+}
+.app.window-app .window-header {
+  font-family: "Avenir" !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-image: url(../ui/header.jpg);
+}
+.app.window-app .window-title {
+  font-family: "Calluna";
+  text-transform: unset;
+  font-size: 14px;
+}
+.app.window-app .window-resizable-handle {
+  border-radius: 0;
+  background: black;
+}
+
+.app header.window-header.flexrow.draggable.resizable {
+  font-family: "Avenir";
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.app input,
+.app select {
+  border-bottom: 1px solid var(--grey-160);
+  border-radius: 0;
 }
 
 .compendium-sidebar .directory-item.compendium .compendium-name {
@@ -565,6 +596,11 @@ a:hover {
           justify-content: center;
   border-radius: 1px;
 }
+.square.checkbox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
 
 .square-into {
   height: 80%;
@@ -670,6 +706,27 @@ a.diamond:hover .square.red {
 }
 a.diamond:hover .square.red.perma {
   border: 1px solid black;
+}
+
+/* ROW ELEMENTS */
+.diamond-row {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.diamond-position > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 10px;
 }
 
 #chat-log {
@@ -1055,22 +1112,8 @@ a.diamond:hover .square.red.perma {
   color: #000000;
 }
 
-/* APPS: _APP.SCSS */
-.app header.window-header.flexrow.draggable.resizable {
-  font-family: "Avenir";
-  font-weight: 100;
-  background-color: var(--bg-window-header);
-}
-
-.app.window-app header.window-header.flexrow.draggable.resizable {
-  font-family: "Avenir";
-}
-.app.window-app .window-resizable-handle {
-  border-radius: 0;
-  background: black;
-}
-
-.app.degenesis.sheet {
+.app.window-app.form.sheet-config select {
+  border-bottom: 1px solid var(--grey-160);
   border-radius: 0px;
 }
 
@@ -1086,6 +1129,49 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.actor-configure .form-fields input {
   text-align: center;
+  border-bottom: 1px solid var(--grey-160);
+  border-radius: 0;
+}
+
+.app.window-app.degenesis.quality-selector {
+  min-width: 390px;
+  min-height: 720px;
+}
+.app.window-app.degenesis.quality-selector .item-qualities .item-quality {
+  display: grid;
+  grid-template-columns: -webkit-min-content 0.9fr 1fr;
+  grid-template-columns: min-content 0.9fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 22px;
+}
+.app.window-app.degenesis.quality-selector .item-qualities .quality-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 22px;
+}
+.app.window-app.degenesis.quality-selector .item-qualities a.square {
+  margin-right: 5px;
+}
+.app.window-app.degenesis.quality-selector .item-qualities .quality-name {
+  font-family: "Avenir";
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--grey-120);
+}
+.app.window-app.degenesis.quality-selector .item-qualities .quality-value {
+  font-family: "Avenir";
+  font-size: 13px;
+  color: var(--grey-120);
+}
+.app.window-app.degenesis.quality-selector button {
+  margin-top: 10px;
 }
 
 /* APPS: _ROLLDIALOG.SCSS */
@@ -1397,127 +1483,447 @@ a.diamond:hover .square.red.perma {
   color: var(--text-white);
 }
 
-/* ENTITY SHEET: _CHARACTER.SCSS */
-.app.window-app.degenesis.sheet .break {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-  height: 0;
-}
-.app.window-app.degenesis.sheet .tab {
-  font-size: 12px;
-  height: 96%;
-}
-.app.window-app.degenesis.sheet .break.break-line {
-  -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-  border: 1px solid black;
-  padding-top: 4px;
-  height: 0;
-}
-.app.window-app.degenesis.sheet .window-content {
-  padding: 5px;
-  overflow-y: hidden;
-  background: white;
-  font-family: "Avenir";
-  font-weight: 300;
-  color: black;
-}
-.app.window-app.degenesis.sheet .editable {
-  height: 100%;
-}
-.app.window-app.degenesis.sheet a:hover {
-  text-shadow: none;
-}
-.app.window-app.degenesis.sheet .item-controls a:hover {
-  color: var(--degenesis-red);
-}
-.app.window-app.degenesis.sheet h2 {
-  border: none;
-  color: var(--degenesis-red);
-  font-weight: 400;
-}
-.app.window-app.degenesis.sheet .progress-bar {
-  background-color: var(--degenesis-red);
-  height: 2px;
-}
-.app.window-app.degenesis.sheet input {
-  background: none;
-  border: none;
-  padding-top: 5px;
-}
-.app.window-app.degenesis.sheet input:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.app.window-app.degenesis.sheet input:hover {
-  color: var(--degenesis-red);
-  -webkit-transition: color 100ms linear;
-  transition: color 100ms linear;
-}
-.app.window-app.degenesis.sheet .inline-input {
+/* UNIVERSAL LAYOUT STYLES FOR ALL SHEETS */
+.form-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+/* --- TITLE BARS / FOOTERS --- */
+.sh-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.sh-header > * {
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+}
+
+.sh-titlebar {
+  width: 100%;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+}
+.sh-titlebar .start-line,
+.sh-titlebar .end-line {
+  width: 30px;
+  height: 20px;
+  min-width: 30px;
+}
+.sh-titlebar .title-line {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 20px;
+  min-width: 5px;
+}
+.sh-titlebar .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1px solid var(--grey-70);
+}
+.sh-titlebar .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+.sh-titlebar .middle-name {
+  text-transform: uppercase;
+  margin: 1px 2px 0px 2px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: "Avenir";
+}
+.sh-titlebar .square.little.right {
+  margin-left: -1px;
+}
+
+.sh-footer {
+  overflow: hidden;
+  width: 100%;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20px;
+          flex: 0 0 20px;
+}
+.sh-footer .footer-line-bar {
+  width: 100%;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+.sh-footer .footer-line-bar .start-line,
+.sh-footer .footer-line-bar .end-line {
+  width: 30px;
+  height: 20px;
+  min-width: 30px;
+}
+.sh-footer .footer-line-bar .bottom-line {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 20px;
+  min-width: 5px;
+}
+.sh-footer .footer-line-bar .square.little {
+  -ms-flex-item-align: center;
+      align-self: center;
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1px solid var(--grey-70);
+}
+.sh-footer .footer-line-bar .square.little.right {
+  margin-left: -1px;
+}
+.sh-footer .footer-line-bar .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+.sh-footer .footer-line-bar .middle-name {
+  text-transform: uppercase;
+  margin: 1px 2px 0px 2px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.footer-diamond {
+  position: absolute;
+  bottom: 0.7%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  z-index: 1;
+}
+
+/* -- HEADER BARS / HEADERS FRAMES -- */
+.section-header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.section-header-container .section-header-titleblock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 190px;
+}
+.section-header-container .section-header-legends {
+  display: grid;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  border-bottom: 1px solid var(--grey-70);
+}
+.section-header-container .section-header-legends .legend-name {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -ms-flex-item-align: center;
+      align-self: center;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.section-list .entry-list-item {
+  margin: 5px 0px 5px 0px;
+  border-bottom: 1px solid var(--grey-160);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.section-list .entry-list-item-name {
+  width: 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 5px;
+  padding-bottom: 6px;
+  max-width: 190px;
+}
+.section-list .entry-list-properties {
+  color: var(--grey-70);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 5px;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin: 6px 5px;
+}
+.section-list .entry-container {
+  width: 100%;
+  display: grid;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 3px 0px 3px 0px;
 }
-.app.window-app.degenesis.sheet .inline-input > input {
-  width: 30px;
+.section-list .entry-container div.legend-name {
+  -ms-flex-item-align: center;
+      align-self: center;
+  text-align: center;
 }
-.app.window-app.degenesis.sheet .inline-input input:first-of-type {
-  border-right: 1px solid black;
-  border-radius: 0px;
+.section-list .item-summary {
+  width: 100%;
+  margin: 5px 0px;
+  padding: 5px 4px 5px 4px;
+  background-color: var(--grey-240);
+  border: 1px solid var(--grey-160);
 }
-.app.window-app.degenesis.sheet .inline-input input:last-of-type {
-  border-left: 1px solid black;
-  border-radius: 0px;
+.section-list .item-summary p {
+  margin: 0px 0px 5px 0px;
+  text-align: justify;
 }
-.app.window-app.degenesis.sheet textarea {
-  outline: var(--degenesis-red);
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  font-family: "Calluna";
+.section-list .item-summary .tags {
+  margin-top: 5px;
 }
-.app.window-app.degenesis.sheet textarea:focus {
-  outline: var(--degenesis-red);
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.section-list .item-summary .tag {
+  border: 1px solid var(--grey-160);
+  background: white;
+  margin: 2px 5px;
+  display: inline-block;
+  padding: 2px 7px;
 }
-.app.window-app.degenesis.sheet select {
-  background: none;
-  border: none;
-  padding: 0px;
-  -moz-text-align-last: center;
-       text-align-last: center;
+.section-list :last-child.entry-list-item {
+  border-bottom: none;
 }
-.app.window-app.degenesis.sheet select:focus {
-  border-bottom: 1px solid var(--degenesis-red);
-  -webkit-box-shadow: none;
-          box-shadow: none;
+
+.titlebar-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 20px;
+  margin-top: 3px;
+  margin-bottom: 5px;
 }
-.app.window-app.degenesis.sheet select > * {
+.titlebar-container .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1px solid var(--grey-70);
+}
+.titlebar-container .square.little.right {
+  margin-left: -1px;
+}
+.titlebar-container .title-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-size: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  min-width: 5px;
+  height: 20px;
+}
+.titlebar-container .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+.titlebar-container .title-line-header {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  margin: 1px 2px 0px 2px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.black-title {
+  text-transform: uppercase;
+  width: 100%;
+  background-image: url(../images/title\ border.svg);
+  background-repeat: no-repeat;
+  color: white;
+  background-size: 100%;
+  background-position: center;
+  height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.black-title h3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin: 0 0 0 10px;
+}
+.black-title .right {
+  margin-right: 8px;
+}
+
+/* --- SHEET TABS --- */
+.sh-tabs.tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.sh-tabs.tabs .item {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 13px;
+  font-weight: 500;
   color: white;
   background-color: black;
+  margin: 2px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  -webkit-transition: background-color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+  inline-size: -webkit-fill-available;
 }
-.app.window-app.degenesis.sheet .sheet-field {
+.sh-tabs.tabs .item:hover {
+  background-color: var(--degenesis-red);
+}
+.sh-tabs.tabs .item.active {
+  background-color: var(--degenesis-red);
+  text-shadow: none;
+}
+.sh-tabs.tabs.active {
+  color: var(--text-white);
+  text-shadow: none;
+}
+
+/* --- INPUT ELEMENTS --- */
+.sh-field {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid var(--grey-160);
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
-.app.window-app.degenesis.sheet .condition .condition-item:hover,
-.app.window-app.degenesis.sheet .condition .condition-section:hover .app.window-app.degenesis.sheet .sheet-field-stack:hover {
-  color: var(--degenesis-red);
-  -webkit-transition: color 100ms linear;
-  transition: color 100ms linear;
+.sh-field .field-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
-.app.window-app.degenesis.sheet .sheet-field:hover {
-  color: var(--degenesis-red);
-  -webkit-transition: color 100ms linear;
-  transition: color 100ms linear;
+.sh-field .field-inputs > * {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea {
+.sh-field .field-inputs .field-end {
+  padding: 1px 3px;
+  padding-top: 5px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-flex: 0;
+      -ms-flex: 0;
+          flex: 0;
+}
+.sh-field.textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1527,59 +1933,35 @@ a.diamond:hover .square.red.perma {
           flex-direction: column;
   border: none;
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea textarea:hover {
+.sh-field.textarea textarea:hover {
   border-color: var(--degenesis-red);
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea:hover {
+.sh-field.textarea:hover {
   border: none;
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea > * {
+.sh-field.textarea > * {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-item-align: start;
       align-self: flex-start;
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea span {
+.sh-field.textarea span {
   padding-bottom: 3px;
 }
-.app.window-app.degenesis.sheet .sheet-field.textarea textarea {
+.sh-field.textarea textarea {
   height: 100px;
 }
-.app.window-app.degenesis.sheet .details {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 292px;
+.sh-field select {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-top: 3px;
+  min-height: 26px;
+  height: 100%;
+  border-bottom: none;
 }
-.app.window-app.degenesis.sheet .condition-title {
-  text-transform: uppercase;
-}
-.app.window-app.degenesis.sheet .condition-value {
-  padding-left: 5px;
-}
-.app.window-app.degenesis.sheet .condition-value-permanent {
-  padding-left: 5px;
-  color: var(--grey-160);
-  font-size: 9px;
-  top: -1px;
-  position: relative;
-}
-.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked:hover,
-.app.window-app.degenesis.sheet .sheet-field:hover {
-  border-bottom: 1px solid var(--degenesis-red);
-  -webkit-transition: border-bottom 100ms linear;
-  transition: border-bottom 100ms linear;
-}
-.app.window-app.degenesis.sheet .sheet-field-stack .field-input-stacked {
-  border-bottom: 1px solid black;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .sheet-field span {
+.sh-field span {
   text-transform: uppercase;
   padding-top: 5px;
   padding-bottom: 1px;
@@ -1589,84 +1971,17 @@ a.diamond:hover .square.red.perma {
   -ms-flex-item-align: center;
       align-self: center;
 }
-.app.window-app.degenesis.sheet .sheet-header {
-  overflow: hidden;
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -ms-flex: 0 0 100px;
-      flex: 0 0 100px;
+.sh-field:hover {
+  color: var(--degenesis-red);
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-bottom 100ms linear;
+  transition: border-bottom 100ms linear;
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
 }
-.app.window-app.degenesis.sheet .header-line {
-  /* background-color: var(--degenesis-red); */
-  /* border: 1px solid transparent; */
-  -ms-flex-item-align: start;
-      align-self: start;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.sheet .archetype-line {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 22px;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .middle-name {
-  text-transform: uppercase;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  font-size: 15px;
-  font-weight: 200;
-  letter-spacing: 2px;
-  text-align: center;
-  border: 2px solid transparent;
-}
-.app.window-app.degenesis.sheet .legend {
-  text-transform: uppercase;
-}
-.app.window-app.degenesis.sheet .archetype-line.line-left {
-  background-image: url(../images/header\ line\ left.svg);
-}
-.app.window-app.degenesis.sheet .archetype-line.line-right {
-  background-image: url(../images/header\ line\ right.svg);
-}
-.app.window-app.degenesis.sheet .header-column.char-info.left {
-  margin-left: 7px;
-  margin-right: 2px;
-}
-.app.window-app.degenesis.sheet .header-column.char-info.right {
-  margin-right: 7px;
-  margin-left: 2px;
-}
-.app.window-app.degenesis.sheet .img-container {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 115spx;
-          flex: 0 0 115spx;
-}
-.app.window-app.degenesis.sheet .img-frame {
+
+/* --- IMAGE FRAMES --- */
+.img-frame {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1681,9 +1996,10 @@ a.diamond:hover .square.red.perma {
   background-position: center;
   border: none;
 }
-.app.window-app.degenesis.sheet .profile-img {
-  height: 96px;
-  width: 96px;
+
+.profile-img {
+  height: 96px !important;
+  width: 96px !important;
   margin: auto;
   border: none;
   display: -webkit-box;
@@ -1691,17 +2007,241 @@ a.diamond:hover .square.red.perma {
   display: flex;
   border-radius: 0;
 }
-.app.window-app.degenesis.sheet hr {
-  border: solid;
-  border-top: 1px solid var(--grey-160);
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  margin: 2px 2px 0px;
+
+/* --- EDITOR STYLES -- */
+.fullwidth-editor {
+  margin-top: 4px;
+  width: 100%;
+}
+.fullwidth-editor .editor {
+  min-height: 40px;
+}
+.fullwidth-editor .editor .editor-content {
+  height: 90%;
+}
+.fullwidth-editor .editor .editor-container {
+  min-height: 150px;
+}
+.fullwidth-editor .editor .editor-edit {
+  display: hidden;
+  background: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  right: 0;
 }
 
-/* * Sheet Header */
-.c-popout {
+.full-height-editor {
+  padding: 0px;
+  margin-top: 4px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 30px;
+}
+.full-height-editor .editor {
+  height: 100%;
+}
+.full-height-editor .editor .editor-menu {
+  padding: 0;
+}
+.full-height-editor .editor .editor-content {
+  height: 100%;
+  padding: 0px 3px;
+}
+.full-height-editor .editor .editor-container {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+}
+.full-height-editor .editor .editor-edit {
+  background: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  right: 0;
+}
+
+/* ENTITY SHEET: _CHARACTER.SCSS */
+.line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+
+.app.window-app.degenesis.sheet.actor.character {
+  min-width: 720px;
+  min-height: 720px;
+}
+.app.window-app.degenesis.sheet.actor.character .item-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 2px;
+}
+.app.window-app.degenesis.sheet.actor.character .vertical-bar {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 7px;
+          flex: 0 0 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: -7px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.actor.character .item-data {
+  display: contents;
+}
+.app.window-app.degenesis.sheet.actor.character .item-data:hover {
+  color: red;
+}
+.app.window-app.degenesis.sheet.actor.character .icon {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+.app.window-app.degenesis.sheet.actor.character .icon.item-add {
+  margin-right: 10px;
+}
+.app.window-app.degenesis.sheet.actor.character .bar.diamond-row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.actor.character .bar-group {
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.actor.character .bar-group .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 5px;
+}
+.app.window-app.degenesis.sheet.actor.character .bar-group.trauma {
+  margin-bottom: 4px;
+}
+.app.window-app.degenesis.sheet.actor.character .general-name {
+  margin-left: 10px;
+}
+.app.window-app.degenesis.sheet.actor.character .name-rotate {
+  /* Internet Explorer */
+  /* Firefox */
+  -webkit-transform: rotate(-45deg);
+  /* Safari et Chrome */
+  transform: rotate(-45deg);
+}
+.app.window-app.degenesis.sheet.actor.character .header-content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  padding: 5px;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.actor.character .header-content-side-container {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.actor.character .header-content-image-container {
+  min-width: 108px;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container {
+  min-height: 132px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .sh-field-stack {
+  min-width: 160px;
+  max-width: 230px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container > * {
+  width: 33%;
+  margin: 5px;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container > input {
+  width: 33%;
+  margin: 15px;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container img {
+  border: none;
+  margin: 5px;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .title-Cs {
+  font-size: 17px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .concept-img,
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .cult-img,
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .culture-img {
+  height: 70px;
+}
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .c-popout {
   position: absolute;
   top: 290px;
   left: 50%;
@@ -1722,170 +2262,22 @@ a.diamond:hover .square.red.perma {
   -webkit-transition: visibility 0.2s, opacity 0.2s linear;
   transition: visibility 0.2s, opacity 0.2s linear;
 }
-.c-popout.culture {
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .c-popout.culture {
   left: 25%;
 }
-.c-popout.concept {
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .c-popout.concept {
   left: 50%;
 }
-.c-popout.cult {
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .c-popout.cult {
   left: 75%;
 }
-
-.culture-img:hover ~ .c-popout.culture,
-.cult-img:hover ~ .c-popout.cult,
-.concept-img:hover ~ .c-popout.concept {
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .culture-img:hover ~ .c-popout.culture,
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .cult-img:hover ~ .c-popout.cult,
+.app.window-app.degenesis.sheet.actor.character .ccc-content-container .concept-img:hover ~ .c-popout.concept {
   visibility: visible;
   opacity: 1;
 }
-
-/* * Sheet titles */
-.app.window-app.degenesis.sheet.item .title,
-.app.window-app.degenesis.sheet .title {
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-left: 1px;
-  margin-right: 1px;
-  width: 99%;
-}
-.app.window-app.degenesis.sheet.item .title-line,
-.app.window-app.degenesis.sheet .title-line {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background-size: 100%;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .header-column.header-line .square.little {
-  margin-bottom: 12px;
-}
-.app.window-app.degenesis.sheet.item .square.little,
-.app.window-app.degenesis.sheet .title .square.little,
-.app.window-app.degenesis.sheet .header-line .square.little {
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-bottom: 1px;
-  height: 7px;
-  width: 7px;
-}
-.app.window-app.degenesis.sheet.item .square.little.left,
-.app.window-app.degenesis.sheet .square.little.left {
-  margin-left: 2px;
-  margin-right: 0px;
-}
-.app.window-app.degenesis.sheet.item .square.little.right,
-.app.window-app.degenesis.sheet .square.little.right {
-  margin-right: 2px;
-  margin-left: 0px;
-}
-.app.window-app.degenesis.sheet .sheet-footer {
-  overflow: hidden;
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -ms-flex: 0 0 100px;
-      flex: 0 0 100px;
-}
-.app.window-app.degenesis.sheet .footer-line {
-  /* background-image: url(../images/footer\ line.svg); */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 20px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  position: absolute;
-  bottom: 0%;
-  width: 100%;
-  left: 0%;
-  padding: 0px 5px;
-  background-color: white;
-}
-.app.window-app.degenesis.sheet .footer-line .square.little {
-  margin-top: 7px;
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
-}
-.app.window-app.degenesis.sheet.item .footer-line .square.little {
-  margin-top: 3px;
-}
-.app.window-app.degenesis.sheet .footer-diamond {
-  position: absolute;
-  bottom: 0.7%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  z-index: 1;
-}
-.app.window-app.degenesis.sheet .tabs {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 40px;
-          flex: 0 0 40px;
-  height: unset;
-  border: none;
-}
-.app.window-app.degenesis.sheet .tabs .item {
-  color: white;
-  background-color: black;
-  margin: 2px;
-  line-height: 20px;
-  font-weight: 100;
-  font-size: 13px;
-  letter-spacing: 1px;
-  -webkit-transition: background-color 0.1s ease-out;
-  transition: background-color 0.1s ease-out;
-  padding: 0px 8px;
-}
-.app.window-app.degenesis.sheet .tabs .item:hover {
-  background-color: var(--degenesis-red);
-}
-.app.window-app.degenesis.sheet .tabs .item.active {
-  background-color: var(--degenesis-red);
-  text-shadow: none;
-}
-.app.window-app.degenesis.sheet.item .body-line,
-.app.window-app.degenesis.sheet .body-line {
-  width: 100%;
-  /*height: calc(100% - 300px);*/
-}
-.app.window-app.degenesis.sheet .row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.sheet .three-Cs {
-  height: 35%;
-  min-height: 130px;
-}
-.app.window-app.degenesis.sheet .title-Cs {
-  font-size: 17px;
-  font-weight: 200;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.app.window-app.degenesis.sheet .three-Cs .sheet-field-stack {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.app.window-app.degenesis.sheet.actor.character .tab[data-tab].active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1893,212 +2285,257 @@ a.diamond:hover .square.red.perma {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-.app.window-app.degenesis.sheet .three-Cs > * {
-  width: 33%;
-  margin: 5px;
-}
-.app.window-app.degenesis.sheet .three-Cs > input {
-  width: 33%;
-  margin: 15px;
-}
-.app.window-app.degenesis.sheet .three-Cs img {
-  border: none;
-  margin: 5px;
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
-}
-.app.window-app.degenesis.sheet .section-header.row .row-divide {
-  width: 40%;
-  border-bottom: 1px solid black;
-  margin: 20px;
-}
-.app.window-app.degenesis.sheet .section-header.row h3 {
-  padding-top: 10px;
-}
-.app.window-app.degenesis.sheet .condition {
-  height: 50%;
-}
-.app.window-app.degenesis.sheet .skill:hover {
-  color: var(--degenesis-red);
-  -webkit-transition: color 100ms linear;
-  transition: color 100ms linear;
-}
-.app.window-app.degenesis.sheet .condition .condition-item:hover,
-.app.window-app.degenesis.sheet .condition .condition-section:hover {
-  color: var(--degenesis-red);
-  -webkit-transition: color 100ms linear;
-  transition: color 100ms linear;
-}
-.app.window-app.degenesis.sheet .condition > * {
-  width: 33%;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .condition .inline-input {
-  border-bottom: 2px solid black;
-  margin-bottom: 3px;
-}
-.app.window-app.degenesis.sheet .condition .divider {
-  font-size: 20px;
-}
-.app.window-app.degenesis.sheet .condition-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  align-items: center;
-  margin-top: 5px;
-}
-.app.window-app.degenesis.sheet .condition textarea {
-  height: 100%;
-  overflow-x: hidden;
-  background: none;
-  border-radius: 0px;
-  background-attachment: local;
-  background-image: linear-gradient(to right, white 10px, transparent 10px), linear-gradient(to left, white 10px, transparent 10px), repeating-linear-gradient(white, white 20px, #ccc 20px, #ccc 20px, white 21px);
-  line-height: 21px;
-  padding: 1px 8px;
-  resize: none;
-}
-.app.window-app.degenesis.sheet .body-line {
-  -ms-flex-item-align: start;
-      align-self: start;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow: hidden;
 }
-.app.window-app.degenesis.sheet .tab ol input:hover {
-  /* border: 1px dotted var(--degenesis-red) */
-  background-color: rgb(240, 240, 240);
-}
-.app.window-app.degenesis.sheet .tab ol input:focus {
-  background-color: rgb(230, 230, 230);
-}
-.app.window-app.degenesis.sheet .tab-content {
-  font-size: 12px;
-  letter-spacing: 1px;
-  width: 100%;
-  height: calc(100% - 300px);
-  overflow: auto;
-}
-.app.window-app.degenesis.sheet .tab-content h3 {
-  font-size: 12px;
-  font-weight: 300;
-  border-bottom: 0px;
-}
-.app.window-app.degenesis.sheet .tab.active h3 {
-  font-size: 12px;
-  font-weight: 300;
-  border-bottom: 0px;
-}
-.app.window-app.degenesis.sheet .attribute-tab {
-  text-transform: uppercase;
-  font-size: 11.5px;
+.app.window-app.degenesis.sheet.actor.character .window-content {
+  padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  width: 100%;
+  overflow-y: hidden;
+  background: white;
+  font-family: "Avenir";
+  font-weight: 300;
+  color: black;
 }
-.app.window-app.degenesis.sheet .attribute-tab .attribute-skill-group {
-  margin: 16px 18px;
+.app.window-app.degenesis.sheet.actor.character .tab-content-container {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.app.window-app.degenesis.sheet.actor.character .tab-content-container h3 {
+  font-size: 12px;
+  font-weight: 300;
+  border-bottom: 0px;
+}
+.app.window-app.degenesis.sheet.actor.character .editable {
+  height: 100%;
+}
+.app.window-app.degenesis.sheet.actor.character a:hover {
+  text-shadow: none;
+}
+.app.window-app.degenesis.sheet.actor.character .item-controls a:hover {
+  color: var(--degenesis-red);
+}
+.app.window-app.degenesis.sheet.actor.character h2 {
+  border: none;
+  color: var(--degenesis-red);
+  font-weight: 400;
+}
+.app.window-app.degenesis.sheet.actor.character .progress-bar {
+  background-color: var(--degenesis-red);
+  height: 2px;
+}
+.app.window-app.degenesis.sheet.actor.character input {
+  background: none;
+  border: none;
+  padding-top: 5px;
+}
+.app.window-app.degenesis.sheet.actor.character input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.actor.character input:hover {
+  color: var(--degenesis-red);
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
+}
+.app.window-app.degenesis.sheet.actor.character .inline-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.actor.character .inline-input > input {
+  width: 30px;
+}
+.app.window-app.degenesis.sheet.actor.character .inline-input input:first-of-type {
+  border-right: 1px solid black;
+  border-radius: 0px;
+}
+.app.window-app.degenesis.sheet.actor.character .inline-input input:last-of-type {
+  border-left: 1px solid black;
+  border-radius: 0px;
+}
+.app.window-app.degenesis.sheet.actor.character textarea {
+  outline: var(--degenesis-red);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-family: "Calluna";
+}
+.app.window-app.degenesis.sheet.actor.character textarea:focus {
+  outline: var(--degenesis-red);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.actor.character select {
+  background: none;
+  border: none;
+  padding: 0px;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+.app.window-app.degenesis.sheet.actor.character select:focus {
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.actor.character select > * {
+  color: white;
+  background-color: black;
+}
+.app.window-app.degenesis.sheet.actor.character .condition .condition-item:hover,
+.app.window-app.degenesis.sheet.actor.character .condition .condition-section:hover .app.window-app.degenesis.sheet .sh-field-stack:hover {
+  color: var(--degenesis-red);
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
+}
+.app.window-app.degenesis.sheet.actor.character .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 292px;
+}
+.app.window-app.degenesis.sheet.actor.character .condition-title {
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.actor.character .condition-value {
+  padding-left: 5px;
+}
+.app.window-app.degenesis.sheet.actor.character .condition-value-permanent {
+  padding-left: 5px;
+  color: var(--grey-160);
+  font-size: 9px;
+  top: -1px;
+  position: relative;
+}
+.app.window-app.degenesis.sheet.actor.character .header-line {
+  /* background-color: var(--degenesis-red); */
+  /* border: 1px solid transparent; */
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.app.window-app.degenesis.sheet.actor.character .archetype-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .attribute {
-  /*border-bottom: 1px solid black*/
+.app.window-app.degenesis.sheet.actor.character .legend {
+  text-transform: uppercase;
 }
-.app.window-app.degenesis.sheet .attribute-name {
-  height: 100%;
-  width: 100%;
-  background-image: url(../images/attribut\ border.svg);
-  background-repeat: no-repeat;
-  color: white;
-  background-size: 100%;
-  background-position: center;
+.app.window-app.degenesis.sheet.actor.character .archetype-line.line-left {
+  background-image: url(../images/header\ line\ left.svg);
 }
-.app.window-app.degenesis.sheet .skill {
+.app.window-app.degenesis.sheet.actor.character .archetype-line.line-right {
+  background-image: url(../images/header\ line\ right.svg);
+}
+.app.window-app.degenesis.sheet.actor.character .header-column.char-info.left {
+  margin-left: 7px;
+  margin-right: 2px;
+}
+.app.window-app.degenesis.sheet.actor.character .header-column.char-info.right {
+  margin-right: 7px;
+  margin-left: 2px;
+}
+.app.window-app.degenesis.sheet.actor.character .img-container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 115spx;
+          flex: 0 0 115spx;
+}
+.app.window-app.degenesis.sheet.actor.character hr {
+  border: solid;
+  border-top: 1px solid var(--grey-160);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  margin: 2px 2px 0px;
+}
+
+/* TABS STYLING */
+/* ATTRS AND SKILLS */
+.attribute-tab-container {
+  display: grid;
+  justify-items: stretch;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  margin: 3px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+  text-transform: uppercase;
+  font-size: 11.5px;
+}
+.attribute-tab-container .attribute-skill-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.app.window-app.degenesis.sheet .attribute {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-bottom: 15px;
-}
-.app.window-app.degenesis.sheet .skill > *,
-.app.window-app.degenesis.sheet .attribute > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.sheet .diamond-row {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .skill .diamond,
-.app.window-app.degenesis.sheet .attribute .diamond-row {
-  -ms-flex-item-align: center;
-      align-self: center;
+.attribute-tab-container .attribute-skill-group .skill > *,
+.attribute-tab-container .attribute-skill-group .attribute > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-.app.window-app.degenesis.sheet .skill {
-  margin-top: 5px;
-  -ms-flex-item-align: center;
-      align-self: center;
+.attribute-tab-container .attribute-skill-group .attribute {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .skill-list {
-  margin-top: 10px;
-}
-.app.window-app.degenesis.sheet .skill input[type=text],
-.app.window-app.degenesis.sheet .attribute input[type=text] {
-  border: 1px solid black;
-  border-radius: 0px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .skill input[type=text] {
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-}
-.app.window-app.degenesis.sheet .attribute h3 {
+.attribute-tab-container .attribute-skill-group .attribute h3 {
   margin-bottom: 0px;
   margin-left: 10px;
   display: -webkit-box;
@@ -2107,39 +2544,96 @@ a.diamond:hover .square.red.perma {
   -ms-flex-item-align: center;
       align-self: center;
 }
-.app.window-app.degenesis.sheet .skill-name {
-  margin-left: 8px;
-}
-.app.window-app.degenesis.sheet .skill-name.unused {
-  color: #CCC;
-}
-.app.window-app.degenesis.sheet .advantage-tab {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-.app.window-app.degenesis.sheet .advantage-tab .advantage-group {
-  margin: 16px 13px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .black-title {
-  text-transform: uppercase;
+.attribute-tab-container .attribute-skill-group .attribute .attribute-name {
+  min-height: 15px;
+  height: 100%;
   width: 100%;
-  background-image: url(../images/title\ border.svg);
+  background-image: url(../images/attribut\ border.svg);
   background-repeat: no-repeat;
   color: white;
   background-size: 100%;
   background-position: center;
-  height: 14px;
 }
-.app.window-app.degenesis.sheet .advantage,
-.app.window-app.degenesis.sheet .background,
-.app.window-app.degenesis.sheet .advantage,
-.app.window-app.degenesis.sheet .background {
+.attribute-tab-container .attribute-skill-group .skill-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.attribute-tab-container .attribute-skill-group .skill-list .skill {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 8px;
+  -ms-flex-item-align: auto;
+      align-self: auto;
+}
+.attribute-tab-container .attribute-skill-group .skill-list .skill :hover {
+  color: var(--degenesis-red);
+  -webkit-transition: color 200ms linear;
+  transition: color 200ms linear;
+}
+
+/* ADVANTAGE TAB */
+.advantage-tab-container {
+  overflow: hidden;
+  margin: 3px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 150px auto;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+}
+.advantage-tab-container .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+.advantage-tab-container .advantage input[type=text],
+.advantage-tab-container .background input[type=text] {
+  border: 1px solid black;
+  border-radius: 0px;
+  height: 20px;
+  text-align: left;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.advantage-tab-container .combat-group h3,
+.advantage-tab-container .advantage-group h3 {
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
+.advantage-tab-container .background-name {
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+.advantage-tab-container .background-group {
+  grid-area: 1/1/2/2;
+}
+.advantage-tab-container .background-group .background {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2147,76 +2641,50 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .scars-group .background {
-  margin-bottom: 10px;
-}
-.app.window-app.degenesis.sheet .background {
-  margin-bottom: 15px;
-}
-.app.window-app.degenesis.sheet .advantage > *,
-.app.window-app.degenesis.sheet .background > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.sheet .advantage .diamond {
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-.app.window-app.degenesis.sheet .diamond-position > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-right: 10px;
-}
-.app.window-app.degenesis.sheet .background .diamond-row {
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-.app.window-app.degenesis.sheet .advantage {
+.advantage-tab-container .background-group .advantage-list {
   margin-top: 5px;
-  -ms-flex-item-align: center;
-      align-self: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
-.app.window-app.degenesis.sheet .advantage-list {
-  margin-top: 10px;
+.advantage-tab-container .background-group .advantage-list .advantage {
+  -ms-flex-item-align: auto;
+      align-self: auto;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .item-controls {
-  /* border-left: 1px solid var(--grey-160);
-    padding-left: 5px */
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-  margin-left: 1.7%;
+.advantage-tab-container .relationships-group {
+  grid-area: 1/2/2/3;
 }
-.app.window-app.degenesis.sheet .icon {
-  margin-right: 2px;
-  margin-left: 2px;
-}
-.app.window-app.degenesis.sheet .icon.item-add {
-  margin-right: 10px;
-}
-.app.window-app.degenesis.sheet .cadre-tab {
-  width: 180px;
-  height: 107px;
+.advantage-tab-container .relationships-group .advantage {
   overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-.app.window-app.degenesis.sheet .relationships-group .advantage {
-  height: 118px;
-  overflow: auto;
-  display: block;
-}
-.app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar, .app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-thumb, .app.window-app.degenesis.sheet .relationships-group .advantage::-webkit-scrollbar-track {
+.advantage-tab-container .relationships-group .advantage::-webkit-scrollbar, .advantage-tab-container .relationships-group .advantage::-webkit-scrollbar-thumb, .advantage-tab-container .relationships-group .advantage::-webkit-scrollbar-track {
   /* width: 10px;
     border: none;
     background-color: transparent; */
   margin-top: -17px;
   margin-bottom: -10px;
 }
-.app.window-app.degenesis.sheet .relationships-group .background {
-  margin-bottom: 10px;
-}
-.app.window-app.degenesis.sheet .relationships-ol {
+.advantage-tab-container .relationships-group .relationships-ol {
   border-collapse: collapse;
   background: white;
   border: none;
@@ -2225,33 +2693,82 @@ a.diamond:hover .square.red.perma {
       -ms-flex: auto;
           flex: auto;
   display: table;
-  margin: 0 10px 0 10px;
+  margin: 0 5px 0 5px;
   list-style-type: none;
 }
-.app.window-app.degenesis.sheet .relationships-cultes {
+.advantage-tab-container .relationships-group .relationships-cultes {
   text-align: left;
   width: 80%;
   border: none;
 }
-.app.window-app.degenesis.sheet .relationships-bonus {
+.advantage-tab-container .relationships-group .relationships-bonus {
   text-align: right;
   width: 20%;
   border: none;
 }
-.app.window-app.degenesis.sheet .relationships-li {
+.advantage-tab-container .relationships-group .relationships-li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 20px;
   border-bottom: 1px solid var(--grey-160);
-  margin-bottom: 3px;
   padding-bottom: 2px;
+}
+.advantage-tab-container .relationships-group .relationship {
+  margin-top: 5px;
+}
+.advantage-tab-container .scars-group {
+  grid-area: 1/3/2/4;
+}
+.advantage-tab-container .scars-group .advantage-list {
+  margin-top: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.advantage-tab-container .scars-group .advantage-list .advantage {
+  -ms-flex-item-align: auto;
+      align-self: auto;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.advantage-tab-container .scars-group .advantage-list .advantage .sh-field {
+  width: 100%;
+  margin-bottom: 4px;
+}
+.advantage-tab-container .scars-group .advantage-list .advantage:last-child {
+  margin-top: 10px;
+}
+.advantage-tab-container .potentials-group {
+  grid-area: 2/1/3/4;
+  overflow: auto;
+}
+.advantage-tab-container .potentials-group .potentials {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.app.window-app.degenesis.sheet .tab-line {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+.advantage-tab-container .potentials-group .potentials .black-title {
+  max-width: 199px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .potential-name {
+.advantage-tab-container .potentials-group .advantage-list .potential-name {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
@@ -2263,17 +2780,17 @@ a.diamond:hover .square.red.perma {
   margin-left: 5px;
   padding-bottom: 6px;
 }
-.app.window-app.degenesis.sheet .potentials-group .potentials-legend {
+.advantage-tab-container .potentials-group .potentials-legend {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--grey-70);
   width: 100%;
 }
-.app.window-app.degenesis.sheet .potentials-group .first-part {
+.advantage-tab-container .potentials-group .first-part {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2281,26 +2798,26 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 2;
           flex: 2;
 }
-.app.window-app.degenesis.sheet .potentials-group .potentials-legend .origin {
+.advantage-tab-container .potentials-group .potentials-legend .origin {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
   margin-right: 1.5%;
   margin-left: 1.5%;
 }
-.app.window-app.degenesis.sheet .potentials-group .empty {
+.advantage-tab-container .potentials-group .empty {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--grey-70);
 }
-.app.window-app.degenesis.sheet .potentials-group .potentials-legend .empty {
+.advantage-tab-container .potentials-group .potentials-legend .empty {
   -webkit-box-flex: 1.17;
       -ms-flex: 1.17;
           flex: 1.17;
   margin-right: 0px;
 }
-.app.window-app.degenesis.sheet .potentials-group .potentials-legend > * {
+.advantage-tab-container .potentials-group .potentials-legend > * {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
@@ -2312,20 +2829,17 @@ a.diamond:hover .square.red.perma {
   margin-right: 1.5%;
   margin-left: 1.5%;
 }
-.app.window-app.degenesis.sheet .potentials-group .item-summary {
+.advantage-tab-container .potentials-group .item-summary {
   display: inline-block;
+  border: 1px solid var(--grey-160);
   background-color: var(--grey-240);
   padding-top: 5px;
   padding-bottom: 5px;
   width: 100%;
-  border-top: 1px solid var(--grey-160);
   margin-left: 0px;
   margin-right: 0px;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list {
-  margin: 0;
-}
-.app.window-app.degenesis.sheet .potentials-group .advantage {
+.advantage-tab-container .potentials-group .advantage {
   margin-left: 5px;
   border-bottom: 1px solid var(--grey-160);
   display: -webkit-box;
@@ -2335,15 +2849,15 @@ a.diamond:hover .square.red.perma {
       flex-wrap: wrap;
   margin-top: 8px;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage.expanded {
+.advantage-tab-container .potentials-group .advantage.expanded {
   padding-bottom: 0px;
 }
-.app.window-app.degenesis.sheet .potentials-group .item-summary {
+.advantage-tab-container .potentials-group .item-summary {
   padding-left: 4px;
   padding-right: 4px;
   text-align: justify;
 }
-.app.window-app.degenesis.sheet .potentials-group .item-controls {
+.advantage-tab-container .potentials-group .item-controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2353,7 +2867,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .background-name {
+.advantage-tab-container .potentials-group .advantage-list .background-name {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
@@ -2365,7 +2879,7 @@ a.diamond:hover .square.red.perma {
   margin-left: 5px;
   padding-bottom: 6px;
 }
-.app.window-app.degenesis.sheet .potentials-group .potential-characteristics {
+.advantage-tab-container .potentials-group .potential-characteristics {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2374,7 +2888,15 @@ a.diamond:hover .square.red.perma {
           flex: 1;
   padding-bottom: 6px;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .origin {
+.advantage-tab-container .potentials-group .advantage-list {
+  margin: 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: auto;
+  padding: 0px 3px;
+}
+.advantage-tab-container .potentials-group .advantage-list .origin {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
@@ -2389,7 +2911,7 @@ a.diamond:hover .square.red.perma {
   margin-right: 1.5%;
   margin-left: 1.5%;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .level {
+.advantage-tab-container .potentials-group .advantage-list .level {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -2404,196 +2926,14 @@ a.diamond:hover .square.red.perma {
   margin-right: 1.5%;
   margin-left: 1.5%;
 }
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .level .diamond-row {
+.advantage-tab-container .potentials-group .advantage-list .level .diamond-row {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   margin-right: 3%;
   margin: 0px;
 }
-.app.window-app.degenesis.sheet .vertical-bar {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 7px;
-          flex: 0 0 7px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0px;
-  margin-bottom: -7px;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.app.window-app.degenesis.sheet .potentials-group .advantage-list .diamond-position > * {
-  margin: 0px;
-}
-.app.window-app.degenesis.sheet .advantage input[type=text],
-.app.window-app.degenesis.sheet .background input[type=text] {
-  border: 1px solid black;
-  border-radius: 0px;
-  height: 20px;
-  text-align: left;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .advantage-tab .sheet-field {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.app.window-app.degenesis.sheet .advantage input[type=text] {
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  border-bottom: 0px;
-  /* flex: 1.58; */
-}
-.app.window-app.degenesis.sheet .combat-group h3,
-.app.window-app.degenesis.sheet .advantage-group h3 {
-  margin-bottom: 0px;
-  margin-left: 10px;
-}
-.app.window-app.degenesis.sheet .background-name {
-  text-transform: uppercase;
-  margin-left: 10px;
-}
-
-.degenesis.sheet .potentials {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.degenesis.sheet .potentials .black-title {
-  max-width: 199px;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-}
-.degenesis.sheet .black-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.degenesis.sheet .black-title h3 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-
-/* * Items */
-.app.window-app.degenesis.sheet .items-list {
-  list-style: none;
-  padding: 0;
-}
-.app.window-app.degenesis.sheet .inventory-tab {
-  margin-top: 20px;
-}
-.app.window-app.degenesis.sheet .items-list .item {
-  height: 30px;
-  line-height: 24px;
-}
-.app.window-app.degenesis.sheet .items-list .item img {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 24px;
-          flex: 0 0 24px;
-  margin-right: 5px;
-}
-.app.window-app.degenesis.sheet .items-list .item-controls {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 36px;
-          flex: 0 0 36px;
-}
-.app.window-app.degenesis.sheet .item-header .item-controls {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 50px;
-          flex: 0 0 50px;
-}
-.app.window-app.degenesis.sheet .item-data {
-  display: contents;
-}
-.app.window-app.degenesis.sheet .item-data:hover {
-  color: red;
-}
-.app.window-app.degenesis.sheet .item-section {
-  border: 1px solid black;
-}
-.app.window-app.degenesis.sheet .item-header .item-equipped,
-.app.window-app.degenesis.sheet .item-header .item-tech,
-.app.window-app.degenesis.sheet .item-header .item-encumbrance {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 40px;
-          flex: 0 0 40px;
-}
-.app.window-app.degenesis.sheet .items-list .item-equipped,
-.app.window-app.degenesis.sheet .items-list .item-tech,
-.app.window-app.degenesis.sheet .items-list .item-encumbrance {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 40px;
-          flex: 0 0 40px;
-}
-.app.window-app.degenesis.sheet .item-equipped,
-.app.window-app.degenesis.sheet .item-tech,
-.app.window-app.degenesis.sheet .item-encumbrance {
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .header-details {
-  border-bottom: 1px solid black;
-}
-.app.window-app.degenesis.sheet .header-details > * {
-  margin: 0px 5px 0px 5px;
-}
-.app.window-app.degenesis.sheet .item-header .header-type {
-  background-color: black;
-  color: white;
-  text-align: center;
-  height: 24px;
-  line-height: 24px;
-}
-.app.window-app.degenesis.sheet .attributes-header {
-  padding: 5px;
-  margin: 5px 0;
-  background: var(--bg-attributes-header);
-  border: 1px solid var(--grey-160);
-  border-radius: 2px;
-  text-align: center;
-  font-weight: bold;
-}
-.app.window-app.degenesis.sheet .attribute-label {
-  -webkit-box-flex: 1.5;
-      -ms-flex: 1.5;
-          flex: 1.5;
-}
-.app.window-app.degenesis.sheet .attribute-control {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 20px;
-          flex: 0 0 20px;
-}
-.app.window-app.degenesis.sheet .attributes-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.app.window-app.degenesis.sheet .attributes-list li > * {
-  margin: 0 3px;
-  height: 28px;
-  line-height: 24px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--grey-160);
-}
-.app.window-app.degenesis.sheet .attribute-value.checkbox {
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .attributes-list li a.attribute-control {
-  border: none;
-}
-.app.window-app.degenesis.sheet .column-flex {
+.advantage-tab-container .advantage-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2601,35 +2941,36 @@ a.diamond:hover .square.red.perma {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
-.app.window-app.degenesis.sheet .bar.diamond-row {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.app.window-app.degenesis.sheet .bar-group {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.app.window-app.degenesis.sheet .bar-group .text {
+
+/* CONDITION TAB */
+.condition-tab-container {
+  margin: 3px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: hidden;
+}
+.condition-tab-container .condition-bars {
+  padding-top: 1px;
+}
+.condition-tab-container .bottom-conditions {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
   margin-top: 5px;
-}
-.app.window-app.degenesis.sheet .bar-group.trauma {
-  margin-bottom: 4px;
-}
-.app.window-app.degenesis.sheet .bottom-conditions {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2641,7 +2982,21 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .item-controls {
+.condition-tab-container .bottom-conditions .conditions-group {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+.condition-tab-container .bottom-conditions .conditions-name.long {
+  width: 100%;
+}
+.condition-tab-container .bottom-conditions .item-controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2650,34 +3005,26 @@ a.diamond:hover .square.red.perma {
           justify-content: flex-end;
   margin-left: 0;
 }
-.app.window-app.degenesis.sheet .bottom-conditions li {
+.condition-tab-container .bottom-conditions li {
   padding-bottom: 6px;
   border-bottom: 1px solid var(--grey-160);
   margin-top: 7px;
 }
-.app.window-app.degenesis.sheet .bottom-conditions li.expanded {
+.condition-tab-container .bottom-conditions li.expanded {
   padding-bottom: 0;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .item-summary {
+.condition-tab-container .bottom-conditions .item-summary {
   display: inline-block;
   background-color: var(--grey-240);
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-top: 6px;
+  margin: 6px 0px 3px 0px;
   width: 100%;
-  border-top: 1px solid var(--grey-160);
-  margin-left: 0px;
-  margin-right: 0px;
+  border: 1px solid var(--grey-160);
   padding-left: 4px;
   padding-right: 4px;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .black-title h3 {
-  margin: 0 0 0 10px;
-}
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-group {
-  width: 45%;
-}
-.app.window-app.degenesis.sheet .conditions-characteristics {
+.condition-tab-container .conditions-characteristics {
   padding-right: 5px;
   padding-left: 5px;
   display: -webkit-box;
@@ -2685,16 +3032,13 @@ a.diamond:hover .square.red.perma {
   display: flex;
   width: 100%;
   margin: 0;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data {
-  max-height: 118px;
-  display: block;
-}
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar, .app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar-thumb, .app.window-app.degenesis.sheet .bottom-conditions .conditions-group .conditions-data::-webkit-scrollbar-track {
-  margin-top: -17px;
-  margin-bottom: -10px;
-}
-.app.window-app.degenesis.sheet .conditions-ol {
+.condition-tab-container .conditions-ol {
   border-collapse: collapse;
   background: white;
   border: none;
@@ -2707,7 +3051,7 @@ a.diamond:hover .square.red.perma {
   margin: 0 10px 0 10px;
   list-style-type: none;
 }
-.app.window-app.degenesis.sheet .conditions-value {
+.condition-tab-container .conditions-value {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2718,22 +3062,22 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
 }
-.app.window-app.degenesis.sheet .conditions-name {
+.condition-tab-container .conditions-name {
   text-align: left;
   width: 40%;
   border: none;
 }
-.app.window-app.degenesis.sheet .conditions-action {
+.condition-tab-container .conditions-action {
   text-align: center;
   width: 30%;
 }
-.app.window-app.degenesis.sheet .conditions-number,
-.app.window-app.degenesis.sheet .conditions-type {
+.condition-tab-container .conditions-number,
+.condition-tab-container .conditions-type {
   text-align: center;
   width: 15%;
 }
-.app.window-app.degenesis.sheet .modifiers-action.dropdown,
-.app.window-app.degenesis.sheet .qualities-action.dropdown {
+.condition-tab-container .modifiers-action.dropdown,
+.condition-tab-container .qualities-action.dropdown {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2744,51 +3088,41 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .modifiers-description,
-.app.window-app.degenesis.sheet .qualities-description {
+.condition-tab-container .modifiers-description,
+.condition-tab-container .qualities-description {
   border-bottom: 1px solid var(--grey-160);
   width: 100%;
 }
-.app.window-app.degenesis.sheet .conditions-li {
+.condition-tab-container .conditions-li {
   border-bottom: 1px solid var(--grey-160);
   margin-bottom: 3px;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .conditions-name.long {
-  width: 100%;
+.condition-tab-container .complications-data {
+  overflow: auto;
 }
-.app.window-app.degenesis.sheet .complications-group,
-.app.window-app.degenesis.sheet .mods-group {
-  width: 50%;
+.condition-tab-container .modifiers-data {
+  overflow: auto;
 }
-.app.window-app.degenesis.sheet .bottom-conditions .complications-name,
-.app.window-app.degenesis.sheet .bottom-conditions .mods-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .bottom-conditions .complications-rating,
-.app.window-app.degenesis.sheet .bottom-conditions .mods-rating {
+.condition-tab-container .complications-rating,
+.condition-tab-container .mods-rating {
   width: 10%;
 }
-.app.window-app.degenesis.sheet .combat-tab {
+
+/* COMBAT TAB */
+.combat-tab-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  overflow: hidden;
+  margin: 3px;
 }
-.app.window-app.degenesis.sheet .combat-tab .combat-group {
-  text-transform: uppercase;
-  margin: 16px 13px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+.combat-tab-container .combat .diamond-position {
+  margin-right: auto;
+  margin-top: 2px;
+  margin-left: 5px;
 }
-.app.window-app.degenesis.sheet .combat-tab .combat-group.state-group .combat:hover {
-  color: var(--degenesis-red);
-}
-.app.window-app.degenesis.sheet .combat {
+.combat-tab-container .combat {
   margin-top: 5px;
   -ms-flex-item-align: center;
       align-self: center;
@@ -2799,232 +3133,139 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.app.window-app.degenesis.sheet .general-name {
-  margin-left: 10px;
+.combat-tab-container .combat-state-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  -webkit-column-gap: 10px;
+     -moz-column-gap: 10px;
+          column-gap: 10px;
 }
-.app.window-app.degenesis.sheet .square.button-position {
-  margin-right: 10px;
-  margin-top: 2px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 9px;
-          flex: 0 0 9px;
+.combat-tab-container .combat-group {
+  text-transform: uppercase;
 }
-.app.window-app.degenesis.sheet .combat .diamond-position {
-  margin-right: auto;
-  margin-top: 2px;
+.combat-tab-container .combat-group.state-group .combat:hover {
+  color: var(--degenesis-red);
+}
+
+/* COMBAT ARSENAL SECTION HEADER GRID LAYOUTS */
+.arsenal-state-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0px 3px;
+}
+.arsenal-state-container .qualities-name {
   margin-left: 5px;
 }
-.app.window-app.degenesis.sheet .title.arsenal-title {
-  margin-top: -25px;
+
+.arsenal-melee-grid {
+  grid-template-columns: 2fr 1fr 1fr;
 }
-.app.window-app.degenesis.sheet .arsenal.scrollable {
-  display: block;
-  height: 100%;
-  width: 100%;
+
+.arsenal-melee-entry-container {
+  grid-template-columns: 190px 2fr 1fr 1fr;
+}
+.arsenal-melee-entry-container .entry-list-properties {
+  grid-area: 2/1/2/5;
+}
+.arsenal-melee-entry-container .item-summary {
+  grid-area: 3/1/3/5;
+}
+
+.arsenal-ranged-grid {
+  grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
+}
+
+.arsenal-ranged-entry-container {
+  grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
+}
+.arsenal-ranged-entry-container .entry-list-properties {
+  grid-area: 2/1/2/6;
+}
+.arsenal-ranged-entry-container .item-summary {
+  grid-area: 3/1/3/6;
+}
+
+.arsenal-sonic-grid {
+  grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
+}
+
+.arsenal-sonic-entry-container {
+  grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
+}
+.arsenal-sonic-entry-container .entry-list-properties {
+  grid-area: 2/1/2/6;
+}
+.arsenal-sonic-entry-container .item-summary {
+  grid-area: 3/1/3/6;
+}
+
+.arsenal-armor-grid {
+  grid-template-columns: 0.3fr;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.arsenal-armor-entry-container {
+  grid-template-columns: 190px 0.3fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.arsenal-armor-entry-container .entry-list-properties {
+  grid-area: 2/1/2/3;
+}
+.arsenal-armor-entry-container .item-summary {
+  grid-area: 3/1/3/3;
+}
+
+/* INVENTORY TAB */
+.inventory-tab-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  margin: 3px;
+}
+.inventory-tab-container .encumbrance-group {
+  margin-bottom: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.inventory-tab-container .encumbrance-group .black-title {
+  max-width: 164px;
+  max-height: 14px;
+}
+.inventory-tab-container .encumbrance-legend {
+  -ms-flex-item-align: end;
+      align-self: end;
+}
+.inventory-tab-container .encumbrance-group .encumbrance-legend span {
+  margin-right: 20px;
+}
+.inventory-tab-container .inventory-list-container {
   overflow: auto;
 }
-.app.window-app.degenesis.sheet .combat-tab .arsenal-group.armor-group, .app.window-app.degenesis.sheet .combat-tab .arsenal-group.weapon-group {
-  margin: 16px 13px;
+.inventory-tab-container .inventory-group.armor-group, .inventory-tab-container .inventory-group.weapon-group {
+  margin: 16px 5px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet .combat-tab .arsenal-group .black-title {
-  width: 100%;
-  background-image: url(../images/border\ short.svg);
-  background-repeat: no-repeat;
-  color: white;
-  background-size: 100%;
-  background-position: center;
-}
-.app.window-app.degenesis.sheet .arsenal-group h3 {
-  margin-bottom: 0px;
-  margin-left: 10px;
-}
-.app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name,
-.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-group .armor-legend .legend-name.uses {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-}
-.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.uses {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-}
-.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.empty-melee {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  height: 14px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.empty-melee {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  height: 14px;
-}
-.app.window-app.degenesis.sheet .arsenal-group .weapon-legend .legend-name.uses-ranged {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-}
-.app.window-app.degenesis.sheet .arsenal-list .armor.item,
-.app.window-app.degenesis.sheet .arsenal-list .weapon.item {
-  margin-left: 5px;
-  border-bottom: 1px solid var(--grey-160);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 8px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .weapon-name {
-  width: 180px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  /* align-self: center; */
-  margin-left: 5px;
-  padding-bottom: 6px;
-  max-width: 190px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .armor-name {
-  width: 180px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  /* align-self: center; */
-  margin-left: 5px;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics,
-.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  margin: 0;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics > * {
-  padding-right: 2px;
-  padding-left: 2px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics > * {
-  padding-right: 2px;
-  padding-left: 2px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .armor-characteristics .legend-name,
-.app.window-app.degenesis.sheet .arsenal-list .weapon-characteristics .legend-name {
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.distance {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.distance-ranged-sonic {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.armor-value {
-  -webkit-box-flex: 0.25;
-      -ms-flex: 0.25;
-          flex: 0.25;
-}
-.app.window-app.degenesis.sheet .arsenal-group .legend-name.armor-value {
-  -webkit-box-flex: 0.25;
-      -ms-flex: 0.25;
-          flex: 0.25;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.damage {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.damage-ranged-sonic {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.magazine-ranged-sonic {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .arsenal-list .legend-name.uses, .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged, .app.window-app.degenesis.sheet .arsenal-list .legend-name.uses-ranged-sonic {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-}
-.app.window-app.degenesis.sheet .armor-properties,
-.app.window-app.degenesis.sheet .weapon-properties {
-  margin-left: 3%;
-  margin-bottom: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.sheet .name-rotate {
-  /* Internet Explorer */
-  /* Firefox */
-  -webkit-transform: rotate(-45deg);
-  /* Safari et Chrome */
-  transform: rotate(-45deg);
-}
-.app.window-app.degenesis.sheet .qualities-name {
-  margin-left: 5px;
-}
-.app.window-app.degenesis.sheet .arsenal-list .item-summary {
-  display: inline-block;
-  background-color: var(--grey-240);
-  padding: 5px 4px 5px 4px;
-  width: 100%;
-  border-top: 1px solid var(--grey-160);
-  margin-left: 0px;
-  margin-right: 0px;
-}
-.app.window-app.degenesis.sheet .inventory-group.armor-group, .app.window-app.degenesis.sheet .inventory-group.weapon-group {
-  margin: 16px 13px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group {
-  margin: 16px 13px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-all {
+.inventory-tab-container .enc-all {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3037,12 +3278,12 @@ a.diamond:hover .square.red.perma {
           flex-direction: column;
   margin-left: -7px;
 }
-.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-container {
+.inventory-tab-container .enc-container {
   width: calc(100% - 5px);
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
-  border: 1px solid var(--grey-160);
+  border: 1px solid var(--grey-70);
   margin-left: 2px;
   margin-bottom: 0px;
   -webkit-box-ordinal-group: 3;
@@ -3054,414 +3295,93 @@ a.diamond:hover .square.red.perma {
   -webkit-transform: skew(45deg, 0deg);
           transform: skew(45deg, 0deg);
 }
-.app.window-app.degenesis.sheet .inventory-tab .encumbrance-group .enc-bar {
+.inventory-tab-container .enc-bar {
   border: none;
   background-color: black;
+  height: 8px;
   max-width: 100%;
 }
-.app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend span {
-  margin-right: 20px;
+.inventory-tab-container .section-header-legends.encumbrance {
+  border: none;
 }
 
-.degenesis.sheet .armor,
-.degenesis.sheet .weapon,
-.degenesis.sheet .encumbrance {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.inventory-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
 }
 
-.app.window-app.degenesis.sheet .inventory-tab .black-title {
-  width: 100%;
-  background-image: url(../images/border\ short.svg);
-  background-repeat: no-repeat;
-  color: white;
-  background-size: 100%;
-  background-position: center;
+.inventory-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+  grid-template-rows: minmax(18px, -webkit-max-content);
+  grid-template-rows: minmax(18px, max-content);
+}
+.inventory-group-entry-grid .item-summary {
+  grid-area: 2/1/2/8;
 }
 
-.degenesis.sheet .armor .black-title,
-.degenesis.sheet .weapon .black-title,
-.degenesis.sheet .encumbrance .black-title {
-  max-width: 164px;
-  max-height: 14px;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
+.transportation-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.transportation-group-grid :first-child {
+  grid-area: 1/3/1/4;
+}
+.transportation-group-grid :nth-child(2) {
+  grid-area: 1/4/1/5;
+}
+.transportation-group-grid :nth-child(3) {
+  grid-area: 1/5/1/6;
 }
 
-.app.window-app.degenesis.sheet .inventory-group h3 {
-  margin-bottom: 0px;
-  margin-left: 10px;
+.transportation-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
 }
-.app.window-app.degenesis.sheet .armor-group .first-part,
-.app.window-app.degenesis.sheet .weapon-group .first-part,
-.app.window-app.degenesis.sheet .encumbrance-group .first-part {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 190px;
+.transportation-group-entry-grid :nth-child(2) {
+  grid-area: 1/4/1/5;
 }
-.app.window-app.degenesis.sheet .armor-group .empty,
-.app.window-app.degenesis.sheet .weapon-group .empty,
-.app.window-app.degenesis.sheet .encumbrance-group .empty {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  border-bottom: 1px solid var(--grey-160);
+.transportation-group-entry-grid :nth-child(3) {
+  grid-area: 1/5/1/6;
 }
-.app.window-app.degenesis.sheet .armor-group .armor-legend,
-.app.window-app.degenesis.sheet .weapon-group .weapon-legend {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  border-bottom: 1px solid var(--grey-160);
-  width: 100%;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+.transportation-group-entry-grid :nth-child(4) {
+  grid-area: 1/6/1/7;
 }
-.app.window-app.degenesis.sheet .armor-group .armor-legend > *,
-.app.window-app.degenesis.sheet .weapon-group .weapon-legend > * {
-  padding-left: 2px;
-  padding-right: 2px;
+.transportation-group-entry-grid :nth-child(5) {
+  grid-area: 1/7/1/8;
 }
-.app.window-app.degenesis.sheet .encumbrance-group .encumbrance-legend {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  /* flex: 0 0 38px; */
-  /* border-bottom: 1px solid var(--grey-160); */
-  width: 100%;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-.app.window-app.degenesis.sheet .inventory-group .weapon-legend > * {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  text-align: center;
-  border-bottom: 0px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-.app.window-app.degenesis.sheet .inventory-group .armor-legend > * {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  text-align: center;
-  border-bottom: 0px;
-  padding-right: 5px;
-  padding-left: 5px;
-}
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .legend-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-  max-width: 50px;
-}
-.app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-  max-width: 50px;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name .slots,
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .legend-name .slots,
-.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name .slots,
-.app.window-app.degenesis.sheet .inventory-group .weapon-legend .legend-name .slots {
-  margin-left: 12px;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name,
-.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  max-width: 50px;
-  padding-right: 5px;
-  padding-left: 5px;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .legend-name.equipped,
-.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .legend-name.equipped {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-flex: 1.7;
-      -ms-flex: 1.7;
-          flex: 1.7;
-  max-width: 75px;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics .item-controls,
-.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics .item-controls {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 49px;
-          flex: 0 0 49px;
-}
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .equipped,
-.app.window-app.degenesis.sheet .inventory-group .weapon-legend .equipped {
-  -webkit-box-flex: 1.7;
-      -ms-flex: 1.7;
-          flex: 1.7;
-  max-width: 75px;
-}
-.app.window-app.degenesis.sheet .inventory-group .armor-legend .empty,
-.app.window-app.degenesis.sheet .inventory-group .weapon-legend .empty {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 64px;
-          flex: 0 0 64px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 14px;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor.item,
-.app.window-app.degenesis.sheet .inventory-list .weapon.item {
-  margin-left: 5px;
-  border-bottom: 1px solid var(--grey-160);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 8px;
-}
-.app.window-app.degenesis.sheet .inventory-list .square.button-position {
-  margin: 0;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor.item .armor-name,
-.app.window-app.degenesis.sheet .inventory-list .weapon.item .weapon-name {
-  width: 185px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-right: 0;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .inventory-list .armor-characteristics,
-.app.window-app.degenesis.sheet .inventory-list .weapon-characteristics {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  margin: 0;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .inventory-list .item-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.app.window-app.degenesis.sheet .inventory-list .item-summary {
-  display: inline-block;
-  background-color: var(--grey-240);
-  padding: 5px 4px 5px 4px;
-  width: 100%;
-  border-top: 1px solid var(--grey-160);
-  margin-left: 0px;
-  margin-right: 0px;
-  text-align: justify;
-}
-.app.window-app.degenesis.sheet .inventory-list .item-summary .tag {
-  border: 1px solid var(--grey-160);
-  background: white;
-  margin: 2px 5px;
-  display: inline-block;
-  padding: 2px 7px;
-}
-.app.window-app.degenesis.sheet .inventory-list .item-summary p {
-  margin-top: 0;
-}
-.app.window-app.degenesis.sheet .history-tab {
-  margin-top: 20px;
-  height: 80%;
-}
-.app.window-app.degenesis.sheet .lt-group {
-  margin: 16px 13px;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  /*height: 30%*/
-}
-.app.window-app.degenesis.sheet .legacy-group {
-  height: auto;
-}
-.app.window-app.degenesis.sheet .gmnotes-group,
-.app.window-app.degenesis.sheet .biography-group {
-  height: 70%;
-}
-.app.window-app.degenesis.sheet .lt-group .editor .editor-content {
-  height: 90%;
+.transportation-group-entry-grid .item-summary {
+  grid-area: 2/1/2/8;
 }
 
-/* * History tab */
-.degenesis.sheet .lt-group .lt-top {
+/* HISTORY TAB  */
+.history-tab-container {
+  overflow: auto;
+  margin: 3px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: auto;
+  padding: 0px 3px;
 }
-
-.app.window-app.degenesis.sheet .lt-group .first-part {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 190px;
+.history-tab-container .section-header-legends .item-add {
+  margin: 0 !important;
 }
-.app.window-app.degenesis.sheet .lt-group .black-title {
-  width: 100%;
-  background-image: url(../images/border\ short.svg);
-  background-repeat: no-repeat;
-  color: white;
-  background-size: 100%;
-  background-position: center;
+.history-tab-container .legacies-group-entry-grid {
+  grid-template-columns: 1fr auto;
 }
-.app.window-app.degenesis.sheet .lt-group h3 {
-  margin-bottom: 0px;
-  margin-left: 10px;
+.history-tab-container .legacies-group-entry-grid .item-controls {
+  margin-right: 5px;
 }
-.app.window-app.degenesis.sheet .lt-group .legend {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-  border-bottom: 1px solid var(--grey-160);
-  width: 100%;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-.app.window-app.degenesis.sheet .lt-group .legend .legend-name {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet .lt-group .item-list .item {
-  margin-left: 5px;
-  border-bottom: 1px solid var(--grey-160);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  margin-top: 8px;
-}
-.app.window-app.degenesis.sheet .lt-group .item-list .item-name {
-  width: 180px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  /* align-self: center; */
-  margin-left: 5px;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .lt-group.empt .item-list .item-name {
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
-}
-.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics {
-  -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  margin: 0;
-  padding-bottom: 6px;
-}
-.app.window-app.degenesis.sheet .lt-group.empt .item-list .item-characteristics {
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-}
-.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics > * {
-  padding-right: 2px;
-  padding-left: 2px;
-}
-.app.window-app.degenesis.sheet .lt-group .item-list .item-characteristics .legend-name {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  -ms-flex-item-align: center;
-      align-self: center;
-  text-align: center;
-}
-
-.degenesis.sheet .lt-group .item-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.app.window-app.degenesis.sheet .lt-group .legend .icon.item-add {
-  margin: 0;
-  font-size: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 1px 4px;
-}
-.app.window-app.degenesis.sheet.actor .editor {
-  width: 100%;
-  height: 100%;
+.history-tab-container .legacies-group-entry-grid .item-summary {
+  grid-area: 2/1/2/3;
 }
 
 .app.window-app.degenesis.sheet.fromHell .window-content {
-  padding: 5px;
+  padding: 5x;
   overflow-y: hidden;
   background: rgb(32, 32, 32);
   background: url(../ui/fromHell_BG.jpg);
@@ -3492,9 +3412,44 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.fromHell header > div.header-column.header-line > svg > line {
   stroke: rgb(255, 255, 255) !important;
 }
+.app.window-app.degenesis.sheet.fromHell header .section-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+.app.window-app.degenesis.sheet.fromHell header .section-header {
+  padding: 5px;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+}
+.app.window-app.degenesis.sheet.fromHell header .section-container {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.fromHell header .break {
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+}
 .app.window-app.degenesis.sheet.fromHell .section-header {
   padding: 5px;
-  height: 100%;
 }
 .app.window-app.degenesis.sheet.fromHell .header-about-textarea {
   display: inline-block;
@@ -3502,7 +3457,6 @@ a.diamond:hover .square.red.perma {
   height: 100%;
 }
 .app.window-app.degenesis.sheet.fromHell .fh-textarea {
-  height: 100%;
   color: rgb(255, 255, 255);
 }
 .app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar {
@@ -3569,169 +3523,53 @@ a.diamond:hover .square.red.perma {
 }
 
 /* SHEET: _ITEM.SCSS */
-.app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
-  margin-top: -15px;
-  margin-bottom: -20px;
+/* LEGACY ITEM SPECIFIC STYLES */
+.item-legacy .profile-img {
+  background: url(../ui/black_01.jpg);
 }
 
-.app.window-app.degenesis.sheet.item textarea {
-  border: 1px solid var(--grey-160);
-  border-radius: 0;
+/* ITEM MODS SPECIFIC STYLES */
+.item-mod .section-header-container {
+  margin-top: 7px;
 }
-.app.window-app.degenesis.sheet.item input, .app.window-app.degenesis.sheet.item select {
-  background-color: var(--grey-240);
+.item-mod .mod-keys-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.1fr;
 }
-.app.window-app.degenesis.sheet.item input:hover {
-  background-color: var(--grey-230);
+.item-mod .mod-keys-entry-container {
+  display: grid;
+  grid-template-columns: 190px 1fr 1fr 0.1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 10px;
+     -moz-column-gap: 10px;
+          column-gap: 10px;
 }
-.app.window-app.degenesis.sheet.item input:focus {
-  background-color: var(--grey-220);
-}
-.app.window-app.degenesis.sheet .profile-img.item-img {
-  max-height: 64px;
-  max-width: 64px;
-}
-.app.window-app.degenesis.sheet.item .sheet-body {
-  width: 100%;
-  height: calc(100% - 165px);
-}
-.app.window-app.degenesis.sheet.item .tab {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-.app.window-app.degenesis.sheet.item .editor {
-  width: 100%;
-  height: calc(100% - 40px);
-}
-.app.window-app.degenesis.sheet.item .header-inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.app.window-app.degenesis.sheet.item .header-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-right: 2px;
-  margin-left: 2px;
-}
-.app.window-app.degenesis.sheet.item .header-inputs input {
-  width: 100%;
+.item-mod .mod-keys-entry-container > * {
   text-align: center;
 }
-.app.window-app.degenesis.sheet.item .header-input label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.app.window-app.degenesis.sheet.item .img-frame {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 108px;
-          flex: 0 0 108px;
-  z-index: 1000;
-  height: 108px;
-  background-image: url(../images/item\ frame.svg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  border: none;
-}
-.app.window-app.degenesis.sheet.item .header-column.char-info {
-  margin-left: 7px;
-  margin-right: 2px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.app.window-app.degenesis.sheet.item .detail-container .sheet-field span.field-name {
-  /* min-width: 72px; */
-}
-.app.window-app.degenesis.sheet .sheet-field .field-name.skill-selection {
-  width: 100%;
-}
-.app.window-app.degenesis.sheet.item .detail-container select, .app.window-app.degenesis.sheet.item .header-column select {
-  width: 100%;
-  background-color: transparent;
-  -moz-text-align-last: left;
-       text-align-last: left;
-  padding-top: 3px;
-  height: 24px;
-}
-.app.window-app.degenesis.sheet.item .detail-container .field-inputs {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 100%;
-}
-.app.window-app.degenesis.sheet.item .detail-container .field-inputs > * {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-short, .app.window-app.degenesis.sheet.item .detail-container input.field-input.distance-far {
-  text-align: center;
-}
-.app.window-app.degenesis.sheet.item .detail-container span.field-separator {
-  -webkit-box-flex: inherit;
-      -ms-flex: inherit;
-          flex: inherit;
-}
-.app.window-app.degenesis.sheet.item .detail-container select.damageBonus-select {
-  width: auto;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.sheet.item .detail-container input {
-  background-color: transparent;
-}
-.app.window-app.degenesis.sheet.item .header-column input {
-  background-color: transparent;
-}
-.app.window-app.degenesis.sheet.item .detail-container input {
+.item-mod .mod-keys-entry-container .key input {
   text-align: left;
 }
-.app.window-app.degenesis.sheet.item .detail-container input.field-start {
-  padding-right: 0px;
+.item-mod .mod-keys-entry-container .mode select {
+  text-transform: uppercase;
+  text-align: center;
 }
-.app.window-app.degenesis.sheet.item .tab .editor {
-  font-size: 14px;
+.item-mod .section-list {
+  padding: 0;
+  padding-inline: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
-.app.window-app.degenesis.sheet.item .field-inputs .field-end {
-  padding: 1px 3px;
-  padding-top: 5px;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-flex: 0;
-      -ms-flex: 0;
-          flex: 0;
-}
-.app.window-app.degenesis.sheet.item .field-inputs .belt-text {
+
+/* ITEM MODS SPECIFIC STYLES */
+.item-weapon .belt-text {
   margin-right: 10px;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
@@ -3740,10 +3578,10 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 0;
           flex: 0;
 }
-.app.window-app.degenesis.sheet.item .field-inputs .mag-size {
+.item-weapon .mag-size {
   text-align: right;
 }
-.app.window-app.degenesis.sheet.item .field-inputs .belt-field {
+.item-weapon .belt-field {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -3753,15 +3591,99 @@ a.diamond:hover .square.red.perma {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.app.window-app.degenesis.sheet.item .icon.wheel {
-  font-size: 11px;
+.item-weapon .field-inputs select {
+  padding-top: 5px;
 }
-.app.window-app.degenesis.sheet.item .mods-group .black-title .right {
-  margin: 0;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+.item-weapon .field-inputs select,
+.item-weapon .field-inputs input {
+  text-transform: uppercase;
+}
+
+/* TRANSPORTATION ITEMS SPECIFIC STYLES */
+.item-transportation .sh-field.droppable {
+  height: 26px;
+}
+.item-transportation .sh-field.droppable .field-inputs {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.item-transportation .sh-field.droppable .field-inputs a {
+  margin-left: 10px;
+}
+.item-transportation .encMode-select {
+  text-transform: uppercase;
+}
+
+.line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
+}
+
+.form-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.app.window-app.degenesis.sheet.item {
+  min-width: 550px;
+  min-height: 535px;
+  overflow: hidden;
+  /* DETAIL STUFF */
+  /* BOTTOM CONTAINER */
+}
+.app.window-app.degenesis.sheet.item ::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.item ::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.item ::-webkit-scrollbar-track {
+  margin-top: -15px;
+  margin-bottom: -20px;
+}
+.app.window-app.degenesis.sheet.item input {
+  background: none;
+  border: none;
+  padding-top: 5px;
+}
+.app.window-app.degenesis.sheet.item input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.item input:hover {
+  color: var(--degenesis-red);
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
+}
+.app.window-app.degenesis.sheet.item .item-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 2px;
+}
+.app.window-app.degenesis.sheet.item .sh-header .img-frame {
+  width: 108px;
+  height: 108px;
+}
+.app.window-app.degenesis.sheet.item .sh-header .img-frame .profile-img {
+  width: 96px;
+  height: 96px;
+}
+.app.window-app.degenesis.sheet.item .sh-header .header-content-container-position {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3769,20 +3691,109 @@ a.diamond:hover .square.red.perma {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  gap: 10px;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  -webkit-box-align: self-start;
+      -ms-flex-align: self-start;
+          align-items: self-start;
 }
-.app.window-app.degenesis.sheet.item .mods-group .black-title .slots {
-  margin-right: 5px;
-}
-.app.window-app.degenesis.sheet.item .black-title .right {
-  margin-right: 10px;
+.app.window-app.degenesis.sheet.item .sh-header .header-content-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  padding: 5px;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.item .sh-header .header-content-side-container {
+  font-family: "Avenir";
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-flex-item-align: center;
-      align-self: center;
+}
+.app.window-app.degenesis.sheet.item .sh-header .header-content-image-container {
+  min-width: 108px;
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+}
+.app.window-app.degenesis.sheet.item .sh-body {
+  font-family: "Avenir" !important;
+  font-weight: 300;
+  color: black;
+}
+.app.window-app.degenesis.sheet.item .tab-content-container {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.app.window-app.degenesis.sheet.item .tab-content-container h3 {
+  font-size: 12px;
+  font-weight: 300;
+  border-bottom: 0px;
+}
+.app.window-app.degenesis.sheet.item .tab[data-tab].active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow: hidden;
 }
 .app.window-app.degenesis.sheet.item .detail-container {
   display: -webkit-box;
@@ -3792,142 +3803,154 @@ a.diamond:hover .square.red.perma {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-left: 5px;
-  margin-right: 5px;
+  gap: 10px;
+}
+.app.window-app.degenesis.sheet.item .detail-container > * {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 .app.window-app.degenesis.sheet.item .detail-container .column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+.app.window-app.degenesis.sheet.item .bottom-container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 10px;
+     -moz-column-gap: 10px;
+          column-gap: 10px;
+}
+.app.window-app.degenesis.sheet.item .bottom-container .mods-li {
+  height: 21px;
+}
+.app.window-app.degenesis.sheet.item .bottom-container .mods-li .item-controls > * {
+  margin: 0px 3px;
+}
+.app.window-app.degenesis.sheet.item .conditions-ol {
+  border-collapse: collapse;
+  background: white;
+  border: none;
+  margin: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+  padding: 0;
+  list-style-type: none;
+}
+.app.window-app.degenesis.sheet.item .conditions-li {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--grey-160);
+  margin-top: 7px;
+}
+.app.window-app.degenesis.sheet.item .conditions-characteristics {
+  padding-right: 5px;
+  padding-left: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  margin: 5px;
+  margin: 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.app.window-app.degenesis.sheet .bottom-conditions.spaced-conditions {
-  margin-top: 10px;
+.app.window-app.degenesis.sheet.item .conditions-characteristics .item-data {
+  display: contents;
 }
-.app.window-app.degenesis.sheet.item .square.button-position {
-  margin-right: 4px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 9px;
-          flex: 0 0 9px;
-  -ms-flex-item-align: center;
-      align-self: center;
-}
-.app.window-app.degenesis.sheet.item .editor-content {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.app.window-app.degenesis.quality-selector .quality-inputs {
+.app.window-app.degenesis.sheet.item .specialty-container {
+  margin-top: 7px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
-.app.window-app.degenesis.quality-selector .item-quality {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.app.window-app.degenesis.quality-selector .item-quality > * {
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.quality-selector .sheet-fields {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.quality-selector .sheet-fields > * {
-  -ms-flex-item-align: center;
-      align-self: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-}
-.app.window-app.degenesis.quality-selector .field-name.quality-name {
+.app.window-app.degenesis.sheet.item .specialty-container .item-summary {
+  margin-top: 5px;
+  display: inline-block;
+  background-color: var(--grey-240);
+  border: 1px solid var(--grey-160);
+  border-radius: 0px;
   padding-top: 5px;
-  margin-left: 6px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 170px;
-          flex: 0 0 170px;
-  text-transform: uppercase;
+  padding-bottom: 5px;
+  width: 100%;
+  height: 70px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
-.app.window-app.degenesis.quality-selector .item-quality .checkbox {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 9px;
-          flex: 0 0 9px;
-}
-.app.window-app.degenesis.quality-selector .item-quality input[type=text] {
-  border: none;
-  padding-top: 5px;
-  border-bottom: 1px solid var(--grey-160);
-  -webkit-transition: border-color 0.2s, color 0.2s;
-  transition: border-color 0.2s, color 0.2s;
-}
-.app.window-app.degenesis.quality-selector .item-quality input[type=text]:focus {
-  color: var(--degenesis-red);
+.app.window-app.degenesis.sheet.item .specialty-container .item-summary:focus {
+  outline: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
+  border: 1px solid var(--degenesis-red);
 }
-.app.window-app.degenesis.quality-selector .item-quality input[type=text]:hover {
-  border-color: var(--degenesis-red);
-  color: var(--degenesis-red);
-}
-.app.window-app.degenesis.quality-selector .window-content {
-  font-family: "Avenir";
-  font-size: 13px;
-  font-weight: 300;
-}
-.app.window-app.degenesis.quality-selector form button {
-  background-color: black;
-  color: white;
-  margin-top: 5px;
-  border: none;
-  -webkit-transition: color 0.2s, border-color 0.2s, background-color 0.2s;
-  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
-}
-.app.window-app.degenesis.quality-selector form button:hover {
-  background-color: var(--degenesis-red);
-  border: none;
-}
-.app.window-app.degenesis.sheet.item .effects-header {
-  color: var(--grey-240);
-  background-color: black;
-}
-.app.window-app.degenesis.sheet.item .effects-header > * {
-  text-align: center;
-}
-.app.window-app.degenesis.sheet.item .tab.active .mod-qualities h3 {
-  margin-left: 5px;
-  -ms-flex-item-align: unset;
-      align-self: unset;
-}
-.app.window-app.degenesis.sheet.item .changes-list input {
-  background-color: white;
-  border: 1px solid black;
-}
-.app.window-app.degenesis.sheet.item .changes-list .effect-change > * {
-  margin: 5px;
-}
-.app.window-app.degenesis.sheet.item .changes-list select {
-  background: none;
-  border: none;
-  padding: 5px;
-  border-bottom: 1px solid black;
-  border-radius: 0px;
+.app.window-app.degenesis.sheet.item .specialty-container .field-name {
   text-transform: uppercase;
-  width: 100%;
+  font-weight: 600;
 }
-.app.window-app.degenesis.sheet.item .changes-list .effect-change .effect-controls {
-  justify-self: flex-start;
-  margin-top: 12px;
+.app.window-app.degenesis.sheet.item .bottom-specialty-container {
+  margin-top: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.item .bottom-specialty-container .item-summary {
+  margin-top: 5px;
+  display: inline-block;
+  background-color: var(--grey-240);
+  border: 1px solid var(--grey-160);
+  border-radius: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.app.window-app.degenesis.sheet.item .bottom-specialty-container .item-summary:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 1px solid var(--degenesis-red);
+}
+.app.window-app.degenesis.sheet.item .bottom-specialty-container .field-name {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.item a.square.checkbox {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+.app.window-app.degenesis.sheet.item .scroll-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  padding: 3px;
 }

@@ -1,0 +1,47 @@
+/* ITEM MODS SPECIFIC STYLES */
+
+.item-mod {
+  .section-header-container {
+    margin-top: 7px;
+  }
+
+  .mod-keys-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.1fr;
+  }
+  .mod-keys-entry-container {
+    display: grid;
+    grid-template-columns: 190px 1fr 1fr 0.1fr;
+    align-items: center;
+    column-gap: 10px;
+
+    > * {
+      text-align: center;
+    }
+
+    .key {
+      input {
+        text-align: left;
+      }
+    }
+
+    .mode {
+      select {
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+    .value {
+    }
+    .effects-control {
+    }
+  }
+
+  .section-list {
+    padding: 0;
+    padding-inline: 0;
+
+    display: flex;
+    flex-direction: column;
+  }
+}

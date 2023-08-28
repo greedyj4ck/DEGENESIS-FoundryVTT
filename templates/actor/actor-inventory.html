@@ -1,224 +1,252 @@
-<div class="title">
-   <div class="body-column body-line">
-      <div class="square little left"></div>
-      <svg class="title-line middle-left" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-      <div class="middle-name">{{localize "DGNS.Inventory"}}</div>
-      <svg class="title-line middle-right" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-      <div class="square little right"></div>
+<div class="titlebar-container">
+
+   <div class="square little left"></div>
+   <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+   </svg>
+   <div class="title-line-header">{{localize "DGNS.Inventory"}}</div>
+   <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+   </svg>
+   <div class="square little right">
    </div>
+
 </div>
 
-<div class="inventory-tab">
-   <!-- * EMCOMBRANCE * -->
+<div class="inventory-tab-container">
+   <!-- * EMCUMBRANCE * -->
    <div class="inventory-group encumbrance-group">
-      <div class="encumbrance">
-         <div class="first-part">
+
+      <div class="section-header-container">
+         <div class="section-header-titleblock encumbrance">
             <div class="black-title">
-               <h3 clas>{{localize "DGNS.Encumbrance"}}</h3>
+               <h3>{{localize "DGNS.Encumbrance"}}</h3>
             </div>
-            <svg class="tab-start-line" height="23" width="26">
-               <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-               <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
+            <svg class="tab-start-line" height="20" width="26">
+               <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+               <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
             </svg>
          </div>
-         <div class="enc-all">
-            <div class="enc-container">
-               <div class="enc-bar" style="background-color: {{data.general.encumbrance.color}}; width: {{data.general.encumbrance.pct}}%"></div>
-            </div>
+
+         <div class="section-header-legends encumbrance">
+
+            <div class="enc-all">
+               <div class="enc-container">
+                  <div class="enc-bar"
+                     style="background-color: {{data.general.encumbrance.color}}; width: {{data.general.encumbrance.pct}}%">
+                  </div>
+               </div>
                <div class="encumbrance-legend">
                   <span>{{data.general.encumbrance.current}} / {{data.general.encumbrance.max}}</span>
                </div>
+            </div>
+
          </div>
       </div>
    </div>
 
-   {{#each inventory as |section s|}}
-   {{#if section.items.length includeZero=(showHeaders)}}
-   
-   <div class="inventory-group weapon-group">
-      <div class="weapon">
-         <div class="first-part">
-            <div class="black-title">
-               <h3>{{localize section.header}}</h3>
-               <a class="icon item-add" data-item="{{localize section.type}}">+</a>
-            </div>
-            <svg class="tab-start-line" height="23" width="26">
-               <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-               <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-            </svg>
+   <div class="inventory-list-container inventory-list">
 
-            <div class="empty">
+      {{#each inventory as |section s|}}
+      {{#if section.items.length includeZero=(showHeaders)}}
 
-            </div>
-         </div>
-         <div class="weapon-legend legend">
-            {{#if section.toggleable}}
-            <div class="legend-name equipped">
-               <span>{{toggleDisplay}}</span>
-            </div>
-            {{else}}
-            <div class="legend-name equipped">
-            </div>
-            <div class="legend-name">
-            </div>
-            {{/if}}
-            <div class="legend-name qty">
-               <a class="aggregate">{{localize "DGNS.Qty"}}</a>
-            </div>
-            <div class="legend-name enc">
-               <span>{{localize "DGNS.Enc"}}</span>
-            </div>
-            <div class="legend-name tech">
-               <span>{{localize "DGNS.Tech"}}</span>
-            </div>
-            {{#if section.toggleable}}
-            <div class="legend-name slots">
-               <span2>{{localize "DGNS.Slots"}}</span>
-            </div>
-            {{/if}}
-            <div class="empty"> </div>
-         </div>
-      </div>      
-   <div class="inventory-list item-list">
-      {{#each section.items as |item w|}}
-      <div class="weapon item" data-item-id="{{item.id}}">
-         <a class="weapon-name dropdown">{{item.name}}</a>
-         <div class="weapon-characteristics">
-            {{#if ../toggleable}}
-            <div class="legend-name equipped">
-                {{#if item.equipped}}
-                  <a class="square border-black button-position checkbox" data-target="item" data-item-target="system.equipped"><div class="square-into black"></div></a>
-               {{else}}
-                  <a class="square button-position checkbox" data-target="item" data-item-target="system.equipped" ><div class="square-into"></div></a>
-               {{/if}}
-            </div>
-            {{else}}
-            <div class="legend-name equipped">
-            </div>
-            <div class="legend-name ">
-            </div>
-            {{/if}}
-            <div class="legend-name qty">
-               <a class="quantity-click">{{item.quantity}}</a>
-            </div>
-            <div class="legend-name enc">
-               <span>{{item.encumbrance}}</span>
-            </div>
-            <div class="legend-name tech">
-               <span>{{item.Tech}}</span>
-            </div>
-            {{#if section.toggleable}}
-            <div class="legend-name slot">
-               <span>{{item.slots.used}}/{{item.slots.total}}</span>
-            </div>
-            {{/if}}
-            <div class="vertical-bar">
-               <svg height="15px" width="1px">
-                  <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+      <div class="inventory-group weapon-group">
+
+         <div class="section-header-container">
+            <div class="section-header-titleblock">
+               <div class="black-title">
+                  <h3>{{localize section.header}}</h3>
+                  <a class="icon item-add" data-item="{{localize section.type}}">+</a>
+               </div>
+               <svg class="tab-start-line" height="20" width="26">
+                  <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                  <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
                </svg>
             </div>
-            <div class="item-controls">
-               <a class="icon item-post"><i class="fas fa-comment"></i></a>
-               <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-               <a class="icon item-delete"><i class="fas fa-times"></i></a>
+
+            <div class="section-header-legends inventory-group-grid">
+
+               {{#if section.toggleable}}
+               <div class="legend-name equipped">
+                  <span>{{toggleDisplay}}</span>
+               </div>
+               {{else}}
+               <div class="legend-name equipped">
+               </div>
+               <div class="legend-name">
+               </div>
+               {{/if}}
+               <div class="legend-name qty">
+                  <a class="aggregate">{{localize "DGNS.Qty"}}</a>
+               </div>
+               <div class="legend-name enc">
+                  <span>{{localize "DGNS.Enc"}}</span>
+               </div>
+               <div class="legend-name tech">
+                  <span>{{localize "DGNS.Tech"}}</span>
+               </div>
+               {{#if section.toggleable}}
+               <div class="legend-name slots">
+                  <span2>{{localize "DGNS.Slots"}}</span>
+               </div>
+               {{/if}}
+
             </div>
          </div>
-         <div class="break"></div>
-      </div>
-      {{/each}}
-   </div>
-</div>
-{{/if}}
-{{/each}}
 
 
+         <div class="inventory-list item-list section-list">
+            {{#each section.items as |item w|}}
+            <div class="weapon item entry-container inventory-group-entry-grid entry-list-item"
+               data-item-id="{{item.id}}">
+               <a class="weapon-name dropdown">{{item.name}}</a>
+               {{#if ../toggleable}}
+               <div class="legend-name equipped">
+                  {{#if item.equipped}}
+                  <a class="square border-black button-position checkbox" data-target="item"
+                     data-item-target="system.equipped">
+                     <div class="square-into black"></div>
+                  </a>
+                  {{else}}
+                  <a class="square button-position checkbox" data-target="item" data-item-target="system.equipped">
+                     <div class="square-into"></div>
+                  </a>
+                  {{/if}}
+               </div>
+               {{else}}
+               <div class="legend-name equipped">
+               </div>
+               <div class="legend-name">
+               </div>
+               {{/if}}
+               <div class="legend-name qty">
+                  <a class="quantity-click">{{item.quantity}}</a>
+               </div>
+               <div class="legend-name enc">
+                  <span>{{item.encumbrance}}</span>
+               </div>
+               <div class="legend-name tech">
+                  <span>{{item.Tech}}</span>
+               </div>
+               {{#if section.toggleable}}
+               <div class="legend-name slot">
+                  <span>{{item.slots.used}}/{{item.slots.total}}</span>
+               </div>
+               {{/if}}
 
-<!-- CONTAINERS -->
-{{#if transportation.items.length includeZero=(showHeaders)}}
-<div class="inventory-group weapon-group">
-   <div class="weapon">
-      <div class="first-part">
-         <div class="black-title">
-            <h3>{{transportation.header}}</h3>
-            <a class="icon item-add" data-item="transportation">+</a>
-         </div>
-         <svg class="tab-start-line" height="23" width="26">
-            <line x1="0" y1="7" x2="10" y2="7" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-            <line x1="10" y1="7" x2="26" y2="23" style="stroke:rgb(164, 164, 164);stroke-width:1"></line>
-         </svg>
+               <div class="item-controls">
+                  <div class="vertical-bar" style="align-self: flex-start;">
+                     <svg height="15px" width="1px">
+                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                     </svg>
+                  </div>
+                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+               </div>
 
-         <div class="empty">
-
-         </div>
-      </div>
-      <div class="weapon-legend legend">
-         <div class="legend-name equipped">
-            <span>{{transportation.toggleDisplay}}</span>
-         </div>
-         <div class="legend-name enc">
-            <span>{{localize "DGNS.Enc"}}</span>
-         </div>
-         <div class="legend-name tech">
-            <span>{{localize "DGNS.Tech"}}</span>
-         </div>
-         <div class="empty"> </div>
-      </div>
-   </div>      
-<div class="inventory-list item-list">
-   {{#each transportation.items as |item w|}}
-      <div class="weapon item transport-drop expanded" data-item-id="{{item.id}}" {{#if item.dropped}} style="opacity: 0.5" {{/if}}>
-      <a class="weapon-name dropdown">{{item.name}}</a>
-      <div class="weapon-characteristics">
-         <div class="legend-name equipped">
-            {{#if item.droppable}}
-             {{#if item.dropped}}
-               <a class="square border-black button-position checkbox" data-target="item" data-item-target="system.dropped"><div class="square-into black"></div></a>
-            {{else}}
-               <a class="square button-position checkbox" data-target="item" data-item-target="system.dropped" ><div class="square-into"></div></a>
-            {{/if}}
-            {{/if}}
-         </div>
-         <div class="legend-name enc">
-            <span>{{item.encumbrance}}</span>
-         </div>
-         <div class="legend-name tech">
-            <span>{{item.Tech}}</span>
-         </div>
-         <div class="vertical-bar">
-            <svg height="15px" width="1px">
-               <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
-            </svg>
-         </div>
-         <div class="item-controls">
-            <a class="icon item-post"><i class="fas fa-comment"></i></a>
-            <a class="icon item-edit"><i class="fas fa-edit"></i></a>
-            <a class="icon item-delete"><i class="fas fa-times"></i></a>
-         </div>
-      </div>
-      <div class="break"></div>
-      {{#if item.itemsWithin.length}}
-         <div class="item-summary">
-            <div class="tags">
-               {{#each item.itemsWithin as |containerItem i|}}
-               <a class="tag container-item" data-item-id="{{containerItem.id}}">{{containerItem.name}} ({{containerItem.encumbrance}})</a>
-               {{/each}}
             </div>
+            {{/each}}
          </div>
+
+
+      </div>
       {{/if}}
+      {{/each}}
+
+
+
+      <!-- CONTAINERS -->
+      {{#if transportation.items.length includeZero=(showHeaders)}}
+      <div class="inventory-group weapon-group">
+
+         <div class="section-header-container">
+            <div class="section-header-titleblock">
+               <div class="black-title">
+                  <h3>{{localize transportation.header}}</h3>
+                  <a class="icon item-add" data-item="transportation">+</a>
+               </div>
+               <svg class="tab-start-line" height="20" width="26">
+                  <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                  <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+               </svg>
+            </div>
+
+            <div class="section-header-legends transportation-group-grid">
+
+               <div class="legend-name equipped">
+                  <span>{{transportation.toggleDisplay}}</span>
+               </div>
+               <div class="legend-name enc">
+                  <span>{{localize "DGNS.Enc"}}</span>
+               </div>
+               <div class="legend-name tech">
+                  <span>{{localize "DGNS.Tech"}}</span>
+               </div>
+
+
+            </div>
+         </div>
+
+         <div class="inventory-list item-list section-list">
+            {{#each transportation.items as |item w|}}
+            <div
+               class="weapon item transport-drop expanded entry-container transportation-group-entry-grid entry-list-item"
+               data-item-id="{{item.id}}" {{#if item.dropped}} style="opacity: 0.5" {{/if}}>
+
+               <a class="weapon-name dropdown">{{item.name}}</a>
+               <div class="legend-name equipped">
+                  {{#if item.droppable}}
+                  {{#if item.dropped}}
+                  <a class="square border-black button-position checkbox" data-target="item"
+                     data-item-target="system.dropped">
+                     <div class="square-into black"></div>
+                  </a>
+                  {{else}}
+                  <a class="square button-position checkbox" data-target="item" data-item-target="system.dropped">
+                     <div class="square-into"></div>
+                  </a>
+                  {{/if}}
+                  {{/if}}
+               </div>
+               <div class="legend-name enc">
+                  <span>{{item.encumbrance}}</span>
+               </div>
+               <div class="legend-name tech">
+                  <span>{{item.Tech}}</span>
+               </div>
+               <div class="item-controls">
+                  <div class="vertical-bar" style="align-self: flex-start;">
+                     <svg height="15px" width="1px">
+                        <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:black;stroke-width:1"></line>
+                     </svg>
+                  </div>
+                  <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                  <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                  <a class="icon item-delete"><i class="fas fa-times"></i></a>
+               </div>
+
+               {{#if item.itemsWithin.length}}
+               <div class="item-summary">
+                  <div class="tags">
+                     {{#each item.itemsWithin as |containerItem i|}}
+                     <a class="tag container-item" data-item-id="{{containerItem.id}}">{{containerItem.name}}
+                        ({{containerItem.encumbrance}})</a>
+                     {{/each}}
+                  </div>
+               </div>
+               {{/if}}
+            </div>
+            {{/each}}
+         </div>
+      </div>
+      {{/if}}
+
+
    </div>
-   {{/each}}
-</div>
-</div>
-{{/if}}
 
 </div>
 
-
-     
 
 <div class="footer-diamond">
    <div class="square little"></div>

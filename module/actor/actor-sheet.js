@@ -13,18 +13,18 @@ export class DegenesisActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
-      classes: ["degenesis", "sheet", "actor"],
+      classes: ["degenesis", "sheet", "actor", "character"],
       template: "systems/degenesis/templates/actor/actor-sheet.html",
       width: 720,
-      height: 723,
+      height: 720,
       tabs: [
         {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".tab-content",
+          navSelector: ".sh-tabs",
+          contentSelector: ".tab-content-container",
           initial: "main",
         },
       ],
-      scrollY: [".relationship", ".tab-content"],
+      scrollY: [".relationship", ".tab-content-container"],
     });
   }
 

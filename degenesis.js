@@ -133,8 +133,8 @@ Hooks.once("init", async function () {
   game.degenesis = {
     apps: {
       DegenesisActorSheet,
-      // DegenesisFromHellSheet,
-      // DegenesisNPCSheet,
+      DegenesisFromHellSheet,
+      DegenesisNPCSheet,
       DegenesisItemSheet,
       DegenesisChatMessage,
       ActorConfigure,

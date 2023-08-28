@@ -1,19 +1,22 @@
-<div class="title">
-   <div class="body-column body-line">
-      <!-- <div class="title-line middle-left"></div> -->
-      <div class="square little left"></div>
-      <svg class="title-line middle-left" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-      <div class="middle-name">{{localize "DGNS.Attributes"}} & {{localize "DGNS.Skills"}}</div>
-      <svg class="title-line middle-right" height="11" width="100%">
-         <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
-      </svg>
-      <div class="square little right"></div>
+<!-- TITLE BAR HEADER - USE CODE AS A TEMPLATE -->
+<div class="titlebar-container">
+
+   <div class="square little left"></div>
+   <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+   </svg>
+   <div class="title-line-header">{{localize "DGNS.Attributes"}} & {{localize "DGNS.Skills"}}</div>
+   <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+   </svg>
+   <div class="square little right">
    </div>
+
 </div>
-<!-- advantage-tab -->
-<div class="attribute-tab">
+
+
+<!-- ATTRIBUTE TABS -->
+<div class="attribute-tab-container">
    {{#each attributeSkillGroups as |group g|}}
    <!-- advantage-group -->
    <div class="attribute-skill-group">
@@ -71,6 +74,8 @@
    </div>
    {{/each}}
 </div>
+
+
 <div class="footer-diamond">
    <div class="square little"></div>
 </div>

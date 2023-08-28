@@ -20,6 +20,10 @@
   display: flex;
   justify-content: center;
   border-radius: 1px;
+
+  &.checkbox {
+    display: inline-flex;
+  }
 }
 
 .square-into {
@@ -146,4 +150,17 @@ a.diamond:hover .square {
       border: 1px solid black;
     }
   }
+}
+
+/* ROW ELEMENTS */
+
+.diamond-row {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.diamond-position > * {
+  display: flex;
+  margin-right: 10px;
 }

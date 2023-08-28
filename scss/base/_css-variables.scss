@@ -1,0 +1,25 @@
+// CSS VARIABLES GENERATED FOR THEMING FUNCTIONALITY
+// THIS VARIABLES SHOULD BE USE IN FUTURE IMPLEMENTED FUNCTIONALITY
+// SCSS NEED SPECIFIC SYNTAX FOR THOSE
+//--css-variable: #{$scss-variable};
+
+:root {
+  --degenesis-red: #{$dgns-red};
+  --degenesis-blackred: #{$dgns-blackred};
+  --degenesis-artifact-gold: #{$dgns-artifact-gold};
+  --degenesis-artifact-gold-light: #{$dgns-artifact-gold-light};
+
+  --grey-240: #{$grey-240};
+  --grey-230: #{$grey-230};
+  --grey-220: #{$grey-220};
+  --grey-160: #{$grey-160};
+  --grey-70: #{$grey-070};
+  --grey-30: #{$grey-030};
+
+  --bg-window-header: #{$bg-window-header};
+  --bg-attributes-header: #{$bg-attributes-header};
+
+  --bg-black: #{$bg-black};
+
+  --text-white: #{$text-white};
+}

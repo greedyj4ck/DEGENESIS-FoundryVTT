@@ -1,49 +1,5 @@
 /* BASE: _EXPERIMENTAL.SCSS */
 
-#logo {
-  content: url(../icons/degenesis.png);
-}
-
-#pause {
-  background: none;
-
-  img {
-    content: url(../icons/logo.png);
-  }
-
-  h3 {
-    font-family: $primary-header-font;
-    color: white;
-    text-shadow: 1px 1px 30px var(--degenesis-red);
-  }
-
-  > {
-    figcaption {
-      font-family: 'Avenir';
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0px 3px 12px rgba(0, 0, 0, 1);
-    }
-
-    img {
-      opacity: 1.0;
-    }
-  }
-}
-
-.app.window-app {
-  .window-content {
-    background: white;
-    font-family: $serif-content-font;
-  }
-
-  .window-header {
-    font-family: Calluna;
-    background-image: url(../ui/header.jpg);
-  }
-}
-
 h1,
 h2,
 h3 {
@@ -51,16 +7,22 @@ h3 {
   text-transform: uppercase;
 }
 
-/* .window-title {
-    font-family: "Calluna";
-    text-transform: unset;
-} */
-
 input[type="text"] {
   background: none;
   border: 0px;
-  border-bottom: 1px solid black;
-  border-radius: 0px;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+input[type="select"] {
+  background: none;
+  border: 0px;
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 form button {
@@ -110,17 +72,6 @@ button:hover {
   background-color: var(--degenesis-red);
 }
 
-.sheet-tabs.tabs .item {
-  font-family: $sans-serif-content-font;
-  text-transform: uppercase;
-  font-size: 13px;
-
-  &.active {
-    color: var(--degenesis-red);
-    text-shadow: none;
-  }
-}
-
 .caps {
   text-transform: uppercase;
 }
@@ -152,7 +103,7 @@ span.nocaps {
   border-bottom: 1px solid var(--degenesis-red);
   box-shadow: 0 0 10px var(--degenesis-blackred);
 
-  >.item.active {
+  > .item.active {
     box-shadow: none;
     border: 0px solid var(--degenesis-red);
   }
@@ -170,7 +121,6 @@ span.nocaps {
   font-family: $serif-content-font;
   background-size: cover;
   background-position: top right;
-
 }
 
 .sidebar-tab {
@@ -190,7 +140,6 @@ span.nocaps {
       font-family: "Calluna";
       text-transform: unset
   } */
-
 
 #sidebar .directory-header a,
 #chat-controls a {
@@ -216,19 +165,16 @@ span.nocaps {
 
 /*WANT TO REMOVE BLUE HIGHLIGHTING FROM SELECT ELEMENTS*/
 
-
 select {
   background: none;
   border: none;
   padding: 0px;
-  border-bottom: 1px solid black;
-  border-radius: 0px;
 
   &:focus {
     box-shadow: none;
   }
 
-  >* {
+  > * {
     color: white;
     background-color: black;
   }
@@ -261,7 +207,6 @@ a:hover {
 }
 
 #hotbar {
-
   .bar-controls,
   #macro-list {
     background-color: black;
@@ -271,7 +216,6 @@ a:hover {
 }
 
 #navigation {
-
   #nav-toggle,
   #scene-list #nav-item {
     background-color: black;
@@ -281,7 +225,6 @@ a:hover {
 }
 
 #controls {
-
   .scene-control,
   .control-tool {
     background-color: black;
@@ -320,7 +263,6 @@ a:hover {
 }
 
 #controls {
-
   .scene-control.active,
   .control-tool.active,
   .scene-control:hover,
@@ -329,7 +271,6 @@ a:hover {
     box-shadow: none;
   }
 }
-
 
 .dice-tooltip .dice-rolls .roll.d6 {
   &.max {
@@ -365,7 +306,7 @@ a:hover {
   .macro {
     background: none;
     border-radius: 0px;
-    border: 1px solid #CCC;
+    border: 1px solid #ccc;
 
     &:hover {
       box-shadow: none;
@@ -374,7 +315,6 @@ a:hover {
   }
 }
 
-
 #token-hud {
   font-family: $serif-content-font;
 
@@ -382,7 +322,7 @@ a:hover {
     &.bar2 input {
       opacity: 1;
       box-shadow: 0 0 8px var(--grey-160) inset;
-      border: 4px double #FFFFFF;
+      border: 4px double #ffffff;
     }
 
     &.bar1 input {
@@ -433,5 +373,17 @@ a:hover {
   li.context-item:hover {
     text-shadow: none;
     color: var(--degenesis-red);
+  }
+}
+
+.directory-list {
+  .folder-header {
+    h3 {
+      font-family: "Calluna";
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
   }
 }

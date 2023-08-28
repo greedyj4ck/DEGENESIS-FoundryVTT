@@ -173,5 +173,10 @@
   "background": "systems/degenesis/ui/artifacts.jpg",
   "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
   "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
-  "license": "LICENSE.txt"
+  "license": "LICENSE.txt",
+  "flags": {
+    "hotReload": {
+        "extensions": ["css", "html", "hbs", "json"],
+        "paths": ["languages/", "styles/", "templates/"]
+    }}
 }
