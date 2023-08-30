@@ -24,6 +24,28 @@
   &.checkbox {
     display: inline-flex;
   }
+
+  &.black {
+    background-color: black;
+    border: 1px solid black;
+  }
+
+  &.white {
+    background-color: white;
+    border: 1px solid white;
+  }
+
+  &.little {
+  }
+
+  &.red {
+    background-color: var(--degenesis-red);
+    border: 1px solid var(--degenesis-red);
+  }
+
+  &.border-black {
+    border-color: black;
+  }
 }
 
 .square-into {
@@ -31,6 +53,7 @@
   width: 80%;
   align-self: center;
   border: 1px solid var(--grey-160);
+  transition: border-color 0.1s linear, background-color 0.1s linear;
 }
 
 .square.little {
@@ -72,11 +95,6 @@
   flex: none;
 }
 
-.square.black {
-  background-color: black;
-  border: 1px solid black;
-}
-
 .square-into {
   &.black {
     background-color: black;
@@ -89,17 +107,6 @@
     height: 70%;
     width: 70%;
     border-radius: 1px;
-  }
-}
-
-.square {
-  &.red {
-    background-color: var(--degenesis-red);
-    border: 1px solid var(--degenesis-red);
-  }
-
-  &.border-black {
-    border-color: black;
   }
 }
 
@@ -126,10 +133,6 @@ a {
   &.diamond .square {
     transition: border-color 0.1s linear, background-color 0.1s linear;
   }
-}
-
-.square-into {
-  transition: border-color 0.1s linear, background-color 0.1s linear;
 }
 
 a.diamond:hover .square {

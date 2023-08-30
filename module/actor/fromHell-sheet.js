@@ -23,12 +23,12 @@ export class DegenesisFromHellSheet extends ActorSheet {
       classes: ["degenesis", "sheet", "fromHell"],
       template:
         "systems/degenesis/templates/actor/fromHell/fromHell-sheet.html",
-      width: 685,
-      height: 723,
+      width: 550,
+      height: 535,
       tabs: [
         {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".tab-content",
+          navSelector: ".sh-tabs",
+          contentSelector: ".tab-content-container",
           initial: "main",
         },
       ],
@@ -55,9 +55,19 @@ export class DegenesisFromHellSheet extends ActorSheet {
   async prepareSheetData(sheetData) {
     // ADDING DIAMONDS ONTO SHEET
 
-    DEG_Utility.addDiamonds(sheetData.data.condition.ego, 24);
-    DEG_Utility.addDiamonds(sheetData.data.condition.fleshwounds, 24);
-    DEG_Utility.addDiamonds(sheetData.data.condition.trauma, 12);
+    DEG_Utility.addDiamonds(
+      sheetData.data.condition.ego,
+      sheetData.data.condition.ego.max
+    );
+    DEG_Utility.addDiamonds(
+      sheetData.data.condition.fleshwounds,
+      sheetData.data.condition.fleshwounds.max
+    );
+    DEG_Utility.addDiamonds(
+      sheetData.data.condition.trauma,
+      sheetData.data.condition.trauma.max
+    );
+    DEG_Utility.addDiamonds(sheetData.data.state.spentEgo, 3);
 
     // PREPARE DATA FOR FROM HELL SHEET
     sheetData.inventory = this.constructInventory();
@@ -110,19 +120,22 @@ export class DegenesisFromHellSheet extends ActorSheet {
     });
 
     html.find(".initiative-roll").click(this._onInitiativeClick.bind(this)); // Initiative Roll
+    html.find(".diamond").click(this._onDiamondClick.bind(this));
+    html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this));
+    html.find(".checkbox").click(this._onCheckboxClick.bind(this));
 
-    //$("input[type=text]").focusin(function () {
-    //  $(this).select();
-    //});
+    $("input[type=text]").focusin(function () {
+      $(this).select();
+    });
+
     // Update Inventory Item
-    //html.find(".item-edit").click(this._onItemEdit.bind(this));
-    //html.find(".item-delete").click(this._onItemDelete.bind(this));
-    //html.find(".item-add").click(this._onItemCreate.bind(this));
-    //html.find(".item-post").click(this._onPostItem.bind(this));
-    //html.find(".diamond").click(this._onDiamondClick.bind(this));
-    //html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this));
-    //html.find(".checkbox").click(this._onCheckboxClick.bind(this));
+    html.find(".item-add").click(this._onItemCreate.bind(this));
+    html.find(".item-edit").click(this._onItemEdit.bind(this));
+    html.find(".item-delete").click(this._onItemDelete.bind(this));
+    html.find(".item-post").click(this._onPostItem.bind(this));
+
     //html
+
     //.find(".relationships-cultes,.relationships-bonus")
     //.change(this._onRelationshipEdit.bind(this));
     //html.find(".dropdown").click(this._onDropdown.bind(this));
@@ -160,7 +173,14 @@ export class DegenesisFromHellSheet extends ActorSheet {
     this.actor.items.get(itemId).postToChat();
   }
 
+  _onItemDelete(event) {
+    let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
+    this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
   async _onInitiativeClick(event) {
+    console.log("Rolling initiative for from hell :)");
+
     const tokens = this.actor.isToken
       ? [this.actor.token]
       : this.actor.getActiveTokens(true);
@@ -174,6 +194,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
         rerollInitiative: true,
         initiativeOptions: {},
       };
+
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
           if (c.data.tokenId !== this.token.id) return arr;
@@ -221,6 +242,114 @@ export class DegenesisFromHellSheet extends ActorSheet {
     }
 
     super._onDrop(event);
+  }
+
+  _onDiamondClick(event) {
+    let actorData = this.actor.toObject();
+    let index = Number($(event.currentTarget).attr("data-index"));
+    let target = $(event.currentTarget)
+      .parents(".diamond-row")
+      .attr("data-target");
+    if (target == "item") {
+      let itemData = this.actor.items
+        .get($(event.currentTarget).parents(".item").attr("data-item-id"))
+        .toObject();
+      target = $(event.currentTarget)
+        .parents(".diamond-row")
+        .attr("data-item-target");
+      let value = getProperty(itemData, target);
+      if (value == index + 1)
+        // If the last one was clicked, decrease by 1
+        setProperty(itemData, target, index);
+      // Otherwise, value = index clicked
+      else setProperty(itemData, target, index + 1);
+      this.actor.updateEmbeddedDocuments("Item", [itemData]);
+      return;
+    }
+
+    // Fix for condition values being changed over their max/min value.
+
+    if (target.split(".")[1] === "condition") {
+      let targetParent = $(event.currentTarget)
+        .parents(".diamond-row")
+        .attr("data-targetParent");
+      let parentValues = getProperty(this.actor, targetParent);
+
+      // Minimum is checked for permanent spore infestation, else 0
+      let minimum;
+      let maximum;
+
+      if (parentValues.override > 0) {
+        maximum = parentValues.override;
+      } else {
+        maximum = parentValues.max;
+      }
+      if (parentValues.permanent > 0) {
+        minimum = parentValues.permanent;
+      } else {
+        minimum = 0;
+      }
+
+      if (index + 1 <= maximum && index + 1 > minimum) {
+        if (parentValues.value == index + 1)
+          // If the last one was clicked, decrease by 1
+          setProperty(actorData, target, index);
+        // Otherwise, value = index clicked
+        else setProperty(actorData, target, index + 1); // If attribute selected
+        let attributeElement = $(event.currentTarget).parents(".attribute");
+        if (attributeElement.length) {
+          // Constrain attributes to be greater than 0
+          if (getProperty(actorData, target) <= 0)
+            setProperty(actorData, target, 1);
+        }
+      }
+    } else {
+      let value = getProperty(actorData, target);
+      if (value == index + 1)
+        // If the last one was clicked, decrease by 1
+        setProperty(actorData, target, index);
+      // Otherwise, value = index clicked
+      else setProperty(actorData, target, index + 1); // If attribute selected
+      let attributeElement = $(event.currentTarget).parents(".attribute");
+      if (attributeElement.length) {
+        // Constrain attributes to be greater than 0
+        if (getProperty(actorData, target) <= 0)
+          setProperty(actorData, target, 1);
+      }
+    }
+    this.actor.update(actorData);
+  }
+  _onPermaDiamondClick(event) {
+    if (event.button != 2) return;
+    let actorData = this.actor.toObject();
+    let index = Number($(event.currentTarget).attr("data-index"));
+    let target = "system.condition.spore.permanent";
+    let value = getProperty(actorData, target);
+    if (value == index + 1)
+      // If the last one was clicked, decrease by 1
+      setProperty(actorData, target, index);
+    // Otherwise, value = index clicked
+    else setProperty(actorData, target, index + 1); // If attribute selected
+    let attributeElement = $(event.currentTarget).parents(".attribute");
+    if (attributeElement.length) {
+      // Constrain attributes to be greater than 0
+      if (getProperty(actorData, target) <= 0)
+        setProperty(actorData, target, 1);
+    }
+    this.actor.update(actorData);
+  }
+  _onCheckboxClick(event) {
+    let target = $(event.currentTarget).attr("data-target");
+    if (target == "item") {
+      target = $(event.currentTarget).attr("data-item-target");
+      let item = this.actor.items.get(
+        $(event.currentTarget).parents(".item").attr("data-item-id")
+      );
+      item.update({ [`${target}`]: !getProperty(item, target) });
+      return;
+    }
+    if (target)
+      this.actor.update({ [`${target}`]: !getProperty(this.actor, target) });
   }
   // END OF CLASS
 }

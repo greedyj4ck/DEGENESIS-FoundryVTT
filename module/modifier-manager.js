@@ -113,7 +113,7 @@ export default class ModifierManager {
    * @param {String} use Some specifiec, "attack", "defense", etc
    */
 
-  forDialog(type, skill, use) {
+  forDialog(type, skill = "none", use) {
     let prefilled = {
       difficulty: 0,
       diceModifier: 0,

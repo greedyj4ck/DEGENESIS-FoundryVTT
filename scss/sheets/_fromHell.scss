@@ -2,82 +2,16 @@
 // Main CSS selector for fromHell character sheet
 
 .app.window-app.degenesis.sheet.fromHell {
-  .window-content {
-    padding: 5x;
-    overflow-y: hidden;
-    background: $fh-window-bg;
-    background: url(../ui/fromHell_BG.jpg);
-    background-size: cover;
-    background-position: 50% 0%;
-    font-family: $sans-serif-content-font;
-    font-weight: 300;
-    color: $text-white;
-  }
+  // LOCKING SIZE
+  min-width: 650px;
+  min-height: 650px;
 
-  header {
-    .img-frame {
-      display: flex;
-      flex: 0 0 108px;
-      z-index: 1000;
-      height: 108px;
-      background-image: url(../images/character\ frame\ white.svg);
-      background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: center;
-      border: none;
-    }
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: #fff;
 
-    .char-info {
-      height: 108px;
-
-      &.right {
-      }
-    }
-
-    > div.header-column.header-line > svg > line {
-      stroke: $text-white !important;
-    }
-
-    .section-column {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-content: flex-start;
-    }
-
-    .section-header {
-      padding: 5px;
-      flex-grow: 0;
-      flex-shrink: 1;
-    }
-
-    .section-container {
-      flex-grow: 1;
-    }
-
-    .break {
-      flex-shrink: 1;
-    }
-  }
-
-  // GENERAL UI
-
-  .section-header {
-    padding: 5px;
-  }
-
-  .header-about-textarea {
-    display: inline-block;
-    padding-top: 5px;
-    height: 100%;
-  }
-
-  .fh-textarea {
-    // height: 100%;
-    color: $text-white;
-
+  div,
+  textarea,
+  input {
     &::-webkit-scrollbar {
       width: 4px;
       border: none;
@@ -124,32 +58,307 @@
     }
   }
 
-  .white-title {
-    text-transform: uppercase;
-    width: 100%;
-    background-image: url(../images/title\ border\ white.svg);
-    background-repeat: no-repeat;
-    color: black;
-    background-size: 100%;
-    background-position: center;
-    height: 14px;
+  input,
+  textarea {
+    color: var(--text-white);
+  }
 
-    h3 {
-      text-align: center;
-      margin: 0 0 0 10px;
-      font-size: 12px;
-      font-weight: 300;
-      border-bottom: 0px;
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
+  .square.little {
+    min-width: 7px;
+    margin-top: 1px;
+    border: $line-stroke-width solid $line-stroke-color;
+  }
+
+  .window-content {
+    padding: 5px;
+    overflow-y: hidden;
+    background: $fh-window-bg;
+    background: url(../ui/fromHell_BG.jpg);
+    background-size: cover;
+    background-position: 50% 0%;
+    font-family: $sans-serif-content-font;
+    font-weight: 300;
+    color: $text-white;
+  }
+
+  // MAIN SHEET HEADER STYLE
+
+  .sh-header {
+    align-items: center;
+  }
+
+  .header-content-container {
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    padding: 5px;
+    gap: 10px;
+    align-items: center;
+
+    .img-frame {
+      background-image: url(../images/character\ frame\ white.svg);
     }
   }
 
-  // CONTAINERS
+  .header-content-column-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  .container-combat {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    &.description {
+      justify-content: flex-start;
+      height: 100%;
+
+      .char-info {
+        display: flex;
+        flex: 1 0 auto;
+
+        textarea {
+          flex: 1 0 auto;
+          border: none;
+
+          &:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+
+  .header-content-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .field-name {
+    margin-top: 0px;
+    .input-name {
+      color: var(--text-white);
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      letter-spacing: 0.15em;
+    }
+  }
+  .sh-tabs {
+    margin: 10px 0px;
+  }
+
+  .bar.diamond-row {
+    justify-content: center;
+  }
+  .bar-group {
+    margin-bottom: 10px;
+
+    .text {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    &.trauma {
+      margin-bottom: 4px;
+    }
+  }
+
+  .header-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.15em;
+
+    .dice-value {
+      display: flex;
+      flex: 0 1 0;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 600;
+
+      input {
+        text-align: right;
+        font-weight: 600;
+        min-width: 4ch;
+        border: 0;
+        display: flex;
+        flex: 1 1 auto;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .square {
+      margin: 0px 2px;
+    }
+
+    &.movement {
+      margin-top: 10px;
+    }
+
+    &.spend-ego {
+      font-size: 12px;
+
+      .diamond-row {
+        margin: 0;
+      }
+    }
+
+    .config-input-container {
+      display: flex;
+      flex-direction: column;
+
+      flex: 0 1 0;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 10px;
+
+      .config-input {
+        font-weight: 300;
+        letter-spacing: 0.1em;
+      }
+
+      .config-label {
+        margin-top: 3px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+      }
+
+      input {
+        border: none;
+        border-bottom: 1px solid transparent;
+        text-align: center;
+        font-size: 16px;
+
+        &:hover {
+          box-shadow: none;
+          border-bottom: 1px solid var(--grey-160);
+          transition: border-color 0.2s linear;
+        }
+
+        &:focus {
+          box-shadow: none;
+          border-bottom: 1px solid var(--degenesis-red);
+          transition: border-color 0.3s linear;
+        }
+      }
+    }
+  }
+
+  .condition-container {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .condition-bars {
+      padding-top: 1px;
+    }
+
+    .condition {
+      .condition-item:hover,
+      .condition-section:hover
+        .app.window-app.degenesis.sheet
+        .sh-field-stack:hover {
+        color: var(--degenesis-red);
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+    }
+
+    .condition-title {
+      text-transform: uppercase;
+    }
+
+    .condition-value {
+      padding-left: 5px;
+    }
+
+    .condition-value-permanent {
+      padding-left: 5px;
+      color: var(--grey-160);
+      font-size: 9px;
+      top: -1px;
+      position: relative;
+    }
+  }
+
+  .section-legend-grid {
+    &.attack {
+      display: grid;
+      grid-template-columns: 1fr 1fr 120px 65px;
+      justify-items: center;
+    }
+
+    &.defense {
+      display: grid;
+      grid-template-columns: 1fr 120px 65px;
+      justify-items: center;
+    }
+  }
+
+  .section-entry-grid {
+    &.attack {
+      display: grid;
+      grid-template-columns: 190px 1fr 1fr 120px 65px;
+      justify-items: center;
+
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    &.defense {
+      display: grid;
+      grid-template-columns: 190px 1fr 120px 65px;
+      justify-items: center;
+
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    .item-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  .combat-container {
+    overflow: auto;
+    scrollbar-gutter: stable both-edges;
+    padding: 5px;
+    flex: 1;
+  }
+
+  .section-header-legends {
+    border-bottom: $line-stroke-width solid $line-stroke-color;
+
+    .legend-name {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+    }
   }
 }

@@ -6,22 +6,15 @@
 @import "items/item-weapon";
 @import "items/item-transportation";
 
-// LOCAL VARIABLES
-.line-stroke {
-  stroke: $line-stroke-color;
-  stroke-width: $line-stroke-width;
-}
-
-// FORM FLEX
-.form-flex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-
 // MAIN CSS SELECTOR
 
 .app.window-app.degenesis.sheet.item {
+  // LOCAL VARIABLES
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
   min-width: 550px;
   min-height: 535px;
   overflow: hidden;

@@ -39,6 +39,7 @@
   .window-content {
     background: white;
     font-family: $serif-content-font;
+    padding: 4px;
   }
 
   .window-header {
@@ -123,4 +124,86 @@
 
 .compendium.directory .directory-header .header-banner {
   mix-blend-mode: exclusion;
+}
+
+/* SHEET TABS FOR ALL UI WINDOWS */
+
+.sheet-tabs.tabs,
+.filepicker nav.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+
+  .item {
+    flex-grow: 1;
+    padding: 3px !important;
+    font-family: $sans-serif-content-font;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: white;
+    background-color: black;
+    margin: 2px;
+    line-height: 20px;
+
+    letter-spacing: 0.05em;
+    transition: background-color 0.1s ease-out;
+
+    &:hover {
+      background-color: var(--degenesis-red);
+    }
+
+    &.active {
+      background-color: var(--degenesis-red);
+      text-shadow: none;
+    }
+  }
+
+  &.active {
+    color: var(--text-white);
+    text-shadow: none;
+  }
+}
+
+.form-group button {
+  border: none !important;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+
+  &:hover {
+    background-color: var(--degenesis-red) !important;
+  }
+}
+
+.display-modes a {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  border: none !important;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+  color: var(--text-white);
+
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--degenesis-red) !important;
+  }
+}
+
+/* UI SHEETS CONFIG */
+
+.app.window-app.sheet.token-sheet {
+  .window-content {
+    background: url(../ui/light_02.jpg);
+  }
+
+  .sheet-tabs.tabs {
+    margin-top: 0px;
+  }
 }

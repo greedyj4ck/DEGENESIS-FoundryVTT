@@ -116,6 +116,7 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/item/item-header-physical-no-qty.html",
+    "systems/degenesis/templates/item/item-header-fromhell.html",
     "systems/degenesis/templates/chat/roll-card.html",
   ]);
 

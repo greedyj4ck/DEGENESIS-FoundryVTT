@@ -129,6 +129,8 @@ export class DegenesisActor extends Actor {
         super.prepareData();
         this.itemCategories = this.itemTypes;
         this.modifiers = new ModifierManager(this);
+
+        this.general.actionModifier = this.modifiers.action.D;
         //this.prepareFromHellItems();
       } catch (e) {
         console.error(e);
@@ -247,6 +249,47 @@ export class DegenesisActor extends Actor {
     let rollData = {
       skill: this.system.skills[skill],
       actionNumber: this.getSkillTotal(skill),
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    //let rollResult = await DegenesisDice.rollAction(rollData)
+    return { dialogData, cardData, rollData };
+  }
+
+  // SIMPLE DICE ROLL SETUP
+  setupDice(type, dice) {
+    let dialogData = {
+      title: DEGENESIS.diceRolls[type],
+      // prefilled: this.modifiers.forDialog("skill", skill),
+      // customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollDice;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.diceRolls[type]
+    );
+
+    let rollData = {
+      type: type,
+      actionNumber: dice,
       difficulty: 0,
       diceModifier: 0,
       successModifier: 0,
@@ -409,6 +452,36 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
+  async rollDice(dice, { skipDialog = false, override = {} }) {
+    let { dialogData, cardData, rollData } = this.setupSkill(skill);
+
+    /*   for (const key in override) {
+      dialogData[key] = override[key];
+    } */
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupSkill(rollData.secondary)
+      );
+
+    this.postRollChecks(rollResults, skill);
+
+    DegenesisChat.renderRollCard(rollResults, cardData);
+
+    return { rollResults, cardData };
+  }
+
   async rollWeapon(weapon, { skipDialog = false, use = "attack" }) {
     let { dialogData, cardData, rollData } = this.setupWeapon(weapon, { use });
     if (!skipDialog)
@@ -483,6 +556,92 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
+  // FROM HELL ROUTINES
+  async rollFightRollFromHell(
+    type,
+    dice,
+    { skipDialog = false, spentEgo = 0 }
+  ) {
+    let { dialogData, cardData, rollData } = this.setupFightRollFromHell(
+      type,
+      dice
+    );
+
+    rollData.actionNumber += spentEgo;
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupFightRoll(type, { skillOverride: rollData.secondary })
+      );
+
+    this.postRollChecks(rollResults, type);
+    return { rollResults, cardData };
+  }
+
+  setupFightRollFromHell(type = {}, dice) {
+    let dialogData = {
+      title: DEGENESIS.diceRolls[type],
+      prefilled: this.modifiers.forDialog(type), // NOT PASSING SKILL HERE AS THERE IS NO SUCH THING HERE,
+      // customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dice-dialog.html", // DIFFERENT TEMPLATE FOR MOB ROLLS ?
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+
+    // METHOD NEEDS TO BE CHANGED FOR SIMPLE ROLLS
+    dialogData.rollMethod = this.rollDice;
+
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.diceRolls[type]
+    );
+
+    if (type == "initiative")
+      cardData = this.constructCardData(
+        "systems/degenesis/templates/chat/initiative-roll-card.html",
+        DEGENESIS.diceRolls[type]
+      );
+
+    let rollData = {
+      type: type,
+      actionNumber: dice,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // ACCOUNTS FOR THE ACTION MODIFIER
+    // THIS NEEDS TO BE REDONE OR DISABLED FOR FROM HELL ACTOR
+
+    // rollData.actionNumber = this.fighting[type];
+
+    return { dialogData, cardData, rollData };
+  }
+
   async handleSecondaryRoll(
     { dialogData, cardData, rollData, rollResults } = {},
     secondary,
@@ -537,6 +696,9 @@ export class DegenesisActor extends Actor {
   }
 
   async postRollChecks(rollResults, type) {
+    // CHEKING IF THERE WAS PREVIOUS EGO MODIFIER AND DELETE IT
+    // USED WHEN ROLLING INITIATIVE WITH SPEND EGO VALUE
+
     let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier");
     if (egoModifierId) {
       await this.deleteEmbeddedDocuments("Item", [egoModifierId]);

@@ -23,10 +23,22 @@ export class DegenesisCombat extends Combat {
       const combatant = this.combatants.get(id);
       if (!combatant?.isOwner) return results;
 
-      // Produce an initiative roll for the Combatant
-      const initiativeValue = DegenesisCombat.rollInitiativeFor(
-        combatant.actor
-      );
+      // Produce an initiative roll for the Combatant (depends on actor type)
+      let initiativeValue;
+
+      switch (combatant.actor.type) {
+        case "fromhell": {
+          initiativeValue = DegenesisCombat.rollInitiativeForFromHell(
+            combatant.actor
+          );
+          break;
+        }
+        default: {
+          initiativeValue = DegenesisCombat.rollInitiativeFor(combatant.actor);
+          break;
+        }
+      }
+
       updates.push({ _id: id, initiative: initiativeValue });
     }
 
@@ -53,7 +65,7 @@ export class DegenesisCombat extends Combat {
 
   /** @override */
   async resetAll() {
-    this.data.combatants.forEach((c) => {
+    this.combatants.forEach((c) => {
       const actor = c.actor;
       if (!actor) return;
       actor.update({
@@ -109,20 +121,31 @@ export class DegenesisCombat extends Combat {
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
     DegenesisChat.renderRollCard(rollResults, cardData);
-    // console.log(`${actor.name} has initiative ${actor.data.data.state.initiative.value} and ${actor.data.data.state.initiative.actions} action(s) this round`);
+
     return initiativeValue;
   }
 
+  // FROM HELL ROUTINES
+
   static async rollInitiativeForFromHell(actor) {
     if (!actor) return 0;
+    const spentEgo = actor.state.spentEgo.value;
+    const actionModifier = actor.general.actionModifier;
 
-    const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
-      skipDialog: true,
-    });
+    const { rollResults, cardData } = await actor.rollFightRollFromHell(
+      "initiative",
+      actor.fighting.initiative + actionModifier,
+      {
+        skipDialog: false,
+        spentEgo,
+      }
+    );
     let actionCount = 1;
+
     if (rollResults.triggers > 1) {
       actionCount = 1 + Math.floor(rollResults.triggers / 2);
     }
+
     let newEgo = actor.condition.ego.value;
     if (spentEgo > 0) {
       newEgo += spentEgo;
@@ -131,16 +154,20 @@ export class DegenesisCombat extends Combat {
       let spentEgoActionModifier = foundry.utils.deepClone(
         DEGENESIS.systemItems.spentEgoActionModifier
       );
+
       spentEgoActionModifier.data.number = spentEgo;
       spentEgoActionModifier.name = "Spent Ego Bonus";
+
       let modifier = await actor.createEmbeddedDocuments("Item", [
         spentEgoActionModifier,
       ]);
+
       await actor.setFlag(
         "degenesis",
         "spentEgoActionModifier",
         modifier[0].id
       );
+
       ui.notifications.notify("Ego Spent Action Modifier Added");
 
       cardData.spentEgo = spentEgo;
@@ -156,7 +183,7 @@ export class DegenesisCombat extends Combat {
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
     DegenesisChat.renderRollCard(rollResults, cardData);
-    // console.log(`${actor.name} has initiative ${actor.data.data.state.initiative.value} and ${actor.data.data.state.initiative.actions} action(s) this round`);
+
     return initiativeValue;
   }
 }

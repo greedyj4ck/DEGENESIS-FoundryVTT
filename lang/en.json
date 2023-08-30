@@ -4,7 +4,7 @@
   "TYPES.Actor.TypeCharacter": "Character",
   "TYPES.Actor.TypeNpc": "Non-playable character",
   "TYPES.Actor.TypeAbberant": "Abberant",
-  "TYPES.Actor.TypeFromhell": "From Hell",
+  "TYPES.Actor.TypeFromHell": "From Hell",
 
   "TYPES.Actor.TypeCharacterSheet": "Default Character Sheet",
   "TYPES.Actor.TypeNpcSheet": "Default NPC Sheet",

@@ -1,32 +1,17 @@
 /* ENTITY SHEET: _CHARACTER.SCSS */
 
-.line-stroke {
-  stroke: $line-stroke-color;
-  stroke-width: $line-stroke-width;
-}
-
 // LIMITING STYLE TO CHARACTER SHEET ONLY
 .app.window-app.degenesis.sheet.actor.character {
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
   // BLOCKING RESIZE BEYOND THOSE VALUES
   min-width: 720px;
   min-height: 720px;
 
   // GENERAL UTILITY CLASSES
-
-  .item-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 2px;
-  }
-
-  .vertical-bar {
-    flex: 0 0 7px;
-    display: flex;
-    margin-top: -0px;
-    margin-bottom: -7px;
-    text-align: center;
-    justify-content: center;
-  }
 
   .item-data {
     display: contents;
@@ -102,6 +87,7 @@
     min-width: 108px;
     flex-basis: 0;
   }
+
   .ccc-content-container {
     min-height: 132px;
     display: flex;
@@ -222,12 +208,6 @@
     font-size: 12px;
     letter-spacing: 1px;
     width: 100%;
-
-    h3 {
-      font-size: 12px;
-      font-weight: 300;
-      border-bottom: 0px;
-    }
   }
 
   .editable {
@@ -396,7 +376,7 @@
   }
 
   .img-container {
-    flex: 0 0 115spx;
+    flex: 0 0 115px;
   }
 
   hr {
@@ -637,7 +617,7 @@
     .potentials {
       display: flex;
 
-      .black-title {
+      .block-title {
         max-width: 199px;
         align-self: flex-start;
       }
@@ -1040,7 +1020,7 @@
     margin-bottom: 5px;
     flex: 1;
 
-    .black-title {
+    .block-title {
       max-width: 164px;
       max-height: 14px;
     }

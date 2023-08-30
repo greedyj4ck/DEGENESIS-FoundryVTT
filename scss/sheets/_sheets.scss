@@ -8,6 +8,21 @@
   overflow: hidden;
 }
 
+.item-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2px;
+}
+
+.vertical-bar {
+  flex: 0 0 7px;
+  display: flex;
+  margin-top: -0px;
+  margin-bottom: -7px;
+  text-align: center;
+  justify-content: center;
+}
+
 /* --- TITLE BARS / FOOTERS --- */
 .sh-header {
   display: flex;
@@ -62,6 +77,7 @@
     font-weight: 600;
     letter-spacing: 2px;
     text-align: center;
+    flex: 1 0 auto;
 
     font-family: "Avenir";
   }
@@ -271,19 +287,35 @@
   }
 }
 
-.black-title {
+.block-title {
   text-transform: uppercase;
   width: 100%;
-  background-image: url(../images/title\ border.svg);
+  align-items: center;
   background-repeat: no-repeat;
-  color: white;
   background-size: 100%;
   background-position: center;
   height: 15px;
   display: flex;
   justify-content: space-between;
 
+  &.black {
+    background-image: url(../images/title\ border.svg);
+    color: white;
+  }
+
+  &.white {
+    background-image: url(../images/title\ border\ white.svg);
+    color: black;
+  }
+
+  .bold {
+    font-weight: 600;
+  }
+
   h3 {
+    font-size: 12px;
+    font-weight: 300;
+    border-bottom: 0px;
     display: flex;
     align-self: center;
     margin: 0 0 0 10px;
@@ -421,6 +453,7 @@
   display: flex;
   flex: 0 0 108px;
   z-index: 1000;
+  width: 108px;
   height: 108px;
   background-image: url(../images/character\ frame.svg);
   background-repeat: no-repeat;

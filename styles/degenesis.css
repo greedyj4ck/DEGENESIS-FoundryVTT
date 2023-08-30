@@ -457,6 +457,7 @@ a:hover {
 .app.window-app .window-content {
   background: white;
   font-family: "Calluna";
+  padding: 4px;
 }
 .app.window-app .window-header {
   font-family: "Avenir" !important;
@@ -526,6 +527,95 @@ a:hover {
 
 .compendium.directory .directory-header .header-banner {
   mix-blend-mode: exclusion;
+}
+
+/* SHEET TABS FOR ALL UI WINDOWS */
+.sheet-tabs.tabs,
+.filepicker nav.tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none !important;
+}
+.sheet-tabs.tabs .item,
+.filepicker nav.tabs .item {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 3px !important;
+  font-family: "Avenir";
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  background-color: black;
+  margin: 2px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  -webkit-transition: background-color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+}
+.sheet-tabs.tabs .item:hover,
+.filepicker nav.tabs .item:hover {
+  background-color: var(--degenesis-red);
+}
+.sheet-tabs.tabs .item.active,
+.filepicker nav.tabs .item.active {
+  background-color: var(--degenesis-red);
+  text-shadow: none;
+}
+.sheet-tabs.tabs.active,
+.filepicker nav.tabs.active {
+  color: var(--text-white);
+  text-shadow: none;
+}
+
+.form-group button {
+  border: none !important;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+}
+.form-group button:hover {
+  background-color: var(--degenesis-red) !important;
+}
+
+.display-modes a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  border: none !important;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+  color: var(--text-white);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.display-modes a:hover {
+  background-color: var(--degenesis-red) !important;
+}
+
+/* UI SHEETS CONFIG */
+.app.window-app.sheet.token-sheet .window-content {
+  background: url(../ui/light_02.jpg);
+}
+.app.window-app.sheet.token-sheet .sheet-tabs.tabs {
+  margin-top: 0px;
 }
 
 /* COMPONENTS: _SCROLLBAR.SCSS */
@@ -601,6 +691,21 @@ a:hover {
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
+.square.black {
+  background-color: black;
+  border: 1px solid black;
+}
+.square.white {
+  background-color: white;
+  border: 1px solid white;
+}
+.square.red {
+  background-color: var(--degenesis-red);
+  border: 1px solid var(--degenesis-red);
+}
+.square.border-black {
+  border-color: black;
+}
 
 .square-into {
   height: 80%;
@@ -608,6 +713,8 @@ a:hover {
   -ms-flex-item-align: center;
       align-self: center;
   border: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.1s linear, background-color 0.1s linear;
+  transition: border-color 0.1s linear, background-color 0.1s linear;
 }
 
 .square.little {
@@ -643,11 +750,6 @@ a:hover {
           flex: none;
 }
 
-.square.black {
-  background-color: black;
-  border: 1px solid black;
-}
-
 .square-into.black {
   background-color: black;
   border: 1px solid black;
@@ -658,14 +760,6 @@ a:hover {
   height: 70%;
   width: 70%;
   border-radius: 1px;
-}
-
-.square.red {
-  background-color: var(--degenesis-red);
-  border: 1px solid var(--degenesis-red);
-}
-.square.border-black {
-  border-color: black;
 }
 
 a.square.checkbox {
@@ -683,11 +777,6 @@ a.square.checkbox:hover .square-into:not(.black) {
   border: 1px solid var(--degenesis-red);
 }
 a.diamond .square {
-  -webkit-transition: border-color 0.1s linear, background-color 0.1s linear;
-  transition: border-color 0.1s linear, background-color 0.1s linear;
-}
-
-.square-into {
   -webkit-transition: border-color 0.1s linear, background-color 0.1s linear;
   transition: border-color 0.1s linear, background-color 0.1s linear;
 }
@@ -1497,6 +1586,31 @@ a.diamond:hover .square.red.perma {
   overflow: hidden;
 }
 
+.item-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 2px;
+}
+
+.vertical-bar {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 7px;
+          flex: 0 0 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: -7px;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 /* --- TITLE BARS / FOOTERS --- */
 .sh-header {
   display: -webkit-box;
@@ -1570,6 +1684,9 @@ a.diamond:hover .square.red.perma {
   font-weight: 600;
   letter-spacing: 2px;
   text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   font-family: "Avenir";
 }
 .sh-titlebar .square.little.right {
@@ -1813,12 +1930,13 @@ a.diamond:hover .square.red.perma {
   text-align: center;
 }
 
-.black-title {
+.block-title {
   text-transform: uppercase;
   width: 100%;
-  background-image: url(../images/title\ border.svg);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-repeat: no-repeat;
-  color: white;
   background-size: 100%;
   background-position: center;
   height: 15px;
@@ -1829,7 +1947,21 @@ a.diamond:hover .square.red.perma {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.black-title h3 {
+.block-title.black {
+  background-image: url(../images/title\ border.svg);
+  color: white;
+}
+.block-title.white {
+  background-image: url(../images/title\ border\ white.svg);
+  color: black;
+}
+.block-title .bold {
+  font-weight: 600;
+}
+.block-title h3 {
+  font-size: 12px;
+  font-weight: 300;
+  border-bottom: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1837,7 +1969,7 @@ a.diamond:hover .square.red.perma {
       align-self: center;
   margin: 0 0 0 10px;
 }
-.black-title .right {
+.block-title .right {
   margin-right: 8px;
 }
 
@@ -1989,6 +2121,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 0 0 108px;
           flex: 0 0 108px;
   z-index: 1000;
+  width: 108px;
   height: 108px;
   background-image: url(../images/character\ frame.svg);
   background-repeat: no-repeat;
@@ -2064,37 +2197,13 @@ a.diamond:hover .square.red.perma {
 }
 
 /* ENTITY SHEET: _CHARACTER.SCSS */
-.line-stroke {
-  stroke: var(--grey-70);
-  stroke-width: 1px;
-}
-
 .app.window-app.degenesis.sheet.actor.character {
   min-width: 720px;
   min-height: 720px;
 }
-.app.window-app.degenesis.sheet.actor.character .item-controls {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-left: 2px;
-}
-.app.window-app.degenesis.sheet.actor.character .vertical-bar {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 7px;
-          flex: 0 0 7px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: 0px;
-  margin-bottom: -7px;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+.app.window-app.degenesis.sheet.actor.character .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
 }
 .app.window-app.degenesis.sheet.actor.character .item-data {
   display: contents;
@@ -2329,11 +2438,6 @@ a.diamond:hover .square.red.perma {
   letter-spacing: 1px;
   width: 100%;
 }
-.app.window-app.degenesis.sheet.actor.character .tab-content-container h3 {
-  font-size: 12px;
-  font-weight: 300;
-  border-bottom: 0px;
-}
 .app.window-app.degenesis.sheet.actor.character .editable {
   height: 100%;
 }
@@ -2481,8 +2585,8 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.actor.character .img-container {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 115spx;
-          flex: 0 0 115spx;
+      -ms-flex: 0 0 115px;
+          flex: 0 0 115px;
 }
 .app.window-app.degenesis.sheet.actor.character hr {
   border: solid;
@@ -2763,7 +2867,7 @@ a.diamond:hover .square.red.perma {
   display: -ms-flexbox;
   display: flex;
 }
-.advantage-tab-container .potentials-group .potentials .black-title {
+.advantage-tab-container .potentials-group .potentials .block-title {
   max-width: 199px;
   -ms-flex-item-align: start;
       align-self: flex-start;
@@ -3245,7 +3349,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1;
           flex: 1;
 }
-.inventory-tab-container .encumbrance-group .black-title {
+.inventory-tab-container .encumbrance-group .block-title {
   max-width: 164px;
   max-height: 14px;
 }
@@ -3380,101 +3484,34 @@ a.diamond:hover .square.red.perma {
   grid-area: 2/1/2/3;
 }
 
-.app.window-app.degenesis.sheet.fromHell .window-content {
-  padding: 5x;
-  overflow-y: hidden;
-  background: rgb(32, 32, 32);
-  background: url(../ui/fromHell_BG.jpg);
-  background-size: cover;
-  background-position: 50% 0%;
-  font-family: "Avenir";
-  font-weight: 300;
-  color: rgb(255, 255, 255);
+.app.window-app.degenesis.sheet.fromHell {
+  min-width: 650px;
+  min-height: 650px;
 }
-.app.window-app.degenesis.sheet.fromHell header .img-frame {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 108px;
-          flex: 0 0 108px;
-  z-index: 1000;
-  height: 108px;
-  background-image: url(../images/character\ frame\ white.svg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  border: none;
-}
-.app.window-app.degenesis.sheet.fromHell header .char-info {
-  height: 108px;
-}
-.app.window-app.degenesis.sheet.fromHell header > div.header-column.header-line > svg > line {
-  stroke: rgb(255, 255, 255) !important;
-}
-.app.window-app.degenesis.sheet.fromHell header .section-column {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
-}
-.app.window-app.degenesis.sheet.fromHell header .section-header {
-  padding: 5px;
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-}
-.app.window-app.degenesis.sheet.fromHell header .section-container {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-.app.window-app.degenesis.sheet.fromHell header .break {
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
-}
-.app.window-app.degenesis.sheet.fromHell .section-header {
-  padding: 5px;
-}
-.app.window-app.degenesis.sheet.fromHell .header-about-textarea {
-  display: inline-block;
-  padding-top: 5px;
-  height: 100%;
-}
-.app.window-app.degenesis.sheet.fromHell .fh-textarea {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar {
   width: 4px;
   border: none;
   background-color: transparent;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar:hover::-webkit-scrollbar {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar:hover::-webkit-scrollbar {
   width: 8px;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-thumb {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-thumb {
   width: 4px;
   border: none;
   background-color: transparent;
   border-radius: 0px;
   background-color: white;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-track {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-track {
   width: 4px;
   border: none;
   background-color: transparent;
@@ -3485,41 +3522,360 @@ a.diamond:hover .square.red.perma {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-button {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-button {
   display: inline-block;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-track-piece {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-track-piece {
   display: none;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-scrollbar-corner {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-corner {
   display: none;
 }
-.app.window-app.degenesis.sheet.fromHell .fh-textarea::-webkit-resizer {
+.app.window-app.degenesis.sheet.fromHell div::-webkit-resizer,
+.app.window-app.degenesis.sheet.fromHell textarea::-webkit-resizer,
+.app.window-app.degenesis.sheet.fromHell input::-webkit-resizer {
   display: none;
 }
-.app.window-app.degenesis.sheet.fromHell .white-title {
-  text-transform: uppercase;
-  width: 100%;
-  background-image: url(../images/title\ border\ white.svg);
-  background-repeat: no-repeat;
-  color: black;
-  background-size: 100%;
-  background-position: center;
-  height: 14px;
+.app.window-app.degenesis.sheet.fromHell input,
+.app.window-app.degenesis.sheet.fromHell textarea {
+  color: var(--text-white);
 }
-.app.window-app.degenesis.sheet.fromHell .white-title h3 {
-  text-align: center;
-  margin: 0 0 0 10px;
-  font-size: 12px;
+.app.window-app.degenesis.sheet.fromHell .line-stroke {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.fromHell .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.fromHell .window-content {
+  padding: 5px;
+  overflow-y: hidden;
+  background: rgb(32, 32, 32);
+  background: url(../ui/fromHell_BG.jpg);
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: "Avenir";
   font-weight: 300;
-  border-bottom: 0px;
+  color: rgb(255, 255, 255);
 }
-.app.window-app.degenesis.sheet.fromHell .container-combat {
+.app.window-app.degenesis.sheet.fromHell .sh-header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  padding: 5px;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-container .img-frame {
+  background-image: url(../images/character\ frame\ white.svg);
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-column-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-column-container.description {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 100%;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-column-container.description .char-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-column-container.description .char-info textarea {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  border: none;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-column-container.description .char-info textarea:focus {
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.fromHell .header-content-image-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .field-name {
+  margin-top: 0px;
+}
+.app.window-app.degenesis.sheet.fromHell .field-name .input-name {
+  color: var(--text-white);
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.15em;
+}
+.app.window-app.degenesis.sheet.fromHell .sh-tabs {
+  margin: 10px 0px;
+}
+.app.window-app.degenesis.sheet.fromHell .bar.diamond-row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.fromHell .bar-group {
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .bar-group .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 5px;
+}
+.app.window-app.degenesis.sheet.fromHell .bar-group.trauma {
+  margin-bottom: 4px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  letter-spacing: 0.15em;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .dice-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .dice-value input {
+  text-align: right;
+  font-weight: 600;
+  min-width: 4ch;
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .dice-value input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .square {
+  margin: 0px 2px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title.movement {
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title.spend-ego {
+  font-size: 12px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title.spend-ego .diamond-row {
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container .config-input {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container .config-label {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title .config-input-container input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container {
+  margin: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition-bars {
+  padding-top: 1px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition .condition-item:hover,
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition .condition-section:hover .app.window-app.degenesis.sheet .sh-field-stack:hover {
+  color: var(--degenesis-red);
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition-title {
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition-value {
+  padding-left: 5px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-container .condition-value-permanent {
+  padding-left: 5px;
+  color: var(--grey-160);
+  font-size: 9px;
+  top: -1px;
+  position: relative;
+}
+.app.window-app.degenesis.sheet.fromHell .section-legend-grid.attack {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-columns: 1fr 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-legend-grid.defense {
+  display: grid;
+  grid-template-columns: 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.attack {
+  display: grid;
+  grid-template-columns: 190px 1fr 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.attack :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.defense {
+  display: grid;
+  grid-template-columns: 190px 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.defense :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid .item-controls {
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-container {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  padding: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.fromHell .section-header-legends {
+  border-bottom: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.fromHell .section-header-legends .legend-name {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
 }
 
 /* SHEET: _ITEM.SCSS */
@@ -3619,29 +3975,16 @@ a.diamond:hover .square.red.perma {
   text-transform: uppercase;
 }
 
-.line-stroke {
-  stroke: var(--grey-70);
-  stroke-width: 1px;
-}
-
-.form-flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-
 .app.window-app.degenesis.sheet.item {
   min-width: 550px;
   min-height: 535px;
   overflow: hidden;
   /* DETAIL STUFF */
   /* BOTTOM CONTAINER */
+}
+.app.window-app.degenesis.sheet.item .line-stroke {
+  stroke: var(--grey-70);
+  stroke-width: 1px;
 }
 .app.window-app.degenesis.sheet.item ::-webkit-scrollbar,
 .app.window-app.degenesis.sheet.item ::-webkit-scrollbar-thumb,

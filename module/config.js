@@ -214,6 +214,10 @@ DEGENESIS.fightRolls = {
   mentalDefense: "willpower",
 };
 
+DEGENESIS.diceRolls = {
+  initiative: "DGNS.Initiative",
+};
+
 DEGENESIS.modifyTypes = {
   D: "D",
   S: "S",
