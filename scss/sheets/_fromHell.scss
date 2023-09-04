@@ -304,6 +304,26 @@
     }
   }
 
+  .item-summary {
+    border: 1px solid var(--degenesis-red);
+    background-color: #000;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .section-header-container {
+    &.defense {
+      margin-top: 10px;
+    }
+    &.potential {
+      margin-top: 10px;
+    }
+  }
+
   .section-legend-grid {
     &.attack {
       display: grid;
@@ -312,6 +332,11 @@
     }
 
     &.defense {
+      display: grid;
+      grid-template-columns: 1fr 120px 65px;
+      justify-items: center;
+    }
+    &.potential {
       display: grid;
       grid-template-columns: 1fr 120px 65px;
       justify-items: center;
@@ -333,6 +358,20 @@
       display: grid;
       grid-template-columns: 190px 1fr 120px 65px;
       justify-items: center;
+
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    &.potential {
+      display: grid;
+      grid-template-columns: 190px 1fr 120px 65px;
+      justify-items: center;
+
+      .item-summary {
+        grid-area: 2/ 1 /2 / 5;
+      }
 
       :first-child {
         justify-self: flex-start;

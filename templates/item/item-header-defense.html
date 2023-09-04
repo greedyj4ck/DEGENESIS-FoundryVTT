@@ -39,6 +39,30 @@
         <input class="field-input" type="text" name="name" value="{{item.name}}" />
       </div>
 
+
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Group"}}: </span>
+        <select name="data.group" data-dtype="String">
+          {{#select data.group}}
+          {{#each (config "defenseGroups") as |group g|}}
+          <option value="{{g}}">{{group}}</option>
+          {{/each}}
+
+          {{/select}}
+        </select>
+      </div>
+
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Defense"}}: </span>
+        <div class="field-inputs">
+
+          <input class="field-input distance-short" type="text" name="data.defense.D" value="{{data.defense.D}}"
+            data-dtype="Number" />
+
+        </div>
+      </div>
+
+
     </div>
 
   </div>

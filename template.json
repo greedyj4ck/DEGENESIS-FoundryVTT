@@ -345,7 +345,11 @@
   "fromhell":
   {
     "templates":["general","condition", "fighting", "state"],
-    "about": ""    
+    "about": "",   
+    "armor": {
+      "name" :"",
+      "rating": ""
+    }
 }},
 
 "Item": {
@@ -487,19 +491,22 @@
     "drawback" : ""
   },
   "attack":{
-    "templates": ["description", "damage", "rules", "effect"],
+    "templates": ["description", "damage", "rules", "effect", "qualities"],
     "distance": {
       "short" : 0,
       "far" : 0,
       "melee" : 0
-    }
+    },
+    "group" : ""
 
   },
   "defense":{
     "templates": ["description", "rules", "effect"],
     "defense":{
       "D":0
-    }
+    },
+    "group" : ""
+    
   }
 }
 }

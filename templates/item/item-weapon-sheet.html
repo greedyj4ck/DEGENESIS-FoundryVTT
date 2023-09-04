@@ -65,10 +65,10 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Distance"}}: </span>
                             <div class="field-inputs">
-                                {{#if isMelee}} <!--Is Melee determined by weapon group-->
+                                {{#if item.isMelee}} <!--Is Melee determined by weapon group-->
                                 <input class="field-input" type="text" name="data.distance.melee"
                                     value="{{data.distance.melee}}" data-dtype="Number" />
-                                {{else if isSonic}}
+                                {{else if item.isSonic}}
                                 <input class="field-input" type="text" name="data.distance.melee"
                                     value="{{data.distance.melee}}" data-dtype="Number" />
                                 {{else}}
@@ -102,7 +102,7 @@
                                 </select>
                             </div>
                         </div>
-                        {{#unless isMelee}}
+                        {{#unless item.isMelee}}
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Caliber"}}: </span>
                             <div class="field-inputs">

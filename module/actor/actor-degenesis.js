@@ -669,10 +669,11 @@ export class DegenesisActor extends Actor {
       cardData.title += " + " + secondary.cardData.title;
 
       // Don't use ego action modifier on secondary roll
-      let actionModifier = this.getFlag("degenesis", "spentEgoActionModifier");
+      // This should not be required anymore :)
+      /*   let actionModifier = this.getFlag("degenesis", "spentEgoActionModifier");
       if (actionModifier)
         secondary.rollData.diceModifier -=
-          this.items.get(actionModifier)?.modifyNumber || 0;
+          this.items.get(actionModifier)?.modifyNumber || 0; */
 
       let secondaryRollResults = await DegenesisDice.rollAction(
         secondary.rollData

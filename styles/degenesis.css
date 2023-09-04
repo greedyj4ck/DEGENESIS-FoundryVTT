@@ -3829,12 +3829,32 @@ a.diamond:hover .square.red.perma {
   top: -1px;
   position: relative;
 }
+.app.window-app.degenesis.sheet.fromHell .item-summary {
+  border: 1px solid var(--degenesis-red);
+  background-color: #000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.app.window-app.degenesis.sheet.fromHell .section-header-container.defense {
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .section-header-container.potential {
+  margin-top: 10px;
+}
 .app.window-app.degenesis.sheet.fromHell .section-legend-grid.attack {
   display: grid;
   grid-template-columns: 1fr 1fr 120px 65px;
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.fromHell .section-legend-grid.defense {
+  display: grid;
+  grid-template-columns: 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-legend-grid.potential {
   display: grid;
   grid-template-columns: 1fr 120px 65px;
   justify-items: center;
@@ -3853,6 +3873,17 @@ a.diamond:hover .square.red.perma {
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.fromHell .section-entry-grid.defense :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.potential {
+  display: grid;
+  grid-template-columns: 190px 1fr 120px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.potential .item-summary {
+  grid-area: 2/1/2/5;
+}
+.app.window-app.degenesis.sheet.fromHell .section-entry-grid.potential :first-child {
   justify-self: flex-start;
 }
 .app.window-app.degenesis.sheet.fromHell .section-entry-grid .item-controls {
@@ -3973,6 +4004,10 @@ a.diamond:hover .square.red.perma {
 }
 .item-transportation .encMode-select {
   text-transform: uppercase;
+}
+
+.item-attack .qualities-group {
+  margin-top: 10px;
 }
 
 .app.window-app.degenesis.sheet.item {

@@ -1,5 +1,5 @@
 <form class="{{cssClass}} item-attack form-flex" autocomplete="off">
-    {{> systems/degenesis/templates/item/item-header-attack.html}}
+    {{> systems/degenesis/templates/item/item-header-defense.html}}
 
     <!-- Tabs V2-->
     <nav class="sh-tabs tabs" data-group="primary">
@@ -55,6 +55,7 @@
 
                 </div>
 
+
                 <div class="specialty-container">
                     <span class="field-name">{{localize "DGNS.Effect"}}</span>
                     <textarea name="data.effect" class="item-summary">{{data.effect}}</textarea>
@@ -64,7 +65,6 @@
                     <span class="field-name">{{localize "DGNS.Rules"}}</span>
                     <textarea name="data.rules" class="item-summary">{{data.rules}}</textarea>
                 </div>
-
 
                 <!-- Qualities -->
                 <div class="qualities-group conditions-group">

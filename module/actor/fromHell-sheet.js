@@ -135,10 +135,11 @@ export class DegenesisFromHellSheet extends ActorSheet {
     html.find(".item-post").click(this._onPostItem.bind(this));
 
     //html
+    html.find(".dropdown").click(this._onDropdown.bind(this));
 
     //.find(".relationships-cultes,.relationships-bonus")
     //.change(this._onRelationshipEdit.bind(this));
-    //html.find(".dropdown").click(this._onDropdown.bind(this));
+
     //html.find(".quality-dropdown").click(this._onQualityDropdown.bind(this));
     //html
     //.find(".complications-name, .complications-rating")
@@ -351,5 +352,47 @@ export class DegenesisFromHellSheet extends ActorSheet {
     if (target)
       this.actor.update({ [`${target}`]: !getProperty(this.actor, target) });
   }
+
+  _onDropdown(event) {
+    let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
+    let item = this.actor.items.get(itemId);
+    if (item.type !== "transportation") {
+      this._dropdown(event, item.dropdownData());
+    } else {
+      this._dropdownTransportation(event);
+    }
+  }
+  _dropdown(event, dropdownData) {
+    let dropdownHTML = "";
+    event.preventDefault();
+    let li = $(event.currentTarget).parents(".item");
+    // Toggle expansion for an item
+    if (li.hasClass("expanded")) {
+      // If expansion already shown - remove
+      let summary = li.children(".item-summary");
+      summary.slideUp(200, () => summary.remove());
+    } else {
+      // Add a div with the item summary belowe the item
+      let div;
+      if (!dropdownData) {
+        return;
+      } else {
+        dropdownHTML = `<div class="item-summary">${dropdownData.text}`;
+      }
+      if (dropdownData.tags) {
+        let tags = `<div class='tags'>`;
+        dropdownData.tags.forEach((tag) => {
+          tags = tags.concat(`<span class='tag'>${tag}</span>`);
+        });
+        dropdownHTML = dropdownHTML.concat(tags);
+      }
+      dropdownHTML += "</div>";
+      div = $(dropdownHTML);
+      li.append(div.hide());
+      div.slideDown(200);
+    }
+    li.toggleClass("expanded");
+  }
+
   // END OF CLASS
 }
