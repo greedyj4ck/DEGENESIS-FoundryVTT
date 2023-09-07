@@ -1,26 +1,24 @@
 // Overridden ChatMessage class from Foundry
-// Not much going on here, for now, but could be useful for later hacks ;) 
+// Not much going on here, for now, but could be useful for later hacks ;)
 
-import { DEGENESIS } from "./config.js"
+import { DEGENESIS } from "./config.js";
 import { DEG_Utility } from "./utility.js";
 
 /**
  * Extend FVTT ChatMessage class for Degenesis functionality
  * @extends { ChatMessage }
- * 
+ *
  */
 export class DegenesisChatMessage extends ChatMessage {
-
-
   /** @override */
   async getHTML() {
-
     // Determine some metadata
 
-    console.log("Firing custom chat Message")
-
     const data = this.toObject(false);
-    data.content = await TextEditor.enrichHTML(this.content, { async: true, rollData: this.getRollData() });
+    data.content = await TextEditor.enrichHTML(this.content, {
+      async: true,
+      rollData: this.getRollData(),
+    });
     const isWhisper = this.whisper.length;
 
     // Construct message data
@@ -34,14 +32,16 @@ export class DegenesisChatMessage extends ChatMessage {
         this.type === CONST.CHAT_MESSAGE_TYPES.IC ? "ic" : null,
         this.type === CONST.CHAT_MESSAGE_TYPES.EMOTE ? "emote" : null,
         isWhisper ? "whisper" : null,
-        this.blind ? "blind" : null
+        this.blind ? "blind" : null,
       ].filterJoin(" "),
       isWhisper: this.whisper.length,
-      canDelete: game.user.isGM,  // Only GM users are allowed to have the trash-bin icon in the chat log itself
-      whisperTo: this.whisper.map(u => {
-        let user = game.users.get(u);
-        return user ? user.name : null;
-      }).filterJoin(", ")
+      canDelete: game.user.isGM, // Only GM users are allowed to have the trash-bin icon in the chat log itself
+      whisperTo: this.whisper
+        .map((u) => {
+          let user = game.users.get(u);
+          return user ? user.name : null;
+        })
+        .filterJoin(", "),
     };
 
     // Render message data specifically for ROLL type messages
@@ -72,20 +72,26 @@ export class DegenesisChatMessage extends ChatMessage {
      */
     Hooks.call("renderChatMessage", this, html, messageData);
 
-    // CHAT ANIMATIONS :) 
+    // CHAT ANIMATIONS :)
 
-    html[0].classList.add('animate__animated', 'animate__fadeInDown', 'animate__faster');
-    html[0].addEventListener('animationend', () => {
-      html[0].classList.remove('animate__animated', 'animate__fadeInDown', 'animate__faster');
+    html[0].classList.add(
+      "animate__animated",
+      "animate__fadeInDown",
+      "animate__faster"
+    );
+    html[0].addEventListener("animationend", () => {
+      html[0].classList.remove(
+        "animate__animated",
+        "animate__fadeInDown",
+        "animate__faster"
+      );
     });
 
     return html;
   }
 
-
   /** @override */
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
   }
-
 }

@@ -1,6 +1,6 @@
 import { DEGENESIS } from "./config.js";
 
-export default class ModifierManager {
+export class ModifierManager {
   constructor(actor) {
     let shields = actor.getItemTypes("shield").filter((i) => i.equipped);
     let shieldPassiveModifier = 0;

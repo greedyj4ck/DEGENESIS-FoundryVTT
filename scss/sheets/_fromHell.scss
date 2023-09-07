@@ -313,6 +313,14 @@
 
     margin-left: 0px;
     margin-right: 0px;
+
+    .tag {
+      border: 1px solid var(--grey-70);
+      background: black;
+      margin: 2px 5px;
+      display: inline-block;
+      padding: 2px 7px;
+    }
   }
 
   .section-header-container {
@@ -327,18 +335,18 @@
   .section-legend-grid {
     &.attack {
       display: grid;
-      grid-template-columns: 1fr 1fr 120px 65px;
+      grid-template-columns: 2fr 0.6fr 0.8fr 65px;
       justify-items: center;
     }
 
     &.defense {
       display: grid;
-      grid-template-columns: 1fr 120px 65px;
+      grid-template-columns: 1fr 75px 65px;
       justify-items: center;
     }
     &.potential {
       display: grid;
-      grid-template-columns: 1fr 120px 65px;
+      grid-template-columns: 1fr 75px 65px;
       justify-items: center;
     }
   }
@@ -346,9 +354,33 @@
   .section-entry-grid {
     &.attack {
       display: grid;
-      grid-template-columns: 190px 1fr 1fr 120px 65px;
+      grid-template-columns: 190px 2fr 0.6fr 75px 65px;
       justify-items: center;
 
+      .attack-dice {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .damage {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .distance {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .item-summary {
+        grid-area: 2/ 1 / 2 / 6;
+      }
       :first-child {
         justify-self: flex-start;
       }
@@ -356,8 +388,26 @@
 
     &.defense {
       display: grid;
-      grid-template-columns: 190px 1fr 120px 65px;
+      grid-template-columns: 190px 1fr 75px 65px;
       justify-items: center;
+
+      .item-summary {
+        grid-area: 2/ 1 / 2 / 5;
+      }
+
+      .type {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .defense-dice {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
 
       :first-child {
         justify-self: flex-start;
@@ -366,7 +416,7 @@
 
     &.potential {
       display: grid;
-      grid-template-columns: 190px 1fr 120px 65px;
+      grid-template-columns: 190px 1fr 75px 65px;
       justify-items: center;
 
       .item-summary {
@@ -381,6 +431,12 @@
     .item-controls {
       width: 100%;
       justify-content: space-between;
+    }
+
+    .weapon-name,
+    .potential-name {
+      font-weight: 500;
+      letter-spacing: 0.1ch;
     }
   }
 

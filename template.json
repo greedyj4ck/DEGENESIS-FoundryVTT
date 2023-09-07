@@ -497,11 +497,14 @@
       "far" : 0,
       "melee" : 0
     },
+    "attack" : {
+      "D" : 0
+    },
     "group" : ""
 
   },
   "defense":{
-    "templates": ["description", "rules", "effect"],
+    "templates": ["description", "rules", "effect","qualities"],
     "defense":{
       "D":0
     },

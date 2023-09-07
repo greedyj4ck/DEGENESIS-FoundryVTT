@@ -32,6 +32,10 @@ export class DegenesisItem extends Item {
     // If item is a weapon: prepare weapon data.
     if (this.type == "weapon") this.prepareWeapon();
 
+    // If From Hell category
+    if (this.type == "attack") this.prepareAttack();
+    if (this.type == "defense") this.prepareDefense();
+
     if (this.type == "transportation")
       this.itemsWithin = this.actor.items.filter((i) => i.location == this.id);
   }
@@ -75,6 +79,62 @@ export class DegenesisItem extends Item {
     }
 
     this.system.dice = dice; // CHECK FOR DATA.DICE
+  }
+
+  // Prepare data for attack item type for From Hell
+  prepareAttack() {
+    let dice = {
+      attack: undefined,
+      effective: undefined,
+      far: undefined,
+      extreme: undefined,
+    };
+
+    if (this.isMelee) {
+      dice.attack =
+        this.attack.D +
+        this.actor.modifiers.forSheet("attack", null, "attack").diceModifier;
+    } else {
+      (dice.effective =
+        this.attack.D +
+        this.actor.modifiers.forSheet("attack", null, "attack").diceModifier),
+        (dice.far = dice.effective - 4 > 0 ? dice.effective - 4 : 0),
+        (dice.extreme = dice.effective - 8 > 0 ? dice.effective - 8 : 0);
+    }
+    this.system.dice = dice;
+  }
+
+  // Prepare proper dice values for defense items
+  prepareDefense() {
+    // forSheet(type, skill, use) function shortcut
+    let dice = {
+      passive: undefined,
+      activeMelee: undefined,
+      activeRanged: undefined,
+      mental: undefined,
+    };
+
+    if (this.group == "passive") {
+      dice.passive = this.defense.D;
+    }
+    if (this.group == "meleeActive") {
+      dice.meleeActive =
+        this.defense.D +
+        this.actor.modifiers.forSheet("defense", null, "defense").diceModifier;
+    }
+    if (this.group == "rangedActive") {
+      dice.rangedActive =
+        this.defense.D +
+        this.actor.modifiers.forSheet("defense", null, "defense").diceModifier;
+    }
+    if (this.group == "mental") {
+      dice.mental =
+        this.defense.D +
+        this.actor.modifiers.forSheet("mentalDefense", null, "mentalDefense")
+          .diceModifier;
+    }
+
+    this.system.dice = dice;
   }
 
   //#endregion
@@ -163,14 +223,24 @@ export class DegenesisItem extends Item {
   }
 
   fullDamage(triggers, { body, force, modifier }) {
-    let bodyTotal = this.actor.attributes.body.value + (body || 0);
-    let forceTotal = this.actor.skills.force.value + (force || 0);
+    let damage;
 
-    const baseValue = parseInt(this.damage) + (modifier || 0);
+    if (this.actor.type === "character") {
+      let bodyTotal = this.actor.attributes.body.value + (body || 0);
+      let forceTotal = this.actor.skills.force.value + (force || 0);
 
-    let damage = baseValue;
-    if (this.DamageBonus)
-      damage += this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
+      const baseValue = parseInt(this.damage) + (modifier || 0);
+
+      damage = baseValue;
+      if (this.DamageBonus)
+        damage += this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
+    } else if (this.actor.type === "fromhell") {
+      const baseValue = parseInt(this.damage) + (modifier || 0);
+      damage = baseValue;
+      if (this.DamageBonus) {
+        damage += this.DamageBonus.calculate(triggers);
+      }
+    }
 
     return damage;
   }
@@ -247,11 +317,9 @@ export class DegenesisItem extends Item {
 
     return { text };
   }
-
   _complicationDropdownData() {
     return { text: this.description };
   }
-
   _weaponDropdownData() {
     let tags = [];
     let data = foundry.utils.deepClone(this.system);
@@ -361,14 +429,12 @@ export class DegenesisItem extends Item {
       tags: tags,
     };
   }
-
   _transportationDropdownData() {
     return {
       text: this.description,
       tags: this.itemsWithin.map((i) => i.name),
     };
   }
-
   _ammunitionDropdownData() {
     let tags = [];
     let data = foundry.utils.deepClone(this.system);
@@ -382,7 +448,6 @@ export class DegenesisItem extends Item {
       tags: tags,
     };
   }
-
   _shieldDropdownData() {
     let tags = [];
     let data = foundry.utils.deepClone(this.system);
@@ -418,7 +483,6 @@ export class DegenesisItem extends Item {
       tags: tags,
     };
   }
-
   _modDropdownData() {
     let changes = [];
 
@@ -434,6 +498,96 @@ export class DegenesisItem extends Item {
     }
 
     return { text: text + "\nChanges:\n" + changes };
+  }
+  /* From Hell dropdown definitions */
+  _attackDropdownData() {
+    let tags = [];
+    let data = foundry.utils.deepClone(this.system);
+    let text = `${this.description}`;
+
+    if (
+      this.qualities.find((q) => q.name == "special") &&
+      getProperty(this, "flags.degenesis.specialty")
+    ) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${
+          this.flags.degenesis.specialty
+        }<br>`
+      );
+    }
+
+    if (this.effect) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${
+          this.effect
+        }<br>`
+      );
+    }
+    if (this.rules) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${
+          this.rules
+        }<br>`
+      );
+    }
+
+    tags.push(DEGENESIS.attackGroups[data.group]);
+    tags.push(`${game.i18n.localize("DGNS.Damage")}: ${this.DamageFormula}`);
+    tags.push(
+      `${game.i18n.localize("DGNS.Distance")}: ${
+        this.isMelee
+          ? data.distance.melee
+          : `${data.distance.short} / ${data.distance.far}`
+      }`
+    );
+
+    tags = tags.concat(Object.values(this.Qualities));
+    tags.filter((t) => !!t);
+    return {
+      text: text,
+      tags: tags,
+    };
+  }
+  _defenseDropdownData() {
+    let tags = [];
+    let data = foundry.utils.deepClone(this.system);
+    let text = `${this.description}`;
+
+    if (
+      this.qualities.find((q) => q.name == "special") &&
+      getProperty(this, "flags.degenesis.specialty")
+    ) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${
+          this.flags.degenesis.specialty
+        }<br>`
+      );
+    }
+
+    if (this.effect) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Effect").toUpperCase()}</b>: ${
+          this.effect
+        }<br>`
+      );
+    }
+    if (this.rules) {
+      text = text.concat(
+        `<b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${
+          this.rules
+        }<br>`
+      );
+    }
+
+    tags.push(DEGENESIS.defenseGroups[data.group]);
+    tags.push(`${game.i18n.localize("DGNS.Defense")}: ${this.defense.D}`);
+
+    tags = tags.concat(Object.values(this.Qualities));
+    tags.filter((t) => !!t);
+    return {
+      text: text,
+      tags: tags,
+    };
   }
 
   //#endregion

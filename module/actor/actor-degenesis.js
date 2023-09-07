@@ -1,19 +1,20 @@
 import { DEGENESIS } from "../config.js";
-import { DEG_Utility } from "../utility.js";
 import { DegenesisDice } from "../dice.js";
-import { DegenesisItem } from "../item/item-degenesis.js";
-import ModifierManager from "../modifier-manager.js";
-
-// Changes from #80 pull request
-
 import { DegenesisChat } from "../chat.js";
-
+import { ModifierManager } from "../modifier-manager.js";
 import { AutomateEncumbrancePenalty } from "../settings.js";
+
+// CLEANED UP IMPORTS
+import { DegenesisItem } from "../item/item-degenesis.js";
+import { DEG_Utility } from "../utility.js";
+
+// Dunno why the code looks like this but it works ¯\_(ツ)_/¯
 
 /**
  * Extend FVTT Actor class for Degenesis functionality
  * @extends {Actor}
  */
+
 export class DegenesisActor extends Actor {
   // TODO: CHECK IF UPDATESOURCE IS VALID METHOD FOR TOKEN
   // this.data.update -> this.updateSource
@@ -131,7 +132,7 @@ export class DegenesisActor extends Actor {
         this.modifiers = new ModifierManager(this);
 
         this.general.actionModifier = this.modifiers.action.D;
-        //this.prepareFromHellItems();
+        this.prepareFromHellItems();
       } catch (e) {
         console.error(e);
       }
@@ -216,6 +217,12 @@ export class DegenesisActor extends Actor {
     }
 
     this.general.armor += armor.equipment + armor.modifier;
+  }
+
+  prepareFromHellItems() {
+    for (let i of this.items) {
+      i.prepareOwnedData();
+    }
   }
 
   // ROLL SETUP
@@ -452,12 +459,11 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
+  /*  This is new dice rolling method that allows to pass pure 
+      action dice number and description for simple rolls.  */
+
   async rollDice(dice, { skipDialog = false, override = {} }) {
     let { dialogData, cardData, rollData } = this.setupSkill(skill);
-
-    /*   for (const key in override) {
-      dialogData[key] = override[key];
-    } */
 
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
@@ -638,6 +644,218 @@ export class DegenesisActor extends Actor {
     // THIS NEEDS TO BE REDONE OR DISABLED FOR FROM HELL ACTOR
 
     // rollData.actionNumber = this.fighting[type];
+
+    return { dialogData, cardData, rollData };
+  }
+
+  async rollAttack(attack, { skipDialog = false, use = null }) {
+    let { dialogData, cardData, rollData } = this.setupAttack(attack, { use });
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+    let rollResults = await DegenesisDice.rollAction(rollData);
+    rollResults.weapon = attack;
+    if (rollData.secondary) {
+      if (use == "attack-sonic")
+        // Call with sonic flag so the card holds the relevant target difficulty information. More details in the method itself
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          }),
+          { isSonicAttack: true }
+        );
+      else
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          })
+        );
+      cardData.title = `${weapon.name}<br>(${
+        DEGENESIS.skills[weapon.skill]
+      } + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`;
+    }
+
+    const fullDamage = attack.fullDamage(rollResults.triggers, {
+      modifier: this.modifiers.damage,
+    });
+    cardData.damageFull = `${fullDamage}`;
+
+    this.postRollChecks(rollResults, "weapon");
+    return { rollResults, cardData };
+  }
+
+  async rollDefense(defense, { skipDialog = false, use = null }) {
+    let { dialogData, cardData, rollData } = this.setupDefense(defense, {
+      use,
+    });
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+    let rollResults = await DegenesisDice.rollAction(rollData);
+    rollResults.weapon = defense;
+
+    if (rollData.secondary) {
+      if (use == "attack-sonic")
+        // Call with sonic flag so the card holds the relevant target difficulty information. More details in the method itself
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          }),
+          { isSonicAttack: true }
+        );
+      else
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          })
+        );
+      cardData.title = `${weapon.name}<br>(${
+        DEGENESIS.skills[weapon.skill]
+      } + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`;
+    }
+
+    this.postRollChecks(rollResults, "defense");
+    return { rollResults, cardData };
+  }
+
+  setupAttack(attack, { use = "attack", secondary = false, skill = null }) {
+    let dialogData = {
+      title: `Attack - ${attack.name}`,
+      prefilled: this.modifiers.forDialog("weapon", skill, use), // Investigate this
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollAttack;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/weapon-roll-card.html",
+      attack.name // Add attack title or description later
+    );
+
+    // Needs to be modified to match simple dice roll method
+    let rollData = {
+      type: "Test value",
+      actionNumber: attack.dice.attack,
+      weapon: attack,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // Uhmm.... needs to get back and change atack item structure
+    if (use && !attack.isMelee) {
+      if (use == "attack-short") rollData.actionNumber = attack.dice.effective;
+      else if (use == "attack-far") rollData.actionNumber = attack.dice.far;
+      else if (use == "attack-extreme")
+        rollData.actionNumber = attack.dice.extreme;
+    }
+
+    // There will be no secondaries (i think...) ....
+    if (secondary)
+      rollData.actionNumber = this.getSkillTotal(
+        secondarySkill || weapon.secondarySkill
+      );
+
+    return { dialogData, cardData, rollData };
+  }
+
+  setupDefense(defense, { use = "defense", secondary = false, skill = null }) {
+    let dialogData = {
+      title: `${defense.group} - ${defense.name}`,
+      prefilled: this.modifiers.forDialog("defense", skill, use), // Investigate this
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+
+    dialogData.rollMethod = this.rollDefense;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      `${DEGENESIS.defenseGroups[defense.group]} - ${defense.name}`
+    );
+
+    let actionNumber = defense.dice[defense.group];
+
+    /*   switch(defense.group){
+      case 'passive':
+        actionNumber = defense.dice.passive;
+        break;
+      case 'activeMelee':
+        actionNumber = defense.dice.activeMelee;
+        break;
+      case 'activeRanged':
+        actionNumber = defense.dice.activeRanged;
+        break;
+      case 'mental':
+        actionNumber = defense.dice.mental;
+        break;
+    } */
+
+    // Needs to be modified to match simple dice roll method
+    let rollData = {
+      // type: "Test value",
+      actionNumber: actionNumber,
+      weapon: defense,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // Uhmm.... needs to get back and change atack item structure
+
+    // There will be no secondaries (i think...) ....
+    if (secondary)
+      rollData.actionNumber = this.getSkillTotal(
+        secondarySkill || weapon.secondarySkill
+      );
 
     return { dialogData, cardData, rollData };
   }

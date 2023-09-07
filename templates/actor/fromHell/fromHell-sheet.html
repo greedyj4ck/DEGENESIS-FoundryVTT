@@ -275,12 +275,17 @@
 
         <div class="inventory-list item-list section-list">
             {{#each inventory.attack.items as |item w|}}
+            {{#if item.isMelee }}
+
             <div class="weapon item entry-container section-entry-grid attack entry-list-item"
                 data-item-id="{{item.id}}">
                 <a class="weapon-name dropdown">{{item.name}}</a>
-
-                <div class="attack-dice">8D</div>
-                <div class="damage">3D+2</div>
+                <div class="attack-dice">
+                    <a class="roll-attack" data-use="attack">{{item.dice.attack}}D</a>
+                </div>
+                <div class="damage">
+                    {{item.DamageFormula}}
+                </div>
                 <div class="distance">1</div>
 
                 <div class="item-controls">
@@ -295,8 +300,46 @@
                 </div>
 
             </div>
+
+            {{else}}
+
+            <div class="weapon item entry-container section-entry-grid attack entry-list-item"
+                data-item-id="{{item.id}}">
+                <a class="weapon-name dropdown">{{item.name}}</a>
+                <div class="attack-dice">
+                    <a class="roll-attack" data-use="attack-short">≤{{item.distance.short}}m({{item.dice.effective}}D)
+                    </a><a class="roll-attack" data-use="attack-far">≤{{item.distance.far}}m({{item.dice.far}}D)
+                    </a><a class="roll-attack"
+                        data-use="attack-extreme">>{{item.distance.far}}m({{item.dice.extreme}}D)</a>
+
+                </div>
+                <div class="damage">
+                    {{item.DamageFormula}}
+                </div>
+                <div class="distance">{{item.distance.short}} / {{item.distance.far}}</div>
+
+                <div class="item-controls">
+                    <div class="vertical-bar white">
+                        <svg height="15px" width="1px">
+                            <line x1="0%" y1="0%" x2="0%" y2="14px" style="stroke:#fff;stroke-width:2"></line>
+                        </svg>
+                    </div>
+                    <a class="icon item-post"><i class="fas fa-comment"></i></a>
+                    <a class="icon item-edit"><i class="fas fa-edit"></i></a>
+                    <a class="icon item-delete"><i class="fas fa-times"></i></a>
+                </div>
+
+            </div>
+
+
+            {{/if}}
             {{/each}}
         </div>
+
+
+
+
+
 
         <!-- DEFENSE SECTION -->
 
@@ -331,8 +374,11 @@
             <div class="weapon item entry-container section-entry-grid defense entry-list-item"
                 data-item-id="{{item.id}}">
                 <a class="weapon-name dropdown">{{item.name}}</a>
-                <div class="type">MEELE ACTIVE</div>
-                <div class="defense">1</div>
+                <div class="type"><a class="roll-defense" data-use="defense">{{localize (lookup (concat
+                        "DGNS.Defense" (capitalize item.group)) 'string')}}</a></div>
+                <div class="defense-dice">{{lookup this.dice this.group }}</div>
+
+
 
                 <div class="item-controls">
                     <div class="vertical-bar white">

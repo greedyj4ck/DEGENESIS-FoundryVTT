@@ -134,6 +134,10 @@ export class DegenesisFromHellSheet extends ActorSheet {
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-post").click(this._onPostItem.bind(this));
 
+    // Attack and defense items hooks
+    html.find(".roll-attack").click(this._onAttackClick.bind(this));
+    html.find(".roll-defense").click(this._onDefenseClick.bind(this));
+
     //html
     html.find(".dropdown").click(this._onDropdown.bind(this));
 
@@ -147,7 +151,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
     //html.find(".skill-name").click(this._onSkillClick.bind(this));
 
     //html.find(".fight-roll").click(this._onFightClick.bind(this));
-    //html.find(".roll-weapon").click(this._onWeaponClick.bind(this));
+
     //html.find(".quantity-click").mousedown(this._onQualityClick.bind(this));
     //html.find(".reload-click").mousedown(this._onReloadClick.bind(this));
     //html.find(".aggregate").click(this._onAggregateClick.bind(this));
@@ -178,6 +182,8 @@ export class DegenesisFromHellSheet extends ActorSheet {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
+
+  // Combat hooks
 
   async _onInitiativeClick(event) {
     console.log("Rolling initiative for from hell :)");
@@ -214,6 +220,40 @@ export class DegenesisFromHellSheet extends ActorSheet {
     } else {
       DegenesisCombat.rollInitiativeForFromHell(this.actor);
     }
+  }
+
+  // Attack roll using new simplified dice roll manager
+  async _onAttackClick(event) {
+    let attackId = $(event.currentTarget)
+      .parents(".attack")
+      .attr("data-item-id");
+    let skipDialog = event.ctrlKey;
+    let use = $(event.currentTarget).attr("data-use");
+    let attack = this.actor.items.get(attackId);
+
+    // Add conditional for range weapons without ammo
+
+    let { rollResults, cardData } = await this.actor.rollAttack(attack, {
+      use,
+      skipDialog,
+    });
+    DegenesisChat.renderRollCard(rollResults, cardData);
+  }
+
+  // Defense roll using new simplified dice roll manager
+  async _onDefenseClick(event) {
+    let defenseId = $(event.currentTarget)
+      .parents(".defense")
+      .attr("data-item-id");
+    let skipDialog = event.ctrlKey;
+    let use = $(event.currentTarget).attr("data-use");
+    let defense = this.actor.items.get(defenseId);
+
+    let { rollResults, cardData } = await this.actor.rollDefense(defense, {
+      use,
+      skipDialog,
+    });
+    DegenesisChat.renderRollCard(rollResults, cardData);
   }
 
   async _onDrop(event) {

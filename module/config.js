@@ -257,10 +257,10 @@ DEGENESIS.attackGroups = {
 };
 
 DEGENESIS.defenseGroups = {
-  passive: "DGNS.Passive",
-  meleeActive: "DGNS.MeleeActive",
-  rangedActive: "DGNS.RangedActive",
-  mental: "DNGS.Mental",
+  passive: "DGNS.DefensePassive",
+  meleeActive: "DGNS.DefenseMeleeActive",
+  rangedActive: "DGNS.DefenseRangedActive",
+  mental: "DNGS.DefenseMental",
 };
 
 DEGENESIS.equipmentGroups = {
@@ -398,6 +398,7 @@ DEGENESIS.weaponGroupSkill = {
     panic: "DGNS.Panic",
     singleLoader: "DGNS.SingleLoader",
   }),
+  (DEGENESIS.defenseQualities = { special: "DGNS.Special" }),
   (DEGENESIS.weaponQualitiesValues = {
     areaDamage: ["angle"],
     armorPiercing: [],
@@ -493,6 +494,7 @@ DEGENESIS.weaponGroupSkill = {
     panic: ["rating"],
     singleLoader: ["rounds"],
   }),
+  (DEGENESIS.defenseQualitiesValues = { special: [] }),
   (DEGENESIS.qualityValues = {
     angle: "DGNS.Angle",
     difficulty: "DGNS.Difficulty",
@@ -576,6 +578,7 @@ DEGENESIS.weaponGroupSkill = {
     massive: "DGNS.MassiveDescription",
     brittle: "DGNS.BrittleDescription",
     sealed: "DGNS.SealedDescription",
+    special: "DGNS.SpecialDescription",
   }),
   (DEGENESIS.shieldQualityDescription = {
     special: "DGNS.SpecialDescription",
@@ -617,6 +620,9 @@ DEGENESIS.weaponGroupSkill = {
     singleLoader: "DGNS.SingleLoaderDescription",
     cutting: "DGNS.CuttingDescription",
   }),
+  (DEGENESIS.defenseQualityDescription = {
+    special: "DGNS.SpecialDescription",
+  }),
   (DEGENESIS.damageTypes = {
     fleshwounds: "DGNS.Fleshwounds",
     ego: "DGNS.Ego",
@@ -656,21 +662,19 @@ DEGENESIS.damageModifiers = {
 };
 
 DEGENESIS.damageModifiersFromHell = {
-  T: { blueprint: "+T", calculate: (force, triggers) => triggers },
+  T: { blueprint: "+T", calculate: (triggers) => triggers },
   D2: {
     blueprint: "+1D/2",
-    calculate: (force, triggers) =>
+    calculate: (triggers) =>
       Math.ceil(new Die({ faces: 6, number: 1 }).evaluate().total / 2),
   },
   D: {
     blueprint: "+1D",
-    calculate: (force, triggers) =>
-      new Die({ faces: 6, number: 1 }).evaluate().total,
+    calculate: (triggers) => new Die({ faces: 6, number: 1 }).evaluate().total,
   },
   "2D": {
     blueprint: "+2D",
-    calculate: (force, triggers) =>
-      new Die({ faces: 6, number: 2 }).evaluate().total,
+    calculate: (triggers) => new Die({ faces: 6, number: 2 }).evaluate().total,
   },
 };
 

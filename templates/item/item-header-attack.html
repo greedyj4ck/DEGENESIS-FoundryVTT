@@ -34,10 +34,13 @@
 
     <div class="header-content-side-container">
 
+      <!-- NAME FIELD -->
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Name"}}: </span>
         <input class="field-input" type="text" name="name" value="{{item.name}}" />
       </div>
+
+      <!-- ATTACK TYPE FIELD -->
 
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Group"}}: </span>
@@ -49,6 +52,16 @@
 
           {{/select}}
         </select>
+      </div>
+
+      <!-- DICE ACTION  FIELD -->
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Attack"}}: </span>
+        <div class="field-inputs">
+
+          <input class="field-input" type="text" name="data.attack.D" value="{{data.attack.D}}" data-dtype="Number" />
+
+        </div>
       </div>
 
       <div class="sh-field">
