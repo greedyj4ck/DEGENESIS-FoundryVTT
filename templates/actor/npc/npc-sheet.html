@@ -1,30 +1,151 @@
 <form class="{{cssClass}}" autocomplete="off">
 
     {{!--Sheet Header --}}
-    <header class="sheet-header">
+    <header class="sh-header">
+
+
+        <!-- SHEET TITLEBAR -->
+
+        <div class="sh-titlebar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="5" x2="88%" y2="5" class="line-stroke"></line>
+                <line x1="88%" y1="5" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="middle-name">{{localize "TYPES.Actor.TypeNpc"}}</div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="11" x2="12%" y2="5" class="line-stroke"></line>
+                <line x1="12%" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+
+        </div>
+
+
+        <div class="header-content-container">
+
+            <div class="header-content-column-container">
+
+                <div class="header-title ">
+                    <div class="label initiative-roll"><a>{{localize "DGNS.Initiative"}}</a></div>
+                    <div class="dice-value">
+                        <input type="number" name="data.fighting.initiative"
+                            value="{{data.fighting.initiative}}" /><span class="dice">D</span>
+                    </div>
+                </div>
+
+                <div class="header-title spend-ego">
+                    <a class="label checkbox">{{localize "DGNS.SpendEgo"}}</a>
+                    <div class="diamond-position">
+                        <div class="diamond-row" data-target="system.state.spentEgo.value">
+                            {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
+                            diamond.filled}}
+                            <a class="diamond" data-index="{{index}}">
+                                <div class="square white"></div>
+                            </a>
+                            {{else}}
+                            <a class="diamond" data-index="{{index}}">
+                                <div class="square"></div>
+                            </a>
+                            {{/if}} {{/each}}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="header-title movement">
+                    <div class="label">{{localize "DGNS.Movement"}}</div>
+                    <div class="dice-value"><input type="number" name="data.general.movement"
+                            value="{{data.general.movement}}" /><span class="dice">D</span></div>
+                </div>
+
+                <div class="header-title actor-config">
+
+                    <div class="config-input-container">
+                        <div class="config-value">
+                            <input class="input-name" type="number" name="data.condition.ego.max"
+                                value="{{data.condition.ego.max}}" />
+                        </div>
+                        <div class="config-label">EGO</div>
+                    </div>
+                    <div class="config-input-container">
+                        <div class="config-value"><input type="number" name="data.condition.fleshwounds.max"
+                                value="{{data.condition.fleshwounds.max}}" />
+                        </div>
+                        <div class="config-label">Fleshwounds</div>
+                    </div>
+                    <div class="config-input-container">
+                        <div class="config-value"><input type="number" name="data.condition.trauma.max"
+                                value="{{data.condition.trauma.max}}" /></div>
+                        <div class="config-label">Trauma</div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="header-content-image-container">
+
+                <div class="img-frame">
+                    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                        width="100" />
+                </div>
+
+
+
+
+
+            </div>
+            <div class="header-content-column-container description">
+                <div class="section-header">
+                    <div class="block-title white">
+                        <h3>{{ localize "DGNS.Description" }}</h3>
+                    </div>
+                </div>
+                <div class="char-info section-container">
+                    <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="field-name">
+            <input class="input-name" type="text" name="name" value="{{actor.name}}" />
+        </div>
+
+
+
+
+
         <div class="header-column header-line">
             <div class="square little left"></div>
             <svg class="start-line" height="11" width="9%">
                 <line x1="0%" y1="5" x2="88%" y2="5" style="stroke-width:1"></line>
                 <line x1="88%" y1="5" x2="100%" y2="11" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <svg class="title-line middle-left" height="11" width="100%">
                 <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <div class="middle-name">{{localize "DGNS.TypeNPC"}}</div>
             <svg class="title-line middle-right" height="11" width="100%">
-               <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
+                <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
             </svg>
             <svg class="end-line" height="11" width="9%">
                 <line x1="0%" y1="11" x2="12%" y2="5" style="stroke-width:1"></line>
                 <line x1="12%" y1="5" x2="100%" y2="5" style="stroke-width:1"></line>
-             </svg>
+            </svg>
             <div class="square little right"></div>
         </div>
         <!-- NEW ROW -->
         <div class="break"></div>
         <div class="header-column char-info left">
-            
+
             <!-- PLACEHOLDER FOR INITIATIVE AND MOVEMENT STATS -->
             just a place holder for stuff
         </div>
@@ -38,13 +159,13 @@
                     <h3>{{ localize "DGNS.ABOUT" }}</h3>
                 </div>
                 <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
-            
-               
-        </div>
-        <div class="break" ></div>
-    
-        
-    
+
+
+            </div>
+            <div class="break"></div>
+
+
+
     </header>
 
 

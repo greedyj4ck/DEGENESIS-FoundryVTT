@@ -1,0 +1,43 @@
+// V.01 Early alpha
+// Main CSS selector for fromHell character sheet
+
+.app.window-app.degenesis.sheet.npc {
+  min-width: 650px;
+  min-height: 650px;
+
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: #fff;
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
+  .square.little {
+    min-width: 7px;
+    margin-top: 1px;
+    border: $line-stroke-width solid $line-stroke-color;
+  }
+
+  .window-content {
+    padding: 5px;
+    overflow-y: hidden;
+    background: $fh-window-bg;
+    background: url(../ui/npc_BG.jpg);
+    background-size: cover;
+    background-position: 50% 0%;
+    font-family: $sans-serif-content-font;
+    font-weight: 300;
+    color: $text-white;
+  }
+
+  .sh-titlebar {
+    .title-line {
+      flex: 1 0;
+    }
+    .middle-name {
+      display: inline-flex;
+      flex: 0 1 auto;
+    }
+  }
+}

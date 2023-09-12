@@ -260,7 +260,7 @@ DEGENESIS.defenseGroups = {
   passive: "DGNS.DefensePassive",
   meleeActive: "DGNS.DefenseMeleeActive",
   rangedActive: "DGNS.DefenseRangedActive",
-  mental: "DNGS.DefenseMental",
+  mental: "DGNS.DefenseMental",
 };
 
 DEGENESIS.equipmentGroups = {

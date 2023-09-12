@@ -3957,6 +3957,44 @@ a.diamond:hover .square.red.perma {
   letter-spacing: 0.15em;
 }
 
+.app.window-app.degenesis.sheet.npc {
+  min-width: 650px;
+  min-height: 650px;
+}
+.app.window-app.degenesis.sheet.npc .line-stroke {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.npc .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.npc .window-content {
+  padding: 5px;
+  overflow-y: hidden;
+  background: rgb(32, 32, 32);
+  background: url(../ui/npc_BG.jpg);
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: "Avenir";
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc .sh-titlebar .title-line {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0;
+          flex: 1 0;
+}
+.app.window-app.degenesis.sheet.npc .sh-titlebar .middle-name {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+}
+
 /* SHEET: _ITEM.SCSS */
 /* LEGACY ITEM SPECIFIC STYLES */
 .item-legacy .profile-img {
