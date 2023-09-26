@@ -1,11 +1,14 @@
 <form class="{{cssClass}}" autocomplete="off">
 
+
+
     {{!--Sheet Header --}}
     <header class="sh-header">
-
+        <div class="background-cult">
+            <img class="background-cult-image" src="{{cultIcon}}" />
+        </div>
 
         <!-- SHEET TITLEBAR -->
-
         <div class="sh-titlebar">
             <div class="square little left"></div>
             <svg class="start-line">
@@ -32,141 +35,212 @@
 
             <div class="header-content-column-container">
 
-                <div class="header-title ">
-                    <div class="label initiative-roll"><a>{{localize "DGNS.Initiative"}}</a></div>
-                    <div class="dice-value">
-                        <input type="number" name="data.fighting.initiative"
-                            value="{{data.fighting.initiative}}" /><span class="dice">D</span>
-                    </div>
-                </div>
+                <div class="condition-content-container">
 
-                <div class="header-title spend-ego">
-                    <a class="label checkbox">{{localize "DGNS.SpendEgo"}}</a>
-                    <div class="diamond-position">
-                        <div class="diamond-row" data-target="system.state.spentEgo.value">
-                            {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
-                            diamond.filled}}
-                            <a class="diamond" data-index="{{index}}">
-                                <div class="square white"></div>
-                            </a>
-                            {{else}}
-                            <a class="diamond" data-index="{{index}}">
-                                <div class="square"></div>
-                            </a>
-                            {{/if}} {{/each}}
+                    <div class="condition ego">
+                        <div class="controls" data-target="system.condition.ego.value"
+                            data-targetParent="system.condition.ego">
+                            <a class="btn btn-add">+</a>
+                            <a class="btn btn-remove">-</a>
+                        </div>
+                        <div class="label">{{localize "DGNS.Ego"}}</div>
+                        <div class="stats">
+                            <div class="current-value">
+                                <span class="current-ego">{{currentEgo data.condition.ego}}</span>
+                            </div>
+                            <div class="separator">/</div>
+                            <div class="max-value"><input class="stat-input" type="number" name="data.condition.ego.max"
+                                    value="{{data.condition.ego.max}}" /></div>
+
                         </div>
                     </div>
-
-                </div>
-
-                <div class="header-title movement">
-                    <div class="label">{{localize "DGNS.Movement"}}</div>
-                    <div class="dice-value"><input type="number" name="data.general.movement"
-                            value="{{data.general.movement}}" /><span class="dice">D</span></div>
-                </div>
-
-                <div class="header-title actor-config">
-
-                    <div class="config-input-container">
-                        <div class="config-value">
-                            <input class="input-name" type="number" name="data.condition.ego.max"
-                                value="{{data.condition.ego.max}}" />
+                    <div class="condition fleshwounds">
+                        <div class="controls" data-target="system.condition.fleshwounds.value"
+                            data-targetParent="system.condition.fleshwounds">
+                            <a class="btn btn-add">+</a>
+                            <a class="btn btn-remove">-</a>
                         </div>
-                        <div class="config-label">EGO</div>
-                    </div>
-                    <div class="config-input-container">
-                        <div class="config-value"><input type="number" name="data.condition.fleshwounds.max"
-                                value="{{data.condition.fleshwounds.max}}" />
+                        <div class="label">{{localize "DGNS.Fleshwounds"}}</div>
+                        <div class="stats">
+                            <div class="current-value"><input class="stat-input" type="number"
+                                    name="data.condition.fleshwounds.value"
+                                    value="{{data.condition.fleshwounds.value}}" /></div>
+                            <div class="separator">/</div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="data.condition.fleshwounds.max" value="{{data.condition.fleshwounds.max}}" />
+                            </div>
+
                         </div>
-                        <div class="config-label">Fleshwounds</div>
                     </div>
-                    <div class="config-input-container">
-                        <div class="config-value"><input type="number" name="data.condition.trauma.max"
-                                value="{{data.condition.trauma.max}}" /></div>
-                        <div class="config-label">Trauma</div>
+                    <div class="condition trauma">
+                        <div class="controls" data-target="system.condition.trauma.value"
+                            data-targetParent="system.condition.trauma">
+                            <a class="btn btn-add">+</a>
+                            <a class="btn btn-remove">-</a>
+                        </div>
+                        <div class="label">{{localize "DGNS.Trauma"}}</div>
+                        <div class="stats">
+                            <div class="current-value"><input class="stat-input" type="number"
+                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" /></div>
+                            <div class="separator">/</div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="data.condition.trauma.max" value="{{data.condition.trauma.max}}" />
+                            </div>
+
+                        </div>
                     </div>
+                    <div class="condition sporefield">
+                        <div class="controls" data-target="system.condition.spore.value"
+                            data-targetParent="system.condition.spore">
+                            <a class="btn btn-add">+</a>
+                            <a class="btn btn-remove">-</a>
+                        </div>
+                        <div class="label">{{localize "DGNS.Spore"}}</div>
+                        <div class="stats">
+                            <div class="current-value"><input class="stat-input" type="number"
+                                    name="data.condition.spore.value" value="{{data.condition.spore.value}}" /></div>
+                            <div class="separator">/</div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="data.condition.spore.max" value="{{data.condition.spore.max}}" />
+                            </div>
+                            <div class="separator">/</div>
+                            <div class="perma-value"><input class="stat-input perma" type="number"
+                                    name="data.condition.spore.permanent" value="{{data.condition.spore.permanent}}" />
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
 
 
                 </div>
+
+
+
 
             </div>
 
 
             <div class="header-content-image-container">
-
                 <div class="img-frame">
                     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
                         width="100" />
                 </div>
-
-
-
-
-
             </div>
+
+            <!-- CULT / CULTURE / CONCEPT CONTAINER-->
             <div class="header-content-column-container description">
-                <div class="section-header">
-                    <div class="block-title white">
-                        <h3>{{ localize "DGNS.Description" }}</h3>
+                <div class="ccc-content-container">
+
+                    <div class="culture-container">
+
+                        <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
+                            {{#select data.details.culture.value}}
+                            <option value="">{{localize "DGNS.Culture"}}</option>
+                            {{#each (config "cultures") as |culture c|}}
+                            <option value="{{c}}">{{culture}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+
+                        <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" />
+
                     </div>
+
+                    <div class="concept-container">
+                        <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
+                            {{#select data.details.concept.value}}
+                            <option value="">{{localize "DGNS.Concept"}}</option>
+                            {{#each (config "concepts") as |concept c|}}
+                            <option value="{{c}}">{{concept}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                        <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" />
+                    </div>
+
+                    <div class="cult-container">
+                        <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
+                            {{#select data.details.cult.value}}
+                            <option value="">{{localize "DGNS.Cult"}}</option>
+                            {{#each (config "cults") as |cult c|}}
+                            <option value="{{c}}">{{cult}}</option>
+                            {{/each}}
+                            {{/select}}
+                        </select>
+                        <img class="cult-img" height="80" width="80" src="{{cultIcon}}" />
+                    </div>
+
+
                 </div>
-                <div class="char-info section-container">
-                    <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
-                </div>
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
+
         <div class="field-name">
             <input class="input-name" type="text" name="name" value="{{actor.name}}" />
         </div>
-
-
-
-
-
-        <div class="header-column header-line">
-            <div class="square little left"></div>
-            <svg class="start-line" height="11" width="9%">
-                <line x1="0%" y1="5" x2="88%" y2="5" style="stroke-width:1"></line>
-                <line x1="88%" y1="5" x2="100%" y2="11" style="stroke-width:1"></line>
-            </svg>
-            <svg class="title-line middle-left" height="11" width="100%">
-                <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
-            </svg>
-            <div class="middle-name">{{localize "DGNS.TypeNPC"}}</div>
-            <svg class="title-line middle-right" height="11" width="100%">
-                <line x1="0" y1="11" x2="100%" y2="11" style="stroke-width:1"></line>
-            </svg>
-            <svg class="end-line" height="11" width="9%">
-                <line x1="0%" y1="11" x2="12%" y2="5" style="stroke-width:1"></line>
-                <line x1="12%" y1="5" x2="100%" y2="5" style="stroke-width:1"></line>
-            </svg>
-            <div class="square little right"></div>
+        <div class="field-rank">
+            <input class="input-rank" type="text" name="data.details.rank.value" value="{{data.details.rank.value}}" />
         </div>
-        <!-- NEW ROW -->
-        <div class="break"></div>
-        <div class="header-column char-info left">
-
-            <!-- PLACEHOLDER FOR INITIATIVE AND MOVEMENT STATS -->
-            just a place holder for stuff
-        </div>
-        <div class="img-frame">
-            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
-                width="100" />
-        </div>
-        <div class="header-column char-info right">
-            <div class="header-about">
-                <div class="white-title">
-                    <h3>{{ localize "DGNS.ABOUT" }}</h3>
-                </div>
-                <textarea class="fh-textarea" name="data.about">{{data.about}}</textarea>
-
-
-            </div>
-            <div class="break"></div>
-
-
+        <div class="input-rank-label">RANK</div>
 
     </header>
+
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sh-tabs tabs" data-group="primary">
+        <a class="item" data-tab="attributes">{{localize "DGNS.Attributes"}}</a>
+        <a class="item" data-tab="combat">{{localize "DGNS.Combat"}}</a>
+        <a class="item" data-tab="advantages">{{localize "DGNS.Advantages"}}</a>
+        <a class="item" data-tab="inventory">{{localize "DGNS.Inventory"}}</a>
+        <a class="item" data-tab="history">{{localize "DGNS.History"}}</a>
+    </nav>
+
+
+    <!-- TAB CONTAINERS -->
+
+    <div class="tab-content-container">
+        <div class="tab" data-tab="attributes">
+            {{> systems/degenesis/templates/actor/npc/npc-attributes-skills.html}}
+        </div>
+        <div class="tab" data-tab="combat">
+            {{> systems/degenesis/templates/actor/npc/npc-combat.html}}
+        </div>
+        <div class="tab" data-tab="advantages">
+            {{> systems/degenesis/templates/actor/npc/npc-advantages.html}}
+        </div>
+
+        <div class="tab" data-tab="inventory">
+            {{> systems/degenesis/templates/actor/npc/npc-inventory.html}}
+        </div>
+
+        <div class="tab" data-tab="history">
+            {{> systems/degenesis/templates/actor/npc/npc-history.html}}
+        </div>
+    </div>
+
+
 
 
 </form>

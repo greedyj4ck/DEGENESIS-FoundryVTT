@@ -8,8 +8,6 @@ import { AutomateEncumbrancePenalty } from "../settings.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
 import { DEG_Utility } from "../utility.js";
 
-// Dunno why the code looks like this but it works ¯\_(ツ)_/¯
-
 /**
  * Extend FVTT Actor class for Degenesis functionality
  * @extends {Actor}
@@ -53,6 +51,12 @@ export class DegenesisActor extends Actor {
       setProperty(updateData, "system.skills.primal.value", 0);
     else if (getProperty(updateData, "system.skills.primal.value"))
       setProperty(updateData, "system.skills.focus.value", 0);
+
+    // Limit data range for attributes and conditions for NPC sheet
+
+    if (this.type === "npc") {
+      updateData = this.limitNPCValues(updateData);
+    }
   }
 
   // REGION | DATA PREPARATION
@@ -142,8 +146,33 @@ export class DegenesisActor extends Actor {
     if (this.type === "npc") {
       try {
         super.prepareData();
-
         // Here will come data preparation code for NPC actor
+
+        for (let skill in this.skills) {
+          if (
+            this.skills[skill].value <
+            this.attributes[this.skills[skill].attribute].value
+          ) {
+            this.skills[skill].value =
+              this.attributes[this.skills[skill].attribute].value;
+          }
+        }
+
+        for (let attr in this.attributes) {
+          if (this.attributes[attr].value < 1) {
+            this.attributes[attr].value = 1;
+          }
+
+          if (this.attributes[attr].value > 6) {
+            this.attributes[attr].value = 6;
+          }
+        }
+
+        this.itemCategories = this.itemTypes;
+        this.modifiers = new ModifierManager(this);
+
+        // No condition calculations as they are supposed to be edited manually
+        // TODO: Add failsafe for checking if current value is in permisabble limits
       } catch (e) {
         console.error(e);
       }
@@ -160,6 +189,113 @@ export class DegenesisActor extends Actor {
         console.error(e);
       }
     }
+  }
+
+  limitNPCValues(updateData) {
+    //Since values are not calcualted we need to limit them manually :)
+
+    if (
+      getProperty(updateData, "system.condition.ego.value") >
+      this.condition.ego.max
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.ego.value",
+        this.condition.ego.max
+      );
+    } else if (getProperty(updateData, "system.condition.ego.value") < 0) {
+      setProperty(updateData, "system.condition.ego.value", 0);
+    }
+
+    if (
+      getProperty(updateData, "system.condition.fleshwounds.value") >
+      this.condition.fleshwounds.max
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.fleshwounds.value",
+        this.condition.fleshwounds.max
+      );
+    } else if (
+      getProperty(updateData, "system.condition.fleshwounds.value") < 0
+    ) {
+      setProperty(updateData, "system.condition.fleshwounds.value", 0);
+    }
+
+    if (
+      getProperty(updateData, "system.condition.trauma.value") >
+      this.condition.trauma.max
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.trauma.value",
+        this.condition.trauma.max
+      );
+    } else if (getProperty(updateData, "system.condition.trauma.value") < 0) {
+      setProperty(updateData, "system.condition.trauma.value", 0);
+    }
+
+    if (
+      getProperty(updateData, "system.condition.spore.value") >
+      this.condition.spore.max
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.spore.value",
+        this.condition.spore.max
+      );
+    } else if (
+      getProperty(updateData, "system.condition.spore.value") <
+      this.condition.spore.permanent
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.spore.value",
+        this.condition.spore.permanent
+      );
+    }
+
+    if (
+      getProperty(updateData, "system.condition.spore.permanent") >
+      this.condition.spore.max
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.spore.permanent",
+        this.condition.spore.max
+      );
+    } else if (
+      getProperty(updateData, "system.condition.spore.permanent") < 0
+    ) {
+      setProperty(updateData, "system.condition.spore.permanent", 0);
+    }
+
+    if (
+      getProperty(updateData, "system.condition.spore.permanent") >
+      this.condition.spore.value
+    ) {
+      setProperty(
+        updateData,
+        "system.condition.spore.value",
+        getProperty(updateData, "system.condition.spore.permanent")
+      );
+    }
+
+    // LIMIT ATTRIBUTES
+    if (getProperty(updateData, "system.attributes")) {
+      for (let attr in updateData.system.attributes) {
+        if (updateData.system.attributes[attr].value > 6) {
+          setProperty(updateData, `system.attributes.${attr}.value`, 6);
+        }
+        if (updateData.system.attributes[attr].value < 1) {
+          setProperty(updateData, `system.attributes.${attr}.value`, 1);
+        }
+      }
+    }
+
+    // LIMIT SKILLS
+
+    return updateData;
   }
 
   prepareItems() {
@@ -928,6 +1064,78 @@ export class DegenesisActor extends Actor {
       await this.update({
         "data.state.initiative.actions": this.state.initiative.actions - 1,
       });
+  }
+
+  // NPC ROUTINES
+
+  async rollNPCSkill(skill, { skipDialog = false, override = {} }) {
+    let { dialogData, cardData, rollData } = this.setupNPCSkill(skill);
+
+    for (const key in override) {
+      dialogData[key] = override[key];
+    }
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupNPCSkill(rollData.secondary)
+      );
+
+    this.postRollChecks(rollResults, skill);
+
+    DegenesisChat.renderRollCard(rollResults, cardData);
+
+    return { rollResults, cardData };
+  }
+  // ROLL SETUP
+  setupNPCSkill(skill) {
+    let dialogData = {
+      title: DEGENESIS.skills[skill],
+      prefilled: this.modifiers.forDialog("skill", skill),
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: true,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollNPCSkill;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.skills[skill]
+    );
+
+    let rollData = {
+      skill: this.system.skills[skill],
+      actionNumber: this.system.skills[skill].value,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    //let rollResult = await DegenesisDice.rollAction(rollData)
+    return { dialogData, cardData, rollData };
   }
 
   // REGION | CONVENIENCE HELPERS

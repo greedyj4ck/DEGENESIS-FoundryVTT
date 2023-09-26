@@ -46,5 +46,9 @@ export default function () {
     Handlebars.registerHelper("currentEgo", function (ego) {
       return ego.max - ego.value;
     });
+
+    Handlebars.registerHelper("baseSkillDie", function (skill, attribute) {
+      return skill.value - attribute.value;
+    });
   });
 }

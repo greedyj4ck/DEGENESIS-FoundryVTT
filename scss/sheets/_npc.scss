@@ -1,5 +1,9 @@
 // V.01 Early alpha
-// Main CSS selector for fromHell character sheet
+// Main CSS selector for NPC Character sheet
+
+$border-transition: 0.5s ease-in-out;
+$background-cult-image-size: 70%; // in percent
+$background-cult-image-offset: 50px; // in pixels
 
 .app.window-app.degenesis.sheet.npc {
   min-width: 650px;
@@ -31,13 +35,487 @@
     color: $text-white;
   }
 
+  .sh-header {
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+
+    // Background Cult Image Z-Index fix ;)
+
+    > div:not(:first-child) {
+      z-index: 1;
+    }
+  }
+
   .sh-titlebar {
     .title-line {
-      flex: 1 0;
+      flex: 1 1 auto;
     }
     .middle-name {
+      display: flex;
+      flex: 0 0 auto;
+    }
+  }
+
+  .sh-tabs {
+    margin-top: 6px;
+
+    > * {
+      z-index: 1;
+    }
+
+    .item {
+      background-color: $bg-white;
+      color: $text-black;
+
+      &:hover {
+        background-color: $dgns-red;
+        color: $text-white;
+      }
+    }
+  }
+
+  .background-cult {
+    position: absolute;
+    top: -$background-cult-image-offset;
+    width: $background-cult-image-size;
+    height: $background-cult-image-size;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+    clip-path: inset(calc($background-cult-image-offset + 30px) 0px 0px 0px);
+
+    img {
+      border: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      filter: invert(100);
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0)
+      );
+      z-index: 0;
+    }
+  }
+
+  .header-content-container {
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    padding: 5px;
+    gap: 10px;
+    align-items: stretch;
+
+    .img-frame {
+      background-image: url(../images/character\ frame\ white.svg);
+    }
+  }
+
+  .header-content-column-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header-content-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .field-name {
+    margin-top: 0px;
+
+    .input-name {
+      width: calc(20ch + 10px);
+      color: var(--text-white);
+      border-bottom: 1px solid $text-white;
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  .field-rank {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      height: 1px;
+      width: 00%;
+      background-color: $text-white;
+      display: block;
+      content: "";
+      transition: 0.3s ease-in-out;
+    }
+
+    &:hover:after {
+      left: 15%;
+      width: 70%;
+      background-color: $dgns-red;
+    }
+
+    .input-rank {
+      border: none;
+      color: var(--text-white);
+      text-align: center;
+      font-family: $serif-content-font;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+
+      display: inline-block;
+      position: relative;
+    }
+  }
+
+  .input-rank-label {
+    margin-top: -5px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .condition-content-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-row-gap: 3px;
+
+    .condition {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2px;
+
+      font-family: $sans-serif-content-font;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+
+      .label {
+        margin-left: 4px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 4px;
+      }
+
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 15px;
+        height: 15px;
+        border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        font-size: 12px;
+        font-weight: 600;
+        color: $text-white;
+        transition: 0.3s all;
+
+        &:hover {
+          color: $dgns-red;
+          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        }
+      }
+
+      .stats {
+        margin-left: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 2px;
+
+        > div {
+          height: 100%;
+          display: flex;
+          flex: 1 1 auto;
+          align-items: center;
+          text-align: center;
+        }
+
+        .current-value {
+          width: 20px;
+
+          .current-ego {
+            display: inline-block;
+            width: 20px;
+          }
+        }
+
+        .stat-input {
+          width: 10px;
+          height: 100%;
+          font-family: $sans-serif-content-font;
+          font-weight: 600;
+          color: $text-white;
+          border: none;
+          border-bottom: 1px solid transparent;
+
+          &.perma {
+            color: var(--grey-160);
+          }
+
+          &:focus {
+            box-shadow: none;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border-color 0.3s linear;
+          }
+
+          &:hover {
+            border-bottom: 1px solid var(--grey-160);
+            transition: border-color 0.2s linear;
+          }
+        }
+      }
+    }
+  }
+
+  .ccc-content-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(35px, 1fr));
+    grid-row-gap: 3px;
+
+    select {
+      width: 100%;
+      font-family: $sans-serif-content-font;
+      font-size: 14px;
+      font-weight: 600;
+      color: $text-white;
+      border: none;
+      z-index: 10;
+      text-transform: uppercase;
+
+      option {
+        text-transform: uppercase;
+      }
+    }
+
+    > div {
+      max-height: 40px;
+      position: relative;
+      align-items: center;
       display: inline-flex;
-      flex: 0 1 auto;
+      overflow: hidden;
+      transition: 0.5s ease-in-out;
+
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0%;
+        height: 1px;
+        width: 0%;
+        background-color: $text-white;
+        display: block;
+        content: "";
+        transition: $border-transition;
+      }
+
+      &:before {
+        position: absolute;
+        top: 0;
+        right: 0%;
+        height: 1px;
+        width: 0%;
+        background-color: $text-white;
+        display: block;
+        content: "";
+        transition: $border-transition;
+        z-index: 1;
+      }
+
+      &:hover:after {
+        left: 0%;
+        width: 100%;
+        background-color: $dgns-red;
+      }
+      &:hover:before {
+        right: 0%;
+        width: 100%;
+        background-color: $dgns-red;
+      }
+
+      > img {
+        aspect-ratio: 1 / 1;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        right: 10%;
+        filter: invert(100);
+        border: none;
+
+        transition: all 0.2s ease-in-out;
+
+        &.concept-img {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  .attribute-tab-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 2fr;
+  }
+
+  .attribute-skill-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+
+    .attribute-value {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .btn {
+        width: 15px;
+        height: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        font-size: 12px;
+        font-weight: 600;
+        color: $text-white;
+        transition: 0.3s all;
+
+        &:hover {
+          color: $dgns-red;
+          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        }
+      }
+
+      .attribute-input {
+        display: flex;
+        width: 70%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+          font-family: $sans-serif-content-font;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          border: none;
+          text-align: center;
+        }
+      }
+
+      input {
+        font-size: 16px;
+        font-family: $sans-serif-content-font;
+        font-weight: 600;
+        color: $text-white;
+        letter-spacing: 0.1em;
+        border: none;
+        border-bottom: 1px solid $bg-white;
+
+        text-align: center;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .skill-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+
+      .skill {
+        margin: 0;
+
+        display: grid;
+        grid-template-columns: 1fr 30px 15px 15px;
+        grid-template-rows: 1fr;
+        gap: 3px;
+
+        a {
+          font-family: $sans-serif-content-font;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.1ch;
+        }
+
+        input {
+          width: 30px;
+          font-size: 14px;
+          font-family: $sans-serif-content-font;
+          font-weight: 600;
+          color: $text-white;
+          letter-spacing: 0.1em;
+          border: none;
+          border-bottom: 1px solid transparent;
+
+          text-align: center;
+
+          &:focus {
+            box-shadow: none;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border-color 0.3s linear;
+          }
+
+          &:hover {
+            border-bottom: 1px solid var(--grey-160);
+            transition: border-color 0.2s linear;
+          }
+        }
+
+        .btn {
+          width: 15px;
+          height: 15px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+
+          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+          font-size: 12px;
+          font-weight: 600;
+          color: $text-white;
+          transition: 0.3s all;
+
+          &:hover {
+            color: $dgns-red;
+            border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+          }
+        }
+
+        .skill-base-dice {
+          margin-left: 2px;
+          color: var(--grey-160);
+        }
+      }
     }
   }
 }

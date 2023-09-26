@@ -107,12 +107,20 @@ Hooks.once("init", async function () {
 
   // PRE-LOAD TEMPLATES
   loadTemplates([
+    // ACTOR CHARACTER SHEET
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",
     "systems/degenesis/templates/actor/actor-condition.html",
     "systems/degenesis/templates/actor/actor-combat.html",
     "systems/degenesis/templates/actor/actor-history.html",
+    // NPC CHARACTER SHEET
+    "systems/degenesis/templates/actor/npc/npc-attributes-skills.html",
+    "systems/degenesis/templates/actor/npc/npc-inventory.html",
+    "systems/degenesis/templates/actor/npc/npc-advantages.html",
+    "systems/degenesis/templates/actor/npc/npc-combat.html",
+    "systems/degenesis/templates/actor/npc/npc-history.html",
+    // ITEMS AND OTHER
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/item/item-header-physical-no-qty.html",
