@@ -50,5 +50,13 @@ export default function () {
     Handlebars.registerHelper("baseSkillDie", function (skill, attribute) {
       return skill.value - attribute.value;
     });
+
+    Handlebars.registerHelper("isSimpleSection", function (section) {
+      if (section.type === "attack" || section.type === "defense") {
+        return true;
+      } else {
+        return false;
+      }
+    });
   });
 }

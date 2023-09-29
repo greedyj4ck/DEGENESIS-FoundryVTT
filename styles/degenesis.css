@@ -321,19 +321,6 @@ a:hover {
           box-shadow: none;
 }
 
-.dice-tooltip .dice-rolls .roll.d6 {
-  background-image: none;
-  border: 1px solid black;
-  line-height: 22px;
-}
-.dice-tooltip .dice-rolls .roll.d6.max {
-  color: var(--degenesis-red);
-  -webkit-filter: none;
-          filter: none;
-  content: url(../icons/logo-small.png);
-  padding: 2px;
-}
-
 #players {
   background: url(../ui/black_01.jpg);
   font-family: "Avenir";
@@ -616,6 +603,64 @@ a:hover {
 }
 .app.window-app.sheet.token-sheet .sheet-tabs.tabs {
   margin-top: 0px;
+}
+
+/* CHAT MESSAGES / DICE ROLLS */
+.dice-rolls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dice-tooltip .dice-rolls .roll.d6 {
+  padding: 2px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  font-family: "Avenir";
+  font-weight: 600;
+  color: var(--grey-160);
+  background: none;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid var(--grey-160);
+  margin: 1px;
+}
+.dice-tooltip .dice-rolls .roll.d6.max {
+  color: var(--degenesis-red);
+  -webkit-filter: none;
+          filter: none;
+  content: url(../icons/logo-small.png);
+  padding: 2px;
+  border: 1px solid var(--degenesis-red);
+}
+.dice-tooltip .dice-rolls .roll.d6.min {
+  color: var(--degenesis-red);
+  -webkit-filter: none;
+          filter: none;
+  border: 1px solid var(--degenesis-red);
+}
+
+.notification {
+  font-family: "Avenir";
+  font-size: 14px;
+  text-transform: uppercase;
+  text-shadow: none;
+  letter-spacing: 0.2ch;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border-radius: 0;
+}
+
+.notification.info {
+  border: 1px solid rgb(154, 12, 19);
+  background-color: rgb(237, 29, 39);
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 /* COMPONENTS: _SCROLLBAR.SCSS */
@@ -1933,13 +1978,14 @@ a.diamond:hover .square.red.perma {
 .block-title {
   text-transform: uppercase;
   width: 100%;
+  height: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  height: 15px;
+  margin-right: -1px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1960,7 +2006,7 @@ a.diamond:hover .square.red.perma {
 }
 .block-title h3 {
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 600;
   border-bottom: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2643,6 +2689,9 @@ a.diamond:hover .square.red.perma {
           justify-content: space-between;
 }
 .attribute-tab-container .attribute-skill-group .attribute h3 {
+  margin-top: 2px;
+  font-weight: 600;
+  border: none;
   margin-bottom: 0px;
   margin-left: 10px;
   display: -webkit-box;
@@ -3549,6 +3598,26 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.fromHell textarea {
   color: var(--text-white);
 }
+.app.window-app.degenesis.sheet.fromHell input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.fromHell input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.fromHell input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
 .app.window-app.degenesis.sheet.fromHell .line-stroke {
   stroke: #fff;
   stroke-width: 1.5px;
@@ -3614,6 +3683,7 @@ a.diamond:hover .square.red.perma {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 5px;
 }
 .app.window-app.degenesis.sheet.fromHell .header-content-column-container.description {
   -webkit-box-pack: start;
@@ -3739,8 +3809,24 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.fromHell .header-title .square {
   margin: 0px 2px;
 }
-.app.window-app.degenesis.sheet.fromHell .header-title.movement {
-  margin-top: 10px;
+.app.window-app.degenesis.sheet.fromHell .header-title.armor {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  gap: 0;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title.armor .armor-name {
+  margin-top: -10px;
+  height: 30px;
+}
+.app.window-app.degenesis.sheet.fromHell .header-title.armor .armor-name input {
+  width: 100% px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.1ch;
+  font-weight: 600;
 }
 .app.window-app.degenesis.sheet.fromHell .header-title.spend-ego {
   font-size: 12px;
@@ -3961,8 +4047,8 @@ a.diamond:hover .square.red.perma {
 }
 
 .app.window-app.degenesis.sheet.npc {
-  min-width: 650px;
-  min-height: 650px;
+  min-width: 720px;
+  min-height: 720px;
 }
 .app.window-app.degenesis.sheet.npc .line-stroke {
   stroke: #fff;
@@ -3972,6 +4058,69 @@ a.diamond:hover .square.red.perma {
   min-width: 7px;
   margin-top: 1px;
   border: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: white;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-button {
+  display: inline-block;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-track-piece {
+  display: none;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-corner {
+  display: none;
+}
+.app.window-app.degenesis.sheet.npc div::-webkit-resizer,
+.app.window-app.degenesis.sheet.npc textarea::-webkit-resizer,
+.app.window-app.degenesis.sheet.npc input::-webkit-resizer {
+  display: none;
+}
+.app.window-app.degenesis.sheet.npc input {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc .editor-menu {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc i {
+  color: rgb(255, 255, 255);
 }
 .app.window-app.degenesis.sheet.npc .window-content {
   padding: 5px;
@@ -3983,6 +4132,25 @@ a.diamond:hover .square.red.perma {
   font-family: "Avenir";
   font-weight: 300;
   color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc .tab-content-container {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 100%;
 }
 .app.window-app.degenesis.sheet.npc .sh-header {
   -webkit-box-align: center;
@@ -4007,6 +4175,9 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
+.app.window-app.degenesis.sheet.npc .block-title h3 {
+  margin-top: 2px;
+}
 .app.window-app.degenesis.sheet.npc .sh-tabs {
   margin-top: 6px;
 }
@@ -4020,6 +4191,31 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.npc .sh-tabs .item:hover {
   background-color: rgb(237, 29, 39);
   color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc .sh-tabs .item.active {
+  background-color: rgb(237, 29, 39);
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.npc .tab[data-tab].active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow: hidden;
 }
 .app.window-app.degenesis.sheet.npc .background-cult {
   position: absolute;
@@ -4067,6 +4263,7 @@ a.diamond:hover .square.red.perma {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  gap: 3px;
 }
 .app.window-app.degenesis.sheet.npc .header-content-container .img-frame {
   background-image: url(../images/character\ frame\ white.svg);
@@ -4244,7 +4441,7 @@ a.diamond:hover .square.red.perma {
   width: 20px;
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .stats .stat-input {
-  width: 10px;
+  width: 22px;
   height: 100%;
   font-family: "Avenir";
   font-weight: 600;
@@ -4370,13 +4567,12 @@ a.diamond:hover .square.red.perma {
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 30px 15px 15px;
+  grid-template-rows: 1fr;
+  gap: 3px;
+  border-bottom: 1px solid var(--grey-160);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -4408,11 +4604,20 @@ a.diamond:hover .square.red.perma {
   color: rgb(237, 29, 39);
   border: 1.7px solid #fff;
 }
+.app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value h3 {
+  font-family: "Avenir";
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border: none;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0;
+}
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value .attribute-input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 70%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -4424,22 +4629,14 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: center;
           align-items: center;
 }
-.app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value .attribute-input h3 {
-  font-family: "Avenir";
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  border: none;
-  text-align: center;
-}
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input {
-  font-size: 16px;
+  width: 30px;
+  font-size: 20px;
   font-family: "Avenir";
   font-weight: 600;
   color: rgb(255, 255, 255);
   letter-spacing: 0.1em;
   border: none;
-  border-bottom: 1px solid rgb(255, 255, 255);
   text-align: center;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input:focus {
@@ -4463,6 +4660,7 @@ a.diamond:hover .square.red.perma {
   grid-template-columns: 1fr 30px 15px 15px;
   grid-template-rows: 1fr;
   gap: 3px;
+  color: var(--grey-220);
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill a {
   font-family: "Avenir";
@@ -4520,6 +4718,335 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill .skill-base-dice {
   margin-left: 2px;
   color: var(--grey-160);
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container > div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .label {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.2ch;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .dice-value {
+  margin-bottom: 5px;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .spend-ego {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 3px;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .spend-ego .label {
+  font-size: 10px;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .spend-ego .diamond-row {
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .spend-ego .diamond-row .diamond {
+  margin: 0px 1px;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container .armor-name input {
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.npc .combat-stats-container input {
+  width: 30px;
+}
+.app.window-app.degenesis.sheet.npc .combat-container {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  padding: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  padding: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container .diamond-row {
+  margin-right: 0;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container .backgrounds-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container .backgrounds-container > div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container .backgrounds-container .label {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.2ch;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container .backgrounds-container .dice-value {
+  margin-bottom: 5px;
+}
+.app.window-app.degenesis.sheet.npc .item-summary {
+  border: 1px solid var(--degenesis-red);
+  background-color: #000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.app.window-app.degenesis.sheet.npc .item-summary .tag {
+  border: 1px solid var(--grey-70);
+  background: black;
+  margin: 2px 5px;
+  display: inline-block;
+  padding: 2px 7px;
+}
+.app.window-app.degenesis.sheet.npc .section-header-container.defense {
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.npc .section-header-container.potential {
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.npc .section-legend-grid.attack {
+  display: grid;
+  grid-template-columns: 2fr 0.6fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-legend-grid.defense {
+  display: grid;
+  grid-template-columns: 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-legend-grid.potential {
+  display: grid;
+  grid-template-columns: 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid {
+  font-size: 12px;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack {
+  display: grid;
+  grid-template-columns: 190px 2fr 0.6fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack .attack-dice {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack .damage {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack .distance {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack .item-summary {
+  grid-area: 2/1/2/6;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.defense {
+  display: grid;
+  grid-template-columns: 190px 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.defense .item-summary {
+  grid-area: 2/1/2/5;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.defense .type {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.defense .defense-dice {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.defense :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.potential {
+  display: grid;
+  grid-template-columns: 190px 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.potential .item-summary {
+  grid-area: 2/1/2/5;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.potential :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid .item-controls {
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid .weapon-name,
+.app.window-app.degenesis.sheet.npc .section-entry-grid .potential-name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1ch;
+}
+.app.window-app.degenesis.sheet.npc .section-header-legends {
+  border-bottom: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.npc .section-header-legends .legend-name {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container .dice-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container .config-input {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container .config-label {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.npc .config-input-container input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container > :first-child {
+  margin-top: 0;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .inventory-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .inventory-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .inventory-group-entry-grid > :first-child {
+  grid-column: span 2;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-grid > div {
+  grid-area: unset;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-grid > div:nth-child(2) {
+  grid-column: 4;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-entry-grid > :first-child {
+  grid-area: 1/1/1/5;
 }
 
 /* SHEET: _ITEM.SCSS */

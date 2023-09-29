@@ -340,8 +340,13 @@
     "templates" : ["details", "attributes", "skills", "condition", "history", "backgrounds", "scars", "relationships", "general", "fighting", "state", "biography", "gmnotes"]
   },
   "npc":{
-    "templates": ["details", "attributes", "skills", "condition", "history", "backgrounds", "general", "fighting", "state", "biography", "gmnotes"]
-  
+    "templates": ["details", "attributes", "skills", "condition", "history", "backgrounds", "general", "fighting", "state", "biography", "gmnotes"],
+    "armor": {
+      "name" :"",
+      "rating": ""
+
+    },
+    "tactics":""
   },
   "fromhell":
   {

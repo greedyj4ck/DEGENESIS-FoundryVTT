@@ -21,11 +21,13 @@
     <div class="attribute-skill-group">
 
         <div class="attribute-value" data-target="system.attributes.{{g}}.value">
-            <a class="btn btn-add">+</a>
+            <h3>{{group.label}}</h3>
+
             <div class="attribute-input">
                 <input type="number" name="data.attributes.{{g}}.value" value="{{group.value}}" />
-                <h3>{{group.label}}</h3>
+
             </div>
+            <a class="btn btn-add">+</a>
             <a class="btn btn-remove">-</a>
         </div>
 
@@ -62,4 +64,9 @@
 
     </div>
     {{/each}}
+</div>
+
+
+<div class="footer-diamond">
+    <div class="square little"></div>
 </div>

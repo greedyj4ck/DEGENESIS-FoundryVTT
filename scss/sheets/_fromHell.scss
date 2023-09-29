@@ -63,6 +63,25 @@
     color: var(--text-white);
   }
 
+  input {
+    border: none;
+    border-bottom: 1px solid transparent;
+    text-align: center;
+    font-size: 16px;
+
+    &:hover {
+      box-shadow: none;
+      border-bottom: 1px solid var(--grey-160);
+      transition: border-color 0.2s linear;
+    }
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 1px solid var(--degenesis-red);
+      transition: border-color 0.3s linear;
+    }
+  }
+
   .line-stroke {
     stroke: $line-stroke-color;
     stroke-width: $line-stroke-width;
@@ -113,6 +132,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 5px;
 
     &.description {
       justify-content: flex-start;
@@ -209,8 +229,24 @@
       margin: 0px 2px;
     }
 
-    &.movement {
-      margin-top: 10px;
+    &.armor {
+      width: 100%;
+      flex: 1 1 auto;
+      gap: 0;
+
+      .armor-name {
+        margin-top: -10px;
+        height: 30px;
+
+        input {
+          width: 100%px;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 12px;
+          letter-spacing: 0.1ch;
+          font-weight: 600;
+        }
+      }
     }
 
     &.spend-ego {

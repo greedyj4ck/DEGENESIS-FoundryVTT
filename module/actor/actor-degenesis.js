@@ -170,6 +170,8 @@ export class DegenesisActor extends Actor {
 
         this.itemCategories = this.itemTypes;
         this.modifiers = new ModifierManager(this);
+        this.general.actionModifier = this.modifiers.action.D;
+        this.prepareNPCItems();
 
         // No condition calculations as they are supposed to be edited manually
         // TODO: Add failsafe for checking if current value is in permisabble limits
@@ -356,6 +358,12 @@ export class DegenesisActor extends Actor {
   }
 
   prepareFromHellItems() {
+    for (let i of this.items) {
+      i.prepareOwnedData();
+    }
+  }
+
+  prepareNPCItems() {
     for (let i of this.items) {
       i.prepareOwnedData();
     }

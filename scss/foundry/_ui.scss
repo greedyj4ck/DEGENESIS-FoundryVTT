@@ -207,3 +207,56 @@
     margin-top: 0px;
   }
 }
+
+/* CHAT MESSAGES / DICE ROLLS */
+.dice-rolls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dice-tooltip .dice-rolls .roll.d6 {
+  &.max {
+    color: var(--degenesis-red);
+    filter: none;
+    content: url(../icons/logo-small.png);
+    padding: 2px;
+    border: 1px solid var(--degenesis-red);
+  }
+  &.min {
+    color: var(--degenesis-red);
+    filter: none;
+
+    border: 1px solid var(--degenesis-red);
+  }
+
+  padding: 2px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+
+  font-family: $sans-serif-content-font;
+  font-weight: 600;
+  color: var(--grey-160);
+  background: none;
+  background-color: $bg-black;
+  border: 1px solid var(--grey-160);
+  margin: 1px;
+}
+
+.notification {
+  font-family: $sans-serif-content-font;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-shadow: none;
+  letter-spacing: 0.2ch;
+  font-weight: 600;
+  color: $text-white;
+  border-radius: 0;
+}
+
+.notification.info {
+  border: 1px solid $dgns-blackred;
+  background-color: $dgns-red;
+  box-shadow: none;
+}

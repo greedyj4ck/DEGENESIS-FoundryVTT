@@ -272,19 +272,6 @@ a:hover {
   }
 }
 
-.dice-tooltip .dice-rolls .roll.d6 {
-  &.max {
-    color: var(--degenesis-red);
-    filter: none;
-    content: url(../icons/logo-small.png);
-    padding: 2px;
-  }
-
-  background-image: none;
-  border: 1px solid black;
-  line-height: 22px;
-}
-
 #players {
   background: url(../ui/black_01.jpg);
   font-family: $sans-serif-content-font;
