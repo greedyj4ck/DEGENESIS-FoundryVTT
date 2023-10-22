@@ -52,6 +52,12 @@ export class DegenesisActor extends Actor {
     else if (getProperty(updateData, "system.skills.primal.value"))
       setProperty(updateData, "system.skills.focus.value", 0);
 
+    // Limit data range for condition values for From Hell sheet
+
+    if (this.type === "fromhell") {
+      updateData = this.limitFromHellValues(updateData);
+    }
+
     // Limit data range for attributes and conditions for NPC sheet
 
     if (this.type === "npc") {
@@ -193,109 +199,86 @@ export class DegenesisActor extends Actor {
     }
   }
 
-  limitNPCValues(updateData) {
-    //Since values are not calcualted we need to limit them manually :)
-
-    if (
-      getProperty(updateData, "system.condition.ego.value") >
-      this.condition.ego.max
-    ) {
-      setProperty(
+  limitFromHellValues(updateData) {
+    if (getProperty(updateData, "system.condition")) {
+      limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
         this.condition.ego.max
       );
-    } else if (getProperty(updateData, "system.condition.ego.value") < 0) {
-      setProperty(updateData, "system.condition.ego.value", 0);
-    }
 
-    if (
-      getProperty(updateData, "system.condition.fleshwounds.value") >
-      this.condition.fleshwounds.max
-    ) {
-      setProperty(
+      limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
         this.condition.fleshwounds.max
       );
-    } else if (
-      getProperty(updateData, "system.condition.fleshwounds.value") < 0
-    ) {
-      setProperty(updateData, "system.condition.fleshwounds.value", 0);
-    }
 
-    if (
-      getProperty(updateData, "system.condition.trauma.value") >
-      this.condition.trauma.max
-    ) {
-      setProperty(
+      limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
         this.condition.trauma.max
       );
-    } else if (getProperty(updateData, "system.condition.trauma.value") < 0) {
-      setProperty(updateData, "system.condition.trauma.value", 0);
     }
+  }
 
-    if (
-      getProperty(updateData, "system.condition.spore.value") >
-      this.condition.spore.max
-    ) {
-      setProperty(
-        updateData,
-        "system.condition.spore.value",
-        this.condition.spore.max
-      );
-    } else if (
-      getProperty(updateData, "system.condition.spore.value") <
-      this.condition.spore.permanent
-    ) {
-      setProperty(
-        updateData,
-        "system.condition.spore.value",
-        this.condition.spore.permanent
-      );
-    }
+  limitNPCValues(updateData) {
+    //Since values are not calcualted we need to limit them manually :)
+    // This is a routine to fix multiple + / - clicks to adjust values
 
-    if (
-      getProperty(updateData, "system.condition.spore.permanent") >
-      this.condition.spore.max
-    ) {
-      setProperty(
+    // Limit condition
+
+    if (getProperty(updateData, "system.condition")) {
+      limitMaxMinValue(
+        updateData,
+        "system.condition.ego.value",
+        this.condition.ego.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.fleshwounds.value",
+        this.condition.fleshwounds.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.trauma.value",
+        this.condition.trauma.max
+      );
+
+      limitMaxMinValue(
         updateData,
         "system.condition.spore.permanent",
         this.condition.spore.max
       );
-    } else if (
-      getProperty(updateData, "system.condition.spore.permanent") < 0
-    ) {
-      setProperty(updateData, "system.condition.spore.permanent", 0);
-    }
 
-    if (
-      getProperty(updateData, "system.condition.spore.permanent") >
-      this.condition.spore.value
-    ) {
-      setProperty(
+      limitMaxMinValue(
         updateData,
         "system.condition.spore.value",
-        getProperty(updateData, "system.condition.spore.permanent")
+        this.condition.spore.max,
+        this.condition.spore.permanent
       );
     }
 
-    // LIMIT ATTRIBUTES
+    // Limit
     if (getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
-        if (updateData.system.attributes[attr].value > 6) {
-          setProperty(updateData, `system.attributes.${attr}.value`, 6);
-        }
-        if (updateData.system.attributes[attr].value < 1) {
-          setProperty(updateData, `system.attributes.${attr}.value`, 1);
-        }
+        limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
       }
     }
 
-    // LIMIT SKILLS
+    // Limit skills
+
+    if (getProperty(updateData, "system.skills")) {
+      for (let skill in updateData.system.skills) {
+        limitMaxMinValue(
+          updateData,
+          `system.skills.${skill}.value`,
+          12,
+          this.system.attributes[this.system.skills[skill].attribute].value
+        );
+      }
+    }
 
     return updateData;
   }
@@ -561,9 +544,10 @@ export class DegenesisActor extends Actor {
     return { dialogData, cardData, rollData };
   }
 
-  constructCardData(template, cardTitle) {
+  constructCardData(template, cardTitle, subtitle) {
     return {
       title: cardTitle,
+      subtitle: subtitle,
       template,
       speaker: {
         alias: this.name,
@@ -961,8 +945,11 @@ export class DegenesisActor extends Actor {
       dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
-      "systems/degenesis/templates/chat/roll-card.html",
-      `${DEGENESIS.defenseGroups[defense.group]} - ${defense.name}`
+      "systems/degenesis/templates/chat/roll-card-two-lines.html",
+      `${DEGENESIS.defenseGroups[defense.group]} ${game.i18n.localize(
+        "DGNS.Defense"
+      )}`,
+      defense.name
     );
 
     let actionNumber = defense.dice[defense.group];
@@ -1266,5 +1253,15 @@ export class DegenesisActor extends Actor {
   }
   get relationships() {
     return this.system.relationships;
+  }
+}
+
+// Utilities
+
+function limitMaxMinValue(updateData, value, maxValue, minValue = 0) {
+  if (getProperty(updateData, value) > maxValue) {
+    setProperty(updateData, value, maxValue);
+  } else if (getProperty(updateData, value) < minValue) {
+    setProperty(updateData, value, minValue);
   }
 }

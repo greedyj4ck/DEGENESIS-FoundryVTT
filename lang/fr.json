@@ -496,5 +496,14 @@
   "DGNS.SettingsMinimumOneAN": "Un seul jet de dé pour un nombre d'actions négatif",
   "DGNS.SettingsMinimumOneANHelper": "Pour les modificateurs négatifs dépassant le nombre d'actions, forcez un seul jet de dé.",
   "DGNS.SettingsShowInventoryHeaders": "Afficher les en-têtes dans l'inventaire",
-  "DGNS.SettingsShowInventoryHeadersHelper": "Afficher les en-têtes d'inventaire même s'il n'y a pas d'articles dans la catégorie respective."
+  "DGNS.SettingsShowInventoryHeadersHelper": "Afficher les en-têtes d'inventaire même s'il n'y a pas d'articles dans la catégorie respective.",
+
+  "DGNS.CloseQuarter": "Rapproché",
+  "DGNS.Ranged": "Distance",
+
+  "DGNS.DefensePassive": "Passive",
+  "DGNS.DefenseMeleeActive": "Mêlée active",
+  "DGNS.DefenseRangedActive": "Distance Activo",
+  "DGNS.DefenseMental": "Mental"
+
 }

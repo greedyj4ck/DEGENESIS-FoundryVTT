@@ -128,6 +128,11 @@ export class DegenesisFromHellSheet extends ActorSheet {
       $(this).select();
     });
 
+    // Plus and Minus buttons handlers
+
+    html.find(".btn-add").click(this._onButtonAddClick.bind(this));
+    html.find(".btn-remove").click(this._onButtonRemoveClick.bind(this));
+
     // Update Inventory Item
     html.find(".item-add").click(this._onItemCreate.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
@@ -432,6 +437,92 @@ export class DegenesisFromHellSheet extends ActorSheet {
       div.slideDown(200);
     }
     li.toggleClass("expanded");
+  }
+
+  _onButtonAddClick(event) {
+    let actorData = this.actor.toObject();
+
+    let target = $(event.currentTarget).parent().attr("data-target");
+    let currentValue = getProperty(actorData, target);
+
+    if (target.split(".")[1] === "condition") {
+      let targetParent = $(event.currentTarget)
+        .parent()
+        .attr("data-targetParent");
+      let parentValues = getProperty(this.actor, targetParent);
+
+      let minimum;
+      let maximum;
+
+      maximum = parentValues.max;
+
+      if (parentValues.permanent > 0) {
+        minimum = parentValues.permanent;
+      } else {
+        minimum = 0;
+      }
+
+      if (target === "system.condition.ego.value") {
+        if (currentValue - 1 < minimum) {
+          setProperty(actorData, target, minimum);
+        } else {
+          setProperty(actorData, target, currentValue - 1);
+        }
+      } else {
+        if (currentValue + 1 > maximum) {
+          setProperty(actorData, target, maximum);
+        } else {
+          setProperty(actorData, target, currentValue + 1);
+        }
+      }
+    } else {
+      setProperty(actorData, target, currentValue + 1);
+    }
+
+    this.actor.update(actorData);
+  }
+
+  _onButtonRemoveClick(event) {
+    let actorData = this.actor.toObject();
+
+    let target = $(event.currentTarget).parent().attr("data-target");
+    let currentValue = getProperty(actorData, target);
+
+    if (target.split(".")[1] === "condition") {
+      let targetParent = $(event.currentTarget)
+        .parent()
+        .attr("data-targetParent");
+      let parentValues = getProperty(this.actor, targetParent);
+
+      let minimum;
+      let maximum;
+
+      maximum = parentValues.max;
+
+      if (parentValues.permanent > 0) {
+        minimum = parentValues.permanent;
+      } else {
+        minimum = 0;
+      }
+
+      if (target === "system.condition.ego.value") {
+        if (currentValue + 1 > maximum) {
+          setProperty(actorData, target, maximum);
+        } else {
+          setProperty(actorData, target, currentValue + 1);
+        }
+      } else {
+        if (currentValue - 1 < minimum) {
+          setProperty(actorData, target, minimum);
+        } else {
+          setProperty(actorData, target, currentValue - 1);
+        }
+      }
+    } else {
+      setProperty(actorData, target, currentValue + -1);
+    }
+
+    this.actor.update(actorData);
   }
 
   // END OF CLASS

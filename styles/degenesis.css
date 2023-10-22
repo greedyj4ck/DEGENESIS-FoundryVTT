@@ -658,7 +658,7 @@ a:hover {
 
 .notification.info {
   border: 1px solid rgb(154, 12, 19);
-  background-color: rgb(237, 29, 39);
+  background-color: rgb(20, 20, 20);
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -942,6 +942,16 @@ a.diamond:hover .square.red.perma {
 }
 .chat-message .portrait-wrapper h2.result.failure {
   color: var(--grey-220);
+}
+.chat-message .portrait-wrapper h3 {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--grey-240);
+  padding: 0px 5px 0px 5px;
+  margin: 0;
+  text-align: center;
+  border: none;
 }
 .chat-message .portrait-wrapper hr {
   width: 65%;
@@ -3662,9 +3672,10 @@ a.diamond:hover .square.red.perma {
       align-content: stretch;
   padding: 5px;
   gap: 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  gap: 3px;
 }
 .app.window-app.degenesis.sheet.fromHell .header-content-container .img-frame {
   background-image: url(../images/character\ frame\ white.svg);
@@ -3883,6 +3894,122 @@ a.diamond:hover .square.red.perma {
   -webkit-transition: border-color 0.3s linear;
   transition: border-color 0.3s linear;
 }
+.app.window-app.degenesis.sheet.fromHell .condition-content-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, minmax(26px, 1fr));
+  grid-row-gap: 3px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 2px;
+  font-family: "Avenir";
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .label {
+  margin-left: 4px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  border: 1.7px solid #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .btn:hover {
+  color: rgb(237, 29, 39);
+  border: 1.7px solid #fff;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats {
+  margin-left: auto;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  gap: 2px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats > div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .current-value {
+  width: 20px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .current-value .current-ego {
+  display: inline-block;
+  width: 20px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input {
+  width: 22px;
+  height: 100%;
+  font-family: "Avenir";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-bottom: 1px solid transparent;
+  font-size: 12px;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input.perma {
+  color: var(--grey-160);
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input:hover {
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
 .app.window-app.degenesis.sheet.fromHell .condition-container {
   margin: 3px;
   display: -webkit-box;
@@ -4036,6 +4163,135 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container > div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .label {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.2ch;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .dice-value {
+  margin-bottom: 5px;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .spend-ego {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 3px;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .spend-ego .label {
+  font-size: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .spend-ego .diamond-row {
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .spend-ego .diamond-row .diamond {
+  margin: 0px 1px;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container .armor-name input {
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.fromHell .combat-stats-container input {
+  width: 30px;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container .dice-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container .config-input {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container .config-label {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.fromHell .config-input-container input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
 }
 .app.window-app.degenesis.sheet.fromHell .section-header-legends {
   border-bottom: 1.5px solid #fff;

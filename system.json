@@ -4,8 +4,8 @@
   "description": "DEGENESIS",
   "version": "0.6.1",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11.299"
+    "minimum": "11.311",
+    "verified": "11.313"
   },
   "authors": [
     {

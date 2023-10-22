@@ -242,6 +242,14 @@ export class DegenesisItem extends Item {
       }
     }
 
+    else if (this.actor.type === "npc") {
+      const baseValue = parseInt(this.damage) + (modifier || 0);
+      damage = baseValue;
+      if (this.DamageBonus) {
+        damage += this.DamageBonus.calculate(triggers);
+      }
+    }
+
     return damage;
   }
 

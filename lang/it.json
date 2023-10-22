@@ -496,5 +496,14 @@
   "DGNS.SettingsMinimumOneAN": "Tiro di un singolo dado per un Numero Azione negativo",
   "DGNS.SettingsMinimumOneANHelper": "Per modificatori negativi che eccedono il Numero Azione, forza il tiro di un singolo dado.",
   "DGNS.SettingsShowInventoryHeaders": "Mostra le intestazioni nell'inventario",
-  "DGNS.SettingsShowInventoryHeadersHelper": "Mostra le intestazioni dell'inventario anche se non ci sono oggetti nella rispettiva categoria."
+  "DGNS.SettingsShowInventoryHeadersHelper": "Mostra le intestazioni dell'inventario anche se non ci sono oggetti nella rispettiva categoria.",
+
+  "DGNS.CloseQuarter": "Ravvicinato",
+  "DGNS.Ranged": "Distanza",
+
+  "DGNS.DefensePassive": "Passiva",
+  "DGNS.DefenseMeleeActive": "Mischia attiva",
+  "DGNS.DefenseRangedActive": "Distanza attiva",
+  "DGNS.DefenseMental": "Mentale"
+
 }

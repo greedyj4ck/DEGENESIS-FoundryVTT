@@ -120,7 +120,9 @@
     align-content: stretch;
     padding: 5px;
     gap: 10px;
-    align-items: center;
+    align-items: stretch;
+
+    gap: 3px;
 
     .img-frame {
       background-image: url(../images/character\ frame\ white.svg);
@@ -296,6 +298,108 @@
           box-shadow: none;
           border-bottom: 1px solid var(--degenesis-red);
           transition: border-color 0.3s linear;
+        }
+      }
+    }
+  }
+
+  .condition-content-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(26px, 1fr));
+    grid-row-gap: 3px;
+
+    .condition {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2px;
+
+      font-family: $sans-serif-content-font;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+
+      .label {
+        margin-left: 4px;
+      }
+
+      .controls {
+        display: flex;
+        gap: 4px;
+      }
+
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 15px;
+        height: 15px;
+        border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        font-size: 12px;
+        font-weight: 600;
+        color: $text-white;
+        transition: 0.3s all;
+
+        &:hover {
+          color: $dgns-red;
+          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        }
+      }
+
+      .stats {
+        margin-left: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 2px;
+
+        > div {
+          height: 100%;
+          display: flex;
+          flex: 1 1 auto;
+          align-items: center;
+          text-align: center;
+        }
+
+        .current-value {
+          width: 20px;
+
+          .current-ego {
+            display: inline-block;
+            width: 20px;
+          }
+        }
+
+        .stat-input {
+          width: 22px;
+          height: 100%;
+          font-family: $sans-serif-content-font;
+          font-weight: 600;
+          color: $text-white;
+          border: none;
+          border-bottom: 1px solid transparent;
+          font-size: 12px;
+
+          &.perma {
+            color: var(--grey-160);
+          }
+
+          &:focus {
+            box-shadow: none;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border-color 0.3s linear;
+          }
+
+          &:hover {
+            border-bottom: 1px solid var(--grey-160);
+            transition: border-color 0.2s linear;
+          }
         }
       }
     }
@@ -483,6 +587,109 @@
     flex: 1;
   }
 
+  .combat-stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 10px;
+
+    > div {
+      flex-grow: 1;
+    }
+
+    .label {
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.2ch;
+    }
+
+    .dice-value {
+      margin-bottom: 5px;
+    }
+
+    .spend-ego {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      .label {
+        font-size: 10px;
+      }
+
+      .diamond-row {
+        margin: 0;
+        .diamond {
+          margin: 0px 1px;
+        }
+      }
+    }
+
+    .armor-name {
+      input {
+        font-size: 12px;
+        font-weight: 600;
+        width: 100%;
+        text-transform: uppercase;
+      }
+    }
+
+    input {
+      width: 30px;
+    }
+  }
+
+  .config-input-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 0;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    .dice-value {
+      display: flex;
+      flex: 0 1 0;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 600;
+    }
+    .config-input {
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    .config-label {
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid transparent;
+      text-align: center;
+      font-size: 16px;
+
+      &:hover {
+        box-shadow: none;
+        border-bottom: 1px solid var(--grey-160);
+        transition: border-color 0.2s linear;
+      }
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: 1px solid var(--degenesis-red);
+        transition: border-color 0.3s linear;
+      }
+    }
+  }
   .section-header-legends {
     border-bottom: $line-stroke-width solid $line-stroke-color;
 
