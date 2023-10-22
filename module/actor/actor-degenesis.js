@@ -1,19 +1,18 @@
 import { DEGENESIS } from "../config.js";
-import { DEG_Utility } from "../utility.js";
 import { DegenesisDice } from "../dice.js";
-import { DegenesisItem } from "../item/item-degenesis.js";
-import ModifierManager from "../modifier-manager.js";
-
-// Changes from #80 pull request
-
 import { DegenesisChat } from "../chat.js";
-
+import { ModifierManager } from "../modifier-manager.js";
 import { AutomateEncumbrancePenalty } from "../settings.js";
+
+// CLEANED UP IMPORTS
+import { DegenesisItem } from "../item/item-degenesis.js";
+import { DEG_Utility } from "../utility.js";
 
 /**
  * Extend FVTT Actor class for Degenesis functionality
  * @extends {Actor}
  */
+
 export class DegenesisActor extends Actor {
   // TODO: CHECK IF UPDATESOURCE IS VALID METHOD FOR TOKEN
   // this.data.update -> this.updateSource
@@ -52,6 +51,18 @@ export class DegenesisActor extends Actor {
       setProperty(updateData, "system.skills.primal.value", 0);
     else if (getProperty(updateData, "system.skills.primal.value"))
       setProperty(updateData, "system.skills.focus.value", 0);
+
+    // Limit data range for condition values for From Hell sheet
+
+    if (this.type === "fromhell") {
+      updateData = this.limitFromHellValues(updateData);
+    }
+
+    // Limit data range for attributes and conditions for NPC sheet
+
+    if (this.type === "npc") {
+      updateData = this.limitNPCValues(updateData);
+    }
   }
 
   // REGION | DATA PREPARATION
@@ -122,13 +133,16 @@ export class DegenesisActor extends Actor {
       }
     }
 
-    // FromHell Actor Type
+    // DATA PREPARATION | FROM HELL ACTOR
 
     if (this.type === "fromhell") {
       try {
         super.prepareData();
+        this.itemCategories = this.itemTypes;
+        this.modifiers = new ModifierManager(this);
 
-        // Here will come data preparation code for  actor
+        this.general.actionModifier = this.modifiers.action.D;
+        this.prepareFromHellItems();
       } catch (e) {
         console.error(e);
       }
@@ -138,8 +152,35 @@ export class DegenesisActor extends Actor {
     if (this.type === "npc") {
       try {
         super.prepareData();
-
         // Here will come data preparation code for NPC actor
+
+        for (let skill in this.skills) {
+          if (
+            this.skills[skill].value <
+            this.attributes[this.skills[skill].attribute].value
+          ) {
+            this.skills[skill].value =
+              this.attributes[this.skills[skill].attribute].value;
+          }
+        }
+
+        for (let attr in this.attributes) {
+          if (this.attributes[attr].value < 1) {
+            this.attributes[attr].value = 1;
+          }
+
+          if (this.attributes[attr].value > 6) {
+            this.attributes[attr].value = 6;
+          }
+        }
+
+        this.itemCategories = this.itemTypes;
+        this.modifiers = new ModifierManager(this);
+        this.general.actionModifier = this.modifiers.action.D;
+        this.prepareNPCItems();
+
+        // No condition calculations as they are supposed to be edited manually
+        // TODO: Add failsafe for checking if current value is in permisabble limits
       } catch (e) {
         console.error(e);
       }
@@ -156,6 +197,90 @@ export class DegenesisActor extends Actor {
         console.error(e);
       }
     }
+  }
+
+  limitFromHellValues(updateData) {
+    if (getProperty(updateData, "system.condition")) {
+      limitMaxMinValue(
+        updateData,
+        "system.condition.ego.value",
+        this.condition.ego.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.fleshwounds.value",
+        this.condition.fleshwounds.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.trauma.value",
+        this.condition.trauma.max
+      );
+    }
+  }
+
+  limitNPCValues(updateData) {
+    //Since values are not calcualted we need to limit them manually :)
+    // This is a routine to fix multiple + / - clicks to adjust values
+
+    // Limit condition
+
+    if (getProperty(updateData, "system.condition")) {
+      limitMaxMinValue(
+        updateData,
+        "system.condition.ego.value",
+        this.condition.ego.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.fleshwounds.value",
+        this.condition.fleshwounds.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.trauma.value",
+        this.condition.trauma.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.spore.permanent",
+        this.condition.spore.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.spore.value",
+        this.condition.spore.max,
+        this.condition.spore.permanent
+      );
+    }
+
+    // Limit
+    if (getProperty(updateData, "system.attributes")) {
+      for (let attr in updateData.system.attributes) {
+        limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
+      }
+    }
+
+    // Limit skills
+
+    if (getProperty(updateData, "system.skills")) {
+      for (let skill in updateData.system.skills) {
+        limitMaxMinValue(
+          updateData,
+          `system.skills.${skill}.value`,
+          12,
+          this.system.attributes[this.system.skills[skill].attribute].value
+        );
+      }
+    }
+
+    return updateData;
   }
 
   prepareItems() {
@@ -215,9 +340,19 @@ export class DegenesisActor extends Actor {
     this.general.armor += armor.equipment + armor.modifier;
   }
 
-  //#endregion
+  prepareFromHellItems() {
+    for (let i of this.items) {
+      i.prepareOwnedData();
+    }
+  }
 
-  //#region Roll Setup
+  prepareNPCItems() {
+    for (let i of this.items) {
+      i.prepareOwnedData();
+    }
+  }
+
+  // ROLL SETUP
   setupSkill(skill) {
     let dialogData = {
       title: DEGENESIS.skills[skill],
@@ -248,6 +383,47 @@ export class DegenesisActor extends Actor {
     let rollData = {
       skill: this.system.skills[skill],
       actionNumber: this.getSkillTotal(skill),
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    //let rollResult = await DegenesisDice.rollAction(rollData)
+    return { dialogData, cardData, rollData };
+  }
+
+  // SIMPLE DICE ROLL SETUP
+  setupDice(type, dice) {
+    let dialogData = {
+      title: DEGENESIS.diceRolls[type],
+      // prefilled: this.modifiers.forDialog("skill", skill),
+      // customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollDice;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.diceRolls[type]
+    );
+
+    let rollData = {
+      type: type,
+      actionNumber: dice,
       difficulty: 0,
       diceModifier: 0,
       successModifier: 0,
@@ -368,9 +544,10 @@ export class DegenesisActor extends Actor {
     return { dialogData, cardData, rollData };
   }
 
-  constructCardData(template, cardTitle) {
+  constructCardData(template, cardTitle, subtitle) {
     return {
       title: cardTitle,
+      subtitle: subtitle,
       template,
       speaker: {
         alias: this.name,
@@ -379,15 +556,42 @@ export class DegenesisActor extends Actor {
     };
   }
 
-  //#endregion
-
-  //#region Roll Processing
+  // REGION | ROLL PROCESSING
   async rollSkill(skill, { skipDialog = false, override = {} }) {
     let { dialogData, cardData, rollData } = this.setupSkill(skill);
 
     for (const key in override) {
       dialogData[key] = override[key];
     }
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupSkill(rollData.secondary)
+      );
+
+    this.postRollChecks(rollResults, skill);
+
+    DegenesisChat.renderRollCard(rollResults, cardData);
+
+    return { rollResults, cardData };
+  }
+
+  /*  This is new dice rolling method that allows to pass pure 
+      action dice number and description for simple rolls.  */
+
+  async rollDice(dice, { skipDialog = false, override = {} }) {
+    let { dialogData, cardData, rollData } = this.setupSkill(skill);
 
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
@@ -486,6 +690,307 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
+  // FROM HELL ROUTINES
+  async rollFightRollFromHell(
+    type,
+    dice,
+    { skipDialog = false, spentEgo = 0 }
+  ) {
+    let { dialogData, cardData, rollData } = this.setupFightRollFromHell(
+      type,
+      dice
+    );
+
+    rollData.actionNumber += spentEgo;
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupFightRoll(type, { skillOverride: rollData.secondary })
+      );
+
+    this.postRollChecks(rollResults, type);
+    return { rollResults, cardData };
+  }
+
+  setupFightRollFromHell(type = {}, dice) {
+    let dialogData = {
+      title: DEGENESIS.diceRolls[type],
+      prefilled: this.modifiers.forDialog(type), // NOT PASSING SKILL HERE AS THERE IS NO SUCH THING HERE,
+      // customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dice-dialog.html", // DIFFERENT TEMPLATE FOR MOB ROLLS ?
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+
+    // METHOD NEEDS TO BE CHANGED FOR SIMPLE ROLLS
+    dialogData.rollMethod = this.rollDice;
+
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.diceRolls[type]
+    );
+
+    if (type == "initiative")
+      cardData = this.constructCardData(
+        "systems/degenesis/templates/chat/initiative-roll-card.html",
+        DEGENESIS.diceRolls[type]
+      );
+
+    let rollData = {
+      type: type,
+      actionNumber: dice,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // ACCOUNTS FOR THE ACTION MODIFIER
+    // THIS NEEDS TO BE REDONE OR DISABLED FOR FROM HELL ACTOR
+
+    // rollData.actionNumber = this.fighting[type];
+
+    return { dialogData, cardData, rollData };
+  }
+
+  async rollAttack(attack, { skipDialog = false, use = null }) {
+    let { dialogData, cardData, rollData } = this.setupAttack(attack, { use });
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+    let rollResults = await DegenesisDice.rollAction(rollData);
+    rollResults.weapon = attack;
+    if (rollData.secondary) {
+      if (use == "attack-sonic")
+        // Call with sonic flag so the card holds the relevant target difficulty information. More details in the method itself
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          }),
+          { isSonicAttack: true }
+        );
+      else
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          })
+        );
+      cardData.title = `${weapon.name}<br>(${
+        DEGENESIS.skills[weapon.skill]
+      } + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`;
+    }
+
+    const fullDamage = attack.fullDamage(rollResults.triggers, {
+      modifier: this.modifiers.damage,
+    });
+    cardData.damageFull = `${fullDamage}`;
+
+    this.postRollChecks(rollResults, "weapon");
+    return { rollResults, cardData };
+  }
+
+  async rollDefense(defense, { skipDialog = false, use = null }) {
+    let { dialogData, cardData, rollData } = this.setupDefense(defense, {
+      use,
+    });
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+    let rollResults = await DegenesisDice.rollAction(rollData);
+    rollResults.weapon = defense;
+
+    if (rollData.secondary) {
+      if (use == "attack-sonic")
+        // Call with sonic flag so the card holds the relevant target difficulty information. More details in the method itself
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          }),
+          { isSonicAttack: true }
+        );
+      else
+        await this.handleSecondaryRoll(
+          { dialogData, cardData, rollData, rollResults },
+          this.setupWeapon(weapon, {
+            use,
+            secondary: true,
+            secondarySkill: rollData.secondary,
+          })
+        );
+      cardData.title = `${weapon.name}<br>(${
+        DEGENESIS.skills[weapon.skill]
+      } + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`;
+    }
+
+    this.postRollChecks(rollResults, "defense");
+    return { rollResults, cardData };
+  }
+
+  setupAttack(attack, { use = "attack", secondary = false, skill = null }) {
+    let dialogData = {
+      title: `Attack - ${attack.name}`,
+      prefilled: this.modifiers.forDialog("weapon", skill, use), // Investigate this
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollAttack;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/weapon-roll-card.html",
+      attack.name // Add attack title or description later
+    );
+
+    // Needs to be modified to match simple dice roll method
+    let rollData = {
+      type: "Test value",
+      actionNumber: attack.dice.attack,
+      weapon: attack,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // Uhmm.... needs to get back and change atack item structure
+    if (use && !attack.isMelee) {
+      if (use == "attack-short") rollData.actionNumber = attack.dice.effective;
+      else if (use == "attack-far") rollData.actionNumber = attack.dice.far;
+      else if (use == "attack-extreme")
+        rollData.actionNumber = attack.dice.extreme;
+    }
+
+    // There will be no secondaries (i think...) ....
+    if (secondary)
+      rollData.actionNumber = this.getSkillTotal(
+        secondarySkill || weapon.secondarySkill
+      );
+
+    return { dialogData, cardData, rollData };
+  }
+
+  setupDefense(defense, { use = "defense", secondary = false, skill = null }) {
+    let dialogData = {
+      title: `${defense.group} - ${defense.name}`,
+      prefilled: this.modifiers.forDialog("defense", skill, use), // Investigate this
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+
+    dialogData.rollMethod = this.rollDefense;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card-two-lines.html",
+      `${DEGENESIS.defenseGroups[defense.group]} ${game.i18n.localize(
+        "DGNS.Defense"
+      )}`,
+      defense.name
+    );
+
+    let actionNumber = defense.dice[defense.group];
+
+    /*   switch(defense.group){
+      case 'passive':
+        actionNumber = defense.dice.passive;
+        break;
+      case 'activeMelee':
+        actionNumber = defense.dice.activeMelee;
+        break;
+      case 'activeRanged':
+        actionNumber = defense.dice.activeRanged;
+        break;
+      case 'mental':
+        actionNumber = defense.dice.mental;
+        break;
+    } */
+
+    // Needs to be modified to match simple dice roll method
+    let rollData = {
+      // type: "Test value",
+      actionNumber: actionNumber,
+      weapon: defense,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    // Uhmm.... needs to get back and change atack item structure
+
+    // There will be no secondaries (i think...) ....
+    if (secondary)
+      rollData.actionNumber = this.getSkillTotal(
+        secondarySkill || weapon.secondarySkill
+      );
+
+    return { dialogData, cardData, rollData };
+  }
+
   async handleSecondaryRoll(
     { dialogData, cardData, rollData, rollResults } = {},
     secondary,
@@ -513,10 +1018,11 @@ export class DegenesisActor extends Actor {
       cardData.title += " + " + secondary.cardData.title;
 
       // Don't use ego action modifier on secondary roll
-      let actionModifier = this.getFlag("degenesis", "spentEgoActionModifier");
+      // This should not be required anymore :)
+      /*   let actionModifier = this.getFlag("degenesis", "spentEgoActionModifier");
       if (actionModifier)
         secondary.rollData.diceModifier -=
-          this.items.get(actionModifier)?.modifyNumber || 0;
+          this.items.get(actionModifier)?.modifyNumber || 0; */
 
       let secondaryRollResults = await DegenesisDice.rollAction(
         secondary.rollData
@@ -540,6 +1046,9 @@ export class DegenesisActor extends Actor {
   }
 
   async postRollChecks(rollResults, type) {
+    // CHEKING IF THERE WAS PREVIOUS EGO MODIFIER AND DELETE IT
+    // USED WHEN ROLLING INITIATIVE WITH SPEND EGO VALUE
+
     let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier");
     if (egoModifierId) {
       await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
@@ -551,7 +1060,78 @@ export class DegenesisActor extends Actor {
         "data.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
-  //#endregion
+
+  // NPC ROUTINES
+
+  async rollNPCSkill(skill, { skipDialog = false, override = {} }) {
+    let { dialogData, cardData, rollData } = this.setupNPCSkill(skill);
+
+    for (const key in override) {
+      dialogData[key] = override[key];
+    }
+
+    if (!skipDialog)
+      rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
+    else {
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupNPCSkill(rollData.secondary)
+      );
+
+    this.postRollChecks(rollResults, skill);
+
+    DegenesisChat.renderRollCard(rollResults, cardData);
+
+    return { rollResults, cardData };
+  }
+  // ROLL SETUP
+  setupNPCSkill(skill) {
+    let dialogData = {
+      title: DEGENESIS.skills[skill],
+      prefilled: this.modifiers.forDialog("skill", skill),
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: true,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollNPCSkill;
+    // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/roll-card.html",
+      DEGENESIS.skills[skill]
+    );
+
+    let rollData = {
+      skill: this.system.skills[skill],
+      actionNumber: this.system.skills[skill].value,
+      difficulty: 0,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    //let rollResult = await DegenesisDice.rollAction(rollData)
+    return { dialogData, cardData, rollData };
+  }
 
   // REGION | CONVENIENCE HELPERS
 
@@ -567,12 +1147,6 @@ export class DegenesisActor extends Actor {
       ? total + this.modifiers.forDialog("skill", skill).diceModifier
       : total;
   }
-
-  // REGION | NPC VARIANT
-
-  // REGION | ABBERANT VARIANT
-
-  // REGION | CALCULATION GETTERS
 
   get faithOrWillpower() {
     if (this.skills.willpower.value) return this.skills.willpower;
@@ -640,6 +1214,14 @@ export class DegenesisActor extends Actor {
     return this.getItemTypes("legacy");
   }
 
+  get attackItems() {
+    return this.getItemTypes("attack");
+  }
+
+  get defenseItems() {
+    return this.getItemTypes("defense");
+  }
+
   // REGION | DATA GETTERS
 
   get general() {
@@ -671,5 +1253,15 @@ export class DegenesisActor extends Actor {
   }
   get relationships() {
     return this.system.relationships;
+  }
+}
+
+// Utilities
+
+function limitMaxMinValue(updateData, value, maxValue, minValue = 0) {
+  if (getProperty(updateData, value) > maxValue) {
+    setProperty(updateData, value, maxValue);
+  } else if (getProperty(updateData, value) < minValue) {
+    setProperty(updateData, value, minValue);
   }
 }

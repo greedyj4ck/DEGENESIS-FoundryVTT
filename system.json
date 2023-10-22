@@ -2,14 +2,13 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11.299",
-    "maximum": "11"
+    "minimum": "11.311",
+    "verified": "11.313"
   },
   "authors": [
-      {
+    {
       "name": "Greedyj4ck",
       "discord": "GЯΣΣDYJΛCK#2690",
       "flags": {}
@@ -33,7 +32,6 @@
       "name": "KristjanLaane",
       "flags": {}
     }
-  
   ],
   "esmodules": [
     "degenesis.js"
@@ -51,70 +49,91 @@
       "type": "Item",
       "name": "legacies",
       "banner": "/systems/degenesis/ui/packs/legacies-pack.webp",
-      "path": "packs/legacies.db",
+      "path": "packs/legacies",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Weapons",
       "type": "Item",
       "banner": "/systems/degenesis/ui/packs/weapons-pack.webp",
       "name": "weapons",
-      "path": "packs/weapons.db",
+      "path": "packs/weapons",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Armor & Shields",
       "type": "Item",
       "name": "armor-and-shields",
       "banner": "/systems/degenesis/ui/packs/armor-shields-pack.webp",
-      "path": "packs/armor-and-shields.db",
+      "path": "packs/armor-and-shields",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Ammunitions",
       "type": "Item",
       "name": "ammunitions",
       "banner": "/systems/degenesis/ui/packs/ammo-pack.webp",
-      "path": "packs/ammunitions.db",
+      "path": "packs/ammunitions",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Equipment",
       "type": "Item",
       "name": "equipment",
       "banner": "/systems/degenesis/ui/packs/equipment-pack.webp",
-      "path": "packs/equipment.db",
+      "path": "packs/equipment",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Potentials",
       "type": "Item",
       "name": "potentials",
       "banner": "/systems/degenesis/ui/packs/potentials-pack.webp",
-      "path": "packs/potentials.db",
+      "path": "packs/potentials",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "label": "Maps",
       "type": "Scene",
       "name": "maps",
       "banner": "/systems/degenesis/ui/packs/maps-pack.webp",
-      "path": "packs/maps.db",
+      "path": "packs/maps",
       "system": "degenesis",
-      "private": false,
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "languages": [
@@ -154,5 +173,10 @@
   "background": "systems/degenesis/ui/artifacts.jpg",
   "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
   "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
-  "license": "LICENSE.txt"
+  "license": "LICENSE.txt",
+  "flags": {
+    "hotReload": {
+        "extensions": ["css", "html", "hbs", "json"],
+        "paths": ["languages/", "styles/", "templates/"]
+    }}
 }

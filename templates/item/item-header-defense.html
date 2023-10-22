@@ -1,0 +1,70 @@
+<header class="sh-header">
+
+  <!-- MAIN TITLE BAR-->
+  <div class="sh-titlebar">
+    <div class="square little left"></div>
+    <svg class="start-line">
+      <line x1="0%" y1="5" x2="88%" y2="5" class="line-stroke"></line>
+      <line x1="88%" y1="5" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <div class="middle-name">{{localize (lookup (concat "TYPES.Item.Type" (capitalize item.type)) 'string')}}
+    </div>
+    <svg class="title-line">
+      <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <svg class="end-line">
+      <line x1="0%" y1="11" x2="12%" y2="5" class="line-stroke"></line>
+      <line x1="12%" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+    </svg>
+    <div class="square little right"></div>
+
+  </div>
+
+
+  <div class="header-content-container">
+
+    <div class="header-image-container">
+      <div class="img-frame">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="100" width="100" />
+      </div>
+    </div>
+
+    <div class="header-content-side-container">
+
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Name"}}: </span>
+        <input class="field-input" type="text" name="name" value="{{item.name}}" />
+      </div>
+
+
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Group"}}: </span>
+        <select name="data.group" data-dtype="String">
+          {{#select data.group}}
+          {{#each (config "defenseGroups") as |group g|}}
+          <option value="{{g}}">{{group}}</option>
+          {{/each}}
+
+          {{/select}}
+        </select>
+      </div>
+
+      <div class="sh-field">
+        <span class="field-name">{{localize "DGNS.Defense"}}: </span>
+        <div class="field-inputs">
+
+          <input class="field-input distance-short" type="text" name="data.defense.D" value="{{data.defense.D}}"
+            data-dtype="Number" />
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</header>

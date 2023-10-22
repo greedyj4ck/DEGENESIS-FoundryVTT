@@ -1,0 +1,49 @@
+// SECTION: VARIABLES
+
+// FONTS VARIABLES
+
+$primary-header-font: "Avenir";
+$sans-serif-content-font: "Avenir";
+$serif-content-font: "Calluna";
+
+// COLOR PALLETES
+
+$dgns-red: rgb(237, 29, 39);
+$dgns-blackred: rgb(154, 12, 19);
+$dgns-artifact-gold: rgb(131, 117, 78);
+$dgns-artifact-gold-light: rgb(186, 170, 128);
+
+$dgns-info: rgb(0, 163, 238);
+
+// GRAYS
+$grey-240: rgb(240, 240, 240);
+$grey-230: rgb(230, 230, 230);
+$grey-220: rgb(220, 220, 220);
+$grey-160: rgb(160, 160, 160);
+$grey-070: rgb(70, 70, 70);
+$grey-030: rgb(30, 30, 30);
+$grey-020: rgb(20, 20, 20);
+$grey-010: rgb(10, 10, 10);
+
+// BACKGROUNDS
+
+$bg-window-header: rgba(0, 0, 0, 0.2);
+$bg-attributes-header: rgba(0, 0, 0, 0.05);
+
+$bg-black: rgba(0, 0, 0, 1);
+$bg-white: rgba(255, 255, 255, 1);
+
+// TEXT VARIABLES
+
+$text-white: rgba(255, 255, 255, 1);
+$text-black: rgba(0, 0, 0, 1);
+
+// RESET TO CSS VARIABLES
+
+// FROM HELL VARIABLES
+
+$fh-window-bg: rgba(32, 32, 32, 1);
+
+// WIDTH OF BORDER ELEMENTS / DEFAULT VALUES
+$line-stroke-width: 1px;
+$line-stroke-color: var(--grey-70);

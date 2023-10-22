@@ -16,8 +16,8 @@ import { DEG_Utility } from "./module/utility.js";
 import { DegenesisItemSheet } from "./module/item/item-sheet.js";
 import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
-//import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
-//import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
+import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
+import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DegenesisCombat } from "./module/combat-degenesis.js";
 import { DegenesisDice } from "./module/dice.js";
@@ -91,31 +91,41 @@ Hooks.once("init", async function () {
   });
 
   // W.I.P - not for main release :) Gonna move this later into special dev branch ^_^
-
-  /*   Actors.registerSheet("degenesis", DegenesisFromHellSheet, {
-    types: ["fromhell"],
-    makeDefault: true,
-    label: "ACTOR.TypeFromHellSheet",
-  });
   Actors.registerSheet("degenesis", DegenesisNPCSheet, {
     types: ["npc"],
     makeDefault: true,
     label: "ACTOR.TypeNpcSheet",
-  }); */
+  });
+  Actors.registerSheet("degenesis", DegenesisFromHellSheet, {
+    types: ["fromhell"],
+    makeDefault: true,
+    label: "ACTOR.TypeFromHellSheet",
+  });
+
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("degenesis", DegenesisItemSheet, { makeDefault: true });
 
   // PRE-LOAD TEMPLATES
   loadTemplates([
+    // ACTOR CHARACTER SHEET
     "systems/degenesis/templates/actor/actor-attributes-skills-diamonds.html",
     "systems/degenesis/templates/actor/actor-inventory.html",
     "systems/degenesis/templates/actor/actor-advantages.html",
     "systems/degenesis/templates/actor/actor-condition.html",
     "systems/degenesis/templates/actor/actor-combat.html",
     "systems/degenesis/templates/actor/actor-history.html",
+    // NPC CHARACTER SHEET
+    "systems/degenesis/templates/actor/npc/npc-attributes-skills.html",
+    "systems/degenesis/templates/actor/npc/npc-inventory.html",
+    "systems/degenesis/templates/actor/npc/npc-advantages.html",
+    "systems/degenesis/templates/actor/npc/npc-combat.html",
+    "systems/degenesis/templates/actor/npc/npc-history.html",
+    // ITEMS AND OTHER
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/item/item-header-physical-no-qty.html",
+    "systems/degenesis/templates/item/item-header-attack.html",
+    "systems/degenesis/templates/item/item-header-defense.html",
     "systems/degenesis/templates/chat/roll-card.html",
   ]);
 
@@ -133,8 +143,8 @@ Hooks.once("init", async function () {
   game.degenesis = {
     apps: {
       DegenesisActorSheet,
-      // DegenesisFromHellSheet,
-      // DegenesisNPCSheet,
+      DegenesisFromHellSheet,
+      DegenesisNPCSheet,
       DegenesisItemSheet,
       DegenesisChatMessage,
       ActorConfigure,

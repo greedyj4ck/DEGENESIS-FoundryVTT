@@ -196,7 +196,7 @@
   "DGNS.Blunt": "Contondant",
   "DGNS.WeaponCamo": "Camouflage",
   "DGNS.Cloud": "Nuage",
-  "DGNS.Cutting": "Cutting",
+  "DGNS.Cutting": "Lacération",
   "DGNS.Dazed": "Etourdissement",
   "DGNS.Deviation": "Déviation",
   "DGNS.DoubleBarreled": "Double Canon",
@@ -209,7 +209,7 @@
   "DGNS.Jamming": "Enrayement",
   "DGNS.MuzzleLoader": "Charg. par la Gueule",
   "DGNS.OutOfControl": "Incontrôlable",
-  "DGNS.Piercing": "Antiblindage",
+  "DGNS.Piercing": "Pénétration",
   "DGNS.Salvoes": "Rafale",
   "DGNS.Scatter": "Dispersion",
   "DGNS.Sensitive": "Sensible",
@@ -239,7 +239,7 @@
   "DGNS.Insulated": "Isolé",
   "DGNS.Bulletproof": "Pare-balles",
   "DGNS.Massive": "Massif",
-  "DGNS.Brittle": "Brittle",
+  "DGNS.Brittle": "Cassant",
   "DGNS.Sealed": "Hermétique",
   "DGNS.Angle": "Angle",
   "DGNS.Difficulty": "Difficulté",
@@ -360,7 +360,7 @@
   "DGNS.MassiveDescription": "Armure constituée de plaques ou moulée en une seule pièce, aux matériaux solides et rigides. Les lames, les objets tranchants ou pointus sont repoussés ou déviés. Le score de protection contre ces armes est plus élevé (valeur d’armure=valeur de Propriété). Cependant, une armure massive est sujette aux dégâts infligés par des armes contondantes. Un marteau peut la cabosser, ce qui la déforme, et peut comprimer os et organes jusqu’à ce que ces derniers éclatent ou se brisent. Même si une telle armure reste difficilement pénétrable, son porteur peut tout de même succomber à des blessures internes. Si les dégâts (déclencheurs inclus) causés par des armes contondantes sont supérieurs à la valeur d’armure normale sans prendre en compte la propriété « Massif », des Blessures Superficielles sont infligées normalement. Cependant, les déclencheurs, eux, infligent des Traumatismes supplémentaires.cf KAT Edge p162",
   "DGNS.BrittleDescription": "Les plaques d’armures peuvent être durcies, ce qui renforce la valeur d’armure de 1 point. Toutefois, ce procédé rend aussi le matériau cassant. Si l’armure subit un certain nombre de dégâts (déterminé par la valeur de Propriété), les plaques se rompent et perdent 1 point permanent de leur valeur d’armure. La différence avec la propriété « Instable » réside dans le fait que la propriété « Cassant » est acceptée en connaissance de cause lors d’une modification d’armure pour augmenter sa valeur d’armure.cf KAT Edge p162",
   "DGNS.SealedDescription": "Cette armure offre une protection fiable contre les toxines, les germes et les sporulations. Lors d’un jet pour contrer une contamination, le porteur obtient des succès automatiques.cf KAT Edge p162",
-  "DGNS.CuttingDescription": "Special ability “Cutting”—If an attack succeeds, the Spitalian can spend (2) Triggers to make the blades snap closed for an additional 1D of Damage. The 2T used are not factored into the Damage calculation, so if the Player rolls only a 1 for the additional Damage, he does (1) point of Damage less than if he had not used “Cutting”. However, in the best case he can do (4) extra points of Damage.",
+  "DGNS.CuttingDescription": "Capacité spéciale « Lacération » – Si une attaque réussit avec 2 déclencheurs, le Spitalier peut refermer les lames d’un coup sec et infliger ainsi 1D de dégâts supplémentaires. Les 2DC utilisés ne comptent pas dans le calcul des dégâts. Cela signifie que si le joueur n’obtient que 1 en dégâts supplémentaires, il infligera 1 point de dégâts en moins que s’il avait décidé de ne pas utiliser « Lacération ». Au mieux, il peut infliger +4 dégâts.",
 
   "DGNS.BodyAbbrev": "PHY",
   "DGNS.AgilityAbbrev": "AGI",
@@ -496,5 +496,14 @@
   "DGNS.SettingsMinimumOneAN": "Un seul jet de dé pour un nombre d'actions négatif",
   "DGNS.SettingsMinimumOneANHelper": "Pour les modificateurs négatifs dépassant le nombre d'actions, forcez un seul jet de dé.",
   "DGNS.SettingsShowInventoryHeaders": "Afficher les en-têtes dans l'inventaire",
-  "DGNS.SettingsShowInventoryHeadersHelper": "Afficher les en-têtes d'inventaire même s'il n'y a pas d'articles dans la catégorie respective."
+  "DGNS.SettingsShowInventoryHeadersHelper": "Afficher les en-têtes d'inventaire même s'il n'y a pas d'articles dans la catégorie respective.",
+
+  "DGNS.CloseQuarter": "Rapproché",
+  "DGNS.Ranged": "Distance",
+
+  "DGNS.DefensePassive": "Passive",
+  "DGNS.DefenseMeleeActive": "Mêlée active",
+  "DGNS.DefenseRangedActive": "Distance Activo",
+  "DGNS.DefenseMental": "Mental"
+
 }

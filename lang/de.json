@@ -479,5 +479,14 @@
   "DGNS.SettingsMinimumOneAN": "Im Fall eines negativen Aktionswerts mindestens einen Würfel werfen",
   "DGNS.SettingsMinimumOneANHelper": "Ist der Aktionswert negativ, wird ein Würfel für den Mindestaktionswert geworfen",
   "DGNS.SettingsShowInventoryHeaders": "Überschriften im Inventar anzeigen",
-  "DGNS.SettingsShowInventoryHeadersHelper": "Überschriften für Kategorien werden im Inventar angezeigt, selbst wenn keine Items in den jeweiligen Kategorien vorhanden sind."
+  "DGNS.SettingsShowInventoryHeadersHelper": "Überschriften für Kategorien werden im Inventar angezeigt, selbst wenn keine Items in den jeweiligen Kategorien vorhanden sind.",
+  "DGNS.CloseQuarter": "Nahbereich",
+  "DGNS.Ranged": "Fernkampf",
+
+  "DGNS.DefensePassive": "Passive",
+  "DGNS.DefenseMeleeActive": "Nahkampf Aktiv",
+  "DGNS.DefenseRangedActive": "Fernkampf Aktiv",
+  "DGNS.DefenseMental": "Mentale"
+
+
 }

@@ -6,36 +6,42 @@
 88   8 88    88  ee 88    88  8 88        88 88     88 
 88   8 88    88   8 88    88  8 88    e   88 88 e   88 
 88eee8 88eee 88eee8 88eee 88  8 88eee 8eee88 88 8eee88
-FOUNDRY VTT SYSTEM STYLESHEET V.0.3 */
+FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
+
+// NORMALIZE TEST
+@import "normalize/normalize";
 
 // IMPORTS
-@import 'base/SCSSvariables';
-@import 'base/CSSvariables';
-@import 'base/fonts'; 
-@import 'base/experimental'; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
+@import "base/scss-variables";
+@import "base/css-variables";
+@import "base/css-reset";
+@import "base/fonts";
+@import "base/typography";
+@import "base/experimental"; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
 
 // FOUNDRY UI OVERRIDES
-@import 'foundry/ui';
+@import "foundry/ui";
 
 // MAIN COMPONENTS
-@import 'components/scrollbar';
-@import 'components/squares';
-@import 'components/chatMessage'; // MOVED _CHAT.SCSS  into _CHATMESSAGE.SCSS
-@import 'components/journals';
-// APPS 
-@import 'apps/app';
-@import 'apps/actor_configure';
-@import 'apps/rolldialog';
-@import 'apps/proseMirror'; // ADDED IN 0.5.1 RELEASE
+@import "components/scrollbar";
+@import "components/squares";
+@import "components/chatMessage"; // MOVED _CHAT.SCSS  into _CHATMESSAGE.SCSS
+@import "components/journals";
 
-// SHEET DESIGNS 
+// APPS
+@import "apps/sheet-configure";
+@import "apps/actor-configure";
+@import "apps/items-qualities";
+@import "apps/rolldialog";
+@import "apps/proseMirror";
+
+// SHEET DESIGNS
 
 // ACTOR SHEETS
-@import 'sheets/character';
-@import 'sheets/fromHell';
-@import 'sheets/npc';
+@import "sheets/sheets"; // COMMON ELEMENTS / STYLES FOR ALL SHEETS
+@import "sheets/character";
+@import "sheets/fromHell";
+@import "sheets/npc";
 
 // ITEM SHEETS
-@import 'sheets/item';
-
-
+@import "sheets/item";

@@ -1,137 +1,702 @@
 // V.01 Early alpha
 // Main CSS selector for fromHell character sheet
 
-.app.window-app.degenesis.sheet.fromHell
-{
+.app.window-app.degenesis.sheet.fromHell {
+  // LOCKING SIZE
+  min-width: 650px;
+  min-height: 650px;
 
-    .window-content {
-        padding: 5px;
-        overflow-y: hidden;
-        background: $fh-window-bg;
-        background: url(../ui/fromHell_BG.jpg);
-        background-size: cover;
-        background-position: 50% 0%;
-        font-family: $sans-serif-content-font;
-        font-weight: 300;
-        color: $text-white;
-      }
-   
-  
-      header {
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: #fff;
 
+  div,
+  textarea,
+  input {
+    &::-webkit-scrollbar {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar:hover::-webkit-scrollbar {
+      width: 8px;
+    }
 
-        .img-frame {
-            display: flex;
-            flex: 0 0 108px;
-            z-index: 1000;
-            height: 108px;
-            background-image: url(../images/character\ frame\ white.svg);
-            background-repeat: no-repeat;
-            background-size: 100%;
-            background-position: center;
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      border-radius: 0px;
+      background-color: white;
+    }
+
+    &::-webkit-scrollbar-track {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      background-image: url("../images/scrolltrack.png");
+      background-position: center;
+      background-repeat: repeat-y;
+      border-radius: 0px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: inline-block;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-corner {
+      display: none;
+    }
+
+    &::-webkit-resizer {
+      display: none;
+    }
+  }
+
+  input,
+  textarea {
+    color: var(--text-white);
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid transparent;
+    text-align: center;
+    font-size: 16px;
+
+    &:hover {
+      box-shadow: none;
+      border-bottom: 1px solid var(--grey-160);
+      transition: border-color 0.2s linear;
+    }
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 1px solid var(--degenesis-red);
+      transition: border-color 0.3s linear;
+    }
+  }
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
+  .square.little {
+    min-width: 7px;
+    margin-top: 1px;
+    border: $line-stroke-width solid $line-stroke-color;
+  }
+
+  .window-content {
+    padding: 5px;
+    overflow-y: hidden;
+    background: $fh-window-bg;
+    background: url(../ui/fromHell_BG.jpg);
+    background-size: cover;
+    background-position: 50% 0%;
+    font-family: $sans-serif-content-font;
+    font-weight: 300;
+    color: $text-white;
+  }
+
+  // MAIN SHEET HEADER STYLE
+
+  .sh-header {
+    align-items: center;
+  }
+
+  .header-content-container {
+    display: flex;
+    align-self: stretch;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    padding: 5px;
+    gap: 10px;
+    align-items: stretch;
+
+    gap: 3px;
+
+    .img-frame {
+      background-image: url(../images/character\ frame\ white.svg);
+    }
+  }
+
+  .header-content-column-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    &.description {
+      justify-content: flex-start;
+      height: 100%;
+
+      .char-info {
+        display: flex;
+        flex: 1 0 auto;
+
+        textarea {
+          flex: 1 0 auto;
+          border: none;
+
+          &:focus {
             border: none;
+            outline: none;
+            box-shadow: none;
           }
+        }
+      }
+    }
+  }
 
+  .header-content-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-        .char-info {
-          
-          height: 108px;
+  .field-name {
+    margin-top: 0px;
+    .input-name {
+      color: var(--text-white);
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      letter-spacing: 0.15em;
+    }
+  }
+  .sh-tabs {
+    margin: 10px 0px;
+  }
 
-          &.right {
-            
-          }
+  .bar.diamond-row {
+    justify-content: center;
+  }
+  .bar-group {
+    margin-bottom: 10px;
 
+    .text {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+    }
+
+    &.trauma {
+      margin-bottom: 4px;
+    }
+  }
+
+  .header-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.15em;
+
+    .dice-value {
+      display: flex;
+      flex: 0 1 0;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 600;
+
+      input {
+        text-align: right;
+        font-weight: 600;
+        min-width: 4ch;
+        border: 0;
+        display: flex;
+        flex: 1 1 auto;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .square {
+      margin: 0px 2px;
+    }
+
+    &.armor {
+      width: 100%;
+      flex: 1 1 auto;
+      gap: 0;
+
+      .armor-name {
+        margin-top: -10px;
+        height: 30px;
+
+        input {
+          width: 100%px;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 12px;
+          letter-spacing: 0.1ch;
+          font-weight: 600;
+        }
+      }
+    }
+
+    &.spend-ego {
+      font-size: 12px;
+
+      .diamond-row {
+        margin: 0;
+      }
+    }
+
+    .config-input-container {
+      display: flex;
+      flex-direction: column;
+
+      flex: 0 1 0;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 10px;
+
+      .config-input {
+        font-weight: 300;
+        letter-spacing: 0.1em;
+      }
+
+      .config-label {
+        margin-top: 3px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+      }
+
+      input {
+        border: none;
+        border-bottom: 1px solid transparent;
+        text-align: center;
+        font-size: 16px;
+
+        &:hover {
+          box-shadow: none;
+          border-bottom: 1px solid var(--grey-160);
+          transition: border-color 0.2s linear;
         }
 
-        > div.header-column.header-line > svg > line {
-            stroke: $text-white !important;
-          }
+        &:focus {
+          box-shadow: none;
+          border-bottom: 1px solid var(--degenesis-red);
+          transition: border-color 0.3s linear;
+        }
+      }
+    }
+  }
 
+  .condition-content-container {
+    width: 100%;
 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(26px, 1fr));
+    grid-row-gap: 3px;
+
+    .condition {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2px;
+
+      font-family: $sans-serif-content-font;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+
+      .label {
+        margin-left: 4px;
       }
 
-      // GENERAL UI
-
-      .header-about{padding: 5px;
-      height: 100%;}
-
-      .header-about-textarea{
-        display:inline-block;
-        padding-top: 5px;
-        height: 100%;
+      .controls {
+        display: flex;
+        gap: 4px;
       }
 
-      .fh-textarea {
-      
-        height: 100%;
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 15px;
+        height: 15px;
+        border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+        font-size: 12px;
+        font-weight: 600;
         color: $text-white;
+        transition: 0.3s all;
 
-        &::-webkit-scrollbar {
-          width: 4px;
-          border: none;
-          background-color: transparent;
+        &:hover {
+          color: $dgns-red;
+          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
         }
-        &::-webkit-scrollbar:hover::-webkit-scrollbar {
-          width: 8px;
-        }
-        
-        &::-webkit-scrollbar-thumb {
-          width: 4px;
-          border: none;
-          background-color: transparent;
-          border-radius: 0px;
-          background-color: white;
-        }
-        
-        &::-webkit-scrollbar-track {
-          width: 4px;
-          border: none;
-          background-color: transparent;
-          background-image: url("../images/scrolltrack.png");
-          background-position: center;
-          background-repeat: repeat-y;
-          border-radius: 0px;
-          -webkit-box-shadow: none;
-                  box-shadow: none;
-        }
-        
-        &::-webkit-scrollbar-button {
-          display: inline-block;
-        }
-        
-        &::-webkit-scrollbar-track-piece {
-          display: none;
-        }
-        
-        &::-webkit-scrollbar-corner {
-          display: none;
-        }
-        
-        &::-webkit-resizer {
-          display: none;
-        }
-        
       }
 
-      .white-title {
+      .stats {
+        margin-left: auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 2px;
+
+        > div {
+          height: 100%;
+          display: flex;
+          flex: 1 1 auto;
+          align-items: center;
+          text-align: center;
+        }
+
+        .current-value {
+          width: 20px;
+
+          .current-ego {
+            display: inline-block;
+            width: 20px;
+          }
+        }
+
+        .stat-input {
+          width: 22px;
+          height: 100%;
+          font-family: $sans-serif-content-font;
+          font-weight: 600;
+          color: $text-white;
+          border: none;
+          border-bottom: 1px solid transparent;
+          font-size: 12px;
+
+          &.perma {
+            color: var(--grey-160);
+          }
+
+          &:focus {
+            box-shadow: none;
+            border-bottom: 1px solid var(--degenesis-red);
+            transition: border-color 0.3s linear;
+          }
+
+          &:hover {
+            border-bottom: 1px solid var(--grey-160);
+            transition: border-color 0.2s linear;
+          }
+        }
+      }
+    }
+  }
+
+  .condition-container {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .condition-bars {
+      padding-top: 1px;
+    }
+
+    .condition {
+      .condition-item:hover,
+      .condition-section:hover
+        .app.window-app.degenesis.sheet
+        .sh-field-stack:hover {
+        color: var(--degenesis-red);
+        -webkit-transition: color 100ms linear;
+        -ms-transition: color 100ms linear;
+        transition: color 100ms linear;
+      }
+    }
+
+    .condition-title {
+      text-transform: uppercase;
+    }
+
+    .condition-value {
+      padding-left: 5px;
+    }
+
+    .condition-value-permanent {
+      padding-left: 5px;
+      color: var(--grey-160);
+      font-size: 9px;
+      top: -1px;
+      position: relative;
+    }
+  }
+
+  .item-summary {
+    border: 1px solid var(--degenesis-red);
+    background-color: #000;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+
+    margin-left: 0px;
+    margin-right: 0px;
+
+    .tag {
+      border: 1px solid var(--grey-70);
+      background: black;
+      margin: 2px 5px;
+      display: inline-block;
+      padding: 2px 7px;
+    }
+  }
+
+  .section-header-container {
+    &.defense {
+      margin-top: 10px;
+    }
+    &.potential {
+      margin-top: 10px;
+    }
+  }
+
+  .section-legend-grid {
+    &.attack {
+      display: grid;
+      grid-template-columns: 2fr 0.6fr 0.8fr 65px;
+      justify-items: center;
+    }
+
+    &.defense {
+      display: grid;
+      grid-template-columns: 1fr 75px 65px;
+      justify-items: center;
+    }
+    &.potential {
+      display: grid;
+      grid-template-columns: 1fr 75px 65px;
+      justify-items: center;
+    }
+  }
+
+  .section-entry-grid {
+    &.attack {
+      display: grid;
+      grid-template-columns: 190px 2fr 0.6fr 75px 65px;
+      justify-items: center;
+
+      .attack-dice {
+        font-size: 11px;
+        font-weight: 500;
         text-transform: uppercase;
-        width: 100%;
-        background-image: url(../images/title\ border\ white.svg);
-        background-repeat: no-repeat;
-        color: black;
-        background-size: 100%;
-        background-position: center;
-        height: 14px;
-
-             h3 {
-              text-align: center;
-                margin: 0 0 0 10px; 
-                font-size: 12px;
-                font-weight: 300;
-                border-bottom: 0px;
-              }
-            
-        
+        letter-spacing: 0.15ch;
       }
- 
+
+      .damage {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .distance {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .item-summary {
+        grid-area: 2/ 1 / 2 / 6;
+      }
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    &.defense {
+      display: grid;
+      grid-template-columns: 190px 1fr 75px 65px;
+      justify-items: center;
+
+      .item-summary {
+        grid-area: 2/ 1 / 2 / 5;
+      }
+
+      .type {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      .defense-dice {
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.15ch;
+      }
+
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    &.potential {
+      display: grid;
+      grid-template-columns: 190px 1fr 75px 65px;
+      justify-items: center;
+
+      .item-summary {
+        grid-area: 2/ 1 /2 / 5;
+      }
+
+      :first-child {
+        justify-self: flex-start;
+      }
+    }
+
+    .item-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .weapon-name,
+    .potential-name {
+      font-weight: 500;
+      letter-spacing: 0.1ch;
+    }
+  }
+
+  .combat-container {
+    overflow: auto;
+    scrollbar-gutter: stable both-edges;
+    padding: 5px;
+    flex: 1;
+  }
+
+  .combat-stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 10px;
+
+    > div {
+      flex-grow: 1;
+    }
+
+    .label {
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.2ch;
+    }
+
+    .dice-value {
+      margin-bottom: 5px;
+    }
+
+    .spend-ego {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      .label {
+        font-size: 10px;
+      }
+
+      .diamond-row {
+        margin: 0;
+        .diamond {
+          margin: 0px 1px;
+        }
+      }
+    }
+
+    .armor-name {
+      input {
+        font-size: 12px;
+        font-weight: 600;
+        width: 100%;
+        text-transform: uppercase;
+      }
+    }
+
+    input {
+      width: 30px;
+    }
+  }
+
+  .config-input-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 0;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    .dice-value {
+      display: flex;
+      flex: 0 1 0;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 600;
+    }
+    .config-input {
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    .config-label {
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid transparent;
+      text-align: center;
+      font-size: 16px;
+
+      &:hover {
+        box-shadow: none;
+        border-bottom: 1px solid var(--grey-160);
+        transition: border-color 0.2s linear;
+      }
+
+      &:focus {
+        box-shadow: none;
+        border-bottom: 1px solid var(--degenesis-red);
+        transition: border-color 0.3s linear;
+      }
+    }
+  }
+  .section-header-legends {
+    border-bottom: $line-stroke-width solid $line-stroke-color;
+
+    .legend-name {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+    }
+  }
 }

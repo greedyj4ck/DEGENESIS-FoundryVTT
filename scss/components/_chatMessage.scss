@@ -1,8 +1,6 @@
 // New portrait display class
 
-
 #chat-log {
-
   overflow-y: overlay;
 
   .message {
@@ -14,14 +12,12 @@
   }
 
   .chat-message.message {
-
     &.whisper,
     &.blind {
       background: url(../ui/black_01.jpg);
       border: 1px solid var(--degenesis-artifact-gold);
       color: var(--degenesis-artifact-gold);
     }
-
 
     &.whisper h2,
     &.blind h2 {
@@ -30,20 +26,19 @@
   }
 }
 
-
-
-
-
 #chat-form textarea {
   font-family: $serif-content-font;
   color: var(--text-white);
   // background: url(../ui/black_01.jpg);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6965161064425771) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.6965161064425771) 100%
+  );
   border-radius: 0px;
   border: 1px solid var(--degenesis-red);
   margin-top: 3px;
 }
-
 
 .chat-message {
   border: 1px solid var(--degenesis-blackred);
@@ -54,8 +49,6 @@
     background-position: 25% 25%;
     animation-iteration-count: 1;
 
-
-
     .message-header {
       color: var(--grey-240);
       padding: 5px 5px 0px 5px;
@@ -65,12 +58,12 @@
       }
     }
 
-    .damage-triggers{
-    font-family: $primary-header-font;
-    text-transform: uppercase;
-    font-weight: 800;
-    text-align: center;
-    font-size: 12px;
+    .damage-triggers {
+      font-family: $primary-header-font;
+      text-transform: uppercase;
+      font-weight: 800;
+      text-align: center;
+      font-size: 12px;
     }
 
     h2 {
@@ -92,23 +85,29 @@
         text-transform: uppercase;
       }
 
-
-      
-
       &.result {
-
         padding: 0px 5px 8px 5px;
         margin-top: -8px;
 
         &.success {
-          color: var(--degenesis-artifact-gold-light)
+          color: var(--degenesis-artifact-gold-light);
         }
 
         &.failure {
-          color: var(--grey-220)
+          color: var(--grey-220);
         }
-
       }
+    }
+
+    h3 {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: var(--grey-240);
+      padding: 0px 5px 0px 5px;
+      margin: 0;
+      text-align: center;
+      border: none;
     }
 
     hr {
@@ -122,9 +121,6 @@
     .message-content {
       color: var(--grey-240);
       padding: 10px;
-
-
-
     }
 
     .roll-summary {
@@ -132,7 +128,7 @@
       display: grid;
       grid-auto-flow: column;
       justify-content: center;
-      font-family: 'Avenir';
+      font-family: "Avenir";
       font-size: 40px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -144,7 +140,6 @@
       padding-bottom: 5px;
       text-align: center;
     }
-
   }
 
   .chat-roll-dice {
@@ -159,16 +154,14 @@
     transform: translateY(0px);
     transition: all 0.2s ease-out;
 
-
     &:hover {
-      opacity: 1.0;
+      opacity: 1;
       scale: 1.2;
       transition: all 0.2s ease-out;
       transform: translateY(-4px);
     }
 
     &.two-rows-dice {
-
       grid-template-rows: 1fr 1fr;
       transition: all 0.2s ease-out;
       clip-path: inset(0px 0px 30px);
@@ -176,15 +169,13 @@
       transform: translateY(32px);
 
       &:hover {
-        opacity: 1.0;
+        opacity: 1;
         scale: 1.2;
         transition: all 0.2s ease-out;
         transform: translateY(-4px);
         clip-path: inset(0px 0px 0px 0px);
       }
     }
-
-
   }
 
   .chat-roll-die {
@@ -194,11 +185,7 @@
     width: 28px;
     height: 28px;
   }
-
-
 }
-
-
 
 #chat-controls {
   .chat-control-icon i {
@@ -238,7 +225,6 @@
       &:hover {
         background: var(--degenesis-red);
       }
-
     }
   }
 }
@@ -248,23 +234,18 @@
 }
 
 .post-item {
-
-
   .description {
     text-align: center;
 
     button.button-toggle-description {
-
       border: 1px solid var(--degenesis-red);
       width: auto;
       min-width: 50%;
       margin: 15px 0px 5px 0px;
 
-
       &:focus {
         box-shadow: none;
       }
-
     }
 
     .description-text {
@@ -276,19 +257,15 @@
       -o-transition: all 0.8s cubic-bezier(0, 0.94, 0.65, 1);
       transition: all 0.8s cubic-bezier(0, 0.94, 0.65, 1);
 
-
       &.description-show {
         max-height: 800px;
         -webkit-transition: all 0.8s ease-in-out;
         -moz-transition: all 0.8s ease-in-out;
         -o-transition: all 0.8s ease-in-out;
         transition: all 0.8s ease-in-out;
-
       }
     }
   }
-
-
 
   .post-item-img {
     width: 100px;
@@ -305,7 +282,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
 
   h2 {
     text-align: center;
@@ -325,16 +301,13 @@
 }
 
 .item-details {
-
   margin-top: 5px;
 
-  >hr:first-child {
+  > hr:first-child {
     display: none;
-
   }
 
-  >hr:last-child {
+  > hr:last-child {
     display: none;
-
   }
 }

@@ -1,0 +1,138 @@
+<form class="{{cssClass}} item-attack form-flex" autocomplete="off">
+    {{> systems/degenesis/templates/item/item-header-defense.html}}
+
+    <!-- Tabs V2-->
+    <nav class="sh-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">{{localize "DGNS.Description"}}</a>
+        <a class="item active" data-tab="details">{{localize "DGNS.Details"}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sh-body tab-content-container">
+
+        <div class="tab" data-tab="description">
+
+            <div class="titlebar-container">
+
+                <div class="square little left"></div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="title-line-header">{{localize "DGNS.Description"}}</div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="square little right">
+                </div>
+
+            </div>
+
+            <div class="full-height-editor">
+                {{editor enrichment.system.description.value engine="prosemirror" target="system.description"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+            <div class="footer-diamond">
+                <div class="square little"></div>
+            </div>
+
+        </div>
+
+        <div class="tab" data-tab="details">
+            <div class="scroll-container">
+                <div class="titlebar-container">
+
+                    <div class="square little left"></div>
+                    <svg class="title-line">
+                        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                    </svg>
+                    <div class="title-line-header">{{localize "DGNS.Details"}}</div>
+                    <svg class="title-line">
+                        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                    </svg>
+                    <div class="square little right">
+                    </div>
+
+                </div>
+
+
+                <div class="specialty-container">
+                    <span class="field-name">{{localize "DGNS.Effect"}}</span>
+                    <textarea name="data.effect" class="item-summary">{{data.effect}}</textarea>
+                </div>
+
+                <div class="specialty-container">
+                    <span class="field-name">{{localize "DGNS.Rules"}}</span>
+                    <textarea name="data.rules" class="item-summary">{{data.rules}}</textarea>
+                </div>
+
+                <!-- Qualities -->
+                <div class="qualities-group conditions-group">
+                    <div class="block-title black">
+                        <h3>{{localize "DGNS.Qualities"}}</h3>
+                        <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="qualities-data conditions-data">
+                        <ol class="qualities-ol conditions-ol">
+                            {{#each item.Qualities as |quality q|}}
+                            <li class="conditions-li qualities-li item">
+                                <div class="conditions-characteristics">
+                                    <div class='quality'>
+                                        {{quality}}
+                                    </div>
+                                </div>
+                            </li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </div>
+
+                {{#if item.hasSpecialty}}
+                <div class="bottom-specialty-container">
+                    <span class="field-name">{{localize "DGNS.Specialty"}}</span>
+                    <textarea name="flags.degenesis.specialty"
+                        class="item-summary">{{item.flags.degenesis.specialty}}</textarea>
+                </div>
+                {{/if}}
+            </div>
+            <div class="footer-diamond">
+                <div class="square little"></div>
+                <div class="square little"></div>
+
+            </div>
+
+
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </section>
+    <footer class="sh-footer">
+        <div class="footer-line-bar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="11" x2="88%" y2="11" class="line-stroke"></line>
+                <line x1="88%" y1="11" x2="100%" y2="5" class="line-stroke""></line>
+            </svg>
+            <svg class=" bottom-line middle">
+                    <line x1="0" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="5" x2="12%" y2="11" class="line-stroke"></line>
+                <line x1="12%" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </footer>
+</form>

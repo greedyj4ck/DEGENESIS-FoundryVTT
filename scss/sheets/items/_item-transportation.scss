@@ -1,0 +1,18 @@
+/* TRANSPORTATION ITEMS SPECIFIC STYLES */
+.item-transportation {
+  .sh-field.droppable {
+    height: 26px;
+
+    .field-inputs {
+      justify-content: flex-start;
+
+      a {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .encMode-select {
+    text-transform: uppercase;
+  }
+}

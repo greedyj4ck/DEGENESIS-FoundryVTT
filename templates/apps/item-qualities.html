@@ -1,24 +1,29 @@
-    <form>
+<form>
     <div class="item-qualities">
-    {{#each qualities as |quality q|}}
+        {{#each qualities as |quality q|}}
         <div class="item-quality">
+
             {{#if quality.checked}}
-                <a class="square border-black button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into black"></div></a>
+            <a class="square border-black button-position checkbox" data-target="quality" data-quality="{{q}}">
+                <div class="square-into black"></div>
+            </a>
             {{else}}
-                <a class="square button-position checkbox" data-target="quality" data-quality="{{q}}"><div class="square-into"></div></a>
+            <a class="square button-position checkbox" data-target="quality" data-quality="{{q}}">
+                <div class="square-into"></div>
+            </a>
             {{/if}}
-            <div class="sheet-fields">
-                <div class="field-name quality-name">
-                    {{quality.name}}
-                </div>
-                <div class="quality-inputs" data-quality="{{q}}">
-                {{#each quality.values as |value i| }}
-                    <input class="quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}" value="{{value.value}}" type="text">
-                {{/each}}
-                </div>
+            <div class="field-name quality-name">
+                {{quality.name}}
             </div>
+            <div class="quality-inputs" data-quality="{{q}}">
+                {{#each quality.values as |value i| }}
+                <input class="quality-value" data-value-key="{{value.key}}" placeholder="{{value.placeholder}}"
+                    value="{{value.value}}" type="text">
+                {{/each}}
+            </div>
+
         </div>
-    {{/each}}
+        {{/each}}
     </div>
     <button type="submit" name="submit"><i class="far fa-save"></i> {{ localize "Save"}}</button>
 </form>

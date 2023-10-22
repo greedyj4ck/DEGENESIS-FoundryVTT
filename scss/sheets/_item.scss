@@ -1,357 +1,278 @@
-/* SHEET: _ITEM.SCSS */ 
-.app.window-app.degenesis.sheet.item::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
+/* SHEET: _ITEM.SCSS */
+
+@import "items/item-legacy";
+@import "items/item-mod";
+@import "items/item-shield";
+@import "items/item-weapon";
+@import "items/item-transportation";
+@import "items/item-attack";
+
+// MAIN CSS SELECTOR
+
+.app.window-app.degenesis.sheet.item {
+  // LOCAL VARIABLES
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
+  min-width: 550px;
+  min-height: 535px;
+  overflow: hidden;
+  // SCROLLBAR
+  ::-webkit-scrollbar,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-track {
     margin-top: -15px;
     margin-bottom: -20px;
   }
-  
-  .app.window-app.degenesis {
-    &.sheet {
-      &.item {
-        textarea {
-          border: 1px solid var(--grey-160);
-          border-radius: 0;
-        }
-  
-        input, select {
-          background-color: var(--grey-240);
-        }
-  
-        input {
-          &:hover {
-            background-color: var(--grey-230);
-          }
-  
-          &:focus {
-            background-color: var(--grey-220);
-          }
-        }
-      }
-  
-      .profile-img.item-img {
-        max-height: 64px;
-        max-width: 64px;
-      }
-  
-      &.item {
-        .sheet-body {
-          width: 100%;
-          height: calc(100% - 165px);
-        }
-  
-        .tab {
-          width: 100%;
-          height: 100%;
-          overflow: auto;
-        }
-  
-        .editor {
-          width: 100%;
-          height: calc(100% - 40px);
-        }
-  
-        .header-inputs {
-          display: flex;
-          justify-content: space-between;
-        }
-  
-        .header-input {
-          display: flex;
-          flex-direction: column;
-          margin-right: 2px;
-          margin-left: 2px;
-        }
-  
-        .header-inputs input {
-          width: 100%;
-          text-align: center;
-        }
-  
-        .header-input label {
-          display: flex;
-          justify-content: center;
-        }
-  
-        .img-frame {
-          display: flex;
-          flex: 0 0 108px;
-          z-index: 1000;
-          height: 108px;
-          background-image: url(../images/item\ frame.svg);
-          background-repeat: no-repeat;
-          background-size: 100%;
-          background-position: center;
-          border: none;
-        }
-  
-        .header-column.char-info {
-          margin-left: 7px;
-          margin-right: 2px;
-          justify-content: center;
-          display: flex;
-          flex-direction: column;
-        }
-  
-        .detail-container .sheet-field span.field-name {
-          /* min-width: 72px; */
-        }
-      }
-  
-      .sheet-field .field-name.skill-selection {
-        width: 100%;
-      }
-  
-      &.item {
-        .detail-container select, .header-column select {
-          width: 100%;
-          background-color: transparent;
-          text-align-last: left;
-          padding-top: 3px;
-          height: 24px;
-        }
-  
-        .detail-container {
-          .field-inputs {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-  
-            > * {
-              flex: 1;
-            }
-          }
-  
-          input.field-input {
-            &.distance-short, &.distance-far {
-              text-align: center;
-            }
-          }
-  
-          span.field-separator {
-            flex: inherit;
-          }
-  
-          select.damageBonus-select {
-            width: auto;
-            flex: 1;
-          }
-  
-          input {
-            background-color: transparent;
-          }
-        }
-  
-        .header-column input {
-          background-color: transparent;
-        }
-  
-        .detail-container input {
-          text-align: left;
-  
-          &.field-start {
-            padding-right: 0px;
-          }
-        }
-  
-        .tab .editor {
-          font-size: 14px;
-        }
-  
-        .field-inputs {
-          .field-end {
-            padding: 1px 3px;
-            padding-top: 5px;
-            justify-content: flex-end;
-            flex: 0;
-          }
-  
-          .belt-text {
-            margin-right: 10px;
-            justify-content: flex-end;
-            flex: 0;
-          }
-  
-          .mag-size {
-            text-align: right;
-          }
-  
-          .belt-field {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-          }
-        }
-  
-        .icon.wheel {
-          font-size: 11px;
-        }
-  
-        .mods-group .black-title {
-          .right {
-            margin: 0;
-            justify-content: flex-end;
-            display: flex;
-            flex-direction: row;
-          }
-  
-          .slots {
-            margin-right: 5px;
-          }
-        }
-  
-        .black-title .right {
-          margin-right: 10px;
-          display: flex;
-          justify-content: center;
-          align-self: center;
-        }
-  
-        .detail-container {
-          display: flex;
-          flex-direction: row;
-          margin-left: 5px;
-          margin-right: 5px;
-  
-          .column {
-            flex-direction: column;
-            display: flex;
-            width: 100%;
-            margin: 5px;
-          }
-        }
-      }
-  
-      .bottom-conditions.spaced-conditions {
-        margin-top: 10px;
-      }
-  
-      &.item {
-        .square.button-position {
-          margin-right: 4px;
-          flex: 0 0 9px;
-          align-self: center;
-        }
-  
-        .editor-content {
-          margin-left: 10px;
-          margin-right: 10px;
-        }
+
+  input {
+    background: none;
+    border: none;
+    padding-top: 5px;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: var(--degenesis-red);
+      -webkit-transition: color 100ms linear;
+      -ms-transition: color 100ms linear;
+      transition: color 100ms linear;
+    }
+  }
+
+  .item-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2px;
+  }
+
+  // HEADER
+
+  .sh-header {
+    .img-frame {
+      width: 108px;
+      height: 108px;
+      .profile-img {
+        width: 96px;
+        height: 96px;
       }
     }
-  
-    &.quality-selector {
-      .quality-inputs {
-        display: flex;
-      }
-  
-      .item-quality {
-        display: flex;
-  
-        > * {
-          align-self: center;
-          flex: 1;
-        }
-      }
-  
-      .sheet-fields {
-        display: flex;
-        flex: 1;
-  
-        > * {
-          align-self: center;
-          flex: 1;
-        }
-      }
-  
-      .field-name.quality-name {
-        padding-top: 5px;
-        margin-left: 6px;
-        flex: 0 0 170px;
-        text-transform: uppercase;
-      }
-  
-      .item-quality {
-        .checkbox {
-          flex: 0 0 9px;
-        }
-  
-        input[type="text"] {
-          border: none;
-          padding-top: 5px;
-          border-bottom: 1px solid var(--grey-160);
-          transition: border-color 0.2s, color 0.2s;
-  
-          &:focus {
-            color: var(--degenesis-red);
-            box-shadow: none;
-          }
-  
-          &:hover {
-            border-color: var(--degenesis-red);
-            color: var(--degenesis-red);
-          }
-        }
-      }
-  
-      .window-content {
-        font-family: "Avenir";
-        font-size: 13px;
-        font-weight: 300;
-      }
-  
-      form button {
-        background-color: black;
-        color: white;
-        margin-top: 5px;
-        border: none;
-        transition: color 0.2s, border-color 0.2s, background-color 0.2s;
-  
-        &:hover {
-          background-color: var(--degenesis-red);
-          border: none;
-        }
-      }
+
+    .header-content-container-position {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      height: min-content;
+      align-items: self-start;
     }
-  
-    &.sheet.item {
-      .effects-header {
-        color: var(--grey-240);
-        background-color: black;
-  
-        > * {
-          text-align: center;
-        }
-      }
-  
-      .tab.active .mod-qualities h3 {
-        margin-left: 5px;
-        align-self: unset;
-      }
-  
-      .changes-list {
-        input {
-          background-color: white;
-          border: 1px solid black;
-        }
-  
-        .effect-change > * {
-          margin: 5px;
-        }
-  
-        select {
-          background: none;
-          border: none;
-          padding: 5px;
-          border-bottom: 1px solid black;
-          border-radius: 0px;
-          text-transform: uppercase;
-          width: 100%;
-        }
-  
-        .effect-change .effect-controls {
-          justify-self: flex-start;
-          margin-top: 12px;
-        }
+
+    .header-content-container {
+      display: flex;
+      align-self: stretch;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-content: stretch;
+      padding: 5px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .header-content-side-container {
+      font-family: "Avenir";
+      flex-grow: 1;
+      flex-basis: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .header-content-image-container {
+      min-width: 108px;
+      flex-basis: 0;
+    }
+  }
+
+  .sh-body {
+    font-family: $sans-serif-content-font !important;
+    font-weight: 300;
+    color: black;
+  }
+
+  .tab-content-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    font-size: 12px;
+    letter-spacing: 1px;
+    width: 100%;
+
+    h3 {
+      font-size: 12px;
+      font-weight: 300;
+      border-bottom: 0px;
+    }
+  }
+
+  .tab[data-tab].active {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  /* DETAIL STUFF */
+
+  .detail-container {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
+
+    > * {
+      flex: 1;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* BOTTOM CONTAINER */
+
+  .bottom-container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    .mods-li {
+      height: 21px;
+
+      .item-controls > * {
+        margin: 0px 3px;
       }
     }
   }
-  
+  .conditions-ol {
+    border-collapse: collapse;
+    background: white;
+    border: none;
+    margin: 0;
+    flex: auto;
+
+    padding: 0;
+
+    list-style-type: none;
+  }
+
+  .conditions-li {
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--grey-160);
+    margin-top: 7px;
+  }
+
+  .conditions-characteristics {
+    padding-right: 5px;
+    padding-left: 5px;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+
+    .item-data {
+      display: contents;
+    }
+  }
+
+  .specialty-container {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: column;
+
+    .item-summary {
+      margin-top: 5px;
+      display: inline-block;
+
+      background-color: var(--grey-240);
+      border: 1px solid var(--grey-160);
+      border-radius: 0px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      width: 100%;
+      height: 70px;
+
+      margin-left: 0px;
+      margin-right: 0px;
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+        border: 1px solid var(--degenesis-red);
+      }
+    }
+
+    .field-name {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  .bottom-specialty-container {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .item-summary {
+      margin-top: 5px;
+      display: inline-block;
+
+      background-color: var(--grey-240);
+      border: 1px solid var(--grey-160);
+      border-radius: 0px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      width: 100%;
+      height: 100%;
+      min-height: 80px;
+
+      margin-left: 0px;
+      margin-right: 0px;
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+        border: 1px solid var(--degenesis-red);
+      }
+    }
+
+    .field-name {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  a.square.checkbox {
+    flex: none;
+  }
+
+  .scroll-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    padding: 3px;
+  }
+}

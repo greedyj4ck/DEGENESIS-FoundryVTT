@@ -1,25 +1,47 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} item-legacy form-flex" autocomplete="off">
     {{> systems/degenesis/templates/item/item-header.html}}
-        
+
     {{!-- Sheet Body --}}
-    <section class="sheet-body" >
-            
-     <!--       <div class = "form-group">
-                <label>Prerequisite</label>
-                <textarea name="data.prerequisite">{{data.prerequisite}}</textarea>
-            </div>-->
-            <div class = "form-group">
-                <label>{{localize "DGNS.Bonus"}}</label>
-                <textarea name="data.bonus">{{data.bonus}}</textarea>
+    <section class="sh-body tab-content-container">
+
+        <div class="scroll-container">
+
+            <div class="specialty-container">
+                <span class="field-name">{{localize "DGNS.Bonus"}}</span>
+                <textarea name="data.bonus" class="item-summary">{{data.bonus}}</textarea>
             </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Legacy"}}</label>
-                <textarea name="data.legacy">{{data.legacy}}</textarea>
+
+
+            <div class="specialty-container">
+                <span class="field-name">{{localize "DGNS.Legacy"}}</span>
+                <textarea name="data.legacy" class="item-summary">{{data.legacy}}</textarea>
             </div>
-            <div class = "form-group">
-                <label>{{localize "DGNS.Drawback"}}</label>
-                <textarea name="data.drawback">{{data.drawback}}</textarea>
+
+
+            <div class="specialty-container">
+                <span class="field-name">{{localize "DGNS.Drawback"}}</span>
+                <textarea name="data.drawback" class="item-summary">{{data.drawback}}</textarea>
             </div>
+
+        </div>
+
     </section>
+    <footer class="sh-footer">
+        <div class="footer-line-bar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="11" x2="88%" y2="11" class="line-stroke"></line>
+                <line x1="88%" y1="11" x2="100%" y2="5" class="line-stroke""></line>
+            </svg>
+            <svg class=" bottom-line middle">
+                    <line x1="0" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="5" x2="12%" y2="11" class="line-stroke"></line>
+                <line x1="12%" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </footer>
 
 </form>

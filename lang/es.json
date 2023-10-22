@@ -472,5 +472,11 @@
   "DGNS.ModOverride": "Anular",
   "DGNS.ModEditWarning": "Los cambios realizados en las modificaciones anexas no se guardarán.",
   "DGNS.Type" : "Tipo",
-  "DGNS.Permanent":"Permanente"
+  "DGNS.Permanent":"Permanente",
+  "DGNS.CloseQuarter": "De cerca",
+  "DGNS.Ranged": "Rango",
+  "DGNS.DefensePassive": "Pasiva",
+  "DGNS.DefenseMeleeActive": "Melé Activo",
+  "DGNS.DefenseRangedActive": "Rango Activo",
+  "DGNS.DefenseMental": "Mental"
 }

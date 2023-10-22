@@ -1,98 +1,191 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}} item-mod form-flex" autocomplete="off">
     {{> systems/degenesis/templates/item/item-header.html}}
     <!-- Tabs V2-->
-    <nav class="sheet-tabs tabs" data-group="primary">
+    <nav class="sh-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">{{localize "DGNS.Description"}}</a>
         <a class="item active" data-tab="details">{{localize "DGNS.Details"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
+    <section class="sh-body tab-content-container">
+
         <div class="tab" data-tab="description">
-            {{editor enrichment.system.description.value target="system.description" engine="prosemirror" button=true owner=owner editable=editable}}
+
+            <div class="titlebar-container">
+
+                <div class="square little left"></div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="title-line-header">{{localize "DGNS.Description"}}</div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="square little right">
+                </div>
+
+            </div>
+
+            <div class="full-height-editor">
+                {{editor enrichment.system.description.value engine="prosemirror" target="system.description"
+                button=true
+                owner=owner editable=editable}}
+            </div>
+            <div class="footer-diamond">
+                <div class="square little"></div>
+            </div>
+
         </div>
+
 
         <div class="tab" data-tab="details">
+            <div class="titlebar-container">
 
-            <div class="form-group">
-                <label>{{localize "UI.SlotCost"}}</label>
-                <input name="data.slotCost" value="{{data.slotCost}}" data-dtype="Number">
+                <div class="square little left"></div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="title-line-header">{{localize "DGNS.Details"}}</div>
+                <svg class="title-line">
+                    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+                </svg>
+                <div class="square little right">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label>{{localize "UI.Effect"}}</label>
-                <textarea name="data.effect">{{data.effect}}</textarea>
+            <div class="scroll-container">
+
+                <div class="detail-container">
+
+                    <div class="column">
+                        <div class="sh-field">
+                            <span class="field-name">{{localize "UI.SlotCost"}}: </span>
+                            <div class="field-inputs">
+                                <input class="field-input field-start" type="text" name="data.slotCost"
+                                    value="{{data.slotCost}}" data-dtype="Number" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="column">
+
+                        <div class="sh-field">
+                            <span class="field-name">{{localize "UI.ModType"}}: </span>
+                            <select name="data.modType" data-dtype="String">
+                                <option value="">-</option>
+                                {{#select data.modType}}
+                                <option value="weapon">{{localize "DGNS.Weapon"}}</option>
+                                <option value="armor">{{localize "DGNS.Armor"}}</option>
+                                {{/select}}
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="specialty-container">
+                    <span class="field-name">{{localize "UI.Effect"}}</span>
+                    <textarea name="data.effect" class="item-summary">{{data.effect}}</textarea>
+                </div>
+
+
+
+
+                <div class="section-header-container">
+                    <div class="section-header-titleblock">
+                        <div class="block-title black">
+                            <h3>{{ localize "UI.AttributeKey" }}</h3>
+                            <a class="right icon  effect-control mod-control" data-action="add">+</a>
+                        </div>
+                        <svg class="tab-start-line" height="20" width="26">
+                            <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                            <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+                        </svg>
+                    </div>
+
+                    <div class="section-header-legends mod-keys-grid">
+                        <div class="legend-name change-mode">
+                            <span>{{ localize "UI.ChangeMode" }}</span>
+                        </div>
+                        <div class="legend-name mod-value">
+                            <span>{{localize "DGNS.ModValue"}}</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <ol class="section-list changes-list">
+                    {{#each data.changes as |change i|}}
+
+
+                    <li class="effect-change mod-keys-entry-container" data-index="{{i}}">
+                        <div class="key sh-field">
+                            <input type="text" class="mod-change" data-type="key" value="{{change.key}}" />
+                        </div>
+                        <div class="mode sh-field">
+                            <select class="mod-change" data-type="mode">
+                                {{#select change.mode}}
+                                <option value="add">{{localize "DGNS.ModAdd"}}</option>
+                                <option value="override">{{localize "DGNS.ModOverride"}}</option>
+                                {{/select}}
+                            </select>
+                        </div>
+                        <div class="value sh-field">
+                            <input class="mod-change" data-type="value" type="text" value="{{change.value}}" />
+                        </div>
+                        <div class="effect-controls">
+                            <a class="effect-control mod-control" data-action="delete"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+
+                <div class="qualities-group conditions-group">
+                    <div class="block-title black">
+                        <h3>{{localize "DGNS.Qualities"}}</h3>
+                        <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
+                    </div>
+                    <div class="qualities-data conditions-data">
+                        <ol class="qualities-ol conditions-ol">
+                            {{#each item.Qualities as |quality q|}}
+                            <li class="conditions-li qualities-li item">
+                                <div class="conditions-characteristics">
+                                    <div class='quality'>
+                                        {{quality}}
+                                    </div>
+                                </div>
+                            </li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </div>
+
+
             </div>
-
-
-            <div class="form-group">
-
-            <label>{{localize "UI.ModType"}}</label>
-
-            <select class="modType-select" name="data.modType" data-dtype="String">
-                {{#select data.modType}}
-                <option value="weapon">{{localize "DGNS.Weapon"}}</option>
-                <option value="armor">{{localize "DGNS.Armor"}}</option>
-                {{/select}}
-            </select>
-        </div>
-
-            <header class="effect-change effects-header flexrow">
-                <div class="key">{{ localize "UI.AttributeKey" }}</div>
-                <div class="mode">{{ localize "UI.ChangeMode" }}</div>
-                <div class="value">{{ localize "DGNS.ModValue" }}</div>
-                <div class="effect-controls">
-                    <a class="effect-control mod-control" data-action="add"><i class="far fa-plus-square"></i></a>
-                </div>
-            </header>
-            
-            <ol class="changes-list">
-                {{#each data.changes as |change i|}}
-                <li class="effect-change flexrow" data-index="{{i}}">
-                    <div class="key">
-                        <input type="text" class="mod-change" data-type="key" value="{{change.key}}"/>
-                    </div>
-                    <div class="mode">
-                        <select class="mod-change" data-type="mode">
-                            {{#select change.mode}}
-                            <option value="add">{{localize "DGNS.ModAdd"}}</option>
-                            <option value="override">{{localize "DGNS.ModOverride"}}</option>
-                            {{/select}}
-                        </select>
-                    </div>
-                    <div class="value">
-                        <input class="mod-change" data-type="value" type="text" value="{{change.value}}"/>
-                    </div>
-                    <div class="effect-controls">
-                        <a class="effect-control mod-control" data-action="delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </li>
-                {{/each}}
-            </ol>
-
-
-            <div class="qualities-group conditions-group mod-qualities">
-                <div class="black-title">
-                   <h3>{{localize "DGNS.Qualities"}}</h3>
-                   <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
-                </div>
-                <div class="qualities-data conditions-data">
-                   <ol class="qualities-ol conditions-ol">
-                     {{#each item.Qualities as |quality q|}}
-                         <li class="conditions-li qualities-li item">
-                             <div class="conditions-characteristics">
-                             <div class='quality'>
-                                 {{quality}}
-                             </div>
-                             </div>
-                         </li>
-                     {{/each}}
-                     </ol>
-                </div>
-             </div>
-
         </div>
 
     </section>
-
+    <footer class="sh-footer">
+        <div class="footer-line-bar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="11" x2="88%" y2="11" class="line-stroke"></line>
+                <line x1="88%" y1="11" x2="100%" y2="5" class="line-stroke""></line>
+            </svg>
+            <svg class=" bottom-line middle">
+                    <line x1="0" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="5" x2="12%" y2="11" class="line-stroke"></line>
+                <line x1="12%" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </footer>
 </form>
