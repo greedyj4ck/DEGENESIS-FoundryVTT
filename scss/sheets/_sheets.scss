@@ -379,19 +379,26 @@
 
   .field-inputs {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex: 1;
+    flex: 1 1 0px;
 
     > * {
       flex: 1;
     }
 
+    .field-start {
+      flex: 0 0 28px;
+    }
     .field-end {
       padding: 1px 3px;
       padding-top: 5px;
       justify-content: flex-end;
       flex: 0;
+    }
+
+    .field-separator {
+      flex: 0 0 0 !important;
     }
   }
 
@@ -423,7 +430,9 @@
   }
 
   select {
-    flex: 1;
+    flex: 1 1 0px;
+    width: 0;
+
     padding-top: 3px;
     min-height: 26px;
     height: 100%;

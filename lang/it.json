@@ -42,6 +42,8 @@
   "TYPES.Item.TypeShield": "Scudo",
   "TYPES.Item.TypeComplication": "Complicanza",
   "TYPES.Item.TypeLegacy": "Retaggio",
+  "TYPES.Item.TypeAttack": "Attacco",
+  "TYPES.Item.TypeDefense": "Difesa",
 
   "DGNS.Name": "Nome",
   "DGNS.Age": "Età",
@@ -498,12 +500,12 @@
   "DGNS.SettingsShowInventoryHeaders": "Mostra le intestazioni nell'inventario",
   "DGNS.SettingsShowInventoryHeadersHelper": "Mostra le intestazioni dell'inventario anche se non ci sono oggetti nella rispettiva categoria.",
 
-  "DGNS.CloseQuarter": "Ravvicinato",
-  "DGNS.Ranged": "Distanza",
+  
+  "DGNS.CloseQuarter": "Distanza ravvicinata",
+  "DGNS.Ranged": "A distanza",
 
   "DGNS.DefensePassive": "Passiva",
-  "DGNS.DefenseMeleeActive": "Mischia attiva",
-  "DGNS.DefenseRangedActive": "Distanza attiva",
+  "DGNS.DefenseMeleeActive": "Attiva corpo a corpo",
+  "DGNS.DefenseRangedActive": "Attiva a distanza",
   "DGNS.DefenseMental": "Mentale"
-
 }

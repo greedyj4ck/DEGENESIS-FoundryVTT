@@ -36,6 +36,9 @@
   "TYPES.Item.TypeShield": "Schild",
   "TYPES.Item.TypeComplication": "Komplikation",
   "TYPES.Item.TypeLegacy": "Vermächtnis",
+  "TYPES.Item.TypeAttack": "Angriff",
+  "TYPES.Item.TypeDefense": "Verteidigung",
+  
   "DGNS.Name": "Name",
   "DGNS.Age": "Alter",
   "DGNS.Rank": "Rang",

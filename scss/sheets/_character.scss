@@ -76,8 +76,8 @@
   }
 
   .header-content-side-container {
-    flex-grow: 1;
-    flex-basis: 0;
+    flex: 1 1 0px;
+    width: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -296,6 +296,8 @@
     > * {
       color: white;
       background-color: black;
+      max-width: 120px !important;
+      overflow: hidden;
     }
   }
 

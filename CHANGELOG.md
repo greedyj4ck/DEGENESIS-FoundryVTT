@@ -1,3 +1,17 @@
+# **CHANGELOG** 0.6.1.1 (24.10.2023)
+
+> Minimum Foundry version: **11.311** (with backup features)
+
+```
+This update contains heavy changes to code, data structures, application behaviour etc, which are not final and may change in a future. Before migrating your world to newest version, please create a backup using Foundry's built-in backup system.
+```
+
+## Quick patches
+
+- Fixed some styling issues that prevents from proper fields rendering
+- Fixed and added missing translation strings
+- New version of French translation by Calion16
+
 # **CHANGELOG** 0.6.1 (23.10.2023)
 
 > Minimum Foundry version: **11.311** (with backup features)
