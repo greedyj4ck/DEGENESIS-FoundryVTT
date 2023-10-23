@@ -2086,20 +2086,25 @@ a.diamond:hover .square.red.perma {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0px;
 }
 .sh-field .field-inputs > * {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+.sh-field .field-inputs .field-start {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 28px;
+          flex: 0 0 28px;
 }
 .sh-field .field-inputs .field-end {
   padding: 1px 3px;
@@ -2110,6 +2115,11 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 0;
       -ms-flex: 0;
           flex: 0;
+}
+.sh-field .field-inputs .field-separator {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 0px !important;
+          flex: 0 0 0 !important;
 }
 .sh-field.textarea {
   display: -webkit-box;
@@ -2142,8 +2152,9 @@ a.diamond:hover .square.red.perma {
 }
 .sh-field select {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0px;
+  width: 0;
   padding-top: 3px;
   min-height: 26px;
   height: 100%;
@@ -2329,10 +2340,9 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.actor.character .header-content-side-container {
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0px;
+  width: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2571,6 +2581,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.actor.character select > * {
   color: white;
   background-color: black;
+  max-width: 120px !important;
+  overflow: hidden;
 }
 .app.window-app.degenesis.sheet.actor.character .condition .condition-item:hover,
 .app.window-app.degenesis.sheet.actor.character .condition .condition-section:hover .app.window-app.degenesis.sheet .sh-field-stack:hover {
@@ -5446,6 +5458,11 @@ a.diamond:hover .square.red.perma {
           justify-content: space-between;
   margin-left: 2px;
 }
+.app.window-app.degenesis.sheet.item .sh-field select.damageBonus-select {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 57px;
+          flex: 0 0 57px;
+}
 .app.window-app.degenesis.sheet.item .sh-header .img-frame {
   width: 108px;
   height: 108px;
@@ -5499,10 +5516,9 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.item .sh-header .header-content-side-container {
   font-family: "Avenir";
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0px;
+  width: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

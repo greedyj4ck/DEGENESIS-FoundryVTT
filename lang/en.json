@@ -49,6 +49,7 @@
   "TYPES.Item.TypeComplication": "Complication",
   "TYPES.Item.TypeLegacy": "Legacy",
   "TYPES.Item.TypeAttack": "Attack",
+  "TYPES.Item.TypeDefense": "Defense",
 
   "DGNS.Name": "Name",
   "DGNS.Age": "Age",

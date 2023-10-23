@@ -42,6 +42,8 @@
   "TYPES.Item.TypeShield": "Escudo",
   "TYPES.Item.TypeComplication": "Complicación",
   "TYPES.Item.TypeLegacy": "Legado",
+  "TYPES.Item.TypeAttack": "Ataque",
+  "TYPES.Item.TypeDefense": "Defensa",
 
   "DGNS.Name": "Nombre",
   "DGNS.Age": "Edad",
