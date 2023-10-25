@@ -489,7 +489,7 @@
   "DGNS.DefensePassive": "Passive",
   "DGNS.DefenseMeleeActive": "Nahkampf Aktiv",
   "DGNS.DefenseRangedActive": "Fernkampf Aktiv",
-  "DGNS.DefenseMental": "Mentale"
+  "DGNS.DefenseMental": "Mentale",
 
-
+  "DGNS.Tactics": "Taktik"
 }

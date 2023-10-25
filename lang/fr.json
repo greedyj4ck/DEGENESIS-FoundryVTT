@@ -506,6 +506,9 @@
   "DGNS.DefensePassive": "Passive",
   "DGNS.DefenseMeleeActive": "Mêlée active",
   "DGNS.DefenseRangedActive": "Distance active",
-  "DGNS.DefenseMental": "Mentale"
+  "DGNS.DefenseMental": "Mentale",
 
+  "DGNS.Tactics": "Tactique"
+
+  
 }

@@ -480,5 +480,8 @@
   "DGNS.DefensePassive": "Pasiva",
   "DGNS.DefenseMeleeActive": "Melé Activo",
   "DGNS.DefenseRangedActive": "Rango Activo",
-  "DGNS.DefenseMental": "Mental"
+  "DGNS.DefenseMental": "Mental",
+  "DGNS.Tactics": "Tácticas"
+
+
 }
