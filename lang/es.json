@@ -3,7 +3,13 @@
 
   "TYPES.Actor.TypeCharacter": "Personaje",
   "TYPES.Actor.TypeNpc": "PNJ",
-  "TYPES.Actor.TypeAbberant": "Desde el Infierno",
+  "TYPES.Actor.TypeAbberant": "Aberrante",
+  "TYPES.Actor.TypeFromHell": "Desde el Infierno",
+
+  "TYPES.Actor.TypeCharacterSheet": "Hoja de personaje por defecto",
+  "TYPES.Actor.TypeNpcSheet": "Hoja de PNJ por defecto",
+  "TYPES.Actor.TypeAbberantSheet": "Hoja de aberrante por defecto",
+  "TYPES.Actor.TypeFromHellSheet": "Hoja Desde el Infierno por defecto",
 
   "UI.SlotCost": "Coste en PE",
   "UI.Effect": "Efecto",
@@ -473,8 +479,8 @@
   "DGNS.CuttingDescription": "Habilidad especial \"Cortar\" - Si un ataque tiene éxito con 2 DT, el spitaliano puede hacer que las cuchillas se cierren automáticamente para infligir 1D adicional de daño. Los 2 DT utilizados no se cuentan para el cálculo del daño, por lo que si el jugador sólo saca 1 para el daño adicional, hace 1 punto de daño menos que no hubiera utilizado \"Cortar\". En el mejor de los casos podría infligir 4 puntos de daño adicionales.",
   "DGNS.ModOverride": "Anular",
   "DGNS.ModEditWarning": "Los cambios realizados en las modificaciones anexas no se guardarán.",
-  "DGNS.Type" : "Tipo",
-  "DGNS.Permanent":"Permanente",
+  "DGNS.Type": "Tipo",
+  "DGNS.Permanent": "Permanente",
   "DGNS.CloseQuarter": "De cerca",
   "DGNS.Ranged": "Rango",
   "DGNS.DefensePassive": "Pasiva",
@@ -482,6 +488,4 @@
   "DGNS.DefenseRangedActive": "Rango Activo",
   "DGNS.DefenseMental": "Mental",
   "DGNS.Tactics": "Tácticas"
-
-
 }

@@ -165,6 +165,14 @@ Hooks.once("init", async function () {
       editor: true,
       fonts: [{ urls: ["systems/degenesis/fonts/Calluna-Regular.otf"] }],
     },
+    "Crimson Pro": {
+      editor: true,
+      fonts: [],
+    },
+    Avenir: {
+      editor: true,
+      fonts: [],
+    },
   };
 
   CONFIG.canvasTextStyle = new PIXI.TextStyle({

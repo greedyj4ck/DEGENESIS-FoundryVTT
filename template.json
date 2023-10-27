@@ -355,7 +355,8 @@
     "armor": {
       "name" :"",
       "rating": ""
-    }
+    },
+    "tactics":""
 }},
 
 "Item": {

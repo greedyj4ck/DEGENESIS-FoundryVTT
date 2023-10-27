@@ -97,12 +97,14 @@ export class DegenesisFromHellSheet extends ActorSheet {
   // CONSTRUCT ARSENAL NOT REQUIRED ?
 
   async _handleEnrichment() {
-    // Add HTML Enrichment stuff for editors fields (like item's links etc.)
-    /*  let enrichment = {}
-        enrichment["system.biography.value"] = await TextEditor.enrichHTML(this.actor.system.biography, { async: true, secrets: this.actor.isOwner, relativeTo: this.actor })
-        enrichment["system.gmnotes.value"] = await TextEditor.enrichHTML(this.actor.system.gmnotes, { async: true, secrets: this.actor.isOwner, relativeTo: this.actor })
+    let enrichment = {};
 
-        return expandObject(enrichment) */
+    enrichment["system.tactics.value"] = await TextEditor.enrichHTML(
+      this.actor.system.tactics,
+      { async: true, secrets: this.actor.isOwner, relativeTo: this.actor }
+    );
+
+    return expandObject(enrichment);
   }
 
   /* ######## HTML LISTENERS  ######## */

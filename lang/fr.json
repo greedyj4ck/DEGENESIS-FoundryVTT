@@ -2,15 +2,21 @@
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
 
   "TYPES.Actor.TypeCharacter": "Character",
-  "TYPES.Actor.TypeNpc": "Non playable character",
-  "TYPES.Actor.TypeAbberant": "From Hell",
+  "TYPES.Actor.TypeNpc": "Personnage non jouable",
+  "TYPES.Actor.TypeAberrant": "Abberant",
+  "TYPES.Actor.TypeFromHell": "À vaincre sans péril",
+
+  "TYPES.Actor.TypeCharacterSheet": "Feuille de Personnage par défaut",
+  "TYPES.Actor.TypeNpcSheet": "Feuille de PNJ par défaut",
+  "TYPES.Actor.TypeAberrantSheet": "Feuille d'Abberant par défaut",
+  "TYPES.Actor.TypeFromHellSheet": "Feuille À vaincre sans péril par défaut",
 
   "UI.SlotCost": "Coût du créneau",
   "UI.Effect": "Effet",
   "UI.ModType": "Type de mod",
   "UI.AttributeKey": "Clé d'attribut",
   "UI.ChangeMode": "Mode de changement",
-  "UI.TriggerCostRating": "Coût/classement du DC",
+  "UI.TriggerCostRating": "Coût de DC/Niveau",
   "UI.Number": "Numéro",
   "UI.Type": "Type",
   "UI.ActionDescription": "Description de l'action",
@@ -255,7 +261,7 @@
   "DGNS.Trigger": "DC",
   "DGNS.Bonus": "Bonus",
   "DGNS.EnemyType": "Type Ennemi",
-  "DGNS.Rating": "Indice",
+  "DGNS.Rating": "Niveau",
   "DGNS.ArmorRating": "Indice Armure",
   "DGNS.NumberOfRounds": "Nb de rounds",
   "DGNS.Potency": "Puissance",
@@ -310,8 +316,8 @@
   "DGNS.SecondaryNeedsDifficulty": "Les jets secondaires requièrent qu'une difficulté soit définie lors du premier jet.",
   "DGNS.Post": "Poster",
   "DGNS.DamageType": "Type de dommage",
-  "DGNS.Type" : "Type",
-  "DGNS.Permanent":"Permanent",
+  "DGNS.Type": "Type",
+  "DGNS.Permanent": "Permanent",
 
   "DGNS.AreaDamageDescription": "L’arme ne vise pas une cible directement, mais couvre une zone exprimée en degrés. Tout ce qui se trouve à l’intérieur de cette zone subit des dégâts.",
   "DGNS.ArmorpiercingDescription": "Ce projectile extrêmement compact et rapide perfore les armures comme du papier. Les projectiles antiblindage ne génèrent pas foncière-ment plus de dégâts, mais ils ignorent les propriétés spéciales qu’une armure peut posséder, comme Massif ou Pare-balles . cf KAT Edge p154",
@@ -509,6 +515,4 @@
   "DGNS.DefenseMental": "Mentale",
 
   "DGNS.Tactics": "Tactique"
-
-  
 }

@@ -19,6 +19,10 @@ export class DegenesisItem extends Item {
       if (!this.system.group) this.system.group = "closeQuarter";
     }
 
+    if (this.type == "defense") {
+      if (!this.system.group) this.system.group = "passive";
+    }
+
     // Force undroppable transportation items to not be dropped
     if (this.type == "transportation") {
       if (!this.droppable && this.dropped) this.system.dropped = false;
@@ -240,9 +244,7 @@ export class DegenesisItem extends Item {
       if (this.DamageBonus) {
         damage += this.DamageBonus.calculate(triggers);
       }
-    }
-
-    else if (this.actor.type === "npc") {
+    } else if (this.actor.type === "npc") {
       const baseValue = parseInt(this.damage) + (modifier || 0);
       damage = baseValue;
       if (this.DamageBonus) {

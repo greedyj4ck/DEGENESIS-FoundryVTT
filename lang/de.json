@@ -1,6 +1,16 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
+
   "TYPES.Actor.TypeCharacter": "Charakter",
+  "TYPES.Actor.TypeNpc": "Nichtspielercharakter",
+  "TYPES.Actor.TypeAberrant": "Absonderlicher",
+  "TYPES.Actor.TypeFromHell": "Viel Feind",
+
+  "TYPES.Actor.TypeCharacterSheet": "Standardbogen Charakter",
+  "TYPES.Actor.TypeNpcSheet": "Standardbogen NSC",
+  "TYPES.Actor.TypeAberrantSheet": "Standardbogen Absonderlicher",
+  "TYPES.Actor.TypeFromHellSheet": "Standardbogen Viel Feind",
+
   "UI.SlotCost": "Slot-Kosten",
   "UI.Effect": "Effekt",
   "UI.ModType": "Art der Modifikation",
@@ -38,7 +48,7 @@
   "TYPES.Item.TypeLegacy": "Vermächtnis",
   "TYPES.Item.TypeAttack": "Angriff",
   "TYPES.Item.TypeDefense": "Verteidigung",
-  
+
   "DGNS.Name": "Name",
   "DGNS.Age": "Alter",
   "DGNS.Rank": "Rang",
@@ -231,7 +241,7 @@
   "DGNS.FireResistant": "Feuerfest",
   "DGNS.ArmorTerrifying": "Furchterregend",
   "DGNS.ArmorCamo": "Getarnt",
-  "DGNS.Unstable": "Instabil",  
+  "DGNS.Unstable": "Instabil",
   "DGNS.Insulated": "Isoliert",
   "DGNS.Bulletproof": "Kugelsicher",
   "DGNS.Massive": "Massiv",
@@ -302,10 +312,10 @@
   "DGNS.SecondarySkill": "Sekundäre Fähigkeit",
   "DGNS.Secondary": "Sekundär",
   "DGNS.SecondaryNeedsDifficulty": "Bei sekundären Würfen muss eine Schwierigkeit auf dem ersten Wurf festgelegt werden",
-  "DGNS.Post": "Post", 
+  "DGNS.Post": "Post",
   "DGNS.DamageType": "Schadenstyp",
-  "DGNS.Type" : "Typ",
-  "DGNS.Permanent":"Dauerhaft",
+  "DGNS.Type": "Typ",
+  "DGNS.Permanent": "Dauerhaft",
 
   "DGNS.AreaDamageDescription": "Die Waffe zielt nicht direkt auf einen Feind: Sie deckt einen in Grad angegebenen Bereich ab. Alles in diesem Bereich kann Schaden nehmen.",
   "DGNS.ArmorpiercingDescription": "Das verschossene Projektil ist hochkompakt und schnell. Es durchschlägt die Panzerung, als sei sie aus Papier. Panzerbrechende Geschosse verursachen nicht notwendigerweise mehr Schaden, aber sie ignorieren die besonderen Eigenschaften wie ‚massiv‘ oder ‚kugelsicher’ der Zielrüstung.",
@@ -486,10 +496,9 @@
   "DGNS.CloseQuarter": "Nahbereich",
   "DGNS.Ranged": "Fernkampf",
 
-  "DGNS.DefensePassive": "Passive",
+  "DGNS.DefensePassive": "Passiv",
   "DGNS.DefenseMeleeActive": "Nahkampf Aktiv",
   "DGNS.DefenseRangedActive": "Fernkampf Aktiv",
-  "DGNS.DefenseMental": "Mentale",
-
+  "DGNS.DefenseMental": "Mental",
   "DGNS.Tactics": "Taktik"
 }
