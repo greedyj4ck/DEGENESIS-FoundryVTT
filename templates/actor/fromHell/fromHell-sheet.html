@@ -197,13 +197,13 @@
 
             <div class="section-header-legends section-legend-grid attack">
                 <div class="legend-name">
-                    ATTACK
+                    {{localize "DGNS.Attack"}}
                 </div>
                 <div class="legend-name">
-                    DAMAGE
+                    {{localize "DGNS.Damage"}}
                 </div>
                 <div class="legend-name">
-                    DISTANCE
+                    {{localize "DGNS.Distance"}}
                 </div>
                 <div class="legend-name">
 
@@ -274,11 +274,6 @@
             {{/each}}
         </div>
 
-
-
-
-
-
         <!-- DEFENSE SECTION -->
 
         <div class="section-header-container defense">
@@ -295,10 +290,10 @@
 
             <div class="section-header-legends section-legend-grid defense">
                 <div class="legend-name">
-                    TYPE
+                    {{localize "UI.Type"}}
                 </div>
                 <div class="legend-name">
-                    DEFENSE
+                    {{localize "DGNS.Defense"}}
                 </div>
 
                 <div class="legend-name">
@@ -401,7 +396,33 @@
         </div>
 
 
+        <div class="history-group biography-group">
+
+            <div class="section-header-container">
+                <div class="section-header-titleblock">
+                    <div class="block-title white">
+                        <h3>{{localize "DGNS.Tactics"}}</h3>
+                    </div>
+                    <svg class="tab-start-line" height="20" width="26">
+                        <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                        <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+                    </svg>
+                </div>
+
+                <div class="section-header-legends ">
+
+                </div>
+            </div>
+
+            <div class="fullwidth-editor">
+                {{editor enrichment.system.tactics.value target="system.tactics" engine="prosemirror" button=true
+                owner=owner editable=editable}}
+            </div>
+
+        </div>
+
     </div>
+
 
 
 

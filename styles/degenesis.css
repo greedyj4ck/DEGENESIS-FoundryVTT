@@ -62,6 +62,17 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
   font-family: "DG";
   src: url("../fonts/DG-Medium.otf");
 }
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("../fonts/CrimsonPro-Variable.ttf");
+  size-adjust: 120%;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Crimson Pro";
+  src: url("../fonts/CrimsonPro-Italic.ttf");
+  font-style: italic;
+}
 /* BASE: _EXPERIMENTAL.SCSS */
 h1,
 h2,
@@ -186,7 +197,7 @@ span.nocaps {
 #sidebar {
   background: url(../ui/black_01.jpg);
   border-radius: 0px;
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   background-size: cover;
   background-position: top right;
 }
@@ -201,10 +212,6 @@ span.nocaps {
   font-size: 12px;
 }
 
-/* #sidebar .directory-list .directory-item h4 {
-      font-family: "Calluna";
-      text-transform: unset
-  } */
 #sidebar .directory-header a,
 #chat-controls a {
   color: var(--degenesis-red);
@@ -349,7 +356,7 @@ a:hover {
 }
 
 #token-hud {
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
 }
 #token-hud .attribute.bar2 input {
   opacity: 1;
@@ -385,7 +392,7 @@ a:hover {
 
 #menu {
   background-image: url(../ui/header.jpg);
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   border-radius: 3px;
 }
 #menu #menu-items li:hover {
@@ -405,7 +412,7 @@ a:hover {
 }
 
 .directory-list .folder-header h3 {
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -443,8 +450,7 @@ a:hover {
 }
 .app.window-app .window-content {
   background: white;
-  font-family: "Calluna";
-  padding: 4px;
+  font-family: "Crimson Pro";
 }
 .app.window-app .window-header {
   font-family: "Avenir" !important;
@@ -454,7 +460,7 @@ a:hover {
   background-image: url(../ui/header.jpg);
 }
 .app.window-app .window-title {
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   text-transform: unset;
   font-size: 14px;
 }
@@ -883,7 +889,7 @@ a.diamond:hover .square.red.perma {
 }
 
 #chat-form textarea {
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   color: var(--text-white);
   background: -webkit-gradient(linear, left bottom, left top, from(rgb(0, 0, 0)), to(rgba(0, 0, 0, 0.6965161064)));
   background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.6965161064) 100%);
@@ -1145,6 +1151,9 @@ a.diamond:hover .square.red.perma {
   background-position: top center;
   background-size: auto;
 }
+.journal-sheet.journal-entry .journal-sidebar .window-content {
+  padding: none !important;
+}
 .journal-sheet.journal-entry .journal-sidebar .directory-header {
   color: var(--text-white);
 }
@@ -1214,46 +1223,95 @@ a.diamond:hover .square.red.perma {
   background: url(../ui/light_02.jpg);
 }
 .sheet.journal-entry .journal-entry-content .journal-header input {
+  text-align: left;
+  font-family: "Avenir";
+  text-transform: uppercase;
+  font-weight: 600;
   background: none;
   border-radius: 0;
-  border-bottom: 1px solid var(--degenesis-red);
+  border-bottom: none;
   -webkit-transition: border 0.3s;
   transition: border 0.3s;
 }
 .sheet.journal-entry .journal-entry-content .journal-header input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
 }
 .sheet.journal-entry .journal-entry-content h1 {
+  font-weight: 600;
   border: none;
 }
 .sheet.journal-entry .journal-entry-content h2 {
+  font-weight: 600;
   border: none;
 }
-
-.app.window-app.journal-sheet .window-content {
-  background: url(../ui/light_02.jpg);
+.sheet.journal-entry .journal-entry-content section.secret {
+  border-top: none;
+  border-bottom: none;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  padding: 0;
 }
-.app.window-app.journal-sheet .window-content .journal-header input {
-  background: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--degenesis-red);
-  -webkit-transition: border 0.3s;
-  transition: border 0.3s;
-}
-.app.window-app.journal-sheet .window-content .journal-header input:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.app.window-app.journal-sheet .window-content h1 {
+.sheet.journal-entry .journal-entry-content section.secret > button {
+  width: 100%;
+  min-height: 25px;
   border: none;
+  color: rgb(255, 255, 255);
+  margin: 0;
 }
-.app.window-app.journal-sheet .window-content h2 {
-  border: none;
+.sheet.journal-entry .journal-entry-content section.secret.revealed > * {
+  display: inherit;
+}
+.sheet.journal-entry .journal-entry-content section.secret > p {
+  padding: 0 5px 5px 5px;
+  display: none;
+}
+.sheet.journal-entry .journal-entry-content section.secret > h1,
+.sheet.journal-entry .journal-entry-content section.secret h2,
+.sheet.journal-entry .journal-entry-content section.secret h3,
+.sheet.journal-entry .journal-entry-content section.secret h4,
+.sheet.journal-entry .journal-entry-content section.secret h5,
+.sheet.journal-entry .journal-entry-content section.secret h6 {
+  display: none;
+  padding: 0 5px;
+  margin: 5px 0px;
 }
 
 .sheet.journal-entry .sidebar {
   color: #000000;
+}
+
+.app.window-app.sheet.journal-sheet.journal-entry-page.text .journal-header input {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 35px;
+  border-bottom: 1px solid rgb(237, 29, 39);
+  border-radius: 0;
+  background: none;
+}
+.app.window-app.sheet.journal-sheet.journal-entry-page.text .page-level {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 130px;
+          flex: 0 0 130px;
+}
+.app.window-app.sheet.journal-sheet.journal-entry-page.text h1,
+.app.window-app.sheet.journal-sheet.journal-entry-page.text h2,
+.app.window-app.sheet.journal-sheet.journal-entry-page.text h3,
+.app.window-app.sheet.journal-sheet.journal-entry-page.text h4,
+.app.window-app.sheet.journal-sheet.journal-entry-page.text h5 {
+  font-weight: 600;
+  border-bottom: 1px solid rgb(237, 29, 39);
+}
+.app.window-app.sheet.journal-sheet.journal-entry-page.text section.secret {
+  border-top: none;
+  border-bottom: none;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .app.window-app.form.sheet-config select {
@@ -2155,7 +2213,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1 1 0px;
           flex: 1 1 0px;
   width: 0;
-  padding-top: 3px;
+  padding-top: 4px;
   min-height: 26px;
   height: 100%;
   border-bottom: none;
@@ -2559,7 +2617,7 @@ a.diamond:hover .square.red.perma {
   outline: var(--degenesis-red);
   -webkit-box-shadow: none;
           box-shadow: none;
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
 }
 .app.window-app.degenesis.sheet.actor.character textarea:focus {
   outline: var(--degenesis-red);
@@ -3562,6 +3620,15 @@ a.diamond:hover .square.red.perma {
   min-width: 650px;
   min-height: 650px;
 }
+.app.window-app.degenesis.sheet.fromHell input {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell .editor-menu {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell i {
+  color: rgb(255, 255, 255);
+}
 .app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar,
 .app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar,
 .app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar {
@@ -4081,7 +4148,7 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.fromHell .section-legend-grid.attack {
   display: grid;
-  grid-template-columns: 2fr 0.6fr 0.8fr 65px;
+  grid-template-columns: 2fr 0.6fr 75px 65px;
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.fromHell .section-legend-grid.defense {
@@ -4601,7 +4668,7 @@ a.diamond:hover .square.red.perma {
   border: none;
   color: var(--text-white);
   text-align: center;
-  font-family: "Calluna";
+  font-family: "Crimson Pro";
   font-weight: 500;
   font-size: 14px;
   text-transform: uppercase;

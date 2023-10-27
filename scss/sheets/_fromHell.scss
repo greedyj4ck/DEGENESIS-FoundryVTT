@@ -9,6 +9,17 @@
   $line-stroke-width: 1.5px;
   $line-stroke-color: #fff;
 
+  input {
+    color: $text-white;
+  }
+
+  .editor-menu {
+    color: $text-white;
+  }
+  i {
+    color: $text-white;
+  }
+
   div,
   textarea,
   input {
@@ -475,7 +486,7 @@
   .section-legend-grid {
     &.attack {
       display: grid;
-      grid-template-columns: 2fr 0.6fr 0.8fr 65px;
+      grid-template-columns: 2fr 0.6fr 75px 65px;
       justify-items: center;
     }
 

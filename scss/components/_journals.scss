@@ -1,152 +1,198 @@
 // Journal styling
 
 .journal-sheet.journal-entry .journal-sidebar {
-    background: url(../ui/black_02.jpg);
-    background-position: top center;
-    background-size: auto;
+  background: url(../ui/black_02.jpg);
+  background-position: top center;
+  background-size: auto;
 
-    .directory-header {
-        color: var(--text-white);
+  .window-content {
+    padding: none !important;
+  }
+
+  .directory-header {
+    color: var(--text-white);
+  }
+
+  input {
+    background: none;
+    color: var(--text-white);
+    border: 1px solid var(--text-white);
+    transition: border 0.3s;
+
+    &:focus {
+      box-shadow: none;
+      border: 1px solid var(--degenesis-red);
+      transition: border 0.3s;
+    }
+  }
+
+  .pages-list {
+    color: var(--text-white);
+    transition: all 0.5s;
+
+    .page-heading {
+      &:hover {
+        color: var(--degenesis-red);
+        transition: all 0.3s;
+        text-shadow: none;
+      }
     }
 
-    input {
-        background: none;
-        color: var(--text-white);
-        border: 1px solid var(--text-white);
+    .heading {
+      &:hover {
+        color: var(--degenesis-red);
+        transition: all 0.3s;
+      }
+    }
+
+    .page-title:hover {
+      text-shadow: none;
+    }
+  }
+
+  .directory-item.active {
+    //border-color:var(--degenesis-blackred);
+
+    + :not(.active) {
+      border-top: 1px solid var(--degenesis-blackred);
+      transition: border 0.3s;
+
+      + .active {
+        border-top: 1px solid var(--degenesis-blackred);
         transition: border 0.3s;
-
-        &:focus {
-            box-shadow: none;
-            border: 1px solid var(--degenesis-red);
-            transition: border 0.3s;
-        }
+      }
     }
+  }
 
-    .pages-list {
-        color: var(--text-white);
-        transition: all 0.5s;
-
-        .page-heading {
-
-            &:hover {
-                color: var(--degenesis-red);
-                transition: all 0.3s;
-                text-shadow: none;
-            }
-        }
-
-        .heading {
-            &:hover {
-                color: var(--degenesis-red);
-                transition: all 0.3s;
-            }
-        }
-
-        .page-title:hover {
-            text-shadow: none;
-        }
+  .directory-item:not(.active) {
+    + .active {
+      border-top: 1px solid var(--degenesis-blackred);
+      transition: border 0.3s;
     }
-
-
-
-    .directory-item.active {
-        //border-color:var(--degenesis-blackred);
-
-        + :not(.active) {
-            border-top: 1px solid var(--degenesis-blackred);
-            transition: border 0.3s;
-
-            +.active {
-                border-top: 1px solid var(--degenesis-blackred);
-                transition: border 0.3s;
-            }
-        }
-    }
-
-    .directory-item:not(.active) {
-        +.active {
-            border-top: 1px solid var(--degenesis-blackred);
-            transition: border 0.3s;
-        }
-    }
-
-
+  }
 }
 
 .sheet.journal-entry .pages-list .directory-item.active {
+  &:first-of-type {
+    border-top: 1px solid var(--degenesis-blackred);
+    transition: border 0.3s;
+  }
 
-    &:first-of-type {
-
-        border-top: 1px solid var(--degenesis-blackred);
-        transition: border 0.3s;
-
-    }
-
-    &:last-of-type {
-
-        border-bottom: 1px solid var(--degenesis-blackred);
-        transition: border 0.3s;
-
-    }
+  &:last-of-type {
+    border-bottom: 1px solid var(--degenesis-blackred);
+    transition: border 0.3s;
+  }
 }
 
 .sheet.journal-entry .journal-entry-content {
-    border-radius: 0;
-    border: 0;
-    background: url(../ui/light_02.jpg);
+  border-radius: 0;
+  border: 0;
+  background: url(../ui/light_02.jpg);
 
-    .journal-header {
+  .journal-header {
+    input {
+      text-align: left;
+      font-family: $primary-header-font;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: none;
+      border-radius: 0;
+      border-bottom: none;
+      transition: border 0.3s;
 
-        input {
-            background: none;
-            border-radius: 0;
-            border-bottom: 1px solid var(--degenesis-red);
-            transition: border 0.3s;
+      &:focus {
+        box-shadow: none;
+        border-bottom: 1px solid var(--degenesis-red);
+      }
+    }
+  }
 
-            &:focus {
+  h1 {
+    font-weight: 600;
+    border: none;
+  }
 
-                box-shadow: none;
-            }
-        }
+  h2 {
+    font-weight: 600;
+    border: none;
+  }
+
+  section.secret {
+    border-top: none;
+    border-bottom: none;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid $text-black;
+    border-radius: 5px;
+    padding: 0;
+
+    > button {
+      width: 100%;
+      min-height: 25px;
+      border: none;
+      color: $text-white;
+      margin: 0;
     }
 
-    h1 {
-        border: none
+    &.revealed {
+      > * {
+        display: inherit;
+      }
     }
 
-    h2 {
-        border: none
+    > p {
+      padding: 0 5px 5px 5px;
+      display: none;
     }
 
-}
-
-.app.window-app.journal-sheet .window-content {
-    background: url(../ui/light_02.jpg);
-
-    .journal-header {
-
-        input {
-            background: none;
-            border-radius: 0;
-            border-bottom: 1px solid var(--degenesis-red);
-            transition: border 0.3s;
-
-            &:focus {
-
-                box-shadow: none;
-            }
-        }
+    > h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: none;
+      padding: 0 5px;
+      margin: 5px 0px;
     }
-
-    h1 {
-        border: none
-    }
-
-    h2 {
-        border: none
-    }
+  }
 }
 
 .sheet.journal-entry .sidebar {
-    color: #000000;
+  color: #000000;
+}
+
+// Editor main selector
+.app.window-app.sheet.journal-sheet.journal-entry-page.text {
+  .journal-header {
+    input {
+      font-family: $primary-header-font;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 35px;
+      border-bottom: 1px solid $dgns-red;
+      border-radius: 0;
+      background: none;
+    }
+  }
+  .page-level {
+    flex: 0 0 130px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 600;
+    border-bottom: 1px solid $dgns-red;
+  }
+
+  section.secret {
+    border-top: none;
+    border-bottom: none;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid $text-black;
+    border-radius: 5px;
+    padding: 5px;
+  }
 }

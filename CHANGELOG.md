@@ -1,3 +1,25 @@
+# **CHANGELOG** 0.6.1.2 (28.10.2023)
+
+This is the last patch for 0.6.1 version - next fixes will be introduced in 0.6.2 or 0.7 for Foundry V12.
+
+> Minimum Foundry version: **11.311** (with backup features)
+
+```
+This update contains heavy changes to code, data structures, application behaviour etc, which are not final and may change in a future. Before migrating your world to newest version, please create a backup using Foundry's built-in backup system.
+```
+
+## Quick patches
+
+- Added new font replacement for Calluna - Crimson Pro (very similar, without numbers alignment issues)
+- Added translation strings for ammo types
+
+> **Warning!** Ammo count and reload scripts looks for ammo inside inventory that has a same name. If you are using translated strings, your ammo must use the same names!
+
+- Added **TACTICS** field on From Hell sheet
+- Added missing translation strings for various things
+- Fixed minor styling issues
+- Fixed minor UI and functionality bugs
+
 # **CHANGELOG** 0.6.1.1 (24.10.2023)
 
 > Minimum Foundry version: **11.311** (with backup features)

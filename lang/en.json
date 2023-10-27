@@ -3,12 +3,12 @@
 
   "TYPES.Actor.TypeCharacter": "Character",
   "TYPES.Actor.TypeNpc": "Non-playable character",
-  "TYPES.Actor.TypeAbberant": "Abberant",
+  "TYPES.Actor.TypeAberrant": "Abberant",
   "TYPES.Actor.TypeFromHell": "From Hell",
 
   "TYPES.Actor.TypeCharacterSheet": "Default Character Sheet",
   "TYPES.Actor.TypeNpcSheet": "Default NPC Sheet",
-  "TYPES.Actor.TypeAbberantSheet": "Default Abberant Sheet",
+  "TYPES.Actor.TypeAberrantSheet": "Default Abberant Sheet",
   "TYPES.Actor.TypeFromHellSheet": "Default From Hell Sheet",
 
   "UI.SlotCost": "Slot Cost",
@@ -50,6 +50,38 @@
   "TYPES.Item.TypeLegacy": "Legacy",
   "TYPES.Item.TypeAttack": "Attack",
   "TYPES.Item.TypeDefense": "Defense",
+
+  "TYPES.Ammo.50gl": ".50 GL",
+  "TYPES.Ammo.357": ".357",
+  "TYPES.Ammo.44": ".44",
+  "TYPES.Ammo.410sh": ".410 shot",
+  "TYPES.Ammo.410sl": ".410 slug",
+  "TYPES.Ammo.556": "5.56x45mm",
+  "TYPES.Ammo.jacket": "HF Full Jacket",
+  "TYPES.Ammo.hollowPoint": "HF Hollow Point",
+  "TYPES.Ammo.flechette": "5.56mm HUNTER Flechette",
+  "TYPES.Ammo.46x30": "4.6x30mm",
+  "TYPES.Ammo.9mm": "9mm",
+  "TYPES.Ammo.5x30": "5x30mm Caseless",
+  "TYPES.Ammo.762": "7.62",
+  "TYPES.Ammo.14": "14mm",
+  "TYPES.Ammo.buckshot": "CALIBER 12 (Buckshot)",
+  "TYPES.Ammo.rifleBarrel": "CALIBER 12 (Rifle barrel ammo)",
+  "TYPES.Ammo.cartridge": "Cartridge",
+  "TYPES.Ammo.grenade": "Grenade",
+  "TYPES.Ammo.missle": "Missle",
+  "TYPES.Ammo.fragger": "Fragger Round",
+  "TYPES.Ammo.blackpowder": "Black Powder",
+  "TYPES.Ammo.leadbullet": "Lead Bullet",
+  "TYPES.Ammo.Ecube": "E-Cube",
+  "TYPES.Ammo.arrow": "Arrow",
+  "TYPES.Ammo.bolt": "Bolt",
+  "TYPES.Ammo.petro": "Can of Petro",
+  "TYPES.Ammo.harpoon": "Harpoon",
+  "TYPES.Ammo.nail": "Nail",
+  "TYPES.Ammo.coal": "Coal",
+  "TYPES.Ammo.boltcoal": "Bolt & Coal",
+  "TYPES.Ammo.special": "Special",
 
   "DGNS.Name": "Name",
   "DGNS.Age": "Age",
@@ -316,8 +348,8 @@
   "DGNS.SecondaryNeedsDifficulty": "Secondary rolls require a difficulty to be set on the first roll",
   "DGNS.Post": "Post",
   "DGNS.DamageType": "Damage Type",
-  "DGNS.Type" : "Type",
-  "DGNS.Permanent":"Permanent",
+  "DGNS.Type": "Type",
+  "DGNS.Permanent": "Permanent",
 
   "DGNS.AreaDamageDescription": "The weapon doesn’t aim directly at an enemy: it covers an area stated in degrees. Everything inside this area can take Damage.",
   "DGNS.ArmorpiercingDescription": "The projectile used is highly compact and fast. It pierces armor as if it were made of paper. Armor piercing projectiles do not necessarily cause more Damage, but they ignore the special Qualities like “Massive” or “Bulletproof” the target’s armor might have.",
@@ -512,7 +544,7 @@
   "DGNS.DefensePassive": "Passive",
   "DGNS.DefenseMeleeActive": "Melee Active",
   "DGNS.DefenseRangedActive": "Ranged Active",
-  "DGNS.DefenseMental": "Mental"
+  "DGNS.DefenseMental": "Mental",
 
-
+  "DGNS.Tactics": "Tactics"
 }

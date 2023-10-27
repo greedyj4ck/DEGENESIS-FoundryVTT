@@ -136,11 +136,6 @@ span.nocaps {
   }
 }
 
-/* #sidebar .directory-list .directory-item h4 {
-      font-family: "Calluna";
-      text-transform: unset
-  } */
-
 #sidebar .directory-header a,
 #chat-controls a {
   color: var(--degenesis-red);
@@ -366,7 +361,7 @@ a:hover {
 .directory-list {
   .folder-header {
     h3 {
-      font-family: "Calluna";
+      font-family: "Crimson Pro";
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
