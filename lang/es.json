@@ -81,7 +81,7 @@
   "TYPES.Ammo.rifleBarrel": "CALIBER 12 (cañón de fusil)",
   "TYPES.Ammo.cartridge": "Cartucho",
   "TYPES.Ammo.grenade": "Granada",
-  "TYPES.Ammo.missle": "Misil",
+  "TYPES.Ammo.missile": "Misil",
   "TYPES.Ammo.fragger": "Balas de fragmentación",
   "TYPES.Ammo.blackpowder": "Pólvora negra",
   "TYPES.Ammo.leadbullet": "Bala de plomo",

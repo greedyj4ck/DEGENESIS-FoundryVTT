@@ -51,7 +51,7 @@
         <span class="field-name">{{localize "DGNS.Rapture"}}: </span>
         <select name="data.rapture" data-dtype="String">
           {{#select data.rapture}}
-          <option value="genric">{{localize "DGNS.Generic"}}</option>
+          <option value="generic">{{localize "DGNS.Generic"}}</option>
           {{#each (config "raptures") as |rapture r|}}
           <option value="{{r}}">{{rapture}}</option>
           {{/each}}
