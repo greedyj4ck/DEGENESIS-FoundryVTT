@@ -721,7 +721,7 @@ DEGENESIS.calibers = {
   rifleBarrel: "TYPES.Ammo.rifleBarrel",
   cartridge: "TYPES.Ammo.cartridge",
   grenade: "TYPES.Ammo.grenade",
-  missle: "TYPES.Ammo.missle",
+  missile: "TYPES.Ammo.missile",
   fragger: "TYPES.Ammo.fragger",
   blackpowder: "TYPES.Ammo.blackpowder",
   leadbullet: "TYPES.Ammo.leadbullet",

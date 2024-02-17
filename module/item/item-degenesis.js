@@ -24,7 +24,7 @@ export class DegenesisItem extends Item {
     }
 
     if (this.type == "phenomenon") {
-      if (!this.system.rapture) this.system.rapture = "genric";
+      if (!this.system.rapture) this.system.rapture = "generic";
     }
 
     // Force undroppable transportation items to not be dropped

@@ -81,7 +81,7 @@
   "TYPES.Ammo.rifleBarrel": "CALIBER 12 (Rifle barrel ammo)",
   "TYPES.Ammo.cartridge": "Cartridge",
   "TYPES.Ammo.grenade": "Grenade",
-  "TYPES.Ammo.missle": "Missle",
+  "TYPES.Ammo.missile": "Missle",
   "TYPES.Ammo.fragger": "Fragger Round",
   "TYPES.Ammo.blackpowder": "Black Powder",
   "TYPES.Ammo.leadbullet": "Lead Bullet",
