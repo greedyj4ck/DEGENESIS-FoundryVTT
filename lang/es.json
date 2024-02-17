@@ -39,6 +39,7 @@
   "UI.UsedSporeModifierNotification": "Se ha usado el modificador a la acción según Infestación por Esporas",
   "UI.OverloadTooBig": "La sobrecarga es mayor que el valor actual de Infestación de Esporas",
   "UI.Roll": "Tirada",
+  "UI.CannotRollPassive": "No se pueden hacer tiradas de Defensa Pasiva",
 
   "UI.D": "D",
   "UI.S": "E",
@@ -563,9 +564,9 @@
   "DGNS.Rapture": "Éxtasis",
   "DGNS.Biokinetics": "Bioquinéticos",
   "DGNS.Dushani": "Dusaníes",
-  "DGNS.Leviathans": "Leviatánicos",
+  "DGNS.Leviathans": "Leviatanes",
   "DGNS.Pheromancers": "Feromantes",
-  "DGNS.Pregnoctics": "Pregnósticos",
+  "DGNS.Pregnoctics": "Pregnócticos",
   "DGNS.Psychokinetics": "Psicoquinéticos",
 
   "DGNS.SwarmStrength": "Fuerza de enjambre",

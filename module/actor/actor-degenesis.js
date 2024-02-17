@@ -1244,7 +1244,15 @@ export class DegenesisActor extends Actor {
       rollData.triggerModifier = dialogData.prefilled.triggerModifier;
     }
 
-    if (rollData.overload > this.condition.spore.value) {
+    if (rollData.overload < 0) {
+      rollData.overload = 0;
+    }
+
+    if (
+      rollData.overload > this.condition.spore.value ||
+      this.condition.spore.value - rollData.overload <
+        this.condition.spore.permanent
+    ) {
       ui.notifications.notify(game.i18n.localize("UI.OverloadTooBig"));
       return;
     }

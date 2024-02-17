@@ -39,6 +39,7 @@
   "UI.UsedSporeModifierNotification": "Modificateur d'action de dépense de spore utilisé",
   "UI.OverloadTooBig": "La surcharge est plus grande que la valeur actuelle de sporulation",
   "UI.Roll": "Lancer",
+  "UI.CannotRollPassive": "Les jets de défense passive ne peuvent pas être effectués.",
 
   "UI.D": "D",
   "UI.S": "S",

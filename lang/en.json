@@ -39,6 +39,7 @@
   "UI.UsedSporeModifierNotification": "Used Spore Spend Action Modifier",
   "UI.OverloadTooBig": "Overload is bigger than current spore infestation value",
   "UI.Roll": "Roll",
+  "UI.CannotRollPassive": "Passive Defense rolls cannot be made",
 
   "UI.D": "D",
   "UI.S": "S",
@@ -81,7 +82,7 @@
   "TYPES.Ammo.rifleBarrel": "CALIBER 12 (Rifle barrel ammo)",
   "TYPES.Ammo.cartridge": "Cartridge",
   "TYPES.Ammo.grenade": "Grenade",
-  "TYPES.Ammo.missile": "Missle",
+  "TYPES.Ammo.missile": "Missile",
   "TYPES.Ammo.fragger": "Fragger Round",
   "TYPES.Ammo.blackpowder": "Black Powder",
   "TYPES.Ammo.leadbullet": "Lead Bullet",

@@ -39,6 +39,7 @@
   "UI.UsedSporeModifierNotification": "Versporungs-Aktionsmodifikator verwendet",
   "UI.OverloadTooBig": "Überladung ist höher als aktuelle Versporungsstufe",
   "UI.Roll": "Roll",
+  "UI.CannotRollPassive": "Passive Verteidigungswürfe können nicht durchgeführt werden.",
 
   "UI.D": "W",
   "UI.S": "E",

@@ -39,6 +39,7 @@
   "UI.UsedSporeModifierNotification": "Utilizzata la Spora nel Modificatore Azione",
   "UI.OverloadTooBig": "Il sovraccarico è più grande del valore di Infestazione Spora corrente",
   "UI.Roll": "Tiro",
+  "UI.CannotRollPassive": "Non è possibile effettuare tiri di Difesa passiva.",
 
   "UI.D": "D",
   "UI.S": "S",
