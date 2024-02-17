@@ -1,0 +1,149 @@
+.app.window-app.degenesis.sheet.item .item-phenomenon {
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: #fff;
+
+  overflow-y: hidden;
+  background: url(../ui/black_01.jpg);
+  background-color: #000 !important;
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: $sans-serif-content-font;
+  color: white;
+  font-weight: 300;
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+  input {
+    color: $text-white;
+  }
+
+  .editor-menu {
+    color: $text-white;
+  }
+  i {
+    color: $text-white;
+  }
+
+  div,
+  textarea,
+  input {
+    &::-webkit-scrollbar {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar:hover::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      border-radius: 0px;
+      background-color: white;
+    }
+
+    &::-webkit-scrollbar-track {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      background-image: url("../images/scrolltrack.png");
+      background-position: center;
+      background-repeat: repeat-y;
+      border-radius: 0px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: inline-block;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-corner {
+      display: none;
+    }
+
+    &::-webkit-resizer {
+      display: none;
+    }
+  }
+
+  input,
+  textarea {
+    color: var(--text-white);
+  }
+
+  input {
+    border: none;
+    border-bottom: 1px solid transparent;
+    text-align: center;
+    font-size: 16px;
+
+    &:hover {
+      box-shadow: none;
+      border-bottom: 1px solid var(--grey-160);
+      transition: border-color 0.2s linear;
+    }
+
+    &:focus {
+      box-shadow: none;
+      border-bottom: 1px solid var(--degenesis-red);
+      transition: border-color 0.3s linear;
+    }
+  }
+
+  .sh-body {
+    color: white;
+  }
+
+  .sh-field {
+    .field-input {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+
+      border: 0;
+
+      &:hover {
+        border: 0;
+      }
+    }
+    select {
+      text-transform: uppercase;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .square.little {
+    min-width: 7px;
+    margin-top: 1px;
+    border: $line-stroke-width solid $line-stroke-color;
+  }
+
+  .img-frame {
+    background-image: url(../images/character\ frame\ white.svg);
+  }
+
+  .specialty-container {
+    .item-summary {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+
+    &.rules {
+      flex: 1;
+      textarea {
+        height: 100%;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

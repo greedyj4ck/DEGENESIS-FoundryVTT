@@ -1,3 +1,25 @@
+# **CHANGELOG 0.6.2 (17.02.24)**
+
+This will be final major release on Foundry V11 (0.7 planned for V12 release).
+
+> **This update contains heavy changes to code, data structures, application behaviour etc, which are not final and may change in a future. Before migrating your world to newest version, please create a backup using Foundry's built-in backup system.**
+
+> Minimum Foundry version: **11.311** (with backup features)
+> Recommended Foundry version: **11.315**
+
+## New Features
+
+- Aberrant character sheet (similar in design to NPC and From Hell)
+- New item type: **Phenomenon** (with compendium)
+- Added some acronyms to translation strings (dice, triggers, sucesses - feature will be expanded on in the next release)
+
+## Fixes
+
+- Loading ammo issues
+- Encumbrance penalty now works while using arsenal
+- Windows will now remember positions during editing of items on sheets
+- Distance value of weapons is now correct for numerous sheets
+
 # **CHANGELOG** 0.6.1.2 (28.10.2023)
 
 This is the last patch for 0.6.1 version - next fixes will be introduced in 0.6.2 or 0.7 for Foundry V12.

@@ -1,11 +1,13 @@
 /* UNIVERSAL LAYOUT STYLES FOR ALL SHEETS */
 
 // FORM FLEX
+
 .form-flex {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   overflow: hidden;
+  padding: 8px 8px 8px 8px;
 }
 
 .item-controls {

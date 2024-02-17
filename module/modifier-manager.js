@@ -100,10 +100,14 @@ export class ModifierManager {
       actor.system.general.encumbrance &&
       actor.system.general.encumbrance.current >
         actor.system.general.encumbrance.max
-    )
-      this.action.D -=
+    ) {
+      let penalty =
         actor.system.general.encumbrance.current -
         actor.system.general.encumbrance.max;
+
+      this.action.D -= penalty;
+      // this.attack.D -= penalty;
+    }
   }
 
   /**
@@ -113,7 +117,7 @@ export class ModifierManager {
    * @param {String} use Some specifiec, "attack", "defense", etc
    */
 
-  forDialog(type, skill = "none", use) {
+  forDialog(type, skill = "none", use, phenomenon = null) {
     let prefilled = {
       difficulty: 0,
       diceModifier: 0,
@@ -130,6 +134,11 @@ export class ModifierManager {
       // Sonic attacks have no intrinsic difficulty (always are defended mentally), a simple success should suffice
       prefilled.difficulty = 1;
 
+    if (type == "phenomenon" && phenomenon) {
+      prefilled.overload = 0;
+      prefilled.difficulty = phenomenon.level;
+    }
+
     for (let modifier in this) {
       let useModifier = false;
       if (
@@ -137,7 +146,8 @@ export class ModifierManager {
         type != "weapon" &&
         type != "dodge" &&
         type != "mentalDefense" &&
-        type != "initiative"
+        type != "initiative" &&
+        type != "phenomenon"
       ) {
         useModifier = true;
       } else if (modifier.includes("attr:")) {
@@ -169,6 +179,7 @@ export class ModifierManager {
       successModifier: 0,
       triggerModifier: 0,
     };
+
     for (let modifier in this) {
       let useModifier = false;
       if (

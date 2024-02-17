@@ -6,9 +6,9 @@
 @import "items/item-weapon";
 @import "items/item-transportation";
 @import "items/item-attack";
+@import "items/item-phenomenon";
 
 // MAIN CSS SELECTOR
-
 .app.window-app.degenesis.sheet.item {
   // LOCAL VARIABLES
   .line-stroke {
@@ -16,9 +16,18 @@
     stroke-width: $line-stroke-width;
   }
 
+  .window-content {
+    padding: 0;
+  }
+
+  .form-flex {
+    background-color: white;
+  }
+
   min-width: 550px;
   min-height: 535px;
   overflow: hidden;
+
   // SCROLLBAR
   ::-webkit-scrollbar,
   ::-webkit-scrollbar-thumb,

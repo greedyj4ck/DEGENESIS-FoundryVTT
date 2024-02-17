@@ -27,12 +27,14 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
 @import "components/squares";
 @import "components/chatMessage"; // MOVED _CHAT.SCSS  into _CHATMESSAGE.SCSS
 @import "components/journals";
+@import "components/editor"; // PROSEMIRROR EDITOR
 
 // APPS
 @import "apps/sheet-configure";
 @import "apps/actor-configure";
 @import "apps/items-qualities";
 @import "apps/rolldialog";
+@import "apps/rollPhenomenonDialog";
 @import "apps/proseMirror";
 
 // SHEET DESIGNS
@@ -42,6 +44,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
 @import "sheets/character";
 @import "sheets/fromHell";
 @import "sheets/npc";
+@import "sheets/aberrant";
 
 // ITEM SHEETS
 @import "sheets/item";

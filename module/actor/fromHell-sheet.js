@@ -32,7 +32,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
           initial: "main",
         },
       ],
-      scrollY: [".relationship", ".tab-content"],
+      scrollY: [".relationship", ".tab-content", "div.combat-container"],
     });
   }
 
@@ -255,6 +255,11 @@ export class DegenesisFromHellSheet extends ActorSheet {
     let skipDialog = event.ctrlKey;
     let use = $(event.currentTarget).attr("data-use");
     let defense = this.actor.items.get(defenseId);
+
+    if (defense.system.group === "passive") {
+      ui.notifications.notify(game.i18n.localize("UI.CannotRollPassive"));
+      return;
+    }
 
     let { rollResults, cardData } = await this.actor.rollDefense(defense, {
       use,

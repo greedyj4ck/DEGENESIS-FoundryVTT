@@ -1,0 +1,72 @@
+<div class="titlebar-container">
+
+    <div class="square little left"></div>
+    <svg class="title-line">
+        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <div class="title-line-header">{{localize "DGNS.Attributes"}} & {{localize "DGNS.Skills"}}</div>
+    <svg class="title-line">
+        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <div class="square little right">
+    </div>
+
+</div>
+
+
+<!-- ATTRIBUTE TABS -->
+<div class="attribute-tab-container">
+    {{#each attributeSkillGroups as |group g|}}
+    <!-- Attribute group -->
+    <div class="attribute-skill-group">
+
+        <div class="attribute-value" data-target="system.attributes.{{g}}.value">
+            <h3>{{group.label}}</h3>
+
+            <div class="attribute-input">
+                <input type="number" name="data.attributes.{{g}}.value" value="{{group.value}}" />
+
+            </div>
+            <a class="btn btn-add">+</a>
+            <a class="btn btn-remove">-</a>
+        </div>
+
+        <div class="skill-list">
+            {{#each group.skills as |skill sk|}}
+            <!-- advantage -->
+            <div data-target="system.skills.{{sk}}.value" class="skill">
+                <!-- background-name -->
+                {{#if skill.unused}}
+                <a class="skill-name unused" data-target="{{sk}}">{{skill.label}} <span
+                        class="skill-base-dice">({{baseSkillDie skill group
+                        }})</span></a>
+                {{else}}
+                <a class="skill-name" data-target="{{sk}}">{{skill.label}} <span class="skill-base-dice">
+                        ({{baseSkillDie skill group
+                        }})</span></a>
+                {{/if}}
+
+                <div class="skill-total-value">
+                    <input type="number" name="data.skills.{{sk}}.value" value="{{skill.value}}" />
+                </div>
+
+                <a class="btn btn-add">+</a>
+                <a class="btn btn-remove">-</a>
+
+
+            </div>
+            {{/each}}
+        </div>
+
+
+
+
+
+    </div>
+    {{/each}}
+</div>
+
+
+<div class="footer-diamond">
+    <div class="square little"></div>
+</div>

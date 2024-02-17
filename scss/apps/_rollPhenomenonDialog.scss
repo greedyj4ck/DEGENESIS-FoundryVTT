@@ -1,0 +1,329 @@
+/* APPS: _ROLLDIALOG.SCSS */
+
+.app.window-app.roll-phenomenon-dialog {
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: #fff;
+
+  min-width: 600px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: 50% 0%;
+
+  div,
+  textarea,
+  input {
+    &::-webkit-scrollbar {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar:hover::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      border-radius: 0px;
+      background-color: white;
+    }
+
+    &::-webkit-scrollbar-track {
+      width: 4px;
+      border: none;
+      background-color: transparent;
+      background-image: url("../images/scrolltrack.png");
+      background-position: center;
+      background-repeat: repeat-y;
+      border-radius: 0px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: inline-block;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-corner {
+      display: none;
+    }
+
+    &::-webkit-resizer {
+      display: none;
+    }
+  }
+
+  select {
+    color: #fff !important;
+  }
+
+  button {
+    border: 1px solid var(--degenesis-red);
+  }
+  .window-content {
+    background: url(../ui/black_01.jpg) !important;
+    background-color: #000 !important;
+    overflow: hidden;
+    padding-top: 0;
+    height: 500px;
+
+    color: white;
+  }
+
+  .dialog-bonuses {
+    display: flex;
+  }
+
+  .title {
+    align-self: center;
+    width: 99%;
+    margin: -8px 1px 0 1px;
+  }
+
+  .square.little {
+    align-self: center;
+    margin-bottom: 1px;
+    height: 7px;
+    width: 7px;
+    border: $line-stroke-width solid $line-stroke-color;
+
+    &.left {
+      margin-left: 2px;
+      margin-right: 0px;
+    }
+    &.right {
+      margin-left: 0px;
+      margin-right: 2px;
+    }
+  }
+  .title-line {
+    display: flex;
+    background-size: 100%;
+    flex: 1;
+    color: #fff;
+  }
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+  .container {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+
+    .left-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 50%);
+      overflow: hidden;
+
+      .description-container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .description {
+          display: flex;
+          flex: 1;
+          overflow: auto;
+          font-size: 11px;
+          text-align: justify;
+          padding: 3px;
+        }
+      }
+      .rules-container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        .rules {
+          padding: 3px;
+          overflow: auto;
+          font-size: 11px;
+          text-align: justify;
+        }
+      }
+    }
+    .right-section {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .middle-name {
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-end;
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: $sans-serif-content-font;
+    border: 2px solid transparent;
+    font-weight: 800 !important;
+  }
+
+  .body-line {
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #fff;
+  }
+
+  .dialog-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    color: #fff;
+    margin-bottom: 5px;
+
+    > * {
+      margin: 0 5px 3px 5px;
+      display: flex;
+      justify-content: space-between;
+      width: 97%;
+    }
+  }
+
+  .dialog-input {
+    width: 10%;
+    border-radius: 0px;
+    border: 1px solid var(--degenesis-red);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 50%;
+  }
+
+  .input-label {
+    width: 100%;
+  }
+
+  .custom-modifier-section {
+    text-align: center;
+    padding-right: 5px;
+    flex: 1;
+  }
+
+  .custom-modifiers {
+    width: 100%;
+    height: -webkit-fill-available;
+    overflow: auto;
+    border: 1px solid var(--degenesis-red);
+    margin-bottom: 3px;
+  }
+
+  .secondary-selection {
+    width: 100%;
+    justify-content: center;
+    margin: 5px;
+    text-align: center;
+  }
+
+  .custom-modifiers > * {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  div.custom-modifier-header > label {
+    padding-right: 10px;
+  }
+
+  .custom-modifier-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-start;
+    padding-right: 5px;
+    padding-bottom: 3px;
+  }
+
+  .custom-modifiers-reset-button {
+    font-size: 10px;
+    padding: 0px 10px 0px 10px;
+    margin: 0 0 0 0;
+    width: auto;
+    height: auto;
+  }
+
+  .dialog-button {
+    margin-top: 5px;
+  }
+
+  .dialog-bonuses-modifiers {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 5px;
+  }
+
+  .dialog-static-modifiers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 3px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dialog-total-modifiers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .type-modifier-header {
+    width: 50%;
+    text-align: right;
+    padding-right: 10px;
+    border-right: 1px solid #000;
+  }
+
+  .type-modifier-values {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: center;
+    width: 50%;
+    padding-left: 10px;
+
+    > div {
+      padding-right: 20px;
+    }
+  }
+}

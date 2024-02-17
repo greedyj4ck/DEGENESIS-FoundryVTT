@@ -107,6 +107,10 @@
     }
   }
 
+  .scrollable {
+    scrollbar-width: unset !important;
+  }
+
   h1 {
     font-weight: 600;
     border: none;

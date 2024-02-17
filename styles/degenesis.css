@@ -445,11 +445,25 @@ a:hover {
   opacity: 1;
 }
 
+.directory-list {
+  scrollbar-width: unset !important;
+}
+
+.app.window-app .window-content {
+  background: none;
+  background-color: #fff;
+}
+
 .app.window-app .app.degenesis.sheet {
   border-radius: 0px;
 }
+.app.window-app .app.degenesis.sheet .window-content {
+  font-family: "Crimson Pro";
+  background: none;
+  background-color: white;
+  padding: 5px;
+}
 .app.window-app .window-content {
-  background: white;
   font-family: "Crimson Pro";
 }
 .app.window-app .window-header {
@@ -669,7 +683,79 @@ a:hover {
           box-shadow: none;
 }
 
+.jump-to-bottom {
+  font-family: "Avenir";
+  font-size: 12px;
+  font-weight: 800;
+  color: rgb(154, 12, 19);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.jump-to-bottom > a {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  padding: 10px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 /* COMPONENTS: _SCROLLBAR.SCSS */
+:root {
+  scrollbar-width: unset !important;
+  scrollbar-color: unset !important;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+::-webkit-scrollbar-button {
+  display: inline-block;
+}
+
+::-webkit-scrollbar-track-piece {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+::-webkit-resizer {
+  display: none;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   border: none;
@@ -1238,6 +1324,9 @@ a.diamond:hover .square.red.perma {
           box-shadow: none;
   border-bottom: 1px solid var(--degenesis-red);
 }
+.sheet.journal-entry .journal-entry-content .scrollable {
+  scrollbar-width: unset !important;
+}
 .sheet.journal-entry .journal-entry-content h1 {
   font-weight: 600;
   border: none;
@@ -1312,6 +1401,10 @@ a.diamond:hover .square.red.perma {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
   padding: 5px;
+}
+
+.prosemirror .editor-container .editor-content {
+  scrollbar-width: unset;
 }
 
 .app.window-app.form.sheet-config select {
@@ -1652,6 +1745,419 @@ a.diamond:hover .square.red.perma {
   padding-right: 20px;
 }
 
+/* APPS: _ROLLDIALOG.SCSS */
+.app.window-app.roll-phenomenon-dialog {
+  min-width: 600px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 0%;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar-thumb,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar-thumb,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: white;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar-track,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar-track,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar-button,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar-button,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar-button {
+  display: inline-block;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar-track-piece,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar-track-piece,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar-track-piece {
+  display: none;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar-corner,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar-corner,
+.app.window-app.roll-phenomenon-dialog input::-webkit-scrollbar-corner {
+  display: none;
+}
+.app.window-app.roll-phenomenon-dialog div::-webkit-resizer,
+.app.window-app.roll-phenomenon-dialog textarea::-webkit-resizer,
+.app.window-app.roll-phenomenon-dialog input::-webkit-resizer {
+  display: none;
+}
+.app.window-app.roll-phenomenon-dialog select {
+  color: #fff !important;
+}
+.app.window-app.roll-phenomenon-dialog button {
+  border: 1px solid var(--degenesis-red);
+}
+.app.window-app.roll-phenomenon-dialog .window-content {
+  background: url(../ui/black_01.jpg) !important;
+  background-color: #000 !important;
+  overflow: hidden;
+  padding-top: 0;
+  height: 500px;
+  color: white;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-bonuses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.app.window-app.roll-phenomenon-dialog .title {
+  -ms-flex-item-align: center;
+      align-self: center;
+  width: 99%;
+  margin: -8px 1px 0 1px;
+}
+.app.window-app.roll-phenomenon-dialog .square.little {
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-bottom: 1px;
+  height: 7px;
+  width: 7px;
+  border: 1.5px solid #fff;
+}
+.app.window-app.roll-phenomenon-dialog .square.little.left {
+  margin-left: 2px;
+  margin-right: 0px;
+}
+.app.window-app.roll-phenomenon-dialog .square.little.right {
+  margin-left: 0px;
+  margin-right: 2px;
+}
+.app.window-app.roll-phenomenon-dialog .title-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-size: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #fff;
+}
+.app.window-app.roll-phenomenon-dialog .line-stroke {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.app.window-app.roll-phenomenon-dialog .container {
+  width: 100%;
+  max-height: 500px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 0px;
+}
+.app.window-app.roll-phenomenon-dialog .container .left-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 50%);
+  overflow: hidden;
+}
+.app.window-app.roll-phenomenon-dialog .container .left-section .description-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+.app.window-app.roll-phenomenon-dialog .container .left-section .description-container .description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow: auto;
+  font-size: 11px;
+  text-align: justify;
+  padding: 3px;
+}
+.app.window-app.roll-phenomenon-dialog .container .left-section .rules-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+.app.window-app.roll-phenomenon-dialog .container .left-section .rules-container .rules {
+  padding: 3px;
+  overflow: auto;
+  font-size: 11px;
+  text-align: justify;
+}
+.app.window-app.roll-phenomenon-dialog .container .right-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.app.window-app.roll-phenomenon-dialog .middle-name {
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  font-size: 14px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  text-align: center;
+  font-family: "Avenir";
+  border: 2px solid transparent;
+  font-weight: 800 !important;
+}
+.app.window-app.roll-phenomenon-dialog .body-line {
+  -ms-flex-item-align: start;
+      align-self: start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-inputs {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-inputs > * {
+  margin: 0 5px 3px 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 97%;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-input {
+  width: 10%;
+  border-radius: 0px;
+  border: 1px solid var(--degenesis-red);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 50%;
+}
+.app.window-app.roll-phenomenon-dialog .input-label {
+  width: 100%;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifier-section {
+  text-align: center;
+  padding-right: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifiers {
+  width: 100%;
+  height: -webkit-fill-available;
+  overflow: auto;
+  border: 1px solid var(--degenesis-red);
+  margin-bottom: 3px;
+}
+.app.window-app.roll-phenomenon-dialog .secondary-selection {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 5px;
+  text-align: center;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifiers > * {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.app.window-app.roll-phenomenon-dialog div.custom-modifier-header > label {
+  padding-right: 10px;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifier-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  padding-right: 5px;
+  padding-bottom: 3px;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifiers-reset-button {
+  font-size: 10px;
+  padding: 0px 10px 0px 10px;
+  margin: 0 0 0 0;
+  width: auto;
+  height: auto;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-button {
+  margin-top: 5px;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-bonuses-modifiers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding-bottom: 5px;
+}
+.app.window-app.roll-phenomenon-dialog .dialog-static-modifiers {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  padding-bottom: 3px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.app.window-app.roll-phenomenon-dialog .dialog-total-modifiers {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+.app.window-app.roll-phenomenon-dialog .type-modifier-header {
+  width: 50%;
+  text-align: right;
+  padding-right: 10px;
+  border-right: 1px solid #000;
+}
+.app.window-app.roll-phenomenon-dialog .type-modifier-values {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 50%;
+  padding-left: 10px;
+}
+.app.window-app.roll-phenomenon-dialog .type-modifier-values > div {
+  padding-right: 20px;
+}
+
 /* Styling proseMirror editor */
 .editor.prosemirror {
   margin-top: 2px;
@@ -1697,6 +2203,7 @@ a.diamond:hover .square.red.perma {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   overflow: hidden;
+  padding: 8px 8px 8px 8px;
 }
 
 .item-controls {
@@ -2532,7 +3039,7 @@ a.diamond:hover .square.red.perma {
   overflow: hidden;
 }
 .app.window-app.degenesis.sheet.actor.character .window-content {
-  padding: 5px;
+  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3520,7 +4027,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 3;
           flex: 3;
   border: 1px solid var(--grey-70);
-  margin-left: 2px;
+  margin-left: 1px;
   margin-bottom: 0px;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -3717,7 +4224,7 @@ a.diamond:hover .square.red.perma {
   border: 1.5px solid #fff;
 }
 .app.window-app.degenesis.sheet.fromHell .window-content {
-  padding: 5px;
+  padding: 0;
   overflow-y: hidden;
   background: rgb(32, 32, 32);
   background: url(../ui/fromHell_BG.jpg);
@@ -4458,7 +4965,7 @@ a.diamond:hover .square.red.perma {
   color: rgb(255, 255, 255);
 }
 .app.window-app.degenesis.sheet.npc .window-content {
-  padding: 5px;
+  padding: 0;
   overflow-y: hidden;
   background: rgb(32, 32, 32);
   background: url(../ui/npc_BG.jpg);
@@ -5384,6 +5891,1016 @@ a.diamond:hover .square.red.perma {
   grid-area: 1/1/1/5;
 }
 
+.app.window-app.degenesis.sheet.aberrant {
+  min-width: 720px;
+  min-height: 720px;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: white;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-button {
+  display: inline-block;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-track-piece {
+  display: none;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-corner {
+  display: none;
+}
+.app.window-app.degenesis.sheet.aberrant div::-webkit-resizer,
+.app.window-app.degenesis.sheet.aberrant textarea::-webkit-resizer,
+.app.window-app.degenesis.sheet.aberrant input::-webkit-resizer {
+  display: none;
+}
+.app.window-app.degenesis.sheet.aberrant input {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant .editor-menu {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant i {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant .line-stroke {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.aberrant .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.aberrant .background-chakra {
+  position: absolute;
+  top: -50px;
+  width: 70%;
+  height: 70%;
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-clip-path: inset(80px 0px 0px 0px);
+          clip-path: inset(80px 0px 0px 0px);
+}
+.app.window-app.degenesis.sheet.aberrant .background-chakra img {
+  border: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-filter: invert(100);
+          filter: invert(100);
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)));
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+          mask-image: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)));
+          mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+  z-index: 0;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-header {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-header > div:not(:first-child) {
+  z-index: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-titlebar .title-line {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-titlebar .middle-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+.app.window-app.degenesis.sheet.aberrant .block-title h3 {
+  margin-top: 2px;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs {
+  margin-top: 6px;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs > * {
+  z-index: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs .item {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs .item:hover {
+  background-color: rgb(237, 29, 39);
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs .item.active {
+  background-color: rgb(237, 29, 39);
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant .tab[data-tab].active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  overflow: hidden;
+}
+.app.window-app.degenesis.sheet.aberrant .tab-content-container {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+}
+.app.window-app.degenesis.sheet.aberrant .window-content {
+  padding: 0;
+  background: rgb(32, 32, 32);
+  background: url(../ui/aberrant_BG.jpg);
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: "Avenir";
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.aberrant .header-content-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  padding: 5px;
+  gap: 10px;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  gap: 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .header-content-container .img-frame {
+  background-image: url(../images/character\ frame\ white.svg);
+}
+.app.window-app.degenesis.sheet.aberrant .header-content-column-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.aberrant .header-content-column-container.description {
+  height: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .header-content-image-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .field-name {
+  margin-top: 0px;
+}
+.app.window-app.degenesis.sheet.aberrant .field-name .input-name {
+  width: calc(20ch + 10px);
+  color: var(--text-white);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 2px;
+  font-family: "Avenir";
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .label {
+  margin-left: 4px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+  border: 1.7px solid #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .btn:hover {
+  color: rgb(237, 29, 39);
+  border: 1.7px solid #fff;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats {
+  margin-left: auto;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  gap: 2px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats > div {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .current-value {
+  width: 20px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .current-value .current-ego {
+  display: inline-block;
+  width: 20px;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input {
+  width: 22px;
+  height: 100%;
+  font-family: "Avenir";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-bottom: 1px solid transparent;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input.perma {
+  color: var(--grey-160);
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input:hover {
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, minmax(35px, 1fr));
+  grid-row-gap: 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container select {
+  width: 100%;
+  font-family: "Avenir";
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border: none;
+  z-index: 10;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container select option {
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div {
+  max-height: 40px;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div:after {
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  height: 1px;
+  width: 0%;
+  background-color: rgb(255, 255, 255);
+  display: block;
+  content: "";
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div:before {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  height: 1px;
+  width: 0%;
+  background-color: rgb(255, 255, 255);
+  display: block;
+  content: "";
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  z-index: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div:hover:after {
+  left: 0%;
+  width: 100%;
+  background-color: rgb(237, 29, 39);
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div:hover:before {
+  right: 0%;
+  width: 100%;
+  background-color: rgb(237, 29, 39);
+}
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div > img {
+  aspect-ratio: 1/1;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 10%;
+  -webkit-filter: invert(100);
+          filter: invert(100);
+  border: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant {
+  font-family: "Avenir";
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border: none;
+  z-index: 10;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant::-webkit-input-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant::-moz-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  -moz-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:-ms-input-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  -ms-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant::-ms-input-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  -ms-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant::placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.6;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:hover::-webkit-input-placeholder {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:hover::-moz-placeholder {
+  opacity: 1;
+  -moz-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:hover:-ms-input-placeholder {
+  opacity: 1;
+  -ms-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:hover::-ms-input-placeholder {
+  opacity: 1;
+  -ms-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .input-variant:hover::placeholder {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container > div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .label {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.2ch;
+  text-align: center;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .dice-value {
+  margin-bottom: 5px;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .spend-ego {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .spend-ego .label {
+  font-size: 10px;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .spend-ego .diamond-row {
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .spend-ego .diamond-row .diamond {
+  margin: 0px 1px;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container .armor-name input {
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-stats-container input {
+  width: 30px;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container .dice-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 0px;
+          flex: 0 1 0;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container .config-input {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container .config-label {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .config-input-container input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-tab-container {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2fr;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 30px 15px 15px;
+  grid-template-rows: 1fr;
+  gap: 3px;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .btn {
+  width: 15px;
+  height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  border: 1.7px solid #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .btn:hover {
+  color: rgb(237, 29, 39);
+  border: 1.7px solid #fff;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value h3 {
+  font-family: "Avenir";
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border: none;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .attribute-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input {
+  width: 30px;
+  font-size: 20px;
+  font-family: "Avenir";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.1em;
+  border: none;
+  text-align: center;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 30px 15px 15px;
+  grid-template-rows: 1fr;
+  gap: 3px;
+  color: var(--grey-220);
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill a {
+  font-family: "Avenir";
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1ch;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill input {
+  width: 30px;
+  font-size: 14px;
+  font-family: "Avenir";
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.1em;
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill input:hover {
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill .btn {
+  width: 15px;
+  height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  border: 1.7px solid #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill .btn:hover {
+  color: rgb(237, 29, 39);
+  border: 1.7px solid #fff;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill .skill-base-dice {
+  margin-left: 2px;
+  color: var(--grey-160);
+}
+.app.window-app.degenesis.sheet.aberrant .item-summary {
+  border: 1px solid var(--degenesis-red);
+  background-color: #000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.app.window-app.degenesis.sheet.aberrant .item-summary .tag {
+  border: 1px solid var(--grey-70);
+  background: black;
+  margin: 2px 5px;
+  display: inline-block;
+  padding: 2px 7px;
+}
+.app.window-app.degenesis.sheet.aberrant .phenomena-container {
+  padding: 0px 5px 5px 5px;
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .section-header-container {
+  /*   &.phenomenon {
+    //margin-top: 10px;
+  } */
+}
+.app.window-app.degenesis.sheet.aberrant .section-header-container.defense {
+  margin-top: 10px;
+}
+.app.window-app.degenesis.sheet.aberrant .section-header-legends {
+  border-bottom: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.aberrant .section-header-legends .legend-name {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+.app.window-app.degenesis.sheet.aberrant .section-legend-grid.attack {
+  display: grid;
+  grid-template-columns: 2fr 0.6fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-legend-grid.defense {
+  display: grid;
+  grid-template-columns: 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-legend-grid.phenomenon {
+  display: grid;
+  grid-template-columns: 1fr 75px 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack {
+  display: grid;
+  grid-template-columns: 190px 2fr 0.6fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .attack-dice {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .damage {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .distance {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .item-summary {
+  grid-area: 2/1/2/6;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.defense {
+  display: grid;
+  grid-template-columns: 190px 1fr 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.defense .item-summary {
+  grid-area: 2/1/2/5;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.defense .type {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.defense .defense-dice {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.defense :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.phenomenon {
+  display: grid;
+  grid-template-columns: 190px 1fr 75px 75px 65px;
+  justify-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.phenomenon .rapture {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.phenomenon .item-summary {
+  grid-area: 2/1/2/6;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.phenomenon :first-child {
+  justify-self: flex-start;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid .item-controls {
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid .weapon-name,
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid .phenomenon-name {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1ch;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid .phenomenon-activate {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1ch;
+  text-transform: uppercase;
+}
+.app.window-app.degenesis.sheet.aberrant .combat-container {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  padding: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container > :first-child {
+  margin-top: 0;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .inventory-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .inventory-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .inventory-group-entry-grid > :first-child {
+  grid-column: span 2;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-grid > div {
+  grid-area: unset;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-grid > div:nth-child(2) {
+  grid-column: 4;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-entry-grid > :first-child {
+  grid-area: 1/1/1/5;
+}
+
 /* SHEET: _ITEM.SCSS */
 /* LEGACY ITEM SPECIFIC STYLES */
 .item-legacy .profile-img {
@@ -5485,6 +7002,146 @@ a.diamond:hover .square.red.perma {
   margin-top: 10px;
 }
 
+.app.window-app.degenesis.sheet.item .item-phenomenon {
+  overflow-y: hidden;
+  background: url(../ui/black_01.jpg);
+  background-color: #000 !important;
+  background-size: cover;
+  background-position: 50% 0%;
+  font-family: "Avenir";
+  color: white;
+  font-weight: 300;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .line-stroke {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon input {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .editor-menu {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon i {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar:hover::-webkit-scrollbar {
+  width: 8px;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar-thumb,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar-thumb {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0px;
+  background-color: white;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar-track,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar-track {
+  width: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../images/scrolltrack.png");
+  background-position: center;
+  background-repeat: repeat-y;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar-button,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar-button {
+  display: inline-block;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar-track-piece,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar-track-piece {
+  display: none;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-scrollbar-corner,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-scrollbar-corner {
+  display: none;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon div::-webkit-resizer,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea::-webkit-resizer,
+.app.window-app.degenesis.sheet.item .item-phenomenon input::-webkit-resizer {
+  display: none;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon input,
+.app.window-app.degenesis.sheet.item .item-phenomenon textarea {
+  color: var(--text-white);
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon input {
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-align: center;
+  font-size: 16px;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon input:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--grey-160);
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 1px solid var(--degenesis-red);
+  -webkit-transition: border-color 0.3s linear;
+  transition: border-color 0.3s linear;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .sh-body {
+  color: white;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .sh-field .field-input {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  border: 0;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .sh-field .field-input:hover {
+  border: 0;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .sh-field select {
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .square.little {
+  min-width: 7px;
+  margin-top: 1px;
+  border: 1.5px solid #fff;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .img-frame {
+  background-image: url(../images/character\ frame\ white.svg);
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .specialty-container .item-summary {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .specialty-container.rules {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.item .item-phenomenon .specialty-container.rules textarea {
+  height: 100%;
+  margin-bottom: 5px;
+}
+
 .app.window-app.degenesis.sheet.item {
   min-width: 550px;
   min-height: 535px;
@@ -5495,6 +7152,12 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.item .line-stroke {
   stroke: var(--grey-70);
   stroke-width: 1px;
+}
+.app.window-app.degenesis.sheet.item .window-content {
+  padding: 0;
+}
+.app.window-app.degenesis.sheet.item .form-flex {
+  background-color: white;
 }
 .app.window-app.degenesis.sheet.item ::-webkit-scrollbar,
 .app.window-app.degenesis.sheet.item ::-webkit-scrollbar-thumb,

@@ -83,9 +83,9 @@
 
         <div class="type-modifier-header">{{localize "UI.StaticModifiers"}}</div>
         <div class="type-modifier-values">
-            <div class="dice-modifiers">{{prefilled.diceModifier}}D</div>
-            <div class="success-modifiers">{{prefilled.successModifier}}S</div>
-            <div class="triggers-modifiers">{{prefilled.triggerModifier}}T</div>
+            <div class="dice-modifiers">{{prefilled.diceModifier}}{{localize "UI.D"}}</div>
+            <div class="success-modifiers">{{prefilled.successModifier}}{{localize "UI.S"}}</div>
+            <div class="triggers-modifiers">{{prefilled.triggerModifier}}{{localize "UI.T"}}</div>
         </div>
 
     </div>
@@ -95,9 +95,12 @@
         <div class="type-modifier-header">{{localize "UI.TotalModifiers"}}</div>
         <div class="type-modifier-values">
 
-            <div id="TotalRollDiceModifier" class="dice-modifiers">{{totalRollModifiers.diceModifier}}D</div>
-            <div id="TotalRollSuccessModifier" class="success-modifiers">{{totalRollModifiers.successModifier}}S</div>
-            <div id="TotalRollTriggerModifier" class="triggers-modifiers">{{totalRollModifiers.triggerModifier}}T</div>
+            <div id="TotalRollDiceModifier" class="dice-modifiers">{{totalRollModifiers.diceModifier}}{{localize
+                "UI.D"}}</div>
+            <div id="TotalRollSuccessModifier" class="success-modifiers">
+                {{totalRollModifiers.successModifier}}{{localize "UI.S"}}</div>
+            <div id="TotalRollTriggerModifier" class="triggers-modifiers">
+                {{totalRollModifiers.triggerModifier}}{{localize "UI.T"}}</div>
 
         </div>
 

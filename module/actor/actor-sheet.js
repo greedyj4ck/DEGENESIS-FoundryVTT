@@ -24,7 +24,14 @@ export class DegenesisActorSheet extends ActorSheet {
           initial: "main",
         },
       ],
-      scrollY: [".relationship", ".tab-content-container"],
+      scrollY: [
+        ".relationship",
+        ".tab-content-container",
+        "div.modifiers-data",
+        "div.complications-data",
+        "div.arsenal-state-container",
+        "div.inventory-list-container",
+      ],
     });
   }
 
@@ -599,7 +606,11 @@ export class DegenesisActorSheet extends ActorSheet {
     let use = $(event.currentTarget).attr("data-use");
     let weapon = this.actor.items.get(weaponId);
 
-    // Add conditional for range weapons without ammo
+    if (weapon.system.mag.current <= 0 && weapon.isRanged && !weapon.isSonic) {
+      weapon.system.mag.current = 0;
+      ui.notifications.error(game.i18n.localize("UI.NoAmmoLeft"));
+      return;
+    }
 
     let { rollResults, cardData } = await this.actor.rollWeapon(weapon, {
       use,

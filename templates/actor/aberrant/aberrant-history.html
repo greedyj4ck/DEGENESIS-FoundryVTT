@@ -1,0 +1,89 @@
+<div class="titlebar-container">
+
+    <div class="square little left"></div>
+    <svg class="title-line">
+        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <div class="title-line-header">{{localize "DGNS.History"}}</div>
+    <svg class="title-line">
+        <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+    </svg>
+    <div class="square little right">
+    </div>
+
+
+</div>
+
+
+<div class="history-tab-container">
+
+
+
+    <div class="history-group biography-group">
+
+        <div class="section-header-container">
+            <div class="section-header-titleblock">
+                <div class="block-title white">
+                    <h3>{{localize "DGNS.Biography"}}</h3>
+                </div>
+                <svg class="tab-start-line" height="20" width="26">
+                    <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                    <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+                </svg>
+            </div>
+
+            <div class="section-header-legends ">
+
+            </div>
+        </div>
+
+
+
+        <div class="fullwidth-editor">
+            {{editor enrichment.system.biography.value target="system.biography" engine="prosemirror" button=true
+            owner=owner editable=editable}}
+        </div>
+
+    </div>
+
+    <!-- * GM Notes  -->
+    {{#if (isGM)}}
+    <div class="history-group gmnotes-group">
+
+
+        <div class="section-header-container">
+            <div class="section-header-titleblock">
+                <div class="block-title white">
+                    <h3>{{localize "DGNS.GMNotes" }}</h3>
+                </div>
+                <svg class="tab-start-line" height="20" width="26">
+                    <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+                    <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+                </svg>
+            </div>
+
+            <div class="section-header-legends ">
+
+            </div>
+        </div>
+
+        <div class="fullwidth-editor">
+            {{editor enrichment.system.gmnotes.value target="system.gmnotes" engine="prosemirror" button=true
+            owner=owner
+            editable=editable}}
+        </div>
+
+    </div>
+
+
+    {{/if}}
+</div>
+
+
+<div class="footer-diamond">
+    <div class="square little"></div>
+    <div class="square little"></div>
+    <div class="square little"></div>
+    <div class="square little"></div>
+    <div class="square little"></div>
+</div>

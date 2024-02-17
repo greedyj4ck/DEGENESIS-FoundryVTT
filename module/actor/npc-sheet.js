@@ -31,12 +31,17 @@ export class DegenesisNPCSheet extends ActorSheet {
           initial: "main",
         },
       ],
-      scrollY: [".relationship", ".tab-content"],
+      scrollY: [
+        ".relationship",
+        ".tab-content",
+        "div.combat-container",
+        "div.advantages-container",
+        "div.inventory-list-container",
+      ],
     });
   }
 
   /* ######## DATA PREPARATION STAGE  ######## */
-
   // Preparing data for Sheet to be displayed
 
   async getData() {
@@ -507,6 +512,11 @@ export class DegenesisNPCSheet extends ActorSheet {
     let skipDialog = event.ctrlKey;
     let use = $(event.currentTarget).attr("data-use");
     let defense = this.actor.items.get(defenseId);
+
+    if (defense.system.group === "passive") {
+      ui.notifications.notify(game.i18n.localize("UI.CannotRollPassive"));
+      return;
+    }
 
     let { rollResults, cardData } = await this.actor.rollDefense(defense, {
       use,

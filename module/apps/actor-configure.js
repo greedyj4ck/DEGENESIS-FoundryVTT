@@ -3,24 +3,21 @@
  * @extends {FormApplication}
  */
 export default class ActorConfigure extends FormApplication {
-
-    /** @override */
-      static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
-          id: "actor-configure",
-        classes: ["degenesis", "actor-configure"],
-        title: game.i18n.localize("DGNS.ConfigureActor"),
-        template: "systems/degenesis/templates/apps/actor-configure.html",
-        closeOnSubmit: true,
-      });
-    }
-
-    constructor(object, options) {
-      super(object, options)
-
-    }
-
-    async _updateObject(event, formData) {
-        this.object.update(formData)
-    }
+  /** @override */
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      id: "actor-configure",
+      classes: ["degenesis", "actor-configure"],
+      title: game.i18n.localize("DGNS.ConfigureActor"),
+      template: "systems/degenesis/templates/apps/actor-configure.html",
+      closeOnSubmit: true,
+    });
   }
+
+  constructor(object, options) {
+    super(object, options);
+  }
+  async _updateObject(event, formData) {
+    this.object.update(formData);
+  }
+}

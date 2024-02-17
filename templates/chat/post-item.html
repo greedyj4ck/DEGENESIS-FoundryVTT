@@ -3,21 +3,21 @@
         <h2>{{item.name}}</h2>
         <img src={{item.img}} class="post-item-img" />
 
-       
+
         {{#if text}}
         <div class="description">
-           
+
             <button type="button" class="button-toggle-description">{{localize "DGNS.Description"}}</button>
 
             <div class="description-text">
                 {{{text}}}
             </div>
-          
+
         </div>
         {{/if}}
 
 
-        
+
         <div class="item-details">
             {{#if item.cult}}
             <h3><b>{{localize "DGNS.Cult"}}</b>: {{item.cult}}</h3>
@@ -76,61 +76,62 @@
             {{/if}}
 
             {{#if item.slotCost}}
-           <h3><b>{{localize "DGNS.SlotCost"}}</b>: {{item.SlotCost}}</h3>
+            <h3><b>{{localize "DGNS.SlotCost"}}</b>: {{item.SlotCost}}</h3>
             {{/if}}
 
             {{#if item.level}}
-           <h3><b>{{localize "DGNS.Level"}}</b>: {{item.level}}</h3>
+            <h3><b>{{localize "DGNS.Level"}}</b>: {{item.level}}</h3>
             {{/if}}
 
             {{#if item.modifyAction}}
-           <h3><b>{{localize "DGNS.Action"}}</b>: {{item.modifyAction}}</h3>
+            <h3><b>{{localize "DGNS.Action"}}</b>: {{item.modifyAction}}</h3>
             {{/if}}
 
             {{#if item.modifyNumber}}
-           <h3><b>{{localize "DGNS.Number"}}</b>: {{item.modifyNumber}}</h3>
+            <h3><b>{{localize "DGNS.Number"}}</b>: {{item.modifyNumber}}</h3>
             {{/if}}
 
             {{#if item.modifyType}}
-           <h3><b>{{localize "DGNS.Type"}}</b>: {{item.modifyType}}</h3>
+            <h3><b>{{localize "DGNS.Type"}}</b>: {{item.modifyType}}</h3>
             {{/if}}
 
             {{#if item.cost}}
-           <h3><b>{{localize "DGNS.Cost"}}</b>: {{item.cost}}</h3>
+            <h3><b>{{localize "DGNS.Cost"}}</b>: {{item.cost}}</h3>
             {{/if}}
 
             {{#if item.rating}}
-           <h3><b>{{localize "DGNS.Rating"}}</b>: {{item.rating}}</h3>
+            <h3><b>{{localize "DGNS.Rating"}}</b>: {{item.rating}}</h3>
             {{/if}}
 
             {{#if item.bonus}}
-           <h3><b>{{localize "DGNS.Bonus"}}</b>: {{item.bonus}}</h3>
+            <h3><b>{{localize "DGNS.Bonus"}}</b>: {{item.bonus}}</h3>
             {{/if}}
 
             {{#if item.drawback}}
-           <h3><b>{{localize "DGNS.Drawback"}}</b>: {{item.drawback}}</h3>
+            <h3><b>{{localize "DGNS.Drawback"}}</b>: {{item.drawback}}</h3>
             {{/if}}
 
             {{#if item.distance}}
-           <h3><b>{{localize "DGNS.Distance"}}</b>: {{item.distance.short}} / {{item.distance.far}} /
-            {{item.distance.melee}}</h3>
+            <h3><b>{{localize "DGNS.Distance"}}</b>: {{item.distance.short}} / {{item.distance.far}} /
+                {{item.distance.melee}}</h3>
             {{/if}}
 
             {{#if item.caliber}}
-           <h3><b>{{localize "DGNS.Caliber"}}</b>: {{item.Caliber}}</h3>
+            <h3><b>{{localize "DGNS.Caliber"}}</b>: {{item.Caliber}}</h3>
             {{/if}}
 
             {{#if item.handling}}
-           <h3><b>{{localize "DGNS.Handling"}}</b>: {{item.handling}}D</h3>
+            <h3><b>{{localize "DGNS.Handling"}}</b>: {{item.handling}}{{localize "UI.D"}}</h3>
             {{/if}}
 
             {{#if item.mag}}
-           <h3><b>{{localize "DGNS.Magazine"}}</b>: {{item.mag.size}}</h3>
+            <h3><b>{{localize "DGNS.Magazine"}}</b>: {{item.mag.size}}</h3>
             {{/if}}
 
         </div>
         {{#if item.qualities}}
-        <h3><b>{{localize "DGNS.Qualities"}}:</b></h3> {{#each item.Qualities as |quality q|}}<h3>{{quality}}</h3>{{/each}}
+        <h3><b>{{localize "DGNS.Qualities"}}:</b></h3> {{#each item.Qualities as |quality q|}}<h3>{{quality}}</h3>
+        {{/each}}
         {{/if}}
     </div>
 </div>
