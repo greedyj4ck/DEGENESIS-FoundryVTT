@@ -1,18 +1,21 @@
 <h2>{{{title}}}</h2>
 
 <div class="roll-summary">
-  <div>{{successes}}S</div>
-  <div>{{triggers}}T</div>
+  <div>{{successes}}{{localize "UI.S"}}</div>
+  <div>{{triggers}}{{localize "UI.T"}}</div>
 </div>
 
 {{#if result}}<h2 class="result {{#if (isSuccess enResult)}}success{{else}}failure{{/if}}">{{result}}</h2>{{/if}}
 
 <div class="roll-details">
-{{#if spentEgo}}
+  {{#if spentEgo}}
   <h2 class="spent-ego">{{localize "DGNS.SpentEgo"}}: {{spentEgo}}</h2>
-{{/if}}
-<h2 class="initiative">{{localize "DGNS.Initiative"}}: {{initiative}}</h2>
-<h2 class="actions">{{localize "DGNS.Actions"}}: {{actions}}</h2>
+  {{/if}}
+  {{#if spentSpore}}
+  <h2 class="spent-ego">{{localize "DGNS.SpentSpore"}}: {{spentSpore}}</h2>
+  {{/if}}
+  <h2 class="initiative">{{localize "DGNS.Initiative"}}: {{initiative}}</h2>
+  <h2 class="actions">{{localize "DGNS.Actions"}}: {{actions}}</h2>
 </div>
 
 
@@ -29,5 +32,3 @@
   <img src="{{roll.img}}" class="chat-roll-die" />
   {{/each}}
 </div>{{/if}}
-
-

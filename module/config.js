@@ -103,6 +103,15 @@ DEGENESIS.conceptDescription = {
   traveler: "DGNS.TravelerDescription",
 };
 
+DEGENESIS.raptures = {
+  biokinetics: "DGNS.Biokinetics",
+  dushani: "DGNS.Dushani",
+  leviathans: "DGNS.Leviathans",
+  pheromancers: "DGNS.Pheromancers",
+  pregnoctics: "DGNS.Pregnoctics",
+  psychokinetics: "DGNS.Psychokinetics",
+};
+
 DEGENESIS.attributes = {
   body: "DGNS.Body",
   agility: "DGNS.Agility",
@@ -729,6 +738,13 @@ DEGENESIS.calibers = {
 
 DEGENESIS.systemItems = {
   spentEgoActionModifier: {
+    type: "modifier",
+    data: {
+      action: "action",
+      type: "D",
+    },
+  },
+  spentSporeActionModifier: {
     type: "modifier",
     data: {
       action: "action",

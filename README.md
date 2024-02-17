@@ -3,6 +3,8 @@
 ![CurrentIssues](https://img.shields.io/github/issues/greedyj4ck/DEGENESIS-FoundryVTT?style=for-the-badge)
 ![GitHub release (latest by date)](https://img.shields.io/github/downloads/greedyj4ck/DEGENESIS-FoundryVTT/latest/total?style=for-the-badge)
 
+[![CourtOfThePiast](https://discordapp.com/api/guilds/862308554765500447/widget.png?style=banner2)](https://discord.com/invite/MC6gEVvnzm)
+
 An unoffical, community-supported system for playing [Degenesis](https://degenesis.com/) on [Foundry VTT](http://foundryvtt.com/).
 
 Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module contains information and graphics from Katharsys that have been used with permission from the publisher. All used content from the handbook belong to the respective authors.
@@ -16,7 +18,7 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
   - Darkhan (Darkhan#1534)
   - ClemEvilzz (societe simulator#2110)
   - KristjanLaane
-  - Greedyj4ck (GЯΣΣDYJΛCK#2690)
+  - Greedyj4ck (greedyjack)
 - Item packs icons:
   - Renart de Maupertuis (Renart de Maupertuis#1302)
   - Pablo Ruiz Valls (Pabruva#1968)
@@ -26,15 +28,18 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
   - Herugrim (Herugrim#3880)
   - Pablo Ruiz Valls (Pabruva#1968)
   - Hozon - Nico (Hozon#7832)
+  - Calion (calion16)
+  - Dentatum (.dentatum)
+  - diskordanz (diskordanz)
 
 > If you have worked on or contributed to the translation of the system and you are not on the list - please write a message.
 
 ## Artwork
 
-Default world background **Potentials** by **Claudiu-Antoniu Magherusan** https://www.artstation.com/artwork/PmA5aB  
+Default world background **Potentials** by **Claudiu-Antoniu Magherusan** https://www.artstation.com/artwork/PmA5aB
 Github banner **Homo Degenesis** by **Marko Djurdjevic** https://www.sixmorevodka.com/
 
-Compediums banners
+###### COMPENDIUM BANNERS
 
 - various illustrations from Degenesis books https://www.degenesis.com
 - concept by **Wiliam Bao** https://www.sixmorevodka.com/not-so-famous-work/degenesis-concept/#&gid=1&pid=277

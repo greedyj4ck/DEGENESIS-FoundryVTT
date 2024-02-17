@@ -2,7 +2,7 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.6.1.2",
+  "version": "0.6.2",
   "compatibility": {
     "minimum": "11.311",
     "verified": "11.313"
@@ -33,16 +33,9 @@
       "flags": {}
     }
   ],
-  "esmodules": [
-    "degenesis.js"
-  ],
-  "styles": [
-    "styles/degenesis.css",
-    "styles/animate.min.css"
-  ],
-  "scripts": [
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"
-  ],
+  "esmodules": ["degenesis.js"],
+  "styles": ["styles/degenesis.css", "styles/animate.min.css"],
+  "scripts": ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"],
   "packs": [
     {
       "label": "Legacies",
@@ -123,6 +116,19 @@
       }
     },
     {
+      "label": "Phenomena",
+      "type": "Item",
+      "name": "phenomena",
+      "banner": "/systems/degenesis/ui/packs/phenomena-pack.webp",
+      "path": "packs/phenomena",
+      "system": "degenesis",
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
       "label": "Maps",
       "type": "Scene",
       "name": "maps",
@@ -176,7 +182,8 @@
   "license": "LICENSE.txt",
   "flags": {
     "hotReload": {
-        "extensions": ["css", "html", "hbs", "json"],
-        "paths": ["languages/", "styles/", "templates/"]
-    }}
+      "extensions": ["css", "html", "hbs", "json"],
+      "paths": ["languages/", "styles/", "templates/"]
+    }
+  }
 }

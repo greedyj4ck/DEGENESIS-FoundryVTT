@@ -63,6 +63,10 @@ export class DegenesisActor extends Actor {
     if (this.type === "npc") {
       updateData = this.limitNPCValues(updateData);
     }
+
+    if (this.type === "aberrant") {
+      updateData = this.limitAberrantValues(updateData);
+    }
   }
 
   // REGION | DATA PREPARATION
@@ -95,12 +99,17 @@ export class DegenesisActor extends Actor {
           this.general.encumbrance.override ||
           this.attributes.body.value + this.skills.force.value;
 
-        this.prepareItems();
+        // Encumbrance needs to be counted first....
+
+        this.prepareEncumbrance();
 
         // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
         if (AutomateEncumbrancePenalty()) {
+          console.log(`Encumbrance penalty fired...`);
           this.modifiers.addEncumbranceModifiers(this);
         }
+
+        this.prepareItems();
 
         this.general.actionModifier = this.modifiers.action.D;
         this.general.movement =
@@ -188,9 +197,34 @@ export class DegenesisActor extends Actor {
 
     // Abberant actor type
 
-    if (this.type === "abberant") {
+    if (this.type === "aberrant") {
       try {
         super.prepareData();
+        for (let skill in this.skills) {
+          if (
+            this.skills[skill].value <
+            this.attributes[this.skills[skill].attribute].value
+          ) {
+            this.skills[skill].value =
+              this.attributes[this.skills[skill].attribute].value;
+          }
+        }
+
+        for (let attr in this.attributes) {
+          if (this.attributes[attr].value < 1) {
+            this.attributes[attr].value = 1;
+          }
+
+          if (this.attributes[attr].value > 6) {
+            this.attributes[attr].value = 6;
+          }
+        }
+
+        this.itemCategories = this.itemTypes;
+        this.modifiers = new ModifierManager(this);
+        this.general.actionModifier = this.modifiers.action.D;
+
+        this.prepareAberrantItems();
 
         // Here will come data preparation code for Abberant actor
       } catch (e) {
@@ -283,45 +317,79 @@ export class DegenesisActor extends Actor {
     return updateData;
   }
 
-  prepareItems() {
+  limitAberrantValues(updateData) {
+    //Since values are not calcualted we need to limit them manually :)
+    // This is a routine to fix multiple + / - clicks to adjust values
+
+    // Limit condition
+
+    if (getProperty(updateData, "system.condition")) {
+      limitMaxMinValue(
+        updateData,
+        "system.condition.ego.value",
+        this.condition.ego.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.fleshwounds.value",
+        this.condition.fleshwounds.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.trauma.value",
+        this.condition.trauma.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.spore.permanent",
+        this.condition.spore.max
+      );
+
+      limitMaxMinValue(
+        updateData,
+        "system.condition.spore.value",
+        this.condition.spore.max,
+        this.condition.spore.permanent
+      );
+    }
+
+    // Limit
+    if (getProperty(updateData, "system.attributes")) {
+      for (let attr in updateData.system.attributes) {
+        limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
+      }
+    }
+
+    // Limit skills
+
+    if (getProperty(updateData, "system.skills")) {
+      for (let skill in updateData.system.skills) {
+        limitMaxMinValue(
+          updateData,
+          `system.skills.${skill}.value`,
+          12,
+          this.system.attributes[this.system.skills[skill].attribute].value
+        );
+      }
+    }
+
+    return updateData;
+  }
+
+  // Need to split it for proper encumbrance penalty calc
+  prepareEncumbrance() {
     let encumbrance = this.general.encumbrance;
-
-    let armor = {
-      equipment: 0,
-      modifier: 0,
-    };
-
     let inContainers = [];
+
     for (let i of this.items) {
-      i.prepareOwnedData();
       if (i.location) {
         inContainers.push(i);
         continue;
       } else if (i.encumbrance && i.type != "transportation") {
         encumbrance.current += i.encumbrance * i.quantity;
-      }
-
-      if (i.type == "armor" && i.equipped) {
-        if (armor.equipment == 0) {
-          armor.equipment += i.AP;
-        } else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
-          armor.equipment += 1;
-        } else if (armor.equipment <= 3 && i.AP >= armor.equipment) {
-          armor.equipment = i.AP + 1;
-        } else if (i.AP >= armor.equipment && armor.equipment >= 4) {
-          armor.equipment = i.AP;
-        }
-      }
-
-      // Modifiers fix
-
-      if (i.type == "modifier" && i.enabled) {
-        if (i.action == "armor") {
-          armor.modifier += i.modifyNumber;
-        }
-        if (i.action == "p_defense") {
-          this.modifiers.p_defense += i.modifyNumber;
-        }
       }
     }
 
@@ -336,6 +404,40 @@ export class DegenesisActor extends Actor {
     } else {
       encumbrance.over = false;
     }
+  }
+
+  prepareItems() {
+    let armor = {
+      equipment: 0,
+      modifier: 0,
+    };
+
+    let inContainers = [];
+    for (let i of this.items) {
+      i.prepareOwnedData();
+
+      if (i.type == "armor" && i.equipped) {
+        if (armor.equipment == 0) {
+          armor.equipment += i.AP;
+        } else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
+          armor.equipment += 1;
+        } else if (armor.equipment <= 3 && i.AP >= armor.equipment) {
+          armor.equipment = i.AP + 1;
+        } else if (i.AP >= armor.equipment && armor.equipment >= 4) {
+          armor.equipment = i.AP;
+        }
+      }
+      // Modifiers fix
+
+      if (i.type == "modifier" && i.enabled) {
+        if (i.action == "armor") {
+          armor.modifier += i.modifyNumber;
+        }
+        if (i.action == "p_defense") {
+          this.modifiers.p_defense += i.modifyNumber;
+        }
+      }
+    }
 
     this.general.armor += armor.equipment + armor.modifier;
   }
@@ -347,6 +449,12 @@ export class DegenesisActor extends Actor {
   }
 
   prepareNPCItems() {
+    for (let i of this.items) {
+      i.prepareOwnedData();
+    }
+  }
+
+  prepareAberrantItems() {
     for (let i of this.items) {
       i.prepareOwnedData();
     }
@@ -895,7 +1003,7 @@ export class DegenesisActor extends Actor {
 
     // Needs to be modified to match simple dice roll method
     let rollData = {
-      type: "Test value",
+      type: "Attack",
       actionNumber: attack.dice.attack,
       weapon: attack,
       difficulty: 0,
@@ -1053,8 +1161,27 @@ export class DegenesisActor extends Actor {
     if (egoModifierId) {
       await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
       await this.update({ "flags.degenesis.-=spentEgoActionModifier": null });
-      ui.notifications.notify("Used Ego Spend Action Modifier");
+      ui.notifications.notify(
+        game.i18n.localize("UI.UsedEgoModifierNotification")
+      );
     }
+    let sporeModifierId = this.getFlag("degenesis", "spentSporeActionModifier");
+    if (sporeModifierId) {
+      await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
+      await this.update({ "flags.degenesis.-=spentSporeActionModifier": null });
+
+      ui.notifications.notify(
+        game.i18n.localize("UI.UsedSporeModifierNotification")
+      );
+    }
+
+    if (rollResults.overload > 0) {
+      await this.update({
+        "data.condition.spore.value":
+          this.condition.spore.value - rollResults.overload,
+      });
+    }
+
     if (type !== "initiative" && this.state.initiative.actions > 1)
       await this.update({
         "data.state.initiative.actions": this.state.initiative.actions - 1,
@@ -1092,6 +1219,49 @@ export class DegenesisActor extends Actor {
 
     return { rollResults, cardData };
   }
+
+  // ABERRANT ROUTINES
+
+  async rollActivatePhenomenon(
+    phenomenon,
+    actionNumber,
+    { skipDialog = false, override = {} }
+  ) {
+    let { dialogData, cardData, rollData } = this.setupPhenomenonActivation(
+      phenomenon,
+      actionNumber
+    );
+    if (!skipDialog)
+      rollData = await DegenesisDice.showPhenomenonRollDialog({
+        dialogData,
+        rollData,
+      });
+    else {
+      rollData.difficulty = phenomenon.level;
+      rollData.actionNumber = actionNumber;
+      rollData.diceModifier = dialogData.prefilled.diceModifier;
+      rollData.successModifier = dialogData.prefilled.successModifier;
+      rollData.triggerModifier = dialogData.prefilled.triggerModifier;
+    }
+
+    if (rollData.overload > this.condition.spore.value) {
+      ui.notifications.notify(game.i18n.localize("UI.OverloadTooBig"));
+      return;
+    }
+
+    let rollResults = await DegenesisDice.rollAction(rollData);
+
+    if (rollData.secondary)
+      await this.handleSecondaryRoll(
+        { dialogData, cardData, rollData, rollResults },
+        this.setupSkill(rollData.secondary)
+      );
+
+    this.postRollChecks(rollResults, "phenomenon");
+
+    return { rollResults, cardData };
+  }
+
   // ROLL SETUP
   setupNPCSkill(skill) {
     let dialogData = {
@@ -1130,6 +1300,64 @@ export class DegenesisActor extends Actor {
     };
 
     //let rollResult = await DegenesisDice.rollAction(rollData)
+    return { dialogData, cardData, rollData };
+  }
+
+  setupPhenomenonActivation(
+    phenomenon,
+    spore,
+    secondary = false,
+    secondarySkill = ""
+  ) {
+    // Preparing dialogData for renderer and routine
+
+    let dialogData = {
+      title: phenomenon.name,
+      prefilled: this.modifiers.forDialog(
+        "phenomenon",
+        "none",
+        "none",
+        phenomenon
+      ),
+      customModifiers: this.modifiers.custom,
+      description: phenomenon.description,
+      rules: phenomenon.rules,
+      template: "systems/degenesis/templates/apps/roll-phenomenon.html",
+      showSecondaryOption: true,
+      totalRollModifiers: {
+        diceModifier: 0,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+    dialogData.rollMethod = this.rollActivatePhenomenon;
+    dialogData.totalRollModifiers.diceModifier +=
+      dialogData.prefilled.diceModifier;
+    dialogData.totalRollModifiers.successModifier +=
+      dialogData.prefilled.successModifier;
+    dialogData.totalRollModifiers.triggerModifier +=
+      dialogData.prefilled.triggerModifier;
+
+    let cardData = this.constructCardData(
+      "systems/degenesis/templates/chat/phenomenon-roll-card.html",
+      phenomenon.name
+    );
+
+    let rollData = {
+      type: "Phenomenon",
+      actionNumber: spore,
+      phenomenon: phenomenon,
+      difficulty: phenomenon.level,
+      diceModifier: 0,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    if (secondary)
+      rollData.actionNumber = this.getSkillTotal(
+        secondarySkill || weapon.secondarySkill
+      );
+
     return { dialogData, cardData, rollData };
   }
 
@@ -1217,9 +1445,11 @@ export class DegenesisActor extends Actor {
   get attackItems() {
     return this.getItemTypes("attack");
   }
-
   get defenseItems() {
     return this.getItemTypes("defense");
+  }
+  get phenomenonItems() {
+    return this.getItemTypes("phenomenon");
   }
 
   // REGION | DATA GETTERS
@@ -1253,6 +1483,23 @@ export class DegenesisActor extends Actor {
   }
   get relationships() {
     return this.system.relationships;
+  }
+
+  // ABERRANT GETTERS
+
+  get isBiokinetic() {
+    if (this.type === "aberrant") {
+      return this.system.rapture === "biokinetics" ? true : false;
+    } else {
+      return false;
+    }
+  }
+  get isPrimalPhase() {
+    if (this.type === "aberrant") {
+      return this.system.phase === "primal" ? true : false;
+    } else {
+      return false;
+    }
   }
 }
 

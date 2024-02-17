@@ -1,4 +1,5 @@
 import RollDialog from "./apps/roll-dialog.js";
+import RollPhenomenonDialog from "./apps/roll-phenomenon-dialog.js";
 import { MinimumOneAN } from "./settings.js";
 
 export class DegenesisDice {
@@ -9,6 +10,7 @@ export class DegenesisDice {
       diceModifier = 0,
       successModifier = 0,
       triggerModifier = 0,
+      overload = 0,
     } = {},
     { dsn = true } = {}
   ) {
@@ -18,6 +20,7 @@ export class DegenesisDice {
       diceModifier,
       successModifier,
       triggerModifier,
+      overload,
     });
 
     if (game.dice3d && dsn) {
@@ -64,6 +67,7 @@ export class DegenesisDice {
     diceModifier = 0,
     successModifier = 0,
     triggerModifier = 0,
+    overload = 0,
   }) {
     let rollResult = {};
 
@@ -110,6 +114,7 @@ export class DegenesisDice {
       ones,
       result,
       rolls,
+      overload,
     };
     return [rollResult, roll];
   }
@@ -128,7 +133,7 @@ export class DegenesisDice {
           title: dialogData.title,
           buttons: {
             roll: {
-              label: "Roll",
+              label: game.i18n.localize("UI.Roll"),
               callback: async (dlg) => {
                 rollData.difficulty = parseInt(
                   dlg.find('[name="difficulty"]').val() || 0
@@ -168,7 +173,7 @@ export class DegenesisDice {
           title: dialogData.title,
           buttons: {
             roll: {
-              label: "Roll",
+              label: game.i18n.localize("UI.Roll"),
               callback: async (dlg) => {
                 rollData.difficulty = parseInt(
                   dlg.find('[name="difficulty"]').val() || 0
@@ -192,6 +197,49 @@ export class DegenesisDice {
           dialogData,
         },
         { classes: ["roll-dice-dialog"] }
+      ).render(true);
+    });
+  }
+
+  static async showPhenomenonRollDialog({ dialogData, rollData, cardData }) {
+    let html = await renderTemplate(
+      "systems/degenesis/templates/apps/roll-phenomenon-dialog.html",
+      dialogData
+    );
+    return new Promise((resolve, reject) => {
+      new RollPhenomenonDialog(
+        {
+          content: html,
+          title: dialogData.title,
+          buttons: {
+            roll: {
+              label: game.i18n.localize("UI.Roll"),
+              callback: async (dlg) => {
+                rollData.overload = parseInt(
+                  dlg.find('[name="overload"]').val() || 0
+                );
+                rollData.difficulty = parseInt(
+                  dlg.find('[name="difficulty"]').val() || 0
+                );
+                // CHANGE CALLBACK VALUES FOR TOTALMODIFIERS
+                rollData.diceModifier = parseInt(
+                  dialogData.totalRollModifiers.diceModifier || 0
+                );
+                rollData.successModifier = parseInt(
+                  dialogData.totalRollModifiers.successModifier || 0
+                );
+                rollData.triggerModifier = parseInt(
+                  dialogData.totalRollModifiers.triggerModifier || 0
+                );
+                rollData.secondary = dlg.find(".secondary-select").val();
+                resolve(rollData);
+              },
+            },
+          },
+          default: "roll",
+          dialogData,
+        },
+        { classes: ["roll-phenomenon-dialog"] }
       ).render(true);
     });
   }

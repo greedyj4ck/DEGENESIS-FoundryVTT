@@ -1,0 +1,61 @@
+<form class="{{cssClass}} item-phenomenon form-flex" autocomplete="off">
+    {{> systems/degenesis/templates/item/item-header-phenomenon.html}}
+
+
+    {{!-- Sheet Body --}}
+    <section class="sh-body tab-content-container">
+
+
+        <div class="titlebar-container">
+
+            <div class="square little left"></div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="title-line-header">{{localize "DGNS.Details"}}</div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right">
+            </div>
+
+        </div>
+
+
+        <div class="specialty-container">
+            <span class="field-name">{{localize "DGNS.Description"}}</span>
+            <textarea name="data.description" class="item-summary">{{data.description}}</textarea>
+        </div>
+
+        <div class="specialty-container rules">
+            <span class="field-name">{{localize "DGNS.Rules"}}</span>
+            <textarea name="data.rules" class="item-summary">{{data.rules}}</textarea>
+        </div>
+
+
+
+
+        <div class="footer-diamond">
+            <div class="square little"></div>
+        </div>
+
+
+    </section>
+    <footer class="sh-footer">
+        <div class="footer-line-bar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="11" x2="88%" y2="11" class="line-stroke"></line>
+                <line x1="88%" y1="11" x2="100%" y2="5" class="line-stroke""></line>
+            </svg>
+            <svg class=" bottom-line middle">
+                    <line x1="0" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="5" x2="12%" y2="11" class="line-stroke"></line>
+                <line x1="12%" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </footer>
+</form>

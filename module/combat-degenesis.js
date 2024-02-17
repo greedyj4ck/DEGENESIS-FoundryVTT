@@ -186,4 +186,112 @@ export class DegenesisCombat extends Combat {
 
     return initiativeValue;
   }
+
+  // ABERRANT ROUTINES
+
+  static async rollInitiativeForAberrant(actor) {
+    if (!actor) return 0;
+
+    const actionModifier = actor.general.actionModifier;
+    let spentPoints;
+
+    if (actor.system.phase === "primal") {
+      spentPoints = actor.state.spentSpore.value;
+    } else {
+      spentPoints = actor.state.spentEgo.value;
+    }
+
+    const { rollResults, cardData } = await actor.rollFightRollFromHell(
+      "initiative",
+      actor.fighting.initiative + actionModifier,
+      {
+        skipDialog: false,
+        spentPoints,
+      }
+    );
+
+    let actionCount = 1;
+
+    if (rollResults.triggers > 1) {
+      actionCount = 1 + Math.floor(rollResults.triggers / 2);
+    }
+
+    const initiativeValue = rollResults.successes;
+
+    if (actor.system.phase === "primal") {
+      let newSpore = actor.condition.spore.value;
+      if (spentPoints > 0) {
+        newSpore -= spentPoints;
+        if (newSpore < 0) newSpore = 0;
+
+        let spentSporeActionModifier = foundry.utils.deepClone(
+          DEGENESIS.systemItems.spentSporeActionModifier
+        );
+
+        spentSporeActionModifier.data.number = spentPoints;
+        spentSporeActionModifier.name = "Spent Spore Bonus";
+
+        let modifier = await actor.createEmbeddedDocuments("Item", [
+          spentSporeActionModifier,
+        ]);
+        await actor.setFlag(
+          "degenesis",
+          "spentSporeActionModifier",
+          modifier[0].id
+        );
+
+        ui.notifications.notify(
+          game.i18n.localize("UI.SpentSporeNotification")
+        );
+
+        actor.update({
+          "data.condition.spore.value": newSpore,
+          "data.state.spentSpore.actionBonus": spentPoints,
+          "data.state.spentSpore.value": 0,
+          "data.state.initiative.value": initiativeValue,
+          "data.state.initiative.actions": actionCount,
+        });
+        cardData.spentSpore = spentPoints;
+      }
+    } else {
+      let newEgo = actor.condition.ego.value;
+      if (spentPoints > 0) {
+        newEgo += spentPoints;
+        if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
+
+        let spentEgoActionModifier = foundry.utils.deepClone(
+          DEGENESIS.systemItems.spentEgoActionModifier
+        );
+
+        spentEgoActionModifier.data.number = spentPoints;
+        spentEgoActionModifier.name = "Spent Ego Bonus";
+
+        let modifier = await actor.createEmbeddedDocuments("Item", [
+          spentEgoActionModifier,
+        ]);
+
+        await actor.setFlag(
+          "degenesis",
+          "spentEgoActionModifier",
+          modifier[0].id
+        );
+
+        ui.notifications.notify(game.i18n.localize("UI.SpentEgoNotification"));
+        cardData.spentEgo = spentPoints;
+        actor.update({
+          "data.condition.ego.value": newEgo,
+          "data.state.spentEgo.actionBonus": spentPoints,
+          "data.state.spentEgo.value": 0,
+          "data.state.initiative.value": initiativeValue,
+          "data.state.initiative.actions": actionCount,
+        });
+      }
+    }
+
+    cardData.initiative = initiativeValue;
+    cardData.actions = actionCount;
+    DegenesisChat.renderRollCard(rollResults, cardData);
+
+    return initiativeValue;
+  }
 }

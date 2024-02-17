@@ -1,18 +1,19 @@
 <h2>{{{title}}}</h2>
 
 <div class="roll-summary">
-  <div>{{successes}}S</div>
-  <div>{{triggers}}T</div>
+  <div>{{successes}}{{localize "UI.S"}}</div>
+  <div>{{triggers}}{{localize "UI.T"}}</div>
 </div>
 
 {{#if result}}<h2 class="result {{#if (isSuccess enResult)}}success{{else}}failure{{/if}}">{{result}}</h2>{{/if}}
 
 <div class="roll-details">
-<h2 class="damage">{{localize "DGNS.Damage"}}: {{damageFull}} {{weapon.DamageType}}</h2><span class="damage-triggers">(+{{triggers}} {{localize "DGNS.Trigger"}} )</span>
-<!-- Sonic weaponry: Target mentally defends against the highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
-{{#if mostSuccesses}}
-<h2 class="defend">{{localize "UI.SonicDefenseDifficulty"}}: {{mostSuccesses}}</h2>
-{{/if}}
+  <h2 class="damage">{{localize "DGNS.Damage"}}: {{damageFull}} {{weapon.DamageType}}</h2><span
+    class="damage-triggers">(+{{triggers}} {{localize "DGNS.Trigger"}} )</span>
+  <!-- Sonic weaponry: Target mentally defends against the highest roll in the combo (KAT166). cf. actor-degenesis.js: DegenesisActor.handleSecondaryRoll()-->
+  {{#if mostSuccesses}}
+  <h2 class="defend">{{localize "UI.SonicDefenseDifficulty"}}: {{mostSuccesses}}</h2>
+  {{/if}}
 </div>
 
 

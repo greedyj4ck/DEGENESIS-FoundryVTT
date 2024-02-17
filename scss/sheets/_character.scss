@@ -188,7 +188,7 @@
   }
 
   .window-content {
-    padding: 5px;
+    padding: 0;
     display: flex;
     width: 100%;
 
@@ -1063,7 +1063,7 @@
     width: calc(100% - 5px);
     flex: 3;
     border: $line-stroke-width solid $line-stroke-color;
-    margin-left: 2px;
+    margin-left: 1px;
     margin-bottom: 0px;
     order: 2;
     display: flex;

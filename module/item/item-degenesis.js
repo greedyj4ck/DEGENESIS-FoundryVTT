@@ -23,6 +23,10 @@ export class DegenesisItem extends Item {
       if (!this.system.group) this.system.group = "passive";
     }
 
+    if (this.type == "phenomenon") {
+      if (!this.system.rapture) this.system.rapture = "genric";
+    }
+
     // Force undroppable transportation items to not be dropped
     if (this.type == "transportation") {
       if (!this.droppable && this.dropped) this.system.dropped = false;
@@ -45,6 +49,8 @@ export class DegenesisItem extends Item {
   }
 
   prepareWeapon() {
+    console.log(`prepareWeapon fired....`);
+
     let dice = {
       attack: undefined,
       defense: undefined,
@@ -599,6 +605,30 @@ export class DegenesisItem extends Item {
       tags: tags,
     };
   }
+  _phenomenonDropdownData() {
+    let tags = [];
+    let data = foundry.utils.deepClone(this.system);
+    let text = `${this.description}`;
+
+    if (this.rules) {
+      text = text.concat(
+        `
+        <br><br>
+        <b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>: ${
+          this.rules
+        }<br>`
+      );
+    }
+
+    tags.push(`${game.i18n.localize("DGNS.Level")}: ${this.level}`);
+
+    //   tags = tags.concat(Object.values(this.Qualities));
+    tags.filter((t) => !!t);
+    return {
+      text: text,
+      tags: tags,
+    };
+  }
 
   //#endregion
 
@@ -873,6 +903,10 @@ export class DegenesisItem extends Item {
   }
   get secondarySkill() {
     return this.system.secondarySkill;
+  }
+
+  get rapture() {
+    return this.system.rapture;
   }
 
   //      Processed data getters

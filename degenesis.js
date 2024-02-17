@@ -6,7 +6,7 @@
 ██████╔╝███████╗╚██████╔╝███████╗██║ ╚████║███████╗███████║██║███████║
 ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝╚══════╝
 FOUNDRY VTT SYSTEM IMPLEMENTATION
-AUTHORS: MOO MAN, DARKHAN, CLEMEVILZZ, KRISTJANLAANE, GREEDYJ4CK, PABRUVA
+AUTHORS: GREEDYJ4CK, MOOMAN, DARKHAN, CLEMEVILZZ, KRISTJANLAANE, PABRUVA
 */
 
 // THIS FILE IS ENTRY POINT FOR ENTIRE SYSTEM
@@ -18,6 +18,7 @@ import { DegenesisItem } from "./module/item/item-degenesis.js";
 import { DegenesisActorSheet } from "./module/actor/actor-sheet.js";
 import { DegenesisNPCSheet } from "./module/actor/npc-sheet.js";
 import { DegenesisFromHellSheet } from "./module/actor/fromHell-sheet.js";
+import { DegenesisAberrantSheet } from "./module/actor/aberrant-sheet.js";
 import { DegenesisActor } from "./module/actor/actor-degenesis.js";
 import { DegenesisCombat } from "./module/combat-degenesis.js";
 import { DegenesisDice } from "./module/dice.js";
@@ -76,7 +77,6 @@ Hooks.once("init", async function () {
     "/systems/degenesis/ui/packs/playlists-comp.webp";
   CONFIG.RollTable.compendiumBanner =
     "/systems/degenesis/ui/packs/rolltables-comp.webp";
-
   CONFIG.Scene.compendiumBanner =
     "/systems/degenesis/ui/packs/scenes-comp.webp";
 
@@ -89,17 +89,20 @@ Hooks.once("init", async function () {
     makeDefault: true,
     label: "TYPES.Actor.TypeCharacterSheet",
   });
-
-  // W.I.P - not for main release :) Gonna move this later into special dev branch ^_^
   Actors.registerSheet("degenesis", DegenesisNPCSheet, {
     types: ["npc"],
     makeDefault: true,
-    label: "ACTOR.TypeNpcSheet",
+    label: "TYPES.Actor.TypeNpcSheet",
   });
   Actors.registerSheet("degenesis", DegenesisFromHellSheet, {
     types: ["fromhell"],
     makeDefault: true,
-    label: "ACTOR.TypeFromHellSheet",
+    label: "TYPES.Actor.TypeFromHellSheet",
+  });
+  Actors.registerSheet("degenesis", DegenesisAberrantSheet, {
+    types: ["aberrant"],
+    makeDefault: true,
+    label: "TYPES.Actor.TypeAberrantSheet",
   });
 
   Items.unregisterSheet("core", ItemSheet);
@@ -120,12 +123,19 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/actor/npc/npc-advantages.html",
     "systems/degenesis/templates/actor/npc/npc-combat.html",
     "systems/degenesis/templates/actor/npc/npc-history.html",
+    // ABERRANT CHARACTER SHEET
+    "systems/degenesis/templates/actor/aberrant/aberrant-attributes-skills.html",
+    "systems/degenesis/templates/actor/aberrant/aberrant-combat.html",
+    "systems/degenesis/templates/actor/aberrant/aberrant-phenomena.html",
+    "systems/degenesis/templates/actor/aberrant/aberrant-inventory.html",
+    "systems/degenesis/templates/actor/aberrant/aberrant-history.html",
     // ITEMS AND OTHER
     "systems/degenesis/templates/item/item-header.html",
     "systems/degenesis/templates/item/item-header-physical.html",
     "systems/degenesis/templates/item/item-header-physical-no-qty.html",
     "systems/degenesis/templates/item/item-header-attack.html",
     "systems/degenesis/templates/item/item-header-defense.html",
+    "systems/degenesis/templates/item/item-header-phenomenon.html",
     "systems/degenesis/templates/chat/roll-card.html",
   ]);
 
@@ -145,6 +155,7 @@ Hooks.once("init", async function () {
       DegenesisActorSheet,
       DegenesisFromHellSheet,
       DegenesisNPCSheet,
+      DegenesisAberrantSheet,
       DegenesisItemSheet,
       DegenesisChatMessage,
       ActorConfigure,

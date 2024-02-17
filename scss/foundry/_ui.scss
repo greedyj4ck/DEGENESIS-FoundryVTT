@@ -30,14 +30,30 @@
   }
 }
 
+.directory-list {
+  scrollbar-width: unset !important;
+}
+
+.app.window-app {
+  .window-content {
+    background: none;
+    background-color: #fff;
+  }
+}
+
 // DEFAULT WINDOW SETTINGS
 .app.window-app {
   .app.degenesis.sheet {
     border-radius: 0px;
+    .window-content {
+      font-family: $serif-content-font;
+      background: none;
+      background-color: white;
+      padding: 5px;
+    }
   }
 
   .window-content {
-    background: white;
     font-family: $serif-content-font;
   }
 
@@ -258,4 +274,20 @@
   border: 1px solid $dgns-blackred;
   background-color: $grey-020;
   box-shadow: none;
+}
+
+.jump-to-bottom {
+  font-family: $sans-serif-content-font;
+  font-size: 12px;
+  font-weight: 800;
+  color: $dgns-blackred;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  > a {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    padding: 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

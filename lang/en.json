@@ -3,7 +3,7 @@
 
   "TYPES.Actor.TypeCharacter": "Character",
   "TYPES.Actor.TypeNpc": "Non-playable character",
-  "TYPES.Actor.TypeAberrant": "Abberant",
+  "TYPES.Actor.TypeAberrant": "Psychonaut",
   "TYPES.Actor.TypeFromHell": "From Hell",
 
   "TYPES.Actor.TypeCharacterSheet": "Default Character Sheet",
@@ -32,6 +32,17 @@
   "UI.Triggers": "Triggers",
   "UI.Result": "Result",
   "UI.SonicDefenseDifficulty": "Defend against",
+  "UI.NoAmmoLeft": "No ammo left in a magazine",
+  "UI.SpentEgoNotification": "Ego spent Action Modifier Added",
+  "UI.SpentSporeNotification": "Spore Infestation spent Action Modifier Added",
+  "UI.UsedEgoModifierNotification": "Used Ego Spend Action Modifier",
+  "UI.UsedSporeModifierNotification": "Used Spore Spend Action Modifier",
+  "UI.OverloadTooBig": "Overload is bigger than current spore infestation value",
+  "UI.Roll": "Roll",
+
+  "UI.D": "D",
+  "UI.S": "S",
+  "UI.T": "T",
 
   "TYPES.Item.Type": "Character",
 
@@ -50,6 +61,7 @@
   "TYPES.Item.TypeLegacy": "Legacy",
   "TYPES.Item.TypeAttack": "Attack",
   "TYPES.Item.TypeDefense": "Defense",
+  "TYPES.Item.TypePhenomenon": "Phenomenon",
 
   "TYPES.Ammo.50gl": ".50 GL",
   "TYPES.Ammo.357": ".357",
@@ -546,5 +558,27 @@
   "DGNS.DefenseRangedActive": "Ranged Active",
   "DGNS.DefenseMental": "Mental",
 
-  "DGNS.Tactics": "Tactics"
+  "DGNS.Tactics": "Tactics",
+
+  "DGNS.Rapture": "Rapture",
+  "DGNS.Biokinetics": "Biokinetics",
+  "DGNS.Dushani": "Dushani",
+  "DGNS.Leviathans": "Leviathans",
+  "DGNS.Pheromancers": "Pheromancers",
+  "DGNS.Pregnoctics": "Pregnoctics",
+  "DGNS.Psychokinetics": "Psychokinetics",
+
+  "DGNS.SwarmStrength": "Swarm strength",
+  "DGNS.SkinBags": "Skin bags",
+
+  "DGNS.Phenomena": "Phenomena",
+  "DGNS.Phenomenon": "Phenomenon",
+  "DGNS.PrimalPhase": "Primal Phase",
+  "DGNS.FocusPhase": "Focus Phase",
+  "DGNS.Variant": "Variant",
+  "DGNS.Generic": "Generic",
+  "DGNS.Activate": "Activate",
+  "DGNS.Overload": "Overload",
+  "DGNS.SpendSpore": "Spend spore",
+  "DGNS.SpentSpore": "Spent spore"
 }

@@ -136,13 +136,13 @@
         <div class="config-input-container movement">
 
             <div class="dice-value"><input type="number" name="data.general.movement"
-                    value="{{data.general.movement}}" /><span class="dice">D</span></div>
+                    value="{{data.general.movement}}" /><span class="dice">{{localize "UI.D"}}</span></div>
             <div class="label">{{localize "DGNS.Movement"}}</div>
         </div>
         <div class="config-input-container">
             <div class="dice-value">
                 <input type="number" name="data.fighting.initiative" value="{{data.fighting.initiative}}" /><span
-                    class="dice">D</span>
+                    class="dice">{{localize "UI.D"}}</span>
             </div>
             <div class="label initiative-roll"><a>{{localize "DGNS.Initiative"}}</a></div>
             <div class="spend-ego">
@@ -219,12 +219,12 @@
                 data-item-id="{{item.id}}">
                 <a class="weapon-name dropdown">{{item.name}}</a>
                 <div class="attack-dice">
-                    <a class="roll-attack" data-use="attack">{{item.dice.attack}}D</a>
+                    <a class="roll-attack" data-use="attack">{{item.dice.attack}}{{localize "UI.D"}}</a>
                 </div>
                 <div class="damage">
                     {{item.DamageFormula}}
                 </div>
-                <div class="distance">1</div>
+                <div class="distance">{{item.distance.melee}}</div>
 
                 <div class="item-controls">
                     <div class="vertical-bar white">
@@ -245,10 +245,12 @@
                 data-item-id="{{item.id}}">
                 <a class="weapon-name dropdown">{{item.name}}</a>
                 <div class="attack-dice">
-                    <a class="roll-attack" data-use="attack-short">≤{{item.distance.short}}m({{item.dice.effective}}D)
-                    </a><a class="roll-attack" data-use="attack-far">≤{{item.distance.far}}m({{item.dice.far}}D)
+                    <a class="roll-attack"
+                        data-use="attack-short">≤{{item.distance.short}}m({{item.dice.effective}}{{localize "UI.D"}})
+                    </a><a class="roll-attack" data-use="attack-far">≤{{item.distance.far}}m({{item.dice.far}}{{localize
+                        "UI.D"}})
                     </a><a class="roll-attack"
-                        data-use="attack-extreme">>{{item.distance.far}}m({{item.dice.extreme}}D)</a>
+                        data-use="attack-extreme">>{{item.distance.far}}m({{item.dice.extreme}}{{localize "UI.D"}})</a>
 
                 </div>
                 <div class="damage">
@@ -349,7 +351,7 @@
                     <span>{{localize "DGNS.Origin"}}</span>
                 </div>
                 <div class="legend-name">
-                    <span2>{{localize "DGNS.Level"}}</span>
+                    <span>{{localize "DGNS.Level"}}</span>
                 </div>
             </div>
         </div>
