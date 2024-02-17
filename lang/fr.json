@@ -53,7 +53,7 @@
   "TYPES.Item.TypeAmmunition": "Munitions",
   "TYPES.Item.TypeTransportation": "Transport",
   "TYPES.Item.TypeMod": "Modification",
-  "TYPES.Item.TypeBurn": "Burn",
+  "TYPES.Item.TypeBurn": "Brûlure",
   "TYPES.Item.TypePotential": "Potentiel",
   "TYPES.Item.TypeModifier": "Modificateur",
   "TYPES.Item.TypeShield": "Bouclier",
