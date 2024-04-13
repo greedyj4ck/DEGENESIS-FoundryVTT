@@ -42,11 +42,11 @@
                         <div class="label">{{localize "DGNS.Ego"}}</div>
                         <div class="stats">
                             <div class="current-value">
-                                <span class="current-ego">{{currentEgo data.condition.ego}}</span>
+                                <span class="current-ego">{{currentEgo system.condition.ego}}</span>
                             </div>
                             <div class="separator">/</div>
-                            <div class="max-value"><input class="stat-input" type="number" name="data.condition.ego.max"
-                                    value="{{data.condition.ego.max}}" /></div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="system.condition.ego.max" value="{{system.condition.ego.max}}" /></div>
 
                         </div>
                     </div>
@@ -59,11 +59,12 @@
                         <div class="label">{{localize "DGNS.Fleshwounds"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.value"
-                                    value="{{data.condition.fleshwounds.value}}" /></div>
+                                    name="system.condition.fleshwounds.value"
+                                    value="{{system.condition.fleshwounds.value}}" /></div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.max" value="{{data.condition.fleshwounds.max}}" />
+                                    name="system.condition.fleshwounds.max"
+                                    value="{{system.condition.fleshwounds.max}}" />
                             </div>
 
                         </div>
@@ -77,10 +78,11 @@
                         <div class="label">{{localize "DGNS.Trauma"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" /></div>
+                                    name="system.condition.trauma.value" value="{{system.condition.trauma.value}}" />
+                            </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.max" value="{{data.condition.trauma.max}}" />
+                                    name="system.condition.trauma.max" value="{{system.condition.trauma.max}}" />
                             </div>
 
                         </div>
@@ -94,14 +96,16 @@
                         <div class="label">{{localize "DGNS.Spore"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.value" value="{{data.condition.spore.value}}" /></div>
+                                    name="system.condition.spore.value" value="{{system.condition.spore.value}}" />
+                            </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.max" value="{{data.condition.spore.max}}" />
+                                    name="system.condition.spore.max" value="{{system.condition.spore.max}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="perma-value"><input class="stat-input perma" type="number"
-                                    name="data.condition.spore.permanent" value="{{data.condition.spore.permanent}}" />
+                                    name="system.condition.spore.permanent"
+                                    value="{{system.condition.spore.permanent}}" />
                             </div>
 
                         </div>
@@ -124,8 +128,8 @@
                 <div class="rapture-content-container">
 
                     <div class="rapture-container">
-                        <select name="data.rapture" data-dtype="String">
-                            {{#select data.rapture}}
+                        <select name="system.rapture" data-dtype="String">
+                            {{#select system.rapture}}
                             <option value="">{{localize "DGNS.Rapture"}}</option>
                             {{#each (config "raptures") as |rapture r|}}
                             <option value="{{r}}">{{rapture}}</option>
@@ -136,15 +140,15 @@
 
                     <div class="variant-container">
 
-                        <input class="input-variant" type="text" name="data.variant"
-                            placeholder="{{localize 'DGNS.Variant'}}" value="{{data.variant}}" />
+                        <input class="input-variant" type="text" name="system.variant"
+                            placeholder="{{localize 'DGNS.Variant'}}" value="{{system.variant}}" />
                     </div>
 
 
 
                     <div class="phase-container">
-                        <select name="data.phase" data-dtype="String">
-                            {{#select data.phase}}
+                        <select name="system.phase" data-dtype="String">
+                            {{#select system.phase}}
                             <option value="primal">{{localize "DGNS.PrimalPhase"}}</option>
                             <option value="focus">{{localize "DGNS.FocusPhase"}}</option>
                             {{/select}}

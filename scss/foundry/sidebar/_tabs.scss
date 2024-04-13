@@ -1,0 +1,128 @@
+#sidebar-tabs {
+  border-bottom: 1px solid var(--c-gold);
+  box-shadow: none;
+  padding: 0px 3px;
+  margin: 2px 0px;
+
+  .collapse {
+    font-size: 18px;
+    color: var(--c-gold);
+  }
+
+  .item {
+    aspect-ratio: 1;
+    //  width: 1em;
+    border-radius: 3px;
+
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.active {
+      border: 1px solid var(--c-gold);
+      box-shadow: none;
+    }
+
+    &:hover {
+      border-bottom: 1px var(--c-gold);
+    }
+    //display: inline-block;
+    //height: 1em !important;
+
+    // background-color: #aaa;
+
+    > i:not(#chat-notification) {
+      display: none;
+    }
+
+    #chat-notification {
+      text-shadow: none;
+      font-size: var(--font-size-16);
+      color: var(--c-gold-3);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &[data-tab="chat"] {
+      background-image: url(../ui/icons/btn-chat.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-chat-active.webp);
+      }
+    }
+
+    &[data-tab="combat"] {
+      background-image: url(../ui/icons/btn-combat.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-combat-active.webp);
+      }
+    }
+
+    &[data-tab="scenes"] {
+      background-image: url(../ui/icons/btn-scenes.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-scenes-active.webp);
+      }
+    }
+
+    &[data-tab="actors"] {
+      background-image: url(../ui/icons/btn-actors.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-actors-active.webp);
+      }
+    }
+
+    &[data-tab="items"] {
+      background-image: url(../ui/icons/btn-items.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-items-active.webp);
+      }
+    }
+
+    &[data-tab="journal"] {
+      background-image: url(../ui/icons/btn-journals.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-journals-active.webp);
+      }
+    }
+
+    &[data-tab="tables"] {
+      background-image: url(../ui/icons/btn-tables.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-tables-active.webp);
+      }
+    }
+
+    &[data-tab="cards"] {
+      background-image: url(../ui/icons/btn-cards.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-cards-active.webp);
+      }
+    }
+
+    &[data-tab="playlists"] {
+      background-image: url(../ui/icons/btn-playlists.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-playlists-active.webp);
+      }
+    }
+
+    &[data-tab="compendium"] {
+      background-image: url(../ui/icons/btn-compendiums.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-compendiums-active.webp);
+      }
+    }
+
+    &[data-tab="settings"] {
+      background-image: url(../ui/icons/btn-settings.webp);
+      &.active {
+        background-image: url(../ui/icons/btn-settings-active.webp);
+      }
+    }
+  }
+}

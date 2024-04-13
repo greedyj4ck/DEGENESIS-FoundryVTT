@@ -1,0 +1,446 @@
+<div class="titlebar-container">
+  <div class="square little left"></div>
+  <svg class="title-line">
+    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+  </svg>
+  <div class="title-line-header">{{localize "DGNS.Combat"}}</div>
+  <svg class="title-line">
+    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+  </svg>
+  <div class="square little right"></div>
+</div>
+
+<div class="combat-tab-container">
+  <div class="combat-state-container">
+    <!-- * GENERAL * -->
+    <div class="combat-group general-group">
+      <div class="background">
+        <div class="block-title black">
+          <h3>{{localize "DGNS.General"}}</h3>
+        </div>
+      </div>
+      <div class="combat-list">
+        <div class="combat">
+          <div class="general-name">
+            {{localize "DGNS.Movement"}}: {{actor.general.movement}}<span class="nocaps">m</span>
+          </div>
+        </div>
+        <div class="combat">
+          <div class="general-name">
+            {{localize "DGNS.Encumbrance"}}:
+            {{actor.general.encumbrance.current}} /
+            {{system.general.encumbrance.max}}
+          </div>
+        </div>
+        <div class="combat">
+          <div class="general-name">
+            {{localize "DGNS.Armor"}}: {{actor.general.armor}}
+          </div>
+        </div>
+        <div class="combat">
+          <div class="general-name">
+            {{localize "DGNS.ActionMod"}}: {{actor.general.actionModifier}}{{localize "UI.D"}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- * FIGHTING * -->
+    <div class="combat-group fighting-group">
+      <div class="background">
+        <div class="block-title black">
+          <h3>{{localize "DGNS.Fighting"}}</h3>
+        </div>
+      </div>
+      <div class="combat-list">
+        <a class="combat">
+          <div class="general-name initiative-roll">
+            {{localize "DGNS.Initiative"}} ({{actor.fighting.initiative}}{{localize "UI.D"}})
+          </div>
+        </a>
+        <a class="combat">
+          <div class="general-name fight-roll" data-roll="dodge">
+            {{localize "DGNS.Dodge"}} ({{actor.fighting.dodge}}{{localize "UI.D"}})
+          </div>
+        </a>
+        <a class="combat">
+          <div class="general-name fight-roll" data-roll="mentalDefense">
+            {{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}{{localize "UI.D"}})
+          </div>
+        </a>
+        <div class="combat">
+          <div class="general-name">
+            {{localize "DGNS.PassiveDef"}}: {{actor.fighting.passiveDefense}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- * STATE * -->
+    <div class="combat-group state-group">
+      <div class="background">
+        <div class="block-title black">
+          <h3>{{localize "DGNS.State"}}</h3>
+        </div>
+      </div>
+      <div class="combat">
+        <a class="general-name checkbox" data-target="system.state.motion">{{localize "DGNS.InMotion"}} <span
+            class="nocaps">(>2m)</span></a>
+        {{#if actor.state.motion}}
+        <a class="square border-black button-position checkbox" data-target="system.state.motion">
+          <div class="square-into black"></div>
+        </a>
+        {{else}}
+        <a class="square button-position checkbox" data-target="system.state.motion">
+          <div class="square-into"></div>
+        </a>
+        {{/if}}
+      </div>
+      <div class="combat">
+        <a class="general-name checkbox" data-target="system.state.active">{{localize "DGNS.ActiveAndOnMyFeet"}}</a>
+        {{#if actor.state.active}}
+        <a class="square border-black button-position checkbox" data-target="system.state.active">
+          <div class="square-into black"></div>
+        </a>
+        {{else}}
+        <a class="square button-position checkbox" data-target="system.state.active">
+          <div class="square-into"></div>
+        </a>
+        {{/if}}
+      </div>
+      <div class="combat">
+        <a class="general-name checkbox">{{localize "DGNS.Cover"}}: </a>
+        <div class="diamond-position">
+          <div class="diamond-row" data-target="system.state.cover.value">
+            {{#each system.state.cover.diamonds as |diamond index|}} {{#if
+            diamond.filled}}
+            <a class="diamond" data-index="{{index}}">
+              <div class="square black"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index="{{index}}">
+              <div class="square"></div>
+            </a>
+            {{/if}} {{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="combat">
+        <a class="general-name checkbox">{{localize "DGNS.SpendEgo"}}: </a>
+        <div class="diamond-position">
+          <div class="diamond-row" data-target="system.state.spentEgo.value">
+            {{#each system.state.spentEgo.diamonds as |diamond index|}} {{#if
+            diamond.filled}}
+            <a class="diamond" data-index="{{index}}">
+              <div class="square black"></div>
+            </a>
+            {{else}}
+            <a class="diamond" data-index="{{index}}">
+              <div class="square"></div>
+            </a>
+            {{/if}} {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="titlebar-container">
+  <div class="square little left"></div>
+  <svg class="title-line">
+    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+  </svg>
+  <div class="title-line-header">{{localize "DGNS.Arsenal"}}</div>
+  <svg class="title-line">
+    <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+  </svg>
+  <div class="square little right"></div>
+</div>
+
+<!--* ARSENAL -->
+<div class="arsenal-state-container">
+  <div class="arsenal">
+    <!--* MELEE WEAPONS -->
+    {{#if arsenal.meleeWeapons.length}}
+    <div class="arsenal-group weapon-group">
+      <div class="section-header-container">
+        <div class="section-header-titleblock">
+          <div class="block-title black">
+            <h3>{{localize "DGNS.MeleeWeapons"}}</h3>
+          </div>
+          <svg class="tab-start-line" height="20" width="26">
+            <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+            <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+          </svg>
+        </div>
+
+        <div class="section-header-legends arsenal-melee-grid">
+          <div class="legend-name uses">
+            <span>{{localize "DGNS.Uses"}}</span>
+          </div>
+
+          <div class="legend-name damage">
+            <span>{{localize "DGNS.Damage"}}</span>
+          </div>
+          <div class="legend-name distance">
+            <span>{{localize "DGNS.Distance"}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-list item-list">
+        <!-- NOTE: WEAPON ITEM CLASSES ARE NEEDED FOR HOOKS -->
+        {{#each arsenal.meleeWeapons as |weapon w|}}
+
+        <div class="entry-list-item weapon item entry-container arsenal-melee-entry-container"
+          data-item-id="{{weapon.id}}">
+
+          <a class="entry-list-item-name">{{weapon.name}}</a>
+
+          <div class="legend-name uses">
+            <span><a class="roll-weapon" data-use="attack">{{localize "DGNS.Attack"}} {{weapon.dice.attack}}{{localize
+                "UI.D"}}</a>
+              <a class="roll-weapon" data-use="defense">{{localize "DGNS.Defense"}}
+                {{weapon.dice.defense}}{{localize "UI.D"}}</a></span>
+          </div>
+          <div class="legend-name damage">
+            <span>{{weapon.DamageFormula}}</span>
+          </div>
+          <div class="legend-name distance">
+            <span>{{weapon.distance.melee}}</span>
+          </div>
+
+
+          {{#if weapon.qualities.length}}
+          <div class="entry-list-properties">
+            <div class="square properties">
+              <div class="name-rotate">P</div>
+            </div>
+            <div class="qualities-name">
+              <span>
+                {{#each weapon.Qualities as |quality q|}}
+                <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="weapon">{{quality}}</a>
+                {{/each}}
+              </span>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!--* RANGED WEAPONS -->
+    {{#if arsenal.rangedWeapons.length}}
+    <div class="arsenal-group weapon-group">
+      <div class="section-header-container">
+        <div class="section-header-titleblock">
+          <div class="block-title black">
+            <h3>{{localize "DGNS.RangedWeapons"}}</h3>
+          </div>
+          <svg class="tab-start-line" height="20" width="26">
+            <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+            <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+          </svg>
+        </div>
+
+        <div class="section-header-legends arsenal-ranged-grid">
+          <div class="legend-name uses-ranged">
+            <span>{{localize "DGNS.Uses"}}</span>
+          </div>
+          <div class="legend-name magazine">
+            <span>{{localize "DGNS.Magazine"}}</span>
+          </div>
+          <div class="legend-name damage">
+            <span>{{localize "DGNS.Damage"}}</span>
+          </div>
+          <div class="legend-name distance">
+            <span>{{localize "DGNS.Distance"}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-list item-list">
+        <!-- NOTE: WEAPON ITEM CLASSES ARE NEEDED FOR HOOKS -->
+        {{#each arsenal.rangedWeapons as |weapon w|}}
+        <div class="entry-list-item weapon item entry-container arsenal-ranged-entry-container"
+          data-item-id="{{weapon.id}}">
+
+          <a class="entry-list-item-name">{{weapon.name}}</a>
+
+          <div class="legend-name uses-ranged">
+            <span><a class="roll-weapon"
+                data-use="attack-short">≤{{weapon.distance.short}}m({{weapon.dice.effective}}{{localize "UI.D"}})
+              </a><a class="roll-weapon" data-use="attack-far">≤{{weapon.distance.far}}m({{weapon.dice.far}}{{localize
+                "UI.D"}}) </a><a class="roll-weapon"
+                data-use="attack-extreme">>{{weapon.distance.far}}m({{weapon.dice.extreme}}{{localize "UI.D"}})</a>
+            </span>
+          </div>
+          <div class="legend-name magazine-ranged" title="{{localize 'DGNS.TotalAmmo'}}: {{weapon.totalAvailableAmmo}}">
+            <a class="mag-count reload-click">{{weapon.mag.current}}</a><span>/{{weapon.mag.size}}</span>
+            ({{weapon.Caliber}})
+          </div>
+          <div class="legend-name damage-ranged">
+            <span>{{weapon.DamageFormula}}</span>
+          </div>
+          <div class="legend-name distance-ranged">
+            <span>{{weapon.distance.short}}/{{weapon.distance.far}}</span>
+          </div>
+
+          {{#if weapon.qualities.length}}
+          <div class="entry-list-properties">
+            <div class="square properties">
+              <div class="name-rotate">P</div>
+            </div>
+            <div class="qualities-name">
+              <span>
+                {{#each weapon.Qualities as |quality q|}}
+                <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="weapon">{{quality}}</a>
+                {{/each}}
+              </span>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!--* SONIC WEAPON-->
+
+    {{#if arsenal.sonicWeapons.length}}
+    <div class="arsenal-group weapon-group">
+      <div class="section-header-container">
+        <div class="section-header-titleblock">
+          <div class="block-title black">
+            <h3>{{localize "DGNS.SonicWeapons"}}</h3>
+          </div>
+          <svg class="tab-start-line" height="20" width="26">
+            <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+            <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+          </svg>
+        </div>
+
+        <div class="section-header-legends arsenal-sonic-grid">
+          <div class="legend-name uses-ranged">
+            <span>{{localize "DGNS.Uses"}}</span>
+          </div>
+          <div class="legend-name magazine">
+            <span>{{localize "DGNS.Magazine"}}</span>
+          </div>
+          <div class="legend-name damage">
+            <span>{{localize "DGNS.Damage"}}</span>
+          </div>
+          <div class="legend-name distance">
+            <span>{{localize "DGNS.Distance"}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-list item-list">
+        <!-- NOTE: WEAPON ITEM CLASSES ARE NEEDED FOR HOOKS -->
+        {{#each arsenal.sonicWeapons as |weapon w|}}
+        <div class="entry-list-item entry-container arsenal-sonic-entry-container weapon item"
+          data-item-id="{{weapon.id}}">
+
+          <a class="entry-list-item-name">{{weapon.name}}</a>
+
+          <div class="legend-name uses-ranged-sonic">
+            <span><a class="roll-weapon" data-use="attack-sonic">{{localize "DGNS.Attack"}} (INT+Eng &
+                PSY+Dom)</a></span>
+          </div>
+          <div class="legend-name magazine-ranged-sonic">
+            <a class="mag-count">{{weapon.mag.current}}</a><span>/{{weapon.mag.size}}</span>
+          </div>
+          <div class="legend-name damage-ranged-sonic">
+            <span>{{weapon.DamageFormula}}</span>
+          </div>
+          <div class="legend-name distance-ranged-sonic">
+            <span>{{weapon.distance.melee}}</span>
+          </div>
+
+          {{#if weapon.qualities.length}}
+          <div class="entry-list-properties">
+            <div class="square properties">
+              <div class="name-rotate">P</div>
+            </div>
+            <div class="qualities-name">
+              <span>
+                {{#each weapon.Qualities as |quality q|}}
+                <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="weapon">{{quality}}</a>
+                {{/each}}
+              </span>
+            </div>
+          </div>
+          {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/if}}
+    <!--* ARMOR -->
+    {{#if arsenal.armor.length}}
+    <div class="arsenal-group armor-group">
+
+      <div class="section-header-container">
+
+        <div class="section-header-titleblock">
+          <div class="block-title black">
+            <h3>{{localize "DGNS.Armor"}}</h3>
+          </div>
+          <svg class="tab-start-line" height="20" width="26">
+            <line x1="0" y1="7" x2="10" y2="7" class="line-stroke"></line>
+            <line x1="10" y1="7" x2="26" y2="23" class="line-stroke"></line>
+          </svg>
+        </div>
+
+        <div class="section-header-legends arsenal-armor-grid">
+          <div class="legend-name armor-value">
+            <span>{{localize "DGNS.ArmorValue"}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-list item-list">
+        <!-- NOTE: ARMOR ITEM CLASSES ARE NEEDED FOR HOOKS -->
+        {{#each arsenal.armor as |armor a|}} {{#if armor.equipped}}
+        <div class="entry-list-item entry-container arsenal-armor-entry-container armor item"
+          data-item-id="{{armor.id}}">
+
+          <a class="entry-list-item-name">{{armor.name}}</a>
+          <div class="legend-name armor-value">
+            <span>{{armor.AP}}</span>
+          </div>
+
+
+
+          {{#if armor.qualities.length}}
+          <div class="entry-list-properties">
+            <div class="square properties">
+              <div class="name-rotate">P</div>
+            </div>
+            <div class="qualities-name">
+              <span>
+                {{#each armor.Qualities as |quality q|}}
+                <a class="capitalize quality-dropdown" data-key="{{q}}" data-type="armor">{{quality}}</a>
+                {{/each}}
+              </span>
+            </div>
+          </div>
+          {{/if}}
+
+
+        </div>
+        {{/if}} {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</div>
+<div class="footer-diamond">
+  <div class="square little"></div>
+  <div class="square little"></div>
+  <div class="square little"></div>
+  <div class="square little"></div>
+</div>

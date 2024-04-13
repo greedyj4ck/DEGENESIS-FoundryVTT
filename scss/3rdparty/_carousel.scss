@@ -1,0 +1,48 @@
+#combat-dock {
+  margin-top: 5px;
+
+  .buttons-container {
+    border-radius: $b-radius-sm;
+    border: 1px solid var(--c-gold);
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(5px);
+    color: var(--c-gold) !important;
+
+    i {
+      padding: 2px;
+      &:hover {
+        color: var(--c-pred);
+        text-shadow: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    &.left {
+    }
+    &.right {
+    }
+  }
+  #combatants {
+    align-items: flex-start !important;
+
+    .combatant-portrait {
+      margin: 0px 2px;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      border-radius: $b-radius-md;
+
+      border: 2px solid var(--c-gold) !important;
+
+      &.active {
+        border: 2px solid var(--c-pred) !important;
+      }
+
+      .combatant-wrapper {
+      }
+    }
+
+    .separator {
+      border: 1px solid var(--c-pred) !important;
+    }
+  }
+}

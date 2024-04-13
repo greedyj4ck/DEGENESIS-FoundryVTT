@@ -1,0 +1,279 @@
+/// SECTION: Chat sidebar panel
+
+#chat-controls {
+  display: flex;
+  margin-bottom: 2px;
+  gap: 5px;
+
+  .chat-control-icon i {
+    width: 25px;
+    height: 25px;
+    color: #f0f8ff00;
+    background: url(../icons/logo-small.png);
+  }
+
+  .control-buttons {
+    i {
+      color: var(--c-gold);
+      text-shadow: none;
+
+      &:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+}
+
+#chat-log {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    border: none;
+    font-family: "AVenir";
+    text-transform: uppercase;
+    color: var(--c-gold-4);
+  }
+
+  i {
+    text-shadow: none;
+    color: var(--c-gold-4);
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
+
+  .chat-message {
+    border: 1px solid var(--c-gold);
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0px;
+
+    background-position: top center;
+    background-image: none;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    // backdrop-filter: blur(20px) - Causing issues with context-menu.... to be investigated
+    //background: url(../ui/black_02.jpg);
+
+    .portrait-wrapper {
+      padding: 0px 4px;
+      border-radius: inherit;
+      background-size: cover;
+      background-position: 25% 25%;
+      animation-iteration-count: 1;
+
+      .message-header {
+        color: var(--c-antiflash);
+        padding: 5px 5px 0px 5px;
+
+        .whisper-to {
+          margin-top: -5px;
+        }
+      }
+
+      .damage-triggers {
+        font-family: $primary-header-font;
+        text-transform: uppercase;
+        font-weight: 800;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      h2 {
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        color: var(--grey-240);
+        padding: 0px 5px 0px 5px;
+        margin: 0;
+        text-align: center;
+
+        &.defend {
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+
+        &.damage {
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+
+        &.result {
+          padding: 0px 5px 8px 5px;
+          margin-top: -8px;
+
+          &.success {
+            color: var(--degenesis-artifact-gold-light);
+          }
+
+          &.failure {
+            color: var(--grey-220);
+          }
+        }
+      }
+
+      h3 {
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        color: var(--grey-240);
+        padding: 0px 5px 0px 5px;
+        margin: 0;
+        text-align: center;
+        border: none;
+      }
+
+      hr {
+        width: 65%;
+        height: 1px;
+        background-color: var(--c-gold);
+        border: none;
+      }
+
+      .message-content {
+        color: var(--grey-240);
+        padding: 10px;
+      }
+
+      .roll-summary {
+        column-gap: 5px;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: center;
+        font-family: "Avenir";
+        font-size: 40px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        grid-column-gap: 15px;
+        text-transform: uppercase;
+      }
+
+      .roll-details {
+        padding-bottom: 5px;
+        text-align: center;
+      }
+    }
+
+    &.whisper {
+      border: 1px solid var(--c-resin-5);
+    }
+
+    &.blind {
+      border: 1px solid var(--c-pred-6);
+      color: var(--c-dgns-red) !important;
+    }
+
+    .whisper-to {
+      color: var(--c-gold-5);
+      font-family: "Avenir";
+      font-size: var(--font-size-12);
+      font-weight: 800;
+      text-shadow: none;
+      letter-spacing: 0.05em;
+    }
+
+    .message-sender {
+      font-family: "Crimson Pro";
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 1000;
+    }
+    .message-metadata {
+      color: var(--c-gold-4);
+      font-family: "Crimson Pro";
+    }
+
+    .chat-roll-dice {
+      text-align: center;
+      margin: 0px 0 3px 0;
+      opacity: 1;
+      justify-content: center;
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 3px;
+      row-gap: 3px;
+      transform: translateY(0px);
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        opacity: 1;
+        scale: 1.2;
+        transition: all 0.2s ease-out;
+        transform: translateY(-4px);
+      }
+
+      &.two-rows-dice {
+        grid-template-rows: 1fr 1fr;
+        transition: all 0.2s ease-out;
+        clip-path: inset(0px 0px 30px);
+        margin-top: -32px;
+        transform: translateY(32px);
+
+        &:hover {
+          opacity: 1;
+          scale: 1.2;
+          transition: all 0.2s ease-out;
+          transform: translateY(-4px);
+          clip-path: inset(0px 0px 0px 0px);
+        }
+      }
+    }
+
+    .chat-roll-die {
+      -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.5);
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+.chat-sidebar {
+  .jump-to-bottom {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+
+    font-family: $serif-content-font;
+    font-size: 14px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    width: calc(var(--sidebar-width) - 20px);
+
+    > a {
+      opacity: 0.2;
+      border: 1px solid var(--c-gold);
+      color: var(--c-gold) !important;
+      margin: 10px 5px !important;
+      //padding: 10px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: none;
+
+      transition: all 0.2s ease-in-out;
+
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.7) 80%
+      );
+
+      &:hover {
+        opacity: 1;
+        color: var(--c-pred) !important;
+      }
+    }
+
+    i {
+      margin-right: 2px;
+      font-size: var(--font-size-10);
+    }
+  }
+}

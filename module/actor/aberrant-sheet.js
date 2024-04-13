@@ -13,7 +13,7 @@ import ActorConfigure from "../apps/actor-configure.js";
 export class DegenesisAberrantSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["degenesis", "sheet", "aberrant"],
       template:
         "systems/degenesis/templates/actor/aberrant/aberrant-sheet.html",
@@ -42,7 +42,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
   async getData() {
     const data = await super.getData();
 
-    data.data = data.actor.system;
+    data.system = data.actor.system;
 
     // Used for Modifier item list
     data.modifyActions = DEG_Utility.getModificationActions();
@@ -70,8 +70,8 @@ export class DegenesisAberrantSheet extends ActorSheet {
     };
     sheetData.enrichment = await this._handleEnrichment();
 
-    DEG_Utility.addDiamonds(sheetData.data.state.spentEgo, 3);
-    DEG_Utility.addDiamonds(sheetData.data.state.spentSpore, 3);
+    DEG_Utility.addDiamonds(sheetData.system.state.spentEgo, 3);
+    DEG_Utility.addDiamonds(sheetData.system.state.spentSpore, 3);
   }
 
   sortAttributesSkills() {
@@ -111,7 +111,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
       { async: true, secrets: this.actor.isOwner, relativeTo: this.actor }
     );
 
-    return expandObject(enrichment);
+    return foundry.utils.expandObject(enrichment);
   }
   constructInventory() {
     return {
@@ -249,13 +249,13 @@ export class DegenesisAberrantSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -270,19 +270,19 @@ export class DegenesisAberrantSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       } else {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + 1);
+      foundry.utils.setProperty(actorData, target, currentValue + 1);
     }
 
     this.actor.update(actorData);
@@ -292,13 +292,13 @@ export class DegenesisAberrantSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -313,19 +313,19 @@ export class DegenesisAberrantSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       } else {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + -1);
+      foundry.utils.setProperty(actorData, target, currentValue + -1);
     }
 
     this.actor.update(actorData);
@@ -350,12 +350,12 @@ export class DegenesisAberrantSheet extends ActorSheet {
       target = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-item-target");
-      let value = getProperty(itemData, target);
+      let value = foundry.utils.getProperty(itemData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(itemData, target, index);
+        foundry.utils.setProperty(itemData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(itemData, target, index + 1);
+      else foundry.utils.setProperty(itemData, target, index + 1);
       this.actor.updateEmbeddedDocuments("Item", [itemData]);
       return;
     }
@@ -366,7 +366,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
       let targetParent = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       // Minimum is checked for permanent spore infestation, else 0
       let minimum;
@@ -386,28 +386,28 @@ export class DegenesisAberrantSheet extends ActorSheet {
       if (index + 1 <= maximum && index + 1 > minimum) {
         if (parentValues.value == index + 1)
           // If the last one was clicked, decrease by 1
-          setProperty(actorData, target, index);
+          foundry.utils.setProperty(actorData, target, index);
         // Otherwise, value = index clicked
-        else setProperty(actorData, target, index + 1); // If attribute selected
+        else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
         let attributeElement = $(event.currentTarget).parents(".attribute");
         if (attributeElement.length) {
           // Constrain attributes to be greater than 0
-          if (getProperty(actorData, target) <= 0)
-            setProperty(actorData, target, 1);
+          if (foundry.utils.getProperty(actorData, target) <= 0)
+            foundry.utils.setProperty(actorData, target, 1);
         }
       }
     } else {
-      let value = getProperty(actorData, target);
+      let value = foundry.utils.getProperty(actorData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(actorData, target, index);
+        foundry.utils.setProperty(actorData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(actorData, target, index + 1); // If attribute selected
+      else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
       let attributeElement = $(event.currentTarget).parents(".attribute");
       if (attributeElement.length) {
         // Constrain attributes to be greater than 0
-        if (getProperty(actorData, target) <= 0)
-          setProperty(actorData, target, 1);
+        if (foundry.utils.getProperty(actorData, target) <= 0)
+          foundry.utils.setProperty(actorData, target, 1);
       }
     }
     this.actor.update(actorData);

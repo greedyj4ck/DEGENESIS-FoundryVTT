@@ -7,7 +7,7 @@ import { DEGENESIS } from "../config.js";
 export class ItemQualities extends DocumentSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: "item-quality-selector",
       classes: ["degenesis", "quality-selector"],
       title: "Item Qualities Selection",

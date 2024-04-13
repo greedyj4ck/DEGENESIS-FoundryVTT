@@ -184,12 +184,16 @@ export class DegenesisItem extends Item {
       // Apply the mod's changes, adding or overwriting as specified
       for (let change of mod.changes) {
         if (change.mode == "add" && change.value) {
-          let current = getProperty(this.system, change.key);
+          let current = foundry.utils.getProperty(this.system, change.key);
           if (Number.isNumeric(current)) {
-            setProperty(this.system, change.key, current + change.value);
+            foundry.utils.setProperty(
+              this.system,
+              change.key,
+              current + change.value
+            );
           }
         } else if (change.mode == "override" && change.value) {
-          setProperty(this.system, change.key, change.value);
+          foundry.utils.setProperty(this.system, change.key, change.value);
         }
       }
 
@@ -349,7 +353,7 @@ export class DegenesisItem extends Item {
 
     if (
       this.qualities.find((q) => q.name == "special") &&
-      getProperty(this, "flags.degenesis.specialty")
+      foundry.utils.getProperty(this, "flags.degenesis.specialty")
     )
       text = text.concat(
         `<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${
@@ -477,7 +481,7 @@ export class DegenesisItem extends Item {
 
     if (
       this.qualities.find((q) => q.name == "special") &&
-      getProperty(this, "flags.degenesis.specialty")
+      foundry.utils.getProperty(this, "flags.degenesis.specialty")
     )
       text = text.concat(
         `<br><b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${
@@ -529,7 +533,7 @@ export class DegenesisItem extends Item {
 
     if (
       this.qualities.find((q) => q.name == "special") &&
-      getProperty(this, "flags.degenesis.specialty")
+      foundry.utils.getProperty(this, "flags.degenesis.specialty")
     ) {
       text = text.concat(
         `<b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${
@@ -577,7 +581,7 @@ export class DegenesisItem extends Item {
 
     if (
       this.qualities.find((q) => q.name == "special") &&
-      getProperty(this, "flags.degenesis.specialty")
+      foundry.utils.getProperty(this, "flags.degenesis.specialty")
     ) {
       text = text.concat(
         `<b>${game.i18n.localize("DGNS.Specialty").toUpperCase()}</b>: ${

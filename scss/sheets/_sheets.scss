@@ -303,12 +303,12 @@
   justify-content: space-between;
 
   &.black {
-    background-image: url(../images/title\ border.svg);
+    background-image: url(../ui/images/title\ border.svg);
     color: white;
   }
 
   &.white {
-    background-image: url(../images/title\ border\ white.svg);
+    background-image: url(../ui/images/title\ border\ white.svg);
     color: black;
   }
 
@@ -469,7 +469,7 @@
   z-index: 1000;
   width: 108px;
   height: 108px;
-  background-image: url(../images/character\ frame.svg);
+  background-image: url(../ui/images/character\ frame.svg);
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;

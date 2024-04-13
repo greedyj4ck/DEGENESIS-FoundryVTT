@@ -1,0 +1,74 @@
+/// SECTION: Journals sidebar panel
+///
+#journal,
+#journal-popout {
+  button {
+    min-height: 35px;
+  }
+
+  input {
+    border: 1px solid var(--c-gold);
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: "Crimson Pro";
+    color: var(--c-gold);
+
+    &::placeholder {
+      opacity: 0.5;
+      color: var(--c-gold-5) !important;
+    }
+  }
+
+  a {
+    font-family: "Crimson Pro";
+    font-weight: 500;
+    text-shadow: none;
+    letter-spacing: 0.05em;
+    color: var(--c-gold) !important;
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--c-pred) !important;
+    }
+  }
+
+  .document.journalentry {
+    margin: 2px 6px;
+    padding: 8px 0px;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-md;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    opacity: 0.8;
+
+    align-items: center;
+    transition: opacity 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.context {
+      border: 1px solid var(--c-pred);
+
+      &::after {
+        border-radius: $b-radius-md;
+        border: none;
+      }
+    }
+
+    img.thumbnail {
+      border: 1px solid var(--c-gold);
+      margin: 3px;
+      border-radius: $b-radius-sm;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      line-height: normal;
+    }
+  }
+}

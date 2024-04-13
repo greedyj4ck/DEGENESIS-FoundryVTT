@@ -1,0 +1,77 @@
+/// SECTION: Scenes sidebar panel
+///
+#scenes,
+#scenes-popout {
+  button {
+    min-height: 35px;
+  }
+
+  input {
+    border: 1px solid var(--c-gold);
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: "Crimson Pro";
+    color: var(--c-gold);
+
+    &::placeholder {
+      opacity: 0.5;
+      color: var(--c-gold-5) !important;
+    }
+  }
+
+  a {
+    text-align: center;
+    text-wrap: wrap;
+    font-weight: 1000;
+    text-shadow: none;
+    letter-spacing: 0.1em;
+    color: var(--c-gold) !important;
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--c-pred) !important;
+    }
+  }
+
+  .document.scene {
+    margin: 2px 6px;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-md;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url(../ui/placeholders/scene.webp);
+    opacity: 0.8;
+
+    justify-content: flex-end;
+    justify-items: flex-end;
+    align-items: flex-end;
+    transition: opacity 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.context {
+      border: 1px solid var(--c-pred);
+
+      &::after {
+        border-radius: $b-radius-md;
+        border: none;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      padding: 3px;
+      line-height: normal;
+      font-family: "Avenir";
+      font-size: var(--font-size-12);
+
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+
+      border-top: 1px solid var(--c-gold);
+      border-bottom-left-radius: $b-radius-md;
+      border-bottom-right-radius: $b-radius-md;
+    }
+  }
+}

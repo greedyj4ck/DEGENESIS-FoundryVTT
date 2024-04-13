@@ -33,8 +33,8 @@
                 <div class="condition-content-container">
 
                     <div class="condition ego">
-                        <div class="controls" data-target="system.condition.ego.value"
-                            data-targetParent="system.condition.ego">
+                        <div class="controls" data-target="data.condition.ego.value"
+                            data-targetParent="data.condition.ego">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                     <div class="condition fleshwounds">
-                        <div class="controls" data-target="system.condition.fleshwounds.value"
-                            data-targetParent="system.condition.fleshwounds">
+                        <div class="controls" data-target="data.condition.fleshwounds.value"
+                            data-targetParent="data.condition.fleshwounds">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
@@ -68,15 +68,16 @@
                         </div>
                     </div>
                     <div class="condition trauma">
-                        <div class="controls" data-target="system.condition.trauma.value"
-                            data-targetParent="system.condition.trauma">
+                        <div class="controls" data-target="data.condition.trauma.value"
+                            data-targetParent="data.condition.trauma">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
                         <div class="label">{{localize "DGNS.Trauma"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" /></div>
+                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" />
+                            </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
                                     name="data.condition.trauma.max" value="{{data.condition.trauma.max}}" />
@@ -148,7 +149,7 @@
             <div class="spend-ego">
                 <a class="label checkbox">{{localize "DGNS.SpendEgo"}}</a>
                 <div class="diamond-position">
-                    <div class="diamond-row" data-target="system.state.spentEgo.value">
+                    <div class="diamond-row" data-target="data.state.spentEgo.value">
                         {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
                         diamond.filled}}
                         <a class="diamond" data-index="{{index}}">
@@ -166,7 +167,8 @@
 
 
         <div class="config-input-container armor" style="flex-wrap: wrap;">
-            <div class="dice-value"><input type="number" name="data.armor.rating" value="{{data.armor.rating}}" /></div>
+            <div class="dice-value"><input type="number" name="data.armor.rating" value="{{data.armor.rating}}" />
+            </div>
             <div class="label">{{localize "DGNS.Armor"}}</div>
             <div style="height: 0; flex-basis: 100%;"> </div>
             <div class="armor-name"><input type="text" name="data.armor.name" value="{{data.armor.name}}" />
@@ -366,7 +368,7 @@
                 </div>
                 <div class="level">
                     <div class="diamond-position">
-                        <div class="diamond-row" data-target="item" data-item-target="system.level">
+                        <div class="diamond-row" data-target="item" data-item-target="data.level">
                             {{#each potential.potentialDiamonds as |diamond index|}}
                             {{#if diamond.filled}}
                             <a class="diamond" data-index={{index}}>
@@ -417,7 +419,7 @@
             </div>
 
             <div class="fullwidth-editor">
-                {{editor enrichment.system.tactics.value target="system.tactics" engine="prosemirror" button=true
+                {{editor enrichment.data.tactics.value target="data.tactics" engine="prosemirror" button=true
                 owner=owner editable=editable}}
             </div>
 

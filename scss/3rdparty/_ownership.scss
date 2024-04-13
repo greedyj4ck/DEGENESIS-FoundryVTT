@@ -1,0 +1,17 @@
+.ownership-viewer {
+  margin-right: 10px !important;
+
+  //border: 1px solid var(--c-gold);
+  i {
+    text-shadow: none !important;
+    color: var(--c-gold) !important;
+
+    &:hover {
+      color: var(--c-pred) !important;
+    }
+  }
+}
+
+.scene .ownership-viewer {
+  display: none;
+}

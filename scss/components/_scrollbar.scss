@@ -1,73 +1,35 @@
 /* COMPONENTS: _SCROLLBAR.SCSS */
 
 // RESET CSS STANDARDS - BROKEN SCROLLBARS
-:root {
+:root,
+* {
   scrollbar-width: unset !important;
   scrollbar-color: unset !important;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
   border: none;
   background-color: transparent;
-  &:hover {
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-  }
-}
-::-webkit-scrollbar-thumb {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  border-radius: 0px;
-  background-color: black;
-}
-::-webkit-scrollbar-track {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  background-image: url("../images/scrolltrack.png");
-  background-position: center;
-  background-repeat: repeat-y;
-  border-radius: 0px;
-  box-shadow: none;
-}
-::-webkit-scrollbar-button {
-  display: inline-block;
-}
-::-webkit-scrollbar-track-piece {
-  display: none;
-}
-::-webkit-scrollbar-corner {
-  display: none;
-}
-::-webkit-resizer {
-  display: none;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  &:hover {
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-  }
-}
 ::-webkit-scrollbar-thumb {
-  width: 4px;
   border: none;
-  background-color: transparent;
-  border-radius: 0px;
-  background-color: black;
+  border: 1px solid var(--c-gold-5);
+  background-color: var(--c-gold-7);
+  border-radius: 3px !important;
+
+  &:hover {
+    border: 1px solid var(--c-pred-5);
+    background-color: var(--c-pred-7);
+  }
 }
 ::-webkit-scrollbar-track {
   width: 4px;
   border: none;
   background-color: transparent;
-  background-image: url("../images/scrolltrack.png");
+  //background-color: var(--c-pred);
+  // /background-image: url("../ui/images/scrolltrack.png");
   background-position: center;
   background-repeat: repeat-y;
   border-radius: 0px;

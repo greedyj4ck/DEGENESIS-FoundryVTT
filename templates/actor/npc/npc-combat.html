@@ -29,7 +29,7 @@
         <div class="spend-ego">
             <a class="label checkbox">{{localize "DGNS.SpendEgo"}}</a>
             <div class="diamond-position">
-                <div class="diamond-row" data-target="system.state.spentEgo.value">
+                <div class="diamond-row" data-target="data.state.spentEgo.value">
                     {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
                     diamond.filled}}
                     <a class="diamond" data-index="{{index}}">
@@ -240,7 +240,7 @@
             </div>
             <div class="level">
                 <div class="diamond-position">
-                    <div class="diamond-row" data-target="item" data-item-target="system.level">
+                    <div class="diamond-row" data-target="item" data-item-target="data.level">
                         {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>

@@ -1,0 +1,30 @@
+#settings,
+#settings-popout {
+  button {
+    min-height: 35px;
+  }
+
+  hr {
+    border: 1px solid var(--c-gold);
+  }
+
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+  font-size: var(--font-size-13);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Avenir";
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    border: none;
+    background: none;
+
+    color: var(--c-pred) !important;
+    text-transform: uppercase;
+  }
+}

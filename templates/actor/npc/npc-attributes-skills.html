@@ -20,7 +20,7 @@
     <!-- Attribute group -->
     <div class="attribute-skill-group">
 
-        <div class="attribute-value" data-target="system.attributes.{{g}}.value">
+        <div class="attribute-value" data-target="data.attributes.{{g}}.value">
             <h3>{{group.label}}</h3>
 
             <div class="attribute-input">
@@ -34,7 +34,7 @@
         <div class="skill-list">
             {{#each group.skills as |skill sk|}}
             <!-- advantage -->
-            <div data-target="system.skills.{{sk}}.value" class="skill">
+            <div data-target="data.skills.{{sk}}.value" class="skill">
                 <!-- background-name -->
                 {{#if skill.unused}}
                 <a class="skill-name unused" data-target="{{sk}}">{{skill.label}} <span

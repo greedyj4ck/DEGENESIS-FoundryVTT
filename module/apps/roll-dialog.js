@@ -78,6 +78,8 @@ export default class RollDialog extends Dialog {
   }
 
   submit(button) {
+    $(":focus").blur();
+
     let difficulty = this.element.find("input[name='difficulty']").val();
     let secondary = this.element.find(".secondary-select").val();
 

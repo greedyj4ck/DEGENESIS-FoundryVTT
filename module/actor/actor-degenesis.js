@@ -43,14 +43,18 @@ export class DegenesisActor extends Actor {
     await super._preUpdate(updateData, options, user);
 
     // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
-    if (getProperty(updateData, "system.skills.faith.value"))
-      setProperty(updateData, "system.skills.willpower.value", 0);
-    else if (getProperty(updateData, "system.skills.willpower.value"))
-      setProperty(updateData, "system.skills.faith.value", 0);
-    else if (getProperty(updateData, "system.skills.focus.value"))
-      setProperty(updateData, "system.skills.primal.value", 0);
-    else if (getProperty(updateData, "system.skills.primal.value"))
-      setProperty(updateData, "system.skills.focus.value", 0);
+    if (foundry.utils.getProperty(updateData, "system.skills.faith.value"))
+      foundry.utils.setProperty(updateData, "system.skills.willpower.value", 0);
+    else if (
+      foundry.utils.getProperty(updateData, "system.skills.willpower.value")
+    )
+      foundry.utils.setProperty(updateData, "system.skills.faith.value", 0);
+    else if (foundry.utils.getProperty(updateData, "system.skills.focus.value"))
+      foundry.utils.setProperty(updateData, "system.skills.primal.value", 0);
+    else if (
+      foundry.utils.getProperty(updateData, "system.skills.primal.value")
+    )
+      foundry.utils.setProperty(updateData, "system.skills.focus.value", 0);
 
     // Limit data range for condition values for From Hell sheet
 
@@ -67,6 +71,10 @@ export class DegenesisActor extends Actor {
     if (this.type === "aberrant") {
       updateData = this.limitAberrantValues(updateData);
     }
+  }
+
+  async _update(updateData, options, user) {
+    await super._update(updateData, options, user);
   }
 
   // REGION | DATA PREPARATION
@@ -234,7 +242,7 @@ export class DegenesisActor extends Actor {
   }
 
   limitFromHellValues(updateData) {
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
@@ -261,7 +269,7 @@ export class DegenesisActor extends Actor {
 
     // Limit condition
 
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
@@ -295,7 +303,7 @@ export class DegenesisActor extends Actor {
     }
 
     // Limit
-    if (getProperty(updateData, "system.attributes")) {
+    if (foundry.utils.getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
         limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
       }
@@ -303,7 +311,7 @@ export class DegenesisActor extends Actor {
 
     // Limit skills
 
-    if (getProperty(updateData, "system.skills")) {
+    if (foundry.utils.getProperty(updateData, "system.skills")) {
       for (let skill in updateData.system.skills) {
         limitMaxMinValue(
           updateData,
@@ -323,7 +331,7 @@ export class DegenesisActor extends Actor {
 
     // Limit condition
 
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
@@ -357,7 +365,7 @@ export class DegenesisActor extends Actor {
     }
 
     // Limit
-    if (getProperty(updateData, "system.attributes")) {
+    if (foundry.utils.getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
         limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
       }
@@ -365,7 +373,7 @@ export class DegenesisActor extends Actor {
 
     // Limit skills
 
-    if (getProperty(updateData, "system.skills")) {
+    if (foundry.utils.getProperty(updateData, "system.skills")) {
       for (let skill in updateData.system.skills) {
         limitMaxMinValue(
           updateData,
@@ -1160,7 +1168,9 @@ export class DegenesisActor extends Actor {
     let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier");
     if (egoModifierId) {
       await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
-      await this.update({ "flags.degenesis.-=spentEgoActionModifier": null });
+      await this.updateSource({
+        "flags.degenesis.-=spentEgoActionModifier": null,
+      });
       ui.notifications.notify(
         game.i18n.localize("UI.UsedEgoModifierNotification")
       );
@@ -1168,7 +1178,9 @@ export class DegenesisActor extends Actor {
     let sporeModifierId = this.getFlag("degenesis", "spentSporeActionModifier");
     if (sporeModifierId) {
       await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
-      await this.update({ "flags.degenesis.-=spentSporeActionModifier": null });
+      await this.updateSource({
+        "flags.degenesis.-=spentSporeActionModifier": null,
+      });
 
       ui.notifications.notify(
         game.i18n.localize("UI.UsedSporeModifierNotification")
@@ -1176,14 +1188,14 @@ export class DegenesisActor extends Actor {
     }
 
     if (rollResults.overload > 0) {
-      await this.update({
+      await this.updateSource({
         "data.condition.spore.value":
           this.condition.spore.value - rollResults.overload,
       });
     }
 
     if (type !== "initiative" && this.state.initiative.actions > 1)
-      await this.update({
+      await this.updateSource({
         "data.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
@@ -1514,9 +1526,9 @@ export class DegenesisActor extends Actor {
 // Utilities
 
 function limitMaxMinValue(updateData, value, maxValue, minValue = 0) {
-  if (getProperty(updateData, value) > maxValue) {
-    setProperty(updateData, value, maxValue);
-  } else if (getProperty(updateData, value) < minValue) {
-    setProperty(updateData, value, minValue);
+  if (foundry.utils.getProperty(updateData, value) > maxValue) {
+    foundry.utils.setProperty(updateData, value, maxValue);
+  } else if (foundry.utils.getProperty(updateData, value) < minValue) {
+    foundry.utils.setProperty(updateData, value, minValue);
   }
 }

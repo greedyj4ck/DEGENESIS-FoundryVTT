@@ -1,0 +1,196 @@
+<form class="{{cssClass}} form-flex" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sh-header">
+
+        <!-- MAIN "ARCHETYPE" TITLE BAR-->
+        <div class="sh-titlebar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="5" x2="88%" y2="5" class="line-stroke"></line>
+                <line x1="88%" y1="5" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="middle-name">{{localize "DGNS.Archetype"}}</div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="11" x2="12%" y2="5" class="line-stroke"></line>
+                <line x1="12%" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+
+        </div>
+
+        <!-- HEADER CONTENT -->
+        <div class="header-content-container">
+            <div class="header-content-side-container">
+
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Name"}}:</span>
+                    <input class="field-input" type="text" name="name" value="{{actor.name}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Age"}}:</span>
+                    <input class="field-input" type="text" name="system.details.age.value"
+                        value="{{system.details.age.value}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Rank"}}:</span>
+                    <input class="field-input" type="text" name="system.details.rank.value"
+                        value="{{system.details.rank.value}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Experience"}}:</span>
+                    <input class="field-input" type="text" name="system.details.experience.value"
+                        value="{{system.details.experience.value}}" />
+                </div>
+            </div>
+
+            <div class="header-content-image-container">
+
+                <div class="img-frame">
+                    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100"
+                        width="100" />
+                </div>
+            </div>
+
+            <div class="header-content-side-container">
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Sex"}}:</span>
+                    <input class="field-input" type="text" name="system.details.sex.value"
+                        value="{{system.details.sex.value}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Height"}}:</span>
+                    <input class="field-input" type="text" name="system.details.height.value"
+                        value="{{system.details.height.value}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.Weight"}}:</span>
+                    <input class="field-input" type="text" name="system.details.weight.value"
+                        value="{{system.details.weight.value}}" />
+                </div>
+                <div class="sh-field">
+                    <span class="field-name">{{localize "DGNS.DraftsDinars"}}:</span>
+                    <input class="field-input" type="text" name="system.details.dinars.value"
+                        value="{{system.details.dinars.value}}" />
+                </div>
+            </div>
+        </div>
+
+        <!-- CULT / CULTURE / CONCEPT CONTAINER-->
+
+        <div class="ccc-content-container">
+
+            <div class="sh-field-stack">
+                <div class="title-Cs">{{localize "DGNS.Culture"}}</div>
+                <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" />
+                <div class="c-popout culture">
+                    <h2>{{actor.Culture}}</h2>
+                    {{{configLookup "cultureDescription" actor.details.culture.value}}}
+                </div>
+                <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
+                    {{#select system.details.culture.value}}
+                    <option value=""></option>
+                    {{#each (config "cultures") as |culture c|}}
+                    <option value="{{c}}">{{culture}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div class="sh-field-stack">
+                <div class="title-Cs">{{localize "DGNS.Concept"}}</div>
+                <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" />
+                <div class="c-popout concept">
+                    <h2>{{actor.Concept}}</h2>
+                    {{{configLookup "conceptDescription" actor.details.concept.value}}}
+                </div>
+                <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
+                    {{#select system.details.concept.value}}
+                    <option value=""></option>
+                    {{#each (config "concepts") as |concept c|}}
+                    <option value="{{c}}">{{concept}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+
+            <div class="sh-field-stack">
+                <div class="title-Cs">{{localize "DGNS.Cult"}}</div>
+                <img class="cult-img" height="80" width="80" src="{{cultIcon}}" />
+                <div class="c-popout cult">
+                    <h2>{{actor.Cult}}</h2>
+                    {{{configLookup "cultDescription" actor.details.cult.value}}}
+                </div>
+                <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
+                    {{#select system.details.cult.value}}
+                    <option value=""></option>
+                    {{#each (config "cults") as |cult c|}}
+                    <option value="{{c}}">{{cult}}</option>
+                    {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sh-tabs tabs" data-group="primary">
+        <a class="item" data-tab="attributes">{{localize "DGNS.Attributes"}}</a>
+        <a class="item" data-tab="advantages">{{localize "DGNS.Advantages"}}</a>
+        <a class="item" data-tab="condition">{{localize "DGNS.Condition"}}</a>
+        <a class="item" data-tab="combat">{{localize "DGNS.Combat"}}</a>
+        <a class="item" data-tab="inventory">{{localize "DGNS.Inventory"}}</a>
+        <a class="item" data-tab="history">{{localize "DGNS.History"}}</a>
+    </nav>
+
+
+    <!-- TAB CONTAINERS -->
+
+    <div class="tab-content-container">
+
+        <div class="tab" data-tab="attributes">
+            {{> systems/degenesis/templates/actor/character/character-attributes-skills-diamonds.html}}
+        </div>
+        <div class="tab" data-tab="advantages">
+            {{> systems/degenesis/templates/actor/character/character-advantages.html}}
+        </div>
+        <div class="tab" data-tab="condition">
+            {{> systems/degenesis/templates/actor/character/character-condition.html}}
+        </div>
+        <div class="tab" data-tab="combat">
+            {{> systems/degenesis/templates/actor/character/character-combat.html}}
+        </div>
+        <div class="tab" data-tab="inventory">
+            {{> systems/degenesis/templates/actor/character/character-inventory.html}}
+        </div>
+        <div class="tab" data-tab="history">
+            {{> systems/degenesis/templates/actor/character/character-history.html}}
+        </div>
+    </div>
+
+    <footer class="sh-footer">
+        <div class="footer-line-bar">
+            <div class="square little left"></div>
+            <svg class="start-line">
+                <line x1="0%" y1="11" x2="88%" y2="11" class="line-stroke"></line>
+                <line x1="88%" y1="11" x2="100%" y2="5" class="line-stroke""></line>
+            </svg>
+            <svg class=" bottom-line middle">
+                    <line x1="0" y1="5" x2="100%" y2="5" class="line-stroke"></line>
+            </svg>
+            <svg class="end-line">
+                <line x1="0%" y1="5" x2="12%" y2="11" class="line-stroke"></line>
+                <line x1="12%" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
+    </footer>
+
+
+
+</form>

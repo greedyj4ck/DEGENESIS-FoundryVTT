@@ -9,7 +9,7 @@ import { ItemQualities } from "../apps/item-qualities.js";
 export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["degenesis", "sheet", "item"],
       width: 550,
       height: 535,
@@ -46,7 +46,12 @@ export class DegenesisItemSheet extends ItemSheet {
   // Experimental ASYNC
   async getData() {
     const data = await super.getData();
-    data.data = data.item._source.system;
+
+    /// CHECK THIS OUT
+    /* const data = await super.getData();
+    data.system = data.actor.system; */
+
+    data.system = data.item._source.system;
     // console.log(data)
     this.processTypes(data);
 
@@ -72,7 +77,7 @@ export class DegenesisItemSheet extends ItemSheet {
       { async: true }
     );
 
-    return expandObject(enrichment);
+    return foundry.utils.expandObject(enrichment);
   }
 
   async _onDrop(event) {
@@ -138,7 +143,12 @@ export class DegenesisItemSheet extends ItemSheet {
       return;
     }
 
-    if (target) setProperty(itemData, target, !getProperty(itemData, target));
+    if (target)
+      foundry.utils.setProperty(
+        itemData,
+        target,
+        !foundry.utils.getProperty(itemData, target)
+      );
     this.item.update(itemData);
   }
 

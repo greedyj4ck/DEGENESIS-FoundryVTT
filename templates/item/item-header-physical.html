@@ -39,8 +39,8 @@
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Group"}}: </span>
-                    <select name="data.group" data-dtype="String">
-                        {{#select data.group}}
+                    <select name="system.group" data-dtype="String">
+                        {{#select system.group}}
                         {{#each (config "weaponGroups") as |group g|}}
                         <option value="{{g}}">{{group}}</option>
                         {{/each}}
@@ -52,9 +52,9 @@
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Tech"}}: </span>
-                    <select name="data.tech" data-dtype="Number">
+                    <select name="system.tech" data-dtype="Number">
                         <option value="">-</option>
-                        {{#select data.tech}}
+                        {{#select system.tech}}
                         {{#each (config "techValues") as |tech t|}}
                         <option value="{{t}}">{{tech}}</option>
                         {{/each}}

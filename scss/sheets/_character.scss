@@ -1,16 +1,26 @@
 /* ENTITY SHEET: _CHARACTER.SCSS */
-
 // LIMITING STYLE TO CHARACTER SHEET ONLY
 .app.window-app.degenesis.sheet.actor.character {
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: var(--c-gold);
+  // BLOCKING RESIZE BEYOND THOSE VALUES
+
+  min-width: 720px;
+  min-height: 720px;
+
   .line-stroke {
     stroke: $line-stroke-color;
     stroke-width: $line-stroke-width;
   }
 
-  // BLOCKING RESIZE BEYOND THOSE VALUES
-  min-width: 720px;
-  min-height: 720px;
+  .square,
+  .square.little {
+    border: $line-stroke-width solid $line-stroke-color;
+  }
 
+  .img-frame {
+    background-image: url(../ui/images/character\ frame\ gold.svg);
+  }
   // GENERAL UTILITY CLASSES
 
   .item-data {
@@ -193,7 +203,7 @@
     width: 100%;
 
     overflow-y: hidden;
-    background: white;
+    background: #000;
     font-family: $sans-serif-content-font;
     font-weight: 300;
     color: black;
@@ -357,11 +367,11 @@
 
   .archetype-line {
     &.line-left {
-      background-image: url(../images/header\ line\ left.svg);
+      background-image: url(../ui/images/header\ line\ left.svg);
     }
 
     &.line-right {
-      background-image: url(../images/header\ line\ right.svg);
+      background-image: url(../ui/images/header\ line\ right.svg);
     }
   }
 
@@ -438,7 +448,7 @@
         min-height: 15px;
         height: 100%;
         width: 100%;
-        background-image: url(../images/attribut\ border.svg);
+        background-image: url(../ui/images/attribut\ border.svg);
         background-repeat: no-repeat;
         color: white;
         background-size: 100%;

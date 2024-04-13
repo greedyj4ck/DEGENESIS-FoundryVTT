@@ -37,7 +37,7 @@
     </div>
 
     <div class="custom-modifier-section">
-        <select name="customModifiers" class="custom-modifiers" multiple>
+        <select name="customModifiers" class="custom-modifiers select-swap" multiple>
             {{#each customModifiers as |modifier m|}}
             <option value="{{m}}">{{modifier.description}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
             {{/each}}
@@ -49,7 +49,7 @@
 {{#if showSecondaryOption}}
 <div class="secondary-selection">
     <label>{{localize "DGNS.SecondarySkill"}}:</label>
-    <select name="secondarySkill" class="secondary-select">
+    <select name="secondarySkill" class="secondary-select select-swap">
         {{#select secondarySkill}}
         <option value="">None</option>
         {{#each (config "skills") as |skill s|}}

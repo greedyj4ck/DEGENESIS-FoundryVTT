@@ -25,12 +25,12 @@ export class DegenesisChatMessage extends ChatMessage {
     const messageData = {
       message: data,
       user: game.user,
-      author: this.user,
+      author: this.author,
       alias: this.alias,
       cardPortrait: this.cardPortrait,
       cssClass: [
-        this.type === CONST.CHAT_MESSAGE_TYPES.IC ? "ic" : null,
-        this.type === CONST.CHAT_MESSAGE_TYPES.EMOTE ? "emote" : null,
+        this.type === CONST.CHAT_MESSAGE_STYLES.IC ? "ic" : null,
+        this.type === CONST.CHAT_MESSAGE_STYLES.EMOTE ? "emote" : null,
         isWhisper ? "whisper" : null,
         this.blind ? "blind" : null,
       ].filterJoin(" "),
@@ -50,7 +50,7 @@ export class DegenesisChatMessage extends ChatMessage {
     }
 
     // Define a border color
-    if (this.type === CONST.CHAT_MESSAGE_TYPES.OOC) {
+    if (this.type === CONST.CHAT_MESSAGE_STYLES.OOC) {
       messageData.borderColor = this.user?.color;
     }
 

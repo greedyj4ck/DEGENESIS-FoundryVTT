@@ -1,0 +1,124 @@
+/// Combat tracker styling
+
+#combat,
+#combat-popout {
+  .combat-tracker-header {
+    border-bottom: 1px solid var(--c-gold);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Crimson Pro";
+      font-size: var(--font-size-14);
+      font-weight: 500;
+      color: var(--c-gold);
+      letter-spacing: 0.05em;
+    }
+
+    a,
+    i {
+      color: var(--c-gold);
+
+      &:hover {
+        color: var(--c-pred);
+        text-shadow: none;
+      }
+    }
+  }
+
+  #combat-controls {
+    font-family: "Crimson Pro";
+    letter-spacing: 0.02em;
+    border: none;
+    gap: 6px;
+    //background-color: rgba(0, 0, 0, 0.5);
+    //backdrop-filter: blur(10px);
+
+    a {
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-md;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      font-size: var(--font-size-14);
+      color: var(--c-gold) !important;
+      text-shadow: none;
+
+      &:hover {
+        border-color: var(--c-pred);
+        color: var(--c-pred) !important;
+      }
+    }
+
+    i {
+      text-shadow: none;
+      color: var(--c-gold);
+
+      // font-size: var(--font-size-16);
+      &:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+
+  #combat-tracker {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+
+    gap: 5px;
+    scrollbar-gutter: stable both-edges;
+
+    .combatant {
+      border-radius: $b-radius-md;
+      border: 1px solid var(--c-gold);
+
+      background-color: rgba(0, 0, 0, 0.8);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Crimson Pro";
+        font-size: var(--font-size-14);
+        color: var(--c-gold);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      &::after {
+        border: none;
+      }
+
+      &.active {
+        border-color: var(--c-pred);
+
+        .token-image {
+          border-color: var(--c-pred);
+        }
+      }
+
+      &.npc {
+        background-color: rgba(87, 25, 25, 0.5);
+      }
+
+      .token-image {
+        border: 1px solid var(--c-gold);
+        margin: 3px;
+        border-radius: $b-radius-sm;
+      }
+
+      a,
+      i {
+        color: var(--c-gold);
+        text-shadow: none;
+
+        &:hover {
+          color: var(--c-pred);
+        }
+      }
+    }
+  }
+}

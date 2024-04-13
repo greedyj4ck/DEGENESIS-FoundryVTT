@@ -19,7 +19,7 @@ import ActorConfigure from "../apps/actor-configure.js";
 export class DegenesisNPCSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["degenesis", "sheet", "npc"],
       template: "systems/degenesis/templates/actor/npc/npc-sheet.html",
       width: 720,
@@ -73,7 +73,7 @@ export class DegenesisNPCSheet extends ActorSheet {
       ? `systems/degenesis/icons/culture/${this.actor.details.culture.value}.svg`
       : "systems/degenesis/icons/blank.png";
 
-    DEG_Utility.addDiamonds(sheetData.data.state.spentEgo, 3);
+    DEG_Utility.addDiamonds(sheetData.system.state.spentEgo, 3);
 
     // TODO:
     // - Construct inventory needs modification to handle all type of items
@@ -188,7 +188,7 @@ export class DegenesisNPCSheet extends ActorSheet {
       { async: true, secrets: this.actor.isOwner, relativeTo: this.actor }
     );
 
-    return expandObject(enrichment);
+    return foundry.utils.expandObject(enrichment);
   }
 
   /* ######## HTML LISTENERS  ######## */
@@ -261,13 +261,13 @@ export class DegenesisNPCSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -282,19 +282,19 @@ export class DegenesisNPCSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       } else {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + 1);
+      foundry.utils.setProperty(actorData, target, currentValue + 1);
     }
 
     this.actor.update(actorData);
@@ -304,13 +304,13 @@ export class DegenesisNPCSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -325,19 +325,19 @@ export class DegenesisNPCSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       } else {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + -1);
+      foundry.utils.setProperty(actorData, target, currentValue + -1);
     }
 
     this.actor.update(actorData);
@@ -363,12 +363,12 @@ export class DegenesisNPCSheet extends ActorSheet {
       target = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-item-target");
-      let value = getProperty(itemData, target);
+      let value = foundry.utils.getProperty(itemData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(itemData, target, index);
+        foundry.utils.setProperty(itemData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(itemData, target, index + 1);
+      else foundry.utils.setProperty(itemData, target, index + 1);
       this.actor.updateEmbeddedDocuments("Item", [itemData]);
       return;
     }
@@ -379,7 +379,7 @@ export class DegenesisNPCSheet extends ActorSheet {
       let targetParent = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       // Minimum is checked for permanent spore infestation, else 0
       let minimum;
@@ -399,28 +399,28 @@ export class DegenesisNPCSheet extends ActorSheet {
       if (index + 1 <= maximum && index + 1 > minimum) {
         if (parentValues.value == index + 1)
           // If the last one was clicked, decrease by 1
-          setProperty(actorData, target, index);
+          foundry.utils.setProperty(actorData, target, index);
         // Otherwise, value = index clicked
-        else setProperty(actorData, target, index + 1); // If attribute selected
+        else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
         let attributeElement = $(event.currentTarget).parents(".attribute");
         if (attributeElement.length) {
           // Constrain attributes to be greater than 0
-          if (getProperty(actorData, target) <= 0)
-            setProperty(actorData, target, 1);
+          if (foundry.utils.getProperty(actorData, target) <= 0)
+            foundry.utils.setProperty(actorData, target, 1);
         }
       }
     } else {
-      let value = getProperty(actorData, target);
+      let value = foundry.utils.getProperty(actorData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(actorData, target, index);
+        foundry.utils.setProperty(actorData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(actorData, target, index + 1); // If attribute selected
+      else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
       let attributeElement = $(event.currentTarget).parents(".attribute");
       if (attributeElement.length) {
         // Constrain attributes to be greater than 0
-        if (getProperty(actorData, target) <= 0)
-          setProperty(actorData, target, 1);
+        if (foundry.utils.getProperty(actorData, target) <= 0)
+          foundry.utils.setProperty(actorData, target, 1);
       }
     }
     this.actor.update(actorData);

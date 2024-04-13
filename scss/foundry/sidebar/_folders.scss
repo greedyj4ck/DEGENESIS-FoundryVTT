@@ -1,0 +1,71 @@
+header > div.header-search.flexrow .dropdown-menu {
+  width: 70%;
+  border: 1px solid var(--c-gold);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 0 !important;
+
+  .dropdown-list {
+    padding: 0;
+
+    .dropdown-item:not(:last-child) {
+      border-bottom: 1px solid var(--c-gold);
+    }
+
+    .dropdown-item {
+      i {
+      }
+
+      gap: 5px;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      line-height: normal;
+      padding: 5px;
+    }
+  }
+}
+
+ol.directory-list {
+  li.folder {
+    .folder-header {
+      border-radius: $b-radius-sm;
+      margin: 2px 4px;
+      border: 1px solid var(--c-gold);
+      background-image: url(../ui/black_01.jpg);
+      background-position: 50% 50%;
+      background-size: cover;
+      background-color: rgba(0, 0, 0, 0.6);
+      background-blend-mode: hard-light;
+      color: var(--c-gold);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Crimson Pro";
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--c-gold);
+      }
+    }
+
+    .subdirectory {
+      margin-left: 5px;
+      border-left-width: 2px;
+      border-left-style: inset;
+      border-left-color: var(--c-gold);
+    }
+
+    i,
+    a {
+      text-shadow: none;
+      color: var(--c-gold);
+
+      &:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+}

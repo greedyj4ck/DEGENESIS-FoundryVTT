@@ -56,7 +56,7 @@ export class DegenesisCombat extends Combat {
     // Ensure the turn order remains with the same combatant
     if (updateTurn) {
       const currentId = this.combatant.id;
-      await this.update({
+      await this.updateSource({
         turn: this.turns.findIndex((t) => t.id === currentId),
       });
     }
