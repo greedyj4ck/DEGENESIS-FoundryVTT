@@ -64,7 +64,7 @@
   }
 
   button {
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
   }
   .window-content {
     background: url(../ui/black_01.jpg) !important;
@@ -208,9 +208,9 @@
   .dialog-input {
     width: 10%;
     border-radius: 0px;
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--b-alpha-1);
     text-align: center;
     width: 50%;
   }
@@ -229,7 +229,7 @@
     width: 100%;
     height: -webkit-fill-available;
     overflow: auto;
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
     margin-bottom: 3px;
   }
 
@@ -242,7 +242,7 @@
 
   .custom-modifiers > * {
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--b-alpha-1);
   }
 
   div.custom-modifier-header > label {

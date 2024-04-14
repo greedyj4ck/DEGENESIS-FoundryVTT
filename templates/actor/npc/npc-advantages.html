@@ -18,9 +18,9 @@
 
     <div class="backgrounds-container">
 
-        {{#each data.backgrounds as |background bg|}}
+        {{#each system.backgrounds as |background bg|}}
         <div class="config-input-container background">
-            <div class="dice-value"><input type="number" name="data.backgrounds.{{bg}}.value"
+            <div class="dice-value"><input type="number" name="system.backgrounds.{{bg}}.value"
                     value="{{background.value}}" /></div>
             <div class="label">{{localize background.label}}</div>
         </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="level">
                 <div class="diamond-position">
-                    <div class="diamond-row" data-target="item" data-item-target="data.level">
+                    <div class="diamond-row" data-target="item" data-item-target="system.level">
                         {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>
@@ -118,7 +118,7 @@
 
 
         <div class="fullwidth-editor">
-            {{editor enrichment.data.tactics.value target="data.tactics" engine="prosemirror" button=true
+            {{editor enrichment.system.tactics.value target="system.tactics" engine="prosemirror" button=true
             owner=owner editable=editable}}
         </div>
 

@@ -88,7 +88,7 @@
 
     &:focus {
       box-shadow: none;
-      border-bottom: 1px solid var(--degenesis-red);
+      border-bottom: 1px solid var(--c-pred);
       transition: border-color 0.3s linear;
     }
   }
@@ -307,7 +307,7 @@
 
         &:focus {
           box-shadow: none;
-          border-bottom: 1px solid var(--degenesis-red);
+          border-bottom: 1px solid var(--c-pred);
           transition: border-color 0.3s linear;
         }
       }
@@ -403,7 +403,7 @@
 
           &:focus {
             box-shadow: none;
-            border-bottom: 1px solid var(--degenesis-red);
+            border-bottom: 1px solid var(--c-pred);
             transition: border-color 0.3s linear;
           }
 
@@ -431,7 +431,7 @@
       .condition-section:hover
         .app.window-app.degenesis.sheet
         .sh-field-stack:hover {
-        color: var(--degenesis-red);
+        color: var(--c-pred);
         -webkit-transition: color 100ms linear;
         -ms-transition: color 100ms linear;
         transition: color 100ms linear;
@@ -456,7 +456,7 @@
   }
 
   .item-summary {
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
     background-color: #000;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -696,7 +696,7 @@
 
       &:focus {
         box-shadow: none;
-        border-bottom: 1px solid var(--degenesis-red);
+        border-bottom: 1px solid var(--c-pred);
         transition: border-color 0.3s linear;
       }
     }

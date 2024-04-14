@@ -1,0 +1,16 @@
+/// Left side controls
+#controls {
+  li {
+    border: 1px solid var(--c-gold) !important;
+    box-shadow: none !important;
+    color: var(--c-gold) !important;
+    background-color: var(--b-alpha-6) !important;
+    backdrop-filter: blur(5px);
+
+    &.active {
+      border: 1px solid var(--c-pred) !important;
+      box-shadow: none !important;
+      color: var(--c-pred-5) !important;
+    }
+  }
+}

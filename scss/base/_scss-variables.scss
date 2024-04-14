@@ -24,15 +24,15 @@ $grey-020: rgb(20, 20, 20);
 $grey-010: rgb(10, 10, 10);
 
 // BACKGROUNDS
-$bg-window-header: rgba(0, 0, 0, 0.2);
+$bg-window-header: var(--b-alpha-2);
 $bg-attributes-header: rgba(0, 0, 0, 0.05);
 
-$bg-black: rgba(0, 0, 0, 1);
+$bg-black: var(--b-alpha-10);
 $bg-white: rgba(255, 255, 255, 1);
 
 // TEXT VARIABLES
 $text-white: rgba(255, 255, 255, 1);
-$text-black: rgba(0, 0, 0, 1);
+$text-black: var(--b-alpha-10);
 
 // RESET TO CSS VARIABLES
 

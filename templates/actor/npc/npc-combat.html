@@ -16,21 +16,21 @@
 <div class="combat-stats-container">
     <div class="config-input-container movement">
 
-        <div class="dice-value"><input type="number" name="data.general.movement"
-                value="{{data.general.movement}}" /><span class="dice">{{localize "UI.D"}}</span></div>
+        <div class="dice-value"><input type="number" name="system.general.movement"
+                value="{{system.general.movement}}" /><span class="dice">{{localize "UI.D"}}</span></div>
         <div class="label">{{localize "DGNS.Movement"}}</div>
     </div>
     <div class="config-input-container">
         <div class="dice-value">
-            <input type="number" name="data.fighting.initiative" value="{{data.fighting.initiative}}" /><span
+            <input type="number" name="system.fighting.initiative" value="{{system.fighting.initiative}}" /><span
                 class="dice">{{localize "UI.D"}}</span>
         </div>
         <div class="label initiative-roll"><a>{{localize "DGNS.Initiative"}}</a></div>
         <div class="spend-ego">
             <a class="label checkbox">{{localize "DGNS.SpendEgo"}}</a>
             <div class="diamond-position">
-                <div class="diamond-row" data-target="data.state.spentEgo.value">
-                    {{#each data.state.spentEgo.diamonds as |diamond index|}} {{#if
+                <div class="diamond-row" data-target="system.state.spentEgo.value">
+                    {{#each system.state.spentEgo.diamonds as |diamond index|}} {{#if
                     diamond.filled}}
                     <a class="diamond" data-index="{{index}}">
                         <div class="square white"></div>
@@ -47,10 +47,10 @@
 
 
     <div class="config-input-container armor" style="flex-wrap: wrap;">
-        <div class="dice-value"><input type="number" name="data.armor.rating" value="{{data.armor.rating}}" /></div>
+        <div class="dice-value"><input type="number" name="system.armor.rating" value="{{system.armor.rating}}" /></div>
         <div class="label">{{localize "DGNS.Armor"}}</div>
         <div style="height: 0; flex-basis: 100%;"> </div>
-        <div class="armor-name"><input type="text" name="data.armor.name" value="{{data.armor.name}}" />
+        <div class="armor-name"><input type="text" name="system.armor.name" value="{{system.armor.name}}" />
         </div>
     </div>
 
@@ -240,7 +240,7 @@
             </div>
             <div class="level">
                 <div class="diamond-position">
-                    <div class="diamond-row" data-target="item" data-item-target="data.level">
+                    <div class="diamond-row" data-target="item" data-item-target="system.level">
                         {{#each potential.potentialDiamonds as |diamond index|}}
                         {{#if diamond.filled}}
                         <a class="diamond" data-index={{index}}>

@@ -13,7 +13,7 @@
     // background: url(../ui/black_01.jpg);
     background: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 1) 0%,
+      var(--b-alpha-10) 0%,
       rgba(0, 0, 0, 0.6965161064425771) 100%
     );
     border-radius: 5px;
@@ -39,7 +39,7 @@
     text-align: center;
 
     button.button-toggle-description {
-      border: 1px solid var(--degenesis-red);
+      border: 1px solid var(--c-pred);
       width: auto;
       min-width: 50%;
       margin: 15px 0px 5px 0px;

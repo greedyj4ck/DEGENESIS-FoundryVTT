@@ -8,7 +8,7 @@
 
   input {
     border: 1px solid var(--c-gold);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--b-alpha-6);
     font-family: "Crimson Pro";
     color: var(--c-gold);
 
@@ -37,7 +37,7 @@
     border: 1px solid var(--c-gold);
     border-radius: $b-radius-md;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--b-alpha-8);
     background-image: url(../ui/placeholders/scene.webp);
     opacity: 0.8;
 
@@ -66,7 +66,7 @@
       font-family: "Avenir";
       font-size: var(--font-size-12);
 
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: var(--b-alpha-8);
       backdrop-filter: blur(20px);
 
       border-top: 1px solid var(--c-gold);

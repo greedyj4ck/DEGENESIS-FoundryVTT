@@ -35,76 +35,78 @@
                 <div class="condition-content-container">
 
                     <div class="condition ego">
-                        <div class="controls" data-target="data.condition.ego.value"
-                            data-targetParent="data.condition.ego">
+                        <div class="controls" data-target="system.condition.ego.value"
+                            data-targetParent="system.condition.ego">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
                         <div class="label">{{localize "DGNS.Ego"}}</div>
                         <div class="stats">
                             <div class="current-value">
-                                <span class="current-ego">{{currentEgo data.condition.ego}}</span>
+                                <span class="current-ego">{{currentEgo system.condition.ego}}</span>
                             </div>
                             <div class="separator">/</div>
-                            <div class="max-value"><input class="stat-input" type="number" name="data.condition.ego.max"
-                                    value="{{data.condition.ego.max}}" /></div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="system.condition.ego.max" value="{{system.condition.ego.max}}" /></div>
 
                         </div>
                     </div>
                     <div class="condition fleshwounds">
-                        <div class="controls" data-target="data.condition.fleshwounds.value"
-                            data-targetParent="data.condition.fleshwounds">
+                        <div class="controls" data-target="system.condition.fleshwounds.value"
+                            data-targetParent="system.condition.fleshwounds">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
                         <div class="label">{{localize "DGNS.Fleshwounds"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.value"
-                                    value="{{data.condition.fleshwounds.value}}" /></div>
+                                    name="system.condition.fleshwounds.value"
+                                    value="{{system.condition.fleshwounds.value}}" /></div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.max" value="{{data.condition.fleshwounds.max}}" />
+                                    name="system.condition.fleshwounds.max"
+                                    value="{{system.condition.fleshwounds.max}}" />
                             </div>
 
                         </div>
                     </div>
                     <div class="condition trauma">
-                        <div class="controls" data-target="data.condition.trauma.value"
-                            data-targetParent="data.condition.trauma">
+                        <div class="controls" data-target="system.condition.trauma.value"
+                            data-targetParent="system.condition.trauma">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
                         <div class="label">{{localize "DGNS.Trauma"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" />
+                                    name="system.condition.trauma.value" value="{{system.condition.trauma.value}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.max" value="{{data.condition.trauma.max}}" />
+                                    name="system.condition.trauma.max" value="{{system.condition.trauma.max}}" />
                             </div>
 
                         </div>
                     </div>
                     <div class="condition sporefield">
-                        <div class="controls" data-target="data.condition.spore.value"
-                            data-targetParent="data.condition.spore">
+                        <div class="controls" data-target="system.condition.spore.value"
+                            data-targetParent="system.condition.spore">
                             <a class="btn btn-add">+</a>
                             <a class="btn btn-remove">-</a>
                         </div>
                         <div class="label">{{localize "DGNS.Spore"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.value" value="{{data.condition.spore.value}}" />
+                                    name="system.condition.spore.value" value="{{system.condition.spore.value}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.max" value="{{data.condition.spore.max}}" />
+                                    name="system.condition.spore.max" value="{{system.condition.spore.max}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="perma-value"><input class="stat-input perma" type="number"
-                                    name="data.condition.spore.permanent" value="{{data.condition.spore.permanent}}" />
+                                    name="system.condition.spore.permanent"
+                                    value="{{system.condition.spore.permanent}}" />
                             </div>
 
                         </div>
@@ -144,8 +146,8 @@
 
                     <div class="culture-container">
 
-                        <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
-                            {{#select data.details.culture.value}}
+                        <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
+                            {{#select system.details.culture.value}}
                             <option value="">{{localize "DGNS.Culture"}}</option>
                             {{#each (config "cultures") as |culture c|}}
                             <option value="{{c}}">{{culture}}</option>
@@ -158,8 +160,8 @@
                     </div>
 
                     <div class="concept-container">
-                        <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
-                            {{#select data.details.concept.value}}
+                        <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
+                            {{#select system.details.concept.value}}
                             <option value="">{{localize "DGNS.Concept"}}</option>
                             {{#each (config "concepts") as |concept c|}}
                             <option value="{{c}}">{{concept}}</option>
@@ -170,8 +172,8 @@
                     </div>
 
                     <div class="cult-container">
-                        <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
-                            {{#select data.details.cult.value}}
+                        <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
+                            {{#select system.details.cult.value}}
                             <option value="">{{localize "DGNS.Cult"}}</option>
                             {{#each (config "cults") as |cult c|}}
                             <option value="{{c}}">{{cult}}</option>
@@ -200,7 +202,8 @@
             <input class="input-name" type="text" name="name" value="{{actor.name}}" />
         </div>
         <div class="field-rank">
-            <input class="input-rank" type="text" name="data.details.rank.value" value="{{data.details.rank.value}}" />
+            <input class="input-rank" type="text" name="system.details.rank.value"
+                value="{{system.details.rank.value}}" />
         </div>
         <div class="input-rank-label">RANK</div>
 

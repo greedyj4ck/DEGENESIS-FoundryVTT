@@ -1,0 +1,42 @@
+/// Loading bar
+#loading {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 25px;
+  background: var(--b-alpha-6) !important;
+  box-shadow: none;
+  border: none;
+
+  #loading-bar {
+    height: 100%;
+    background: RGBA(#{map.get($colors, "resin")}, 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--c-gold);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+
+    padding: 0px 5px;
+  }
+
+  label {
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none;
+    position: relative;
+    font-family: "Avenir";
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--c-gold);
+    letter-spacing: 0.05em;
+
+    text-shadow: none;
+
+    text-transform: uppercase;
+  }
+}

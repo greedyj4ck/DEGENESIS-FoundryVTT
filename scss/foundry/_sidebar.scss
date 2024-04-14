@@ -15,21 +15,6 @@
 @import "sidebar/compendium"; // Compendium
 @import "sidebar/settings";
 
-#context-menu {
-  width: 90%;
-  font-family: "Crimson Pro";
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--c-gold);
-  border-radius: $b-radius-md;
-  color: var(--c-gold);
-
-  li:hover {
-    color: var(--c-pred) !important;
-    text-shadow: none !important;
-  }
-}
-
 #sidebar {
   margin: 5px 5px 5px 5px;
   padding: 0px 0px;
@@ -55,7 +40,7 @@
   input {
     color: var(--c-gold);
     border: 1px solid var(--c-gold);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--b-alpha-6);
 
     &:hover {
       border-color: var(--c-pred);
@@ -72,6 +57,6 @@
   .window-header {
   }
   .window-content {
-    background: rgba(0, 0, 0, 0.4) !important;
+    background: var(--b-alpha-4) !important;
   }
 }

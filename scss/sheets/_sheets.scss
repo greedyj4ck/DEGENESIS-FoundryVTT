@@ -312,6 +312,10 @@
     color: black;
   }
 
+  &.gold {
+    background-image: url(../ui/images/title\ border\ gold.svg);
+  }
+
   .bold {
     font-weight: 600;
   }
@@ -357,11 +361,11 @@
     //   inline-size: -webkit-fill-available;
 
     &:hover {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
     }
 
     &.active {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
       text-shadow: none;
     }
   }
@@ -372,11 +376,13 @@
   }
 }
 
+/* --- SHEET CONTAINERS / GROUPS --- */
+
 /* --- INPUT ELEMENTS --- */
 
 .sh-field {
   display: flex;
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--c-gold);
   flex-direction: row;
 
   .field-inputs {
@@ -410,7 +416,7 @@
     border: none;
 
     textarea:hover {
-      border-color: var(--degenesis-red);
+      border-color: var(--c-pred);
     }
 
     &:hover {
@@ -449,15 +455,11 @@
     align-self: center;
   }
 
+  transition: all 0.1s ease-in-out;
+
   &:hover {
-    color: var(--degenesis-red);
-    border-bottom: 1px solid var(--degenesis-red);
-    -webkit-transition: border-bottom 100ms linear;
-    -ms-transition: border-bottom 100ms linear;
-    transition: border-bottom 100ms linear;
-    -webkit-transition: color 100ms linear;
-    -ms-transition: color 100ms linear;
-    transition: color 100ms linear;
+    color: var(--c-pred);
+    border-bottom: 1px solid var(--c-pred);
   }
 }
 

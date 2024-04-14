@@ -73,13 +73,13 @@ export class DegenesisCharacterSheet extends ActorSheet {
 
     sheetData.conceptIcon = this.actor.details.concept.value
       ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
     sheetData.cultIcon = this.actor.details.cult.value
       ? `systems/degenesis/icons/cult/${this.actor.details.cult.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
     sheetData.cultureIcon = this.actor.details.culture.value
       ? `systems/degenesis/icons/culture/${this.actor.details.culture.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
 
     if (sheetData.system.general.encumbrance.pct > 100) {
       sheetData.system.general.encumbrance.color = "var(--degenesis-red)";

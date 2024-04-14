@@ -8,7 +8,7 @@
 
   input {
     border: 1px solid var(--c-gold);
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--b-alpha-6);
     font-family: "Crimson Pro";
     color: var(--c-gold);
 
@@ -22,7 +22,8 @@
     font-family: "Crimson Pro";
     font-weight: 500;
     text-shadow: none;
-    letter-spacing: 0.1em;
+    font-size: var(--font-size-14);
+    letter-spacing: 0.05em;
     text-wrap: wrap;
     color: var(--c-gold) !important;
 
@@ -36,7 +37,7 @@
     border: 1px solid var(--c-gold);
     border-radius: $b-radius-md;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--b-alpha-8);
 
     opacity: 0.8;
 

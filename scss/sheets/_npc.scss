@@ -185,7 +185,7 @@ $background-cult-image-offset: 50px; // in pixels
       filter: invert(100);
       mask-image: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 1),
+        var(--b-alpha-10),
         rgba(0, 0, 0, 0)
       );
       z-index: 0;
@@ -369,7 +369,7 @@ $background-cult-image-offset: 50px; // in pixels
 
           &:focus {
             box-shadow: none;
-            border-bottom: 1px solid var(--degenesis-red);
+            border-bottom: 1px solid var(--c-pred);
             transition: border-color 0.3s linear;
           }
 
@@ -576,7 +576,7 @@ $background-cult-image-offset: 50px; // in pixels
 
           &:focus {
             box-shadow: none;
-            border-bottom: 1px solid var(--degenesis-red);
+            border-bottom: 1px solid var(--c-pred);
             transition: border-color 0.3s linear;
           }
 
@@ -714,7 +714,7 @@ $background-cult-image-offset: 50px; // in pixels
   }
 
   .item-summary {
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
     background-color: #000;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -904,7 +904,7 @@ $background-cult-image-offset: 50px; // in pixels
 
       &:focus {
         box-shadow: none;
-        border-bottom: 1px solid var(--degenesis-red);
+        border-bottom: 1px solid var(--c-pred);
         transition: border-color 0.3s linear;
       }
     }

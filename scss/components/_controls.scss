@@ -1,7 +1,7 @@
 select {
   color: var(--c-gold);
   border: 1px solid var(--c-gold);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--b-alpha-6);
 
   &:focus {
     box-shadow: none;
@@ -59,7 +59,7 @@ button {
 input {
   color: var(--c-gold);
   border: 1px solid var(--c-gold);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--b-alpha-6);
 
   &:hover {
     border-color: var(--c-pred);
@@ -76,7 +76,7 @@ input {
     appearance: none;
     /* For iOS < 15 to remove gradient background */
     border: 2px solid var(--c-gold) !important;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--b-alpha-6);
 
     /* Not removed via appearance */
     margin: 0;

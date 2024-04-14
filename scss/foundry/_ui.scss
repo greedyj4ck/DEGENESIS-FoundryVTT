@@ -3,9 +3,47 @@
 $b-radius-sm: 5px;
 $b-radius-md: 10px;
 
+/// Import specific components
+@import "app/mainMenu"; //Main menu
+@import "app/hotbar"; // Macrobar
+@import "app/players"; // Players list
+@import "app/controls"; // Left side controls
+@import "app/navigation"; //Top navigation bar
+@import "app/loadingBar"; // Loading bar
+@import "app/contextMenu"; //Context menu
+
 #logo {
   height: 35px;
   content: url(../ui/degenesis-white.svg);
+}
+
+#pause {
+  background: none;
+
+  img {
+    content: url(../icons/logo.png);
+  }
+
+  h3 {
+    font-family: $primary-header-font;
+
+    text-shadow: 1px 1px 30px var(--c-pred);
+  }
+
+  > {
+    figcaption {
+      font-family: "Avenir";
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0px 3px 5px var(--b-alpha-10);
+      color: var(--c-gold) !important;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
 }
 
 .system-badge {
@@ -26,132 +64,12 @@ $b-radius-md: 10px;
   }
 }
 
-nav#navigation {
-  a#nav-toggle {
-    aspect-ratio: 1 !important;
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--c-gold);
-    color: var(--c-gold);
-  }
-
-  li.scene.nav-item {
-    font-family: "Avenir";
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-
-    border: 1px solid var(--c-gold);
-
-    color: var(--c-gold);
-    box-shadow: none !important;
-    background: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(5px);
-
-    &:hover {
-      backdrop-filter: blur(15px);
-      transition: all 0.3s ease-in-out;
-    }
-
-    a:hover {
-      color: var(--c-antiflash) !important;
-    }
-
-    &.gm {
-      background: rgba(0, 0, 0, 0.6) !important;
-      border: 1px solid var(--c-resin-5) !important;
-      color: var(--c-resin-3);
-    }
-
-    &.view {
-      border: 1px solid var(--c-gold-5) !important;
-      background: rgba(0, 0, 0, 0.6) !important;
-      color: var(--c-gold-3) !important;
-    }
-
-    &.context {
-      border: 1px solid var(--c-antiflash) !important;
-      background: rgba(0, 0, 0, 0.6) !important;
-      backdrop-filter: none !important;
-    }
-
-    &.active {
-      background: rgba(0, 0, 0, 0.6) !important;
-      border: 1px solid var(--c-pred) !important;
-      color: var(--c-pred-4) !important;
-    }
-  }
-
-  #context-menu {
-    position: absolute;
-    margin-top: 8px;
-
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--c-gold);
-    color: var(--c-gold);
-
-    ol {
-      //background: rgba(0, 0, 0, 0.1);
-      //background-image: none !important;
-      //backdrop-filter: blur(20px);
-
-      //backdrop-filter: blur(5px);
-    }
-
-    li {
-      &:not(:last-child) {
-        //background: rgba(0, 0, 0, 0.1);
-        border-bottom: 1px solid var(--c-gold);
-        background: none;
-      }
-      &:hover {
-        color: var(--c-antiflash);
-        box-shadow: none;
-        text-shadow: none;
-      }
-    }
-  }
-}
-
-#pause {
-  background: none;
-
-  img {
-    content: url(../icons/logo.png);
-  }
-
-  h3 {
-    font-family: $primary-header-font;
-
-    text-shadow: 1px 1px 30px var(--degenesis-red);
-  }
-
-  > {
-    figcaption {
-      font-family: "Avenir";
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
-      color: var(--c-gold) !important;
-    }
-
-    img {
-      opacity: 1;
-    }
-  }
-}
-
-html {
-}
-
 /// All app windows in a system...
 .app.window-app {
   border-radius: $b-radius-md;
   border: 1px solid var(--c-gold);
   background-image: none;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--b-alpha-7);
   backdrop-filter: blur(20px);
   box-shadow: none;
 
@@ -296,58 +214,6 @@ html {
   scrollbar-width: unset !important;
 }
 
-/* // DEFAULT WINDOW SETTINGS
-.app.window-app {
-  .app.degenesis.sheet {
-    border-radius: 0px;
-
-    .window-content {
-      font-family: $serif-content-font;
-      background: none;
-      background-color: white;
-      padding: 5px;
-    }
-  }
-
-  .window-content {
-    font-family: $serif-content-font;
-  }
-
-  .window-header {
-    font-family: $primary-header-font !important;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-image: url(../ui/header.jpg);
-  }
-
-  .window-title {
-    font-family: "Crimson Pro";
-    text-transform: unset;
-    font-size: 14px;
-  }
-
-  .window-resizable-handle {
-    border-radius: 0;
-    background: black;
-  }
-} */
-
-/* .app {
-  header.window-header.flexrow.draggable.resizable {
-    font-family: $primary-header-font;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  input,
-  select {
-    border-bottom: 1px solid var(--grey-160);
-    border-radius: 0;
-  }
-} */
-
 /* SHEET TABS FOR ALL UI WINDOWS */
 
 .sheet-tabs.tabs,
@@ -376,11 +242,11 @@ html {
     transition: background-color 0.1s ease-out;
 
     &:hover {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
     }
 
     &.active {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
       text-shadow: none;
     }
   }
@@ -397,7 +263,7 @@ html {
   border-radius: 0 !important;
 
   &:hover {
-    background-color: var(--degenesis-red) !important;
+    background-color: var(--c-pred) !important;
   }
 } */
 
@@ -414,7 +280,7 @@ html {
   align-items: center;
 
   &:hover {
-    background-color: var(--degenesis-red) !important;
+    background-color: var(--c-pred) !important;
   }
 }
 
@@ -439,17 +305,17 @@ html {
 
 .dice-tooltip .dice-rolls .roll.d6 {
   &.max {
-    color: var(--degenesis-red);
+    color: var(--c-pred);
     filter: none;
     content: url(../icons/logo-small.png);
     padding: 2px;
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
   }
   &.min {
-    color: var(--degenesis-red);
+    color: var(--c-pred);
     filter: none;
 
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
   }
 
   padding: 2px;
@@ -481,262 +347,4 @@ html {
   border: 1px solid $dgns-blackred;
   background-color: $grey-020;
   box-shadow: none;
-}
-
-/// Left side controls
-#controls {
-  li {
-    border: 1px solid var(--c-gold) !important;
-    box-shadow: none !important;
-    color: var(--c-gold) !important;
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(5px);
-
-    &.active {
-      border: 1px solid var(--c-pred) !important;
-      box-shadow: none !important;
-      color: var(--c-pred-5) !important;
-    }
-  }
-}
-
-/// Players list
-#players {
-  font-family: "Crimson Pro";
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--c-gold);
-  border-radius: 10px;
-  color: var(--c-gold);
-  box-shadow: none;
-
-  ol {
-    margin: 6px;
-  }
-
-  li.player {
-    display: flex;
-    gap: 7px;
-    align-items: center;
-
-    span.player-active {
-      box-shadow: none;
-      margin: 0;
-      aspect-ratio: 1;
-      width: 10px;
-      height: 10px;
-      border: 1px solid var(--c-gold-5) !important;
-    }
-  }
-
-  h3 {
-    font-family: "Avenir";
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--c-gold) !important;
-    border-bottom: 1px solid var(--c-gold) !important;
-    margin: 0;
-    padding: 6px;
-  }
-
-  i.players-mode {
-    color: var(--c-gold) !important;
-  }
-
-  i:not(.players-mode) {
-    color: var(--c-pred) !important;
-  }
-
-  ol .player-name.self {
-    color: var(--c-gold-3);
-  }
-}
-
-/// Macrobar
-
-#hotbar {
-  font-family: "Avenir";
-  font-size: 12px;
-  color: var(--c-gold);
-  background: none !important;
-
-  .macro {
-    border: 1px solid var(--c-gold) !important;
-    color: var(--c-gold);
-    box-shadow: none;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(20px);
-    border-radius: 10px;
-
-    .macro-key {
-      font-family: "Avenir";
-      font-weight: 700;
-      color: var(--c-gold);
-    }
-
-    &:hover {
-      box-shadow: none;
-      border: 1px solid var(--c-pred) !important;
-    }
-  }
-
-  #hotbar-directory-controls,
-  #hotbar-lock,
-  #hotbar-page-controls {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--c-gold); //!important;
-    color: var(--c-gold);
-    border-radius: 10px;
-  }
-
-  #macro-list {
-    gap: 2px;
-    border: none;
-    background: none;
-  }
-}
-
-/// Chat controls
-
-#chat-controls {
-  select {
-    border: 1px solid var(--c-gold) !important;
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    border-radius: 5px !important;
-    color: var(--c-gold) !important;
-
-    optgroup {
-      color: var(--c-gold);
-
-      option {
-        color: var(--c-gold) !important;
-
-        &:hover {
-          color: var(--c-pred) !important;
-        }
-      }
-    }
-  }
-
-  a {
-    color: var(--c-gold);
-
-    &:hover {
-      color: var(--c-gold-3);
-    }
-  }
-}
-
-/// Loading bar
-#loading {
-  padding: 0 !important;
-  margin: 0 !important;
-  height: 25px;
-  background: rgba(0, 0, 0, 0.6) !important;
-  box-shadow: none;
-  border: none;
-
-  #loading-bar {
-    height: 100%;
-    background: RGBA(#{map.get($colors, "resin")}, 0.5);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--c-gold);
-    border-radius: 2px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-items: center;
-    justify-content: space-between;
-
-    padding: 0px 5px;
-  }
-
-  label {
-    top: 0 !important;
-    left: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: none;
-    position: relative;
-    font-family: "Avenir";
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--c-gold);
-    letter-spacing: 0.05em;
-
-    text-shadow: none;
-
-    text-transform: uppercase;
-  }
-}
-
-/// Main menu (ON ESC BUTTON)
-#menu {
-  left: calc(50% - 120px);
-  width: 240px;
-  border: 1px solid var(--c-gold);
-  background: rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(15px);
-  box-shadow: none;
-
-  font-family: "Avenir";
-  color: var(--c-gold);
-
-  i {
-    font-size: 18px !important;
-  }
-
-  ol {
-    margin: 0;
-  }
-
-  li {
-    display: flex;
-
-    transition: all 0.3s ease-in-out;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid var(--c-gold);
-    }
-
-    h4 {
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 1000 !important;
-      font-size: 15px !important;
-    }
-
-    &:hover {
-      color: var(--c-antiflash);
-      box-shadow: none !important;
-      text-shadow: none !important;
-    }
-  }
-}
-
-.select2-selection {
-  background-color: #000 !important;
-  border: 1px solid var(--c-gold) !important;
-  color: var(--c-gold) !important;
-
-  .select2-selection__rendered {
-    font-family: "Crimson Pro";
-    color: var(--c-gold) !important;
-  }
-}
-
-.select2-dropdown {
-  border: 1px solid var(--c-gold) !important;
-  font-family: "Crimson Pro";
-  color: var(--c-gold);
-  background-color: rgba(0, 0, 0, 0.6) !important;
-
-  .select2-results__option--highlighted {
-    background-color: var(--c-pred) !important;
-  }
-  .select2-results__option[aria-selected="true"] {
-    background-color: var(--c-resin) !important;
-  }
 }

@@ -21,7 +21,7 @@
 
     &:focus {
       box-shadow: none;
-      border: 1px solid var(--degenesis-red);
+      border: 1px solid var(--c-pred);
       transition: border 0.3s;
     }
   }
@@ -32,7 +32,7 @@
 
     .page-heading {
       &:hover {
-        color: var(--degenesis-red);
+        color: var(--c-pred);
         transition: all 0.3s;
         text-shadow: none;
       }
@@ -40,7 +40,7 @@
 
     .heading {
       &:hover {
-        color: var(--degenesis-red);
+        color: var(--c-pred);
         transition: all 0.3s;
       }
     }
@@ -102,7 +102,7 @@
 
       &:focus {
         box-shadow: none;
-        border-bottom: 1px solid var(--degenesis-red);
+        border-bottom: 1px solid var(--c-pred);
       }
     }
   }

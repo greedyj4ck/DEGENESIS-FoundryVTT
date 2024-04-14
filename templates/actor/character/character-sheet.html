@@ -88,7 +88,10 @@
 
             <div class="sh-field-stack">
                 <div class="title-Cs">{{localize "DGNS.Culture"}}</div>
-                <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" />
+                <!--     <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" /> -->
+                <object type="image/svg+xml" data="{{cultureIcon}}" class="culture-img"
+                    onload="this.contentDocument.documentElement.classList.add('culture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                </object>
                 <div class="c-popout culture">
                     <h2>{{actor.Culture}}</h2>
                     {{{configLookup "cultureDescription" actor.details.culture.value}}}
@@ -104,7 +107,10 @@
             </div>
             <div class="sh-field-stack">
                 <div class="title-Cs">{{localize "DGNS.Concept"}}</div>
-                <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" />
+                <!-- <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" /> -->
+                <object type="image/svg+xml" data="{{conceptIcon}}" class="concept-img"
+                    onload="this.contentDocument.documentElement.classList.add('concept-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                </object>
                 <div class="c-popout concept">
                     <h2>{{actor.Concept}}</h2>
                     {{{configLookup "conceptDescription" actor.details.concept.value}}}
@@ -121,7 +127,10 @@
 
             <div class="sh-field-stack">
                 <div class="title-Cs">{{localize "DGNS.Cult"}}</div>
-                <img class="cult-img" height="80" width="80" src="{{cultIcon}}" />
+                <!-- <img class="cult-img" height="80" width="80" src="{{cultIcon}}" /> -->
+                <object type="image/svg+xml" data="{{cultIcon}}" class="cult-img"
+                    onload="this.contentDocument.documentElement.classList.add('cult-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                </object>
                 <div class="c-popout cult">
                     <h2>{{actor.Cult}}</h2>
                     {{{configLookup "cultDescription" actor.details.cult.value}}}

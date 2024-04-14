@@ -34,7 +34,7 @@ ol.directory-list {
       background-image: url(../ui/black_01.jpg);
       background-position: 50% 50%;
       background-size: cover;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: var(--b-alpha-6);
       background-blend-mode: hard-light;
       color: var(--c-gold);
 

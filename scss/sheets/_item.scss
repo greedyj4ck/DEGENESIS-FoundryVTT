@@ -46,7 +46,7 @@
     }
 
     &:hover {
-      color: var(--degenesis-red);
+      color: var(--c-pred);
       -webkit-transition: color 100ms linear;
       -ms-transition: color 100ms linear;
       transition: color 100ms linear;
@@ -234,7 +234,7 @@
       &:focus {
         outline: 0;
         box-shadow: none;
-        border: 1px solid var(--degenesis-red);
+        border: 1px solid var(--c-pred);
       }
     }
 
@@ -269,7 +269,7 @@
       &:focus {
         outline: 0;
         box-shadow: none;
-        border: 1px solid var(--degenesis-red);
+        border: 1px solid var(--c-pred);
       }
     }
 

@@ -33,13 +33,13 @@
     letter-spacing: 0.02em;
     border: none;
     gap: 6px;
-    //background-color: rgba(0, 0, 0, 0.5);
+    //background-color: var(--b-alpha-5);
     //backdrop-filter: blur(10px);
 
     a {
       border: 1px solid var(--c-gold);
       border-radius: $b-radius-md;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: var(--b-alpha-5);
       backdrop-filter: blur(10px);
       font-size: var(--font-size-14);
       color: var(--c-gold) !important;
@@ -74,7 +74,7 @@
       border-radius: $b-radius-md;
       border: 1px solid var(--c-gold);
 
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: var(--b-alpha-8);
 
       h1,
       h2,

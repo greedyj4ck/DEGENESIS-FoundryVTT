@@ -11,7 +11,7 @@
     &.bar1 input {
       opacity: 1;
       box-shadow: 0 0 8px var(--degenesis-blackred) inset;
-      border: 4px double var(--degenesis-red);
+      border: 4px double var(--c-pred);
     }
   }
 }
@@ -32,6 +32,6 @@
   }
 
   &.active {
-    border: 1px solid var(--degenesis-red);
+    border: 1px solid var(--c-pred);
   }
 }

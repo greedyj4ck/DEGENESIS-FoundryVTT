@@ -1,211 +1,213 @@
-/* APPS: _ROLLDIALOG.SCSS */ 
+/* APPS: _ROLLDIALOG.SCSS */
 
 .roll-dialog {
-    .window-content {
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      padding-top: 0;
-    }
-  
-    .dialog-bonuses {
-      display: flex;
-    }
-  
-    .title {
-      align-self: center;
-      width: 99%;
-      margin: -8px 1px 0 1px;
-    }
+  .window-content {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
   }
-  
-  .app.window-app {
-    &.roll-dialog .square.little.left, &.degenesis.sheet .square.little.left {
-      margin-left: 2px;
-      margin-right: 0px;
-    }
-  
-    &.roll-dialog {
-      .square.little, .title .square.little {
-        align-self: center;
-        margin-bottom: 1px;
-        height: 7px;
-        width: 7px;
-      }
-    }
-  
-    &.degenesis.roll-dialog .header-line .square.little {
+
+  .dialog-bonuses {
+    display: flex;
+  }
+
+  .title {
+    align-self: center;
+    width: 99%;
+    margin: -8px 1px 0 1px;
+  }
+}
+
+.app.window-app {
+  &.roll-dialog .square.little.left,
+  &.degenesis.sheet .square.little.left {
+    margin-left: 2px;
+    margin-right: 0px;
+  }
+
+  &.roll-dialog {
+    .square.little,
+    .title .square.little {
       align-self: center;
       margin-bottom: 1px;
       height: 7px;
       width: 7px;
     }
-  
-    &.roll-dialog {
-      .title-line {
-        display: flex;
-        background-size: 100%;
-        flex: 1;
-      }
-  
-      .middle-name {
-        text-transform: uppercase;
-        display: flex;
-        align-items: flex-end;
-        font-size: 15px;
-        font-weight: 200;
-        letter-spacing: 2px;
-        text-align: center;
-        font-family: $sans-serif-content-font;
-        border: 2px solid transparent;
-      }
-    }
   }
-  
-  .roll-dialog {
-    .body-line {
-      align-self: start;
+
+  &.degenesis.roll-dialog .header-line .square.little {
+    align-self: center;
+    margin-bottom: 1px;
+    height: 7px;
+    width: 7px;
+  }
+
+  &.roll-dialog {
+    .title-line {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 100%;
-      margin-top: 10px;
-      margin-bottom: 5px;
+      background-size: 100%;
+      flex: 1;
     }
-  
-    .dialog-bonuses > div {
-      width: 50%;
-    }
-  
-    .dialog-inputs {
+
+    .middle-name {
+      text-transform: uppercase;
       display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      align-content: flex-start;
-  
-      > * {
-        margin: 0 5px 3px 5px;
-        display: flex;
-        justify-content: space-between;
-        width: 95%;
-      }
-    }
-  
-    .dialog-input {
-      width: 10%;
-      border-radius: 0px;
-      border: 1px solid black;
-      text-align: center;
-      width: 50%;
-    }
-  
-    .input-label {
-      width: 100%;
-    }
-  
-    .custom-modifier-section {
-      text-align: center;
-      padding-right: 5px;
-    }
-  
-    .custom-modifiers {
-      width: 100%;
-      height: -webkit-fill-available;
-      overflow: auto;
-      border: 1px solid black;
-      margin-bottom: 3px;
-    }
-  
-    .secondary-selection {
-      width: 100%;
-      justify-content: center;
-      margin: 5px;
-      text-align: center;
-    }
-  
-    .custom-modifiers > * {
-      color: black;
-      background-color: white;
-    }
-  
-    div.custom-modifier-header > label {
-      padding-right: 10px;
-    }
-  
-    .custom-modifier-header {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      align-items: center;
-      align-content: flex-start;
-      padding-right: 5px;
-      padding-bottom: 3px;
-    }
-  
-    .custom-modifiers-reset-button {
-      font-size: 10px;
-      padding: 0px 10px 0px 10px;
-      margin: 0 0 0 0;
-      width: auto;
-      height: auto;
-    }
-  
-    .dialog-bonuses-modifiers {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      align-content: center;
-      padding-bottom: 5px;
-    }
-  
-    .dialog-static-modifiers {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      padding-bottom: 3px;
-      color: rgba(0, 0, 0, 0.5);
-    }
-  
-    .dialog-total-modifiers {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-    }
-  
-    .type-modifier-header {
-      width: 50%;
-      text-align: right;
-      padding-right: 10px;
-      border-right: 1px solid #000;
-    }
-  
-    .type-modifier-values {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
       align-items: flex-end;
-      align-content: center;
-      width: 50%;
-      padding-left: 10px;
-  
-      > div {
-        padding-right: 20px;
-      }
+      font-size: 15px;
+      font-weight: 200;
+      letter-spacing: 2px;
+      text-align: center;
+      font-family: $sans-serif-content-font;
+      border: 2px solid transparent;
     }
   }
+}
+
+.roll-dialog {
+  .body-line {
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .dialog-bonuses > div {
+    width: 50%;
+  }
+
+  .dialog-inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+
+    > * {
+      margin: 0 5px 3px 5px;
+      display: flex;
+      justify-content: space-between;
+      width: 95%;
+    }
+  }
+
+  .dialog-input {
+    width: 10%;
+    border-radius: 0px;
+    border: 1px solid black;
+    text-align: center;
+    width: 50%;
+  }
+
+  .input-label {
+    width: 100%;
+  }
+
+  .custom-modifier-section {
+    text-align: center;
+    padding-right: 5px;
+  }
+
+  .custom-modifiers {
+    width: 100%;
+    height: -webkit-fill-available;
+    overflow: auto;
+    border: 1px solid black;
+    margin-bottom: 3px;
+  }
+
+  .secondary-selection {
+    width: 100%;
+    justify-content: center;
+    margin: 5px;
+    text-align: center;
+  }
+
+  .custom-modifiers > * {
+    color: black;
+    background-color: white;
+  }
+
+  div.custom-modifier-header > label {
+    padding-right: 10px;
+  }
+
+  .custom-modifier-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-start;
+    padding-right: 5px;
+    padding-bottom: 3px;
+  }
+
+  .custom-modifiers-reset-button {
+    font-size: 10px;
+    padding: 0px 10px 0px 10px;
+    margin: 0 0 0 0;
+    width: auto;
+    height: auto;
+  }
+
+  .dialog-bonuses-modifiers {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 5px;
+  }
+
+  .dialog-static-modifiers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 3px;
+    color: var(--b-alpha-5);
+  }
+
+  .dialog-total-modifiers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .type-modifier-header {
+    width: 50%;
+    text-align: right;
+    padding-right: 10px;
+    border-right: 1px solid #000;
+  }
+
+  .type-modifier-values {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: center;
+    width: 50%;
+    padding-left: 10px;
+
+    > div {
+      padding-right: 20px;
+    }
+  }
+}

@@ -24,10 +24,21 @@ export default function () {
   Hooks.on("renderChatLog", () => {
     $("select.roll-type-select").select2({
       minimumResultsForSearch: Infinity,
+      dropdownParent: $("#chat-controls"),
     });
   });
 
   Hooks.on("renderRollDialog", (app, [html]) => {
     $(".roll-dialog select").select2({});
   });
+
+  Hooks.on("renderDegenesisCharacterSheet", (app, [html]) => {
+    $(".degenesis.sheet.actor.character select").select2({
+      minimumResultsForSearch: Infinity,
+      dropdownAutoWidth: true,
+      dropdownParent: $(".degenesis.sheet.actor.character"),
+    });
+  });
 }
+
+//  Hooks.on({})
