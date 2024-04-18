@@ -47,7 +47,8 @@
                             </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="system.condition.ego.max" value="{{system.condition.ego.max}}" /></div>
+                                    name="system.condition.ego.max" value="{{system.condition.ego.max}}" />
+                            </div>
 
                         </div>
                     </div>
@@ -111,24 +112,9 @@
 
                         </div>
 
-
-
-
-
-
-
-
-
-
                     </div>
 
-
-
-
                 </div>
-
-
-
 
             </div>
 
@@ -155,7 +141,11 @@
                             {{/select}}
                         </select>
 
-                        <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" />
+
+
+                        <object type="image/svg+xml" data="{{cultureIcon}}" class="culture-img"
+                            onload="this.contentDocument.documentElement.classList.add('culture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
 
                     </div>
 
@@ -168,7 +158,10 @@
                             {{/each}}
                             {{/select}}
                         </select>
-                        <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" />
+                        <object type="image/svg+xml" data="{{conceptIcon}}" class="concept-img"
+                            onload="this.contentDocument.documentElement.classList.add('concept-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
+
                     </div>
 
                     <div class="cult-container">
@@ -180,7 +173,9 @@
                             {{/each}}
                             {{/select}}
                         </select>
-                        <img class="cult-img" height="80" width="80" src="{{cultIcon}}" />
+                        <object type="image/svg+xml" data="{{cultIcon}}" class="cult-img"
+                            onload="this.contentDocument.documentElement.classList.add('cult-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
                     </div>
 
 

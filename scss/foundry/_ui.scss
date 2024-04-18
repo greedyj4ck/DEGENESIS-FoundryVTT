@@ -196,7 +196,7 @@ $b-radius-md: 10px;
   input {
     border: 1px solid var(--c-gold);
     border-radius: $b-radius-sm;
-    color: var(--c-gold) !important;
+    color: var(--c-gold);
 
     &:focus {
       box-shadow: none;

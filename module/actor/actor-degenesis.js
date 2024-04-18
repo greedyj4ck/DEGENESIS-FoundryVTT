@@ -65,6 +65,7 @@ export class DegenesisActor extends Actor {
     // Limit data range for attributes and conditions for NPC sheet
 
     if (this.type === "npc") {
+      console.log(`NPC UPDATE DATA LAUNCHED...`);
       updateData = this.limitNPCValues(updateData);
     }
 
@@ -73,8 +74,8 @@ export class DegenesisActor extends Actor {
     }
   }
 
-  async _update(updateData, options, user) {
-    await super._update(updateData, options, user);
+  _update(updateData, options, user) {
+    super._update(updateData, options, user);
   }
 
   // REGION | DATA PREPARATION
@@ -293,6 +294,7 @@ export class DegenesisActor extends Actor {
         "system.condition.spore.permanent",
         this.condition.spore.max
       );
+      console.log(updateData);
 
       limitMaxMinValue(
         updateData,
@@ -300,6 +302,7 @@ export class DegenesisActor extends Actor {
         this.condition.spore.max,
         this.condition.spore.permanent
       );
+      console.log(updateData);
     }
 
     // Limit

@@ -29,20 +29,20 @@
     }
   }
 
+  /** FIX THIS FUCKING LTER **/
   .square,
   .square.little {
     border: $line-stroke-width solid $line-stroke-color;
 
     &.border-black {
       .square-into {
-        background: none;
+        background-color: var(--c-gold);
       }
     }
 
     .square-into {
       border: none;
-
-      background-color: var(--c-gold);
+      background-color: none;
     }
     &:hover {
       border-color: var(--c-pred);
@@ -234,7 +234,7 @@
     }
 
     .title-Cs {
-      font-size: 17px;
+      font-size: var(--font-size-17);
       font-weight: 200;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -302,13 +302,15 @@
   .sh-tabs {
     border: 1px solid var(--c-gold);
     justify-content: start;
+    padding: 0px 2px;
+    gap: 2px;
     margin-bottom: 3px;
 
     a {
       color: var(--c-gold);
       background-color: var(--b-alpha-9);
-      margin: 0;
-      border: 0;
+      margin: 2px 0px;
+      border: 1px solid var(--c-gold);
 
       &:first-child {
         border-top-left-radius: $b-radius-sm;
@@ -320,12 +322,12 @@
       }
 
       &:not(:last-child) {
-        border-right: 1px solid var(--c-gold);
+        //border-right: 1px solid var(--c-gold);
       }
 
       &.active {
-        color: var(--c-gold-4);
-        background-color: var(--c-gold-8);
+        color: var(--c-antiflash);
+        background-color: var(--c-pred);
       }
     }
   }
@@ -1210,6 +1212,10 @@
       margin-right: 20px;
     }
 
+    .section-header-legends {
+      border-color: var(--c-gold);
+    }
+
     .inventory-list-container {
       overflow: auto;
     }
@@ -1371,8 +1377,9 @@
       width: 100%;
       margin: 5px 0px;
       padding: 5px 4px 5px 4px;
-      background-color: var(--grey-240);
-      border: 1px solid var(--grey-160);
+      background-color: var(--b-alpha-1);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--c-gold);
 
       p {
         margin: 0px 0px 5px 0px;
@@ -1384,8 +1391,8 @@
       }
 
       .tag {
-        border: 1px solid var(--grey-160);
-        background: white;
+        border: 1px solid var(--c-gold);
+        background: var(--b-alpha-2);
         margin: 2px 5px;
         display: inline-block;
         padding: 2px 7px;

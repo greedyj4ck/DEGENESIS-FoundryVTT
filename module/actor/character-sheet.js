@@ -103,7 +103,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     }
 
     sheetData.inventory = this.constructInventory();
-    sheetData.arsenal = this.constructArnseal();
+    sheetData.arsenal = this.constructArsenal();
     sheetData.transportation = {
       header: game.i18n.localize("DGNS.Transportation"),
       type: "transportation",
@@ -237,7 +237,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     };
   }
 
-  constructArnseal() {
+  constructArsenal() {
     return {
       meleeWeapons: this.actor.weaponItems.filter(
         (i) => i.isMelee && i.equipped && !i.inContainer

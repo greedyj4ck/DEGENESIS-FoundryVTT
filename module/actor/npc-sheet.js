@@ -20,7 +20,7 @@ export class DegenesisNPCSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["degenesis", "sheet", "npc"],
+      classes: ["degenesis", "sheet", "actor", "npc"],
       template: "systems/degenesis/templates/actor/npc/npc-sheet.html",
       width: 720,
       height: 720,
@@ -47,7 +47,7 @@ export class DegenesisNPCSheet extends ActorSheet {
   async getData() {
     const data = await super.getData();
 
-    data.system = data.actor.system;
+    data.system = data.data.system;
 
     // Used for Modifier item list
     //data.modifyActions = DEG_Utility.getModificationActions()
@@ -65,13 +65,13 @@ export class DegenesisNPCSheet extends ActorSheet {
 
     sheetData.conceptIcon = this.actor.details.concept.value
       ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
     sheetData.cultIcon = this.actor.details.cult.value
       ? `systems/degenesis/icons/cult/${this.actor.details.cult.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
     sheetData.cultureIcon = this.actor.details.culture.value
       ? `systems/degenesis/icons/culture/${this.actor.details.culture.value}.svg`
-      : "systems/degenesis/icons/blank.png";
+      : "systems/degenesis/icons/blank.svg";
 
     DEG_Utility.addDiamonds(sheetData.system.state.spentEgo, 3);
 

@@ -43,7 +43,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
   async getData() {
     const data = await super.getData();
 
-    data.data = data.actor.system;
+    data.system = data.actor.system;
 
     // Used for Modifier item list
     //data.modifyActions = DEG_Utility.getModificationActions()

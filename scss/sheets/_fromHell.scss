@@ -7,95 +7,27 @@
   min-height: 650px;
 
   $line-stroke-width: 1.5px;
-  $line-stroke-color: #fff;
-
-  input {
-    color: $text-white;
-  }
-
-  .editor-menu {
-    color: $text-white;
-  }
-  i {
-    color: $text-white;
-  }
-
-  div,
-  textarea,
-  input {
-    &::-webkit-scrollbar {
-      width: 4px;
-      border: none;
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar:hover::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      width: 4px;
-      border: none;
-      background-color: transparent;
-      border-radius: 0px;
-      background-color: white;
-    }
-
-    &::-webkit-scrollbar-track {
-      width: 4px;
-      border: none;
-      background-color: transparent;
-      background-image: url("../ui/images/scrolltrack.png");
-      background-position: center;
-      background-repeat: repeat-y;
-      border-radius: 0px;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-
-    &::-webkit-scrollbar-button {
-      display: inline-block;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      display: none;
-    }
-
-    &::-webkit-scrollbar-corner {
-      display: none;
-    }
-
-    &::-webkit-resizer {
-      display: none;
-    }
-  }
-
-  input,
-  textarea {
-    color: var(--text-white);
-  }
-
-  input {
-    border: none;
-    border-bottom: 1px solid transparent;
-    text-align: center;
-    font-size: 16px;
-
-    &:hover {
-      box-shadow: none;
-      border-bottom: 1px solid var(--grey-160);
-      transition: border-color 0.2s linear;
-    }
-
-    &:focus {
-      box-shadow: none;
-      border-bottom: 1px solid var(--c-pred);
-      transition: border-color 0.3s linear;
-    }
-  }
+  $line-stroke-color: var(--c-gold);
 
   .line-stroke {
     stroke: $line-stroke-color;
     stroke-width: $line-stroke-width;
+  }
+  input {
+    color: $text-white;
+  }
+
+  textarea {
+    font-family: "Avenir";
+    font-weight: 500;
+    color: var(--c-gold);
+  }
+
+  input {
+    color: var(--c-gold);
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid transparent;
   }
 
   .square.little {
@@ -104,11 +36,35 @@
     border: $line-stroke-width solid $line-stroke-color;
   }
 
+  .square {
+    border-color: var(--c-gold);
+
+    &:hover {
+      border-color: var(--c-pred);
+    }
+  }
+
+  .square.gold {
+    background-color: var(--c-gold-8);
+    border-color: var(--c-gold);
+  }
+
+  a,
+  a > div {
+    color: var(--c-gold);
+    text-shadow: none;
+
+    &:hover {
+      color: var(--c-gold-4);
+    }
+  }
+
   .window-content {
     padding: 0;
     overflow-y: hidden;
-    background: $fh-window-bg;
-    background: url(../ui/fromHell_BG.jpg);
+    background-color: var(--b-alpha-4);
+    background-image: url(../ui/fromHell_BG.jpg);
+    background-blend-mode: color;
     background-size: cover;
     background-position: 50% 0%;
     font-family: $sans-serif-content-font;
@@ -116,6 +72,19 @@
     color: $text-white;
   }
 
+  .block-title.gold {
+    h3 {
+      margin-top: 2px;
+      color: black;
+    }
+    a {
+      color: black;
+
+      &:hover {
+        color: var(--c-gold-3);
+      }
+    }
+  }
   // MAIN SHEET HEADER STYLE
 
   .sh-header {
@@ -136,7 +105,7 @@
     gap: 3px;
 
     .img-frame {
-      background-image: url(../ui/images/character\ frame\ white.svg);
+      background-image: url(../ui/images/character\ frame\ gold.svg);
     }
   }
 
@@ -179,12 +148,23 @@
   .field-name {
     margin-top: 0px;
     .input-name {
-      color: var(--text-white);
+      border-radius: 0;
+      border: 0;
+      border-bottom: 1px solid var(--c-gold);
+
+      field-sizing: content;
+      min-width: 120px;
+      width: 100%;
+
       text-align: center;
       font-weight: 600;
       font-size: 16px;
-      border: none;
-      letter-spacing: 0.15em;
+      transition: all 0.2s ease-in-out;
+
+      &:hover,
+      &:active {
+        border-color: var(--c-pred);
+      }
     }
   }
   .sh-tabs {
@@ -236,10 +216,6 @@
           box-shadow: none;
         }
       }
-    }
-
-    .square {
-      margin: 0px 2px;
     }
 
     &.armor {
@@ -330,7 +306,7 @@
 
       font-family: $sans-serif-content-font;
       font-weight: 800;
-      font-size: 12px;
+      font-size: var(--font-size-12);
       letter-spacing: 0.05em;
       text-transform: uppercase;
 
@@ -350,15 +326,17 @@
         text-align: center;
         width: 15px;
         height: 15px;
-        border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
-        font-size: 12px;
-        font-weight: 600;
-        color: $text-white;
+        border-radius: $b-radius-sm;
+        border: calc($line-stroke-width) solid transparent;
+        font-size: var(--font-size-12);
+        font-weight: 1000;
+        color: var(--c-gold);
         transition: 0.3s all;
 
         &:hover {
-          color: $dgns-red;
-          border: calc($line-stroke-width + 0.2px) solid $line-stroke-color;
+          //color: var(--c-antiflash);
+          border-color: $line-stroke-color;
+          background-color: var(--b-alpha-8);
         }
       }
 
@@ -392,19 +370,15 @@
           height: 100%;
           font-family: $sans-serif-content-font;
           font-weight: 600;
-          color: $text-white;
-          border: none;
-          border-bottom: 1px solid transparent;
-          font-size: 12px;
 
           &.perma {
-            color: var(--grey-160);
+            color: var(--c-pred);
           }
 
           &:focus {
             box-shadow: none;
             border-bottom: 1px solid var(--c-pred);
-            transition: border-color 0.3s linear;
+            transition: border-color 0.1s linear;
           }
 
           &:hover {
@@ -466,7 +440,7 @@
     margin-right: 0px;
 
     .tag {
-      border: 1px solid var(--grey-70);
+      border: 1px solid var(--c-gold-5);
       background: black;
       margin: 2px 5px;
       display: inline-block;
@@ -499,6 +473,14 @@
       display: grid;
       grid-template-columns: 1fr 75px 65px;
       justify-items: center;
+    }
+  }
+
+  .inventory-list {
+    .entry-list-item {
+      font-weight: 500;
+      font-size: var(--font-size-14);
+      border-color: var(--c-gold);
     }
   }
 

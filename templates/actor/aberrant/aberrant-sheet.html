@@ -135,7 +135,17 @@
                             <option value="{{r}}">{{rapture}}</option>
                             {{/each}}
                             {{/select}}
-                        </select> <img class="rapture-img" height="80" width="80" src="{{raptureIcon}}" />
+                        </select>
+
+
+
+
+                        <object type="image/svg+xml" data="{{raptureIcon}}" class="rapture-img"
+                            onload="this.contentDocument.documentElement.classList.add('rapture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
+
+
+
                     </div>
 
                     <div class="variant-container">

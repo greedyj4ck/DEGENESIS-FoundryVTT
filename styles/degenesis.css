@@ -578,7 +578,7 @@ nav#navigation #context-menu li:hover {
 .app.window-app input {
   border: 1px solid var(--c-gold);
   border-radius: 5px;
-  color: var(--c-gold) !important;
+  color: var(--c-gold);
 }
 .app.window-app input:focus {
   -webkit-box-shadow: none;
@@ -4417,6 +4417,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.actor.character {
   min-width: 720px;
   min-height: 720px;
+  /** FIX THIS FUCKING LTER **/
   /* TABS STYLING */
   /* ATTRS AND SKILLS */
   /* ADVANTAGE TAB */
@@ -4453,12 +4454,12 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.actor.character .square.border-black .square-into,
 .app.window-app.degenesis.sheet.actor.character .square.little.border-black .square-into {
-  background: none;
+  background-color: var(--c-gold);
 }
 .app.window-app.degenesis.sheet.actor.character .square .square-into,
 .app.window-app.degenesis.sheet.actor.character .square.little .square-into {
   border: none;
-  background-color: var(--c-gold);
+  background-color: none;
 }
 .app.window-app.degenesis.sheet.actor.character .square:hover,
 .app.window-app.degenesis.sheet.actor.character .square.little:hover {
@@ -4660,7 +4661,7 @@ a.diamond:hover .square.red.perma {
           flex: none;
 }
 .app.window-app.degenesis.sheet.actor.character .ccc-content-container .title-Cs {
-  font-size: 17px;
+  font-size: var(--font-size-17);
   font-weight: 200;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -4724,13 +4725,15 @@ a.diamond:hover .square.red.perma {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  padding: 0px 2px;
+  gap: 2px;
   margin-bottom: 3px;
 }
 .app.window-app.degenesis.sheet.actor.character .sh-tabs a {
   color: var(--c-gold);
   background-color: var(--b-alpha-9);
-  margin: 0;
-  border: 0;
+  margin: 2px 0px;
+  border: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.actor.character .sh-tabs a:first-child {
   border-top-left-radius: 5px;
@@ -4740,12 +4743,9 @@ a.diamond:hover .square.red.perma {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.app.window-app.degenesis.sheet.actor.character .sh-tabs a:not(:last-child) {
-  border-right: 1px solid var(--c-gold);
-}
 .app.window-app.degenesis.sheet.actor.character .sh-tabs a.active {
-  color: var(--c-gold-4);
-  background-color: var(--c-gold-8);
+  color: var(--c-antiflash);
+  background-color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.actor.character .tab[data-tab].active {
   display: -webkit-box;
@@ -5721,6 +5721,9 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-group .encumbrance-legend span {
   margin-right: 20px;
 }
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .section-header-legends {
+  border-color: var(--c-gold);
+}
 .app.window-app.degenesis.sheet.actor.character .inventory-tab-container .inventory-list-container {
   overflow: auto;
 }
@@ -5886,8 +5889,10 @@ a.diamond:hover .square.red.perma {
   width: 100%;
   margin: 5px 0px;
   padding: 5px 4px 5px 4px;
-  background-color: var(--grey-240);
-  border: 1px solid var(--grey-160);
+  background-color: var(--b-alpha-1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  border: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.actor.character .section-list .item-summary p {
   margin: 0px 0px 5px 0px;
@@ -5897,8 +5902,8 @@ a.diamond:hover .square.red.perma {
   margin-top: 5px;
 }
 .app.window-app.degenesis.sheet.actor.character .section-list .item-summary .tag {
-  border: 1px solid var(--grey-160);
-  background: white;
+  border: 1px solid var(--c-gold);
+  background: var(--b-alpha-2);
   margin: 2px 5px;
   display: inline-block;
   padding: 2px 7px;
@@ -5911,112 +5916,69 @@ a.diamond:hover .square.red.perma {
   min-width: 650px;
   min-height: 650px;
 }
-.app.window-app.degenesis.sheet.fromHell input {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.fromHell .editor-menu {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.fromHell i {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar:hover::-webkit-scrollbar {
-  width: 8px;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-thumb {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  border-radius: 0px;
-  background-color: white;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-track {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  background-image: url("../ui/images/scrolltrack.png");
-  background-position: center;
-  background-repeat: repeat-y;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-button {
-  display: inline-block;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-track-piece {
-  display: none;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-scrollbar-corner {
-  display: none;
-}
-.app.window-app.degenesis.sheet.fromHell div::-webkit-resizer,
-.app.window-app.degenesis.sheet.fromHell textarea::-webkit-resizer,
-.app.window-app.degenesis.sheet.fromHell input::-webkit-resizer {
-  display: none;
-}
-.app.window-app.degenesis.sheet.fromHell input,
-.app.window-app.degenesis.sheet.fromHell textarea {
-  color: var(--text-white);
-}
-.app.window-app.degenesis.sheet.fromHell input {
-  border: none;
-  border-bottom: 1px solid transparent;
-  text-align: center;
-  font-size: 16px;
-}
-.app.window-app.degenesis.sheet.fromHell input:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border-bottom: 1px solid var(--grey-160);
-  -webkit-transition: border-color 0.2s linear;
-  transition: border-color 0.2s linear;
-}
-.app.window-app.degenesis.sheet.fromHell input:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border-bottom: 1px solid var(--c-pred);
-  -webkit-transition: border-color 0.3s linear;
-  transition: border-color 0.3s linear;
-}
 .app.window-app.degenesis.sheet.fromHell .line-stroke {
-  stroke: #fff;
+  stroke: var(--c-gold);
   stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.fromHell input {
+  color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell textarea {
+  font-family: "Avenir";
+  font-weight: 500;
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.fromHell input {
+  color: var(--c-gold);
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid transparent;
 }
 .app.window-app.degenesis.sheet.fromHell .square.little {
   min-width: 7px;
   margin-top: 1px;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--c-gold);
+}
+.app.window-app.degenesis.sheet.fromHell .square {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.fromHell .square:hover {
+  border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.fromHell .square.gold {
+  background-color: var(--c-gold-8);
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.fromHell a,
+.app.window-app.degenesis.sheet.fromHell a > div {
+  color: var(--c-gold);
+  text-shadow: none;
+}
+.app.window-app.degenesis.sheet.fromHell a:hover,
+.app.window-app.degenesis.sheet.fromHell a > div:hover {
+  color: var(--c-gold-4);
 }
 .app.window-app.degenesis.sheet.fromHell .window-content {
   padding: 0;
   overflow-y: hidden;
-  background: rgb(32, 32, 32);
-  background: url(../ui/fromHell_BG.jpg);
+  background-color: var(--b-alpha-4);
+  background-image: url(../ui/fromHell_BG.jpg);
+  background-blend-mode: color;
   background-size: cover;
   background-position: 50% 0%;
   font-family: "Avenir";
   font-weight: 300;
   color: rgb(255, 255, 255);
+}
+.app.window-app.degenesis.sheet.fromHell .block-title.gold h3 {
+  margin-top: 2px;
+  color: black;
+}
+.app.window-app.degenesis.sheet.fromHell .block-title.gold a {
+  color: black;
+}
+.app.window-app.degenesis.sheet.fromHell .block-title.gold a:hover {
+  color: var(--c-gold-3);
 }
 .app.window-app.degenesis.sheet.fromHell .sh-header {
   -webkit-box-align: center;
@@ -6048,7 +6010,7 @@ a.diamond:hover .square.red.perma {
   gap: 3px;
 }
 .app.window-app.degenesis.sheet.fromHell .header-content-container .img-frame {
-  background-image: url(../ui/images/character\ frame\ white.svg);
+  background-image: url(../ui/images/character\ frame\ gold.svg);
 }
 .app.window-app.degenesis.sheet.fromHell .header-content-column-container {
   -webkit-box-flex: 1;
@@ -6111,12 +6073,20 @@ a.diamond:hover .square.red.perma {
   margin-top: 0px;
 }
 .app.window-app.degenesis.sheet.fromHell .field-name .input-name {
-  color: var(--text-white);
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--c-gold);
+  field-sizing: content;
+  min-width: 120px;
+  width: 100%;
   text-align: center;
   font-weight: 600;
   font-size: 16px;
-  border: none;
-  letter-spacing: 0.15em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.fromHell .field-name .input-name:hover, .app.window-app.degenesis.sheet.fromHell .field-name .input-name:active {
+  border-color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.fromHell .sh-tabs {
   margin: 10px 0px;
@@ -6186,9 +6156,6 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.fromHell .header-title .dice-value input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-.app.window-app.degenesis.sheet.fromHell .header-title .square {
-  margin: 0px 2px;
 }
 .app.window-app.degenesis.sheet.fromHell .header-title.armor {
   width: 100%;
@@ -6284,7 +6251,7 @@ a.diamond:hover .square.red.perma {
   gap: 2px;
   font-family: "Avenir";
   font-weight: 800;
-  font-size: 12px;
+  font-size: var(--font-size-12);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -6310,16 +6277,17 @@ a.diamond:hover .square.red.perma {
   text-align: center;
   width: 15px;
   height: 15px;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats {
   margin-left: auto;
@@ -6360,20 +6328,16 @@ a.diamond:hover .square.red.perma {
   height: 100%;
   font-family: "Avenir";
   font-weight: 600;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-bottom: 1px solid transparent;
-  font-size: 12px;
 }
 .app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input.perma {
-  color: var(--grey-160);
+  color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-bottom: 1px solid var(--c-pred);
-  -webkit-transition: border-color 0.3s linear;
-  transition: border-color 0.3s linear;
+  -webkit-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
 }
 .app.window-app.degenesis.sheet.fromHell .condition-content-container .condition .stats .stat-input:hover {
   border-bottom: 1px solid var(--grey-160);
@@ -6425,7 +6389,7 @@ a.diamond:hover .square.red.perma {
   margin-right: 0px;
 }
 .app.window-app.degenesis.sheet.fromHell .item-summary .tag {
-  border: 1px solid var(--grey-70);
+  border: 1px solid var(--c-gold-5);
   background: black;
   margin: 2px 5px;
   display: inline-block;
@@ -6451,6 +6415,11 @@ a.diamond:hover .square.red.perma {
   display: grid;
   grid-template-columns: 1fr 75px 65px;
   justify-items: center;
+}
+.app.window-app.degenesis.sheet.fromHell .inventory-list .entry-list-item {
+  font-weight: 500;
+  font-size: var(--font-size-14);
+  border-color: var(--c-gold);
 }
 .app.window-app.degenesis.sheet.fromHell .section-entry-grid.attack {
   display: grid;
@@ -6664,7 +6633,7 @@ a.diamond:hover .square.red.perma {
   transition: border-color 0.3s linear;
 }
 .app.window-app.degenesis.sheet.fromHell .section-header-legends {
-  border-bottom: 1.5px solid #fff;
+  border-bottom: 1.5px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.fromHell .section-header-legends .legend-name {
   font-size: 12px;
@@ -6675,89 +6644,68 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.npc {
   min-width: 720px;
   min-height: 720px;
+  /* INVENTORY TAB */
 }
 .app.window-app.degenesis.sheet.npc .line-stroke {
-  stroke: #fff;
+  stroke: var(--c-gold);
   stroke-width: 1.5px;
 }
 .app.window-app.degenesis.sheet.npc .square.little {
   min-width: 7px;
   margin-top: 1px;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--c-gold);
 }
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar {
-  width: 4px;
-  border: none;
-  background-color: transparent;
+.app.window-app.degenesis.sheet.npc a,
+.app.window-app.degenesis.sheet.npc a > div {
+  color: var(--c-gold);
+  text-shadow: none;
 }
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar:hover::-webkit-scrollbar {
-  width: 8px;
+.app.window-app.degenesis.sheet.npc a:hover,
+.app.window-app.degenesis.sheet.npc a > div:hover {
+  color: var(--c-gold-4);
 }
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-thumb {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  border-radius: 0px;
-  background-color: white;
+.app.window-app.degenesis.sheet.npc ::-moz-selection {
+  background-color: var(--b-alpha-7);
+  color: var(--c-pred);
 }
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-track {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  background-image: url("../ui/images/scrolltrack.png");
-  background-position: center;
-  background-repeat: repeat-y;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-button {
-  display: inline-block;
-}
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-track-piece {
-  display: none;
-}
-.app.window-app.degenesis.sheet.npc div::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.npc input::-webkit-scrollbar-corner {
-  display: none;
-}
-.app.window-app.degenesis.sheet.npc div::-webkit-resizer,
-.app.window-app.degenesis.sheet.npc textarea::-webkit-resizer,
-.app.window-app.degenesis.sheet.npc input::-webkit-resizer {
-  display: none;
+.app.window-app.degenesis.sheet.npc ::selection {
+  background-color: var(--b-alpha-7);
+  color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.npc input {
-  color: rgb(255, 255, 255);
+  color: var(--c-gold);
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid transparent;
 }
 .app.window-app.degenesis.sheet.npc .editor-menu {
-  color: rgb(255, 255, 255);
+  color: var(--c-gold);
 }
-.app.window-app.degenesis.sheet.npc i {
-  color: rgb(255, 255, 255);
+.app.window-app.degenesis.sheet.npc .vertical-bar * {
+  stroke: var(--c-gold);
+  stroke-width: 3.5px;
+}
+.app.window-app.degenesis.sheet.npc .square {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .square:hover {
+  border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.npc .square.gold {
+  background-color: var(--c-gold-8);
+  border-color: var(--c-gold);
 }
 .app.window-app.degenesis.sheet.npc .window-content {
   padding: 0;
   overflow-y: hidden;
-  background: rgb(32, 32, 32);
-  background: url(../ui/npc_BG.jpg);
+  background-color: var(--b-alpha-5);
+  background-image: url(../ui/npc_BG.jpg);
   background-size: cover;
   background-position: 50% 0%;
   font-family: "Avenir";
   font-weight: 300;
   color: rgb(255, 255, 255);
+  background-blend-mode: color;
 }
 .app.window-app.degenesis.sheet.npc .tab-content-container {
   overflow: hidden;
@@ -6774,7 +6722,7 @@ a.diamond:hover .square.red.perma {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  font-size: 12px;
+  font-size: var(--font-size-12);
   letter-spacing: 1px;
   width: 100%;
 }
@@ -6801,26 +6749,50 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
-.app.window-app.degenesis.sheet.npc .block-title h3 {
+.app.window-app.degenesis.sheet.npc .block-title.gold h3 {
   margin-top: 2px;
+  color: black;
+}
+.app.window-app.degenesis.sheet.npc .block-title.gold a {
+  color: black;
+}
+.app.window-app.degenesis.sheet.npc .block-title.gold a:hover {
+  color: var(--c-gold-3);
 }
 .app.window-app.degenesis.sheet.npc .sh-tabs {
-  margin-top: 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border: 1px solid var(--c-gold);
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  padding: 0px 2px;
+  gap: 2px;
 }
 .app.window-app.degenesis.sheet.npc .sh-tabs > * {
   z-index: 1;
 }
 .app.window-app.degenesis.sheet.npc .sh-tabs .item {
-  background-color: rgb(255, 255, 255);
-  color: var(--b-alpha-10);
+  text-shadow: none;
+  background-color: var(--b-alpha-3);
+  color: var(--c-gold);
+  margin: 2px 0px;
+  border: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.npc .sh-tabs .item:hover {
-  background-color: #ed1d27;
-  color: rgb(255, 255, 255);
+  color: var(--c-antiflash);
+}
+.app.window-app.degenesis.sheet.npc .sh-tabs .item:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.app.window-app.degenesis.sheet.npc .sh-tabs .item:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .app.window-app.degenesis.sheet.npc .sh-tabs .item.active {
-  background-color: #ed1d27;
-  color: rgb(255, 255, 255);
+  color: var(--c-antiflash);
+  background-color: var(--c-gold-6);
 }
 .app.window-app.degenesis.sheet.npc .tab[data-tab].active {
   display: -webkit-box;
@@ -6892,7 +6864,7 @@ a.diamond:hover .square.red.perma {
   gap: 3px;
 }
 .app.window-app.degenesis.sheet.npc .header-content-container .img-frame {
-  background-image: url(../ui/images/character\ frame\ white.svg);
+  background-image: url(../ui/images/character\ frame\ gold.svg);
 }
 .app.window-app.degenesis.sheet.npc .header-content-column-container {
   -webkit-box-flex: 1;
@@ -6928,36 +6900,32 @@ a.diamond:hover .square.red.perma {
   margin-top: 0px;
 }
 .app.window-app.degenesis.sheet.npc .field-name .input-name {
-  width: calc(20ch + 10px);
-  color: var(--text-white);
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--c-gold);
+  field-sizing: content;
+  min-width: 120px;
+  width: 100%;
   text-align: center;
   font-weight: 600;
   font-size: 16px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.npc .field-name .input-name:hover, .app.window-app.degenesis.sheet.npc .field-name .input-name:active {
+  border-color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.npc .field-rank {
   position: relative;
-}
-.app.window-app.degenesis.sheet.npc .field-rank:after {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  height: 1px;
-  width: 0%;
-  background-color: rgb(255, 255, 255);
-  display: block;
-  content: "";
-  -webkit-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
-}
-.app.window-app.degenesis.sheet.npc .field-rank:hover:after {
-  left: 15%;
-  width: 70%;
-  background-color: #ed1d27;
+  padding: 0px 15px;
 }
 .app.window-app.degenesis.sheet.npc .field-rank .input-rank {
-  border: none;
-  color: var(--text-white);
+  field-sizing: content;
+  width: 100%;
+  min-width: 120px;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--c-gold);
   text-align: center;
   font-family: "Crimson Pro";
   font-weight: 500;
@@ -6965,11 +6933,16 @@ a.diamond:hover .square.red.perma {
   text-transform: uppercase;
   display: inline-block;
   position: relative;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.npc .field-rank .input-rank:hover, .app.window-app.degenesis.sheet.npc .field-rank .input-rank:active {
+  border-color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.npc .input-rank-label {
-  margin-top: -5px;
+  margin-top: 2px;
   text-align: center;
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -6995,7 +6968,7 @@ a.diamond:hover .square.red.perma {
   gap: 2px;
   font-family: "Avenir";
   font-weight: 800;
-  font-size: 12px;
+  font-size: var(--font-size-12);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -7021,16 +6994,17 @@ a.diamond:hover .square.red.perma {
   text-align: center;
   width: 15px;
   height: 15px;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .stats {
   margin-left: auto;
@@ -7071,19 +7045,16 @@ a.diamond:hover .square.red.perma {
   height: 100%;
   font-family: "Avenir";
   font-weight: 600;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-bottom: 1px solid transparent;
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .stats .stat-input.perma {
-  color: var(--grey-160);
+  color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .stats .stat-input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-bottom: 1px solid var(--c-pred);
-  -webkit-transition: border-color 0.3s linear;
-  transition: border-color 0.3s linear;
+  -webkit-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
 }
 .app.window-app.degenesis.sheet.npc .condition-content-container .condition .stats .stat-input:hover {
   border-bottom: 1px solid var(--grey-160);
@@ -7159,25 +7130,37 @@ a.diamond:hover .square.red.perma {
   width: 100%;
   background-color: #ed1d27;
 }
-.app.window-app.degenesis.sheet.npc .ccc-content-container > div > img {
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > img,
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > svg,
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > object {
   aspect-ratio: 1/1;
   width: 50px;
   height: 50px;
   position: absolute;
   right: 10%;
-  -webkit-filter: invert(100);
-          filter: invert(100);
   border: none;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.app.window-app.degenesis.sheet.npc .ccc-content-container > div > img.concept-img {
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > img.concept-img,
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > svg.concept-img,
+.app.window-app.degenesis.sheet.npc .ccc-content-container > div > object.concept-img {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 .app.window-app.degenesis.sheet.npc .attribute-tab-container {
+  text-transform: uppercase;
+  font-size: var(--font-size-11);
+  display: grid;
+  justify-items: stretch;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  margin: 0px 3px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group {
   display: -webkit-box;
@@ -7193,12 +7176,15 @@ a.diamond:hover .square.red.perma {
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value {
+  border: 1px solid var(--c-gold);
+  border-radius: 5px;
+  background-color: var(--b-alpha-5);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 30px 15px 15px;
   grid-template-rows: 1fr;
+  padding: 0px 4px;
   gap: 3px;
-  border-bottom: 1px solid var(--grey-160);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -7209,6 +7195,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value .btn {
   width: 15px;
   height: 15px;
+  text-shadow: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7219,25 +7206,27 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value h3 {
   font-family: "Avenir";
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: var(--font-size-14);
+  color: var(--c-gold);
+  font-weight: 800;
+  letter-spacing: 0.1em;
   border: none;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  -ms-flex-item-align: center;
+      align-self: center;
   margin: 0;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value .attribute-input {
@@ -7256,18 +7245,28 @@ a.diamond:hover .square.red.perma {
           align-items: center;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input {
-  width: 30px;
-  font-size: 20px;
-  font-family: "Avenir";
-  font-weight: 600;
-  color: rgb(255, 255, 255);
-  letter-spacing: 0.1em;
-  border: none;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+  border-radius: 0;
+  width: 30px;
+  font-size: var(--font-size-18);
+  font-family: "Avenir";
+  font-weight: 1000;
+  color: var(--c-gold);
+  letter-spacing: 0.1em;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 1px solid var(--c-gold);
+  border-right: 1px solid var(--c-gold);
+  text-align: center;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input:hover {
+  color: var(--c-gold-4);
+}
+.app.window-app.degenesis.sheet.npc .attribute-skill-group .attribute-value input:focus {
+  border-left: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list {
   width: 100%;
@@ -7282,15 +7281,18 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill {
   margin: 0;
+  padding: 0px 4px;
   display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   grid-template-columns: 1fr 30px 15px 15px;
   grid-template-rows: 1fr;
   gap: 3px;
-  color: var(--grey-220);
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill a {
   font-family: "Avenir";
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 600;
   letter-spacing: 0.1ch;
 }
@@ -7299,10 +7301,11 @@ a.diamond:hover .square.red.perma {
   font-size: 14px;
   font-family: "Avenir";
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: var(--c-gold);
   letter-spacing: 0.1em;
   border: none;
   border-bottom: 1px solid transparent;
+  border-radius: 0;
   text-align: center;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill input:focus {
@@ -7313,7 +7316,7 @@ a.diamond:hover .square.red.perma {
   transition: border-color 0.3s linear;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill input:hover {
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--c-gold);
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
 }
@@ -7330,20 +7333,24 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
-  -webkit-transition: 0.3s all;
-  transition: 0.3s all;
+  text-shadow: none;
+  opacity: 0.6;
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
+  -webkit-transition: 0.1s all;
+  transition: 0.1s all;
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  opacity: 1;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.npc .attribute-skill-group .skill-list .skill .skill-base-dice {
   margin-left: 2px;
-  color: var(--grey-160);
+  color: var(--c-gold-7);
 }
 .app.window-app.degenesis.sheet.npc .combat-stats-container {
   display: -webkit-box;
@@ -7402,7 +7409,7 @@ a.diamond:hover .square.red.perma {
   margin: 0px 1px;
 }
 .app.window-app.degenesis.sheet.npc .combat-stats-container .armor-name input {
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 600;
   width: 100%;
   text-transform: uppercase;
@@ -7425,6 +7432,9 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+.app.window-app.degenesis.sheet.npc .advantages-container h3 {
+  color: black;
 }
 .app.window-app.degenesis.sheet.npc .advantages-container .diamond-row {
   margin-right: 0;
@@ -7498,7 +7508,7 @@ a.diamond:hover .square.red.perma {
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.npc .section-entry-grid {
-  font-size: 12px;
+  font-size: var(--font-size-12);
 }
 .app.window-app.degenesis.sheet.npc .section-entry-grid.attack {
   display: grid;
@@ -7576,10 +7586,10 @@ a.diamond:hover .square.red.perma {
   letter-spacing: 0.1ch;
 }
 .app.window-app.degenesis.sheet.npc .section-header-legends {
-  border-bottom: 1.5px solid #fff;
+  border-bottom: 1.5px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.npc .section-header-legends .legend-name {
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 500;
   letter-spacing: 0.15em;
 }
@@ -7647,6 +7657,70 @@ a.diamond:hover .square.red.perma {
   -webkit-transition: border-color 0.3s linear;
   transition: border-color 0.3s linear;
 }
+.app.window-app.degenesis.sheet.npc .inventory-tab-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  margin: 3px;
+}
+.app.window-app.degenesis.sheet.npc .inventory-tab-container .section-header-legends {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .inventory-tab-container .inventory-list-container {
+  overflow: auto;
+}
+.app.window-app.degenesis.sheet.npc .inventory-tab-container .inventory-group.armor-group, .app.window-app.degenesis.sheet.npc .inventory-tab-container .inventory-group.weapon-group {
+  margin: 16px 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.npc .inventory-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .inventory-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+  grid-template-rows: minmax(18px, -webkit-max-content);
+  grid-template-rows: minmax(18px, max-content);
+}
+.app.window-app.degenesis.sheet.npc .inventory-group-entry-grid .item-summary {
+  grid-area: 2/1/2/8;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-grid :first-child {
+  grid-area: 1/3/1/4;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-grid :nth-child(2) {
+  grid-area: 1/4/1/5;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-grid :nth-child(3) {
+  grid-area: 1/5/1/6;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid :nth-child(2) {
+  grid-area: 1/4/1/5;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid :nth-child(3) {
+  grid-area: 1/5/1/6;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid :nth-child(4) {
+  grid-area: 1/6/1/7;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid :nth-child(5) {
+  grid-area: 1/7/1/8;
+}
+.app.window-app.degenesis.sheet.npc .transportation-group-entry-grid .item-summary {
+  grid-area: 2/1/2/8;
+}
 .app.window-app.degenesis.sheet.npc .inventory-list-container > :first-child {
   margin-top: 0;
 }
@@ -7674,82 +7748,116 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.npc .inventory-list-container .transportation-group-entry-grid > :first-child {
   grid-area: 1/1/1/5;
 }
+.app.window-app.degenesis.sheet.npc .inventory-list .entry-list-item {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .select2-container {
+  width: 100% !important;
+}
+.app.window-app.degenesis.sheet.npc .select2-selection {
+  border: none;
+  background: none;
+  border-radius: 0;
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .select2-selection:hover {
+  border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.npc .select2-selection .select2-selection__rendered {
+  text-transform: uppercase;
+  font-family: "Avenir";
+  font-size: var(--font-size-12);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .select2-selection .select2-selection__rendered:hover, .app.window-app.degenesis.sheet.npc .select2-selection .select2-selection__rendered:focus {
+  color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.npc .select2-dropdown {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: var(--b-alpha-9);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-pred) !important;
+}
+.app.window-app.degenesis.sheet.npc .select2-dropdown .select2-results__option[aria-selected=true] {
+  background-color: var(--c-resin) !important;
+}
+.app.window-app.degenesis.sheet.npc .select2-dropdown li:first-child {
+  border-top-left-radius: 10px;
+}
+.app.window-app.degenesis.sheet.npc .select2-dropdown li:last-child {
+  border-bottom-left-radius: 10px;
+}
+.app.window-app.degenesis.sheet.npc .concept-img,
+.app.window-app.degenesis.sheet.npc .cult-img,
+.app.window-app.degenesis.sheet.npc .culture-img {
+  fill: var(--c-gold);
+  height: 20px;
+  margin: 5px 0px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.npc .concept-img:hover,
+.app.window-app.degenesis.sheet.npc .cult-img:hover,
+.app.window-app.degenesis.sheet.npc .culture-img:hover {
+  fill: var(--c-pred);
+}
 
 .app.window-app.degenesis.sheet.aberrant {
   min-width: 720px;
   min-height: 720px;
 }
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar:hover::-webkit-scrollbar,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar:hover::-webkit-scrollbar {
-  width: 8px;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-thumb,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-thumb {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  border-radius: 0px;
-  background-color: white;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-track,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-track {
-  width: 4px;
-  border: none;
-  background-color: transparent;
-  background-image: url("../ui/images/scrolltrack.png");
-  background-position: center;
-  background-repeat: repeat-y;
-  border-radius: 0px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-button,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-button {
-  display: inline-block;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-track-piece,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-track-piece {
-  display: none;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-scrollbar-corner,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-scrollbar-corner {
-  display: none;
-}
-.app.window-app.degenesis.sheet.aberrant div::-webkit-resizer,
-.app.window-app.degenesis.sheet.aberrant textarea::-webkit-resizer,
-.app.window-app.degenesis.sheet.aberrant input::-webkit-resizer {
-  display: none;
-}
-.app.window-app.degenesis.sheet.aberrant input {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.aberrant .editor-menu {
-  color: rgb(255, 255, 255);
-}
-.app.window-app.degenesis.sheet.aberrant i {
-  color: rgb(255, 255, 255);
-}
 .app.window-app.degenesis.sheet.aberrant .line-stroke {
-  stroke: #fff;
+  stroke: var(--c-gold);
   stroke-width: 1.5px;
+}
+.app.window-app.degenesis.sheet.aberrant ::-moz-selection {
+  background-color: var(--c-gold-8);
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant ::selection {
+  background-color: var(--c-gold-8);
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant a,
+.app.window-app.degenesis.sheet.aberrant a > div {
+  color: var(--c-gold);
+  text-shadow: none;
+}
+.app.window-app.degenesis.sheet.aberrant a:hover,
+.app.window-app.degenesis.sheet.aberrant a > div:hover {
+  color: var(--c-gold-4);
+}
+.app.window-app.degenesis.sheet.aberrant .square {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .square:hover {
+  border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.aberrant .square.gold {
+  background-color: var(--c-gold-8);
+  border-color: var(--c-gold);
 }
 .app.window-app.degenesis.sheet.aberrant .square.little {
   min-width: 7px;
   margin-top: 1px;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .img-frame {
+  background-image: url(../ui/images/character\ frame\ gold.svg);
+}
+.app.window-app.degenesis.sheet.aberrant input {
+  color: var(--c-gold);
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid transparent;
 }
 .app.window-app.degenesis.sheet.aberrant .background-chakra {
   position: absolute;
@@ -7775,6 +7883,10 @@ a.diamond:hover .square.red.perma {
           mask-image: linear-gradient(to bottom, var(--b-alpha-10), rgba(0, 0, 0, 0));
   z-index: 0;
 }
+.app.window-app.degenesis.sheet.aberrant .vertical-bar * {
+  stroke: var(--c-gold);
+  stroke-width: 3.5px;
+}
 .app.window-app.degenesis.sheet.aberrant .sh-header {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -7798,26 +7910,50 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
-.app.window-app.degenesis.sheet.aberrant .block-title h3 {
+.app.window-app.degenesis.sheet.aberrant .block-title.gold h3 {
   margin-top: 2px;
+  color: black;
+}
+.app.window-app.degenesis.sheet.aberrant .block-title.gold a {
+  color: black;
+}
+.app.window-app.degenesis.sheet.aberrant .block-title.gold a:hover {
+  color: var(--c-gold-3);
 }
 .app.window-app.degenesis.sheet.aberrant .sh-tabs {
-  margin-top: 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border: 1px solid var(--c-gold);
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  padding: 0px 2px;
+  gap: 2px;
 }
 .app.window-app.degenesis.sheet.aberrant .sh-tabs > * {
   z-index: 1;
 }
 .app.window-app.degenesis.sheet.aberrant .sh-tabs .item {
-  background-color: rgb(255, 255, 255);
-  color: var(--b-alpha-10);
+  text-shadow: none;
+  background-color: var(--b-alpha-3);
+  color: var(--c-gold);
+  margin: 2px 0px;
+  border: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.aberrant .sh-tabs .item:hover {
-  background-color: #ed1d27;
-  color: rgb(255, 255, 255);
+  color: var(--c-antiflash);
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs .item:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.app.window-app.degenesis.sheet.aberrant .sh-tabs .item:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .app.window-app.degenesis.sheet.aberrant .sh-tabs .item.active {
-  background-color: #ed1d27;
-  color: rgb(255, 255, 255);
+  color: var(--c-antiflash);
+  background-color: var(--c-gold-6);
 }
 .app.window-app.degenesis.sheet.aberrant .tab[data-tab].active {
   display: -webkit-box;
@@ -7861,8 +7997,9 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.aberrant .window-content {
   padding: 0;
-  background: rgb(32, 32, 32);
-  background: url(../ui/aberrant_BG.jpg);
+  background-color: var(--b-alpha-6);
+  background-image: url(../ui/aberrant_BG.jpg);
+  background-blend-mode: color;
   background-size: cover;
   background-position: 50% 0%;
   font-family: "Avenir";
@@ -7892,9 +8029,6 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: stretch;
           align-items: stretch;
   gap: 3px;
-}
-.app.window-app.degenesis.sheet.aberrant .header-content-container .img-frame {
-  background-image: url(../ui/images/character\ frame\ white.svg);
 }
 .app.window-app.degenesis.sheet.aberrant .header-content-column-container {
   -webkit-box-flex: 1;
@@ -7939,13 +8073,19 @@ a.diamond:hover .square.red.perma {
   margin-top: 0px;
 }
 .app.window-app.degenesis.sheet.aberrant .field-name .input-name {
-  width: calc(20ch + 10px);
-  color: var(--text-white);
-  border-bottom: 1px solid rgb(255, 255, 255);
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--c-gold);
+  field-sizing: content;
+  min-width: 120px;
+  width: 100%;
   text-align: center;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 20px;
+}
+.app.window-app.degenesis.sheet.aberrant .field-name .input-name:hover, .app.window-app.degenesis.sheet.aberrant .field-name .input-name:active {
+  border-color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container {
   width: 100%;
@@ -7968,7 +8108,7 @@ a.diamond:hover .square.red.perma {
   gap: 2px;
   font-family: "Avenir";
   font-weight: 800;
-  font-size: 12px;
+  font-size: var(--font-size-12);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -7994,16 +8134,17 @@ a.diamond:hover .square.red.perma {
   text-align: center;
   width: 15px;
   height: 15px;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats {
   margin-left: auto;
@@ -8044,19 +8185,16 @@ a.diamond:hover .square.red.perma {
   height: 100%;
   font-family: "Avenir";
   font-weight: 600;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-bottom: 1px solid transparent;
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input.perma {
-  color: var(--grey-160);
+  color: var(--c-pred);
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
   border-bottom: 1px solid var(--c-pred);
-  -webkit-transition: border-color 0.3s linear;
-  transition: border-color 0.3s linear;
+  -webkit-transition: border-color 0.1s linear;
+  transition: border-color 0.1s linear;
 }
 .app.window-app.degenesis.sheet.aberrant .condition-content-container .condition .stats .stat-input:hover {
   border-bottom: 1px solid var(--grey-160);
@@ -8131,14 +8269,13 @@ a.diamond:hover .square.red.perma {
   width: 100%;
   background-color: #ed1d27;
 }
-.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div > img {
+.app.window-app.degenesis.sheet.aberrant .rapture-content-container > div .rapture-img {
+  fill: var(--c-gold);
   aspect-ratio: 1/1;
   width: 50px;
   height: 50px;
   position: absolute;
   right: 10%;
-  -webkit-filter: invert(100);
-          filter: invert(100);
   border: none;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -8147,37 +8284,31 @@ a.diamond:hover .square.red.perma {
   font-family: "Avenir";
   font-size: 14px;
   font-weight: 600;
-  color: rgb(255, 255, 255);
   border: none;
   z-index: 10;
   text-transform: uppercase;
 }
 .app.window-app.degenesis.sheet.aberrant .input-variant::-webkit-input-placeholder {
-  color: rgb(255, 255, 255);
   opacity: 0.6;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
 .app.window-app.degenesis.sheet.aberrant .input-variant::-moz-placeholder {
-  color: rgb(255, 255, 255);
   opacity: 0.6;
   -moz-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
 .app.window-app.degenesis.sheet.aberrant .input-variant:-ms-input-placeholder {
-  color: rgb(255, 255, 255);
   opacity: 0.6;
   -ms-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
 .app.window-app.degenesis.sheet.aberrant .input-variant::-ms-input-placeholder {
-  color: rgb(255, 255, 255);
   opacity: 0.6;
   -ms-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
 }
 .app.window-app.degenesis.sheet.aberrant .input-variant::placeholder {
-  color: rgb(255, 255, 255);
   opacity: 0.6;
   -webkit-transition: opacity 0.2s ease-in-out;
   transition: opacity 0.2s ease-in-out;
@@ -8265,7 +8396,7 @@ a.diamond:hover .square.red.perma {
   margin: 0px 1px;
 }
 .app.window-app.degenesis.sheet.aberrant .combat-stats-container .armor-name input {
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 600;
   width: 100%;
   text-transform: uppercase;
@@ -8338,18 +8469,18 @@ a.diamond:hover .square.red.perma {
   transition: border-color 0.3s linear;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-tab-container {
+  text-transform: uppercase;
+  font-size: var(--font-size-11);
   display: grid;
   justify-items: stretch;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  margin: 3px;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
-  text-transform: uppercase;
-  font-size: var(--font-size-11);
+  margin: 0px 3px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 2fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group {
   display: -webkit-box;
@@ -8365,12 +8496,15 @@ a.diamond:hover .square.red.perma {
   justify-items: center;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value {
+  border: 1px solid var(--c-gold);
+  border-radius: 5px;
+  background-color: var(--b-alpha-5);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 30px 15px 15px;
   grid-template-rows: 1fr;
+  padding: 0px 4px;
   gap: 3px;
-  border-bottom: 1px solid var(--grey-160);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -8381,6 +8515,7 @@ a.diamond:hover .square.red.perma {
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .btn {
   width: 15px;
   height: 15px;
+  text-shadow: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8391,25 +8526,27 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value h3 {
   font-family: "Avenir";
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: var(--font-size-14);
+  color: var(--c-gold);
+  font-weight: 800;
+  letter-spacing: 0.1em;
   border: none;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+  -ms-flex-item-align: center;
+      align-self: center;
   margin: 0;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value .attribute-input {
@@ -8428,18 +8565,28 @@ a.diamond:hover .square.red.perma {
           align-items: center;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input {
-  width: 30px;
-  font-size: 20px;
-  font-family: "Avenir";
-  font-weight: 600;
-  color: rgb(255, 255, 255);
-  letter-spacing: 0.1em;
-  border: none;
-  text-align: center;
-}
-.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+  border-radius: 0;
+  width: 30px;
+  font-size: var(--font-size-18);
+  font-family: "Avenir";
+  font-weight: 1000;
+  color: var(--c-gold);
+  letter-spacing: 0.1em;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 1px solid var(--c-gold);
+  border-right: 1px solid var(--c-gold);
+  text-align: center;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input:hover {
+  color: var(--c-gold-4);
+}
+.app.window-app.degenesis.sheet.aberrant .attribute-skill-group .attribute-value input:focus {
+  border-left: 1px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list {
   width: 100%;
@@ -8454,15 +8601,18 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill {
   margin: 0;
+  padding: 0px 4px;
   display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   grid-template-columns: 1fr 30px 15px 15px;
   grid-template-rows: 1fr;
   gap: 3px;
-  color: var(--grey-220);
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill a {
   font-family: "Avenir";
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 600;
   letter-spacing: 0.1ch;
 }
@@ -8471,10 +8621,11 @@ a.diamond:hover .square.red.perma {
   font-size: 14px;
   font-family: "Avenir";
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: var(--c-gold);
   letter-spacing: 0.1em;
   border: none;
   border-bottom: 1px solid transparent;
+  border-radius: 0;
   text-align: center;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill input:focus {
@@ -8485,7 +8636,7 @@ a.diamond:hover .square.red.perma {
   transition: border-color 0.3s linear;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill input:hover {
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--c-gold);
   -webkit-transition: border-color 0.2s linear;
   transition: border-color 0.2s linear;
 }
@@ -8502,20 +8653,24 @@ a.diamond:hover .square.red.perma {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  border: 1.7px solid #fff;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgb(255, 255, 255);
-  -webkit-transition: 0.3s all;
-  transition: 0.3s all;
+  text-shadow: none;
+  opacity: 0.6;
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: var(--font-size-12);
+  font-weight: 1000;
+  color: var(--c-gold);
+  -webkit-transition: 0.1s all;
+  transition: 0.1s all;
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill .btn:hover {
-  color: #ed1d27;
-  border: 1.7px solid #fff;
+  opacity: 1;
+  border-color: var(--c-gold);
+  background-color: var(--b-alpha-8);
 }
 .app.window-app.degenesis.sheet.aberrant .attribute-skill-group .skill-list .skill .skill-base-dice {
   margin-left: 2px;
-  color: var(--grey-160);
+  color: var(--c-gold-7);
 }
 .app.window-app.degenesis.sheet.aberrant .item-summary {
   border: 1px solid var(--c-pred);
@@ -8534,26 +8689,21 @@ a.diamond:hover .square.red.perma {
   padding: 2px 7px;
 }
 .app.window-app.degenesis.sheet.aberrant .phenomena-container {
-  padding: 0px 5px 5px 5px;
+  margin-top: 16px;
   overflow: auto;
   scrollbar-gutter: stable both-edges;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.degenesis.sheet.aberrant .section-header-container {
-  /*   &.phenomenon {
-    //margin-top: 10px;
-  } */
-}
 .app.window-app.degenesis.sheet.aberrant .section-header-container.defense {
   margin-top: 10px;
 }
 .app.window-app.degenesis.sheet.aberrant .section-header-legends {
-  border-bottom: 1.5px solid #fff;
+  border-bottom: 1.5px solid var(--c-gold);
 }
 .app.window-app.degenesis.sheet.aberrant .section-header-legends .legend-name {
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 500;
   letter-spacing: 0.15em;
 }
@@ -8659,10 +8809,41 @@ a.diamond:hover .square.red.perma {
   letter-spacing: 0.1ch;
   text-transform: uppercase;
 }
+.app.window-app.degenesis.sheet.aberrant .inventory-group-entry-grid {
+  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+  grid-template-rows: minmax(18px, -webkit-max-content);
+  grid-template-rows: minmax(18px, max-content);
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-group-entry-grid .item-summary {
+  grid-area: 2/1/2/8;
+}
 .app.window-app.degenesis.sheet.aberrant .combat-container {
   overflow: auto;
   scrollbar-gutter: stable both-edges;
   padding: 5px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-tab-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+  margin: 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-tab-container .section-header-legends {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-tab-container .inventory-list-container {
+  overflow: auto;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-tab-container .inventory-group.armor-group, .app.window-app.degenesis.sheet.aberrant .inventory-tab-container .inventory-group.weapon-group {
+  margin: 16px 5px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -8693,6 +8874,55 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.degenesis.sheet.aberrant .inventory-list-container .transportation-group-entry-grid > :first-child {
   grid-area: 1/1/1/5;
+}
+.app.window-app.degenesis.sheet.aberrant .inventory-list .entry-list-item {
+  font-weight: 500;
+  font-size: var(--font-size-14);
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-container {
+  width: 100% !important;
+}
+.app.window-app.degenesis.sheet.aberrant .select2-selection {
+  border: none;
+  background: none;
+  border-radius: 0;
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-selection:hover {
+  border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-selection .select2-selection__rendered {
+  text-transform: uppercase;
+  font-family: "Avenir";
+  font-size: var(--font-size-12);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-selection .select2-selection__rendered:hover, .app.window-app.degenesis.sheet.aberrant .select2-selection .select2-selection__rendered:focus {
+  color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-dropdown {
+  font-family: "Avenir";
+  text-transform: uppercase;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: var(--b-alpha-9);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-pred) !important;
+}
+.app.window-app.degenesis.sheet.aberrant .select2-dropdown .select2-results__option[aria-selected=true] {
+  background-color: var(--c-resin) !important;
+}
+.app.window-app.degenesis.sheet.aberrant .select2-dropdown li:first-child {
+  border-top-left-radius: 10px;
+}
+.app.window-app.degenesis.sheet.aberrant .select2-dropdown li:last-child {
+  border-bottom-left-radius: 10px;
 }
 
 /* SHEET: _ITEM.SCSS */

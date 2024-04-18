@@ -39,6 +39,22 @@ export default function () {
       dropdownParent: $(".degenesis.sheet.actor.character"),
     });
   });
+
+  Hooks.on("renderDegenesisNPCSheet", (app, [html]) => {
+    $(".degenesis.sheet.actor.npc select").select2({
+      minimumResultsForSearch: Infinity,
+      //dropdownAutoWidth: true,
+      dropdownParent: $(".degenesis.sheet.actor.npc"),
+    });
+  });
+
+  Hooks.on("renderDegenesisAberrantSheet", (app, [html]) => {
+    $(".degenesis.sheet.actor.aberrant select").select2({
+      minimumResultsForSearch: Infinity,
+      //dropdownAutoWidth: true,
+      dropdownParent: $(".degenesis.sheet.actor.aberrant"),
+    });
+  });
 }
 
 //  Hooks.on({})

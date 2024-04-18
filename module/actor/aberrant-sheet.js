@@ -14,7 +14,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["degenesis", "sheet", "aberrant"],
+      classes: ["degenesis", "sheet", "actor", "aberrant"],
       template:
         "systems/degenesis/templates/actor/aberrant/aberrant-sheet.html",
       width: 720,

@@ -89,7 +89,7 @@ export class DegenesisDice {
     }
 
     let roll = new Roll(`${actionNumber}d6cs>3`);
-    await roll.evaluate({ async: true });
+    await roll.evaluate();
 
     rolls = roll.terms[0].results;
     successes = roll.total + autoSuccesses + successModifier;
