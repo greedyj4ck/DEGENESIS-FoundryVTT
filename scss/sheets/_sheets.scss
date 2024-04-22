@@ -313,6 +313,7 @@
   }
 
   &.gold {
+    color: black;
     background-image: url(../ui/images/title\ border\ gold.svg);
   }
 
@@ -381,20 +382,22 @@
 /* --- INPUT ELEMENTS --- */
 
 .sh-field {
+  align-items: center;
   display: flex;
   border-bottom: 1px solid var(--c-gold);
   flex-direction: row;
+  height: var(--font-size-28);
 
   .field-inputs {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1 1 0px;
+    flex: 1 1 auto;
 
-    > * {
+    /*     > * {
       flex: 1;
     }
-
+ */
     .field-start {
       flex: 0 0 28px;
     }
@@ -428,10 +431,6 @@
       align-self: flex-start;
     }
 
-    span {
-      padding-bottom: 3px;
-    }
-
     textarea {
       height: 100px;
     }
@@ -449,8 +448,6 @@
 
   span {
     text-transform: uppercase;
-    padding-top: 5px;
-    padding-bottom: 1px;
     display: flex;
     align-self: center;
   }
@@ -546,4 +543,8 @@
       right: 0;
     }
   }
+}
+
+hr {
+  border-color: var(--c-gold);
 }

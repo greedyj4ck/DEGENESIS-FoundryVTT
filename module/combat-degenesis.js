@@ -69,8 +69,8 @@ export class DegenesisCombat extends Combat {
       const actor = c.actor;
       if (!actor) return;
       actor.update({
-        "data.state.initiative.value": 0,
-        "data.state.initiative.actions": 1,
+        "system.state.initiative.value": 0,
+        "system.state.initiative.actions": 1,
       });
     });
     return await super.resetAll();
@@ -112,11 +112,11 @@ export class DegenesisCombat extends Combat {
     }
     const initiativeValue = rollResults.successes;
     actor.update({
-      "data.condition.ego.value": newEgo,
-      "data.state.spentEgo.actionBonus": spentEgo,
-      "data.state.spentEgo.value": 0,
-      "data.state.initiative.value": initiativeValue,
-      "data.state.initiative.actions": actionCount,
+      "system.condition.ego.value": newEgo,
+      "system.state.spentEgo.actionBonus": spentEgo,
+      "system.state.spentEgo.value": 0,
+      "system.state.initiative.value": initiativeValue,
+      "system.state.initiative.actions": actionCount,
     });
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
@@ -174,11 +174,11 @@ export class DegenesisCombat extends Combat {
     }
     const initiativeValue = rollResults.successes;
     actor.update({
-      "data.condition.ego.value": newEgo,
-      "data.state.spentEgo.actionBonus": spentEgo,
-      "data.state.spentEgo.value": 0,
-      "data.state.initiative.value": initiativeValue,
-      "data.state.initiative.actions": actionCount,
+      "system.condition.ego.value": newEgo,
+      "system.state.spentEgo.actionBonus": spentEgo,
+      "system.state.spentEgo.value": 0,
+      "system.state.initiative.value": initiativeValue,
+      "system.state.initiative.actions": actionCount,
     });
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
@@ -245,11 +245,11 @@ export class DegenesisCombat extends Combat {
         );
 
         actor.update({
-          "data.condition.spore.value": newSpore,
-          "data.state.spentSpore.actionBonus": spentPoints,
-          "data.state.spentSpore.value": 0,
-          "data.state.initiative.value": initiativeValue,
-          "data.state.initiative.actions": actionCount,
+          "system.condition.spore.value": newSpore,
+          "system.state.spentSpore.actionBonus": spentPoints,
+          "system.state.spentSpore.value": 0,
+          "system.state.initiative.value": initiativeValue,
+          "system.state.initiative.actions": actionCount,
         });
         cardData.spentSpore = spentPoints;
       }
@@ -279,11 +279,11 @@ export class DegenesisCombat extends Combat {
         ui.notifications.notify(game.i18n.localize("UI.SpentEgoNotification"));
         cardData.spentEgo = spentPoints;
         actor.update({
-          "data.condition.ego.value": newEgo,
-          "data.state.spentEgo.actionBonus": spentPoints,
-          "data.state.spentEgo.value": 0,
-          "data.state.initiative.value": initiativeValue,
-          "data.state.initiative.actions": actionCount,
+          "system.condition.ego.value": newEgo,
+          "system.state.spentEgo.actionBonus": spentPoints,
+          "system.state.spentEgo.value": 0,
+          "system.state.initiative.value": initiativeValue,
+          "system.state.initiative.actions": actionCount,
         });
       }
     }

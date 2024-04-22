@@ -36,6 +36,50 @@ export class DegenesisCharacterSheet extends ActorSheet {
     });
   }
 
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
+  async _renderOuter() {
+    const html = await super._renderOuter();
+    const header = html[0].querySelector(".window-header");
+
+    // Add edit <-> play slide toggle.
+    /*   if (this.isEditable) {
+      const toggle = document.createElement("slide-toggle");
+
+      toggle.classList.add("mode-slider");
+
+      toggle.setAttribute(
+        "aria-label",
+        game.i18n.localize("DEGENESIS.SheetModeEdit")
+      );
+
+      header.insertAdjacentElement("afterbegin", toggle);
+    }
+ */
+    // Adjust header buttons.
+    header.querySelectorAll(".header-button").forEach((btn) => {
+      const label = btn.querySelector(":scope > i").nextSibling;
+      btn.dataset.tooltip = label.textContent;
+      btn.setAttribute("aria-label", label.textContent);
+      label.remove();
+    });
+    /* 
+    const idLink = header.querySelector(".document-id-link");
+    if ( idLink ) {
+      const firstButton = header.querySelector(".header-button");
+      firstButton?.insertAdjacentElement("beforebegin", idLink);
+    }
+
+    if ( !game.user.isGM && this.actor.limited ) {
+      html[0].classList.add("limited");
+      return html;
+    }
+ */
+
+    return html;
+  }
+
   _getHeaderButtons() {
     let buttons = super._getHeaderButtons();
     if (this.actor.isOwner) {
@@ -356,7 +400,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
         this.actor.updateEmbeddedDocuments("Item", [
           {
             _id: itemData._id,
-            "data.location": transportTarget.dataset["itemId"],
+            "system.location": transportTarget.dataset["itemId"],
           },
         ]);
     } else {
@@ -575,9 +619,9 @@ export class DegenesisCharacterSheet extends ActorSheet {
       };
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
-          if (c.data.tokenId !== this.token.id) return arr;
+          if (c.system.tokenId !== this.token.id) return arr;
         } else {
-          if (c.data.actorId !== this.actor.id) return arr;
+          if (c.system.actorId !== this.actor.id) return arr;
           if (c.token.isLinked !== true) return arr;
         }
 
@@ -628,7 +672,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     let item = this.actor.items.get(itemId);
     let newQty = item.quantity + value;
     newQty = newQty < 0 ? 0 : newQty;
-    item.update({ "data.quantity": newQty });
+    item.update({ "system.quantity": newQty });
   }
   _onReloadClick(event) {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
@@ -637,7 +681,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     let ammo = this.actor.getItemTypes("ammunition");
     ammo = DegenesisItem.matchAmmo(item, ammo).map((a) => a.toObject());
     let magLeft = item.mag.size - item.mag.current;
-    if (event.button == 2) return item.update({ "data.mag.current": 0 });
+    if (event.button == 2) return item.update({ "system.mag.current": 0 });
 
     for (let a of ammo) {
       if (magLeft <= 0) break;
@@ -685,7 +729,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     let itemId = $(event.currentTarget).attr("data-item-id");
     let item = this.actor.items.get(itemId);
     if (event.button == 2) {
-      item.update({ "data.location": "" });
+      item.update({ "system.location": "" });
     } else item.sheet.render(true);
   }
 

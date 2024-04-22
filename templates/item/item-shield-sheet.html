@@ -62,20 +62,20 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Defense"}}: </span>
                             <div class="field-inputs">
-                                <input class="handling field-input field-start" type="text" name="data.defense.D"
-                                    value="{{data.defense.D}}" data-dtype="Number"
+                                <input class="handling field-input field-start" type="text" name="system.defense.D"
+                                    value="{{system.defense.D}}" data-dtype="Number"
                                     placeholder="{{localize 'DGNS.Defense'}}" /><span class="field-end">{{localize
                                     "UI.D"}}</span>
                                 <span class="field-end"></span>+<input class="handling field-input field-start"
-                                    type="text" name="data.defense.p_defense" value="{{data.defense.p_defense}}"
+                                    type="text" name="system.defense.p_defense" value="{{system.defense.p_defense}}"
                                     placeholder="{{localize 'DGNS.PassiveDef'}}" data-dtype="Number" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Attack"}}: </span>
                             <div class="field-inputs">
-                                <input class="handling field-input field-start" type="text" name="data.attack.D"
-                                    value="{{data.attack.D}}" data-dtype="Number"
+                                <input class="handling field-input field-start" type="text" name="system.attack.D"
+                                    value="{{system.attack.D}}" data-dtype="Number"
                                     placeholder="{{localize 'DGNS.Modifier'}}" /><span class="field-end">{{localize
                                     "UI.D"}}</span>
                             </div>
@@ -85,21 +85,21 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Slots"}}: </span>
                             <div class="field-inputs">
-                                <input input class="field-input" type="text" name="data.slots.total"
-                                    value="{{data.slots.total}}" data-dtype="Number" />
+                                <input input class="field-input" type="text" name="system.slots.total"
+                                    value="{{system.slots.total}}" data-dtype="Number" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Cult"}}: </span>
                             <div class="field-inputs">
-                                <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
+                                <input class="field-input" type="text" name="system.cult" value="{{system.cult}}" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Resources"}}:</span>
                             <div class="field-inputs">
-                                <input class="field-input" type="text" name="data.resources" value="{{data.resources}}"
-                                    data-dtype="Number" />
+                                <input class="field-input" type="text" name="system.resources"
+                                    value="{{system.resources}}" data-dtype="Number" />
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                 <div class="bottom-container">
                     <!-- Qualities -->
                     <div class="qualities-group conditions-group">
-                        <div class="block-title black">
+                        <div class="block-title gold">
                             <h3>{{localize "DGNS.Qualities"}}</h3>
                             <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
                         </div>
@@ -130,10 +130,10 @@
                     </div>
                     <!-- Mods -->
                     <div class="mods-group conditions-group">
-                        <div class="block-title black">
+                        <div class="block-title gold">
                             <h3>{{localize "DGNS.Mods"}}</h3>
                             <div class="right" data-item="">
-                                <div class="slots">{{data.slots.used}}/{{data.slots.total}} </div>
+                                <div class="slots">{{system.slots.used}}/{{system.slots.total}} </div>
                             </div>
                         </div>
                         <div class="mods-data conditions-data">

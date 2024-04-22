@@ -44,8 +44,8 @@
 
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Group"}}: </span>
-        <select name="data.group" data-dtype="String">
-          {{#select data.group}}
+        <select name="system.group" data-dtype="String">
+          {{#select system.group}}
           {{#each (config "attackGroups") as |group g|}}
           <option value="{{g}}">{{group}}</option>
           {{/each}}
@@ -59,7 +59,8 @@
         <span class="field-name">{{localize "DGNS.Attack"}}: </span>
         <div class="field-inputs">
 
-          <input class="field-input" type="text" name="data.attack.D" value="{{data.attack.D}}" data-dtype="Number" />
+          <input class="field-input" type="text" name="system.attack.D" value="{{system.attack.D}}"
+            data-dtype="Number" />
 
         </div>
       </div>
@@ -67,18 +68,18 @@
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Damage"}}: </span>
         <div class="field-inputs">
-          <input class="field-input field-start" type="text" name="data.damage" value="{{data.damage}}"
+          <input class="field-input field-start" type="text" name="system.damage" value="{{system.damage}}"
             data-dtype="Number" />
-          <select class="damageBonus-select" name="data.damageBonus" data-dtype="String">
+          <select class="damageBonus-select" name="system.damageBonus" data-dtype="String">
             <option value=""></option>
-            {{#select data.damageBonus}}
+            {{#select system.damageBonus}}
             {{#each (config "damageModifiersFromHell") as |modifier bonus|}}
             <option value="{{bonus}}">{{modifier.blueprint}}</option>
             {{/each}}
             {{/select}}
           </select>
-          <select class="damageType-select" name="data.damageType" data-dtype="String">
-            {{#select data.damageType}}
+          <select class="damageType-select" name="system.damageType" data-dtype="String">
+            {{#select system.damageType}}
             {{#each (config "damageTypes") as |type t|}}
             <option value="{{t}}">{{type}}</option>
             {{/each}}
@@ -91,14 +92,14 @@
         <span class="field-name">{{localize "DGNS.Distance"}}: </span>
         <div class="field-inputs">
           {{#if item.isMelee}} <!--Is Melee determined by weapon group-->
-          <input class="field-input" type="text" name="data.distance.melee" value="{{data.distance.melee}}"
+          <input class="field-input" type="text" name="system.distance.melee" value="{{system.distance.melee}}"
             data-dtype="Number" />
 
           {{else}}
-          <input class="field-input distance-short" type="text" name="data.distance.short"
-            value="{{data.distance.short}}" data-dtype="Number" />
+          <input class="field-input distance-short" type="text" name="system.distance.short"
+            value="{{system.distance.short}}" data-dtype="Number" />
           <span class="field-separator">/</span>
-          <input class="field-input distance-far" type="text" name="data.distance.far" value="{{data.distance.far}}"
+          <input class="field-input distance-far" type="text" name="system.distance.far" value="{{system.distance.far}}"
             data-dtype="Number" />
           {{/if}}
         </div>

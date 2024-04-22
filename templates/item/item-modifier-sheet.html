@@ -25,8 +25,8 @@
 
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Action"}}: </span>
-                    <select name="data.action">
-                        {{#select data.action}}
+                    <select name="system.action">
+                        {{#select system.action}}
                         <option value="">-</option>
                         {{#each modifyActions as |action a|}}
                         <option value="{{a}}">{{action}}</option>
@@ -38,8 +38,8 @@
                 <div class="sh-field">
                     <span class="field-name">{{localize "UI.Number"}}: </span>
                     <div class="field-inputs">
-                        <input class="field-input field-start" type="text" name="data.number" value="{{data.number}}"
-                            data-dtype="Number" placeholder="-1, +2, etc" />
+                        <input class="field-input field-start" type="text" name="system.number"
+                            value="{{system.number}}" data-dtype="Number" placeholder="-1, +2, etc" />
                     </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                 {{#if showType}}
                 <div class="sh-field">
                     <span class="field-name">{{localize "UI.Type"}}: </span>
-                    <select name="data.type">
-                        {{#select data.type}}
+                    <select name="system.type">
+                        {{#select system.type}}
                         <option value="">-</option>
                         {{#each (config "modifyTypes") as |type t|}}
                         <option value="{{t}}">{{type}}</option>
@@ -60,8 +60,8 @@
                 {{/if}}
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.ShowName"}}: </span>
-                    <select name="data.showName">
-                        {{#select data.showName}}
+                    <select name="system.showName">
+                        {{#select system.showName}}
                         <option value="">✘</option>
                         <option value="true">✔</option>
                         {{/select}}
@@ -74,7 +74,7 @@
 
         <div class="bottom-specialty-container">
             <span class="field-name">{{localize "UI.ActionDescription"}}</span>
-            <textarea name="data.description" class="item-summary">{{data.description}}</textarea>
+            <textarea name="system.description" class="item-summary">{{system.description}}</textarea>
         </div>
 
         {{/if}}

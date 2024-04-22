@@ -58,15 +58,15 @@
                             <div class="sh-field">
                                 <span class="field-name">{{localize "DGNS.Cult"}}: </span>
                                 <div class="field-inputs">
-                                    <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
+                                    <input class="field-input" type="text" name="system.cult" value="{{system.cult}}" />
                                 </div>
                             </div>
                             <div class="sh-field">
                                 <span class="field-name">{{localize "DGNS.EncumbranceCalc"}}: </span>
                                 <div class="field-inputs">
-                                    <select class="encMode-select" name="data.mode" data-dtype="String">
+                                    <select class="encMode-select" name="system.mode" data-dtype="String">
                                         <option value=""></option>
-                                        {{#select data.mode}}
+                                        {{#select system.mode}}
                                         {{#each (config "transportationEncumbranceModes") as |mode m|}}
                                         <option value="{{m}}">{{mode}}</option>
                                         {{/each}}
@@ -80,16 +80,16 @@
                             <div class="sh-field">
                                 <span class="field-name">{{localize "DGNS.Resources"}}:</span>
                                 <div class="field-inputs">
-                                    <input class="field-input" type="text" name="data.resources"
-                                        value="{{data.resources}}" data-dtype="Number" />
+                                    <input class="field-input" type="text" name="system.resources"
+                                        value="{{system.resources}}" data-dtype="Number" />
                                 </div>
                             </div>
 
                             <div class="sh-field">
                                 <span class="field-name">{{localize "DGNS.TransportValue"}}:</span>
                                 <div class="field-inputs">
-                                    <input class="field-input" type="text" name="data.transportValue"
-                                        value="{{data.transportValue}}" data-dtype="Number" />
+                                    <input class="field-input" type="text" name="system.transportValue"
+                                        value="{{system.transportValue}}" data-dtype="Number" />
                                 </div>
                             </div>
                             <div class="sh-field droppable">

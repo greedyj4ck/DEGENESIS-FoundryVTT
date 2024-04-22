@@ -29,30 +29,39 @@ export default function () {
   });
 
   Hooks.on("renderRollDialog", (app, [html]) => {
-    $(".roll-dialog select").select2({});
+    $(".roll-dialog select").select2({
+      dropdownParent: $(`#${app.id}`),
+    });
   });
 
   Hooks.on("renderDegenesisCharacterSheet", (app, [html]) => {
-    $(".degenesis.sheet.actor.character select").select2({
+    $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
       dropdownAutoWidth: true,
-      dropdownParent: $(".degenesis.sheet.actor.character"),
+      dropdownParent: $(`#${app.id}`),
     });
   });
 
   Hooks.on("renderDegenesisNPCSheet", (app, [html]) => {
-    $(".degenesis.sheet.actor.npc select").select2({
+    $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
-      //dropdownAutoWidth: true,
-      dropdownParent: $(".degenesis.sheet.actor.npc"),
+      dropdownParent: $(`#${app.id}`),
     });
   });
 
   Hooks.on("renderDegenesisAberrantSheet", (app, [html]) => {
-    $(".degenesis.sheet.actor.aberrant select").select2({
+    $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
-      //dropdownAutoWidth: true,
-      dropdownParent: $(".degenesis.sheet.actor.aberrant"),
+      dropdownParent: $(`#${app.id}`),
+    });
+  });
+
+  Hooks.on("renderDegenesisItemSheet", (app, [html]) => {
+    $(`#${app.id} select`).select2({
+      minimumResultsForSearch: 8,
+      dropdownParent: $(`#${app.id}`),
+      dropdownAutoWidth: true,
+      width: "style",
     });
   });
 }

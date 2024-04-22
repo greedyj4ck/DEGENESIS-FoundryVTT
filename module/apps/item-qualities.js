@@ -89,7 +89,9 @@ export class ItemQualities extends DocumentSheet {
 
     html.submit((e) => {
       e.preventDefault();
-      this.object.update({ "data.qualities": this.tempData.system.qualities });
+      this.object.update({
+        "system.qualities": this.tempData.system.qualities,
+      });
       this.close();
     });
 

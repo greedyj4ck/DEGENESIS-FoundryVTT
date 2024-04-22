@@ -432,9 +432,9 @@ export class DegenesisAberrantSheet extends ActorSheet {
 
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
-          if (c.data.tokenId !== this.token.id) return arr;
+          if (c.system.tokenId !== this.token.id) return arr;
         } else {
-          if (c.data.actorId !== this.actor.id) return arr;
+          if (c.system.actorId !== this.actor.id) return arr;
           if (c.token.isLinked !== true) return arr;
         }
 
@@ -582,7 +582,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
         this.actor.updateEmbeddedDocuments("Item", [
           {
             _id: itemData._id,
-            "data.location": transportTarget.dataset["itemId"],
+            "system.location": transportTarget.dataset["itemId"],
           },
         ]);
     } else {
@@ -598,7 +598,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
     let itemId = $(event.currentTarget).attr("data-item-id");
     let item = this.actor.items.get(itemId);
     if (event.button == 2) {
-      item.update({ "data.location": "" });
+      item.update({ "system.location": "" });
     } else item.sheet.render(true);
   }
 

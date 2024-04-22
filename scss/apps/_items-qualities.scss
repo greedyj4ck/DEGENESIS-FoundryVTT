@@ -37,4 +37,25 @@
   button {
     margin-top: 10px;
   }
+
+  .square {
+    border-color: var(--c-gold);
+    &.border-black {
+      border-color: var(--c-gold);
+    }
+  }
+
+  .square-into {
+    border-color: transparent;
+    &.black {
+      background-color: var(--c-gold);
+      border-color: var(--c-gold);
+    }
+  }
+
+  .square.little {
+    min-width: 7px;
+    margin-top: 1px;
+    border: $line-stroke-width solid $line-stroke-color;
+  }
 }

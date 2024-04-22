@@ -11,6 +11,8 @@ $b-radius-md: 10px;
 @import "app/navigation"; //Top navigation bar
 @import "app/loadingBar"; // Loading bar
 @import "app/contextMenu"; //Context menu
+@import "app/prototypeToken";
+@import "app/application"; // Aplication V2 app styling
 
 #logo {
   height: 35px;
@@ -110,27 +112,45 @@ $b-radius-md: 10px;
       border-right: 1px solid var(--c-gold);
     }
 
-    nav.tabs {
+    nav.tabs,
+    .sheet-tabs.tabs,
+    .secondary-tabs {
       border: 1px solid var(--c-gold);
       border-radius: $b-radius-sm;
       margin-bottom: 10px;
+      padding: 2px 2px;
+      gap: 2px;
 
       a {
+        display: flex;
+        flex-flow: wrap;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-shadow: none;
+        border: 1px solid var(--c-gold);
         font-family: "Avenir";
         font-size: 12px;
         font-weight: 700;
         padding: 5px 10px;
         width: 100%;
-
-        border-bottom: 1px solid var(--c-gold);
+        text-transform: uppercase;
         transition: all 0.2s ease-in-out;
 
         &.active {
-          color: var(--c-pred);
+          color: var(--c-antiflash);
+          background-color: var(--c-pred);
           border-bottom: 1px solid var(--c-gold);
           box-shadow: none;
           text-shadow: none;
         }
+      }
+    }
+
+    .flexcol {
+      .tab.active {
+        display: flex;
+        flex-direction: column;
       }
     }
 
@@ -216,17 +236,18 @@ $b-radius-md: 10px;
 
 /* SHEET TABS FOR ALL UI WINDOWS */
 
-.sheet-tabs.tabs,
-.filepicker nav.tabs {
+/* .sheet-tabs.tabs,
+nav.tabs {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: none !important;
+  border: 1px solid var(--c-gold);
 
-  .item {
+  a.item {
     flex-grow: 1;
-    padding: 3px !important;
+    border: 1px solid var(--c-gold);
+
     font-family: $sans-serif-content-font;
     text-transform: uppercase;
     font-size: 12px;
@@ -240,14 +261,16 @@ $b-radius-md: 10px;
 
     letter-spacing: 0.05em;
     transition: background-color 0.1s ease-out;
-
-    &:hover {
-      background-color: var(--c-pred);
-    }
-
     &.active {
+      color: white;
       background-color: var(--c-pred);
       text-shadow: none;
+      i {
+        color: white;
+      }
+    }
+    &:hover {
+      background-color: var(--c-pred);
     }
   }
 
@@ -255,7 +278,7 @@ $b-radius-md: 10px;
     color: var(--text-white);
     text-shadow: none;
   }
-}
+} */
 
 /* .form-group button {
   border: none !important;
@@ -285,16 +308,6 @@ $b-radius-md: 10px;
 }
 
 /* UI SHEETS CONFIG */
-
-.app.window-app.sheet.token-sheet {
-  .window-content {
-    background: url(../ui/light_02.jpg);
-  }
-
-  .sheet-tabs.tabs {
-    margin-top: 0px;
-  }
-}
 
 /* CHAT MESSAGES / DICE ROLLS */
 .dice-rolls {

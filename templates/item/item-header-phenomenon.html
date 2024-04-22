@@ -42,15 +42,15 @@
 
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Level"}}: </span>
-        <input class="field-input" type="text" name="data.level" value="{{data.level}}" />
+        <input class="field-input" type="text" name="system.level" value="{{system.level}}" />
       </div>
 
       <!-- ATTACK TYPE FIELD -->
 
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Rapture"}}: </span>
-        <select name="data.rapture" data-dtype="String">
-          {{#select data.rapture}}
+        <select name="system.rapture" data-dtype="String">
+          {{#select system.rapture}}
           <option value="generic">{{localize "DGNS.Generic"}}</option>
           {{#each (config "raptures") as |rapture r|}}
           <option value="{{r}}">{{rapture}}</option>

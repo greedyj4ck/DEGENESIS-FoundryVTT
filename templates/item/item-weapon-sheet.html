@@ -58,8 +58,8 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Handling"}}: </span>
                             <div class="field-inputs">
-                                <input class="handling field-input field-start" type="text" name="data.handling"
-                                    value="{{data.handling}}" data-dtype="Number" /><span class="field-end">{{localize
+                                <input class="handling field-input field-start" type="text" name="system.handling"
+                                    value="{{system.handling}}" data-dtype="Number" /><span class="field-end">{{localize
                                     "UI.D"}}</span>
                             </div>
                         </div>
@@ -67,35 +67,35 @@
                             <span class="field-name">{{localize "DGNS.Distance"}}: </span>
                             <div class="field-inputs">
                                 {{#if item.isMelee}} <!--Is Melee determined by weapon group-->
-                                <input class="field-input" type="text" name="data.distance.melee"
-                                    value="{{data.distance.melee}}" data-dtype="Number" />
+                                <input class="field-input" type="text" name="system.distance.melee"
+                                    value="{{system.distance.melee}}" data-dtype="Number" />
                                 {{else if item.isSonic}}
-                                <input class="field-input" type="text" name="data.distance.melee"
-                                    value="{{data.distance.melee}}" data-dtype="Number" />
+                                <input class="field-input" type="text" name="system.distance.melee"
+                                    value="{{system.distance.melee}}" data-dtype="Number" />
                                 {{else}}
-                                <input class="field-input distance-short" type="text" name="data.distance.short"
-                                    value="{{data.distance.short}}" data-dtype="Number" />
+                                <input class="field-input distance-short" type="text" name="system.distance.short"
+                                    value="{{system.distance.short}}" data-dtype="Number" />
                                 <span class="field-separator">/</span>
-                                <input class="field-input distance-far" type="text" name="data.distance.far"
-                                    value="{{data.distance.far}}" data-dtype="Number" />
+                                <input class="field-input distance-far" type="text" name="system.distance.far"
+                                    value="{{system.distance.far}}" data-dtype="Number" />
                                 {{/if}}
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Damage"}}: </span>
-                            <div class="field-inputs">
-                                <input class="field-input field-start" type="text" name="data.damage"
-                                    value="{{data.damage}}" data-dtype="Number" />
-                                <select class="damageBonus-select" name="data.damageBonus" data-dtype="String">
+                            <div class="field-inputs field-damage">
+                                <input class="field-input field-start" type="text" name="system.damage"
+                                    value="{{system.damage}}" data-dtype="Number" />
+                                <select class="damageBonus-select" name="system.damageBonus" data-dtype="String">
                                     <option value=""></option>
-                                    {{#select data.damageBonus}}
+                                    {{#select system.damageBonus}}
                                     {{#each (config "damageModifiers") as |modifier bonus|}}
                                     <option value="{{bonus}}">{{modifier.blueprint}}</option>
                                     {{/each}}
                                     {{/select}}
                                 </select>
-                                <select class="damageType-select" name="data.damageType" data-dtype="String">
-                                    {{#select data.damageType}}
+                                <select class="damageType-select" name="system.damageType" data-dtype="String">
+                                    {{#select system.damageType}}
                                     {{#each (config "damageTypes") as |type t|}}
                                     <option value="{{t}}">{{type}}</option>
                                     {{/each}}
@@ -107,9 +107,9 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Caliber"}}: </span>
                             <div class="field-inputs">
-                                <select name="data.caliber" data-dtype="String">
+                                <select name="system.caliber" data-dtype="String">
                                     <option value="">-</option>
-                                    {{#select data.caliber}}
+                                    {{#select system.caliber}}
                                     {{#each (config "calibers") as |caliber c|}}
                                     <option value="{{c}}">{{caliber}}</option>
                                     {{/each}}
@@ -120,7 +120,7 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Magazine"}}: </span>
                             <div class="field-inputs">
-                                {{#if data.mag.belt}}
+                                {{#if system.mag.belt}}
                                 <input class=" field-start" type="text" value="-" data-dtype="Number"
                                     disabled="disabled" />
                                 <div class="belt-field">
@@ -131,8 +131,8 @@
                                     </a>
                                 </div>
                                 {{else}}
-                                <input class="field-start" type="text" name="data.mag.size" value="{{data.mag.size}}"
-                                    data-dtype="Number" />
+                                <input class="field-start" type="text" name="system.mag.size"
+                                    value="{{system.mag.size}}" data-dtype="Number" />
                                 <div class="belt-field">
                                     <span class="belt-text">{{localize "DGNS.Belt"}}</span>
                                     <a class="square button-position checkbox" data-target="system.mag.belt">
@@ -148,28 +148,28 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Slots"}}: </span>
                             <div class="field-inputs">
-                                <input input class="field-input" type="text" name="data.slots.total"
-                                    value="{{data.slots.total}}" data-dtype="Number" />
+                                <input input class="field-input" type="text" name="system.slots.total"
+                                    value="{{system.slots.total}}" data-dtype="Number" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Cult"}}: </span>
                             <div class="field-inputs">
-                                <input class="field-input" type="text" name="data.cult" value="{{data.cult}}" />
+                                <input class="field-input" type="text" name="system.cult" value="{{system.cult}}" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name">{{localize "DGNS.Resources"}}:</span>
                             <div class="field-inputs">
-                                <input class="field-input" type="text" name="data.resources" value="{{data.resources}}"
-                                    data-dtype="Number" />
+                                <input class="field-input" type="text" name="system.resources"
+                                    value="{{system.resources}}" data-dtype="Number" />
                             </div>
                         </div>
                         <div class="sh-field">
                             <span class="field-name skill-selection">{{localize "DGNS.PrimarySkill"}}: </span>
                             <div class="field-inputs">
-                                <select name="data.primarySkill" data-dtype="String">
-                                    {{#select data.primarySkill}}
+                                <select name="system.primarySkill" data-dtype="String">
+                                    {{#select system.primarySkill}}
                                     <option value="">{{localize "Default"}}</option>
                                     {{#each (config "skills") as |skill s|}}
                                     <option value="{{s}}">{{skill}}</option>
@@ -181,8 +181,8 @@
                         <div class="sh-field">
                             <span class="field-name skill-selection">{{localize "DGNS.SecondarySkill"}}: </span>
                             <div class="field-inputs">
-                                <select name="data.secondarySkill" data-dtype="String">
-                                    {{#select data.secondarySkill}}
+                                <select name="system.secondarySkill" data-dtype="String">
+                                    {{#select system.secondarySkill}}
                                     <option value="">-</option>
                                     {{#each (config "skills") as |skill s|}}
                                     <option value="{{s}}">{{skill}}</option>
@@ -198,7 +198,7 @@
                 <div class="bottom-container">
                     <!-- Qualities -->
                     <div class="qualities-group conditions-group">
-                        <div class="block-title black">
+                        <div class="block-title gold">
                             <h3>{{localize "DGNS.Qualities"}}</h3>
                             <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
                         </div>
@@ -218,10 +218,10 @@
                     </div>
                     <!-- Mods -->
                     <div class="mods-group conditions-group">
-                        <div class="block-title black">
+                        <div class="block-title gold">
                             <h3>{{localize "DGNS.Mods"}}</h3>
                             <div class="right" data-item="">
-                                <div class="slots">{{data.slots.used}}/{{data.slots.total}} </div>
+                                <div class="slots">{{system.slots.used}}/{{system.slots.total}} </div>
                             </div>
                         </div>
                         <div class="mods-data conditions-data">

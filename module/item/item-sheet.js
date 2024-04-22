@@ -66,7 +66,7 @@ export class DegenesisItemSheet extends ItemSheet {
   processTypes(data) {
     if (data.item.type == "modifier") {
       data.modifyActions = DEG_Utility.getModificationActions();
-      if (!DEGENESIS.noType.includes(data.data.action)) data.showType = true;
+      if (!DEGENESIS.noType.includes(data.system.action)) data.showType = true;
     }
   }
 
@@ -131,7 +131,7 @@ export class DegenesisItemSheet extends ItemSheet {
           value: valueInputs[i].value,
         };
 
-      let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
+      let qualities = foundry.utils.deepClone(this.item.system.qualities);
       if (qualities.find((q) => q.name == quality.name))
         qualities.splice(
           qualities.findIndex((q) => q.name == quality.name),
@@ -139,7 +139,7 @@ export class DegenesisItemSheet extends ItemSheet {
         );
       else qualities.push(quality);
 
-      this.item.update({ "data.qualities": qualities });
+      this.item.update({ "system.qualities": qualities });
       return;
     }
 
@@ -157,12 +157,12 @@ export class DegenesisItemSheet extends ItemSheet {
       .parents(".quality-inputs")
       .attr("data-quality");
     let valueKey = $(ev.currentTarget).attr("data-value-key");
-    let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
+    let qualities = foundry.utils.deepClone(this.item.system.qualities);
     let existingQuality = qualities.find((q) => q.name == target);
     if (!existingQuality) return;
     existingQuality.values.find((v) => v.name == valueKey).value =
       ev.target.value;
-    this.item.update({ "data.qualities": qualities });
+    this.item.update({ "system.qualities": qualities });
   }
 
   _onModDelete(ev) {
@@ -194,7 +194,7 @@ export class DegenesisItemSheet extends ItemSheet {
     } else if (action == "add") {
       changes.push({ key: "", mode: "add", value: 0 });
     }
-    this.item.update({ "data.changes": changes });
+    this.item.update({ "system.changes": changes });
   }
 
   _onModChanges(ev) {
@@ -207,6 +207,6 @@ export class DegenesisItemSheet extends ItemSheet {
     if (Number.isNumeric(newValue)) newValue = Number(newValue);
 
     changes[index][type] = newValue;
-    this.item.update({ "data.changes": changes });
+    this.item.update({ "system.changes": changes });
   }
 }

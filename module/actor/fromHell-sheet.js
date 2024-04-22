@@ -211,9 +211,9 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
-          if (c.data.tokenId !== this.token.id) return arr;
+          if (c.system.tokenId !== this.token.id) return arr;
         } else {
-          if (c.data.actorId !== this.actor.id) return arr;
+          if (c.system.actorId !== this.actor.id) return arr;
           if (c.token.isLinked !== true) return arr;
         }
 
@@ -269,26 +269,6 @@ export class DegenesisFromHellSheet extends ActorSheet {
   }
 
   async _onDrop(event) {
-    /*   let transportTarget = $(event.target).parent(".transport-drop")[0];
-    if (transportTarget) {
-      let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"));
-      let itemData = await fromUuid(jsonData.uuid);
-      if (
-        itemData.type == "weapon" ||
-        itemData.type == "armor" ||
-        itemData.type == "ammunition" ||
-        itemData.type == "equipment" ||
-        itemData.type == "mod" ||
-        itemData.type == "shield" ||
-        itemData.type == "artifact"
-      )
-        this.actor.updateEmbeddedDocuments("Item", [
-          {
-            _id: itemData._id,
-            "data.location": transportTarget.dataset["itemId"],
-          },
-        ]);
-    } else { */
     let dropData = JSON.parse(event.dataTransfer.getData("text/plain"));
     if (dropData.type == "item") {
       return this.actor.createEmbeddedDocuments("Item", [dropData.payload]);

@@ -1,0 +1,167 @@
+/// Foundry APPV2 style modification to match V1
+aside.application,
+form.application {
+  border-radius: $b-radius-md;
+  border: 1px solid var(--c-gold);
+  background-color: var(--b-alpha-8);
+
+  .window-header {
+    font-family: $primary-header-font;
+    font-size: var(--font-size-12);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-bottom: none;
+
+    color: var(--c-gold-5);
+
+    .window-title {
+      color: var(--c-gold-4);
+
+      font-family: "Crimson Pro";
+      text-transform: unset;
+      font-size: var(--font-size-14);
+    }
+
+    a.header-button {
+      text-shadow: none;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  .window-content {
+    font-family: "Crimson Pro";
+    font-size: var(--font-size-14);
+    background: none;
+    background-color: rgb(10, 10, 10);
+    border-top: 1px solid var(--c-gold);
+
+    color: var(--c-gold);
+    border-bottom-left-radius: $b-radius-md;
+    border-bottom-right-radius: $b-radius-md;
+
+    .sidebar {
+      border-right: 1px solid var(--c-gold);
+    }
+
+    nav.tabs,
+    .sheet-tabs.tabs {
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-sm;
+      margin-bottom: 10px;
+      padding: 2px 2px;
+      gap: 2px;
+
+      a {
+        text-shadow: none;
+        border: 1px solid var(--c-gold);
+        font-family: "Avenir";
+        font-size: 12px;
+        font-weight: 700;
+        padding: 5px 10px;
+        width: 100%;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+
+        &.active {
+          color: var(--c-antiflash);
+          background-color: var(--c-pred);
+          border-bottom: 1px solid var(--c-gold);
+          box-shadow: none;
+          text-shadow: none;
+        }
+      }
+    }
+
+    p {
+      color: var(--c-gold-4);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Avenir";
+      font-weight: 1000;
+      letter-spacing: 0.1em;
+      color: var(--c-pred);
+      border: none;
+    }
+  }
+
+  a {
+    text-shadow: none;
+    color: var(--c-gold);
+
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
+
+  .region-name > i {
+    color: var(--c-gold) !important;
+  }
+}
+
+.application input[type="text"],
+.application input[type="number"],
+.application input[type="password"],
+.application input[type="date"],
+.application input[type="time"],
+.application input[type="search"],
+.application select {
+  width: 100%;
+  height: var(--input-height);
+  line-height: var(--input-height);
+  padding: 0 0.5rem;
+  background: var(--b-alpha-3);
+  border: 1px solid var(--c-gold);
+  border-radius: 4px;
+  outline: 1px solid transparent;
+  color: var(--c-gold);
+  user-select: text;
+  font-size: var(--font-size-14);
+  transition: outline-color 0.5s;
+
+  &:hover {
+    border-color: var(--c-pred);
+    outline: none;
+  }
+
+  &:focus {
+    border-color: var(--c-pred);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--c-gold-6);
+  }
+}
+
+#tooltip,
+.locked-tooltip {
+  position: absolute;
+  width: max-content;
+  max-width: 320px;
+  padding: 6px 8px;
+  background: var(--b-alpha-8);
+  font-family: $serif-content-font;
+  font-size: var(--font-size-14);
+  line-height: var(--font-size-14);
+  color: var(--c-gold);
+  border: 1px solid var(--c-gold);
+  border-radius: $b-radius-sm;
+  box-shadow: 0 0 4px #000;
+  z-index: var(--z-index-tooltip);
+  pointer-events: none;
+  overflow-wrap: break-word;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 500ms, opacity 500ms;
+}
+
+.standard-form .form-group > label {
+  font-family: $serif-content-font;
+  color: var(--c-gold);
+}

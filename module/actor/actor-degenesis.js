@@ -780,7 +780,7 @@ export class DegenesisActor extends Actor {
       this.updateEmbeddedDocuments("Item", [
         {
           _id: rollData.weapon.id,
-          "data.mag.current": rollData.weapon.mag.current - 1,
+          "system.mag.current": rollData.weapon.mag.current - 1,
         },
       ]);
     this.postRollChecks(rollResults, "weapon");
@@ -1192,14 +1192,14 @@ export class DegenesisActor extends Actor {
 
     if (rollResults.overload > 0) {
       await this.updateSource({
-        "data.condition.spore.value":
+        "system.condition.spore.value":
           this.condition.spore.value - rollResults.overload,
       });
     }
 
     if (type !== "initiative" && this.state.initiative.actions > 1)
       await this.updateSource({
-        "data.state.initiative.actions": this.state.initiative.actions - 1,
+        "system.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
 
