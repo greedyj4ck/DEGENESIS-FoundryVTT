@@ -33,6 +33,13 @@ export class DegenesisCombat extends Combat {
           );
           break;
         }
+        case "aberrant": {
+          initiativeValue = DegenesisCombat.rollInitiativeForAberrant(
+            combatant.actor
+          );
+          break;
+        }
+
         default: {
           initiativeValue = DegenesisCombat.rollInitiativeFor(combatant.actor);
           break;

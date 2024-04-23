@@ -71,8 +71,8 @@ $b-radius-md: 10px;
   border-radius: $b-radius-md;
   border: 1px solid var(--c-gold);
   background-image: none;
-  background-color: var(--b-alpha-7);
-  backdrop-filter: blur(20px);
+  background-color: var(--b-alpha-8);
+  backdrop-filter: blur(10px);
   box-shadow: none;
 
   .window-header {

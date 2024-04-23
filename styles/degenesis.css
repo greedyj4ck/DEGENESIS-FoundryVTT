@@ -131,7 +131,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
   left: calc(50% - 120px);
   width: 240px;
   border: 1px solid var(--c-gold);
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: blur(15px);
           backdrop-filter: blur(15px);
   -webkit-box-shadow: none;
@@ -197,7 +197,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
 #hotbar #hotbar-directory-controls,
 #hotbar #hotbar-lock,
 #hotbar #hotbar-page-controls {
-  background: var(--b-alpha-6);
+  background: var(--b-alpha-8);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
   border: 1px solid var(--c-gold);
@@ -212,7 +212,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
 
 #players {
   font-family: "Crimson Pro";
-  background: var(--b-alpha-6);
+  background: var(--b-alpha-8);
   -webkit-backdrop-filter: blur(20px);
           backdrop-filter: blur(20px);
   border: 1px solid var(--c-gold);
@@ -267,7 +267,7 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   color: var(--c-gold) !important;
-  background-color: var(--b-alpha-6) !important;
+  background-color: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
@@ -277,14 +277,22 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
           box-shadow: none !important;
   color: var(--c-pred-5) !important;
 }
+#controls li:hover {
+  color: var(--c-gold-4) !important;
+  border-color: var(--c-gold-4) !important;
+}
 
 nav#navigation a#nav-toggle {
+  text-shadow: none !important;
   aspect-ratio: 1 !important;
-  background-color: var(--b-alpha-6) !important;
+  background-color: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border: 1px solid var(--c-gold);
   color: var(--c-gold);
+}
+nav#navigation a#nav-toggle:hover {
+  color: var(--c-pred);
 }
 nav#navigation li.scene.nav-item {
   font-family: "Avenir";
@@ -295,7 +303,7 @@ nav#navigation li.scene.nav-item {
   color: var(--c-gold);
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
@@ -309,25 +317,28 @@ nav#navigation li.scene.nav-item a:hover {
   color: var(--c-antiflash) !important;
 }
 nav#navigation li.scene.nav-item.gm {
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   border: 1px solid var(--c-resin-5) !important;
   color: var(--c-resin-3);
 }
 nav#navigation li.scene.nav-item.view {
   border: 1px solid var(--c-gold-5) !important;
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   color: var(--c-gold-3) !important;
 }
 nav#navigation li.scene.nav-item.context {
   border: 1px solid var(--c-antiflash) !important;
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: none !important;
           backdrop-filter: none !important;
 }
 nav#navigation li.scene.nav-item.active {
-  background: var(--b-alpha-6) !important;
+  background: var(--b-alpha-8) !important;
   border: 1px solid var(--c-pred) !important;
   color: var(--c-pred-4) !important;
+}
+nav#navigation li.scene.nav-item a {
+  text-shadow: none;
 }
 nav#navigation #context-menu {
   position: absolute;
@@ -684,9 +695,9 @@ form.application .region-name > i {
   border-radius: 10px;
   border: 1px solid var(--c-gold);
   background-image: none;
-  background-color: var(--b-alpha-7);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  background-color: var(--b-alpha-8);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1147,6 +1158,12 @@ ol.directory-list li.folder .folder-header h5 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--c-gold);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 ol.directory-list li.folder .subdirectory {
   margin-left: 5px;
@@ -1162,6 +1179,48 @@ ol.directory-list li.folder a {
 ol.directory-list li.folder i:hover,
 ol.directory-list li.folder a:hover {
   color: var(--c-pred);
+}
+ol.directory-list .document {
+  line-height: normal;
+  margin: 2px 6px;
+  border: 1px solid var(--c-gold);
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: var(--b-alpha-8);
+  opacity: 0.8;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+}
+ol.directory-list .document:hover {
+  opacity: 1;
+}
+ol.directory-list .document.context {
+  border: 1px solid var(--c-pred);
+}
+ol.directory-list .document.context::after {
+  border-radius: 10px;
+  border: none;
+}
+ol.directory-list .document:last-child {
+  border: 1px solid var(--c-gold);
+}
+ol.directory-list .document img.thumbnail {
+  border: 1px solid var(--c-gold);
+  margin: 3px;
+  border-radius: 5px;
+}
+ol.directory-list .document h1,
+ol.directory-list .document h2,
+ol.directory-list .document h3,
+ol.directory-list .document h4,
+ol.directory-list .document h5 {
+  white-space: normal;
+  line-height: normal;
 }
 
 #chat-controls {
@@ -2456,8 +2515,8 @@ ol.directory-list li.folder a:hover {
 .Compendium-sidebar .compendium-name i {
   display: none;
 }
-#compendium .directory-item,
-.Compendium-sidebar .directory-item {
+#compendium .directory-item.compendium,
+.Compendium-sidebar .directory-item.compendium {
   margin: 2px 6px;
   border: 1px solid var(--c-gold) !important;
   border-radius: 10px;
@@ -2468,28 +2527,28 @@ ol.directory-list li.folder a:hover {
       -ms-flex-align: center;
           align-items: center;
 }
-#compendium .directory-item:hover,
-.Compendium-sidebar .directory-item:hover {
+#compendium .directory-item.compendium:hover,
+.Compendium-sidebar .directory-item.compendium:hover {
   border: 1px solid var(--c-pred) !important;
 }
-#compendium .directory-item.context,
-.Compendium-sidebar .directory-item.context {
+#compendium .directory-item.compendium.context,
+.Compendium-sidebar .directory-item.compendium.context {
   border: 1px solid var(--c-pred);
 }
-#compendium .directory-item.context::after,
-.Compendium-sidebar .directory-item.context::after {
+#compendium .directory-item.compendium.context::after,
+.Compendium-sidebar .directory-item.compendium.context::after {
   border-radius: 10px;
   border: none;
 }
-#compendium .directory-item .thumbnail,
-.Compendium-sidebar .directory-item .thumbnail {
+#compendium .directory-item.compendium .thumbnail,
+.Compendium-sidebar .directory-item.compendium .thumbnail {
   padding: 3px;
   margin: 2px;
   border: 1px solid var(--c-gold);
   border-radius: 10px;
 }
-#compendium .directory-item .compendium-footer .source,
-.Compendium-sidebar .directory-item .compendium-footer .source {
+#compendium .directory-item.compendium .compendium-footer .source,
+.Compendium-sidebar .directory-item.compendium .compendium-footer .source {
   border-top: 1px solid var(--c-gold);
   border-right: 1px solid var(--c-gold);
   border-bottom-left-radius: 10px;
@@ -2501,28 +2560,28 @@ ol.directory-list li.folder a:hover {
   text-transform: uppercase;
   letter-spacing: 0.2em;
 }
-#compendium .directory-item h1,
-#compendium .directory-item h2,
-#compendium .directory-item h3,
-#compendium .directory-item h4,
-#compendium .directory-item h5,
-.Compendium-sidebar .directory-item h1,
-.Compendium-sidebar .directory-item h2,
-.Compendium-sidebar .directory-item h3,
-.Compendium-sidebar .directory-item h4,
-.Compendium-sidebar .directory-item h5 {
+#compendium .directory-item.compendium h1,
+#compendium .directory-item.compendium h2,
+#compendium .directory-item.compendium h3,
+#compendium .directory-item.compendium h4,
+#compendium .directory-item.compendium h5,
+.Compendium-sidebar .directory-item.compendium h1,
+.Compendium-sidebar .directory-item.compendium h2,
+.Compendium-sidebar .directory-item.compendium h3,
+.Compendium-sidebar .directory-item.compendium h4,
+.Compendium-sidebar .directory-item.compendium h5 {
   line-height: normal;
 }
-#compendium .directory-item:hover h1,
-#compendium .directory-item:hover h2,
-#compendium .directory-item:hover h3,
-#compendium .directory-item:hover h4,
-#compendium .directory-item:hover h5,
-.Compendium-sidebar .directory-item:hover h1,
-.Compendium-sidebar .directory-item:hover h2,
-.Compendium-sidebar .directory-item:hover h3,
-.Compendium-sidebar .directory-item:hover h4,
-.Compendium-sidebar .directory-item:hover h5 {
+#compendium .directory-item.compendium:hover h1,
+#compendium .directory-item.compendium:hover h2,
+#compendium .directory-item.compendium:hover h3,
+#compendium .directory-item.compendium:hover h4,
+#compendium .directory-item.compendium:hover h5,
+.Compendium-sidebar .directory-item.compendium:hover h1,
+.Compendium-sidebar .directory-item.compendium:hover h2,
+.Compendium-sidebar .directory-item.compendium:hover h3,
+.Compendium-sidebar .directory-item.compendium:hover h4,
+.Compendium-sidebar .directory-item.compendium:hover h5 {
   text-shadow: 0px 0px 15px var(--b-alpha-10);
 }
 

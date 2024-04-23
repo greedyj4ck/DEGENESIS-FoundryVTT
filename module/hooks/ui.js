@@ -1,3 +1,5 @@
+//import { DegenesisCombatTrackerConfig } from "../apps/combat-config";
+
 export default function () {
   // Apply select2 to item
   Hooks.once("ready", () => {});
@@ -64,6 +66,15 @@ export default function () {
       width: "style",
     });
   });
+
+  /*   Hooks.on("renderCombatTracker", (app, [html]) => {
+    $(".combat-settings")
+      .off("click")
+      .on("click", (ev) => {
+        ev.preventDefault();
+        new DegenesisCombatTrackerConfig(undefined, {}).render(true);
+      });
+  }); */
 }
 
 //  Hooks.on({})

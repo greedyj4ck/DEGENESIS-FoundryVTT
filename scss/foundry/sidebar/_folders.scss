@@ -48,6 +48,8 @@ ol.directory-list {
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: var(--c-gold);
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -66,6 +68,52 @@ ol.directory-list {
       &:hover {
         color: var(--c-pred);
       }
+    }
+  }
+
+  .document {
+    line-height: normal;
+    margin: 2px 6px;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-md;
+    display: flex;
+    background-color: var(--b-alpha-8);
+
+    opacity: 0.8;
+
+    align-items: center;
+    transition: opacity 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.context {
+      border: 1px solid var(--c-pred);
+
+      &::after {
+        border-radius: $b-radius-md;
+        border: none;
+      }
+    }
+
+    &:last-child {
+      border: 1px solid var(--c-gold);
+    }
+
+    img.thumbnail {
+      border: 1px solid var(--c-gold);
+      margin: 3px;
+      border-radius: $b-radius-sm;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      white-space: normal;
+      line-height: normal;
     }
   }
 }
