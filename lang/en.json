@@ -41,6 +41,11 @@
   "UI.Roll": "Roll",
   "UI.CannotRollPassive": "Passive Defense rolls cannot be made",
 
+  "UI.EmptyCult": "CHOOSE CULT",
+  "UI.EmptyConcept": "CHOOSE CONCEPT",
+  "UI.EmptyCulture": "CHOOSE CULTURE",
+  "UI.EmptyRapture": "CHOOSE RAPTURE",
+
   "UI.D": "D",
   "UI.S": "S",
   "UI.T": "T",

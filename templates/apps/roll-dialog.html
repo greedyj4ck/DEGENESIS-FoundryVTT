@@ -50,12 +50,8 @@
 <div class="secondary-selection">
     <label>{{localize "DGNS.SecondarySkill"}}:</label>
     <select name="secondarySkill" class="secondary-select select-swap">
-        {{#select secondarySkill}}
-        <option value="">None</option>
-        {{#each (config "skills") as |skill s|}}
-        <option value="{{s}}">{{skill}}</option>
-        {{/each}}
-        {{/select}}
+        {{#selectOptions (config "skills") selected=secondarySkill blank="UI.None" localize=true}}
+        {{/selectOptions}}
     </select>
 </div>
 {{/if}}

@@ -50,12 +50,9 @@
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Rapture"}}: </span>
         <select name="system.rapture" data-dtype="String">
-          {{#select system.rapture}}
-          <option value="generic">{{localize "DGNS.Generic"}}</option>
-          {{#each (config "raptures") as |rapture r|}}
-          <option value="{{r}}">{{rapture}}</option>
-          {{/each}}
-          {{/select}}
+          {{#selectOptions (config "itemRaptures") selected=system.rapture localize=true}}
+
+          {{/selectOptions}}
         </select>
       </div>
 

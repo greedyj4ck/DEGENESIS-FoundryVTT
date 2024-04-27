@@ -66,11 +66,10 @@
                                 <div class="field-inputs">
                                     <select class="encMode-select" name="system.mode" data-dtype="String">
                                         <option value=""></option>
-                                        {{#select system.mode}}
-                                        {{#each (config "transportationEncumbranceModes") as |mode m|}}
-                                        <option value="{{m}}">{{mode}}</option>
-                                        {{/each}}
-                                        {{/select}}
+                                        {{#selectOptions (config "transportationEncumbranceModes")
+                                        selected=system.mode}}
+
+                                        {{/selectOptions}}
                                     </select>
                                 </div>
                             </div>

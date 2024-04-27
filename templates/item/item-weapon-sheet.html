@@ -87,19 +87,16 @@
                                 <input class="field-input field-start" type="text" name="system.damage"
                                     value="{{system.damage}}" data-dtype="Number" />
                                 <select class="damageBonus-select" name="system.damageBonus" data-dtype="String">
-                                    <option value=""></option>
-                                    {{#select system.damageBonus}}
-                                    {{#each (config "damageModifiers") as |modifier bonus|}}
-                                    <option value="{{bonus}}">{{modifier.blueprint}}</option>
-                                    {{/each}}
-                                    {{/select}}
+
+                                    {{#selectOptions (config "damageModifiers") selected=system.damageBonus
+                                    labelAttr="blueprint" blank=""}}
+
+                                    {{/selectOptions}}
                                 </select>
                                 <select class="damageType-select" name="system.damageType" data-dtype="String">
-                                    {{#select system.damageType}}
-                                    {{#each (config "damageTypes") as |type t|}}
-                                    <option value="{{t}}">{{type}}</option>
-                                    {{/each}}
-                                    {{/select}}
+                                    {{#selectOptions (config "damageTypes") selected=system.damageType}}
+
+                                    {{/selectOptions}}
                                 </select>
                             </div>
                         </div>
@@ -109,11 +106,9 @@
                             <div class="field-inputs">
                                 <select name="system.caliber" data-dtype="String">
                                     <option value="">-</option>
-                                    {{#select system.caliber}}
-                                    {{#each (config "calibers") as |caliber c|}}
-                                    <option value="{{c}}">{{caliber}}</option>
-                                    {{/each}}
-                                    {{/select}}
+                                    {{#selectOptions (config "calibers") selected=system.caliber}}
+
+                                    {{/selectOptions}}
                                 </select>
                             </div>
                         </div>
@@ -169,12 +164,9 @@
                             <span class="field-name skill-selection">{{localize "DGNS.PrimarySkill"}}: </span>
                             <div class="field-inputs">
                                 <select name="system.primarySkill" data-dtype="String">
-                                    {{#select system.primarySkill}}
-                                    <option value="">{{localize "Default"}}</option>
-                                    {{#each (config "skills") as |skill s|}}
-                                    <option value="{{s}}">{{skill}}</option>
-                                    {{/each}}
-                                    {{/select}}
+                                    {{#selectOptions (config "skills") selected=system.primarySkill localize=true
+                                    blank="Default"}}
+                                    {{/selectOptions}}
                                 </select>
                             </div>
                         </div>
@@ -182,12 +174,8 @@
                             <span class="field-name skill-selection">{{localize "DGNS.SecondarySkill"}}: </span>
                             <div class="field-inputs">
                                 <select name="system.secondarySkill" data-dtype="String">
-                                    {{#select system.secondarySkill}}
-                                    <option value="">-</option>
-                                    {{#each (config "skills") as |skill s|}}
-                                    <option value="{{s}}">{{skill}}</option>
-                                    {{/each}}
-                                    {{/select}}
+                                    {{#selectOptions (config "skills") selected=system.secondarySkill blank="-"}}
+                                    {{/selectOptions}}
                                 </select>
                             </div>
                         </div>

@@ -97,12 +97,10 @@
                     {{{configLookup "cultureDescription" actor.details.culture.value}}}
                 </div>
                 <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
-                    {{#select system.details.culture.value}}
-                    <option value=""></option>
-                    {{#each (config "cultures") as |culture c|}}
-                    <option value="{{c}}">{{culture}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{#selectOptions (config "cultures") selected=system.details.culture.value blank='UI.EmptyCulture'
+                    localize=true
+                    }}
+                    {{/selectOptions}}
                 </select>
             </div>
             <div class="sh-field-stack">
@@ -116,12 +114,10 @@
                     {{{configLookup "conceptDescription" actor.details.concept.value}}}
                 </div>
                 <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
-                    {{#select system.details.concept.value}}
-                    <option value=""></option>
-                    {{#each (config "concepts") as |concept c|}}
-                    <option value="{{c}}">{{concept}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{#selectOptions (config "concepts") selected=system.details.concept.value blank="UI.EmptyConcept"
+                    localize=true}}
+
+                    {{/selectOptions}}
                 </select>
             </div>
 
@@ -136,12 +132,10 @@
                     {{{configLookup "cultDescription" actor.details.cult.value}}}
                 </div>
                 <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
-                    {{#select system.details.cult.value}}
-                    <option value=""></option>
-                    {{#each (config "cults") as |cult c|}}
-                    <option value="{{c}}">{{cult}}</option>
-                    {{/each}}
-                    {{/select}}
+                    {{#selectOptions (config "cults") selected=system.details.cult.value blank="UI.EmptyCult"
+                    localize=true}}
+
+                    {{/selectOptions}}
                 </select>
             </div>
         </div>

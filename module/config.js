@@ -112,6 +112,21 @@ DEGENESIS.raptures = {
   psychokinetics: "DGNS.Psychokinetics",
 };
 
+DEGENESIS.itemRaptures = {
+  generic: "DGNS.Generic",
+  biokinetics: "DGNS.Biokinetics",
+  dushani: "DGNS.Dushani",
+  leviathans: "DGNS.Leviathans",
+  pheromancers: "DGNS.Pheromancers",
+  pregnoctics: "DGNS.Pregnoctics",
+  psychokinetics: "DGNS.Psychokinetics",
+};
+
+DEGENESIS.aberrantPhases = {
+  primal: "DGNS.PrimalPhase",
+  focus: "DGNS.FocusPhase",
+};
+
 DEGENESIS.attributes = {
   body: "DGNS.Body",
   agility: "DGNS.Agility",
@@ -685,6 +700,16 @@ DEGENESIS.damageModifiersFromHell = {
     blueprint: "+2D",
     calculate: (triggers) => new Die({ faces: 6, number: 2 }).evaluate().total,
   },
+};
+
+DEGENESIS.modTypes = {
+  weapon: "DGNS.Weapon",
+  armor: "DGNS.Armor",
+};
+
+DEGENESIS.modChangeModes = {
+  add: "DGNS.ModAdd",
+  override: "DGNS.ModOverride",
 };
 
 DEGENESIS.techValues = {

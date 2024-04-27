@@ -45,12 +45,10 @@
       <div class="sh-field">
         <span class="field-name">{{localize "DGNS.Group"}}: </span>
         <select name="system.group" data-dtype="String">
-          {{#select system.group}}
-          {{#each (config "attackGroups") as |group g|}}
-          <option value="{{g}}">{{group}}</option>
-          {{/each}}
+          {{#selectOptions (config "attackGroups") selected=system.group}}
 
-          {{/select}}
+
+          {{/selectOptions}}
         </select>
       </div>
 
@@ -72,18 +70,14 @@
             data-dtype="Number" />
           <select class="damageBonus-select" name="system.damageBonus" data-dtype="String">
             <option value=""></option>
-            {{#select system.damageBonus}}
-            {{#each (config "damageModifiersFromHell") as |modifier bonus|}}
-            <option value="{{bonus}}">{{modifier.blueprint}}</option>
-            {{/each}}
-            {{/select}}
+            {{#selectOptions (config "damageModifiersFromHell") selected=system.damageBonus labelAttr="blueprint"}}
+
+            {{/selectOptions}}
           </select>
           <select class="damageType-select" name="system.damageType" data-dtype="String">
-            {{#select system.damageType}}
-            {{#each (config "damageTypes") as |type t|}}
-            <option value="{{t}}">{{type}}</option>
-            {{/each}}
-            {{/select}}
+            {{#selectOptions (config "damageTypes") selected=system.damageType}}
+
+            {{/selectOptions}}
           </select>
         </div>
       </div>

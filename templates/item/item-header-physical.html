@@ -40,25 +40,21 @@
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Group"}}: </span>
                     <select name="system.group" data-dtype="String">
-                        {{#select system.group}}
-                        {{#each (config "weaponGroups") as |group g|}}
-                        <option value="{{g}}">{{group}}</option>
-                        {{/each}}
-                        {{#each (config "equipmentGroups") as |group g|}}
-                        <option value="{{g}}">{{group}}</option>
-                        {{/each}}
-                        {{/select}}
+                        {{#selectOptions (config "weaponGroups") selected=system.group }}
+                        {{/selectOptions}}
+                        {{#selectOptions (config "equipmentGroups") selected=system.group }}
+                        {{/selectOptions}}
                     </select>
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Tech"}}: </span>
                     <select name="system.tech" data-dtype="Number">
-                        <option value="">-</option>
-                        {{#select system.tech}}
-                        {{#each (config "techValues") as |tech t|}}
-                        <option value="{{t}}">{{tech}}</option>
-                        {{/each}}
-                        {{/select}}
+
+                        {{#selectOptions (config "techValues") selected=system.tech blank=""}}
+
+                        {{/selectOptions}}
+
+
                     </select>
                 </div>
 

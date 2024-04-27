@@ -133,15 +133,11 @@
                     <div class="culture-container">
 
                         <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
-                            {{#select system.details.culture.value}}
-                            <option value="">{{localize "DGNS.Culture"}}</option>
-                            {{#each (config "cultures") as |culture c|}}
-                            <option value="{{c}}">{{culture}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{#selectOptions (config "cultures") selected=system.details.culture.value
+                            blank="UI.EmptyCulture" localize=true}}
+
+                            {{/selectOptions}}
                         </select>
-
-
 
                         <object type="image/svg+xml" data="{{cultureIcon}}" class="culture-img"
                             onload="this.contentDocument.documentElement.classList.add('culture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
@@ -151,12 +147,10 @@
 
                     <div class="concept-container">
                         <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
-                            {{#select system.details.concept.value}}
-                            <option value="">{{localize "DGNS.Concept"}}</option>
-                            {{#each (config "concepts") as |concept c|}}
-                            <option value="{{c}}">{{concept}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{#selectOptions (config "concepts") selected=system.details.concept.value
+                            blank="UI.EmptyConcept" localize=true}}
+
+                            {{/selectOptions}}
                         </select>
                         <object type="image/svg+xml" data="{{conceptIcon}}" class="concept-img"
                             onload="this.contentDocument.documentElement.classList.add('concept-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
@@ -166,12 +160,10 @@
 
                     <div class="cult-container">
                         <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
-                            {{#select system.details.cult.value}}
-                            <option value="">{{localize "DGNS.Cult"}}</option>
-                            {{#each (config "cults") as |cult c|}}
-                            <option value="{{c}}">{{cult}}</option>
-                            {{/each}}
-                            {{/select}}
+                            {{#selectOptions (config "cults") selected=system.details.cult.value blank="UI.EmptyCult"
+                            localize=true}}
+
+                            {{/selectOptions}}
                         </select>
                         <object type="image/svg+xml" data="{{cultIcon}}" class="cult-img"
                             onload="this.contentDocument.documentElement.classList.add('cult-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
