@@ -1584,11 +1584,74 @@ ol.directory-list .document h5 {
   gap: 5px;
   scrollbar-gutter: stable both-edges;
 }
+#combat #combat-tracker .roll-initiative,
+#combat-popout #combat-tracker .roll-initiative {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#combat #combat-tracker .roll-initiative .initiative-die,
+#combat-popout #combat-tracker .roll-initiative .initiative-die {
+  padding-bottom: 6px;
+}
+#combat #combat-tracker .roll-initiative .initiative-die a,
+#combat-popout #combat-tracker .roll-initiative .initiative-die a {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+}
+#combat #combat-tracker .square,
+#combat-popout #combat-tracker .square {
+  border-color: var(--c-gold);
+  opacity: 0.4;
+}
+#combat #combat-tracker .square:hover,
+#combat-popout #combat-tracker .square:hover {
+  border-color: var(--c-pred);
+  opacity: 1;
+}
+#combat #combat-tracker .square.gold,
+#combat-popout #combat-tracker .square.gold {
+  background-color: var(--c-gold-8);
+  border-color: var(--c-gold);
+  opacity: 1;
+}
+#combat #combat-tracker .square.gold:hover,
+#combat-popout #combat-tracker .square.gold:hover {
+  border-color: var(--c-pred);
+}
+#combat #combat-tracker .diamond-row,
+#combat-popout #combat-tracker .diamond-row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 #combat #combat-tracker .combatant,
 #combat-popout #combat-tracker .combatant {
   border-radius: 10px;
   border: 1px solid var(--c-gold);
   background-color: var(--b-alpha-8);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 #combat #combat-tracker .combatant h1,
 #combat #combat-tracker .combatant h2,
@@ -1612,21 +1675,125 @@ ol.directory-list .document h5 {
 }
 #combat #combat-tracker .combatant.active,
 #combat-popout #combat-tracker .combatant.active {
-  border-color: var(--c-pred);
+  background-color: var(--c-gold-8);
+  border-color: var(--c-gold-4);
 }
-#combat #combat-tracker .combatant.active .token-image,
-#combat-popout #combat-tracker .combatant.active .token-image {
-  border-color: var(--c-pred);
+#combat #combat-tracker .combatant.defeated,
+#combat-popout #combat-tracker .combatant.defeated {
+  opacity: 0.5;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--c-pred-8);
 }
-#combat #combat-tracker .combatant.npc,
-#combat-popout #combat-tracker .combatant.npc {
-  background-color: rgba(87, 25, 25, 0.5);
+#combat #combat-tracker .combatant.defeated img,
+#combat-popout #combat-tracker .combatant.defeated img {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+}
+#combat #combat-tracker .combatant.defeated:hover,
+#combat-popout #combat-tracker .combatant.defeated:hover {
+  opacity: 1;
 }
 #combat #combat-tracker .combatant .token-image,
 #combat-popout #combat-tracker .combatant .token-image {
   border: 1px solid var(--c-gold);
   margin: 3px;
   border-radius: 5px;
+}
+#combat #combat-tracker .combatant .token-actions,
+#combat-popout #combat-tracker .combatant .token-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px 8px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 70px;
+          flex: 0 1 70px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: normal;
+}
+#combat #combat-tracker .combatant .token-actions .token-actions-number,
+#combat-popout #combat-tracker .combatant .token-actions .token-actions-number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Crimson Pro";
+  font-size: var(--font-size-20);
+  color: var(--c-gold-6);
+  line-height: normal;
+}
+#combat #combat-tracker .combatant .token-actions .token-actions-control,
+#combat-popout #combat-tracker .combatant .token-actions .token-actions-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1;
+          flex: 0 1;
+  height: 5px;
+  font-size: var(--font-size-10);
+  border-top: 1px solid var(--c-gold);
+  gap: 4px;
+}
+#combat #combat-tracker .combatant .token-actions .actions-label,
+#combat-popout #combat-tracker .combatant .token-actions .actions-label {
+  font-family: "Avenir";
+  font-size: 8px;
+  color: var(--c-gold-7);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+#combat #combat-tracker .combatant .token-actions a.btn.action,
+#combat-popout #combat-tracker .combatant .token-actions a.btn.action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-size: var(--font-size-16);
+  font-weight: 1000;
+  color: var(--c-gold);
+  -webkit-transition: 0.15s all;
+  transition: 0.15s all;
+}
+#combat #combat-tracker .combatant .token-actions a.btn.action:hover,
+#combat-popout #combat-tracker .combatant .token-actions a.btn.action:hover {
+  border-color: var(--grey-70);
+  background-color: var(--b-alpha-8);
+}
+#combat #combat-tracker .combatant .token-actions .initiative-number,
+#combat-popout #combat-tracker .combatant .token-actions .initiative-number {
+  font-family: "Crimson Pro";
+  font-size: var(--font-size-16);
+  color: var(--c-gold-4);
+  font-weight: 500;
 }
 #combat #combat-tracker .combatant a,
 #combat #combat-tracker .combatant i,
@@ -1640,6 +1807,78 @@ ol.directory-list .document h5 {
 #combat-popout #combat-tracker .combatant a:hover,
 #combat-popout #combat-tracker .combatant i:hover {
   color: var(--c-pred);
+}
+#combat #combat-tracker .combatant.hidden,
+#combat-popout #combat-tracker .combatant.hidden {
+  opacity: 0.5;
+}
+#combat #combat-tracker .combatant.hidden img,
+#combat-popout #combat-tracker .combatant.hidden img {
+  opacity: 0.8;
+}
+#combat #combat-tracker .combatant.hidden:hover,
+#combat-popout #combat-tracker .combatant.hidden:hover {
+  opacity: 1;
+}
+#combat #combat-tracker .combatant.hidden:hover img,
+#combat-popout #combat-tracker .combatant.hidden:hover img {
+  opacity: 1;
+}
+#combat #combat-tracker .combatant .token-name,
+#combat-popout #combat-tracker .combatant .token-name {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#combat #combat-tracker .combatant .token-name h4,
+#combat-popout #combat-tracker .combatant .token-name h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#combat #combat-tracker .combatant .token-name .combatant-controls,
+#combat-popout #combat-tracker .combatant .token-name .combatant-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+}
+#combat #combat-tracker .combatant .token-name a.combatant-control,
+#combat-popout #combat-tracker .combatant .token-name a.combatant-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#combat #combat-tracker .combatant .combatant-control.roll,
+#combat-popout #combat-tracker .combatant .combatant-control.roll {
+  border: 1px solid var(--c-gold-7);
+  border-radius: 5px;
+  background-size: cover;
+  background-image: url(../ui/die-desaturated.svg);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#combat #combat-tracker .combatant .combatant-control.roll:hover,
+#combat-popout #combat-tracker .combatant .combatant-control.roll:hover {
+  border-color: var(--c-gold-4);
+  background-image: url(../ui/die-saturated.svg);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 #scenes button,

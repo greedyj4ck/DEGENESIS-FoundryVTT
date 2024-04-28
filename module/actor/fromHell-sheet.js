@@ -193,8 +193,6 @@ export class DegenesisFromHellSheet extends ActorSheet {
   // Combat hooks
 
   async _onInitiativeClick(event) {
-    console.log("Rolling initiative for from hell :)");
-
     const tokens = this.actor.isToken
       ? [this.actor.token]
       : this.actor.getActiveTokens(true);

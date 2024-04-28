@@ -46,6 +46,9 @@
   "UI.EmptyCulture": "CHOOSE CULTURE",
   "UI.EmptyRapture": "CHOOSE RAPTURE",
 
+  "UI.AddAction": "Add Action",
+  "UI.RemoveAction": "Remove Action",
+
   "UI.D": "D",
   "UI.S": "S",
   "UI.T": "T",

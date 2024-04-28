@@ -49,8 +49,6 @@ export class DegenesisItem extends Item {
   }
 
   prepareWeapon() {
-    console.log(`prepareWeapon fired....`);
-
     let dice = {
       attack: undefined,
       defense: undefined,

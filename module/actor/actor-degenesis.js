@@ -65,7 +65,6 @@ export class DegenesisActor extends Actor {
     // Limit data range for attributes and conditions for NPC sheet
 
     if (this.type === "npc") {
-      console.log(`NPC UPDATE DATA LAUNCHED...`);
       updateData = this.limitNPCValues(updateData);
     }
 
@@ -114,7 +113,6 @@ export class DegenesisActor extends Actor {
 
         // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
         if (AutomateEncumbrancePenalty()) {
-          console.log(`Encumbrance penalty fired...`);
           this.modifiers.addEncumbranceModifiers(this);
         }
 
@@ -294,7 +292,6 @@ export class DegenesisActor extends Actor {
         "system.condition.spore.permanent",
         this.condition.spore.max
       );
-      console.log(updateData);
 
       limitMaxMinValue(
         updateData,
@@ -302,7 +299,6 @@ export class DegenesisActor extends Actor {
         this.condition.spore.max,
         this.condition.spore.permanent
       );
-      console.log(updateData);
     }
 
     // Limit
@@ -1197,7 +1193,7 @@ export class DegenesisActor extends Actor {
       });
     }
 
-    if (type !== "initiative" && this.state.initiative.actions > 1)
+    if (type !== "initiative" && this.state.initiative.actions >= 1)
       await this.updateSource({
         "system.state.initiative.actions": this.state.initiative.actions - 1,
       });

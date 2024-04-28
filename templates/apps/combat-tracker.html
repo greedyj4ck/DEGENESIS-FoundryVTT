@@ -106,20 +106,60 @@
                 </div>
             </div>
 
+
             {{#if this.hasResource}}
             <div class="token-resource">
                 <span class="resource">{{this.resource}}</span>
             </div>
             {{/if}}
 
-            <div class="token-initiative">
+
+
+
+            <div class="token-actions">
                 {{#if this.hasRolled}}
-                <span class="initiative">{{this.initiative}}</span>
+                <div class="initiative-number" data-tooltip="DGNS.Initiative">
+                    {{this.initiative}}
+                </div>
+
+                <div class="token-actions-control">
+                    <div class="actions-number">{{this.actor.system.state.initiative.actions}}</div>
+                    <a class="action action-add btn " data-tooltip="UI.AddAction">+</a>
+                    <a class="action action-remove btn" data-tooltip="UI.RemoveAction">-</a>
+                </div>
+                <div class="actions-label">{{localize 'DGNS.Actions'}}</div>
                 {{else if this.owner}}
-                <a class="combatant-control roll" aria-label="{{localize 'COMBAT.InitiativeRoll'}}" role="button"
-                    data-tooltip="COMBAT.InitiativeRoll" data-control="rollInitiative"></a>
+                <div class="roll-initiative">
+                    <div class="initiative-die">
+                        <a class="combatant-control roll" aria-label="{{localize 'COMBAT.InitiativeRoll'}}"
+                            role="button" data-tooltip="COMBAT.InitiativeRoll" data-control="rollInitiative"></a>
+                    </div>
+
+
+
+                    <div class="diamond-row" data-target="system.state.spentEgo.value" data-tooltip="DGNS.SpendEgo">
+                        {{#each this.actor.system.state.spentEgo.diamonds as |diamond index|}} {{#if
+                        diamond.filled}}
+                        <a class="diamond" data-index="{{index}}">
+                            <div class="square gold"></div>
+                        </a>
+                        {{else}}
+                        <a class="diamond" data-index="{{index}}">
+                            <div class="square"></div>
+                        </a>
+                        {{/if}} {{/each}}
+                    </div>
+
+
+
+                </div>
+
                 {{/if}}
             </div>
+
+
+
+
         </li>
         {{/each}}
     </ol>

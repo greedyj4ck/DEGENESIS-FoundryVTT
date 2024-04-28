@@ -52,7 +52,6 @@ export class DegenesisItemSheet extends ItemSheet {
     data.system = data.actor.system; */
 
     data.system = data.item._source.system;
-    // console.log(data)
     this.processTypes(data);
 
     // Enrich raw HTML for Text Editor and expand for new functionalities like links...

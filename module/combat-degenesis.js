@@ -87,7 +87,7 @@ export class DegenesisCombat extends Combat {
     if (!actor) return 0;
     const spentEgo = actor.state.spentEgo.value;
     const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
-      skipDialog: true,
+      skipDialog: false,
       spentEgo,
     });
     let actionCount = 1;

@@ -57,9 +57,6 @@ export class DegenesisAberrantSheet extends ActorSheet {
       : "systems/degenesis/icons/from-hell/psychonautics.svg";
 
     sheetData.phaseIcon = `systems/degenesis/icons/state/${this.actor.system.phase}.svg`;
-
-    console.log(`Current phase icon: ${sheetData.phaseIcon}`);
-
     sheetData.attributeSkillGroups = this.sortAttributesSkills(); // Prepare attributeSkillGroups
     sheetData.inventory = this.constructInventory(); // - Construct inventory needs modification to handle all type of items
     sheetData.transportation = {
