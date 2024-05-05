@@ -64,7 +64,7 @@
           </div>
         </a>
         <a class="combat">
-          <div class="general-name fight-roll" data-roll="mentalDefense">
+          <div class="general-name fight-roll" data-roll="{{actor.mentalDefenseType}}">
             {{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}{{localize "UI.D"}})
           </div>
         </a>
@@ -204,7 +204,10 @@
                 {{weapon.dice.defense}}{{localize "UI.D"}}</a></span>
           </div>
           <div class="legend-name damage">
-            <span>{{weapon.DamageFormula}}</span>
+            <span>{{calculateDamage weapon ../system.attributes.body.value
+              ../system.skills.force.value }}
+            </span>
+            <span class="damage-type">{{weapon.DamageType}}</span>
           </div>
           <div class="legend-name distance">
             <span>{{weapon.distance.melee}}</span>
@@ -281,7 +284,7 @@
             ({{weapon.Caliber}})
           </div>
           <div class="legend-name damage-ranged">
-            <span>{{weapon.DamageFormula}}</span>
+            <span>{{weapon.DamageFormula}}</span> <span class="damage-type">{{weapon.DamageType}}</span>
           </div>
           <div class="legend-name distance-ranged">
             <span>{{weapon.distance.short}}/{{weapon.distance.far}}</span>

@@ -548,3 +548,27 @@
 hr {
   border-color: var(--c-gold);
 }
+
+.edit-switch-container {
+  flex: 0 1 22px;
+  padding-right: 5px;
+}
+
+input[type="checkbox"] {
+  &.lock-slider {
+    display: none;
+
+    + label:before {
+      font-size: var(--font-size-14);
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f023";
+    }
+
+    &:checked {
+      + label:before {
+        content: "\f3c1";
+      }
+    }
+  }
+}

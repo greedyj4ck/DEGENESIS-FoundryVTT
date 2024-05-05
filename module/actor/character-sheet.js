@@ -1,4 +1,5 @@
 import { DEGENESIS } from "../config.js";
+import { MODULE } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { DegenesisChat } from "../chat.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
@@ -44,19 +45,32 @@ export class DegenesisCharacterSheet extends ActorSheet {
     const header = html[0].querySelector(".window-header");
 
     // Add edit <-> play slide toggle.
-    /*   if (this.isEditable) {
-      const toggle = document.createElement("slide-toggle");
 
-      toggle.classList.add("mode-slider");
+    if (this.isEditable) {
+      const toggleDiv = document.createElement("div");
+      toggleDiv.classList.add("edit-switch-container");
 
-      toggle.setAttribute(
-        "aria-label",
-        game.i18n.localize("DEGENESIS.SheetModeEdit")
-      );
+      const toggle = document.createElement("input");
+      toggle.type = "checkbox";
+      toggle.id = "edit-switch";
+      toggle.classList.add("lock-slider");
+      toggle.checked = !this.isLocked();
 
-      header.insertAdjacentElement("afterbegin", toggle);
+      const label = document.createElement("label");
+      label.htmlFor = "edit-switch";
+      label.dataset.tooltip = "UI.SheetLocked";
+      label.setAttribute("aria-label", game.i18n.localize("UI.SheetLocked"));
+
+      toggle.addEventListener("change", this._onChangeSheetLock.bind(this));
+      toggle.addEventListener("dblclick", (event) => event.stopPropagation());
+
+      label.addEventListener("dblclick", (event) => event.stopPropagation());
+
+      toggleDiv.appendChild(toggle);
+      toggleDiv.appendChild(label);
+      header.insertAdjacentElement("afterbegin", toggleDiv);
     }
- */
+
     // Adjust header buttons.
     header.querySelectorAll(".header-button").forEach((btn) => {
       const label = btn.querySelector(":scope > i").nextSibling;
@@ -114,7 +128,6 @@ export class DegenesisCharacterSheet extends ActorSheet {
 
   async prepareSheetData(sheetData) {
     sheetData.attributeSkillGroups = this.sortAttributesSkillsDiamonds();
-
     sheetData.conceptIcon = this.actor.details.concept.value
       ? `systems/degenesis/icons/concept/${this.actor.details.concept.value}.svg`
       : "systems/degenesis/icons/blank.svg";
@@ -132,10 +145,22 @@ export class DegenesisCharacterSheet extends ActorSheet {
     }
 
     DEG_Utility.addDiamonds(sheetData.system.scars.infamy, 6);
-    DEG_Utility.addDiamonds(sheetData.system.condition.ego, 24);
-    DEG_Utility.addDiamonds(sheetData.system.condition.spore, 24);
-    DEG_Utility.addDiamonds(sheetData.system.condition.fleshwounds, 24);
-    DEG_Utility.addDiamonds(sheetData.system.condition.trauma, 12);
+    DEG_Utility.addDiamonds(
+      sheetData.system.condition.ego,
+      Math.max(sheetData.system.condition.ego.max + 3, 24)
+    );
+    DEG_Utility.addDiamonds(
+      sheetData.system.condition.spore,
+      Math.max(sheetData.system.condition.spore.max + 3, 24)
+    );
+    DEG_Utility.addDiamonds(
+      sheetData.system.condition.fleshwounds,
+      Math.max(sheetData.system.condition.fleshwounds.max + 3, 24)
+    );
+    DEG_Utility.addDiamonds(
+      sheetData.system.condition.trauma,
+      Math.max(sheetData.system.condition.trauma.max + 3, 12)
+    );
     DEG_Utility.addDiamonds(sheetData.system.state.cover, 3);
     DEG_Utility.addDiamonds(sheetData.system.state.spentEgo, 3);
 
@@ -159,6 +184,14 @@ export class DegenesisCharacterSheet extends ActorSheet {
     // Borrowed from moo-man's WRFP implementation ^_^ <3
 
     sheetData.enrichment = await this._handleEnrichment();
+
+    /// Add Sheet edit lock flag if not exists
+    if (sheetData.document.getFlag(MODULE, "sheetLocked") === undefined) {
+      sheetData.document.setFlag(MODULE, "sheetLocked", true);
+    }
+
+    /*   if (!sheetData.document.flags) {
+    } */
   }
 
   async _handleEnrichment() {
@@ -347,19 +380,21 @@ export class DegenesisCharacterSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
-
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
     $("input[type=text]").focusin(function () {
       $(this).select();
     });
+
     // Update Inventory Item
+
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-add").click(this._onItemCreate.bind(this));
     html.find(".item-post").click(this._onPostItem.bind(this));
     html.find(".diamond").click(this._onDiamondClick.bind(this));
+
     html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this));
     html.find(".checkbox").click(this._onCheckboxClick.bind(this));
     html
@@ -384,6 +419,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
 
   // Handle custom drop events (currently just putting items into containers)
   async _onDrop(event) {
+    if (this.isLocked({ notify: true })) return;
     let transportTarget = $(event.target).parent(".transport-drop")[0];
     if (transportTarget) {
       let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"));
@@ -417,10 +453,12 @@ export class DegenesisCharacterSheet extends ActorSheet {
     this.actor.items.get(itemId).sheet.render(true);
   }
   _onItemDelete(event) {
+    if (this.isLocked({ notify: true })) return;
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
   _onItemCreate(event) {
+    if (this.isLocked({ notify: true })) return;
     let type = $(event.currentTarget).attr("data-item");
     this.actor.createEmbeddedDocuments("Item", [
       { name: `New ${type.capitalize()}`, type: type },
@@ -466,11 +504,13 @@ export class DegenesisCharacterSheet extends ActorSheet {
       let minimum;
       let maximum;
 
-      if (parentValues.override > 0) {
-        maximum = parentValues.override;
+      maximum = parentValues.max;
+
+      /*   if (parentValues.override > 0) {
+        //  maximum = parentValues.override;
       } else {
-        maximum = parentValues.max;
-      }
+      
+      } */
       if (parentValues.permanent > 0) {
         minimum = parentValues.permanent;
       } else {
@@ -491,6 +531,15 @@ export class DegenesisCharacterSheet extends ActorSheet {
         }
       }
     } else {
+      if (
+        target.split(".")[1] === "attributes" ||
+        target.split(".")[1] === "skills" ||
+        target.split(".")[1] === "backgrounds" ||
+        target.split(".")[1] === "scars"
+      ) {
+        if (this.isLocked({ notify: true })) return;
+      }
+
       let value = foundry.utils.getProperty(actorData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
@@ -506,6 +555,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     }
     this.actor.update(actorData);
   }
+
   _onPermaDiamondClick(event) {
     if (event.button != 2) return;
     let actorData = this.actor.toObject();
@@ -733,5 +783,42 @@ export class DegenesisCharacterSheet extends ActorSheet {
     } else item.sheet.render(true);
   }
 
+  async _onChangeSheetLock(event) {
+    const toggle = event.currentTarget;
+    const label = toggle.nextElementSibling;
+
+    /*     const label = game.i18n.localize(
+      `DND5E.SheetMode${toggle.checked ? "Play" : "Edit"}`
+    );
+    toggle.dataset.tooltip = label;
+    toggle.setAttribute("aria-label", label); */
+
+    if (this.isLocked()) {
+      this.document.setFlag(MODULE, "sheetLocked", false);
+      toggle.checked = true;
+      label.dataset.tooltip = "UI.SheetUnlocked";
+      label.setAttribute("aria-label", game.i18n.localize("UI.SheetUnlocked"));
+    } else {
+      this.document.setFlag(MODULE, "sheetLocked", true);
+      toggle.checked = false;
+      label.dataset.tooltip = "UI.SheetLocked";
+      label.setAttribute("aria-label", game.i18n.localize("UI.SheetLocked"));
+    }
+  }
+
   /* -------------------------------------------- */
+
+  /* HELPER FUNCTIONS */
+
+  isLocked(notify = false) {
+    if (this.document.getFlag(MODULE, "sheetLocked")) {
+      if (notify) {
+        ui.notifications.notify(
+          game.i18n.localize("UI.SheetLockedNotification")
+        );
+      }
+
+      return true;
+    } else return false;
+  }
 }

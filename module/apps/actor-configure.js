@@ -17,6 +17,8 @@ export default class ActorConfigure extends FormApplication {
   constructor(object, options) {
     super(object, options);
   }
+
+  /** This needs to be adjusted to modify other values, not only current ones. */
   async _updateObject(event, formData) {
     this.object.update(formData);
   }

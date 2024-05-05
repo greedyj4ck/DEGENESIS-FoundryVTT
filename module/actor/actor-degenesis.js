@@ -14,29 +14,31 @@ import { DEG_Utility } from "../utility.js";
  */
 
 export class DegenesisActor extends Actor {
-  // TODO: CHECK IF UPDATESOURCE IS VALID METHOD FOR TOKEN
-  // this.data.update -> this.updateSource
-
   // REGION | _PRE METHODS
 
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
-    // Set wounds, advantage, and display name visibility
-    if (!data.prototypeToken)
-      this.updateSource({
-        "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
-        "token.name": data.name, // Set token name to actor name
-        "token.img": "systems/degenesis/assets/tokens/default.png",
-      });
+
+    let updates = {};
+
+    if (!data.prototypeToken) {
+      updates["prototypeToken.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL; // Default disposition to neutral
+      updates["prototypeToken.name"] = data.name;
+      updates["prototypeToken.img"] =
+        "systems/degenesis/assets/tokens/default.png";
+    }
 
     // Default characters to HasVision = true and Link Data = true
     if (data.type == "character") {
-      this.updateSource({ "token.vision": true });
-      this.updateSource({ "token.actorLink": true });
+      updates["prototypeToken.sight.enabled"] = true;
+      updates["prototypeToken.actorLink"] = true;
     }
 
-    if (!data.img)
-      this.updateSource({ img: "systems/degenesis/assets/tokens/default.png" });
+    if (!data.img) {
+      updates["img"] = "systems/degenesis/assets/tokens/default.png";
+    }
+
+    this.updateSource(updates);
   }
 
   async _preUpdate(updateData, options, user) {
@@ -57,13 +59,11 @@ export class DegenesisActor extends Actor {
       foundry.utils.setProperty(updateData, "system.skills.focus.value", 0);
 
     // Limit data range for condition values for From Hell sheet
-
     if (this.type === "fromhell") {
       updateData = this.limitFromHellValues(updateData);
     }
 
     // Limit data range for attributes and conditions for NPC sheet
-
     if (this.type === "npc") {
       updateData = this.limitNPCValues(updateData);
     }
@@ -73,9 +73,9 @@ export class DegenesisActor extends Actor {
     }
   }
 
-  _update(updateData, options, user) {
+  /*   _update(updateData, options, user) {
     super._update(updateData, options, user);
-  }
+  } */
 
   // REGION | DATA PREPARATION
 
@@ -87,26 +87,38 @@ export class DegenesisActor extends Actor {
         this.itemCategories = this.itemTypes;
         this.modifiers = new ModifierManager(this);
 
-        this.condition.ego.max =
-          this.condition.ego.override ||
+        let calcEgo =
           (this.focusOrPrimal.value +
             this.attributes[this.focusOrPrimal.attribute].value) *
-            2;
-        this.condition.spore.max =
-          this.condition.spore.override ||
+          2;
+
+        let calcSpore =
           (this.faithOrWillpower.value +
             this.attributes[this.faithOrWillpower.attribute].value) *
-            2;
-        this.condition.fleshwounds.max =
-          this.condition.fleshwounds.override ||
-          (this.attributes.body.value + this.skills.toughness.value) * 2;
-        this.condition.trauma.max =
-          this.condition.trauma.override ||
-          this.attributes.body.value + this.attributes.psyche.value;
-        this.general.encumbrance.max =
-          this.general.encumbrance.override ||
-          this.attributes.body.value + this.skills.force.value;
+          2;
 
+        let calcFlshWnd =
+          (this.attributes.body.value + this.skills.toughness.value) * 2;
+        let calcTrauma =
+          this.attributes.body.value + this.attributes.psyche.value;
+        let calcEnc = this.attributes.body.value + this.skills.force.value;
+
+        this.condition.ego.max = this.condition.ego.override
+          ? this.condition.ego.override + calcEgo
+          : calcEgo;
+        this.condition.spore.max = this.condition.spore.override
+          ? this.condition.spore.override + calcSpore
+          : calcSpore;
+        this.condition.fleshwounds.max = this.condition.fleshwounds.override
+          ? this.condition.fleshwounds.override + calcFlshWnd
+          : calcFlshWnd;
+        this.condition.trauma.max = this.condition.trauma.override
+          ? this.condition.trauma.override + calcTrauma
+          : calcTrauma;
+
+        this.general.encumbrance.max = this.general.encumbrance.override
+          ? this.general.encumbrance.override + calcEnc
+          : calcEnc;
         // Encumbrance needs to be counted first....
 
         this.prepareEncumbrance();
@@ -428,8 +440,18 @@ export class DegenesisActor extends Actor {
           armor.equipment += i.AP;
         } else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
           armor.equipment += 1;
-        } else if (armor.equipment <= 3 && i.AP >= armor.equipment) {
+        } else if (
+          armor.equipment <= 3 &&
+          i.AP >= armor.equipment &&
+          i.AP < 4
+        ) {
           armor.equipment = i.AP + 1;
+        } else if (
+          armor.equipment <= 3 &&
+          i.AP >= armor.equipment &&
+          i.AP >= 4
+        ) {
+          armor.equipment = i.AP;
         } else if (i.AP >= armor.equipment && armor.equipment >= 4) {
           armor.equipment = i.AP;
         }
@@ -652,6 +674,11 @@ export class DegenesisActor extends Actor {
       successModifier: 0,
       triggerModifier: 0,
     };
+
+    // Change the value back for proper handling
+    if (type === "mentalDefenseWill" || type === "mentalDefenseFaith") {
+      type = "mentalDefense";
+    }
 
     // Accounts for the action modifier
     rollData.actionNumber = this.fighting[type];
@@ -1405,6 +1432,12 @@ export class DegenesisActor extends Actor {
     if (this.skills.focus.value) return this.skills.focus;
     else if (this.skills.primal.value) return this.skills.primal;
     else return this.skills.focus;
+  }
+
+  get mentalDefenseType() {
+    if (this.skills.willpower.value) return "mentalDefenseWill";
+    else if (this.skills.faith.value) return "mentalDefenseFaith";
+    else return "mentalDefenseWill";
   }
 
   // REGION | FORMATTED GETTERS

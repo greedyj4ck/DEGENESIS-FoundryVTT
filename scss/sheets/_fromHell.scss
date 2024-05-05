@@ -502,6 +502,10 @@
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.15ch;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
       }
 
       .distance {
@@ -691,5 +695,11 @@
       font-weight: 500;
       letter-spacing: 0.15em;
     }
+  }
+
+  .damage-type {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
   }
 }

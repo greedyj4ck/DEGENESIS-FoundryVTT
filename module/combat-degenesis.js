@@ -95,15 +95,24 @@ export class DegenesisCombat extends Combat {
       actionCount = 1 + Math.floor(rollResults.triggers / 2);
     }
     let newEgo = actor.condition.ego.value;
+
+    if (newEgo + spentEgo > actor.condition.ego.max) {
+      ui.notifications.notify(
+        `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+      );
+      return;
+    }
+
     if (spentEgo > 0) {
       newEgo += spentEgo;
+
       if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
       // Create a "modifier" item to give a bonus on the first roll.
       // Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
       let spentEgoActionModifier = foundry.utils.deepClone(
         DEGENESIS.systemItems.spentEgoActionModifier
       );
-      spentEgoActionModifier.data.number = spentEgo;
+      spentEgoActionModifier.system.number = spentEgo;
       spentEgoActionModifier.name = "Spent Ego Bonus";
       let modifier = await actor.createEmbeddedDocuments("Item", [
         spentEgoActionModifier,
@@ -154,6 +163,14 @@ export class DegenesisCombat extends Combat {
     }
 
     let newEgo = actor.condition.ego.value;
+
+    if (newEgo + spentEgo > actor.condition.ego.max) {
+      ui.notifications.notify(
+        `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+      );
+      return;
+    }
+
     if (spentEgo > 0) {
       newEgo += spentEgo;
       if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
@@ -162,7 +179,7 @@ export class DegenesisCombat extends Combat {
         DEGENESIS.systemItems.spentEgoActionModifier
       );
 
-      spentEgoActionModifier.data.number = spentEgo;
+      spentEgoActionModifier.system.number = spentEgo;
       spentEgoActionModifier.name = "Spent Ego Bonus";
 
       let modifier = await actor.createEmbeddedDocuments("Item", [
@@ -208,12 +225,14 @@ export class DegenesisCombat extends Combat {
       spentPoints = actor.state.spentEgo.value;
     }
 
+    let spentEgo = spentPoints;
+
     const { rollResults, cardData } = await actor.rollFightRollFromHell(
       "initiative",
       actor.fighting.initiative + actionModifier,
       {
         skipDialog: false,
-        spentPoints,
+        spentEgo,
       }
     );
 
@@ -235,7 +254,7 @@ export class DegenesisCombat extends Combat {
           DEGENESIS.systemItems.spentSporeActionModifier
         );
 
-        spentSporeActionModifier.data.number = spentPoints;
+        spentSporeActionModifier.system.number = spentPoints;
         spentSporeActionModifier.name = "Spent Spore Bonus";
 
         let modifier = await actor.createEmbeddedDocuments("Item", [
@@ -262,6 +281,12 @@ export class DegenesisCombat extends Combat {
       }
     } else {
       let newEgo = actor.condition.ego.value;
+      if (newEgo + spentEgo > actor.condition.ego.max) {
+        ui.notifications.notify(
+          `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+        );
+        return;
+      }
       if (spentPoints > 0) {
         newEgo += spentPoints;
         if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
@@ -270,7 +295,7 @@ export class DegenesisCombat extends Combat {
           DEGENESIS.systemItems.spentEgoActionModifier
         );
 
-        spentEgoActionModifier.data.number = spentPoints;
+        spentEgoActionModifier.system.number = spentPoints;
         spentEgoActionModifier.name = "Spent Ego Bonus";
 
         let modifier = await actor.createEmbeddedDocuments("Item", [

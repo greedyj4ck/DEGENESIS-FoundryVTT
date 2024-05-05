@@ -31,22 +31,22 @@
 
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Name"}}:</span>
-                    <input class="field-input" type="text" name="name" value="{{actor.name}}" />
+                    <input class="field-input" type="text" name="name" value="{{actor.name}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Age"}}:</span>
                     <input class="field-input" type="text" name="system.details.age.value"
-                        value="{{system.details.age.value}}" />
+                        value="{{system.details.age.value}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Rank"}}:</span>
                     <input class="field-input" type="text" name="system.details.rank.value"
-                        value="{{system.details.rank.value}}" />
+                        value="{{system.details.rank.value}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Experience"}}:</span>
                     <input class="field-input" type="text" name="system.details.experience.value"
-                        value="{{system.details.experience.value}}" />
+                        value="{{system.details.experience.value}}" {{isFieldLocked this}} />
                 </div>
             </div>
 
@@ -62,22 +62,22 @@
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Sex"}}:</span>
                     <input class="field-input" type="text" name="system.details.sex.value"
-                        value="{{system.details.sex.value}}" />
+                        value="{{system.details.sex.value}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Height"}}:</span>
                     <input class="field-input" type="text" name="system.details.height.value"
-                        value="{{system.details.height.value}}" />
+                        value="{{system.details.height.value}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Weight"}}:</span>
                     <input class="field-input" type="text" name="system.details.weight.value"
-                        value="{{system.details.weight.value}}" />
+                        value="{{system.details.weight.value}}" {{isFieldLocked this}} />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.DraftsDinars"}}:</span>
                     <input class="field-input" type="text" name="system.details.dinars.value"
-                        value="{{system.details.dinars.value}}" />
+                        value="{{system.details.dinars.value}}" {{isFieldLocked this}} />
                 </div>
             </div>
         </div>
@@ -96,7 +96,8 @@
                     <h2>{{actor.Culture}}</h2>
                     {{{configLookup "cultureDescription" actor.details.culture.value}}}
                 </div>
-                <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
+                <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}"
+                    {{isFieldLocked this}}>
                     {{#selectOptions (config "cultures") selected=system.details.culture.value blank='UI.EmptyCulture'
                     localize=true
                     }}
@@ -113,7 +114,8 @@
                     <h2>{{actor.Concept}}</h2>
                     {{{configLookup "conceptDescription" actor.details.concept.value}}}
                 </div>
-                <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
+                <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}"
+                    {{isFieldLocked this}}>
                     {{#selectOptions (config "concepts") selected=system.details.concept.value blank="UI.EmptyConcept"
                     localize=true}}
 
@@ -131,7 +133,8 @@
                     <h2>{{actor.Cult}}</h2>
                     {{{configLookup "cultDescription" actor.details.cult.value}}}
                 </div>
-                <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
+                <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}" {{isFieldLocked
+                    this}}>
                     {{#selectOptions (config "cults") selected=system.details.cult.value blank="UI.EmptyCult"
                     localize=true}}
 
@@ -139,6 +142,8 @@
                 </select>
             </div>
         </div>
+
+
     </header>
 
     {{!-- Sheet Tab Navigation --}}
@@ -177,6 +182,7 @@
     </div>
 
     <footer class="sh-footer">
+
         <div class="footer-line-bar">
             <div class="square little left"></div>
             <svg class="start-line">

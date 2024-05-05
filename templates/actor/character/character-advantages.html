@@ -64,13 +64,13 @@
          <ol class="relationships-ol">
             {{#each system.relationships as |rs index|}}
             <li class="relationships-li" data-index="{{index}}">
-               <input class="relationships-cultes" value="{{rs.group}}" />
-               <input class="relationships-bonus" value="{{rs.modifier}}" />
+               <input class="relationships-cultes" value="{{rs.group}}" {{isFieldLocked ../this}} />
+               <input class="relationships-bonus" value="{{rs.modifier}}" {{isFieldLocked ../this}} />
             </li>
             {{/each}}
             <li class="relationships-li" data-index="new">
-               <input class="relationships-cultes" value="" />
-               <input class="relationships-bonus" value="" />
+               <input class="relationships-cultes" value="" {{isFieldLocked this}} />
+               <input class="relationships-bonus" value="" {{isFieldLocked this}} />
             </li>
          </ol>
       </div>
@@ -87,25 +87,29 @@
          <div class="advantage">
             <div class="sh-field">
                <span class="field-name">{{localize "DGNS.GroupName"}}:</span>
-               <input class="field-input" type="text" name="system.groupname" value="{{system.groupname}}" />
+               <input class="field-input" type="text" name="system.groupname" value="{{system.groupname}}"
+                  {{isFieldLocked this}} />
             </div>
          </div>
          <div class="advantage">
             <div class="sh-field">
                <span class="field-name">{{localize "DGNS.Alignment"}}:</span>
-               <input class="field-input" type="text" name="system.alignment" value="{{system.alignment}}" />
+               <input class="field-input" type="text" name="system.alignment" value="{{system.alignment}}"
+                  {{isFieldLocked this}} />
             </div>
          </div>
          <div class="advantage">
             <div class="sh-field">
                <span class="field-name">{{localize "DGNS.Constellation"}}:</span>
-               <input class="field-input" type="text" name="system.constellation" value="{{system.constellation}}" />
+               <input class="field-input" type="text" name="system.constellation" value="{{system.constellation}}"
+                  {{isFieldLocked this}} />
             </div>
          </div>
          <div class="advantage">
             <div class="sh-field">
                <span class="field-name">{{localize "DGNS.ScarsValue"}}:</span>
-               <input class="field-input" type="text" name="system.scarsValue" value="{{system.scarsValue}}" />
+               <input class="field-input" type="text" name="system.scarsValue" value="{{system.scarsValue}}"
+                  {{isFieldLocked this}} />
             </div>
          </div>
          <div class="advantage">

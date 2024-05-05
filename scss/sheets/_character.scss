@@ -1125,6 +1125,14 @@
     .qualities-name {
       margin-left: 5px;
     }
+    .damage-type {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
   }
 
   .arsenal-melee-grid {

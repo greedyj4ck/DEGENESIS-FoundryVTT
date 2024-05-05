@@ -5122,6 +5122,26 @@ hr {
   border-color: var(--c-gold);
 }
 
+.edit-switch-container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 22px;
+          flex: 0 1 22px;
+  padding-right: 5px;
+}
+
+input[type=checkbox].lock-slider {
+  display: none;
+}
+input[type=checkbox].lock-slider + label:before {
+  font-size: var(--font-size-14);
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f023";
+}
+input[type=checkbox].lock-slider:checked + label:before {
+  content: "\f3c1";
+}
+
 /* ENTITY SHEET: _CHARACTER.SCSS */
 .app.window-app.degenesis.sheet.actor.character {
   min-width: 720px;
@@ -6347,6 +6367,20 @@ hr {
 .app.window-app.degenesis.sheet.actor.character .arsenal-state-container .qualities-name {
   margin-left: 5px;
 }
+.app.window-app.degenesis.sheet.actor.character .arsenal-state-container .damage-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
 .app.window-app.degenesis.sheet.actor.character .arsenal-melee-grid {
   grid-template-columns: 2fr 1fr 1fr;
 }
@@ -7146,6 +7180,17 @@ hr {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15ch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .app.window-app.degenesis.sheet.fromHell .section-entry-grid.attack .distance {
   font-size: 11px;
@@ -7348,6 +7393,11 @@ hr {
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.15em;
+}
+.app.window-app.degenesis.sheet.fromHell .damage-type {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .app.window-app.degenesis.sheet.npc {
@@ -8235,6 +8285,22 @@ hr {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15ch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack .damage-type {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 .app.window-app.degenesis.sheet.npc .section-entry-grid.attack .distance {
   font-size: 11px;
@@ -9447,6 +9513,22 @@ hr {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15ch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .damage-type {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 .app.window-app.degenesis.sheet.aberrant .section-entry-grid.attack .distance {
   font-size: 11px;

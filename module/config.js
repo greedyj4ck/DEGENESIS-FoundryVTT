@@ -1,5 +1,6 @@
 export const DEGENESIS = {};
 export const CLUSTER = {};
+export const MODULE = "degenesis";
 
 DEGENESIS.cultures = {
   borca: "DGNS.Borca",
@@ -235,7 +236,8 @@ DEGENESIS.skillAttributes = {
 DEGENESIS.fightRolls = {
   dodge: "mobility",
   initiative: "reaction",
-  mentalDefense: "willpower",
+  mentalDefenseWill: "willpower",
+  mentalDefenseFaith: "faith",
 };
 
 DEGENESIS.diceRolls = {
@@ -764,14 +766,14 @@ DEGENESIS.calibers = {
 DEGENESIS.systemItems = {
   spentEgoActionModifier: {
     type: "modifier",
-    data: {
+    system: {
       action: "action",
       type: "D",
     },
   },
   spentSporeActionModifier: {
     type: "modifier",
-    data: {
+    system: {
       action: "action",
       type: "D",
     },

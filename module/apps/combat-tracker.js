@@ -71,7 +71,7 @@ export class DegenesisCombatTracker extends CombatTracker {
       "system.state.initiative.actions",
       newValue
     );
-    c.actor.update(actorData);
+    await c.actor.update(actorData);
   }
 
   async _onDiamondClick(event) {

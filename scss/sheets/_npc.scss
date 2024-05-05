@@ -842,6 +842,16 @@ $background-cult-image-offset: 50px; // in pixels
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.15ch;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .damage-type {
+        font-size: 8px;
+        font-weight: 800;
+        text-transform: uppercase;
       }
 
       .distance {
