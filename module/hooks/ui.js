@@ -4,6 +4,13 @@ export default function () {
   // Apply select2 to item
   Hooks.once("ready", () => {});
 
+  Hooks.on("renderPause", (app, [html]) => {
+    html.classList.add("degenesis");
+    const img = html.querySelector("img");
+    img.src = "systems/degenesis/ui/jackal_pause.png";
+    img.className = "";
+  });
+
   Hooks.on("renderSettings", (app, [html]) => {
     const details = html.querySelector("#game-details");
     const pip = details.querySelector(".system-info .update");
@@ -30,9 +37,35 @@ export default function () {
     });
   });
 
+  Hooks.on("renderFormApplication", (app, [html]) => {
+    $("select").select2({
+      dropdownParent: $(`[data-appid=${app.appId}]`),
+      minimumResultsForSearch: Infinity,
+    });
+  });
+
   Hooks.on("renderRollDialog", (app, [html]) => {
     $(".roll-dialog select").select2({
+      minimumResultsForSearch: 10,
+
+      language: {
+        noResults: function () {
+          return game.i18n.localize("UI.None");
+        },
+      },
       dropdownParent: $(`#${app.id}`),
+    });
+  });
+
+  Hooks.on("renderRollPhenomenonDialog", (app, [html]) => {
+    $("select").select2({
+      minimumResultsForSearch: 10,
+      dropdownParent: $(`[data-appid=${app.appId}]`),
+      language: {
+        noResults: function () {
+          return game.i18n.localize("UI.None");
+        },
+      },
     });
   });
 
@@ -40,21 +73,21 @@ export default function () {
     $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
       dropdownAutoWidth: true,
-      dropdownParent: $(`#${app.id}`),
+      dropdownParent: $(`[data-appid=${app.appId}]`),
     });
   });
 
   Hooks.on("renderDegenesisNPCSheet", (app, [html]) => {
     $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
-      dropdownParent: $(`#${app.id}`),
+      dropdownParent: $(`[data-appid=${app.appId}]`),
     });
   });
 
   Hooks.on("renderDegenesisAberrantSheet", (app, [html]) => {
     $(`#${app.id} select`).select2({
       minimumResultsForSearch: Infinity,
-      dropdownParent: $(`#${app.id}`),
+      dropdownParent: $(`[data-appid=${app.appId}]`),
     });
   });
 

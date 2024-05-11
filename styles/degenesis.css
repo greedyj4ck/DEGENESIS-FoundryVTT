@@ -127,6 +127,34 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
   src: url("../fonts/CrimsonPro-Italic.ttf");
   font-style: italic;
 }
+@-webkit-keyframes pause {
+  0% {
+    -webkit-filter: brightness(100%) contrast(100%);
+            filter: brightness(100%) contrast(100%);
+  }
+  50% {
+    -webkit-filter: brightness(140%) contrast(140%);
+            filter: brightness(140%) contrast(140%);
+  }
+  100% {
+    -webkit-filter: brightness(100%) contrast(100%);
+            filter: brightness(100%) contrast(100%);
+  }
+}
+@keyframes pause {
+  0% {
+    -webkit-filter: brightness(100%) contrast(100%);
+            filter: brightness(100%) contrast(100%);
+  }
+  50% {
+    -webkit-filter: brightness(140%) contrast(140%);
+            filter: brightness(140%) contrast(140%);
+  }
+  100% {
+    -webkit-filter: brightness(100%) contrast(100%);
+            filter: brightness(100%) contrast(100%);
+  }
+}
 #menu {
   left: calc(50% - 120px);
   width: 240px;
@@ -647,22 +675,53 @@ form.application .region-name > i {
 }
 
 #pause {
+  display: block;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  -webkit-animation: fadeOut;
+          animation: fadeOut;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  opacity: 0;
   background: none;
+  height: 150px;
+  margin-bottom: 25px;
+  -webkit-filter: drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.2)) drop-shadow(-1px 0px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0px -1px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0 0 30px rgba(0, 0, 0, 0.9));
+          filter: drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.2)) drop-shadow(-1px 0px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0px 1px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0px -1px 5px rgba(0, 0, 0, 0.2)) drop-shadow(0 0 30px rgba(0, 0, 0, 0.9));
+}
+#pause.paused {
+  -webkit-animation: fadeIn;
+          animation: fadeIn;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  opacity: 1;
 }
 #pause img {
-  content: url(../icons/logo.png);
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 200px;
+  height: 200px;
+  -webkit-animation-name: pause;
+          animation-name: pause;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
 }
 #pause h3 {
   font-family: "Avenir";
   text-shadow: 1px 1px 30px var(--c-pred);
 }
 #pause > figcaption {
+  position: relative;
+  top: -120px;
   font-family: "Avenir";
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 0px 3px 5px var(--b-alpha-10);
-  color: var(--c-gold) !important;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  color: var(--c-antiflash) !important;
 }
 #pause > img {
   opacity: 1;
@@ -866,6 +925,28 @@ form.application .region-name > i {
   color: var(--c-gold-5) !important;
   opacity: 0.5;
 }
+.app.window-app .select2-selection {
+  background-color: var(--b-alpha-9);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+}
+.app.window-app .select2-selection .select2-selection__rendered {
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+}
+.app.window-app .select2-dropdown {
+  border: 1px solid var(--c-gold);
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+  background-color: var(--b-alpha-9);
+}
+.app.window-app .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-resin);
+}
+.app.window-app .select2-dropdown .select2-results__option--selected {
+  background-color: var(--c-pred);
+  color: var(--c-antiflash);
+}
 
 .directory-list {
   scrollbar-width: unset !important;
@@ -994,12 +1075,32 @@ nav.tabs {
   letter-spacing: 0.2ch;
   font-weight: 600;
   color: rgb(255, 255, 255);
-  border-radius: 0;
+  border-radius: 5px;
+  background-color: var(--b-alpha-6);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .notification.info {
-  border: 1px solid rgb(154, 12, 19);
-  background-color: rgb(20, 20, 20);
+  border: 1px solid var(--c-gold);
+  background-color: var(--b-alpha-6);
+  color: var(--c-gold);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.notification.warn {
+  border: 1px solid var(--c-resin);
+  background-color: var(--b-alpha-6);
+  color: var(--c-resin-3);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.notification.error {
+  border: 1px solid var(--c-pred);
+  background-color: var(--b-alpha-6);
+  color: var(--c-pred);
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -2972,6 +3073,11 @@ select > * {
   color: var(--c-gold);
   background-color: black;
 }
+select > *:hover {
+  -webkit-box-shadow: 0 0 10px 100px green inset;
+          box-shadow: 0 0 10px 100px green inset;
+  color: white;
+}
 
 textarea:focus {
   outline: 1px solid var(--c-antiflash);
@@ -3010,6 +3116,10 @@ button:hover {
   text-shadow: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+}
+button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 button label {
   line-height: normal;
@@ -3375,13 +3485,24 @@ a.diamond:hover .square.red.perma {
   font-size: 11px;
 } */
 .post-item .description {
-  text-align: center;
+  padding: 10px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
 }
 .post-item .description button.button-toggle-description {
   border: 1px solid var(--c-pred);
   width: auto;
   min-width: 50%;
-  margin: 15px 0px 5px 0px;
+  margin-bottom: 5px;
 }
 .post-item .description button.button-toggle-description:focus {
   -webkit-box-shadow: none;
@@ -3389,6 +3510,10 @@ a.diamond:hover .square.red.perma {
 }
 .post-item .description .description-text {
   overflow: hidden;
+  width: 100%;
+  font-family: "Crimson Pro";
+  font-size: var(--font-size-12);
+  letter-spacing: 0.05em;
   text-align: justify;
   max-height: 0px;
   -webkit-transition: all 0.8s cubic-bezier(0, 0.94, 0.65, 1);
@@ -3404,7 +3529,16 @@ a.diamond:hover .square.red.perma {
   height: 100px;
 }
 .post-item .post-item-content {
-  text-align: justify;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .post-item img {
   border: none;
@@ -3758,8 +3892,12 @@ a.diamond:hover .square.red.perma {
 }
 
 /* APPS: _ROLLDIALOG.SCSS */
-.roll-dialog .window-content {
-  overflow-x: hidden;
+.app.app.window-app.roll-dialog .line-stroke {
+  stroke: var(--c-gold);
+  stroke-width: 1.5px;
+}
+.app.app.window-app.roll-dialog .window-content {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3769,38 +3907,7 @@ a.diamond:hover .square.red.perma {
           flex-direction: column;
   padding-top: 0;
 }
-.roll-dialog .dialog-bonuses {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-.roll-dialog .title {
-  -ms-flex-item-align: center;
-      align-self: center;
-  width: 99%;
-  margin: -8px 1px 0 1px;
-}
-
-.app.window-app.roll-dialog .square.little.left, .app.window-app.degenesis.sheet .square.little.left {
-  margin-left: 2px;
-  margin-right: 0px;
-}
-.app.window-app.roll-dialog .square.little,
-.app.window-app.roll-dialog .title .square.little {
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-bottom: 1px;
-  height: 7px;
-  width: 7px;
-}
-.app.window-app.degenesis.roll-dialog .header-line .square.little {
-  -ms-flex-item-align: center;
-      align-self: center;
-  margin-bottom: 1px;
-  height: 7px;
-  width: 7px;
-}
-.app.window-app.roll-dialog .title-line {
+.app.app.window-app.roll-dialog .title-line {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3809,7 +3916,7 @@ a.diamond:hover .square.red.perma {
       -ms-flex: 1;
           flex: 1;
 }
-.app.window-app.roll-dialog .middle-name {
+.app.app.window-app.roll-dialog .middle-name {
   text-transform: uppercase;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3824,8 +3931,18 @@ a.diamond:hover .square.red.perma {
   font-family: "Avenir";
   border: 2px solid transparent;
 }
-
-.roll-dialog .body-line {
+.app.app.window-app.roll-dialog .dialog-bonuses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.app.app.window-app.roll-dialog .title {
+  -ms-flex-item-align: center;
+      align-self: center;
+  width: 99%;
+  margin: -8px 1px 0 1px;
+}
+.app.app.window-app.roll-dialog .body-line {
   -ms-flex-item-align: start;
       align-self: start;
   display: -webkit-box;
@@ -3844,10 +3961,10 @@ a.diamond:hover .square.red.perma {
   margin-top: 10px;
   margin-bottom: 5px;
 }
-.roll-dialog .dialog-bonuses > div {
+.app.app.window-app.roll-dialog .dialog-bonuses > div {
   width: 50%;
 }
-.roll-dialog .dialog-inputs {
+.app.app.window-app.roll-dialog .dialog-inputs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3866,7 +3983,7 @@ a.diamond:hover .square.red.perma {
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
-.roll-dialog .dialog-inputs > * {
+.app.app.window-app.roll-dialog .dialog-inputs > * {
   margin: 0 5px 3px 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3876,28 +3993,40 @@ a.diamond:hover .square.red.perma {
           justify-content: space-between;
   width: 95%;
 }
-.roll-dialog .dialog-input {
+.app.app.window-app.roll-dialog .dialog-input {
   width: 10%;
   border-radius: 0px;
   border: 1px solid black;
   text-align: center;
   width: 50%;
 }
-.roll-dialog .input-label {
+.app.app.window-app.roll-dialog .input-label {
   width: 100%;
 }
-.roll-dialog .custom-modifier-section {
+.app.app.window-app.roll-dialog .custom-modifier-section {
+  max-height: 85px;
+  overflow: hidden;
   text-align: center;
-  padding-right: 5px;
+  border: 1px solid var(--c-gold);
+  border-radius: 5px;
 }
-.roll-dialog .custom-modifiers {
+.app.app.window-app.roll-dialog .custom-modifier-section .select2-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100% !important;
+  border: 0;
+}
+.app.app.window-app.roll-dialog .custom-modifier-section .select2-container .select2-search.select2-search--inline {
+  display: none;
+}
+.app.app.window-app.roll-dialog .custom-modifiers {
   width: 100%;
   height: -webkit-fill-available;
   overflow: auto;
   border: 1px solid black;
   margin-bottom: 3px;
 }
-.roll-dialog .secondary-selection {
+.app.app.window-app.roll-dialog .secondary-selection {
   width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -3905,14 +4034,14 @@ a.diamond:hover .square.red.perma {
   margin: 5px;
   text-align: center;
 }
-.roll-dialog .custom-modifiers > * {
+.app.app.window-app.roll-dialog .custom-modifiers > * {
   color: black;
   background-color: white;
 }
-.roll-dialog div.custom-modifier-header > label {
+.app.app.window-app.roll-dialog div.custom-modifier-header > label {
   padding-right: 10px;
 }
-.roll-dialog .custom-modifier-header {
+.app.app.window-app.roll-dialog .custom-modifier-header {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3931,17 +4060,16 @@ a.diamond:hover .square.red.perma {
           align-items: center;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  padding-right: 5px;
   padding-bottom: 3px;
 }
-.roll-dialog .custom-modifiers-reset-button {
+.app.app.window-app.roll-dialog .custom-modifiers-reset-button {
   font-size: 10px;
   padding: 0px 10px 0px 10px;
   margin: 0 0 0 0;
   width: auto;
   height: auto;
 }
-.roll-dialog .dialog-bonuses-modifiers {
+.app.app.window-app.roll-dialog .dialog-bonuses-modifiers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3961,7 +4089,7 @@ a.diamond:hover .square.red.perma {
       align-content: center;
   padding-bottom: 5px;
 }
-.roll-dialog .dialog-static-modifiers {
+.app.app.window-app.roll-dialog .dialog-static-modifiers {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3983,7 +4111,7 @@ a.diamond:hover .square.red.perma {
   padding-bottom: 3px;
   color: var(--b-alpha-5);
 }
-.roll-dialog .dialog-total-modifiers {
+.app.app.window-app.roll-dialog .dialog-total-modifiers {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4003,13 +4131,13 @@ a.diamond:hover .square.red.perma {
   -ms-flex-line-pack: center;
       align-content: center;
 }
-.roll-dialog .type-modifier-header {
+.app.app.window-app.roll-dialog .type-modifier-header {
   width: 50%;
   text-align: right;
   padding-right: 10px;
   border-right: 1px solid #000;
 }
-.roll-dialog .type-modifier-values {
+.app.app.window-app.roll-dialog .type-modifier-values {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4030,16 +4158,115 @@ a.diamond:hover .square.red.perma {
   width: 50%;
   padding-left: 10px;
 }
-.roll-dialog .type-modifier-values > div {
+.app.app.window-app.roll-dialog .type-modifier-values > div {
   padding-right: 20px;
+}
+.app.app.window-app.roll-dialog .select2-selection {
+  background-color: var(--b-alpha-9) !important;
+  border: 1px solid var(--c-gold) !important;
+  color: var(--c-gold) !important;
+  height: 100%;
+}
+.app.app.window-app.roll-dialog .select2-selection .select2-selection__rendered {
+  font-family: "Crimson Pro";
+  color: var(--c-gold) !important;
+}
+.app.app.window-app.roll-dialog .select2-dropdown {
+  border: 1px solid var(--c-gold);
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+  background-color: var(--b-alpha-9);
+}
+.app.app.window-app.roll-dialog .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-resin) !important;
+}
+.app.app.window-app.roll-dialog .select2-dropdown .select2-results__option--selected {
+  background-color: var(--c-pred) !important;
+  color: var(--c-antiflash);
+}
+.app.app.window-app.roll-dialog .select2-selection--multiple {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 5px !important;
+  border: 0 !important;
+  height: 100% !important;
+  background: none !important;
+  overflow-y: auto;
+}
+.app.app.window-app.roll-dialog .select2-selection--multiple .select2-selection__choice__display {
+  min-height: 10px;
+}
+.app.app.window-app.roll-dialog .select2-selection--multiple .select2-selection__rendered {
+  padding: 3px 0cm;
+  margin: 0 !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100% !important;
+  height: 100% !important;
+}
+.app.app.window-app.roll-dialog .select2-selection--multiple .select2-selection__choice {
+  height: 100%;
+  min-height: 25px;
+  max-height: 25px;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: reverse !important;
+      -ms-flex-direction: row-reverse !important;
+          flex-direction: row-reverse !important;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 !important;
+  font-size: var(--font-size-12);
+  font-family: "Avenir";
+  font-weight: 600;
+  background: none;
+  border: none;
+}
+.app.app.window-app.roll-dialog .select2-selection--multiple .select2-selection__choice button {
+  position: relative !important;
+  width: 20px !important;
+  min-height: 20px !important;
+}
+
+.app.window-app.roll-dialog .square.little.left, .app.window-app.degenesis.sheet .square.little.left {
+  margin-left: 2px;
+  margin-right: 0px;
+}
+.app.window-app.roll-dialog .square.little,
+.app.window-app.roll-dialog .title .square.little {
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-bottom: 1px;
+  height: 7px;
+  width: 7px;
+}
+.app.window-app.degenesis.roll-dialog .header-line .square.little {
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-bottom: 1px;
+  height: 7px;
+  width: 7px;
 }
 
 /* APPS: _ROLLDIALOG.SCSS */
 .app.window-app.roll-phenomenon-dialog {
   min-width: 600px;
-  overflow: hidden;
   background-size: cover;
   background-position: 50% 0%;
+}
+.app.window-app.roll-phenomenon-dialog .line-stroke {
+  stroke: var(--c-gold);
+  stroke-width: 1.5px;
 }
 .app.window-app.roll-phenomenon-dialog div::-webkit-scrollbar,
 .app.window-app.roll-phenomenon-dialog textarea::-webkit-scrollbar,
@@ -4126,7 +4353,7 @@ a.diamond:hover .square.red.perma {
   margin-bottom: 1px;
   height: 7px;
   width: 7px;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--c-gold);
 }
 .app.window-app.roll-phenomenon-dialog .square.little.left {
   margin-left: 2px;
@@ -4144,11 +4371,7 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  color: #fff;
-}
-.app.window-app.roll-phenomenon-dialog .line-stroke {
-  stroke: #fff;
-  stroke-width: 1.5px;
+  color: var(--c-antiflash);
 }
 .app.window-app.roll-phenomenon-dialog .container {
   width: 100%;
@@ -4268,7 +4491,7 @@ a.diamond:hover .square.red.perma {
           align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
-  color: #fff;
+  color: var(--c-gold);
   margin-bottom: 5px;
 }
 .app.window-app.roll-phenomenon-dialog .dialog-inputs > * {
@@ -4284,8 +4507,8 @@ a.diamond:hover .square.red.perma {
 .app.window-app.roll-phenomenon-dialog .dialog-input {
   width: 10%;
   border-radius: 0px;
-  border: 1px solid var(--c-pred);
-  color: #fff;
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold-4);
   background-color: var(--b-alpha-1);
   text-align: center;
   width: 50%;
@@ -4299,6 +4522,20 @@ a.diamond:hover .square.red.perma {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  min-height: 92px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid var(--c-gold);
+  border-radius: 5px;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifier-section .select2-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100% !important;
+  border: 0;
+}
+.app.window-app.roll-phenomenon-dialog .custom-modifier-section .select2-container .select2-search.select2-search--inline {
+  display: none;
 }
 .app.window-app.roll-phenomenon-dialog .custom-modifiers {
   width: 100%;
@@ -4445,6 +4682,82 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.roll-phenomenon-dialog .type-modifier-values > div {
   padding-right: 20px;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection {
+  background-color: var(--b-alpha-9) !important;
+  border: 1px solid var(--c-gold) !important;
+  color: var(--c-gold) !important;
+  height: 100%;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection .select2-selection__rendered {
+  font-family: "Crimson Pro";
+  color: var(--c-gold) !important;
+}
+.app.window-app.roll-phenomenon-dialog .select2-dropdown {
+  border: 1px solid var(--c-gold);
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+  background-color: var(--b-alpha-9);
+}
+.app.window-app.roll-phenomenon-dialog .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-resin) !important;
+}
+.app.window-app.roll-phenomenon-dialog .select2-dropdown .select2-results__option--selected {
+  background-color: var(--c-pred) !important;
+  color: var(--c-antiflash);
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection--multiple {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 5px !important;
+  border: 0 !important;
+  height: 100% !important;
+  background: none !important;
+  overflow-y: auto;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection--multiple .select2-selection__choice__display {
+  min-height: 10px;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection--multiple .select2-selection__rendered {
+  padding: 3px 0cm;
+  margin: 0 !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100% !important;
+  height: 100% !important;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection--multiple .select2-selection__choice {
+  height: 100%;
+  min-height: 25px;
+  max-height: 25px;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: reverse !important;
+      -ms-flex-direction: row-reverse !important;
+          flex-direction: row-reverse !important;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 !important;
+  font-size: var(--font-size-12);
+  font-family: "Avenir";
+  font-weight: 600;
+  background: none;
+  border: none;
+}
+.app.window-app.roll-phenomenon-dialog .select2-selection--multiple .select2-selection__choice button {
+  position: relative !important;
+  width: 20px !important;
+  min-height: 20px !important;
 }
 
 /* Styling proseMirror editor */
@@ -5142,6 +5455,14 @@ input[type=checkbox].lock-slider:checked + label:before {
   content: "\f3c1";
 }
 
+.app.window-app.form.sheet-config {
+  height: auto !important;
+}
+
+.app.window-app.package-configuration nav > a.item.category-tab {
+  height: auto;
+}
+
 /* ENTITY SHEET: _CHARACTER.SCSS */
 .app.window-app.degenesis.sheet.actor.character {
   min-width: 720px;
@@ -5181,14 +5502,14 @@ input[type=checkbox].lock-slider:checked + label:before {
 .app.window-app.degenesis.sheet.actor.character .square.little {
   border: 1.5px solid var(--c-gold);
 }
-.app.window-app.degenesis.sheet.actor.character .square.border-black .square-into,
-.app.window-app.degenesis.sheet.actor.character .square.little.border-black .square-into {
-  background-color: var(--c-gold);
-}
 .app.window-app.degenesis.sheet.actor.character .square .square-into,
 .app.window-app.degenesis.sheet.actor.character .square.little .square-into {
   border: none;
   background-color: none;
+}
+.app.window-app.degenesis.sheet.actor.character .square .square-into.black,
+.app.window-app.degenesis.sheet.actor.character .square.little .square-into.black {
+  background-color: var(--c-gold);
 }
 .app.window-app.degenesis.sheet.actor.character .square:hover,
 .app.window-app.degenesis.sheet.actor.character .square.little:hover {
@@ -5546,7 +5867,7 @@ input[type=checkbox].lock-slider:checked + label:before {
 .app.window-app.degenesis.sheet.actor.character input {
   background: none;
   border: none;
-  padding-top: 5px;
+  padding-top: 0px;
 }
 .app.window-app.degenesis.sheet.actor.character input:focus {
   -webkit-box-shadow: none;
@@ -5917,7 +6238,7 @@ input[type=checkbox].lock-slider:checked + label:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: 20px;
+  min-height: 28px;
   border-bottom: 1px solid var(--c-gold);
   padding-bottom: 2px;
 }
@@ -5956,7 +6277,6 @@ input[type=checkbox].lock-slider:checked + label:before {
 }
 .app.window-app.degenesis.sheet.actor.character .advantage-tab-container .scars-group .advantage-list .advantage .sh-field {
   width: 100%;
-  margin-bottom: 4px;
 }
 .app.window-app.degenesis.sheet.actor.character .advantage-tab-container .scars-group .advantage-list .advantage:last-child {
   margin-top: 10px;
@@ -7684,7 +8004,6 @@ input[type=checkbox].lock-slider:checked + label:before {
   min-width: 120px;
   border-radius: 0;
   border: 0;
-  border-bottom: 1px solid var(--c-gold);
   text-align: center;
   font-family: "Crimson Pro";
   font-weight: 500;
@@ -7697,6 +8016,23 @@ input[type=checkbox].lock-slider:checked + label:before {
 }
 .app.window-app.degenesis.sheet.npc .field-rank .input-rank:hover, .app.window-app.degenesis.sheet.npc .field-rank .input-rank:active {
   border-color: var(--c-pred);
+}
+.app.window-app.degenesis.sheet.npc .field-rank:after {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  height: 1px;
+  width: 0%;
+  background-color: var(--c-gold);
+  display: block;
+  content: "";
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.app.window-app.degenesis.sheet.npc .field-rank:hover:after {
+  left: 0%;
+  width: 100%;
+  background-color: #ed1d27;
 }
 .app.window-app.degenesis.sheet.npc .input-rank-label {
   margin-top: 2px;
@@ -10026,7 +10362,6 @@ input[type=checkbox].lock-slider:checked + label:before {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
-  padding: 0px 2px;
   gap: 2px;
   margin-bottom: 3px;
 }

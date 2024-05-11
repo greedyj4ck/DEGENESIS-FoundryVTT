@@ -273,7 +273,7 @@ $background-cult-image-offset: 50px; // in pixels
       min-width: 120px;
       border-radius: 0;
       border: 0;
-      border-bottom: 1px solid var(--c-gold);
+      //border-bottom: 1px solid var(--c-gold);
 
       text-align: center;
       font-family: $serif-content-font;
@@ -290,6 +290,24 @@ $background-cult-image-offset: 50px; // in pixels
       &:active {
         border-color: var(--c-pred);
       }
+    }
+
+    &:after {
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      height: 1px;
+      width: 0%;
+      background-color: var(--c-gold);
+      display: block;
+      content: "";
+      transition: 0.3s ease-in-out;
+    }
+
+    &:hover:after {
+      left: 0%;
+      width: 100%;
+      background-color: $dgns-red;
     }
   }
 

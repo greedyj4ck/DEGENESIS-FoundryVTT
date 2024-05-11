@@ -41,6 +41,7 @@
   "UI.Roll": "Roll",
   "UI.CannotRollPassive": "Passive Defense rolls cannot be made",
   "UI.NotEnoughEgo": "does not have enough ego points to spend",
+  "UI.None": "None",
 
   "UI.EmptyCult": "CHOOSE CULT",
   "UI.EmptyConcept": "CHOOSE CONCEPT",

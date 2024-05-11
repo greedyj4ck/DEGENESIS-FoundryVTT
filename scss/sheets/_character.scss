@@ -36,13 +36,17 @@
 
     &.border-black {
       .square-into {
-        background-color: var(--c-gold);
+        //background-color: var(--c-gold);
       }
     }
 
     .square-into {
       border: none;
       background-color: none;
+
+      &.black {
+        background-color: $line-stroke-color;
+      }
     }
     &:hover {
       border-color: var(--c-pred);
@@ -388,7 +392,7 @@
   input {
     background: none;
     border: none;
-    padding-top: 5px;
+    padding-top: 0px;
 
     &:focus {
       box-shadow: none;
@@ -748,7 +752,7 @@
 
       .relationships-li {
         display: flex;
-        min-height: 20px;
+        min-height: 28px;
         border-bottom: 1px solid var(--c-gold);
         padding-bottom: 2px;
       }
@@ -776,7 +780,6 @@
 
           .sh-field {
             width: 100%;
-            margin-bottom: 4px;
           }
 
           &:last-child {

@@ -10,6 +10,11 @@ select {
   > * {
     color: var(--c-gold);
     background-color: black;
+
+    &:hover {
+      box-shadow: 0 0 10px 100px green inset;
+      color: white;
+    }
   }
 }
 
@@ -45,6 +50,10 @@ button {
     border: 1px solid var(--c-pred) !important;
     text-shadow: none !important;
     box-shadow: none !important;
+  }
+
+  &:focus {
+    box-shadow: none;
   }
 
   i {

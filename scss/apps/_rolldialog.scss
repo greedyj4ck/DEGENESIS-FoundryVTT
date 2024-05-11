@@ -1,11 +1,36 @@
 /* APPS: _ROLLDIALOG.SCSS */
 
-.roll-dialog {
+.app.app.window-app.roll-dialog {
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: var(--c-gold);
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
+
   .window-content {
-    overflow-x: hidden;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     padding-top: 0;
+  }
+  .title-line {
+    display: flex;
+    background-size: 100%;
+    flex: 1;
+  }
+
+  .middle-name {
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-end;
+    font-size: 15px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: $sans-serif-content-font;
+    border: 2px solid transparent;
   }
 
   .dialog-bonuses {
@@ -17,54 +42,7 @@
     width: 99%;
     margin: -8px 1px 0 1px;
   }
-}
 
-.app.window-app {
-  &.roll-dialog .square.little.left,
-  &.degenesis.sheet .square.little.left {
-    margin-left: 2px;
-    margin-right: 0px;
-  }
-
-  &.roll-dialog {
-    .square.little,
-    .title .square.little {
-      align-self: center;
-      margin-bottom: 1px;
-      height: 7px;
-      width: 7px;
-    }
-  }
-
-  &.degenesis.roll-dialog .header-line .square.little {
-    align-self: center;
-    margin-bottom: 1px;
-    height: 7px;
-    width: 7px;
-  }
-
-  &.roll-dialog {
-    .title-line {
-      display: flex;
-      background-size: 100%;
-      flex: 1;
-    }
-
-    .middle-name {
-      text-transform: uppercase;
-      display: flex;
-      align-items: flex-end;
-      font-size: 15px;
-      font-weight: 200;
-      letter-spacing: 2px;
-      text-align: center;
-      font-family: $sans-serif-content-font;
-      border: 2px solid transparent;
-    }
-  }
-}
-
-.roll-dialog {
   .body-line {
     align-self: start;
     display: flex;
@@ -109,8 +87,22 @@
   }
 
   .custom-modifier-section {
+    max-height: 85px;
+    overflow: hidden;
     text-align: center;
-    padding-right: 5px;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-sm;
+
+    .select2-container {
+      overflow: hidden;
+      width: 100%;
+      height: 100% !important;
+      border: 0;
+
+      .select2-search.select2-search--inline {
+        display: none;
+      }
+    }
   }
 
   .custom-modifiers {
@@ -145,7 +137,7 @@
     justify-content: flex-end;
     align-items: center;
     align-content: flex-start;
-    padding-right: 5px;
+
     padding-bottom: 3px;
   }
 
@@ -209,5 +201,104 @@
     > div {
       padding-right: 20px;
     }
+  }
+
+  .select2-selection {
+    background-color: var(--b-alpha-9) !important;
+    border: 1px solid var(--c-gold) !important;
+    color: var(--c-gold) !important;
+    height: 100%;
+
+    .select2-selection__rendered {
+      font-family: "Crimson Pro";
+      color: var(--c-gold) !important;
+    }
+  }
+
+  .select2-dropdown {
+    border: 1px solid var(--c-gold);
+    font-family: "Crimson Pro";
+    color: var(--c-gold);
+    background-color: var(--b-alpha-9);
+
+    .select2-results__option--highlighted {
+      background-color: var(--c-resin) !important;
+    }
+    .select2-results__option--selected {
+      background-color: var(--c-pred) !important;
+      color: var(--c-antiflash);
+    }
+  }
+
+  .select2-selection--multiple {
+    display: flex;
+    padding: 0 5px !important;
+    border: 0 !important;
+
+    height: 100% !important;
+    background: none !important;
+    overflow-y: auto;
+
+    .select2-selection__choice__display {
+      min-height: 10px;
+    }
+
+    .select2-selection__rendered {
+      padding: 3px 0cm;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .select2-selection__choice {
+      height: 100%;
+      min-height: 25px;
+      max-height: 25px;
+
+      display: flex !important;
+      flex-direction: row-reverse !important;
+      justify-items: center;
+      align-items: center;
+      margin: 0 !important;
+      font-size: var(--font-size-12);
+      font-family: "Avenir";
+      font-weight: 600;
+      background: none;
+      border: none;
+
+      button {
+        position: relative !important;
+        width: 20px !important;
+
+        min-height: 20px !important;
+      }
+    }
+  }
+}
+
+.app.window-app {
+  &.roll-dialog .square.little.left,
+  &.degenesis.sheet .square.little.left {
+    margin-left: 2px;
+    margin-right: 0px;
+  }
+
+  &.roll-dialog {
+    .square.little,
+    .title .square.little {
+      align-self: center;
+      margin-bottom: 1px;
+      height: 7px;
+      width: 7px;
+    }
+  }
+
+  &.degenesis.roll-dialog .header-line .square.little {
+    align-self: center;
+    margin-bottom: 1px;
+    height: 7px;
+    width: 7px;
   }
 }

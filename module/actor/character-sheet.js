@@ -189,9 +189,6 @@ export class DegenesisCharacterSheet extends ActorSheet {
     if (sheetData.document.getFlag(MODULE, "sheetLocked") === undefined) {
       sheetData.document.setFlag(MODULE, "sheetLocked", true);
     }
-
-    /*   if (!sheetData.document.flags) {
-    } */
   }
 
   async _handleEnrichment() {
@@ -811,14 +808,19 @@ export class DegenesisCharacterSheet extends ActorSheet {
   /* HELPER FUNCTIONS */
 
   isLocked(notify = false) {
-    if (this.document.getFlag(MODULE, "sheetLocked")) {
-      if (notify) {
-        ui.notifications.notify(
-          game.i18n.localize("UI.SheetLockedNotification")
-        );
-      }
+    let lockStatus = this.document.getFlag(MODULE, "sheetLocked");
 
-      return true;
-    } else return false;
+    if (lockStatus !== undefined) {
+      if (lockStatus) {
+        if (notify) {
+          ui.notifications.notify(
+            game.i18n.localize("UI.SheetLockedNotification")
+          );
+        }
+        return true;
+      } else {
+        return false;
+      }
+    } else return true;
   }
 }

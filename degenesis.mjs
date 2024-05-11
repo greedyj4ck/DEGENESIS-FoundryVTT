@@ -208,10 +208,9 @@ Hooks.once("init", async function () {
   });
 });
 
-/*
 Hooks.once("init", function () {
   CONFIG.debug.hooks = true;
-});*/
+});
 
 // HOOK IS FIRED ON SETUP STAGE
 Hooks.on("setup", () => {

@@ -61,6 +61,7 @@ export default class RollPhenomenonDialog extends Dialog {
     // RESET BUTTON FUNCTIONALITY INSTEAD USING DEFAULT FORM RESET (ISSUES WITH REFRESHING VALUES)
 
     this.customModifiers.val(null);
+    $("select[name='customModifiers']").val(null).trigger("change");
 
     // SET USER ENTRY VALUES TO 0
 

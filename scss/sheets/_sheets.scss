@@ -572,3 +572,14 @@ input[type="checkbox"] {
     }
   }
 }
+
+// Sheetconfig size fix
+.app.window-app.form.sheet-config {
+  height: auto !important;
+}
+
+.app.window-app.package-configuration {
+  nav > a.item.category-tab {
+    height: auto;
+  }
+}

@@ -23,15 +23,17 @@ export class DegenesisCombatTracker extends CombatTracker {
   /** @inheritdoc */
   async getData(options) {
     let context = await super.getData(options);
-    //context.icons = CONFIG.XWING.icons;
 
     context.turns.forEach((turn) => {
-      turn.flags = context.combat.combatants.get(turn.id)?.flags;
-      turn.actorType = context.combat.combatants.get(turn.id)?.actor.type;
-      turn.actor = context.combat.combatants.get(turn.id)?.actor;
-      DEG_Utility.addDiamonds(turn.actor.system.state.spentEgo, 3);
+      try {
+        turn.flags = context.combat.combatants.get(turn.id)?.flags;
+        turn.actorType = context.combat.combatants.get(turn.id)?.actor.type;
+        turn.actor = context.combat.combatants.get(turn.id)?.actor;
+        DEG_Utility.addDiamonds(turn.actor.system.state.spentEgo, 3);
+      } catch (error) {
+        context.combat.deleteEmbeddedDocuments("Combatant", [turn.id]);
+      }
     });
-
     return context;
   }
 

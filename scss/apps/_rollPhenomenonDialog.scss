@@ -2,10 +2,14 @@
 
 .app.window-app.roll-phenomenon-dialog {
   $line-stroke-width: 1.5px;
-  $line-stroke-color: #fff;
+  $line-stroke-color: var(--c-gold);
+
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
+  }
 
   min-width: 600px;
-  overflow: hidden;
 
   background-size: cover;
   background-position: 50% 0%;
@@ -66,6 +70,7 @@
   button {
     border: 1px solid var(--c-pred);
   }
+
   .window-content {
     background: url(../ui/black_01.jpg) !important;
     background-color: #000 !important;
@@ -106,13 +111,9 @@
     display: flex;
     background-size: 100%;
     flex: 1;
-    color: #fff;
+    color: var(--c-antiflash);
   }
 
-  .line-stroke {
-    stroke: $line-stroke-color;
-    stroke-width: $line-stroke-width;
-  }
   .container {
     width: 100%;
     max-height: 500px;
@@ -194,7 +195,7 @@
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
-    color: #fff;
+    color: var(--c-gold);
     margin-bottom: 5px;
 
     > * {
@@ -208,8 +209,8 @@
   .dialog-input {
     width: 10%;
     border-radius: 0px;
-    border: 1px solid var(--c-pred);
-    color: #fff;
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold-4);
     background-color: var(--b-alpha-1);
     text-align: center;
     width: 50%;
@@ -223,6 +224,22 @@
     text-align: center;
     padding-right: 5px;
     flex: 1;
+    min-height: 92px;
+    overflow: hidden;
+
+    text-align: center;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-sm;
+    .select2-container {
+      overflow: hidden;
+      width: 100%;
+      height: 100% !important;
+      border: 0;
+
+      .select2-search.select2-search--inline {
+        display: none;
+      }
+    }
   }
 
   .custom-modifiers {
@@ -324,6 +341,80 @@
 
     > div {
       padding-right: 20px;
+    }
+  }
+
+  .select2-selection {
+    background-color: var(--b-alpha-9) !important;
+    border: 1px solid var(--c-gold) !important;
+    color: var(--c-gold) !important;
+    height: 100%;
+
+    .select2-selection__rendered {
+      font-family: "Crimson Pro";
+      color: var(--c-gold) !important;
+    }
+  }
+
+  .select2-dropdown {
+    border: 1px solid var(--c-gold);
+    font-family: "Crimson Pro";
+    color: var(--c-gold);
+    background-color: var(--b-alpha-9);
+
+    .select2-results__option--highlighted {
+      background-color: var(--c-resin) !important;
+    }
+    .select2-results__option--selected {
+      background-color: var(--c-pred) !important;
+      color: var(--c-antiflash);
+    }
+  }
+
+  .select2-selection--multiple {
+    display: flex;
+    padding: 0 5px !important;
+    border: 0 !important;
+
+    height: 100% !important;
+    background: none !important;
+    overflow-y: auto;
+
+    .select2-selection__choice__display {
+      min-height: 10px;
+    }
+
+    .select2-selection__rendered {
+      padding: 3px 0cm;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .select2-selection__choice {
+      height: 100%;
+      min-height: 25px;
+      max-height: 25px;
+
+      display: flex !important;
+      flex-direction: row-reverse !important;
+      justify-items: center;
+      align-items: center;
+      margin: 0 !important;
+      font-size: var(--font-size-12);
+      font-family: "Avenir";
+      font-weight: 600;
+      background: none;
+      border: none;
+
+      button {
+        position: relative !important;
+        width: 20px !important;
+
+        min-height: 20px !important;
+      }
     }
   }
 }
