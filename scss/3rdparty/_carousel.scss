@@ -1,48 +1,129 @@
 #combat-dock {
-  margin-top: 5px;
+  margin-top: 10px;
+
+  #combatants {
+    gap: 5px;
+  }
 
   .buttons-container {
-    border-radius: $b-radius-sm;
-    border: 1px solid var(--c-gold);
-    padding: 3px;
-    background-color: var(--b-alpha-6) !important;
-    backdrop-filter: blur(5px);
-    color: var(--c-gold) !important;
+    justify-content: flex-start !important;
 
-    i {
-      padding: 2px;
+    > i {
+      border: 1px solid var(--c-gold) !important;
+      color: var(--c-gold) !important;
+      background: var(--b-alpha-5) !important;
+
       &:hover {
-        color: var(--c-pred);
-        text-shadow: none !important;
-        box-shadow: none !important;
+        color: var(--c-pred) !important;
       }
-    }
-
-    &.left {
-    }
-    &.right {
     }
   }
-  #combatants {
-    align-items: flex-start !important;
 
-    .combatant-portrait {
-      margin: 0px 2px;
-      background-color: var(--b-alpha-6) !important;
-      border-radius: $b-radius-md;
+  .combatant-portrait {
+    margin: 0 !important;
 
-      border: 2px solid var(--c-gold) !important;
-
-      &.active {
-        border: 2px solid var(--c-pred) !important;
-      }
-
-      .combatant-wrapper {
+    &:hover {
+      .combatant-buttons {
+        opacity: 1 !important;
       }
     }
 
-    .separator {
-      border: 1px solid var(--c-pred) !important;
+    border: 1px solid var(--c-gold) !important;
+    border-radius: $b-radius-sm !important;
+
+    &.active {
+      border-color: var(--c-pred) !important;
+    }
+
+    .combatant-wrapper {
+      border-radius: $b-radius-sm !important;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1 0;
+      align-items: flex-start !important;
+    }
+
+    .overlay-ui-container {
+      position: absolute !important;
+      border-radius: $b-radius-sm !important;
+      z-index: 10;
+
+      .tracked-attribute-bar-max {
+        width: 8px !important;
+      }
+
+      .tracked-attribute-bar-max > div {
+        border-color: var(--c-gold) !important;
+        border-width: 2px;
+      }
+      .portrait-initiative > i {
+        color: var(--c-gold);
+        opacity: 1 !important;
+      }
+    }
+
+    .bottom-ui-container {
+      .combatant-buttons {
+        color: var(--c-gold);
+
+        > i {
+          &:hover {
+            opacity: 1;
+            color: var(--c-pred);
+          }
+        }
+      }
+      display: flex !important;
+      bottom: 0% !important;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 80%
+      );
+      border-radius: $b-radius-sm;
+      padding-bottom: 3px;
+
+      .tracked-attribute-text-container {
+        font-family: "Avenir";
+        font-weight: 800 !important;
+        font-size: var(--font-size-14);
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        color: var(--c-gold);
+
+        > * {
+          font-style: normal !important;
+        }
+      }
     }
   }
+
+  .portrait-header {
+    border: 1px solid var(--c-gold) !important;
+    border-radius: $b-radius-sm !important;
+  }
+
+  .roll-initiative {
+    color: var(--c-gold) !important;
+    filter: drop-shadow(0 0 10px #000) !important;
+    position: relative !important;
+    height: 50% !important;
+
+    &:hover {
+      color: var(--c-pred) !important;
+    }
+
+    // width: 50% !important;
+  }
+}
+
+#tooltip.combat-dock-tooltip {
+  opacity: 1 !important;
+  background: var(--b-alpha-5) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--c-gold) !important;
+  border-radius: $b-radius-sm !important;
+
+  min-width: 200px;
 }

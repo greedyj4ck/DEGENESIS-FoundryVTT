@@ -580,6 +580,8 @@ input[type="checkbox"] {
 
 .app.window-app.package-configuration {
   nav > a.item.category-tab {
+    text-align: center;
     height: auto;
+    display: flow;
   }
 }

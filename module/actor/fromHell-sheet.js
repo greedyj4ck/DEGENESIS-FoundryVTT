@@ -147,6 +147,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
     //html
     html.find(".dropdown").click(this._onDropdown.bind(this));
+    html.find("input.stat-input").blur(this._onStatInput.bind(this));
 
     //.find(".relationships-cultes,.relationships-bonus")
     //.change(this._onRelationshipEdit.bind(this));
@@ -510,6 +511,21 @@ export class DegenesisFromHellSheet extends ActorSheet {
     }
 
     this.actor.update(actorData);
+  }
+
+  _onStatInput(event) {
+    let inputStat = $(event.currentTarget);
+
+    let min = inputStat.attr("min");
+    let max = inputStat.attr("max");
+
+    if (max && inputStat[0].value > parseInt(max)) {
+      inputStat[0].value = max;
+    }
+
+    if (min && inputStat[0].value < parseInt(min)) {
+      inputStat[0].value = min;
+    }
   }
 
   // END OF CLASS

@@ -62,7 +62,8 @@
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
                                     name="system.condition.fleshwounds.value"
-                                    value="{{system.condition.fleshwounds.value}}" /></div>
+                                    value="{{system.condition.fleshwounds.value}}" min="0"
+                                    max="{{system.condition.fleshwounds.max}}" /></div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
                                     name="system.condition.fleshwounds.max"
@@ -80,7 +81,8 @@
                         <div class="label">{{localize "DGNS.Trauma"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="system.condition.trauma.value" value="{{system.condition.trauma.value}}" />
+                                    name="system.condition.trauma.value" value="{{system.condition.trauma.value}}"
+                                    min="0" max="{{system.condition.trauma.max}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
@@ -98,7 +100,8 @@
                         <div class="label">{{localize "DGNS.Spore"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="system.condition.spore.value" value="{{system.condition.spore.value}}" />
+                                    name="system.condition.spore.value" value="{{system.condition.spore.value}}"
+                                    min="{{system.condition.spore.permanent}}" max="{{system.condition.spore.max}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"

@@ -218,6 +218,8 @@ export class DegenesisAberrantSheet extends ActorSheet {
       .find(".tag.container-item")
       .mousedown(this._onContainerItemClick.bind(this));
 
+    html.find("input.stat-input").blur(this._onStatInput.bind(this));
+
     //  html.find(".dynamic-input").keydown(this._dynamicInput.bind(this));
   }
 
@@ -624,5 +626,20 @@ export class DegenesisAberrantSheet extends ActorSheet {
       }
     );
     DegenesisChat.renderRollCard(rollResults, cardData);
+  }
+
+  _onStatInput(event) {
+    let inputStat = $(event.currentTarget);
+
+    let min = inputStat.attr("min");
+    let max = inputStat.attr("max");
+
+    if (max && inputStat[0].value > parseInt(max)) {
+      inputStat[0].value = max;
+    }
+
+    if (min && inputStat[0].value < parseInt(min)) {
+      inputStat[0].value = min;
+    }
   }
 }

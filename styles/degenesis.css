@@ -669,6 +669,78 @@ form.application .region-name > i {
   color: var(--c-gold);
 }
 
+:root {
+  --color-text-light-highlight: #f0f0e0;
+  --color-text-light-heading: #c9c7b8;
+  --color-text-light-primary: #b5b3a4;
+  --color-text-dark-primary: #191813;
+  --color-text-dark-secondary: #4b4a44;
+  --color-text-dark-header: #23221d;
+  --color-text-dark-inactive: #7a7971;
+  --color-text-hyperlink: #ff6400;
+  --color-text-light-0: var(--c-gold-1);
+  --color-text-light-1: var(--c-gold-2);
+  --color-text-light-2: var(--c-gold-3);
+  --color-text-light-3: var(--c-gold-4);
+  --color-text-light-4: var(--c-gold-5);
+  --color-text-light-5: var(--c-gold-6);
+  --color-text-light-6: var(--c-gold-7);
+  --color-text-light-7: var(--c-gold-8);
+  --color-text-dark-1: var(--c-gold-9);
+  --color-text-dark-2: var(--c-gold-8);
+  --color-text-dark-3: var(--c-gold-7);
+  --color-text-dark-4: var(--c-gold-6);
+  --color-text-dark-5: var(--c-gold-5);
+  --color-text-dark-6: var(--c-gold-4);
+  --color-border-light-1: var(--c-gold-1);
+  --color-border-light-2: var(--c-gold-2);
+  --color-border-dark-1: var(--c-gold-8);
+  --color-border-dark-2: var(--c-gold-7);
+  --color-border-dark-3: var(--c-gold-6);
+  --color-border-dark-4: var(--c-gold-5);
+  --color-border-dark-5: var(--c-gold-4);
+  --color-shadow-primary: none;
+  --color-shadow-highlight: none;
+  --color-shadow-dark: #000;
+  --color-underline-inactive: var(--c-gold-7);
+  --color-underline-active: var(--c-gold-3);
+  --color-underline-header: #782e22;
+  --color-border-light-highlight: var(--c-gold-3);
+  --color-border-light-primary: var(--c-gold-4);
+  --color-border-light-secondary: var(--c-gold-5);
+  --color-border-light-tertiary: var(--c-gold-6);
+  --color-border-dark: #000;
+  --color-border-dark-primary: #191813;
+  --color-border-dark-secondary: #23221d;
+  --color-border-dark-tertiary: #4b4a44;
+  --color-border-highlight: #ff6400;
+  --color-border-highlight-alt: #ff0000;
+  --color-bg-btn-minor-inactive: #c9c7b8;
+  --color-bg-btn-minor-active: #b5b3a4;
+  --color-select-option-bg: #dad8cc;
+  --color-checkbox-checked: #666;
+  --color-ownership-none: #5500ff;
+  --color-ownership-observer: #7a7971;
+  --color-ownership-owner: #b5b3a4;
+  --sidebar-width: 300px;
+  --sidebar-header-height: 32px;
+  --sidebar-item-height: 48px;
+  --hotbar-height: 52px;
+  --hotbar-width: 578px;
+  --macro-size: 50px;
+  --font-primary: "Crimson Pro", sans-serif;
+}
+
+.application {
+  --color-form-label-hover: var(--c-gold-3);
+  --color-form-hint-hover: var(--c-gold-3);
+}
+
+fieldset {
+  border-color: var(--c-gold);
+  margin-bottom: 5px;
+}
+
 #logo {
   height: 35px;
   content: url(../ui/degenesis-white.svg);
@@ -819,7 +891,7 @@ form.application .region-name > i {
   text-shadow: none;
   border: 1px solid var(--c-gold);
   font-family: "Avenir";
-  font-size: 12px;
+  font-size: var(--font-size-12);
   font-weight: 700;
   padding: 5px 10px;
   width: 100%;
@@ -854,6 +926,7 @@ form.application .region-name > i {
 .app.window-app .window-content h3,
 .app.window-app .window-content h4,
 .app.window-app .window-content h5 {
+  text-transform: uppercase;
   font-family: "Avenir";
   font-weight: 1000;
   letter-spacing: 0.1em;
@@ -952,59 +1025,6 @@ form.application .region-name > i {
   scrollbar-width: unset !important;
 }
 
-/* SHEET TABS FOR ALL UI WINDOWS */
-/* .sheet-tabs.tabs,
-nav.tabs {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--c-gold);
-
-  a.item {
-    flex-grow: 1;
-    border: 1px solid var(--c-gold);
-
-    font-family: $sans-serif-content-font;
-    text-transform: uppercase;
-    font-size: 12px;
-
-    font-weight: 500;
-
-    color: white;
-    background-color: black;
-    margin: 2px;
-    line-height: 20px;
-
-    letter-spacing: 0.05em;
-    transition: background-color 0.1s ease-out;
-    &.active {
-      color: white;
-      background-color: var(--c-pred);
-      text-shadow: none;
-      i {
-        color: white;
-      }
-    }
-    &:hover {
-      background-color: var(--c-pred);
-    }
-  }
-
-  &.active {
-    color: var(--text-white);
-    text-shadow: none;
-  }
-} */
-/* .form-group button {
-  border: none !important;
-  background-color: #000 !important;
-  border-radius: 0 !important;
-
-  &:hover {
-    background-color: var(--c-pred) !important;
-  }
-} */
 .display-modes a {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1103,6 +1123,23 @@ nav.tabs {
   color: var(--c-pred);
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+header.table-header {
+  border: 1px solid var(--c-gold) !important;
+  background-color: var(--b-alpha-8) !important;
+  color: var(--c-gold) !important;
+  font-weight: 400 !important;
+}
+
+#keybindings .binding .key {
+  border: 1px solid var(--c-gold);
+  background-color: var(--b-alpha-2);
+}
+#keybindings .binding .key.uneditable {
+  border: 1px solid var(--c-antiflash);
+  color: var(--c-antiflash);
+  background-color: var(--c-gold-7);
 }
 
 #sidebar-tabs {
@@ -1372,7 +1409,7 @@ ol.directory-list .document h5 {
 #chat-log h4,
 #chat-log h5 {
   border: none;
-  font-family: "AVenir";
+  font-family: "Avenir";
   text-transform: uppercase;
   color: var(--c-gold-4);
 }
@@ -1561,9 +1598,10 @@ ol.directory-list .document h5 {
 }
 
 .chat-sidebar .jump-to-bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  -webkit-animation: fadeIn;
+          animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s; /* don't forget to set a duration! */
   justify-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -1579,10 +1617,13 @@ ol.directory-list .document h5 {
   width: calc(var(--sidebar-width) - 20px);
 }
 .chat-sidebar .jump-to-bottom > a {
-  opacity: 0.2;
-  border: 1px solid var(--c-gold);
+  background: none !important;
+  position: relative !important;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  border-top: 1px solid var(--c-gold);
   color: var(--c-gold) !important;
-  margin: 10px 5px !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1595,8 +1636,6 @@ ol.directory-list .document h5 {
   text-shadow: none;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(80%, var(--b-alpha-7)));
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--b-alpha-7) 80%);
 }
 .chat-sidebar .jump-to-bottom > a:hover {
   opacity: 1;
@@ -3007,42 +3046,121 @@ ol.directory-list .document h5 {
 }
 
 #combat-dock {
-  margin-top: 5px;
-}
-#combat-dock .buttons-container {
-  border-radius: 5px;
-  border: 1px solid var(--c-gold);
-  padding: 3px;
-  background-color: var(--b-alpha-6) !important;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-  color: var(--c-gold) !important;
-}
-#combat-dock .buttons-container i {
-  padding: 2px;
-}
-#combat-dock .buttons-container i:hover {
-  color: var(--c-pred);
-  text-shadow: none !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  margin-top: 10px;
 }
 #combat-dock #combatants {
+  gap: 5px;
+}
+#combat-dock .buttons-container {
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
+}
+#combat-dock .buttons-container > i {
+  border: 1px solid var(--c-gold) !important;
+  color: var(--c-gold) !important;
+  background: var(--b-alpha-5) !important;
+}
+#combat-dock .buttons-container > i:hover {
+  color: var(--c-pred) !important;
+}
+#combat-dock .combatant-portrait {
+  margin: 0 !important;
+  border: 1px solid var(--c-gold) !important;
+  border-radius: 5px !important;
+}
+#combat-dock .combatant-portrait:hover .combatant-buttons {
+  opacity: 1 !important;
+}
+#combat-dock .combatant-portrait.active {
+  border-color: var(--c-pred) !important;
+}
+#combat-dock .combatant-portrait .combatant-wrapper {
+  border-radius: 5px !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0;
+          flex: 1 0;
   -webkit-box-align: start !important;
       -ms-flex-align: start !important;
           align-items: flex-start !important;
 }
-#combat-dock #combatants .combatant-portrait {
-  margin: 0px 2px;
-  background-color: var(--b-alpha-6) !important;
-  border-radius: 10px;
-  border: 2px solid var(--c-gold) !important;
+#combat-dock .combatant-portrait .overlay-ui-container {
+  position: absolute !important;
+  border-radius: 5px !important;
+  z-index: 10;
 }
-#combat-dock #combatants .combatant-portrait.active {
-  border: 2px solid var(--c-pred) !important;
+#combat-dock .combatant-portrait .overlay-ui-container .tracked-attribute-bar-max {
+  width: 8px !important;
 }
-#combat-dock #combatants .separator {
-  border: 1px solid var(--c-pred) !important;
+#combat-dock .combatant-portrait .overlay-ui-container .tracked-attribute-bar-max > div {
+  border-color: var(--c-gold) !important;
+  border-width: 2px;
+}
+#combat-dock .combatant-portrait .overlay-ui-container .portrait-initiative > i {
+  color: var(--c-gold);
+  opacity: 1 !important;
+}
+#combat-dock .combatant-portrait .bottom-ui-container {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  bottom: 0% !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(80%, rgb(0, 0, 0)));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 80%);
+  border-radius: 5px;
+  padding-bottom: 3px;
+}
+#combat-dock .combatant-portrait .bottom-ui-container .combatant-buttons {
+  color: var(--c-gold);
+}
+#combat-dock .combatant-portrait .bottom-ui-container .combatant-buttons > i:hover {
+  opacity: 1;
+  color: var(--c-pred);
+}
+#combat-dock .combatant-portrait .bottom-ui-container .tracked-attribute-text-container {
+  font-family: "Avenir";
+  font-weight: 800 !important;
+  font-size: var(--font-size-14);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--c-gold);
+}
+#combat-dock .combatant-portrait .bottom-ui-container .tracked-attribute-text-container > * {
+  font-style: normal !important;
+}
+#combat-dock .portrait-header {
+  border: 1px solid var(--c-gold) !important;
+  border-radius: 5px !important;
+}
+#combat-dock .roll-initiative {
+  color: var(--c-gold) !important;
+  -webkit-filter: drop-shadow(0 0 10px #000) !important;
+          filter: drop-shadow(0 0 10px #000) !important;
+  position: relative !important;
+  height: 50% !important;
+}
+#combat-dock .roll-initiative:hover {
+  color: var(--c-pred) !important;
+}
+
+#tooltip.combat-dock-tooltip {
+  opacity: 1 !important;
+  background: var(--b-alpha-5) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+          backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--c-gold) !important;
+  border-radius: 5px !important;
+  min-width: 200px;
 }
 
 .ownership-viewer {
@@ -5460,7 +5578,9 @@ input[type=checkbox].lock-slider:checked + label:before {
 }
 
 .app.window-app.package-configuration nav > a.item.category-tab {
+  text-align: center;
   height: auto;
+  display: flow;
 }
 
 /* ENTITY SHEET: _CHARACTER.SCSS */

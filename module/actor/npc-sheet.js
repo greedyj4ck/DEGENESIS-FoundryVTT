@@ -235,6 +235,7 @@ export class DegenesisNPCSheet extends ActorSheet {
       .find(".tag.container-item")
       .mousedown(this._onContainerItemClick.bind(this));
 
+    html.find("input.stat-input").blur(this._onStatInput.bind(this));
     //  html.find(".dynamic-input").keydown(this._dynamicInput.bind(this));
 
     //html.find(".perma").mousedown(this._onPermaDiamondClick.bind(this));
@@ -634,6 +635,21 @@ export class DegenesisNPCSheet extends ActorSheet {
     if (event.button == 2) {
       item.update({ "system.location": "" });
     } else item.sheet.render(true);
+  }
+
+  _onStatInput(event) {
+    let inputStat = $(event.currentTarget);
+
+    let min = inputStat.attr("min");
+    let max = inputStat.attr("max");
+
+    if (max && inputStat[0].value > parseInt(max)) {
+      inputStat[0].value = max;
+    }
+
+    if (min && inputStat[0].value < parseInt(min)) {
+      inputStat[0].value = min;
+    }
   }
 
   /* ######## FUNCTIONALITY ########*/

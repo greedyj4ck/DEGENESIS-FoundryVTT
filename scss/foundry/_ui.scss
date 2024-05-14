@@ -26,6 +26,78 @@ $b-radius-md: 10px;
 @import "app/prototypeToken";
 @import "app/application"; // Aplication V2 app styling
 
+:root {
+  --color-text-light-highlight: #f0f0e0;
+  --color-text-light-heading: #c9c7b8;
+  --color-text-light-primary: #b5b3a4;
+  --color-text-dark-primary: #191813;
+  --color-text-dark-secondary: #4b4a44;
+  --color-text-dark-header: #23221d;
+  --color-text-dark-inactive: #7a7971;
+  --color-text-hyperlink: #ff6400;
+  --color-text-light-0: var(--c-gold-1);
+  --color-text-light-1: var(--c-gold-2);
+  --color-text-light-2: var(--c-gold-3);
+  --color-text-light-3: var(--c-gold-4);
+  --color-text-light-4: var(--c-gold-5);
+  --color-text-light-5: var(--c-gold-6);
+  --color-text-light-6: var(--c-gold-7);
+  --color-text-light-7: var(--c-gold-8);
+  --color-text-dark-1: var(--c-gold-9);
+  --color-text-dark-2: var(--c-gold-8);
+  --color-text-dark-3: var(--c-gold-7);
+  --color-text-dark-4: var(--c-gold-6);
+  --color-text-dark-5: var(--c-gold-5);
+  --color-text-dark-6: var(--c-gold-4);
+  --color-border-light-1: var(--c-gold-1);
+  --color-border-light-2: var(--c-gold-2);
+  --color-border-dark-1: var(--c-gold-8);
+  --color-border-dark-2: var(--c-gold-7);
+  --color-border-dark-3: var(--c-gold-6);
+  --color-border-dark-4: var(--c-gold-5);
+  --color-border-dark-5: var(--c-gold-4);
+  --color-shadow-primary: none;
+  --color-shadow-highlight: none;
+  --color-shadow-dark: #000;
+  --color-underline-inactive: var(--c-gold-7);
+  --color-underline-active: var(--c-gold-3);
+  --color-underline-header: #782e22;
+  --color-border-light-highlight: var(--c-gold-3);
+  --color-border-light-primary: var(--c-gold-4);
+  --color-border-light-secondary: var(--c-gold-5);
+  --color-border-light-tertiary: var(--c-gold-6);
+  --color-border-dark: #000;
+  --color-border-dark-primary: #191813;
+  --color-border-dark-secondary: #23221d;
+  --color-border-dark-tertiary: #4b4a44;
+  --color-border-highlight: #ff6400;
+  --color-border-highlight-alt: #ff0000;
+  --color-bg-btn-minor-inactive: #c9c7b8;
+  --color-bg-btn-minor-active: #b5b3a4;
+  --color-select-option-bg: #dad8cc;
+  --color-checkbox-checked: #666;
+  --color-ownership-none: #5500ff;
+  --color-ownership-observer: #7a7971;
+  --color-ownership-owner: #b5b3a4;
+  --sidebar-width: 300px;
+  --sidebar-header-height: 32px;
+  --sidebar-item-height: 48px;
+  --hotbar-height: 52px;
+  --hotbar-width: 578px;
+  --macro-size: 50px;
+  --font-primary: "Crimson Pro", sans-serif;
+}
+
+.application {
+  --color-form-label-hover: var(--c-gold-3);
+  --color-form-hint-hover: var(--c-gold-3);
+}
+
+fieldset {
+  border-color: var(--c-gold);
+  margin-bottom: 5px;
+}
+
 #logo {
   height: 35px;
   content: url(../ui/degenesis-white.svg);
@@ -169,13 +241,14 @@ $b-radius-md: 10px;
       a {
         display: flex;
         flex-flow: wrap;
+
         align-items: center;
         justify-content: center;
         height: 100%;
         text-shadow: none;
         border: 1px solid var(--c-gold);
         font-family: "Avenir";
-        font-size: 12px;
+        font-size: var(--font-size-12);
         font-weight: 700;
         padding: 5px 10px;
         width: 100%;
@@ -208,6 +281,7 @@ $b-radius-md: 10px;
     h3,
     h4,
     h5 {
+      text-transform: uppercase;
       font-family: "Avenir";
       font-weight: 1000;
       letter-spacing: 0.1em;
@@ -305,62 +379,6 @@ $b-radius-md: 10px;
   scrollbar-width: unset !important;
 }
 
-/* SHEET TABS FOR ALL UI WINDOWS */
-
-/* .sheet-tabs.tabs,
-nav.tabs {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--c-gold);
-
-  a.item {
-    flex-grow: 1;
-    border: 1px solid var(--c-gold);
-
-    font-family: $sans-serif-content-font;
-    text-transform: uppercase;
-    font-size: 12px;
-
-    font-weight: 500;
-
-    color: white;
-    background-color: black;
-    margin: 2px;
-    line-height: 20px;
-
-    letter-spacing: 0.05em;
-    transition: background-color 0.1s ease-out;
-    &.active {
-      color: white;
-      background-color: var(--c-pred);
-      text-shadow: none;
-      i {
-        color: white;
-      }
-    }
-    &:hover {
-      background-color: var(--c-pred);
-    }
-  }
-
-  &.active {
-    color: var(--text-white);
-    text-shadow: none;
-  }
-} */
-
-/* .form-group button {
-  border: none !important;
-  background-color: #000 !important;
-  border-radius: 0 !important;
-
-  &:hover {
-    background-color: var(--c-pred) !important;
-  }
-} */
-
 .display-modes a {
   display: flex;
   width: 25px;
@@ -448,4 +466,26 @@ nav.tabs {
   background-color: var(--b-alpha-6);
   color: var(--c-pred);
   box-shadow: none;
+}
+
+header.table-header {
+  border: 1px solid var(--c-gold) !important;
+  background-color: var(--b-alpha-8) !important;
+  color: var(--c-gold) !important;
+  font-weight: 400 !important;
+}
+
+#keybindings {
+  .binding {
+    .key {
+      border: 1px solid var(--c-gold);
+      background-color: var(--b-alpha-2);
+
+      &.uneditable {
+        border: 1px solid var(--c-antiflash);
+        color: var(--c-antiflash);
+        background-color: var(--c-gold-7);
+      }
+    }
+  }
 }

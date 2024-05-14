@@ -38,7 +38,7 @@ export default function () {
   });
 
   Hooks.on("renderFormApplication", (app, [html]) => {
-    $("select").select2({
+    $(`#${app.id} select`).select2({
       dropdownParent: $(`[data-appid=${app.appId}]`),
       minimumResultsForSearch: Infinity,
     });

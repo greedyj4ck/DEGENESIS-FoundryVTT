@@ -60,16 +60,16 @@ export class DegenesisActor extends Actor {
 
     // Limit data range for condition values for From Hell sheet
     if (this.type === "fromhell") {
-      updateData = this.limitFromHellValues(updateData);
+      this.limitFromHellValues(updateData);
     }
 
     // Limit data range for attributes and conditions for NPC sheet
     if (this.type === "npc") {
-      updateData = this.limitNPCValues(updateData);
+      this.limitNPCValues(updateData);
     }
 
     if (this.type === "aberrant") {
-      updateData = this.limitAberrantValues(updateData);
+      this.limitAberrantValues(updateData);
     }
   }
 
@@ -257,19 +257,20 @@ export class DegenesisActor extends Actor {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
     }
   }
@@ -284,32 +285,34 @@ export class DegenesisActor extends Actor {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.permanent",
-        this.condition.spore.max
+        updateData.system.condition.spore.max || this.condition.spore.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.value",
-        this.condition.spore.max,
-        this.condition.spore.permanent
+        updateData.system.condition.spore.max || this.condition.spore.max,
+        updateData.system.condition.spore.permanent ||
+          this.condition.spore.permanent
       );
     }
 
@@ -332,8 +335,6 @@ export class DegenesisActor extends Actor {
         );
       }
     }
-
-    return updateData;
   }
 
   limitAberrantValues(updateData) {
@@ -346,39 +347,46 @@ export class DegenesisActor extends Actor {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.permanent",
-        this.condition.spore.max
+        updateData.system.condition.spore.max || this.condition.spore.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.value",
-        this.condition.spore.max,
-        this.condition.spore.permanent
+        updateData.system.condition.spore.max || this.condition.spore.max,
+        updateData.system.condition.spore.permanent ||
+          this.condition.spore.permanent
       );
     }
 
     // Limit
     if (foundry.utils.getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
-        limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
+        limitMaxMinValue(
+          updateData,
+          `system.attributes.${attr}.value`,
+          Infinity,
+          1
+        );
       }
     }
 
@@ -389,13 +397,11 @@ export class DegenesisActor extends Actor {
         limitMaxMinValue(
           updateData,
           `system.skills.${skill}.value`,
-          12,
+          Infinity,
           this.system.attributes[this.system.skills[skill].attribute].value
         );
       }
     }
-
-    return updateData;
   }
 
   // Need to split it for proper encumbrance penalty calc
@@ -1193,24 +1199,40 @@ export class DegenesisActor extends Actor {
 
     let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier");
     if (egoModifierId) {
-      await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
-      await this.updateSource({
-        "flags.degenesis.-=spentEgoActionModifier": null,
-      });
-      ui.notifications.notify(
-        game.i18n.localize("UI.UsedEgoModifierNotification")
-      );
+      try {
+        await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
+        await this.updateSource({
+          "flags.degenesis.-=spentEgoActionModifier": null,
+        });
+        ui.notifications.notify(
+          game.i18n.localize("UI.UsedEgoModifierNotification")
+        );
+      } catch (error) {
+        await this.updateSource({
+          "flags.degenesis.-=spentEgoActionModifier": null,
+        });
+      }
     }
+
     let sporeModifierId = this.getFlag("degenesis", "spentSporeActionModifier");
     if (sporeModifierId) {
-      await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
-      await this.updateSource({
-        "flags.degenesis.-=spentSporeActionModifier": null,
-      });
+      try {
+        await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
 
-      ui.notifications.notify(
-        game.i18n.localize("UI.UsedSporeModifierNotification")
-      );
+        await this.updateSource({
+          "flags.degenesis.-=spentSporeActionModifier": null,
+        });
+
+        ui.notifications.notify(
+          game.i18n.localize("UI.UsedSporeModifierNotification")
+        );
+      } catch (err) {
+        // Clean up flag modifiers
+
+        await this.updateSource({
+          "flags.degenesis.-=spentSporeActionModifier": null,
+        });
+      }
     }
 
     if (rollResults.overload > 0) {
@@ -1405,6 +1427,25 @@ export class DegenesisActor extends Actor {
       );
 
     return { dialogData, cardData, rollData };
+  }
+
+  // REVERSE VALUES FOR EGO/FLESHWOUNDS/TRAUMA/SPORE
+
+  get fleshwoundsReversed() {
+    return (
+      this.system.condition.fleshwounds.max -
+      this.system.condition.fleshwounds.value
+    );
+  }
+
+  get traumaReversed() {
+    return (
+      this.system.condition.trauma.max - this.system.condition.trauma.value
+    );
+  }
+
+  get sporeReversed() {
+    return this.system.condition.spore.max - this.system.condition.spore.value;
   }
 
   // REGION | CONVENIENCE HELPERS
