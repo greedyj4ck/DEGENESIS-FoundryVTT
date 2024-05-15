@@ -1,16 +1,13 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
-
   "TYPES.Actor.TypeCharacter": "Character",
   "TYPES.Actor.TypeNpc": "Personnage non jouable",
   "TYPES.Actor.TypeAberrant": "Abberant",
   "TYPES.Actor.TypeFromHell": "À vaincre sans péril",
-
   "TYPES.Actor.TypeCharacterSheet": "Feuille de Personnage par défaut",
   "TYPES.Actor.TypeNpcSheet": "Feuille de PNJ par défaut",
   "TYPES.Actor.TypeAberrantSheet": "Feuille d'Abberant par défaut",
   "TYPES.Actor.TypeFromHellSheet": "Feuille À vaincre sans péril par défaut",
-
   "UI.SlotCost": "Coût du créneau",
   "UI.Effect": "Effet",
   "UI.ModType": "Type de mod",
@@ -40,13 +37,21 @@
   "UI.OverloadTooBig": "La surcharge est plus grande que la valeur actuelle de sporulation",
   "UI.Roll": "Lancer",
   "UI.CannotRollPassive": "Les jets de défense passive ne peuvent pas être effectués.",
-
+  "UI.NotEnoughEgo": "ne dispose pas de suffisamment de points d'ego à dépenser",
+  "UI.None": "Aucun",
+  "UI.EmptyCult": "CHOISISSEZ UN CULTE",
+  "UI.EmptyConcept": "CHOISISSEZ UN CONCEPT",
+  "UI.EmptyCulture": "CHOISISSEZ UNE CULTURE",
+  "UI.EmptyRapture": "CHOISISSEZ UNE EXSTASE",
+  "UI.AddAction": "Ajouter Action",
+  "UI.RemoveAction": "Supprimer Action",
   "UI.D": "D",
   "UI.S": "S",
   "UI.T": "DC",
-
+  "UI.SheetUnlocked": "Feuille déverrouillée pour modification",
+  "UI.SheetLocked": "Feuille verrouillée pour modification",
+  "UI.SheetLockedNotification": "La feuille est actuellement verrouillée",
   "TYPES.Item.Type": "Character",
-
   "TYPES.Item.TypeWeapon": "Armes",
   "TYPES.Item.TypeArmor": "Armure",
   "TYPES.Item.TypeEquipment": "Équipement",
@@ -63,7 +68,6 @@
   "TYPES.Item.TypeAttack": "Attaque",
   "TYPES.Item.TypeDefense": "Défense",
   "TYPES.Item.TypePhenomenon": "Phénomène",
-
   "TYPES.Ammo.50gl": ".50 GL « Tonnerre »",
   "TYPES.Ammo.357": ".357 « Cuivre »",
   "TYPES.Ammo.44": ".44 « Alpine »",
@@ -95,7 +99,6 @@
   "TYPES.Ammo.coal": "Charbon",
   "TYPES.Ammo.boltcoal": "Carreau et Charbon",
   "TYPES.Ammo.special": "Spécial",
-
   "DGNS.Name": "Nom",
   "DGNS.Age": "Age",
   "DGNS.Rank": "Rang",
@@ -123,14 +126,14 @@
   "DGNS.Athletics": "Athlétisme",
   "DGNS.Brawl": "Lutte",
   "DGNS.Force": "Force",
-  "DGNS.Melee": "C à Corps",
+  "DGNS.Melee": "Corps à Corps",
   "DGNS.Stamina": "Vigueur",
   "DGNS.Toughness": "Résistance",
   "DGNS.Crafting": "Artisanat",
   "DGNS.Dexterity": "Dextérité",
   "DGNS.Navigation": "Navigation",
   "DGNS.Mobility": "Mobilité",
-  "DGNS.Projectiles": "Armes Proj.",
+  "DGNS.Projectiles": "Armes à Proj.",
   "DGNS.Stealth": "Furtivité",
   "DGNS.Arts": "Art",
   "DGNS.Conduct": "Considération",
@@ -138,10 +141,10 @@
   "DGNS.Leadership": "Commandement",
   "DGNS.Negotiation": "Négociation",
   "DGNS.Seduction": "Séduction",
-  "DGNS.ArtifactLore": "Co Artefacts",
+  "DGNS.ArtifactLore": "Co des Artefacts",
   "DGNS.Artifact": "Artefact",
   "DGNS.Engineering": "Technologie",
-  "DGNS.Focus": "Concentr",
+  "DGNS.Focus": "Concentration",
   "DGNS.Legends": "Légendes",
   "DGNS.Medicine": "Médecine",
   "DGNS.Science": "Science",
@@ -275,7 +278,7 @@
   "DGNS.WeaponTerrifying": "Terrifiant",
   "DGNS.ThunderStrike": "Coup de Tonnerre",
   "DGNS.ExtendedReload": "Rechargement long ",
-  "DGNS.Gruesome": "Effrayant",
+  "DGNS.Gruesome": "Effroyable",
   "DGNS.Stun": "Assommement",
   "DGNS.Panic": "Panique",
   "DGNS.SingleLoader": "Chargement Unique",
@@ -363,7 +366,7 @@
   "DGNS.DamageType": "Type de dommage",
   "DGNS.Type": "Type",
   "DGNS.Permanent": "Permanent",
-
+  "DGNS.Number": "Nombre",
   "DGNS.AreaDamageDescription": "L’arme ne vise pas une cible directement, mais couvre une zone exprimée en degrés. Tout ce qui se trouve à l’intérieur de cette zone subit des dégâts.",
   "DGNS.ArmorpiercingDescription": "Ce projectile extrêmement compact et rapide perfore les armures comme du papier. Les projectiles antiblindage ne génèrent pas foncière-ment plus de dégâts, mais ils ignorent les propriétés spéciales qu’une armure peut posséder, comme Massif ou Pare-balles . cf KAT Edge p154",
   "DGNS.BiometricallyEncodedDescription": "La crosse contient un capteur biométrique qui déclenche l’arme uniquement lorsque la bonne personne est détectée. Parfois, ce système électronique vibre et bourdonne pour signaler son déclenchement. Entre les mains d’un étranger, rien ne se produit et l’arme ne tire pas. Aﬁn de désacti-ver ce mécanisme de protection ou de modiﬁer l’encodage, les circuits doivent être formatés ou shuntés. Cela néces-site l’intervention d’un technicien conﬁrmé équipé d’un atelier d’électronique. Tout d’abord, il doit eﬀectuer un test d’AGI+Artisanat contre une difficulté égale au niveau de qualité pour accéder au système électronique. Grâce à un test d’INT+Technologie (difficulté), il pourra ensuite identiﬁer les circuits, comprendre leur fonctionnement et les manipuler. Si un des deux jets échoue, la difficulté augmente de 1 point. Si elle atteint 12, l’arme se désactive déﬁnitivement, et elle n’aura pour toute valeur que celle d’un débris.cf KAT Edge p154",
@@ -414,14 +417,12 @@
   "DGNS.BrittleDescription": "Les plaques d’armures peuvent être durcies, ce qui renforce la valeur d’armure de 1 point. Toutefois, ce procédé rend aussi le matériau cassant. Si l’armure subit un certain nombre de dégâts (déterminé par la valeur de Propriété), les plaques se rompent et perdent 1 point permanent de leur valeur d’armure. La différence avec la propriété « Instable » réside dans le fait que la propriété « Cassant » est acceptée en connaissance de cause lors d’une modification d’armure pour augmenter sa valeur d’armure.cf KAT Edge p162",
   "DGNS.SealedDescription": "Cette armure offre une protection fiable contre les toxines, les germes et les sporulations. Lors d’un jet pour contrer une contamination, le porteur obtient des succès automatiques.cf KAT Edge p162",
   "DGNS.CuttingDescription": "Capacité spéciale « Lacération » – Si une attaque réussit avec 2 déclencheurs, le Spitalier peut refermer les lames d’un coup sec et infliger ainsi 1D de dégâts supplémentaires. Les 2DC utilisés ne comptent pas dans le calcul des dégâts. Cela signifie que si le joueur n’obtient que 1 en dégâts supplémentaires, il infligera 1 point de dégâts en moins que s’il avait décidé de ne pas utiliser « Lacération ». Au mieux, il peut infliger +4 dégâts.",
-
   "DGNS.BodyAbbrev": "PHY",
   "DGNS.AgilityAbbrev": "AGI",
   "DGNS.CharismaAbbrev": "CHA",
   "DGNS.IntellectAbbrev": "INT",
   "DGNS.PsycheAbbrev": "PSY",
   "DGNS.InstinctAbbrev": "INS",
-
   "DGNS.Borca": "BORCA",
   "DGNS.Franka": "FRANKA",
   "DGNS.Purgare": "PURGARE",
@@ -429,7 +430,6 @@
   "DGNS.Africa": "AFRIKA",
   "DGNS.Balkhan": "BALKHANS",
   "DGNS.Hybrispania": "HYBRISPANIE",
-
   "DGNS.BorcaDescription": "<h3>HERITAGE DES ANCIENS</h3><p>Des vagues de poussière rouge se brisent contre d’immenses falaises, s’amassent et se perdent dans des labyrinthes de pierre : les bâtiments, érodés par les ravages du temps, ne respirent plus désormais que de la poussière et de la terre froides. La brousse tapisse les sols tandis que des racines humides plongent et percent la terre. Les humains errent à travers une jungle d’acier et de béton. De colonie en colonie, ils longent des cratères envahis de mauvaises herbes, traversent des champs de blé sauvage, suivent des lits de rivières asséchés. Des couches de sédiments accumulées depuis des siècles, ils déterrent les merveilles des peuples d’autrefois dans l’espoir de tomber sur quelque artefact divinatoire. Leur avenir, cependant, ne réside pas dans les sépulcres de l’histoire, mais dans leur énergie inépuisable. Pierre après pierre, ils extraient des métropoles en ruine comme Justitienne, Cathédrale et Osman pour bâtir un nouveau monde, conquérir la terre et asseoir leur règne. <br/><br/>   Cf PP VF Edge P53</p><h3>Bonus d'attribut</h3><p>AGILITE<br/>INSTINCT</p><h3>Bonus de Compétence</h3><p>(PHY) Résistance<br/>(INT) Connaissance des Artefacts<br/>(INT) Technologie<br/>(AGI) Artisanat<br/>(INS) Survie</p>",
   "DGNS.FrankaDescription": "<h3>L'ESSAIM</h3><p>Les glandes du corps des Psychonautes se boursouflent et s’émiettent. Une odeur douceâtre s’élève des ziggourats, plane jusqu’au bas des marches et s’immisce dans les cheminées en argile et les ruines pour pénétrer dans le monde des humains. Les Phéromanciens tissent leurs filets. Ils enjôlent, embrouillent les esprits et assimilent. Les insectes sont à leur service depuis longtemps, et la volonté des humains s’étiole dans leur sillage poisseux, forçant leurs victimes à vivre tels de faux-bourdons dans la ruche de leur reine. Là où l’Homo Degenesis s’épanouit, l’Homo Sapiens s’éteint.</p><p> Les Humains ont beau fuir jusqu’aux rivières afin d’échapper aux nuées de guêpes et aux attaques de termites, ils voient bientôt des cheminées remplies de fourmis pousser dans leurs champs. Bientôt, la terre recrachera la colonie. Tous les villages pourrissent les uns après les autres. Mais à présent, les Frankéens ont décidé de se battre. Les rivières les mènent au coeur du territoire ennemi, où ils projettent des bombes de pesticides, enfument les colonies nourricières, se livrent à des carnages. C’est tout un peuple qui se dresse.<br/><br/>   Cf PP VF Edge P65</p><h3>Bonus d'attribut</h3><p>CHARISME<br/>INSTINCT</p><h3>Bonus de Compétence</h3><p>(PHY) Vigueur<br/>(AGI) Furtivité<br/>(CHA) Négociation<br/>(PSY) Foi/Volonté<br/>(PSY) Tromperie</p>",
   "DGNS.PurgareDescription": "<h3>TERRE DES ELUS</h3><p> Le besoin de force, de connaissances et d’une puissance supérieure a toujours brûlé dans le coeur des Purgans. Les Anabaptistes ont accueilli leurs frères et soeurs à bras ouverts. Avec chaleur et amour, ils les ont oints d’huiles élyséennes… avant de les jeter dans le purgatoire. </p><p> Les Anabaptistes affirment que l’Humanité doit prouver sa valeur dès à présent et livrer l’ultime bataille. Ils se considèrent comme les élus et s’engagent dans une guerre sainte aux côtés de Cathédrale. <br/><br/>   Cf PP VF Edge P113</p><h3>Bonus d'attribut</h3><p>CHARISME<br/>PSYCHE</p><h3>Bonus de Compétence</h3><p>(CHA) Considération<br/>(INT) Légendes<br/>(PSY) Foi/Volonté<br/>(PSY) Domination<br/>(INS) Dressage</p>",
@@ -437,7 +437,6 @@
   "DGNS.AfricaDescription": "<h3>LE LION INSATIABLE</h3><p>Même si l’Afrika s’est libérée depuis longtemps en repoussant l’homme blanc vers la mer, la blessure est encore vive. Chaque navire coulé par les pirates méditerranéens,chaque bataille en Hybrispanie et dans les Balkhans réveille les douleurs d’autrefois. Les chaînes du passé tintent comme des carillons et résonnent jusque dans le présent. Pourtant, l’Afrika est forte et prospère. <br/><br/>   Cf PP VF Edge P125</p><h3>Bonus d'attribut</h3><p>INTELLECT<br/>PHYSIQUE</p><h3>Bonus de Compétence</h3><p>(PHY) Athlétisme<br/>(PHY) Lutte<br/>(CHA) Expression<br/>(INT) Médecine<br/>(PSY) Réactivité</p>",
   "DGNS.BalkhanDescription": "<h3>LES TERRES SAUVAGES </h3><p> Les Balkhans sont une terre d’extrêmes, imprégnée de force et de fierté, qui, jour après jour, risque d’être réduite en charpie par des puissances primaires. </p><p>Les habitants sont à l’image de leur monde : sauvages, indomptés, libres, passionnés et lunatiques. Des luttes de pouvoir font rage à travers la région, et des querelles sanglantes transforment du jour au lendemain les fermiers en guerriers et leurs femmes en veuves. <br/><br/>   Cf PP VF Edge P89</p><h3>Bonus d'attribut</h3><p>PHYSIQUE<br/>PSYCHE</p><h3>Bonus de Compétence</h3><p>(PHY) Lutte<br/>(PHY) Force<br/>(CHA) Commandement<br/>(PSY) Réactivité<br/>(INS) Empathie</p>",
   "DGNS.HybrispaniaDescription": "<h3>LES CHAMPS MEURTRIERS</h3><p> Les Afrikains flânent dans les jardins de l’Alhambra, assis à l’ombre des auvents, et boivent le thé avec les Hybrispagnols originaires de la région. Mais les frontières étaient tracées avec le sang des Fléaux et des guerriers de la résistance hybrispagnole. Dès leur naissance, les Hybrispagnols sont bercés par la notion de liberté et de reconquête. Tout autour d’eux, des amis, des frères, des soeurs, des compagnons se dressent en héros, puis tombent sous une pluie de balles. Ces martyrs sont le fondement de la culture hybrispagnole.<br/><br/>   Cf PP VF Edge P101</p><h3>Bonus d'attribut</h3><p>INTELLECT<br/>AGILITE</p><h3>Bonus de Compétence</h3><p>(PHY) C à Corps<br/>(AGI) Mobilité <br/>(AGI) Furtivité<br/>(INT) Médecine<br/>(INS) Orientation</p>",
-
   "DGNS.Spitalians": "SPITALIERS",
   "DGNS.Chroniclers": "CHRONIQUEURS",
   "DGNS.Hellvetics": "HELLVETIQUES",
@@ -451,7 +450,6 @@
   "DGNS.Apocalyptics": "APOCALYPTIQUES",
   "DGNS.Anabaptists": "ANABAPTISTES",
   "DGNS.Palers": "BLAFARDS",
-
   "DGNS.SpitaliansDescription": "<h3> LE DERNIER BASTION </h3><p> Les Spitaliers sont des médecins. Ils obéissent à des règles strictes, se rasent le crâne, et se frictionnent avec de la roche calcaire. Dans les villes, ils administrent tout ce qui touche à l’hygiène. Soigner est un privilège qui se mérite. Tout symptôme de Brûlure est reporté aux autorités. Les Brûlés sont livrés aux flammes. Les Spitaliers ne peuvent pas se permettre d’être indulgents. En Franka, leurs disciples doivent lutter tous les jours contre les conséquences néfastes d’actes de clémence.<br/><br/>   Cf PP VF Edge P141</p><h3>Bonus de Compétence</h3><p>(PHY) Résistance<br/>(INT) Médecine<br/>(PSY) Foi/Volonté<br/>(INT) Science<br/>(INS) Perception</p>",
   "DGNS.ChroniclersDescription": "<h3> LES OMNISCIENTS </h3><p> Les Chroniqueurs sont les descendants de ces Diffuseurs. L’Eshaton assécha et figea cet océan de connaissances. Pour perpétuer son oeuvre, les Chroniqueurs achètent des artefacts aux Ferrailleurs et alimentent tout un marché dans leur quête des vestiges du passé et des derniers serveurs. <br/><br/>   Cf PP VF Edge P155</p><h3>Bonus de Compétence</h3><p>(AGI) Artisanat<br/>(CHA) Négociation<br/>(INT) Technologie<br/>(INT) Connaissance des Artefacts<br/>(PSY) Tromperie</p>",
   "DGNS.HellveticsDescription": "<h3> LA CONFRÉRIE DES ARMES </h3><p> Les Hellvétiques sont des soldats nés. Leur doctrine s’articule autour des armes, de la camaraderie et de leur nation. Chaque tir superflu affaiblit la forteresse. Chaque tir manqué est puni. Personne ne peut affronter leurs remparts et personne ne peut s’opposer à leurs fusils d’assauts, les défricheurs. Cachés dans leur forteresse, protégés par leurs fusils et leurs tunnels, les Hellvétiques s’imaginent invulnérables. <br/><br/>   Cf PP VF Edge P169 </p><h3>Bonus de Compétence</h3><p>(PHY) Force<br/>(PHY) Vigueur<br/>(CHA) Commandement<br/>(AGI) Armes à Proj.<br/>(PSY) Réactivité</p>",
@@ -465,7 +463,6 @@
   "DGNS.ApocalypticsDescription": "<h3> SEIGNEURS DU DÉSIR </h3><p> Les Apocalyptiques mènent une vie dissolue et dépravée. Ils se déplacent en nuées, fondent sur les gargotes et nichent dans les bordels. Leurs alcools sont plus forts, leur Brûlure plus puissante, leurs prostituées plus belles. Tous les vices sont les bienvenus chez eux. Ils vivent dans le présent. Toutes les émotions sont sacrées et célébrées comme  s’ils vivaient leur dernier jour sur Terre. <br/><br/>   Cf PP VF Edge P281 </p><h3>Bonus de Compétence</h3><p>(PHY) Athlétisme<br/>(AGI) Dextérité<br/>(CHA) Séduction<br/>(CHA) Art<br/>(PSY) Ruse</p>",
   "DGNS.AnabaptistsDescription": "<h3> PORTE-FLAMBEAUX DU PARADIS </h3><p> Leurs ascètes soignent et labourent le sol ravagé, sèment du blé et le baptisent avec l’eau la plus pure. Ils produisent des huiles et les mélangent pour créer des essences qui procurent de la force et apaisent la douleur. Les orgiaques sont les combattants anabaptistes : oints d’huiles élyséennes, ils affrontent les Psychonautes armés d’épées et de lanceflammes. La dernière bataille pour l’humanité se joue aujourd’hui, et les Anabaptistes en sont les porte-flambeaux. <br/><br/>   Cf PP VF Edge P295</p><h3>Bonus de Compétence</h3><p>(PHY) C à Corps<br/>(PHY) Force<br/>(INT) Légendes<br/>(AGI) Mobilité<br/>(PSY) Foi/Volonté</p>",
   "DGNS.PalersDescription": "<h3> LE PEUPLE DE L’OMBRE </h3><p> Un par un, ils émergent de leurs caveaux. Les éveillés se mettent en quête de leurs pairs et des quarante-quatre autres caveaux en agrippant les disques solaires sacrés qu’ils brandiront bientôt devant les portails verrouillés. Certains s’ouvriront et permettront le déploiement d’un projet bien plus grand que tout ce que les Blafards peuvent imaginer.<br/><br/>   Cf PP VF Edge P309</p><h3>Bonus de Compétence</h3><p>(AGI) Armes à Proj.<br/>(AGI) Furtivité<br/>(PSY) Ruse<br/>(INT) Technologie<br/>(INS) Perception</p>",
-
   "DGNS.Adventurer": "0. L'AVENTURIER",
   "DGNS.Creator": "I. LE CREATEUR",
   "DGNS.Mentor": "II. LE MENTOR",
@@ -488,7 +485,6 @@
   "DGNS.Disciple": "XIX. LE DISCIPLE",
   "DGNS.Righteous": "XX. LE VERTUEUX",
   "DGNS.Traveler": "XXI. LE VOYAGEUR",
-
   "DGNS.AdventurerDescription": "<p>L’Aventurier est mû par la folie, la témérité et la quête de ses propres limites physiques et mentales. Il affronte sans cesse des situations qui dépassent ses capacités. S’il survit, il gagne de l’expérience et cherche de nouvelles motivations.L’Aventurier ne reste jamais longtemps au même endroit parce qu’il y a tant de choses à découvrir ailleurs : des ruines à explorer, des passages à emprunter, des clans à repérer. Il accueille la peur comme une amie ; sans elle, lavie serait bien fade. Rien n’est pire que l’ennui et la routine.<br/><br/>   Cf KAT VF Edge P30-33</p><h3>Bonus d'attribut</h3><p>PHYSIQUE</p><h3>Bonus de Compétence</h3><p>(AGI) Mobilité<br/>(INS) Orientation</p>",
   "DGNS.CreatorDescription": "<p>Tout s’écroule. Les humains meurent. Seuls survivent leurs bâtiments et leurs inventions, le savoir de toute une vie. Les Créateurs veulent laisser un héritage et éviter que leur nom soit oublié. Ils travaillent sans relâche, avec précision,et cherchent les plus grands défis pour prouver leur valeur. Ils érigent des monolithes, construisent des murailles défensives pour des villages, soudent des conduits pour les systèmes d’irrigation, ou consacrent leur vie au réveil du Flux. Le seul but du Créateur, c’est de faire de l’ensemble de ses exploits un immense monument à sa propre gloire.<br/><br/>   Cf KAT VF Edge P30-33 </p><h3>Bonus d'attribut</h3><p>AGILITE</p><h3>Bonus de Compétence</h3><p>(CHA)Art<br/>(INT) Technologie</p>",
   "DGNS.MentorDescription": "<p>L’enseignement et l’apprentissage ont élevé l’humanité au-dessus des animaux. Le Mentor perpétue cette tradition et partage son savoir avec ses disciples. Il développe leur curiosité et leur transmet son savoir. Un jour, ils reprendront son travail et le cycle se poursuivra. L’indifférence aux merveilles du monde, l’obstination et la stupidité sont les fléaux de l’humanité. Le Mentor méprise ceux qui en sont affligés.<br/><br/>   Cf KAT VF Edge P30-33</p></p><h3>Bonus d'attribut</h3><p>INTELLECT</p><h3>Bonus de Compétence</h3><p>(CHA) Commandement<br/>(INT) Légendes</p>",
@@ -511,7 +507,6 @@
   "DGNS.DiscipleDescription": "<p>Le savoir est comme un océan sur lequel le Disciple voguera toute sa vie durant. Il suit les grands professeurs et cherche les bibliothèques oubliées, poussé par une insatiable curiosité. Ses connaissances sont immenses, mais il en veut toujours plus. Il réunit en lui plusieurs parcours et spécialisations, mais ne parvient jamais à choisir une voie.<br/><br/>   Cf KAT VF Edge P30-33</p><h3>Bonus d'attribut</h3><p>INSTINCT</p><h3>Bonus d'attribut</h3><p>CHARISME</p><h3>Bonus de Compétence</h3><p>(INS) Empathie<br/>(INS) Perception</p>",
   "DGNS.RighteousDescription": "<p>Action et conscience sont inséparables, et la conscience du Vertueux est pure. Il a une vision du monde extrêmement tranchée et son entourage le trouve arrogant. D’ailleurs, il ne laisse passer aucune occasion de mettre en pratique sa vision de la vertu. En tant que gardien des questions théologiques ou législatives, il juge tout le monde, chaque action, chaque personne, et même chaque émotion. Tout est soit bon, soit mauvais. Jamais il ne se remet en question.<br/><br/>   Cf KAT VF Edge P30-33</p><h3>Bonus d'attribut</h3><p>INTELLECT</p><h3>Bonus de Compétence</h3><p>(PSY) Ruse<br/>(CHA) Négociation</p>",
   "DGNS.TravelerDescription": "<p>Le Voyageur doit parcourir le monde pour évoluer en le découvrant, lui et ceux qui l’habitent. Il accumule les impressions et les expériences comme d’autres collectionnent les crânes de gendos, mais il ne les garde pas pour lui. Il propage les bonnes et les mauvaises nouvelles, relie les terres reculées aux métropoles, établit un lien entre les clans et les Cultes. Il ne tient pas en place et brûle de reprendre la route.<br/><br/>   Cf KAT VF Edge P30-33</p><h3>Bonus d'attribut</h3><p>INSTINCT</p><h3>Bonus de Compétence</h3><p>(INT) Légendes<br/>(INS) Orientation</p>",
-
   "DGNS.GettingFood": "Trouver de la nourriture",
   "DGNS.Traps": "Pièges",
   "DGNS.SourceOfLightFire": "Sources lumineuses/feu",
@@ -535,7 +530,6 @@
   "DGNS.Transportation": "Transport",
   "DGNS.OrienteeringTracking": "Orientation/Pistage",
   "DGNS.Equipments": "Equipements",
-
   "DGNS.ConfigureActorInstructions": "Ici, vous pouvez remplacer diverses propriétés calculées par la feuille. Si vous laissez une valeur vide ou égale à 0, la feuille la calculera automatiquement.",
   "DGNS.ConfigureActor": "Configurer un acteur",
   "DGNS.Configure": "Configurer",
@@ -543,24 +537,19 @@
   "DGNS.ModAdd": "Ajouter",
   "DGNS.ModOverride": "Remplacer",
   "DGNS.ModEditWarning": "Les changements effectués sur une modification jointe ne seront pas enregistrés.",
-
   "DGNS.SettingsEncumbrancePenalty": "Pénalité automatique pour les charges",
   "DGNS.SettingsEncumbrancePenaltyHelper": "Sélectionnez cette option pour calculer automatiquement les dés de pénalité pour tous les jets.",
   "DGNS.SettingsMinimumOneAN": "Un seul jet de dé pour un nombre d'actions négatif",
   "DGNS.SettingsMinimumOneANHelper": "Pour les modificateurs négatifs dépassant le nombre d'actions, forcez un seul jet de dé.",
   "DGNS.SettingsShowInventoryHeaders": "Afficher les en-têtes dans l'inventaire",
   "DGNS.SettingsShowInventoryHeadersHelper": "Afficher les en-têtes d'inventaire même s'il n'y a pas d'articles dans la catégorie respective.",
-
   "DGNS.CloseQuarter": "Rapproché",
   "DGNS.Ranged": "Distance",
-
   "DGNS.DefensePassive": "Passive",
   "DGNS.DefenseMeleeActive": "Mêlée active",
   "DGNS.DefenseRangedActive": "Distance active",
   "DGNS.DefenseMental": "Mentale",
-
   "DGNS.Tactics": "Tactique",
-
   "DGNS.Rapture": "Extase",
   "DGNS.Biokinetics": "Biokinésistes",
   "DGNS.Dushani": "Dushani",
@@ -568,10 +557,8 @@
   "DGNS.Pheromancers": "Phéromanciens",
   "DGNS.Pregnoctics": "Prégnostiques",
   "DGNS.Psychokinetics": "Psychokinésistes",
-
   "DGNS.SwarmStrength": "Force de la nuée",
   "DGNS.SkinBags": "Poches cutanées",
-
   "DGNS.Phenomena": "Phénomènes",
   "DGNS.Phenomenon": "Phénomène",
   "DGNS.PrimalPhase": "Phase Primaire",
