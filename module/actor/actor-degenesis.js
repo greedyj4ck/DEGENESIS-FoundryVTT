@@ -45,18 +45,32 @@ export class DegenesisActor extends Actor {
     await super._preUpdate(updateData, options, user);
 
     // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
-    if (foundry.utils.getProperty(updateData, "system.skills.faith.value"))
+
+    if (
+      foundry.utils.getProperty(updateData, "system.skills.faith.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.faith.value") !==
+        this.system.skills.faith.value
+    ) {
       foundry.utils.setProperty(updateData, "system.skills.willpower.value", 0);
-    else if (
-      foundry.utils.getProperty(updateData, "system.skills.willpower.value")
-    )
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.willpower.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.willpower.value") !==
+        this.system.skills.willpower.value
+    ) {
       foundry.utils.setProperty(updateData, "system.skills.faith.value", 0);
-    else if (foundry.utils.getProperty(updateData, "system.skills.focus.value"))
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.focus.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.focus.value") !==
+        this.system.skills.focus.value
+    ) {
       foundry.utils.setProperty(updateData, "system.skills.primal.value", 0);
-    else if (
-      foundry.utils.getProperty(updateData, "system.skills.primal.value")
-    )
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.primal.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.primal.value") !==
+        this.system.skills.primal.value
+    ) {
       foundry.utils.setProperty(updateData, "system.skills.focus.value", 0);
+    }
 
     // Limit data range for condition values for From Hell sheet
     if (this.type === "fromhell") {

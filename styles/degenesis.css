@@ -743,7 +743,7 @@ fieldset {
 
 #logo {
   height: 35px;
-  content: url(../ui/degenesis-white.svg);
+  content: url(../ui/degenesis-logo-white.svg);
 }
 
 #pause {
@@ -997,6 +997,33 @@ fieldset {
 .app.window-app input::placeholder {
   color: var(--c-gold-5) !important;
   opacity: 0.5;
+}
+.app.window-app .form-fields .select2-selection,
+.app.window-app .form-group .select2-selection {
+  background-color: var(--b-alpha-9);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+}
+.app.window-app .form-fields .select2-selection .select2-selection__rendered,
+.app.window-app .form-group .select2-selection .select2-selection__rendered {
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+}
+.app.window-app .form-fields .select2-dropdown,
+.app.window-app .form-group .select2-dropdown {
+  border: 1px solid var(--c-gold);
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+  background-color: var(--b-alpha-9);
+}
+.app.window-app .form-fields .select2-dropdown .select2-results__option--highlighted,
+.app.window-app .form-group .select2-dropdown .select2-results__option--highlighted {
+  background-color: var(--c-resin);
+}
+.app.window-app .form-fields .select2-dropdown .select2-results__option--selected,
+.app.window-app .form-group .select2-dropdown .select2-results__option--selected {
+  background-color: var(--c-pred);
+  color: var(--c-antiflash);
 }
 .app.window-app .select2-selection {
   background-color: var(--b-alpha-9);
@@ -1279,7 +1306,7 @@ ol.directory-list li.folder .folder-header {
   border-radius: 5px;
   margin: 2px 4px;
   border: 1px solid var(--c-gold);
-  background-image: url(../ui/black_01.jpg);
+  background-image: url(../ui/backgrounds/black_01.jpg);
   background-position: 50% 50%;
   background-size: cover;
   background-color: var(--b-alpha-6);
@@ -3007,7 +3034,7 @@ ol.directory-list .document h5 {
           box-shadow: none;
   background-color: rgba(10, 10, 10, 0.6);
   border: 1px solid var(--c-gold);
-  background-image: url(../ui/black_01.jpg);
+  background-image: url(../ui/backgrounds/black_01.jpg);
   background-position: top center;
   background-size: cover;
 }
@@ -3785,7 +3812,7 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.sheet.journal-sheet.journal-entry .journal-entry-content {
   background-color: var(--b-alpha-5);
-  background-image: url(../ui/black_02.jpg);
+  background-image: url(../ui/backgrounds/black_02.jpg);
   background-blend-mode: color;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .journal-entry-content .journal-header {
@@ -4447,7 +4474,7 @@ a.diamond:hover .square.red.perma {
   border: 1px solid var(--c-pred);
 }
 .app.window-app.roll-phenomenon-dialog .window-content {
-  background: url(../ui/black_01.jpg) !important;
+  background: url(../ui/backgrounds/black_01.jpg) !important;
   background-color: #000 !important;
   overflow: hidden;
   padding-top: 0;
@@ -7145,7 +7172,7 @@ input[type=checkbox].lock-slider:checked + label:before {
   padding: 0;
   overflow-y: hidden;
   background-color: var(--b-alpha-4);
-  background-image: url(../ui/fromHell_BG.jpg);
+  background-image: url(../ui/backgrounds/sheet-fromhell.jpg);
   background-blend-mode: color;
   background-size: cover;
   background-position: 50% 0%;
@@ -7898,7 +7925,7 @@ input[type=checkbox].lock-slider:checked + label:before {
   padding: 0;
   overflow-y: hidden;
   background-color: var(--b-alpha-5);
-  background-image: url(../ui/npc_BG.jpg);
+  background-image: url(../ui/backgrounds/sheet-npc.jpg);
   background-size: cover;
   background-position: 50% 0%;
   font-family: "Avenir";
@@ -9229,7 +9256,7 @@ input[type=checkbox].lock-slider:checked + label:before {
 .app.window-app.degenesis.sheet.aberrant .window-content {
   padding: 0;
   background-color: var(--b-alpha-6);
-  background-image: url(../ui/aberrant_BG.jpg);
+  background-image: url(../ui/backgrounds/sheet-aberrant.jpg);
   background-blend-mode: color;
   background-size: cover;
   background-position: 50% 0%;
@@ -10175,7 +10202,7 @@ input[type=checkbox].lock-slider:checked + label:before {
 /* SHEET: _ITEM.SCSS */
 /* LEGACY ITEM SPECIFIC STYLES */
 .item-legacy .profile-img {
-  background: url(../ui/black_01.jpg);
+  background: url(../ui/backgrounds/black_01.jpg);
 }
 
 /* ITEM MODS SPECIFIC STYLES */
@@ -10275,7 +10302,7 @@ input[type=checkbox].lock-slider:checked + label:before {
 
 .app.window-app.degenesis.sheet.item .item-phenomenon {
   overflow-y: hidden;
-  background: url(../ui/black_01.jpg);
+  background: url(../ui/backgrounds/black_01.jpg);
   background-color: #000 !important;
   background-size: cover;
   background-position: 50% 0%;

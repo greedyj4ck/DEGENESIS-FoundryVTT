@@ -19,7 +19,7 @@ export default function () {
     const badge = document.createElement("div");
     badge.classList.add("dgns", "system-badge");
     badge.innerHTML = `
-    <img src="systems/degenesis/ui/degenesis-white.svg" data-tooltip="${game.system.title}" alt="${game.system.title}">
+    <img src="systems/degenesis/ui/degenesis-logo-white.svg" data-tooltip="${game.system.title}" alt="${game.system.title}">
     <span class="system-info">${game.system.version}</span>
   
   `;

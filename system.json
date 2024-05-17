@@ -186,7 +186,20 @@
     "units": "m"
   },
 
-  "background": "systems/degenesis/ui/system-banner.webp",
+  "media": [
+    {
+      "type": "cover",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "url": "systems/degenesis/ui/system-banner.webp",
+      "thumbnail": "systems/degenesis/ui/system-banner-thumbnail.webp"
+    }
+  ],
+
+  "background": "systems/degenesis/ui/artifacts.jpg",
   "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
   "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",
   "license": "LICENSE.txt",

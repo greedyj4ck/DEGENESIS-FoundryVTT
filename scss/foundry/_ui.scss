@@ -100,7 +100,7 @@ fieldset {
 
 #logo {
   height: 35px;
-  content: url(../ui/degenesis-white.svg);
+  content: url(../ui/degenesis-logo-white.svg);
 }
 
 #pause {
@@ -345,6 +345,35 @@ fieldset {
     &::placeholder {
       color: var(--c-gold-5) !important;
       opacity: 0.5;
+    }
+  }
+
+  .form-fields,
+  .form-group {
+    .select2-selection {
+      background-color: var(--b-alpha-9);
+      border: 1px solid var(--c-gold);
+      color: var(--c-gold);
+
+      .select2-selection__rendered {
+        font-family: "Crimson Pro";
+        color: var(--c-gold);
+      }
+    }
+
+    .select2-dropdown {
+      border: 1px solid var(--c-gold);
+      font-family: "Crimson Pro";
+      color: var(--c-gold);
+      background-color: var(--b-alpha-9);
+
+      .select2-results__option--highlighted {
+        background-color: var(--c-resin);
+      }
+      .select2-results__option--selected {
+        background-color: var(--c-pred);
+        color: var(--c-antiflash);
+      }
     }
   }
 
