@@ -39,6 +39,7 @@
   "UI.CannotRollPassive": "Passive Verteidigungswürfe können nicht durchgeführt werden.",
   "UI.NotEnoughEgo": "hat nicht genug Egopunkte zum Ausgeben",
   "UI.None": "Keiner",
+  "UI.EmptyCult": "WÄHLEN SIE KULT",
   "UI.EmptyConcept": "KONZEPT WÄHLEN",
   "UI.EmptyCulture": "WÄHLEN SIE KULTUR",
   "UI.EmptyRapture": "WÄHLEN SIE ENTRÜCKUNG",
