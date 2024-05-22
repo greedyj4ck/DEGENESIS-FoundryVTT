@@ -1,0 +1,74 @@
+// VARIABLES: COLORS
+
+/// Main colors definitions to be used in system implementation
+/// $colors is main array used for variables generation
+
+/* COLORS DEFINITIONS */
+
+$colors: (
+  "gold": "131,117,78",
+  "gold-0": "245, 244, 239",
+  "gold-1": "226, 221, 207",
+  "gold-2": "207, 199, 175",
+  "gold-3": "188, 176, 143",
+  "gold-4": "169, 154, 111",
+  "gold-5": "131,117,78",
+  "gold-6": "112, 100, 67",
+  "gold-7": "80, 71, 48",
+  "gold-8": "48, 43, 29",
+  "gold-9": "16, 14, 10",
+
+  "resin": "29,30,44",
+  "resin-0": "240, 240, 245",
+  "resin-1": "209, 210, 225",
+  "resin-2": "178, 180, 204",
+  "resin-3": "147, 150, 184",
+  "resin-4": "117, 120, 164",
+  "resin-5": "91, 94, 138",
+  "resin-6": "71, 73, 108",
+  "resin-7": "51, 52, 77",
+  "resin-8": "29, 30, 44",
+  "resin-9": "10, 10, 15",
+
+  "pred": "231,29,54",
+  "pred-0": "253, 232, 234",
+  "pred-1": "248, 186, 193",
+  "pred-2": "243, 140, 152",
+  "pred-3": "238, 94, 111",
+  "pred-4": "233, 48, 70",
+  "pred-5": "207, 22, 45",
+  "pred-6": "161, 17, 35",
+  "pred-7": "115, 12, 25",
+  "pred-8": "69, 7, 15",
+  "pred-9": "23, 2, 5",
+  "antiflash": "239,239,239",
+  "seasalt": "247,247,247",
+
+  "dgns-red": "237,29,39",
+  "dgns-gold": "131,117,78",
+);
+
+$alpha-bg: (
+  "1": "0,0,0,0.1",
+  "2": "0,0,0,0.2",
+  "3": "0,0,0,0.3",
+  "4": "0,0,0,0.4",
+  "5": "0,0,0,0.5",
+  "6": "0,0,0,0.6",
+  "7": "0,0,0,0.7",
+  "8": "0,0,0,0.8",
+  "9": "0,0,0,0.9",
+  "10": "0,0,0,1",
+);
+
+/// Function generate automatic css variables....
+
+:root {
+  @each $color, $value in $colors {
+    --c-#{$color}: rgb(#{$value});
+  }
+
+  @each $bg, $value in $alpha-bg {
+    --b-alpha-#{$bg}: rgba(#{$value});
+  }
+}

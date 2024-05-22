@@ -40,26 +40,20 @@
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Group"}}: </span>
-                    <select name="data.group" data-dtype="String">
-                        {{#select data.group}}
-                        {{#each (config "weaponGroups") as |group g|}}
-                        <option value="{{g}}">{{group}}</option>
-                        {{/each}}
-                        {{#each (config "equipmentGroups") as |group g|}}
-                        <option value="{{g}}">{{group}}</option>
-                        {{/each}}
-                        {{/select}}
+                    <select name="system.group" data-dtype="String">
+                        {{#selectOptions (config "weaponGroups") selected=system.group }}
+                        {{/selectOptions}}
+                        {{#selectOptions (config "equipmentGroups") selected=system.group }}
+                        {{/selectOptions}}
                     </select>
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Tech"}}: </span>
-                    <select name="data.tech" data-dtype="Number">
-                        <option value="">-</option>
-                        {{#select data.tech}}
-                        {{#each (config "techValues") as |tech t|}}
-                        <option value="{{t}}">{{tech}}</option>
-                        {{/each}}
-                        {{/select}}
+                    <select name="system.tech" data-dtype="Number">
+                        {{#selectOptions (config "techValues") selected=system.tech blank=""}}
+
+                        {{/selectOptions}}
+
                     </select>
                 </div>
 
@@ -68,11 +62,11 @@
 
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Value"}}: </span>
-                    <input class="field-input" type="text" name="data.value" value="{{data.value}}" />
+                    <input class="field-input" type="text" name="system.value" value="{{system.value}}" />
                 </div>
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Encumbrance"}}: </span>
-                    <input class="field-input" type="text" name="data.encumbrance" value="{{data.encumbrance}}"
+                    <input class="field-input" type="text" name="system.encumbrance" value="{{system.encumbrance}}"
                         data-dtype="Number" />
                 </div>
 

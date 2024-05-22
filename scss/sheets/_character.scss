@@ -1,18 +1,128 @@
 /* ENTITY SHEET: _CHARACTER.SCSS */
-
 // LIMITING STYLE TO CHARACTER SHEET ONLY
+
 .app.window-app.degenesis.sheet.actor.character {
+  // BLOCKING RESIZE BEYOND THOSE VALUES
+  $line-stroke-width: 1.5px;
+  $line-stroke-color: var(--c-gold);
+
   .line-stroke {
     stroke: $line-stroke-color;
     stroke-width: $line-stroke-width;
   }
 
-  // BLOCKING RESIZE BEYOND THOSE VALUES
+  // Text selection style
+  ::selection {
+    background-color: var(--c-gold-8);
+    color: var(--c-gold);
+  }
+
   min-width: 720px;
   min-height: 720px;
 
-  // GENERAL UTILITY CLASSES
+  a,
+  a > div {
+    color: var(--c-gold);
+    text-shadow: none;
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
 
+  /** FIX THIS FUCKING LTER **/
+  .square,
+  .square.little {
+    border: $line-stroke-width solid $line-stroke-color;
+
+    &.border-black {
+      .square-into {
+        //background-color: var(--c-gold);
+      }
+    }
+
+    .square-into {
+      border: none;
+      background-color: none;
+
+      &.black {
+        background-color: $line-stroke-color;
+      }
+    }
+    &:hover {
+      border-color: var(--c-pred);
+    }
+
+    &.black {
+      background-color: $line-stroke-color;
+    }
+
+    &.red {
+      background-color: var(--c-pred-6);
+    }
+
+    &.perma {
+      background: none;
+
+      border-color: var(--c-pred-6);
+
+      &:hover {
+        border-color: var(--c-pred-4);
+      }
+
+      .square-into.black {
+        background-color: var(--c-gold-8);
+      }
+    }
+  }
+
+  .img-frame {
+    background-image: url(../ui/images/character\ frame\ gold.svg);
+  }
+
+  .select2-container {
+    width: auto !important;
+  }
+
+  .select2-selection {
+    border: none;
+    background: none;
+    border-radius: 0;
+
+    border-bottom: 1px solid var(--c-gold);
+    color: var(--c-gold);
+
+    &:hover {
+      border-color: var(--c-pred);
+    }
+
+    .select2-selection__rendered {
+      font-family: "Crimson Pro";
+      color: var(--c-gold);
+      &:hover,
+      &:focus {
+        color: var(--c-pred);
+      }
+    }
+  }
+
+  .select2-dropdown {
+    margin-top: 10px;
+    border-radius: $b-radius-md;
+    font-family: "Crimson Pro";
+    background-color: var(--b-alpha-9);
+    border: 1px solid var(--c-gold);
+
+    color: var(--c-gold);
+
+    .select2-results__option--highlighted {
+      background-color: var(--c-pred) !important;
+    }
+    .select2-results__option[aria-selected="true"] {
+      background-color: var(--c-resin) !important;
+    }
+  }
+
+  // GENERAL UTILITY CLASSES
   .item-data {
     display: contents;
 
@@ -96,6 +206,11 @@
     align-self: stretch;
     justify-content: center;
 
+    .select2-container {
+      text-align: center;
+      min-width: 130px;
+    }
+
     .sh-field-stack {
       min-width: 160px;
       max-width: 230px;
@@ -123,7 +238,7 @@
     }
 
     .title-Cs {
-      font-size: 17px;
+      font-size: var(--font-size-17);
       font-weight: 200;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -132,7 +247,17 @@
     .concept-img,
     .cult-img,
     .culture-img {
-      height: 70px;
+      fill: var(--c-gold);
+      //stroke: black;
+      //stroke-width: 1px;
+      height: 60px;
+      margin: 5px 0px;
+
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        fill: var(--c-pred);
+      }
     }
 
     // POPOUT STYLES
@@ -144,14 +269,15 @@
       width: 300px;
       z-index: 20;
       padding: 15px;
-      background: rgba(255, 255, 255, 0.95);
+      border-radius: $b-radius-md;
+      border: 1px solid var(--c-gold);
+      background: var(--b-alpha-6);
+      backdrop-filter: blur(10px);
       font-weight: 200;
       font-size: 12px;
       letter-spacing: 0.05em;
       line-height: 1.2;
-      -webkit-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
-      -moz-box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
-      box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+      box-shadow: -2px 2px 4px var(--b-alpha-5);
       visibility: hidden;
       opacity: 0;
       transition: visibility 0.2s, opacity 0.2s linear;
@@ -177,6 +303,39 @@
     }
   }
 
+  .sh-tabs {
+    border: 1px solid var(--c-gold);
+    justify-content: start;
+    padding: 2px 2px;
+    gap: 2px;
+    margin-bottom: 3px;
+
+    a {
+      color: var(--c-gold);
+      background-color: var(--b-alpha-9);
+      margin: 2px 0px;
+      border: 1px solid var(--c-gold);
+
+      &:first-child {
+        border-top-left-radius: $b-radius-sm;
+        border-bottom-left-radius: $b-radius-sm;
+      }
+      &:last-child {
+        border-top-right-radius: $b-radius-sm;
+        border-bottom-right-radius: $b-radius-sm;
+      }
+
+      &:not(:last-child) {
+        //border-right: 1px solid var(--c-gold);
+      }
+
+      &.active {
+        color: var(--c-antiflash);
+        background-color: var(--c-pred);
+      }
+    }
+  }
+
   .tab[data-tab].active {
     display: flex;
     flex-direction: column;
@@ -188,12 +347,13 @@
   }
 
   .window-content {
+    background: url(../ui/backgrounds/sheet-character.webp);
     padding: 0;
     display: flex;
     width: 100%;
 
     overflow-y: hidden;
-    background: white;
+
     font-family: $sans-serif-content-font;
     font-weight: 300;
     color: black;
@@ -214,36 +374,32 @@
     height: 100%;
   }
 
-  a:hover {
-    text-shadow: none;
-  }
-
   .item-controls a:hover {
-    color: var(--degenesis-red);
+    color: var(--c-pred);
   }
 
   h2 {
     border: none;
-    color: var(--degenesis-red);
+    color: var(--c-pred);
     font-weight: 400;
   }
 
   .progress-bar {
-    background-color: var(--degenesis-red);
+    background-color: var(--c-pred);
     height: 2px;
   }
 
   input {
     background: none;
     border: none;
-    padding-top: 5px;
+    padding-top: 0px;
 
     &:focus {
       box-shadow: none;
     }
 
     &:hover {
-      color: var(--degenesis-red);
+      color: var(--c-pred);
       -webkit-transition: color 100ms linear;
       -ms-transition: color 100ms linear;
       transition: color 100ms linear;
@@ -272,12 +428,12 @@
   }
 
   textarea {
-    outline: var(--degenesis-red);
+    outline: var(--c-pred);
     box-shadow: none;
     font-family: $serif-content-font;
 
     &:focus {
-      outline: var(--degenesis-red);
+      outline: var(--c-pred);
       box-shadow: none;
     }
   }
@@ -289,7 +445,7 @@
     text-align-last: center;
 
     &:focus {
-      border-bottom: 1px solid var(--degenesis-red);
+      border-bottom: 1px solid var(--c-pred);
       box-shadow: none;
     }
 
@@ -306,7 +462,7 @@
     .condition-section:hover
       .app.window-app.degenesis.sheet
       .sh-field-stack:hover {
-      color: var(--degenesis-red);
+      color: var(--c-pred);
       -webkit-transition: color 100ms linear;
       -ms-transition: color 100ms linear;
       transition: color 100ms linear;
@@ -336,7 +492,7 @@
   }
 
   .header-line {
-    /* background-color: var(--degenesis-red); */
+    /* background-color: var(--c-pred); */
     /* border: 1px solid transparent; */
     align-self: flex-start;
     display: flex;
@@ -357,11 +513,11 @@
 
   .archetype-line {
     &.line-left {
-      background-image: url(../images/header\ line\ left.svg);
+      background-image: url(../ui/images/header\ line\ left.svg);
     }
 
     &.line-right {
-      background-image: url(../images/header\ line\ right.svg);
+      background-image: url(../ui/images/header\ line\ right.svg);
     }
   }
 
@@ -381,6 +537,23 @@
     flex: 0 0 115px;
   }
 
+  .block-title {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-size: var(--font-size-11);
+      font-weight: 900;
+      color: black;
+    }
+
+    a {
+      font-weight: 900;
+      color: black;
+    }
+  }
+
   hr {
     border: solid;
     border-top: 1px solid var(--grey-160);
@@ -389,771 +562,856 @@
     border-right: none;
     margin: 2px 2px 0px;
   }
-}
-//----------------------------------
-/* TABS STYLING */
 
-/* ATTRS AND SKILLS */
-.attribute-tab-container {
-  display: grid;
-  justify-items: stretch;
-  align-items: stretch;
+  //----------------------------------
+  /* TABS STYLING */
+  /* ATTRS AND SKILLS */
+  .attribute-tab-container {
+    display: grid;
+    justify-items: stretch;
+    align-items: stretch;
 
-  margin: 3px;
+    margin: 3px;
 
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
 
-  text-transform: uppercase;
-  font-size: 11.5px;
+    text-transform: uppercase;
+    font-size: var(--font-size-11);
 
-  .attribute-skill-group {
-    .skill > *,
-    .attribute > * {
+    .attribute-skill-group {
+      .skill > *,
+      .attribute > * {
+        display: flex;
+      }
+
       display: flex;
-    }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .attribute {
-      display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
 
+      .attribute {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+          font-size: var(--font-size-12);
+          margin-top: 2px;
+          font-weight: 1000;
+          border: none;
+          margin-bottom: 0px;
+          margin-left: 10px;
+          display: flex;
+          align-self: center;
+          color: black;
+        }
+
+        .attribute-name {
+          min-height: 15px;
+          height: 100%;
+          width: 100%;
+          background-image: url(../ui/images/attribut\ border\ gold.svg);
+          background-repeat: no-repeat;
+
+          background-size: 100%;
+          background-position: center;
+        }
+      }
+
+      .skill-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-grow: 1;
+
+        .skill {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row;
+          margin-top: 8px;
+          align-self: auto;
+
+          :hover {
+            color: var(--c-pred);
+            -webkit-transition: color 200ms linear;
+            -ms-transition: color 200ms linear;
+            transition: color 200ms linear;
+          }
+        }
+      }
+    }
+  }
+
+  /* ADVANTAGE TAB */
+  .advantage-tab-container {
+    // LINE STROKE STYLE FOR HEADER
+    .line-stroke {
+      stroke: $line-stroke-color;
+      stroke-width: $line-stroke-width;
+    }
+
+    overflow: hidden;
+    margin: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 150px auto;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+
+    .advantage input[type="text"],
+    .background input[type="text"] {
+      border: 1px solid black;
+      border-radius: 0px;
+      height: 20px;
+      text-align: left;
+      flex: 1;
+    }
+
+    .combat-group,
+    .advantage-group {
       h3 {
-        margin-top: 2px;
-        font-weight: 600;
-        border: none;
         margin-bottom: 0px;
         margin-left: 10px;
-        display: flex;
-        align-self: center;
-      }
-
-      .attribute-name {
-        min-height: 15px;
-        height: 100%;
-        width: 100%;
-        background-image: url(../images/attribut\ border.svg);
-        background-repeat: no-repeat;
-        color: white;
-        background-size: 100%;
-        background-position: center;
       }
     }
 
-    .skill-list {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      flex-grow: 1;
-
-      .skill {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-        margin-top: 8px;
-        align-self: auto;
-
-        :hover {
-          color: var(--degenesis-red);
-          -webkit-transition: color 200ms linear;
-          -ms-transition: color 200ms linear;
-          transition: color 200ms linear;
-        }
-      }
-    }
-  }
-}
-
-/* ADVANTAGE TAB */
-.advantage-tab-container {
-  // LINE STROKE STYLE FOR HEADER
-  .line-stroke {
-    stroke: $line-stroke-color;
-    stroke-width: $line-stroke-width;
-  }
-
-  overflow: hidden;
-  margin: 3px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 150px auto;
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-
-  .advantage input[type="text"],
-  .background input[type="text"] {
-    border: 1px solid black;
-    border-radius: 0px;
-    height: 20px;
-    text-align: left;
-    flex: 1;
-  }
-
-  .combat-group,
-  .advantage-group {
-    h3 {
-      margin-bottom: 0px;
+    .background-name {
+      text-transform: uppercase;
       margin-left: 10px;
     }
-  }
 
-  .background-name {
-    text-transform: uppercase;
-    margin-left: 10px;
-  }
+    .background-group {
+      grid-area: 1 / 1 / 2 / 2;
 
-  .background-group {
-    grid-area: 1 / 1 / 2 / 2;
-
-    .background {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .advantage-list {
-      margin-top: 5px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-
-      .advantage {
-        align-self: auto;
-        height: 20px;
+      .background {
         display: flex;
         justify-content: space-between;
       }
+
+      .advantage-list {
+        margin-top: 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .advantage {
+          align-self: auto;
+          height: 20px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
     }
-  }
 
-  .relationships-group {
-    grid-area: 1 / 2 / 2 / 3;
+    .relationships-group {
+      grid-area: 1 / 2 / 2 / 3;
 
-    .advantage {
-      overflow: auto;
-      display: flex;
+      .advantage {
+        overflow: auto;
+        display: flex;
 
-      &::-webkit-scrollbar,
-      &::-webkit-scrollbar-thumb,
-      &::-webkit-scrollbar-track {
-        /* width: 10px;
+        &::-webkit-scrollbar,
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-track {
+          /* width: 10px;
           border: none;
           background-color: transparent; */
-        margin-top: -17px;
-        margin-bottom: -10px;
+          margin-top: -17px;
+          margin-bottom: -10px;
+        }
       }
-    }
 
-    .relationships-ol {
-      border-collapse: collapse;
-      background: white;
-      border: none;
-      margin: 0;
-      flex: auto;
-      display: table;
-      margin: 0 5px 0 5px;
-      list-style-type: none;
-    }
+      .relationships-ol {
+        border-collapse: collapse;
+        //background: white;
+        border: none;
+        margin: 0;
+        flex: auto;
+        display: table;
+        margin: 0 5px 0 5px;
+        list-style-type: none;
+      }
 
-    .relationships-cultes {
-      text-align: left;
-      width: 80%;
-      border: none;
-    }
+      .relationships-cultes {
+        text-align: left;
+        width: 80%;
+        border: none;
+      }
 
-    .relationships-bonus {
-      text-align: right;
-      width: 20%;
-      border: none;
-    }
+      .relationships-bonus {
+        text-align: right;
+        width: 20%;
+        border: none;
+      }
 
-    .relationships-li {
-      display: flex;
-      min-height: 20px;
-      border-bottom: 1px solid var(--grey-160);
-      padding-bottom: 2px;
-    }
-
-    .relationship {
-      margin-top: 5px;
-    }
-  }
-
-  .scars-group {
-    grid-area: 1 / 3 / 2 / 4;
-
-    .advantage-list {
-      margin-top: 5px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-
-      .advantage {
-        align-self: auto;
-        width: 100%;
+      .relationships-li {
         display: flex;
-        justify-content: space-between;
+        min-height: 28px;
+        border-bottom: 1px solid var(--c-gold);
+        padding-bottom: 2px;
+      }
 
-        .sh-field {
+      .relationship {
+        margin-top: 5px;
+      }
+    }
+
+    .scars-group {
+      grid-area: 1 / 3 / 2 / 4;
+
+      .advantage-list {
+        margin-top: 5px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .advantage {
+          align-self: auto;
           width: 100%;
-          margin-bottom: 4px;
+          display: flex;
+          justify-content: space-between;
+
+          .sh-field {
+            width: 100%;
+          }
+
+          &:last-child {
+            margin-top: 10px;
+          }
         }
-
-        &:last-child {
-          margin-top: 10px;
-        }
-      }
-    }
-  }
-
-  .potentials-group {
-    grid-area: 2 / 1 / 3 / 4;
-    overflow: auto;
-
-    .potentials {
-      display: flex;
-
-      .block-title {
-        max-width: 199px;
-        align-self: flex-start;
       }
     }
 
-    .advantage-list .potential-name {
-      flex: 2;
-      display: flex;
-      align-self: center;
-      margin-left: 5px;
-      padding-bottom: 6px;
-    }
-
-    .potentials-legend {
-      display: flex;
-      flex: 1;
-      border-bottom: $line-stroke-width solid $line-stroke-color;
-      width: 100%;
-    }
-
-    .first-part {
-      display: flex;
-      flex: 2;
-    }
-
-    .potentials-legend .origin {
-      flex: 2;
-      margin-right: 1.5%;
-      margin-left: 1.5%;
-    }
-
-    // EMPTY DIV FOR BORDER LINE - FIX THAT IN ANOTHER PATCH
-    .empty {
-      flex: 1;
-      border-bottom: $line-stroke-width solid $line-stroke-color;
-    }
-
-    .potentials-legend {
-      .empty {
-        flex: 1.17;
-        margin-right: 0px;
-      }
-
-      > * {
-        justify-content: flex-end;
-        flex: 1;
-        text-align: center;
-        border-bottom: 0px;
-        margin-right: 1.5%;
-        margin-left: 1.5%;
-      }
-    }
-
-    .item-summary {
-      display: inline-block;
-      border: 1px solid var(--grey-160);
-      background-color: var(--grey-240);
-      padding-top: 5px;
-      padding-bottom: 5px;
-      width: 100%;
-
-      margin-left: 0px;
-      margin-right: 0px;
-    }
-
-    .advantage {
-      margin-left: 5px;
-      border-bottom: 1px solid var(--grey-160);
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 8px;
-
-      &.expanded {
-        padding-bottom: 0px;
-      }
-    }
-
-    .item-summary {
-      padding-left: 4px;
-      padding-right: 4px;
-      text-align: justify;
-    }
-
-    .item-controls {
-      display: flex;
-      align-self: center;
-      justify-content: center;
-    }
-
-    .advantage-list .background-name {
-      flex: 2;
-      display: flex;
-      align-self: center;
-      margin-left: 5px;
-      padding-bottom: 6px;
-    }
-
-    .potential-characteristics {
-      display: flex;
-      flex: 1;
-      padding-bottom: 6px;
-    }
-
-    .advantage-list {
-      margin: 0;
-      flex-grow: 1;
+    .potentials-group {
+      grid-area: 2 / 1 / 3 / 4;
       overflow: auto;
-      padding: 0px 3px;
-      .origin {
+
+      .potentials {
+        display: flex;
+
+        .block-title {
+          max-width: 199px;
+          align-self: flex-start;
+        }
+      }
+
+      .advantage-list .potential-name {
         flex: 2;
         display: flex;
         align-self: center;
-        justify-content: center;
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+
+      .potentials-legend {
+        display: flex;
+        flex: 1;
+        border-bottom: $line-stroke-width solid $line-stroke-color;
+        width: 100%;
+      }
+
+      .first-part {
+        display: flex;
+        flex: 2;
+      }
+
+      .potentials-legend .origin {
+        flex: 2;
         margin-right: 1.5%;
         margin-left: 1.5%;
       }
-
-      .level {
+      .empty {
         flex: 1;
+        border-bottom: $line-stroke-width solid $line-stroke-color;
+      }
+      // EMPTY DIV FOR BORDER LINE - FIX THAT IN ANOTHER PATCH
+
+      .potentials-legend {
+        .empty {
+          flex: 1.17;
+          margin-right: 0px;
+        }
+
+        > * {
+          justify-content: flex-end;
+          flex: 1;
+          text-align: center;
+          border-bottom: 0px;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+        }
+      }
+
+      .item-summary {
+        display: inline-block;
+        background: none;
+        border: 1px solid var(--c-gold);
+        background-color: var(--b-alpha-8);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 100%;
+
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      .advantage {
+        margin-left: 5px;
+        border-bottom: 1px solid var(--c-gold);
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+
+        &.expanded {
+          padding-bottom: 0px;
+        }
+      }
+
+      .item-summary {
+        padding-left: 4px;
+        padding-right: 4px;
+        text-align: justify;
+      }
+
+      .item-controls {
         display: flex;
         align-self: center;
         justify-content: center;
-        margin-right: 1.5%;
-        margin-left: 1.5%;
+      }
 
-        .diamond-row {
+      .advantage-list .background-name {
+        flex: 2;
+        display: flex;
+        align-self: center;
+        margin-left: 5px;
+        padding-bottom: 6px;
+      }
+
+      .potential-characteristics {
+        display: flex;
+        flex: 1;
+        padding-bottom: 6px;
+      }
+
+      .advantage-list {
+        margin: 0;
+        flex-grow: 1;
+        overflow: auto;
+        padding: 0px 3px;
+        .origin {
+          flex: 2;
+          display: flex;
+          align-self: center;
           justify-content: center;
-          margin-right: 3%;
-          margin: 0px;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+        }
+
+        .level {
+          flex: 1;
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          margin-right: 1.5%;
+          margin-left: 1.5%;
+
+          .diamond-row {
+            justify-content: center;
+            margin-right: 3%;
+            margin: 0px;
+          }
         }
       }
     }
+
+    .advantage-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
 
-  .advantage-group {
+  /* CONDITION TAB */
+  .condition-tab-container {
+    margin: 3px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-  }
-}
-
-/* CONDITION TAB */
-.condition-tab-container {
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-
-  .condition-bars {
-    padding-top: 1px;
-  }
-
-  .bottom-conditions {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    margin-top: 5px;
     overflow: hidden;
 
-    .conditions-group {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
+    .condition-bars {
+      padding-top: 1px;
+    }
+
+    .bottom-conditions {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 10px;
+      margin-top: 5px;
       overflow: hidden;
+
+      .conditions-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .conditions-name.long {
+        width: 100%;
+      }
+
+      .item-controls {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 0;
+      }
+
+      li {
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--c-gold);
+        margin-top: 7px;
+
+        &.expanded {
+          padding-bottom: 0;
+        }
+      }
+
+      .item-summary {
+        display: inline-block;
+        background-color: var(--b-alpha-8);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin: 6px 0px 3px 0px;
+        width: 100%;
+        border: 1px solid var(--c-gold-7);
+
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
-    .conditions-name.long {
+    .conditions-characteristics {
+      padding-right: 5px;
+      padding-left: 5px;
+      display: flex;
+      width: 100%;
+      margin: 0;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .conditions-ol {
+      border-collapse: collapse;
+      background: none;
+      border: none;
+      margin: 0;
+      flex: auto;
+
+      /* display: table; */
+      padding: 0;
+      margin: 0 10px 0 10px;
+      list-style-type: none;
+    }
+
+    .conditions-value {
+      display: flex;
+      flex: 0 0 35px;
+      justify-content: space-evenly;
+    }
+
+    .conditions-name {
+      text-align: left;
+      width: 40%;
+      border: none;
+    }
+
+    .conditions-action {
+      text-align: center;
+      width: 30%;
+    }
+
+    .conditions-number,
+    .conditions-type {
+      text-align: center;
+      width: 15%;
+    }
+
+    .modifiers-action.dropdown,
+    .qualities-action.dropdown {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .modifiers-description,
+    .qualities-description {
+      border-bottom: 1px solid var(--c-gold);
       width: 100%;
     }
 
-    .item-controls {
-      display: flex;
-      justify-content: flex-end;
-      margin-left: 0;
+    .conditions-li {
+      background: none;
+      border-bottom: 1px solid var(--c-gold);
+      margin-bottom: 3px;
     }
 
-    li {
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--grey-160);
-      margin-top: 7px;
+    .complications-data {
+      overflow: auto;
+    }
 
-      &.expanded {
-        padding-bottom: 0;
+    .modifiers-data {
+      overflow: auto;
+    }
+
+    .complications-rating,
+    .mods-rating {
+      width: 10%;
+    }
+  }
+
+  /* COMBAT TAB */
+  .combat-tab-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3px;
+
+    .combat .diamond-position {
+      margin-right: auto;
+      margin-top: 2px;
+      margin-left: 5px;
+    }
+
+    .combat {
+      margin-top: 5px;
+      align-self: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .combat-state-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      column-gap: 10px;
+    }
+
+    .combat-group {
+      text-transform: uppercase;
+
+      &.state-group .combat:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+
+  /* COMBAT ARSENAL SECTION HEADER GRID LAYOUTS */
+  .arsenal-state-container {
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    padding: 0px 3px;
+
+    .qualities-name {
+      margin-left: 5px;
+    }
+    .damage-type {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
+
+  .arsenal-melee-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+
+  .arsenal-melee-entry-container {
+    grid-template-columns: 190px 2fr 1fr 1fr;
+
+    .entry-list-properties {
+      grid-area: 2 / 1 / 2 / 5;
+    }
+
+    .item-summary {
+      background: none;
+      grid-area: 3 / 1 / 3 / 5;
+    }
+  }
+
+  .arsenal-ranged-grid {
+    grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
+  }
+  .arsenal-ranged-entry-container {
+    grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
+    .entry-list-properties {
+      grid-area: 2 / 1 / 2 / 6;
+    }
+    .item-summary {
+      grid-area: 3 / 1 / 3 / 6;
+    }
+  }
+
+  .arsenal-sonic-grid {
+    grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
+  }
+
+  .arsenal-sonic-entry-container {
+    grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
+    .entry-list-properties {
+      grid-area: 2 / 1 / 2 / 6;
+    }
+    .item-summary {
+      grid-area: 3 / 1 / 3 / 6;
+    }
+  }
+
+  .arsenal-armor-grid {
+    grid-template-columns: 0.3fr;
+    justify-content: end;
+  }
+
+  .arsenal-armor-entry-container {
+    grid-template-columns: 190px 0.3fr;
+    justify-content: space-between;
+
+    .entry-list-properties {
+      grid-area: 2 / 1 / 2 / 3;
+    }
+    .item-summary {
+      grid-area: 3 / 1 / 3 / 3;
+    }
+  }
+  /* INVENTORY TAB */
+  .inventory-tab-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 3px;
+
+    .encumbrance-group {
+      margin-bottom: 5px;
+      flex: 1;
+
+      .block-title {
+        max-width: 164px;
+        max-height: 14px;
+      }
+    }
+
+    .encumbrance-legend {
+      align-self: end;
+    }
+
+    .encumbrance-group .encumbrance-legend span {
+      margin-right: 20px;
+    }
+
+    .section-header-legends {
+      border-color: var(--c-gold);
+    }
+
+    .inventory-list-container {
+      overflow: auto;
+    }
+
+    .inventory-group {
+      &.armor-group,
+      &.weapon-group {
+        margin: 16px 5px;
+        flex: 1;
+      }
+    }
+
+    .enc-all {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      margin-left: -7px;
+    }
+
+    .enc-container {
+      width: calc(100% - 5px);
+      flex: 3;
+      border: $line-stroke-width solid $line-stroke-color;
+      margin-left: 1px;
+      margin-bottom: 0px;
+      order: 2;
+      display: flex;
+      transform: skew(45deg, 0deg);
+    }
+
+    .enc-bar {
+      border: none;
+      background-color: black;
+      height: 8px;
+      max-width: 100%;
+    }
+
+    .section-header-legends.encumbrance {
+      border: none;
+    }
+  }
+
+  .inventory-group-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+  }
+
+  .inventory-group-entry-grid {
+    grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+    grid-template-rows: minmax(18px, max-content);
+
+    .item-summary {
+      grid-area: 2 / 1 / 2 / 8;
+    }
+  }
+
+  .transportation-group-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
+
+    :first-child {
+      grid-area: 1/3/1/4;
+    }
+    :nth-child(2) {
+      grid-area: 1/4/1/5;
+    }
+    :nth-child(3) {
+      grid-area: 1/5/1/6;
+    }
+  }
+
+  .transportation-group-entry-grid {
+    grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
+
+    :nth-child(2) {
+      grid-area: 1/4/1/5;
+    }
+    :nth-child(3) {
+      grid-area: 1/5/1/6;
+    }
+    :nth-child(4) {
+      grid-area: 1/6/1/7;
+    }
+    :nth-child(5) {
+      grid-area: 1/7/1/8;
+    }
+
+    .item-summary {
+      grid-area: 2 / 1 / 2 / 8;
+    }
+  }
+
+  /* HISTORY TAB  */
+
+  .history-tab-container {
+    overflow: auto;
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+    padding: 0px 3px;
+
+    .section-header-legends {
+      border-color: var(--c-gold);
+
+      .item-add {
+        margin: 0 !important;
+      }
+    }
+    .legacies-group-entry-grid {
+      grid-template-columns: 1fr auto;
+
+      .item-controls {
+        margin-right: 5px;
+      }
+
+      .item-summary {
+        grid-area: 2/1/2/3;
+      }
+    }
+  }
+
+  .section-list {
+    .entry-list-item {
+      margin: 5px 0px 5px 0px;
+      border-bottom: 1px solid var(--c-gold);
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .entry-list-item-name {
+      width: 180px;
+      display: flex;
+      margin-left: 5px;
+      padding-bottom: 6px;
+      max-width: 190px;
+    }
+
+    .entry-list-properties {
+      color: var(--grey-70);
+      display: flex;
+      margin-left: 5px;
+      align-self: center;
+      margin: 6px 5px;
+    }
+
+    .entry-container {
+      width: 100%;
+      display: grid;
+      align-items: center;
+      padding: 3px 0px 3px 0px;
+
+      div.legend-name {
+        align-self: center;
+        text-align: center;
       }
     }
 
     .item-summary {
-      display: inline-block;
-      background-color: var(--grey-240);
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin: 6px 0px 3px 0px;
       width: 100%;
-      border: 1px solid var(--grey-160);
+      margin: 5px 0px;
+      padding: 5px 4px 5px 4px;
+      background-color: var(--b-alpha-1);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--c-gold);
 
-      padding-left: 4px;
-      padding-right: 4px;
+      p {
+        margin: 0px 0px 5px 0px;
+        text-align: justify;
+      }
+
+      .tags {
+        margin-top: 5px;
+      }
+
+      .tag {
+        border: 1px solid var(--c-gold);
+        background: var(--b-alpha-2);
+        margin: 2px 5px;
+        display: inline-block;
+        padding: 2px 7px;
+      }
     }
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .conditions-characteristics {
-    padding-right: 5px;
-    padding-left: 5px;
-    display: flex;
-    width: 100%;
-    margin: 0;
-    justify-content: space-around;
-    align-items: center;
-  }
-
-  .conditions-ol {
-    border-collapse: collapse;
-    background: white;
-    border: none;
-    margin: 0;
-    flex: auto;
-
-    /* display: table; */
-    padding: 0;
-    margin: 0 10px 0 10px;
-    list-style-type: none;
-  }
-
-  .conditions-value {
-    display: flex;
-    flex: 0 0 35px;
-    justify-content: space-evenly;
-  }
-
-  .conditions-name {
-    text-align: left;
-    width: 40%;
-    border: none;
-  }
-
-  .conditions-action {
-    text-align: center;
-    width: 30%;
-  }
-
-  .conditions-number,
-  .conditions-type {
-    text-align: center;
-    width: 15%;
-  }
-
-  .modifiers-action.dropdown,
-  .qualities-action.dropdown {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-  }
-
-  .modifiers-description,
-  .qualities-description {
-    border-bottom: 1px solid var(--grey-160);
-    width: 100%;
-  }
-
-  .conditions-li {
-    border-bottom: 1px solid var(--grey-160);
-    margin-bottom: 3px;
-  }
-
-  .complications-data {
-    overflow: auto;
-  }
-
-  .modifiers-data {
-    overflow: auto;
-  }
-
-  .complications-rating,
-  .mods-rating {
-    width: 10%;
-  }
-}
-
-/* COMBAT TAB */
-.combat-tab-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 3px;
-
-  .combat .diamond-position {
-    margin-right: auto;
-    margin-top: 2px;
-    margin-left: 5px;
-  }
-
-  .combat {
-    margin-top: 5px;
-    align-self: center;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .combat-state-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    column-gap: 10px;
-  }
-
-  .combat-group {
-    text-transform: uppercase;
-
-    &.state-group .combat:hover {
-      color: var(--degenesis-red);
-    }
-  }
-}
-
-/* COMBAT ARSENAL SECTION HEADER GRID LAYOUTS */
-.arsenal-state-container {
-  display: flex;
-  overflow: auto;
-  flex-direction: column;
-  padding: 0px 3px;
-
-  .qualities-name {
-    margin-left: 5px;
-  }
-}
-
-.arsenal-melee-grid {
-  grid-template-columns: 2fr 1fr 1fr;
-}
-
-.arsenal-melee-entry-container {
-  grid-template-columns: 190px 2fr 1fr 1fr;
-
-  .entry-list-properties {
-    grid-area: 2 / 1 / 2 / 5;
-  }
-
-  .item-summary {
-    grid-area: 3 / 1 / 3 / 5;
-  }
-}
-
-.arsenal-ranged-grid {
-  grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
-}
-.arsenal-ranged-entry-container {
-  grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
-  .entry-list-properties {
-    grid-area: 2 / 1 / 2 / 6;
-  }
-  .item-summary {
-    grid-area: 3 / 1 / 3 / 6;
-  }
-}
-
-.arsenal-sonic-grid {
-  grid-template-columns: 2fr 0.8fr 0.6fr 0.8fr;
-}
-
-.arsenal-sonic-entry-container {
-  grid-template-columns: 190px 2fr 0.8fr 0.6fr 0.8fr;
-  .entry-list-properties {
-    grid-area: 2 / 1 / 2 / 6;
-  }
-  .item-summary {
-    grid-area: 3 / 1 / 3 / 6;
-  }
-}
-
-.arsenal-armor-grid {
-  grid-template-columns: 0.3fr;
-  justify-content: end;
-}
-
-.arsenal-armor-entry-container {
-  grid-template-columns: 190px 0.3fr;
-  justify-content: space-between;
-
-  .entry-list-properties {
-    grid-area: 2 / 1 / 2 / 3;
-  }
-  .item-summary {
-    grid-area: 3 / 1 / 3 / 3;
-  }
-}
-/* INVENTORY TAB */
-.inventory-tab-container {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  margin: 3px;
-
-  .encumbrance-group {
-    margin-bottom: 5px;
-    flex: 1;
-
-    .block-title {
-      max-width: 164px;
-      max-height: 14px;
-    }
-  }
-
-  .encumbrance-legend {
-    align-self: end;
-  }
-
-  .encumbrance-group .encumbrance-legend span {
-    margin-right: 20px;
-  }
-
-  .inventory-list-container {
-    overflow: auto;
-  }
-
-  .inventory-group {
-    &.armor-group,
-    &.weapon-group {
-      margin: 16px 5px;
-      flex: 1;
-    }
-  }
-
-  .enc-all {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    margin-left: -7px;
-  }
-
-  .enc-container {
-    width: calc(100% - 5px);
-    flex: 3;
-    border: $line-stroke-width solid $line-stroke-color;
-    margin-left: 1px;
-    margin-bottom: 0px;
-    order: 2;
-    display: flex;
-    transform: skew(45deg, 0deg);
-  }
-
-  .enc-bar {
-    border: none;
-    background-color: black;
-    height: 8px;
-    max-width: 100%;
-  }
-
-  .section-header-legends.encumbrance {
-    border: none;
-  }
-}
-
-.inventory-group-grid {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
-}
-
-.inventory-group-entry-grid {
-  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
-  grid-template-rows: minmax(18px, max-content);
-
-  .item-summary {
-    grid-area: 2 / 1 / 2 / 8;
-  }
-}
-
-.transportation-group-grid {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.7fr;
-
-  :first-child {
-    grid-area: 1/3/1/4;
-  }
-  :nth-child(2) {
-    grid-area: 1/4/1/5;
-  }
-  :nth-child(3) {
-    grid-area: 1/5/1/6;
-  }
-}
-
-.transportation-group-entry-grid {
-  grid-template-columns: 190px 1fr 1fr 1fr 1fr 1fr 0.7fr;
-
-  :nth-child(2) {
-    grid-area: 1/4/1/5;
-  }
-  :nth-child(3) {
-    grid-area: 1/5/1/6;
-  }
-  :nth-child(4) {
-    grid-area: 1/6/1/7;
-  }
-  :nth-child(5) {
-    grid-area: 1/7/1/8;
-  }
-
-  .item-summary {
-    grid-area: 2 / 1 / 2 / 8;
-  }
-}
-
-/* HISTORY TAB  */
-
-.history-tab-container {
-  overflow: auto;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: auto;
-  padding: 0px 3px;
-
-  .section-header-legends .item-add {
-    margin: 0 !important;
-  }
-
-  .legacies-group-entry-grid {
-    grid-template-columns: 1fr auto;
-
-    .item-controls {
-      margin-right: 5px;
-    }
-
-    .item-summary {
-      grid-area: 2/1/2/3;
+    :last-child.entry-list-item {
+      border-bottom: none;
     }
   }
 }

@@ -5,7 +5,7 @@
 export default class ActorConfigure extends FormApplication {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: "actor-configure",
       classes: ["degenesis", "actor-configure"],
       title: game.i18n.localize("DGNS.ConfigureActor"),
@@ -17,6 +17,8 @@ export default class ActorConfigure extends FormApplication {
   constructor(object, options) {
     super(object, options);
   }
+
+  /** This needs to be adjusted to modify other values, not only current ones. */
   async _updateObject(event, formData) {
     this.object.update(formData);
   }

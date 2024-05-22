@@ -11,3 +11,7 @@ packs/legacies.db
 packs/maps.db
 packs/potentials.db
 packs/weapons.db
+*.afdesign
+*.afphoto
+*.psd
+*.ai

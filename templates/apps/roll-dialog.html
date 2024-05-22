@@ -2,11 +2,11 @@
     <div class="body-column body-line">
         <div class="square little left"></div>
         <svg class="title-line middle-left" height="11" width="100%">
-            <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
+            <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
         </svg>
         <div class="middle-name">{{localize "UI.RollSettings"}}</div>
         <svg class="title-line middle-right" height="11" width="100%">
-            <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
+            <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
         </svg>
         <div class="square little right"></div>
     </div>
@@ -37,9 +37,9 @@
     </div>
 
     <div class="custom-modifier-section">
-        <select name="customModifiers" class="custom-modifiers" multiple>
+        <select name="customModifiers" class="custom-modifiers select-swap" multiple label="SELECT">
             {{#each customModifiers as |modifier m|}}
-            <option value="{{m}}">{{modifier.description}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
+            <option value="{{m}}">{{modifier.name}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
             {{/each}}
         </select>
     </div>
@@ -49,13 +49,9 @@
 {{#if showSecondaryOption}}
 <div class="secondary-selection">
     <label>{{localize "DGNS.SecondarySkill"}}:</label>
-    <select name="secondarySkill" class="secondary-select">
-        {{#select secondarySkill}}
-        <option value="">None</option>
-        {{#each (config "skills") as |skill s|}}
-        <option value="{{s}}">{{skill}}</option>
-        {{/each}}
-        {{/select}}
+    <select name="secondarySkill" class="secondary-select select-swap">
+        {{#selectOptions (config "skills") selected=secondarySkill blank="UI.None" localize=true}}
+        {{/selectOptions}}
     </select>
 </div>
 {{/if}}
@@ -64,11 +60,11 @@
     <div class="body-column body-line">
         <div class="square little left"></div>
         <svg class="title-line middle-left" height="11" width="100%">
-            <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
+            <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
         </svg>
         <div class="middle-name">{{localize "DGNS.Modifiers"}}</div>
         <svg class="title-line middle-right" height="11" width="100%">
-            <line x1="0" y1="11" x2="100%" y2="11" style="stroke:black;stroke-width:1"></line>
+            <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
         </svg>
         <div class="square little right"></div>
     </div>

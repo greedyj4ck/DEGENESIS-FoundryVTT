@@ -39,8 +39,8 @@
   }
 
   &.red {
-    background-color: var(--degenesis-red);
-    border: 1px solid var(--degenesis-red);
+    background-color: var(--c-pred);
+    border: 1px solid var(--c-pred);
   }
 
   &.border-black {
@@ -115,16 +115,16 @@ a {
     transition: border-color 0.1s linear, background-color 0.1s linear;
 
     &:hover {
-      border: 1px solid var(--degenesis-red);
+      border: 1px solid var(--c-pred);
 
       .square-into {
         &.black {
-          background-color: var(--degenesis-red);
-          border: 1px solid var(--degenesis-red);
+          background-color: var(--c-pred);
+          border: 1px solid var(--c-pred);
         }
 
         &:not(.black) {
-          border: 1px solid var(--degenesis-red);
+          border: 1px solid var(--c-pred);
         }
       }
     }
@@ -136,13 +136,13 @@ a {
 }
 
 a.diamond:hover .square {
-  border: 1px solid var(--degenesis-red);
+  border: 1px solid var(--c-pred);
 
   &.perma {
     background-color: black;
 
     .square-into.black {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
     }
   }
 

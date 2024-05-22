@@ -43,11 +43,12 @@
                         <div class="label">{{localize "DGNS.Ego"}}</div>
                         <div class="stats">
                             <div class="current-value">
-                                <span class="current-ego">{{currentEgo data.condition.ego}}</span>
+                                <span class="current-ego">{{currentEgo system.condition.ego}}</span>
                             </div>
                             <div class="separator">/</div>
-                            <div class="max-value"><input class="stat-input" type="number" name="data.condition.ego.max"
-                                    value="{{data.condition.ego.max}}" /></div>
+                            <div class="max-value"><input class="stat-input" type="number"
+                                    name="system.condition.ego.max" value="{{system.condition.ego.max}}" />
+                            </div>
 
                         </div>
                     </div>
@@ -60,11 +61,13 @@
                         <div class="label">{{localize "DGNS.Fleshwounds"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.value"
-                                    value="{{data.condition.fleshwounds.value}}" /></div>
+                                    name="system.condition.fleshwounds.value"
+                                    value="{{system.condition.fleshwounds.value}}" min="0"
+                                    max="{{system.condition.fleshwounds.max}}" /></div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.fleshwounds.max" value="{{data.condition.fleshwounds.max}}" />
+                                    name="system.condition.fleshwounds.max"
+                                    value="{{system.condition.fleshwounds.max}}" />
                             </div>
 
                         </div>
@@ -78,10 +81,12 @@
                         <div class="label">{{localize "DGNS.Trauma"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.value" value="{{data.condition.trauma.value}}" /></div>
+                                    name="system.condition.trauma.value" value="{{system.condition.trauma.value}}"
+                                    min="0" max="{{system.condition.trauma.max}}" />
+                            </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.trauma.max" value="{{data.condition.trauma.max}}" />
+                                    name="system.condition.trauma.max" value="{{system.condition.trauma.max}}" />
                             </div>
 
                         </div>
@@ -95,36 +100,24 @@
                         <div class="label">{{localize "DGNS.Spore"}}</div>
                         <div class="stats">
                             <div class="current-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.value" value="{{data.condition.spore.value}}" /></div>
+                                    name="system.condition.spore.value" value="{{system.condition.spore.value}}"
+                                    min="{{system.condition.spore.permanent}}" max="{{system.condition.spore.max}}" />
+                            </div>
                             <div class="separator">/</div>
                             <div class="max-value"><input class="stat-input" type="number"
-                                    name="data.condition.spore.max" value="{{data.condition.spore.max}}" />
+                                    name="system.condition.spore.max" value="{{system.condition.spore.max}}" />
                             </div>
                             <div class="separator">/</div>
                             <div class="perma-value"><input class="stat-input perma" type="number"
-                                    name="data.condition.spore.permanent" value="{{data.condition.spore.permanent}}" />
+                                    name="system.condition.spore.permanent"
+                                    value="{{system.condition.spore.permanent}}" />
                             </div>
 
                         </div>
 
-
-
-
-
-
-
-
-
-
                     </div>
 
-
-
-
                 </div>
-
-
-
 
             </div>
 
@@ -142,41 +135,42 @@
 
                     <div class="culture-container">
 
-                        <select name="data.details.culture.value" data-dtype="{{data.details.culture.value}}">
-                            {{#select data.details.culture.value}}
-                            <option value="">{{localize "DGNS.Culture"}}</option>
-                            {{#each (config "cultures") as |culture c|}}
-                            <option value="{{c}}">{{culture}}</option>
-                            {{/each}}
-                            {{/select}}
+                        <select name="system.details.culture.value" data-dtype="{{system.details.culture.value}}">
+                            {{#selectOptions (config "cultures") selected=system.details.culture.value
+                            blank="UI.EmptyCulture" localize=true}}
+
+                            {{/selectOptions}}
                         </select>
 
-                        <img class="culture-img" height="80" width="80" src="{{cultureIcon}}" />
+                        <object type="image/svg+xml" data="{{cultureIcon}}" class="culture-img"
+                            onload="this.contentDocument.documentElement.classList.add('culture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
 
                     </div>
 
                     <div class="concept-container">
-                        <select name="data.details.concept.value" data-dtype="{{data.details.concept.value}}">
-                            {{#select data.details.concept.value}}
-                            <option value="">{{localize "DGNS.Concept"}}</option>
-                            {{#each (config "concepts") as |concept c|}}
-                            <option value="{{c}}">{{concept}}</option>
-                            {{/each}}
-                            {{/select}}
+                        <select name="system.details.concept.value" data-dtype="{{system.details.concept.value}}">
+                            {{#selectOptions (config "concepts") selected=system.details.concept.value
+                            blank="UI.EmptyConcept" localize=true}}
+
+                            {{/selectOptions}}
                         </select>
-                        <img class="concept-img" height="80" width="80" src="{{conceptIcon}}" />
+                        <object type="image/svg+xml" data="{{conceptIcon}}" class="concept-img"
+                            onload="this.contentDocument.documentElement.classList.add('concept-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
+
                     </div>
 
                     <div class="cult-container">
-                        <select name="data.details.cult.value" data-dtype="{{data.details.cult.value}}">
-                            {{#select data.details.cult.value}}
-                            <option value="">{{localize "DGNS.Cult"}}</option>
-                            {{#each (config "cults") as |cult c|}}
-                            <option value="{{c}}">{{cult}}</option>
-                            {{/each}}
-                            {{/select}}
+                        <select name="system.details.cult.value" data-dtype="{{system.details.cult.value}}">
+                            {{#selectOptions (config "cults") selected=system.details.cult.value blank="UI.EmptyCult"
+                            localize=true}}
+
+                            {{/selectOptions}}
                         </select>
-                        <img class="cult-img" height="80" width="80" src="{{cultIcon}}" />
+                        <object type="image/svg+xml" data="{{cultIcon}}" class="cult-img"
+                            onload="this.contentDocument.documentElement.classList.add('cult-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
                     </div>
 
 
@@ -198,7 +192,8 @@
             <input class="input-name" type="text" name="name" value="{{actor.name}}" />
         </div>
         <div class="field-rank">
-            <input class="input-rank" type="text" name="data.details.rank.value" value="{{data.details.rank.value}}" />
+            <input class="input-rank" type="text" name="system.details.rank.value"
+                value="{{system.details.rank.value}}" />
         </div>
         <div class="input-rank-label">RANK</div>
 

@@ -9,7 +9,7 @@ import { ItemQualities } from "../apps/item-qualities.js";
 export class DegenesisItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["degenesis", "sheet", "item"],
       width: 550,
       height: 535,
@@ -46,8 +46,12 @@ export class DegenesisItemSheet extends ItemSheet {
   // Experimental ASYNC
   async getData() {
     const data = await super.getData();
-    data.data = data.item._source.system;
-    // console.log(data)
+
+    /// CHECK THIS OUT
+    /* const data = await super.getData();
+    data.system = data.actor.system; */
+
+    data.system = data.item._source.system;
     this.processTypes(data);
 
     // Enrich raw HTML for Text Editor and expand for new functionalities like links...
@@ -61,7 +65,7 @@ export class DegenesisItemSheet extends ItemSheet {
   processTypes(data) {
     if (data.item.type == "modifier") {
       data.modifyActions = DEG_Utility.getModificationActions();
-      if (!DEGENESIS.noType.includes(data.data.action)) data.showType = true;
+      if (!DEGENESIS.noType.includes(data.system.action)) data.showType = true;
     }
   }
 
@@ -72,7 +76,7 @@ export class DegenesisItemSheet extends ItemSheet {
       { async: true }
     );
 
-    return expandObject(enrichment);
+    return foundry.utils.expandObject(enrichment);
   }
 
   async _onDrop(event) {
@@ -126,7 +130,7 @@ export class DegenesisItemSheet extends ItemSheet {
           value: valueInputs[i].value,
         };
 
-      let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
+      let qualities = foundry.utils.deepClone(this.item.system.qualities);
       if (qualities.find((q) => q.name == quality.name))
         qualities.splice(
           qualities.findIndex((q) => q.name == quality.name),
@@ -134,11 +138,16 @@ export class DegenesisItemSheet extends ItemSheet {
         );
       else qualities.push(quality);
 
-      this.item.update({ "data.qualities": qualities });
+      this.item.update({ "system.qualities": qualities });
       return;
     }
 
-    if (target) setProperty(itemData, target, !getProperty(itemData, target));
+    if (target)
+      foundry.utils.setProperty(
+        itemData,
+        target,
+        !foundry.utils.getProperty(itemData, target)
+      );
     this.item.update(itemData);
   }
 
@@ -147,12 +156,12 @@ export class DegenesisItemSheet extends ItemSheet {
       .parents(".quality-inputs")
       .attr("data-quality");
     let valueKey = $(ev.currentTarget).attr("data-value-key");
-    let qualities = foundry.utils.deepClone(this.item.data.data.qualities);
+    let qualities = foundry.utils.deepClone(this.item.system.qualities);
     let existingQuality = qualities.find((q) => q.name == target);
     if (!existingQuality) return;
     existingQuality.values.find((v) => v.name == valueKey).value =
       ev.target.value;
-    this.item.update({ "data.qualities": qualities });
+    this.item.update({ "system.qualities": qualities });
   }
 
   _onModDelete(ev) {
@@ -184,7 +193,7 @@ export class DegenesisItemSheet extends ItemSheet {
     } else if (action == "add") {
       changes.push({ key: "", mode: "add", value: 0 });
     }
-    this.item.update({ "data.changes": changes });
+    this.item.update({ "system.changes": changes });
   }
 
   _onModChanges(ev) {
@@ -197,6 +206,6 @@ export class DegenesisItemSheet extends ItemSheet {
     if (Number.isNumeric(newValue)) newValue = Number(newValue);
 
     changes[index][type] = newValue;
-    this.item.update({ "data.changes": changes });
+    this.item.update({ "system.changes": changes });
   }
 }

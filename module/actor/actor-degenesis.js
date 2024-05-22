@@ -14,60 +14,82 @@ import { DEG_Utility } from "../utility.js";
  */
 
 export class DegenesisActor extends Actor {
-  // TODO: CHECK IF UPDATESOURCE IS VALID METHOD FOR TOKEN
-  // this.data.update -> this.updateSource
-
   // REGION | _PRE METHODS
 
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
-    // Set wounds, advantage, and display name visibility
-    if (!data.prototypeToken)
-      this.updateSource({
-        "token.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL, // Default disposition to neutral
-        "token.name": data.name, // Set token name to actor name
-        "token.img": "systems/degenesis/assets/tokens/default.png",
-      });
+
+    let updates = {};
+
+    if (!data.prototypeToken) {
+      updates["prototypeToken.disposition"] = CONST.TOKEN_DISPOSITIONS.NEUTRAL; // Default disposition to neutral
+      updates["prototypeToken.name"] = data.name;
+      updates["prototypeToken.img"] =
+        "systems/degenesis/assets/tokens/default.png";
+    }
 
     // Default characters to HasVision = true and Link Data = true
     if (data.type == "character") {
-      this.updateSource({ "token.vision": true });
-      this.updateSource({ "token.actorLink": true });
+      updates["prototypeToken.sight.enabled"] = true;
+      updates["prototypeToken.actorLink"] = true;
     }
 
-    if (!data.img)
-      this.updateSource({ img: "systems/degenesis/assets/tokens/default.png" });
+    if (!data.img) {
+      updates["img"] = "systems/degenesis/assets/tokens/default.png";
+    }
+
+    this.updateSource(updates);
   }
 
   async _preUpdate(updateData, options, user) {
     await super._preUpdate(updateData, options, user);
 
     // Reset the opposing skill if a skill value is changed. i.e. if faith is changed, set willpower to 0
-    if (getProperty(updateData, "system.skills.faith.value"))
-      setProperty(updateData, "system.skills.willpower.value", 0);
-    else if (getProperty(updateData, "system.skills.willpower.value"))
-      setProperty(updateData, "system.skills.faith.value", 0);
-    else if (getProperty(updateData, "system.skills.focus.value"))
-      setProperty(updateData, "system.skills.primal.value", 0);
-    else if (getProperty(updateData, "system.skills.primal.value"))
-      setProperty(updateData, "system.skills.focus.value", 0);
+
+    if (
+      foundry.utils.getProperty(updateData, "system.skills.faith.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.faith.value") !==
+        this.system.skills.faith.value
+    ) {
+      foundry.utils.setProperty(updateData, "system.skills.willpower.value", 0);
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.willpower.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.willpower.value") !==
+        this.system.skills.willpower.value
+    ) {
+      foundry.utils.setProperty(updateData, "system.skills.faith.value", 0);
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.focus.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.focus.value") !==
+        this.system.skills.focus.value
+    ) {
+      foundry.utils.setProperty(updateData, "system.skills.primal.value", 0);
+    } else if (
+      foundry.utils.getProperty(updateData, "system.skills.primal.value") &&
+      foundry.utils.getProperty(updateData, "system.skills.primal.value") !==
+        this.system.skills.primal.value
+    ) {
+      foundry.utils.setProperty(updateData, "system.skills.focus.value", 0);
+    }
 
     // Limit data range for condition values for From Hell sheet
-
     if (this.type === "fromhell") {
-      updateData = this.limitFromHellValues(updateData);
+      this.limitFromHellValues(updateData);
     }
 
     // Limit data range for attributes and conditions for NPC sheet
-
     if (this.type === "npc") {
-      updateData = this.limitNPCValues(updateData);
+      this.limitNPCValues(updateData);
     }
 
     if (this.type === "aberrant") {
-      updateData = this.limitAberrantValues(updateData);
+      this.limitAberrantValues(updateData);
     }
   }
+
+  /*   _update(updateData, options, user) {
+    super._update(updateData, options, user);
+  } */
 
   // REGION | DATA PREPARATION
 
@@ -79,33 +101,44 @@ export class DegenesisActor extends Actor {
         this.itemCategories = this.itemTypes;
         this.modifiers = new ModifierManager(this);
 
-        this.condition.ego.max =
-          this.condition.ego.override ||
+        let calcEgo =
           (this.focusOrPrimal.value +
             this.attributes[this.focusOrPrimal.attribute].value) *
-            2;
-        this.condition.spore.max =
-          this.condition.spore.override ||
+          2;
+
+        let calcSpore =
           (this.faithOrWillpower.value +
             this.attributes[this.faithOrWillpower.attribute].value) *
-            2;
-        this.condition.fleshwounds.max =
-          this.condition.fleshwounds.override ||
-          (this.attributes.body.value + this.skills.toughness.value) * 2;
-        this.condition.trauma.max =
-          this.condition.trauma.override ||
-          this.attributes.body.value + this.attributes.psyche.value;
-        this.general.encumbrance.max =
-          this.general.encumbrance.override ||
-          this.attributes.body.value + this.skills.force.value;
+          2;
 
+        let calcFlshWnd =
+          (this.attributes.body.value + this.skills.toughness.value) * 2;
+        let calcTrauma =
+          this.attributes.body.value + this.attributes.psyche.value;
+        let calcEnc = this.attributes.body.value + this.skills.force.value;
+
+        this.condition.ego.max = this.condition.ego.override
+          ? this.condition.ego.override + calcEgo
+          : calcEgo;
+        this.condition.spore.max = this.condition.spore.override
+          ? this.condition.spore.override + calcSpore
+          : calcSpore;
+        this.condition.fleshwounds.max = this.condition.fleshwounds.override
+          ? this.condition.fleshwounds.override + calcFlshWnd
+          : calcFlshWnd;
+        this.condition.trauma.max = this.condition.trauma.override
+          ? this.condition.trauma.override + calcTrauma
+          : calcTrauma;
+
+        this.general.encumbrance.max = this.general.encumbrance.override
+          ? this.general.encumbrance.override + calcEnc
+          : calcEnc;
         // Encumbrance needs to be counted first....
 
         this.prepareEncumbrance();
 
         // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
         if (AutomateEncumbrancePenalty()) {
-          console.log(`Encumbrance penalty fired...`);
           this.modifiers.addEncumbranceModifiers(this);
         }
 
@@ -234,23 +267,24 @@ export class DegenesisActor extends Actor {
   }
 
   limitFromHellValues(updateData) {
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
     }
   }
@@ -261,41 +295,43 @@ export class DegenesisActor extends Actor {
 
     // Limit condition
 
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.permanent",
-        this.condition.spore.max
+        updateData.system.condition.spore.max || this.condition.spore.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.value",
-        this.condition.spore.max,
-        this.condition.spore.permanent
+        updateData.system.condition.spore.max || this.condition.spore.max,
+        updateData.system.condition.spore.permanent ||
+          this.condition.spore.permanent
       );
     }
 
     // Limit
-    if (getProperty(updateData, "system.attributes")) {
+    if (foundry.utils.getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
         limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
       }
@@ -303,7 +339,7 @@ export class DegenesisActor extends Actor {
 
     // Limit skills
 
-    if (getProperty(updateData, "system.skills")) {
+    if (foundry.utils.getProperty(updateData, "system.skills")) {
       for (let skill in updateData.system.skills) {
         limitMaxMinValue(
           updateData,
@@ -313,8 +349,6 @@ export class DegenesisActor extends Actor {
         );
       }
     }
-
-    return updateData;
   }
 
   limitAberrantValues(updateData) {
@@ -323,60 +357,65 @@ export class DegenesisActor extends Actor {
 
     // Limit condition
 
-    if (getProperty(updateData, "system.condition")) {
+    if (foundry.utils.getProperty(updateData, "system.condition")) {
       limitMaxMinValue(
         updateData,
         "system.condition.ego.value",
-        this.condition.ego.max
+        updateData.system.condition.ego.max || this.condition.ego.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.fleshwounds.value",
-        this.condition.fleshwounds.max
+        updateData.system.condition.fleshwounds.max ||
+          this.condition.fleshwounds.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.trauma.value",
-        this.condition.trauma.max
+        updateData.system.condition.trauma.max || this.condition.trauma.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.permanent",
-        this.condition.spore.max
+        updateData.system.condition.spore.max || this.condition.spore.max
       );
 
       limitMaxMinValue(
         updateData,
         "system.condition.spore.value",
-        this.condition.spore.max,
-        this.condition.spore.permanent
+        updateData.system.condition.spore.max || this.condition.spore.max,
+        updateData.system.condition.spore.permanent ||
+          this.condition.spore.permanent
       );
     }
 
     // Limit
-    if (getProperty(updateData, "system.attributes")) {
+    if (foundry.utils.getProperty(updateData, "system.attributes")) {
       for (let attr in updateData.system.attributes) {
-        limitMaxMinValue(updateData, `system.attributes.${attr}.value`, 6, 1);
+        limitMaxMinValue(
+          updateData,
+          `system.attributes.${attr}.value`,
+          Infinity,
+          1
+        );
       }
     }
 
     // Limit skills
 
-    if (getProperty(updateData, "system.skills")) {
+    if (foundry.utils.getProperty(updateData, "system.skills")) {
       for (let skill in updateData.system.skills) {
         limitMaxMinValue(
           updateData,
           `system.skills.${skill}.value`,
-          12,
+          Infinity,
           this.system.attributes[this.system.skills[skill].attribute].value
         );
       }
     }
-
-    return updateData;
   }
 
   // Need to split it for proper encumbrance penalty calc
@@ -421,8 +460,18 @@ export class DegenesisActor extends Actor {
           armor.equipment += i.AP;
         } else if (armor.equipment <= 3 && i.AP <= armor.equipment) {
           armor.equipment += 1;
-        } else if (armor.equipment <= 3 && i.AP >= armor.equipment) {
+        } else if (
+          armor.equipment <= 3 &&
+          i.AP >= armor.equipment &&
+          i.AP < 4
+        ) {
           armor.equipment = i.AP + 1;
+        } else if (
+          armor.equipment <= 3 &&
+          i.AP >= armor.equipment &&
+          i.AP >= 4
+        ) {
+          armor.equipment = i.AP;
         } else if (i.AP >= armor.equipment && armor.equipment >= 4) {
           armor.equipment = i.AP;
         }
@@ -646,6 +695,11 @@ export class DegenesisActor extends Actor {
       triggerModifier: 0,
     };
 
+    // Change the value back for proper handling
+    if (type === "mentalDefenseWill" || type === "mentalDefenseFaith") {
+      type = "mentalDefense";
+    }
+
     // Accounts for the action modifier
     rollData.actionNumber = this.fighting[type];
 
@@ -769,7 +823,7 @@ export class DegenesisActor extends Actor {
       this.updateEmbeddedDocuments("Item", [
         {
           _id: rollData.weapon.id,
-          "data.mag.current": rollData.weapon.mag.current - 1,
+          "system.mag.current": rollData.weapon.mag.current - 1,
         },
       ]);
     this.postRollChecks(rollResults, "weapon");
@@ -1159,32 +1213,52 @@ export class DegenesisActor extends Actor {
 
     let egoModifierId = this.getFlag("degenesis", "spentEgoActionModifier");
     if (egoModifierId) {
-      await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
-      await this.update({ "flags.degenesis.-=spentEgoActionModifier": null });
-      ui.notifications.notify(
-        game.i18n.localize("UI.UsedEgoModifierNotification")
-      );
+      try {
+        await this.deleteEmbeddedDocuments("Item", [egoModifierId]);
+        await this.updateSource({
+          "flags.degenesis.-=spentEgoActionModifier": null,
+        });
+        ui.notifications.notify(
+          game.i18n.localize("UI.UsedEgoModifierNotification")
+        );
+      } catch (error) {
+        await this.updateSource({
+          "flags.degenesis.-=spentEgoActionModifier": null,
+        });
+      }
     }
+
     let sporeModifierId = this.getFlag("degenesis", "spentSporeActionModifier");
     if (sporeModifierId) {
-      await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
-      await this.update({ "flags.degenesis.-=spentSporeActionModifier": null });
+      try {
+        await this.deleteEmbeddedDocuments("Item", [sporeModifierId]);
 
-      ui.notifications.notify(
-        game.i18n.localize("UI.UsedSporeModifierNotification")
-      );
+        await this.updateSource({
+          "flags.degenesis.-=spentSporeActionModifier": null,
+        });
+
+        ui.notifications.notify(
+          game.i18n.localize("UI.UsedSporeModifierNotification")
+        );
+      } catch (err) {
+        // Clean up flag modifiers
+
+        await this.updateSource({
+          "flags.degenesis.-=spentSporeActionModifier": null,
+        });
+      }
     }
 
     if (rollResults.overload > 0) {
-      await this.update({
-        "data.condition.spore.value":
+      await this.updateSource({
+        "system.condition.spore.value":
           this.condition.spore.value - rollResults.overload,
       });
     }
 
-    if (type !== "initiative" && this.state.initiative.actions > 1)
-      await this.update({
-        "data.state.initiative.actions": this.state.initiative.actions - 1,
+    if (type !== "initiative" && this.state.initiative.actions >= 1)
+      await this.updateSource({
+        "system.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
 
@@ -1369,6 +1443,25 @@ export class DegenesisActor extends Actor {
     return { dialogData, cardData, rollData };
   }
 
+  // REVERSE VALUES FOR EGO/FLESHWOUNDS/TRAUMA/SPORE
+
+  get fleshwoundsReversed() {
+    return (
+      this.system.condition.fleshwounds.max -
+      this.system.condition.fleshwounds.value
+    );
+  }
+
+  get traumaReversed() {
+    return (
+      this.system.condition.trauma.max - this.system.condition.trauma.value
+    );
+  }
+
+  get sporeReversed() {
+    return this.system.condition.spore.max - this.system.condition.spore.value;
+  }
+
   // REGION | CONVENIENCE HELPERS
 
   getItemTypes(type) {
@@ -1394,6 +1487,12 @@ export class DegenesisActor extends Actor {
     if (this.skills.focus.value) return this.skills.focus;
     else if (this.skills.primal.value) return this.skills.primal;
     else return this.skills.focus;
+  }
+
+  get mentalDefenseType() {
+    if (this.skills.willpower.value) return "mentalDefenseWill";
+    else if (this.skills.faith.value) return "mentalDefenseFaith";
+    else return "mentalDefenseWill";
   }
 
   // REGION | FORMATTED GETTERS
@@ -1514,9 +1613,9 @@ export class DegenesisActor extends Actor {
 // Utilities
 
 function limitMaxMinValue(updateData, value, maxValue, minValue = 0) {
-  if (getProperty(updateData, value) > maxValue) {
-    setProperty(updateData, value, maxValue);
-  } else if (getProperty(updateData, value) < minValue) {
-    setProperty(updateData, value, minValue);
+  if (foundry.utils.getProperty(updateData, value) > maxValue) {
+    foundry.utils.setProperty(updateData, value, maxValue);
+  } else if (foundry.utils.getProperty(updateData, value) < minValue) {
+    foundry.utils.setProperty(updateData, value, minValue);
   }
 }

@@ -1,4 +1,5 @@
 import { DEGENESIS } from "../config.js";
+import { MODULE } from "../config.js";
 import { ShowInventoryHeaders } from "../settings.js";
 
 export default function () {
@@ -58,5 +59,46 @@ export default function () {
         return false;
       }
     });
+
+    Handlebars.registerHelper("isFieldLocked", function (sheet) {
+      try {
+        if (sheet.document.getFlag(MODULE, "sheetLocked")) {
+          return "disabled";
+        } else {
+          return;
+        }
+      } catch (err) {
+        return;
+      }
+    });
+
+    Handlebars.registerHelper("isSheetLocked", function (sheet) {
+      try {
+        if (sheet.document.getFlag(MODULE, "sheetLocked")) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (err) {
+        return true;
+      }
+    });
+
+    Handlebars.registerHelper(
+      "calculateDamage",
+      function (weapon, body, force, modifier = null) {
+        if (
+          weapon.DamageBonus &&
+          weapon.DamageBonus.blueprint.indexOf("F") !== -1
+        ) {
+          let dmg =
+            parseInt(weapon.damage) +
+            weapon.DamageBonus.calculate(body + force);
+          return dmg;
+        } else {
+          return weapon.DamageFormula;
+        }
+      }
+    );
   });
 }

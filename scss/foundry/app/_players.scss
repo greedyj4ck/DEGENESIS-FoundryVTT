@@ -1,0 +1,52 @@
+/// Players list
+#players {
+  font-family: "Crimson Pro";
+  background: var(--b-alpha-8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--c-gold);
+  border-radius: 10px;
+  color: var(--c-gold);
+  box-shadow: none;
+
+  ol {
+    margin: 6px;
+  }
+
+  li.player {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+
+    span.player-active {
+      box-shadow: none;
+      margin: 0;
+      aspect-ratio: 1;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--c-gold-5) !important;
+    }
+  }
+
+  h3 {
+    font-family: "Avenir";
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--c-gold) !important;
+    border-bottom: 1px solid var(--c-gold) !important;
+    margin: 0;
+    padding: 6px;
+  }
+
+  i.players-mode {
+    color: var(--c-gold) !important;
+  }
+
+  i:not(.players-mode) {
+    color: var(--c-pred) !important;
+  }
+
+  ol .player-name.self {
+    color: var(--c-gold-3);
+  }
+}

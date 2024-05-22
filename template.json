@@ -288,7 +288,7 @@
       },
       "general": {
         "general": {
-          "movement": 8,
+          "movement": 0,
           "encumbrance": {
             "max": 0,
             "current": 0,

@@ -1,0 +1,296 @@
+/// Combat tracker styling
+
+#combat,
+#combat-popout {
+  .combat-tracker-header {
+    border-bottom: 1px solid var(--c-gold);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Crimson Pro";
+      font-size: var(--font-size-14);
+      font-weight: 500;
+      color: var(--c-gold);
+      letter-spacing: 0.05em;
+    }
+
+    a,
+    i {
+      color: var(--c-gold);
+
+      &:hover {
+        color: var(--c-pred);
+        text-shadow: none;
+      }
+    }
+  }
+
+  #combat-controls {
+    font-family: "Crimson Pro";
+    letter-spacing: 0.02em;
+    border: none;
+    gap: 6px;
+    //background-color: var(--b-alpha-5);
+    //backdrop-filter: blur(10px);
+
+    a {
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-md;
+      background-color: var(--b-alpha-5);
+      backdrop-filter: blur(10px);
+      font-size: var(--font-size-14);
+      color: var(--c-gold) !important;
+      text-shadow: none;
+
+      &:hover {
+        border-color: var(--c-pred);
+        color: var(--c-pred) !important;
+      }
+    }
+
+    i {
+      text-shadow: none;
+      color: var(--c-gold);
+
+      // font-size: var(--font-size-16);
+      &:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+
+  #combat-tracker {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+
+    gap: 5px;
+    scrollbar-gutter: stable both-edges;
+
+    .roll-initiative {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .initiative-die {
+        padding-bottom: 6px;
+        a {
+          width: 30px;
+          height: 30px;
+          margin: 0;
+        }
+      }
+    }
+
+    .square {
+      border-color: var(--c-gold);
+      opacity: 0.4;
+
+      &:hover {
+        border-color: var(--c-pred);
+        opacity: 1;
+      }
+    }
+
+    .square.gold {
+      background-color: var(--c-gold-8);
+      border-color: var(--c-gold);
+      opacity: 1;
+      &:hover {
+        border-color: var(--c-pred);
+      }
+    }
+
+    .diamond-row {
+      justify-content: center;
+      align-items: center;
+    }
+    .combatant {
+      border-radius: $b-radius-md;
+      border: 1px solid var(--c-gold);
+      background-color: var(--b-alpha-8);
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease-in-out;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Crimson Pro";
+        font-size: var(--font-size-14);
+        color: var(--c-gold);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      &::after {
+        border: none;
+      }
+
+      &.active {
+        background-color: var(--c-gold-8);
+        border-color: var(--c-gold-4);
+
+        .token-image {
+          // border-color: var(--c-go);
+        }
+      }
+
+      &.defeated {
+        opacity: 0.5;
+        transition: all 0.2s ease-in-out;
+        background-color: var(--c-pred-8);
+
+        img {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &.npc {
+        //background-color: rgba(87, 25, 25, 0.5);
+      }
+
+      .token-image {
+        border: 1px solid var(--c-gold);
+        margin: 3px;
+        border-radius: $b-radius-sm;
+      }
+
+      .token-actions {
+        display: flex;
+        padding: 0px 8px;
+        flex-direction: column;
+        flex: 0 1 70px;
+        justify-content: center;
+        align-items: center;
+        line-height: normal;
+
+        .token-actions-number {
+          display: flex;
+          font-family: "Crimson Pro";
+          font-size: var(--font-size-20);
+          color: var(--c-gold-6);
+          line-height: normal;
+        }
+
+        .token-actions-control {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          flex: 0 1;
+          height: 5px;
+          font-size: var(--font-size-10);
+          border-top: 1px solid var(--c-gold);
+          gap: 4px;
+        }
+        .actions-label {
+          font-family: "Avenir";
+          font-size: 8px;
+          color: var(--c-gold-7);
+          letter-spacing: 0.05em;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+
+        a.btn.action {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          width: 20px;
+          height: 20px;
+          border-radius: $b-radius-sm;
+          border: calc($line-stroke-width) solid transparent;
+          font-size: var(--font-size-16);
+          font-weight: 1000;
+          color: var(--c-gold);
+          transition: 0.15s all;
+
+          &:hover {
+            //color: var(--c-antiflash);
+            border-color: $line-stroke-color;
+            background-color: var(--b-alpha-8);
+          }
+        }
+        .initiative-number {
+          font-family: "Crimson Pro";
+          font-size: var(--font-size-16);
+          color: var(--c-gold-4);
+          font-weight: 500;
+        }
+      }
+
+      a,
+      i {
+        color: var(--c-gold);
+        text-shadow: none;
+
+        &:hover {
+          color: var(--c-pred);
+        }
+      }
+
+      &.hidden {
+        opacity: 0.5;
+
+        img {
+          opacity: 0.8;
+        }
+
+        &:hover {
+          opacity: 1;
+          img {
+            opacity: 1;
+          }
+        }
+      }
+
+      .token-name {
+        justify-content: center;
+
+        h4 {
+          display: flex;
+          align-items: center;
+        }
+
+        .combatant-controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          justify-items: center;
+        }
+
+        a.combatant-control {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .combatant-control.roll {
+        border: 1px solid var(--c-gold-7);
+        border-radius: $b-radius-sm;
+        background-size: cover;
+        background-image: url(../ui/die-desaturated.svg);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          border-color: var(--c-gold-4);
+          background-image: url(../ui/die-saturated.svg);
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}

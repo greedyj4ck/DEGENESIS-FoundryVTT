@@ -19,7 +19,7 @@ import ActorConfigure from "../apps/actor-configure.js";
 export class DegenesisFromHellSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["degenesis", "sheet", "fromHell"],
       template:
         "systems/degenesis/templates/actor/fromHell/fromHell-sheet.html",
@@ -43,7 +43,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
   async getData() {
     const data = await super.getData();
 
-    data.data = data.actor.system;
+    data.system = data.actor.system;
 
     // Used for Modifier item list
     //data.modifyActions = DEG_Utility.getModificationActions()
@@ -56,18 +56,18 @@ export class DegenesisFromHellSheet extends ActorSheet {
     // ADDING DIAMONDS ONTO SHEET
 
     DEG_Utility.addDiamonds(
-      sheetData.data.condition.ego,
-      sheetData.data.condition.ego.max
+      sheetData.system.condition.ego,
+      sheetData.system.condition.ego.max
     );
     DEG_Utility.addDiamonds(
-      sheetData.data.condition.fleshwounds,
-      sheetData.data.condition.fleshwounds.max
+      sheetData.system.condition.fleshwounds,
+      sheetData.system.condition.fleshwounds.max
     );
     DEG_Utility.addDiamonds(
-      sheetData.data.condition.trauma,
-      sheetData.data.condition.trauma.max
+      sheetData.system.condition.trauma,
+      sheetData.system.condition.trauma.max
     );
-    DEG_Utility.addDiamonds(sheetData.data.state.spentEgo, 3);
+    DEG_Utility.addDiamonds(sheetData.system.state.spentEgo, 3);
 
     // PREPARE DATA FOR FROM HELL SHEET
     sheetData.inventory = this.constructInventory();
@@ -104,7 +104,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
       { async: true, secrets: this.actor.isOwner, relativeTo: this.actor }
     );
 
-    return expandObject(enrichment);
+    return foundry.utils.expandObject(enrichment);
   }
 
   /* ######## HTML LISTENERS  ######## */
@@ -147,6 +147,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
     //html
     html.find(".dropdown").click(this._onDropdown.bind(this));
+    html.find("input.stat-input").blur(this._onStatInput.bind(this));
 
     //.find(".relationships-cultes,.relationships-bonus")
     //.change(this._onRelationshipEdit.bind(this));
@@ -193,8 +194,6 @@ export class DegenesisFromHellSheet extends ActorSheet {
   // Combat hooks
 
   async _onInitiativeClick(event) {
-    console.log("Rolling initiative for from hell :)");
-
     const tokens = this.actor.isToken
       ? [this.actor.token]
       : this.actor.getActiveTokens(true);
@@ -211,9 +210,9 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
-          if (c.data.tokenId !== this.token.id) return arr;
+          if (c.system.tokenId !== this.token.id) return arr;
         } else {
-          if (c.data.actorId !== this.actor.id) return arr;
+          if (c.system.actorId !== this.actor.id) return arr;
           if (c.token.isLinked !== true) return arr;
         }
 
@@ -269,26 +268,6 @@ export class DegenesisFromHellSheet extends ActorSheet {
   }
 
   async _onDrop(event) {
-    /*   let transportTarget = $(event.target).parent(".transport-drop")[0];
-    if (transportTarget) {
-      let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"));
-      let itemData = await fromUuid(jsonData.uuid);
-      if (
-        itemData.type == "weapon" ||
-        itemData.type == "armor" ||
-        itemData.type == "ammunition" ||
-        itemData.type == "equipment" ||
-        itemData.type == "mod" ||
-        itemData.type == "shield" ||
-        itemData.type == "artifact"
-      )
-        this.actor.updateEmbeddedDocuments("Item", [
-          {
-            _id: itemData._id,
-            "data.location": transportTarget.dataset["itemId"],
-          },
-        ]);
-    } else { */
     let dropData = JSON.parse(event.dataTransfer.getData("text/plain"));
     if (dropData.type == "item") {
       return this.actor.createEmbeddedDocuments("Item", [dropData.payload]);
@@ -310,12 +289,12 @@ export class DegenesisFromHellSheet extends ActorSheet {
       target = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-item-target");
-      let value = getProperty(itemData, target);
+      let value = foundry.utils.getProperty(itemData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(itemData, target, index);
+        foundry.utils.setProperty(itemData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(itemData, target, index + 1);
+      else foundry.utils.setProperty(itemData, target, index + 1);
       this.actor.updateEmbeddedDocuments("Item", [itemData]);
       return;
     }
@@ -326,7 +305,7 @@ export class DegenesisFromHellSheet extends ActorSheet {
       let targetParent = $(event.currentTarget)
         .parents(".diamond-row")
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       // Minimum is checked for permanent spore infestation, else 0
       let minimum;
@@ -346,28 +325,28 @@ export class DegenesisFromHellSheet extends ActorSheet {
       if (index + 1 <= maximum && index + 1 > minimum) {
         if (parentValues.value == index + 1)
           // If the last one was clicked, decrease by 1
-          setProperty(actorData, target, index);
+          foundry.utils.setProperty(actorData, target, index);
         // Otherwise, value = index clicked
-        else setProperty(actorData, target, index + 1); // If attribute selected
+        else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
         let attributeElement = $(event.currentTarget).parents(".attribute");
         if (attributeElement.length) {
           // Constrain attributes to be greater than 0
-          if (getProperty(actorData, target) <= 0)
-            setProperty(actorData, target, 1);
+          if (foundry.utils.getProperty(actorData, target) <= 0)
+            foundry.utils.setProperty(actorData, target, 1);
         }
       }
     } else {
-      let value = getProperty(actorData, target);
+      let value = foundry.utils.getProperty(actorData, target);
       if (value == index + 1)
         // If the last one was clicked, decrease by 1
-        setProperty(actorData, target, index);
+        foundry.utils.setProperty(actorData, target, index);
       // Otherwise, value = index clicked
-      else setProperty(actorData, target, index + 1); // If attribute selected
+      else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
       let attributeElement = $(event.currentTarget).parents(".attribute");
       if (attributeElement.length) {
         // Constrain attributes to be greater than 0
-        if (getProperty(actorData, target) <= 0)
-          setProperty(actorData, target, 1);
+        if (foundry.utils.getProperty(actorData, target) <= 0)
+          foundry.utils.setProperty(actorData, target, 1);
       }
     }
     this.actor.update(actorData);
@@ -377,17 +356,17 @@ export class DegenesisFromHellSheet extends ActorSheet {
     let actorData = this.actor.toObject();
     let index = Number($(event.currentTarget).attr("data-index"));
     let target = "system.condition.spore.permanent";
-    let value = getProperty(actorData, target);
+    let value = foundry.utils.getProperty(actorData, target);
     if (value == index + 1)
       // If the last one was clicked, decrease by 1
-      setProperty(actorData, target, index);
+      foundry.utils.setProperty(actorData, target, index);
     // Otherwise, value = index clicked
-    else setProperty(actorData, target, index + 1); // If attribute selected
+    else foundry.utils.setProperty(actorData, target, index + 1); // If attribute selected
     let attributeElement = $(event.currentTarget).parents(".attribute");
     if (attributeElement.length) {
       // Constrain attributes to be greater than 0
-      if (getProperty(actorData, target) <= 0)
-        setProperty(actorData, target, 1);
+      if (foundry.utils.getProperty(actorData, target) <= 0)
+        foundry.utils.setProperty(actorData, target, 1);
     }
     this.actor.update(actorData);
   }
@@ -398,11 +377,13 @@ export class DegenesisFromHellSheet extends ActorSheet {
       let item = this.actor.items.get(
         $(event.currentTarget).parents(".item").attr("data-item-id")
       );
-      item.update({ [`${target}`]: !getProperty(item, target) });
+      item.update({ [`${target}`]: !foundry.utils.getProperty(item, target) });
       return;
     }
     if (target)
-      this.actor.update({ [`${target}`]: !getProperty(this.actor, target) });
+      this.actor.update({
+        [`${target}`]: !foundry.utils.getProperty(this.actor, target),
+      });
   }
 
   _onDropdown(event) {
@@ -450,13 +431,13 @@ export class DegenesisFromHellSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -471,19 +452,19 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       } else {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + 1);
+      foundry.utils.setProperty(actorData, target, currentValue + 1);
     }
 
     this.actor.update(actorData);
@@ -493,13 +474,13 @@ export class DegenesisFromHellSheet extends ActorSheet {
     let actorData = this.actor.toObject();
 
     let target = $(event.currentTarget).parent().attr("data-target");
-    let currentValue = getProperty(actorData, target);
+    let currentValue = foundry.utils.getProperty(actorData, target);
 
     if (target.split(".")[1] === "condition") {
       let targetParent = $(event.currentTarget)
         .parent()
         .attr("data-targetParent");
-      let parentValues = getProperty(this.actor, targetParent);
+      let parentValues = foundry.utils.getProperty(this.actor, targetParent);
 
       let minimum;
       let maximum;
@@ -514,22 +495,37 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
       if (target === "system.condition.ego.value") {
         if (currentValue + 1 > maximum) {
-          setProperty(actorData, target, maximum);
+          foundry.utils.setProperty(actorData, target, maximum);
         } else {
-          setProperty(actorData, target, currentValue + 1);
+          foundry.utils.setProperty(actorData, target, currentValue + 1);
         }
       } else {
         if (currentValue - 1 < minimum) {
-          setProperty(actorData, target, minimum);
+          foundry.utils.setProperty(actorData, target, minimum);
         } else {
-          setProperty(actorData, target, currentValue - 1);
+          foundry.utils.setProperty(actorData, target, currentValue - 1);
         }
       }
     } else {
-      setProperty(actorData, target, currentValue + -1);
+      foundry.utils.setProperty(actorData, target, currentValue + -1);
     }
 
     this.actor.update(actorData);
+  }
+
+  _onStatInput(event) {
+    let inputStat = $(event.currentTarget);
+
+    let min = inputStat.attr("min");
+    let max = inputStat.attr("max");
+
+    if (max && inputStat[0].value > parseInt(max)) {
+      inputStat[0].value = max;
+    }
+
+    if (min && inputStat[0].value < parseInt(min)) {
+      inputStat[0].value = min;
+    }
   }
 
   // END OF CLASS

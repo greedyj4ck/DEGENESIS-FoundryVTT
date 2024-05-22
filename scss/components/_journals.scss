@@ -1,202 +1,270 @@
-// Journal styling
+.app.window-app.sheet.journal-sheet.journal-entry {
+  $line-stroke-color: var(--c-gold);
+  $line-stroke-width: 1.5px;
 
-.journal-sheet.journal-entry .journal-sidebar {
-  background: url(../ui/black_02.jpg);
-  background-position: top center;
-  background-size: auto;
-
-  .window-content {
-    padding: none !important;
+  .line-stroke {
+    stroke: $line-stroke-color;
+    stroke-width: $line-stroke-width;
   }
 
-  .directory-header {
-    color: var(--text-white);
+  a {
+    text-shadow: none;
+  }
+
+  .edit-container {
+    .editor-edit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+      font-size: var(--font-size-20);
+      border: 1px solid var(--c-gold);
+      background-color: var(--b-alpha-5);
+
+      &:hover {
+        opacity: 1;
+        color: var(--c-gold);
+      }
+    }
   }
 
   input {
-    background: none;
-    color: var(--text-white);
-    border: 1px solid var(--text-white);
-    transition: border 0.3s;
+    border-radius: $b-radius-md;
+    border: 1px solid var(--c-gold);
+    background-color: var(--b-alpha-5);
+    transition: border 0.2s ease-in-out;
+
+    &:hover {
+      border-color: var(--c-pred);
+    }
 
     &:focus {
-      box-shadow: none;
-      border: 1px solid var(--degenesis-red);
-      transition: border 0.3s;
+      border-color: var(--c-pred);
     }
   }
 
-  .pages-list {
-    color: var(--text-white);
-    transition: all 0.5s;
+  .page-number {
+    color: var(--c-gold-4);
+  }
 
-    .page-heading {
-      &:hover {
-        color: var(--degenesis-red);
-        transition: all 0.3s;
-        text-shadow: none;
-      }
-    }
+  .page-title {
+    text-shadow: none;
 
-    .heading {
-      &:hover {
-        color: var(--degenesis-red);
-        transition: all 0.3s;
-      }
-    }
-
-    .page-title:hover {
-      text-shadow: none;
+    &:hover {
+      color: var(--c-pred);
     }
   }
 
-  .directory-item.active {
-    //border-color:var(--degenesis-blackred);
+  .directory-list {
+    margin: 5px;
+    padding-right: 0;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-md;
+  }
 
-    + :not(.active) {
-      border-top: 1px solid var(--degenesis-blackred);
-      transition: border 0.3s;
+  .directory-item {
+    border: 0;
 
-      + .active {
-        border-top: 1px solid var(--degenesis-blackred);
-        transition: border 0.3s;
+    border-bottom: 1px solid var(--c-gold);
+    transition: all 0.5s ease-in-out;
+
+    &:first-child {
+      border-top-left-radius: $b-radius-md;
+      border-top-right-radius: $b-radius-md;
+    }
+
+    &.active {
+      background-color: var(--c-resin);
+
+      //border-top: 1px solid var(--c-pred);
+      //  border-bottom: 1px solid var(--c-pred);
+
+      &::after {
+        border: 1px solid transparent;
+      }
+
+      & + :not(.active) {
+        border-bottom: 1px solid var(--c-gold);
+      }
+
+      .headings {
+        opacity: 1;
+        max-height: 200px;
+        visibility: visible;
+        transform: scaleY(1);
+      }
+    }
+
+    .headings {
+      display: block;
+      max-height: 0;
+      transform: scaleY(0);
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+
+  .journal-sidebar {
+    &.collapsed {
+      .ownership-viewer {
+        display: none;
       }
     }
   }
 
-  .directory-item:not(.active) {
-    + .active {
-      border-top: 1px solid var(--degenesis-blackred);
-      transition: border 0.3s;
+  .journal-entry-content {
+    background-color: var(--b-alpha-5);
+    background-image: url(../ui/backgrounds/black_02.jpg);
+    background-blend-mode: color;
+
+    .journal-header {
+      margin: 0.5rem;
+
+      input.title {
+        font-family: "Avenir";
+        font-size: var(--font-size-32);
+        border: 0;
+        text-align: left;
+        border-radius: 0;
+        border-bottom: 2px solid var(--c-gold-5);
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: 0.2rem;
+        &:hover {
+          border-color: var(--c-pred);
+        }
+        &:focus {
+          border-color: var(--c-pred);
+        }
+      }
     }
+
+    .journal-page-header {
+      color: var(--c-pred);
+      text-transform: uppercase;
+    }
+
+    img {
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-md;
+    }
+  }
+
+  .journal-page-content {
+    section.secret {
+      display: flex;
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-md;
+      justify-content: center;
+      padding: 5px;
+      flex-direction: column;
+
+      button {
+        margin: 0px;
+      }
+
+      > *:not(:first-child) {
+        display: none;
+      }
+
+      &.revealed {
+        > *:not(:first-child) {
+          display: block;
+          text-align: justify;
+          margin: 5px;
+          color: var(--c-gold-4);
+        }
+      }
+    }
+  }
+
+  .ownership-viewer {
+    font-size: var(--font-size-14);
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .ownership-viewer-all {
   }
 }
 
-.sheet.journal-entry .pages-list .directory-item.active {
-  &:first-of-type {
-    border-top: 1px solid var(--degenesis-blackred);
-    transition: border 0.3s;
-  }
-
-  &:last-of-type {
-    border-bottom: 1px solid var(--degenesis-blackred);
-    transition: border 0.3s;
-  }
-}
-
-.sheet.journal-entry .journal-entry-content {
-  border-radius: 0;
-  border: 0;
-  background: url(../ui/light_02.jpg);
-
+.app.window-app.sheet.journal-sheet.journal-entry-page {
   .journal-header {
-    input {
+    margin: 0.5rem;
+
+    input.title {
+      font-family: "Avenir";
+      font-size: var(--font-size-32);
+      border: 0;
       text-align: left;
-      font-family: $primary-header-font;
-      text-transform: uppercase;
-      font-weight: 600;
-      background: none;
       border-radius: 0;
-      border-bottom: none;
-      transition: border 0.3s;
-
+      border-bottom: 2px solid var(--c-gold-5);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.2rem;
+      &:hover {
+        border-color: var(--c-pred);
+      }
       &:focus {
-        box-shadow: none;
-        border-bottom: 1px solid var(--degenesis-red);
+        border-color: var(--c-pred);
+      }
+    }
+
+    .page-level {
+      flex: 0 0 140px;
+
+      .show-title {
+        display: flex;
+      }
+
+      input {
+        display: inline-flex;
       }
     }
   }
 
-  .scrollable {
-    scrollbar-width: unset !important;
-  }
-
-  h1 {
-    font-weight: 600;
+  input[type="range"] {
     border: none;
-  }
+    background: none;
 
-  h2 {
-    font-weight: 600;
-    border: none;
-  }
+    transition: all 0.2s ease-in-out;
 
-  section.secret {
-    border-top: none;
-    border-bottom: none;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid $text-black;
-    border-radius: 5px;
-    padding: 0;
-
-    > button {
-      width: 100%;
-      min-height: 25px;
-      border: none;
-      color: $text-white;
-      margin: 0;
-    }
-
-    &.revealed {
-      > * {
-        display: inherit;
+    &:focus {
+      &::-webkit-slider-runnable-track {
+        border-color: var(--c-pred);
       }
     }
 
-    > p {
-      padding: 0 5px 5px 5px;
-      display: none;
+    &:hover {
+      &::-webkit-slider-runnable-track {
+        border-color: var(--c-pred);
+      }
+      &::-webkit-slider-thumb {
+        border-color: var(--c-pred);
+      }
     }
 
-    > h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      display: none;
-      padding: 0 5px;
-      margin: 5px 0px;
+    &::-webkit-slider-runnable-track {
+      background-color: var(--c-gold-8);
+      border: 1px solid var(--c-gold);
+      box-shadow: none !important;
+      transition: all 0.3s ease-in-out;
     }
-  }
-}
 
-.sheet.journal-entry .sidebar {
-  color: #000000;
-}
+    &::-webkit-slider-thumb {
+      transform: rotate(45deg);
+      border: 2px solid var(--c-gold);
+      background-color: black;
+      transition: all 0.3s ease-in-out;
 
-// Editor main selector
-.app.window-app.sheet.journal-sheet.journal-entry-page.text {
-  .journal-header {
-    input {
-      font-family: $primary-header-font;
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 35px;
-      border-bottom: 1px solid $dgns-red;
-      border-radius: 0;
-      background: none;
+      aspect-ratio: 1;
+
+      outline: none !important;
+      box-shadow: none !important;
     }
-  }
-  .page-level {
-    flex: 0 0 130px;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-weight: 600;
-    border-bottom: 1px solid $dgns-red;
-  }
-
-  section.secret {
-    border-top: none;
-    border-bottom: none;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid $text-black;
-    border-radius: 5px;
-    padding: 5px;
   }
 }

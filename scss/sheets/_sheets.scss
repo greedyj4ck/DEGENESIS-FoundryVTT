@@ -303,13 +303,18 @@
   justify-content: space-between;
 
   &.black {
-    background-image: url(../images/title\ border.svg);
+    background-image: url(../ui/images/title\ border.svg);
     color: white;
   }
 
   &.white {
-    background-image: url(../images/title\ border\ white.svg);
+    background-image: url(../ui/images/title\ border\ white.svg);
     color: black;
+  }
+
+  &.gold {
+    color: black;
+    background-image: url(../ui/images/title\ border\ gold.svg);
   }
 
   .bold {
@@ -357,11 +362,11 @@
     //   inline-size: -webkit-fill-available;
 
     &:hover {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
     }
 
     &.active {
-      background-color: var(--degenesis-red);
+      background-color: var(--c-pred);
       text-shadow: none;
     }
   }
@@ -372,23 +377,27 @@
   }
 }
 
+/* --- SHEET CONTAINERS / GROUPS --- */
+
 /* --- INPUT ELEMENTS --- */
 
 .sh-field {
+  align-items: center;
   display: flex;
-  border-bottom: 1px solid var(--grey-160);
+  border-bottom: 1px solid var(--c-gold);
   flex-direction: row;
+  height: var(--font-size-28);
 
   .field-inputs {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1 1 0px;
+    flex: 1 1 auto;
 
-    > * {
+    /*     > * {
       flex: 1;
     }
-
+ */
     .field-start {
       flex: 0 0 28px;
     }
@@ -410,7 +419,7 @@
     border: none;
 
     textarea:hover {
-      border-color: var(--degenesis-red);
+      border-color: var(--c-pred);
     }
 
     &:hover {
@@ -420,10 +429,6 @@
     > * {
       display: flex;
       align-self: flex-start;
-    }
-
-    span {
-      padding-bottom: 3px;
     }
 
     textarea {
@@ -443,21 +448,15 @@
 
   span {
     text-transform: uppercase;
-    padding-top: 5px;
-    padding-bottom: 1px;
     display: flex;
     align-self: center;
   }
 
+  transition: all 0.1s ease-in-out;
+
   &:hover {
-    color: var(--degenesis-red);
-    border-bottom: 1px solid var(--degenesis-red);
-    -webkit-transition: border-bottom 100ms linear;
-    -ms-transition: border-bottom 100ms linear;
-    transition: border-bottom 100ms linear;
-    -webkit-transition: color 100ms linear;
-    -ms-transition: color 100ms linear;
-    transition: color 100ms linear;
+    color: var(--c-pred);
+    border-bottom: 1px solid var(--c-pred);
   }
 }
 
@@ -469,7 +468,7 @@
   z-index: 1000;
   width: 108px;
   height: 108px;
-  background-image: url(../images/character\ frame.svg);
+  background-image: url(../ui/images/character\ frame.svg);
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -543,5 +542,46 @@
       box-shadow: none;
       right: 0;
     }
+  }
+}
+
+hr {
+  border-color: var(--c-gold);
+}
+
+.edit-switch-container {
+  flex: 0 1 22px;
+  padding-right: 5px;
+}
+
+input[type="checkbox"] {
+  &.lock-slider {
+    display: none;
+
+    + label:before {
+      font-size: var(--font-size-14);
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f023";
+    }
+
+    &:checked {
+      + label:before {
+        content: "\f3c1";
+      }
+    }
+  }
+}
+
+// Sheetconfig size fix
+.app.window-app.form.sheet-config {
+  height: auto !important;
+}
+
+.app.window-app.package-configuration {
+  nav > a.item.category-tab {
+    text-align: center;
+    height: auto;
+    display: flow;
   }
 }

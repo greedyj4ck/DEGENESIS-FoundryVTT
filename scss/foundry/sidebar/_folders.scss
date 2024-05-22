@@ -1,0 +1,119 @@
+header > div.header-search.flexrow .dropdown-menu {
+  width: 70%;
+  border: 1px solid var(--c-gold);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 0 !important;
+
+  .dropdown-list {
+    padding: 0;
+
+    .dropdown-item:not(:last-child) {
+      border-bottom: 1px solid var(--c-gold);
+    }
+
+    .dropdown-item {
+      i {
+      }
+
+      gap: 5px;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      line-height: normal;
+      padding: 5px;
+    }
+  }
+}
+
+ol.directory-list {
+  li.folder {
+    .folder-header {
+      border-radius: $b-radius-sm;
+      margin: 2px 4px;
+      border: 1px solid var(--c-gold);
+      background-image: url(../ui/backgrounds/black_01.jpg);
+      background-position: 50% 50%;
+      background-size: cover;
+      background-color: var(--b-alpha-6);
+      background-blend-mode: hard-light;
+      color: var(--c-gold);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Crimson Pro";
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--c-gold);
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .subdirectory {
+      margin-left: 5px;
+      border-left-width: 2px;
+      border-left-style: inset;
+      border-left-color: var(--c-gold);
+    }
+
+    i,
+    a {
+      text-shadow: none;
+      color: var(--c-gold);
+
+      &:hover {
+        color: var(--c-pred);
+      }
+    }
+  }
+
+  .document {
+    line-height: normal;
+    margin: 2px 6px;
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-md;
+    display: flex;
+    background-color: var(--b-alpha-8);
+
+    opacity: 0.8;
+
+    align-items: center;
+    transition: opacity 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.context {
+      border: 1px solid var(--c-pred);
+
+      &::after {
+        border-radius: $b-radius-md;
+        border: none;
+      }
+    }
+
+    &:last-child {
+      border: 1px solid var(--c-gold);
+    }
+
+    img.thumbnail {
+      border: 1px solid var(--c-gold);
+      margin: 3px;
+      border-radius: $b-radius-sm;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      white-space: normal;
+      line-height: normal;
+    }
+  }
+}

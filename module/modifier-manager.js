@@ -145,9 +145,9 @@ export class ModifierManager {
         modifier == "action" &&
         type != "weapon" &&
         type != "dodge" &&
-        type != "mentalDefense" &&
-        type != "initiative" &&
-        type != "phenomenon"
+        type != "initiative"
+        //type != "mentalDefense"
+        //type != "phenomenon"
       ) {
         useModifier = true;
       } else if (modifier.includes("attr:")) {

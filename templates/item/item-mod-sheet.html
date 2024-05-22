@@ -62,8 +62,8 @@
                         <div class="sh-field">
                             <span class="field-name">{{localize "UI.SlotCost"}}: </span>
                             <div class="field-inputs">
-                                <input class="field-input field-start" type="text" name="data.slotCost"
-                                    value="{{data.slotCost}}" data-dtype="Number" />
+                                <input class="field-input field-start" type="text" name="system.slotCost"
+                                    value="{{system.slotCost}}" data-dtype="Number" />
                             </div>
                         </div>
 
@@ -73,12 +73,12 @@
 
                         <div class="sh-field">
                             <span class="field-name">{{localize "UI.ModType"}}: </span>
-                            <select name="data.modType" data-dtype="String">
-                                <option value="">-</option>
-                                {{#select data.modType}}
-                                <option value="weapon">{{localize "DGNS.Weapon"}}</option>
-                                <option value="armor">{{localize "DGNS.Armor"}}</option>
-                                {{/select}}
+                            <select name="system.modType" data-dtype="String">
+
+
+                                {{#selectOptions (config "modTypes") selected=system.modType blank=""}}
+
+                                {{/selectOptions}}
                             </select>
                         </div>
 
@@ -91,7 +91,7 @@
 
                 <div class="specialty-container">
                     <span class="field-name">{{localize "UI.Effect"}}</span>
-                    <textarea name="data.effect" class="item-summary">{{data.effect}}</textarea>
+                    <textarea name="system.effect" class="item-summary">{{system.effect}}</textarea>
                 </div>
 
 
@@ -99,7 +99,7 @@
 
                 <div class="section-header-container">
                     <div class="section-header-titleblock">
-                        <div class="block-title black">
+                        <div class="block-title gold">
                             <h3>{{ localize "UI.AttributeKey" }}</h3>
                             <a class="right icon  effect-control mod-control" data-action="add">+</a>
                         </div>
@@ -121,7 +121,7 @@
 
 
                 <ol class="section-list changes-list">
-                    {{#each data.changes as |change i|}}
+                    {{#each system.changes as |change i|}}
 
 
                     <li class="effect-change mod-keys-entry-container" data-index="{{i}}">
@@ -130,10 +130,9 @@
                         </div>
                         <div class="mode sh-field">
                             <select class="mod-change" data-type="mode">
-                                {{#select change.mode}}
-                                <option value="add">{{localize "DGNS.ModAdd"}}</option>
-                                <option value="override">{{localize "DGNS.ModOverride"}}</option>
-                                {{/select}}
+                                {{#selectOptions (config "modChangeModes") selected=change.mode}}
+
+                                {{/selectOptions}}
                             </select>
                         </div>
                         <div class="value sh-field">
@@ -147,7 +146,7 @@
                 </ol>
 
                 <div class="qualities-group conditions-group">
-                    <div class="block-title black">
+                    <div class="block-title gold">
                         <h3>{{localize "DGNS.Qualities"}}</h3>
                         <a class="right icon wheel item-quality-config"><i class="fas fa-cog"></i></a>
                     </div>

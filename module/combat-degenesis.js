@@ -33,6 +33,13 @@ export class DegenesisCombat extends Combat {
           );
           break;
         }
+        case "aberrant": {
+          initiativeValue = DegenesisCombat.rollInitiativeForAberrant(
+            combatant.actor
+          );
+          break;
+        }
+
         default: {
           initiativeValue = DegenesisCombat.rollInitiativeFor(combatant.actor);
           break;
@@ -56,7 +63,7 @@ export class DegenesisCombat extends Combat {
     // Ensure the turn order remains with the same combatant
     if (updateTurn) {
       const currentId = this.combatant.id;
-      await this.update({
+      await this.updateSource({
         turn: this.turns.findIndex((t) => t.id === currentId),
       });
     }
@@ -69,8 +76,8 @@ export class DegenesisCombat extends Combat {
       const actor = c.actor;
       if (!actor) return;
       actor.update({
-        "data.state.initiative.value": 0,
-        "data.state.initiative.actions": 1,
+        "system.state.initiative.value": 0,
+        "system.state.initiative.actions": 1,
       });
     });
     return await super.resetAll();
@@ -80,7 +87,7 @@ export class DegenesisCombat extends Combat {
     if (!actor) return 0;
     const spentEgo = actor.state.spentEgo.value;
     const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
-      skipDialog: true,
+      skipDialog: false,
       spentEgo,
     });
     let actionCount = 1;
@@ -88,15 +95,24 @@ export class DegenesisCombat extends Combat {
       actionCount = 1 + Math.floor(rollResults.triggers / 2);
     }
     let newEgo = actor.condition.ego.value;
+
+    if (newEgo + spentEgo > actor.condition.ego.max) {
+      ui.notifications.notify(
+        `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+      );
+      return;
+    }
+
     if (spentEgo > 0) {
       newEgo += spentEgo;
+
       if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
       // Create a "modifier" item to give a bonus on the first roll.
       // Additionally, add a flag with the modifiers ID so it can be detected and deleted when rolling
       let spentEgoActionModifier = foundry.utils.deepClone(
         DEGENESIS.systemItems.spentEgoActionModifier
       );
-      spentEgoActionModifier.data.number = spentEgo;
+      spentEgoActionModifier.system.number = spentEgo;
       spentEgoActionModifier.name = "Spent Ego Bonus";
       let modifier = await actor.createEmbeddedDocuments("Item", [
         spentEgoActionModifier,
@@ -112,11 +128,11 @@ export class DegenesisCombat extends Combat {
     }
     const initiativeValue = rollResults.successes;
     actor.update({
-      "data.condition.ego.value": newEgo,
-      "data.state.spentEgo.actionBonus": spentEgo,
-      "data.state.spentEgo.value": 0,
-      "data.state.initiative.value": initiativeValue,
-      "data.state.initiative.actions": actionCount,
+      "system.condition.ego.value": newEgo,
+      "system.state.spentEgo.actionBonus": spentEgo,
+      "system.state.spentEgo.value": 0,
+      "system.state.initiative.value": initiativeValue,
+      "system.state.initiative.actions": actionCount,
     });
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
@@ -147,6 +163,14 @@ export class DegenesisCombat extends Combat {
     }
 
     let newEgo = actor.condition.ego.value;
+
+    if (newEgo + spentEgo > actor.condition.ego.max) {
+      ui.notifications.notify(
+        `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+      );
+      return;
+    }
+
     if (spentEgo > 0) {
       newEgo += spentEgo;
       if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
@@ -155,7 +179,7 @@ export class DegenesisCombat extends Combat {
         DEGENESIS.systemItems.spentEgoActionModifier
       );
 
-      spentEgoActionModifier.data.number = spentEgo;
+      spentEgoActionModifier.system.number = spentEgo;
       spentEgoActionModifier.name = "Spent Ego Bonus";
 
       let modifier = await actor.createEmbeddedDocuments("Item", [
@@ -174,11 +198,11 @@ export class DegenesisCombat extends Combat {
     }
     const initiativeValue = rollResults.successes;
     actor.update({
-      "data.condition.ego.value": newEgo,
-      "data.state.spentEgo.actionBonus": spentEgo,
-      "data.state.spentEgo.value": 0,
-      "data.state.initiative.value": initiativeValue,
-      "data.state.initiative.actions": actionCount,
+      "system.condition.ego.value": newEgo,
+      "system.state.spentEgo.actionBonus": spentEgo,
+      "system.state.spentEgo.value": 0,
+      "system.state.initiative.value": initiativeValue,
+      "system.state.initiative.actions": actionCount,
     });
     cardData.initiative = initiativeValue;
     cardData.actions = actionCount;
@@ -201,12 +225,14 @@ export class DegenesisCombat extends Combat {
       spentPoints = actor.state.spentEgo.value;
     }
 
+    let spentEgo = spentPoints;
+
     const { rollResults, cardData } = await actor.rollFightRollFromHell(
       "initiative",
       actor.fighting.initiative + actionModifier,
       {
         skipDialog: false,
-        spentPoints,
+        spentEgo,
       }
     );
 
@@ -228,7 +254,7 @@ export class DegenesisCombat extends Combat {
           DEGENESIS.systemItems.spentSporeActionModifier
         );
 
-        spentSporeActionModifier.data.number = spentPoints;
+        spentSporeActionModifier.system.number = spentPoints;
         spentSporeActionModifier.name = "Spent Spore Bonus";
 
         let modifier = await actor.createEmbeddedDocuments("Item", [
@@ -245,16 +271,22 @@ export class DegenesisCombat extends Combat {
         );
 
         actor.update({
-          "data.condition.spore.value": newSpore,
-          "data.state.spentSpore.actionBonus": spentPoints,
-          "data.state.spentSpore.value": 0,
-          "data.state.initiative.value": initiativeValue,
-          "data.state.initiative.actions": actionCount,
+          "system.condition.spore.value": newSpore,
+          "system.state.spentSpore.actionBonus": spentPoints,
+          "system.state.spentSpore.value": 0,
+          "system.state.initiative.value": initiativeValue,
+          "system.state.initiative.actions": actionCount,
         });
         cardData.spentSpore = spentPoints;
       }
     } else {
       let newEgo = actor.condition.ego.value;
+      if (newEgo + spentEgo > actor.condition.ego.max) {
+        ui.notifications.notify(
+          `${actor.name} ${game.i18n.localize("UI.NotEnoughEgo")}`
+        );
+        return;
+      }
       if (spentPoints > 0) {
         newEgo += spentPoints;
         if (newEgo > actor.condition.ego.max) newEgo = actor.condition.ego.max;
@@ -263,7 +295,7 @@ export class DegenesisCombat extends Combat {
           DEGENESIS.systemItems.spentEgoActionModifier
         );
 
-        spentEgoActionModifier.data.number = spentPoints;
+        spentEgoActionModifier.system.number = spentPoints;
         spentEgoActionModifier.name = "Spent Ego Bonus";
 
         let modifier = await actor.createEmbeddedDocuments("Item", [
@@ -279,11 +311,11 @@ export class DegenesisCombat extends Combat {
         ui.notifications.notify(game.i18n.localize("UI.SpentEgoNotification"));
         cardData.spentEgo = spentPoints;
         actor.update({
-          "data.condition.ego.value": newEgo,
-          "data.state.spentEgo.actionBonus": spentPoints,
-          "data.state.spentEgo.value": 0,
-          "data.state.initiative.value": initiativeValue,
-          "data.state.initiative.actions": actionCount,
+          "system.condition.ego.value": newEgo,
+          "system.state.spentEgo.actionBonus": spentPoints,
+          "system.state.spentEgo.value": 0,
+          "system.state.initiative.value": initiativeValue,
+          "system.state.initiative.actions": actionCount,
         });
       }
     }

@@ -6,27 +6,40 @@
 88   8 88    88  ee 88    88  8 88        88 88     88 
 88   8 88    88   8 88    88  8 88    e   88 88 e   88 
 88eee8 88eee 88eee8 88eee 88  8 88eee 8eee88 88 8eee88
-FOUNDRY VTT SYSTEM STYLESHEET V.0.4 */
+FOUNDRY VTT SYSTEM STYLESHEET V.1.0 
+
+*/
 
 // NORMALIZE TEST
 @import "normalize/normalize";
 
-// IMPORTS
-@import "base/scss-variables";
-@import "base/css-variables";
-@import "base/css-reset";
+// IMPORTS - VARIABLES
+@import "base/colors";
+@import "base/scss-variables"; /// to be removed
+@import "base/css-variables"; /// to be removed
+
+// BASE ELEMENTS
 @import "base/fonts";
 @import "base/typography";
-@import "base/experimental"; // CONTAINS SOME ADDITIONAL STYLING - NEED TO PASS THIS TO PROPER CATEGORIES
+// @import "base/ui-elements"; /// to be removed - moved to controls...
+// @import "base/experimental"; /// to be removed
 
 // FOUNDRY UI OVERRIDES
 @import "foundry/ui";
+@import "foundry/sidebar";
+
+// 3RD PARTY
+@import "3rdparty/carousel";
+@import "3rdparty/ownership";
 
 // MAIN COMPONENTS
+
+@import "components/controls"; /// Main styling for buttons, selects, checboxes, inputs, etc...
 @import "components/scrollbar";
 @import "components/squares";
 @import "components/chatMessage"; // MOVED _CHAT.SCSS  into _CHATMESSAGE.SCSS
 @import "components/journals";
+@import "components/rollTable";
 @import "components/editor"; // PROSEMIRROR EDITOR
 
 // APPS

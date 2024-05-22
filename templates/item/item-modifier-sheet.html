@@ -25,21 +25,17 @@
 
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.Action"}}: </span>
-                    <select name="data.action">
-                        {{#select data.action}}
-                        <option value="">-</option>
-                        {{#each modifyActions as |action a|}}
-                        <option value="{{a}}">{{action}}</option>
-                        {{/each}}
-                        {{/select}}
+                    <select name="system.action">
+                        {{#selectOptions modifyActions selected=system.action blank="-"}}
+                        {{/selectOptions}}
                     </select>
                 </div>
 
                 <div class="sh-field">
                     <span class="field-name">{{localize "UI.Number"}}: </span>
                     <div class="field-inputs">
-                        <input class="field-input field-start" type="text" name="data.number" value="{{data.number}}"
-                            data-dtype="Number" placeholder="-1, +2, etc" />
+                        <input class="field-input field-start" type="text" name="system.number"
+                            value="{{system.number}}" data-dtype="Number" placeholder="-1, +2, etc" />
                     </div>
                 </div>
             </div>
@@ -48,24 +44,16 @@
                 {{#if showType}}
                 <div class="sh-field">
                     <span class="field-name">{{localize "UI.Type"}}: </span>
-                    <select name="data.type">
-                        {{#select data.type}}
-                        <option value="">-</option>
-                        {{#each (config "modifyTypes") as |type t|}}
-                        <option value="{{t}}">{{type}}</option>
-                        {{/each}}
-                        {{/select}}
-                    </select>
+                    <select name="system.type">
+                        {{#selectOptions (config "modifyTypes") selected=system.type blank="-"}}
+
+                        {{/selectOptions}}
+                        <select>
                 </div>
                 {{/if}}
                 <div class="sh-field">
                     <span class="field-name">{{localize "DGNS.ShowName"}}: </span>
-                    <select name="data.showName">
-                        {{#select data.showName}}
-                        <option value="">✘</option>
-                        <option value="true">✔</option>
-                        {{/select}}
-                    </select>
+                    <input type="checkbox" name="system.showName" {{checked system.showName}}>
                 </div>
 
             </div>
@@ -74,7 +62,7 @@
 
         <div class="bottom-specialty-container">
             <span class="field-name">{{localize "UI.ActionDescription"}}</span>
-            <textarea name="data.description" class="item-summary">{{data.description}}</textarea>
+            <textarea name="system.description" class="item-summary">{{system.description}}</textarea>
         </div>
 
         {{/if}}

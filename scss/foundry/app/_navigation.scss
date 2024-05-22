@@ -1,0 +1,87 @@
+nav#navigation {
+  a#nav-toggle {
+    text-shadow: none !important;
+    aspect-ratio: 1 !important;
+    background-color: var(--b-alpha-8) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
+
+  li.scene.nav-item {
+    font-family: "Avenir";
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+
+    border: 1px solid var(--c-gold);
+
+    color: var(--c-gold);
+    box-shadow: none !important;
+    background: var(--b-alpha-8) !important;
+    backdrop-filter: blur(5px);
+
+    &:hover {
+      backdrop-filter: blur(15px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    a:hover {
+      color: var(--c-antiflash) !important;
+    }
+
+    &.gm {
+      background: var(--b-alpha-8) !important;
+      border: 1px solid var(--c-resin-5) !important;
+      color: var(--c-resin-3);
+    }
+
+    &.view {
+      border: 1px solid var(--c-gold-5) !important;
+      background: var(--b-alpha-8) !important;
+      color: var(--c-gold-3) !important;
+    }
+
+    &.context {
+      border: 1px solid var(--c-antiflash) !important;
+      background: var(--b-alpha-8) !important;
+      backdrop-filter: none !important;
+    }
+
+    &.active {
+      background: var(--b-alpha-8) !important;
+      border: 1px solid var(--c-pred) !important;
+      color: var(--c-pred-4) !important;
+    }
+
+    a {
+      text-shadow: none;
+    }
+  }
+
+  #context-menu {
+    position: absolute;
+    margin-top: 8px;
+
+    background: var(--b-alpha-8);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+
+    li {
+      &:not(:last-child) {
+        //background: var(--b-alpha-1);
+        border-bottom: 1px solid var(--c-gold);
+        background: none;
+      }
+      &:hover {
+        color: var(--c-antiflash);
+        box-shadow: none;
+        text-shadow: none;
+      }
+    }
+  }
+}

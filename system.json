@@ -2,10 +2,10 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.6.2.1",
+  "version": "0.7.0",
   "compatibility": {
-    "minimum": "11.311",
-    "verified": "11.313"
+    "minimum": "12.318",
+    "verified": "12.324"
   },
   "authors": [
     {
@@ -33,9 +33,16 @@
       "flags": {}
     }
   ],
-  "esmodules": ["degenesis.js"],
-  "styles": ["styles/degenesis.css", "styles/animate.min.css"],
-  "scripts": ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"],
+  "esmodules": ["degenesis.mjs"],
+  "styles": [
+    "styles/degenesis.css",
+    "styles/animate.min.css",
+    "lib/select2.min.css"
+  ],
+  "scripts": [
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js",
+    "lib/select2.full.js"
+  ],
   "packs": [
     {
       "label": "Legacies",
@@ -174,8 +181,24 @@
       "flags": {}
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "m",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
+
+  "media": [
+    {
+      "type": "cover",
+      "loop": false,
+      "flags": {}
+    },
+    {
+      "type": "setup",
+      "url": "systems/degenesis/ui/system-banner.webp",
+      "thumbnail": "systems/degenesis/ui/system-banner-thumbnail.webp"
+    }
+  ],
+
   "background": "systems/degenesis/ui/artifacts.jpg",
   "manifest": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.json",
   "download": "https://github.com/greedyj4ck/DEGENESIS-FoundryVTT/releases/latest/download/system.zip",

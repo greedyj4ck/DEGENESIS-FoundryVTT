@@ -1,5 +1,6 @@
 export const DEGENESIS = {};
 export const CLUSTER = {};
+export const MODULE = "degenesis";
 
 DEGENESIS.cultures = {
   borca: "DGNS.Borca",
@@ -112,6 +113,21 @@ DEGENESIS.raptures = {
   psychokinetics: "DGNS.Psychokinetics",
 };
 
+DEGENESIS.itemRaptures = {
+  generic: "DGNS.Generic",
+  biokinetics: "DGNS.Biokinetics",
+  dushani: "DGNS.Dushani",
+  leviathans: "DGNS.Leviathans",
+  pheromancers: "DGNS.Pheromancers",
+  pregnoctics: "DGNS.Pregnoctics",
+  psychokinetics: "DGNS.Psychokinetics",
+};
+
+DEGENESIS.aberrantPhases = {
+  primal: "DGNS.PrimalPhase",
+  focus: "DGNS.FocusPhase",
+};
+
 DEGENESIS.attributes = {
   body: "DGNS.Body",
   agility: "DGNS.Agility",
@@ -220,7 +236,8 @@ DEGENESIS.skillAttributes = {
 DEGENESIS.fightRolls = {
   dodge: "mobility",
   initiative: "reaction",
-  mentalDefense: "willpower",
+  mentalDefenseWill: "willpower",
+  mentalDefenseFaith: "faith",
 };
 
 DEGENESIS.diceRolls = {
@@ -687,6 +704,16 @@ DEGENESIS.damageModifiersFromHell = {
   },
 };
 
+DEGENESIS.modTypes = {
+  weapon: "DGNS.Weapon",
+  armor: "DGNS.Armor",
+};
+
+DEGENESIS.modChangeModes = {
+  add: "DGNS.ModAdd",
+  override: "DGNS.ModOverride",
+};
+
 DEGENESIS.techValues = {
   1: "I",
   2: "II",
@@ -739,14 +766,14 @@ DEGENESIS.calibers = {
 DEGENESIS.systemItems = {
   spentEgoActionModifier: {
     type: "modifier",
-    data: {
+    system: {
       action: "action",
       type: "D",
     },
   },
   spentSporeActionModifier: {
     type: "modifier",
-    data: {
+    system: {
       action: "action",
       type: "D",
     },

@@ -60,6 +60,7 @@ export default class RollDialog extends Dialog {
     // RESET BUTTON FUNCTIONALITY INSTEAD USING DEFAULT FORM RESET (ISSUES WITH REFRESHING VALUES)
 
     this.customModifiers.val(null);
+    $("select[name='customModifiers']").val(null).trigger("change");
 
     // SET USER ENTRY VALUES TO 0
 
@@ -78,6 +79,8 @@ export default class RollDialog extends Dialog {
   }
 
   submit(button) {
+    $(":focus").blur();
+
     let difficulty = this.element.find("input[name='difficulty']").val();
     let secondary = this.element.find(".secondary-select").val();
 

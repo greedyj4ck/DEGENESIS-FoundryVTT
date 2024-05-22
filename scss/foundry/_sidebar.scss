@@ -1,0 +1,77 @@
+/// Sidebar styling
+/// All the proper components and views are divided into separate subsections.
+
+@import "sidebar/tabs"; // Main tabs at the top
+@import "sidebar/folders"; // Universal styling for all fodlers
+@import "sidebar/chat"; // Chat section
+@import "sidebar/combat"; // Combat tracker section
+@import "sidebar/scenes"; // Scenes directories section
+@import "sidebar/actors"; // Actors section
+@import "sidebar/items"; // Items section
+@import "sidebar/journals"; // Journals
+@import "sidebar/rollTables"; // Rolltables
+@import "sidebar/cards"; // Card decks
+@import "sidebar/playlists"; // Card decks
+@import "sidebar/compendium"; // Compendium
+@import "sidebar/settings";
+
+#sidebar {
+  margin: 5px 5px 5px 5px;
+  padding: 0px 0px;
+  border: 0;
+  border-radius: 5px;
+  width: var(--sidebar-width);
+  box-shadow: none;
+
+  background-color: rgba(10, 10, 10, 0.6);
+  border: 1px solid var(--c-gold);
+  //backdrop-filter: blur(15px);
+  background-image: url(../ui/backgrounds/black_01.jpg);
+  background-position: top center;
+  background-size: cover;
+
+  .collapse {
+    text-shadow: none;
+
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
+
+  &.collapsed {
+    #sidebar-tabs {
+      margin: 5px;
+      gap: 2px;
+      .item {
+        width: auto;
+
+        &.active {
+          border-color: var(--c-gold);
+        }
+      }
+    }
+  }
+
+  input {
+    color: var(--c-gold);
+    border: 1px solid var(--c-gold);
+    background-color: var(--b-alpha-6);
+
+    &:hover {
+      border-color: var(--c-pred);
+    }
+
+    &:focus {
+      border-color: var(--c-pred);
+      box-shadow: none !important;
+    }
+  }
+}
+
+.sidebar-popout {
+  .window-header {
+  }
+  .window-content {
+    background: var(--b-alpha-4) !important;
+  }
+}

@@ -1,0 +1,32 @@
+<form autocomplete="off">
+    {{#if user.isGM}}
+    <div class="form-group">
+        <label>{{localize 'COMBAT.Resource'}}</label>
+        <select name="resource">
+            {{selectOptions attributeChoices selected=settings.resource blank=(localize "None")}}
+        </select>
+        <p class="notes">{{localize 'COMBAT.ResourceHint'}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize 'COMBAT.SkipDefeated'}}</label>
+        <input type="checkbox" name="skipDefeated" {{checked settings.skipDefeated}} data-dtype="Boolean" />
+        <p class="notes">{{localize 'COMBAT.SkipDefeatedHint'}}</p>
+    </div>
+    {{/if}}
+
+    <div class="form-group" data-setting-id="core.combatTheme">
+        <label>{{ localize combatTheme.name }}</label>
+        <div class="form-fields">
+            <select name="combatTheme">
+                {{selectOptions combatTheme.choices selected=selectedTheme localize=true}}
+            </select>
+            <i data-tooltip="{{localize 'Preview'}}" class="fas fa-play audio-preview"></i>
+        </div>
+        <p class="notes">{{ localize combatTheme.hint }}</p>
+    </div>
+
+    <button type="submit">
+        <i class="fas fa-save"></i> {{localize 'COMBAT.SettingsSave'}}
+    </button>
+</form>

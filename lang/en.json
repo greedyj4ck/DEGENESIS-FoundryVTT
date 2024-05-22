@@ -40,10 +40,24 @@
   "UI.OverloadTooBig": "Overload is bigger than current spore infestation value",
   "UI.Roll": "Roll",
   "UI.CannotRollPassive": "Passive Defense rolls cannot be made",
+  "UI.NotEnoughEgo": "does not have enough ego points to spend",
+  "UI.None": "None",
+
+  "UI.EmptyCult": "CHOOSE CULT",
+  "UI.EmptyConcept": "CHOOSE CONCEPT",
+  "UI.EmptyCulture": "CHOOSE CULTURE",
+  "UI.EmptyRapture": "CHOOSE RAPTURE",
+
+  "UI.AddAction": "Add Action",
+  "UI.RemoveAction": "Remove Action",
 
   "UI.D": "D",
   "UI.S": "S",
   "UI.T": "T",
+
+  "UI.SheetUnlocked": "Sheet unlocked for edit",
+  "UI.SheetLocked": "Sheet locked for edit",
+  "UI.SheetLockedNotification": "Sheet is currently locked",
 
   "TYPES.Item.Type": "Character",
 
@@ -363,6 +377,7 @@
   "DGNS.DamageType": "Damage Type",
   "DGNS.Type": "Type",
   "DGNS.Permanent": "Permanent",
+  "DGNS.Number": "Number",
 
   "DGNS.AreaDamageDescription": "The weapon doesn’t aim directly at an enemy: it covers an area stated in degrees. Everything inside this area can take Damage.",
   "DGNS.ArmorpiercingDescription": "The projectile used is highly compact and fast. It pierces armor as if it were made of paper. Armor piercing projectiles do not necessarily cause more Damage, but they ignore the special Qualities like “Massive” or “Bulletproof” the target’s armor might have.",
@@ -536,7 +551,7 @@
   "DGNS.OrienteeringTracking": "Orienteering / Tracking",
   "DGNS.Equipments": "Equipments",
 
-  "DGNS.ConfigureActorInstructions": "Here you can override various properties calculated by the sheet. Leaving a value as blank or 0 will have the sheet calculate it automatically.",
+  "DGNS.ConfigureActorInstructions": "Here you can apply modifiers for various properties calculated by the sheet. Leaving a value as blank or 0 will remove it.",
   "DGNS.ConfigureActor": "Configure Actor",
   "DGNS.Configure": "Configure",
   "DGNS.ModValue": "Mod Value",

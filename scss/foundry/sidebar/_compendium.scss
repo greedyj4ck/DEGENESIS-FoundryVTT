@@ -1,0 +1,134 @@
+#compendium,
+.Compendium-sidebar {
+  button {
+    min-height: 35px;
+  }
+
+  input {
+    text-align: center;
+    border: 1px solid var(--c-gold);
+    background-color: var(--b-alpha-6);
+    font-family: "Crimson Pro";
+    color: var(--c-gold);
+
+    &::placeholder {
+      opacity: 0.5;
+      color: var(--c-gold-5) !important;
+    }
+  }
+
+  .header-search {
+    input {
+      background: var(--b-alpha-6) !important;
+    }
+  }
+
+  a {
+    font-family: "Crimson Pro";
+    font-weight: 500;
+    text-shadow: none;
+    letter-spacing: 0.05em;
+    color: var(--c-gold) !important;
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--c-pred) !important;
+    }
+  }
+
+  i {
+    color: var(--c-gold);
+    &:hover {
+      color: var(--c-pred);
+    }
+  }
+
+  .compendium-banner {
+    border-radius: $b-radius-md;
+  }
+
+  .header-banner {
+    mix-blend-mode: exclusion;
+
+    h1,
+    h2,
+    h3 {
+      color: var(--c-antiflash) !important;
+    }
+  }
+
+  .compendium-name {
+    background: none !important;
+    border: none !important;
+    font-family: "Crimson Pro";
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--c-gold);
+    text-transform: uppercase;
+
+    i {
+      display: none;
+    }
+  }
+
+  .directory-item.compendium {
+    margin: 2px 6px;
+    border: 1px solid var(--c-gold) !important;
+    border-radius: $b-radius-md;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      border: 1px solid var(--c-pred) !important;
+    }
+
+    &.context {
+      border: 1px solid var(--c-pred);
+
+      &::after {
+        border-radius: $b-radius-md;
+        border: none;
+      }
+    }
+
+    .thumbnail {
+      padding: 3px;
+      margin: 2px;
+      border: 1px solid var(--c-gold);
+      border-radius: $b-radius-md;
+    }
+
+    .compendium-footer .source {
+      border-top: 1px solid var(--c-gold);
+      border-right: 1px solid var(--c-gold);
+      border-bottom-left-radius: $b-radius-md;
+      border-top-right-radius: $b-radius-md;
+
+      color: var(--c-gold);
+      font-family: "Avenir";
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      line-height: normal;
+    }
+
+    &:hover {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        text-shadow: 0px 0px 15px var(--b-alpha-10);
+      }
+    }
+  }
+}

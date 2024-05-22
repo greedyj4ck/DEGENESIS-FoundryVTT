@@ -1,0 +1,44 @@
+/// Macrobar
+
+#hotbar {
+  font-family: "Avenir";
+  font-size: 12px;
+  color: var(--c-gold);
+  background: none !important;
+
+  .macro {
+    border: 1px solid var(--c-gold) !important;
+    color: var(--c-gold);
+    box-shadow: none;
+    background: var(--b-alpha-8);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+
+    .macro-key {
+      font-family: "Avenir";
+      font-weight: 700;
+      color: var(--c-gold);
+    }
+
+    &:hover {
+      box-shadow: none;
+      border: 1px solid var(--c-pred) !important;
+    }
+  }
+
+  #hotbar-directory-controls,
+  #hotbar-lock,
+  #hotbar-page-controls {
+    background: var(--b-alpha-8);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--c-gold); //!important;
+    color: var(--c-gold);
+    border-radius: 10px;
+  }
+
+  #macro-list {
+    gap: 2px;
+    border: none;
+    background: none;
+  }
+}
