@@ -518,3 +518,24 @@ header.table-header {
     }
   }
 }
+
+/* APP V2 */
+.application.dialog {
+  background-color: var(--b-alpha-8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--c-gold);
+
+  color: var(--c-gold);
+
+  .window-title {
+    color: var(--c-gold-4);
+
+    font-family: "Crimson Pro";
+    text-transform: unset;
+    font-size: var(--font-size-14);
+  }
+
+  .window-content {
+    border-top: 1px solid var(--c-gold);
+  }
+}

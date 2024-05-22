@@ -1,3 +1,44 @@
+# **CHANGELOG 0.7.0 (22.05.2024) **
+
+Many thanks the entire Court of The Piast server community involved and Degnesis for feedback, testing and translation.
+
+    Due to the removal of deprecated functions from Foundry version 11, 0.7.0 is only compatible with version 12+.
+
+As always:
+
+> **This update contains heavy changes to code, data structures, application behaviour etc, which are not final and may change in a future. Before migrating your world to newest version, please create a backup using Foundry's built-in backup system.**
+
+## New Features
+
+- Foundry V12 compatibility
+- New user interface design (BETA)
+  > Design inspired by the style of 'Artifacts'. The entire interface is now more coherent and unified. It has BETA status for now as there may be minor bugs.
+- Improvement of the Combat Tracker panel
+  > Added buttons for spending EGO during initiative throw and modifying the number of actions.
+- Added button to lock the character sheet
+  > Should minimise unwanted changes by missclicks
+- Added some new icons by Calion <3
+
+## Breaking changes
+
+- Manual character configuration now works in a relative way - entered values will be added/subtracted to calculated values
+
+## Fixes
+
+- Combat tracker initiative roll now use proper routines
+- Aberrant initiative roll will now provide first action bonus when spending Spore/Ego points
+- Mental defense roll now show correct skill in chat
+- Fixed issues with armor layering - armor value now should be calculated properly
+- Added some missing strings
+- Added some modifications to compendiums
+- Modifiers will now apply when pressing ENTER during rolls
+- Rolling initiative from character sheet will now open roll window for adding bonus / malus
+- +S/+T modifiers should now work on Mental Defense rolls
+
+## 3rd-party integration
+
+- Combat Carousel styling
+
 # **CHANGELOG 0.6.2.1 (17.02.2024)**
 
 Patch for some issues introduced with 0.6.2.

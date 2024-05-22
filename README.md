@@ -23,6 +23,7 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
   - Renart de Maupertuis (Renart de Maupertuis#1302)
   - Pablo Ruiz Valls (Pabruva#1968)
   - Greedyj4ck (GЯΣΣDYJΛCK#2690)
+  - Calion (calion16)
 - Translations:
   - Meldinov
   - Herugrim (Herugrim#3880)
@@ -36,8 +37,8 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
 
 ## Artwork
 
-Default world background **Potentials** by **Claudiu-Antoniu Magherusan** https://www.artstation.com/artwork/PmA5aB
-Github banner **Homo Degenesis** by **Marko Djurdjevic** https://www.sixmorevodka.com/
+Default world background **Potentials** by **Claudiu-Antoniu Magherusan** https://www.artstation.com/artwork/PmA5aB  
+Github banner **Homo Degenesis** by **Marko Djurdjevic** https://www.sixmorevodka.com/  
 Skull from THE JACKAL'S PROPHECY https://www.youtube.com/watch?v=6y1kQFN5zB0
 
 ###### COMPENDIUM BANNERS

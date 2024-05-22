@@ -1169,6 +1169,24 @@ header.table-header {
   background-color: var(--c-gold-7);
 }
 
+/* APP V2 */
+.application.dialog {
+  background-color: var(--b-alpha-8);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid var(--c-gold);
+  color: var(--c-gold);
+}
+.application.dialog .window-title {
+  color: var(--c-gold-4);
+  font-family: "Crimson Pro";
+  text-transform: unset;
+  font-size: var(--font-size-14);
+}
+.application.dialog .window-content {
+  border-top: 1px solid var(--c-gold);
+}
+
 #sidebar-tabs {
   border-bottom: 1px solid var(--c-gold);
   -webkit-box-shadow: none;
