@@ -1,16 +1,13 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
-
   "TYPES.Actor.TypeCharacter": "Charakter",
   "TYPES.Actor.TypeNpc": "Nichtspielercharakter",
   "TYPES.Actor.TypeAberrant": "Absonderlicher",
   "TYPES.Actor.TypeFromHell": "Viel Feind",
-
   "TYPES.Actor.TypeCharacterSheet": "Standardbogen Charakter",
   "TYPES.Actor.TypeNpcSheet": "Standardbogen NSC",
   "TYPES.Actor.TypeAberrantSheet": "Standardbogen Absonderlicher",
   "TYPES.Actor.TypeFromHellSheet": "Standardbogen Viel Feind",
-
   "UI.SlotCost": "Slot-Kosten",
   "UI.Effect": "Effekt",
   "UI.ModType": "Art der Modifikation",
@@ -40,13 +37,21 @@
   "UI.OverloadTooBig": "Überladung ist höher als aktuelle Versporungsstufe",
   "UI.Roll": "Roll",
   "UI.CannotRollPassive": "Passive Verteidigungswürfe können nicht durchgeführt werden.",
-
+  "UI.NotEnoughEgo": "hat nicht genug Egopunkte zum Ausgeben",
+  "UI.None": "Keiner",
+  "UI.EmptyCult": "WÄHLEN SIE KULT",
+  "UI.EmptyConcept": "KONZEPT WÄHLEN",
+  "UI.EmptyCulture": "WÄHLEN SIE KULTUR",
+  "UI.EmptyRapture": "WÄHLEN SIE ENTRÜCKUNG",
+  "UI.AddAction": "Aktion hinzufügen",
+  "UI.RemoveAction": "Aktion entfernen",
   "UI.D": "W",
   "UI.S": "E",
   "UI.T": "T",
-
+  "UI.SheetUnlocked": "Blatt zur Bearbeitung entsperrt",
+  "UI.SheetLocked": "Blatt zur Bearbeitung gesperrt",
+  "UI.SheetLockedNotification": "Das Blatt ist derzeit gesperrt",
   "TYPES.Item.Type": "Charakter",
-
   "TYPES.Item.TypeWeapon": "Waffen",
   "TYPES.Item.TypeArmor": "Rüstung",
   "TYPES.Item.TypeEquipment": "Ausrüstung",
@@ -63,7 +68,6 @@
   "TYPES.Item.TypeAttack": "Angriff",
   "TYPES.Item.TypeDefense": "Verteidigung",
   "TYPES.Item.TypePhenomenon": "Phänomen",
-
   "TYPES.Ammo.50gl": ".50 GL",
   "TYPES.Ammo.357": ".357",
   "TYPES.Ammo.44": ".44",
@@ -95,7 +99,6 @@
   "TYPES.Ammo.coal": "Kohle",
   "TYPES.Ammo.boltcoal": "Bolzen & Kohle",
   "TYPES.Ammo.special": "Speziell",
-
   "DGNS.Name": "Name",
   "DGNS.Age": "Alter",
   "DGNS.Rank": "Rang",
@@ -363,7 +366,7 @@
   "DGNS.DamageType": "Schadenstyp",
   "DGNS.Type": "Typ",
   "DGNS.Permanent": "Dauerhaft",
-
+  "DGNS.Number": "Nummer",
   "DGNS.AreaDamageDescription": "Die Waffe zielt nicht direkt auf einen Feind: Sie deckt einen in Grad angegebenen Bereich ab. Alles in diesem Bereich kann Schaden nehmen.",
   "DGNS.ArmorpiercingDescription": "Das verschossene Projektil ist hochkompakt und schnell. Es durchschlägt die Panzerung, als sei sie aus Papier. Panzerbrechende Geschosse verursachen nicht notwendigerweise mehr Schaden, aber sie ignorieren die besonderen Eigenschaften wie ‚massiv‘ oder ‚kugelsicher’ der Zielrüstung.",
   "DGNS.BiometricallyEncodedDescription": "Im Schaft sind biometrische Sensoren untergebracht, die nur auslösen, wenn die richtige Person die Waffe greift. Oftmals summt oder vibriert die Elektronik und bestätigt damit ihre Bereitschaft. In den Händen eines Fremden passiert gar nichts: Er kann die Waffe nicht abfeuern. Um diesen Schutzmechanismus auszuschalten oder die Kodierung zu ändern, müssen die Schaltkreise formatiert oder überbrückt werden. Beides erfordert einen fähigen Techniker mit einer Elektronikwerkstatt. Ihm muss erst ein Aktionswurf auf GES+Handwerk gegen die Schwierigkeit der Eigenschaft gelingen, um die Elektronik freizulegen. Mit VER+Technik (Schwierigkeit) identifiziert er die Schaltung, versteht ihre Funktionsweise und manipuliert sie. Misslingt einer der Würfe, steigt die Schwierigkeit um +1. Klettert sie auf 12, deaktiviert sich die Waffe. Sie hat jetzt nur noch Schrottwert.",
@@ -414,14 +417,12 @@
   "DGNS.BrittleDescription": "Rüstungsplatten können gehärtet werden: Ihr Panzerwert steigt dann um 1. Allerdings versprödet das Material dabei. Muss die Panzerung einen hohen Schaden einstecken (durch den Eigenschaftswert vorgegeben), bersten die Platten und verlieren permanent -1 Panzerwert. Der Unterschied zur Eigenschaft ‚Instabil‘ ist, dass ‚Spröde‘ beim Modifizieren einer Rüstung bewusst in Kauf genommen werden kann, dafür aber den Panzerwert erhöht.",
   "DGNS.SealedDescription": "Die Rüstung schützt zuverlässig vor Umweltgiften, Keimen und Versporung. Bei einem Widerstandswurf gegen Kontamination erhält der Träger automatische Erfolge.",
   "DGNS.CuttingDescription": "Sonderfähigkeit ‚Zerschneiden‘ - gelingt ein Angriff mit 2 Triggern, kann der Spitalier die Klingen zusammenschnappen lassen und +1W Schaden zusätzlich verursachen. Die verwendeten 2T werden nicht in die Schadensberechnung einbezogen. Würfelt der Spieler also beim Sonderschaden nur eine 1, verursacht er einen Schaden weniger, als wenn auf das ‚Zerschneiden‘ verzichtet hätte. Dafür kann er aber auch im besten Fall +4 Schaden austeilen.",
-
   "DGNS.BodyAbbrev": "KÖR",
   "DGNS.AgilityAbbrev": "GES",
   "DGNS.CharismaAbbrev": "CHA",
   "DGNS.IntellectAbbrev": "VER",
   "DGNS.PsycheAbbrev": "PSY",
   "DGNS.InstinctAbbrev": "INS",
-
   "DGNS.Borca": "BORCA",
   "DGNS.Franka": "FRANKA",
   "DGNS.Purgare": "PURGARE",
@@ -429,7 +430,6 @@
   "DGNS.Africa": "AFRICA",
   "DGNS.Balkhan": "BALKHAN",
   "DGNS.Hybrispania": "HYBRISPANIA",
-
   "DGNS.BorcaDescription": "<h3>DAS AUFBEGEHREN DER KLANS</h3><p>WWogen roten Staubs brechen an monolithischen Klippen, türmen sich auf und verlieren sich in Steinlabyrinthen: vom Sog der Zeit erodierte Bauwerke, Dreck und Kälte atmend. Büsche sprießen in den Etagen, Wurzelgespinst sucht sich blass und nass einen Weg.</p><p>Trotzdem leben hier immer noch Menschen und sie nennen dieses Land ihr Zuhause. Stein um Stein erbauen sie eine neue Welt, ringen den Ruinen Metropolen wie Justitian, Domstadt und Osman ab, erobern das Land, befestigen und herrschen. </p><h3>Attributsbonus</h3><p>GESCHICKLICHKEIT<br/>INSTINKT</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Härte<br/>(VER) Artefakt (VER) Legenden<br/>(VER) Technik<br/>(GES) Handwerk<br/>(INS) Überleben</p>",
   "DGNS.FrankaDescription": "<h3>DER SCHWARM</h3><p>Drüsen auf den Leibern der Psychonauten blähen sich und sacken flatternd zusammen, ein süßlicher Geruch steigt auf, wallt die Stufen der Ziggurats hinab ins Menschenland, verfängt sich zwischen Lehmschloten und Ruinen. Die Pheromanten spinnen ihr Netz.</p><p>Die Pheromanten spinnen ihr Netz. Die Sippen fliehen vor den Wespenstürmen und Termitenattacken auf die Flüsse, sehen die Schlote auf ihren Feldern wachsen, die Ähren schwer von Ameisen. Doch jetzt kämpfen die Franker. Über die Flüsse gelangen sie tief ins Feindesland, zünden Pestizidbomben, räuchern Brutkolonien aus und verüben Schleichmorde. Ein ganzes Volk erhebt sich.</p><h3>Attributsbonus</h3><p>CHARISMA<br/>INSTINKT</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Ausdauer<br/ >(GES) Heimlichkeit<br/>(CHA) Verhandlung<br/>(PSY) Glaube/Willenskraft<br/>(PSY) Täuschung</p>",
   "DGNS.PurgareDescription": "<h3>DAS LETZTE GEFECHT</h3><p> Das Verlangen nach Stärke, Erkenntnis und einer höheren Macht lodert seit jeher in den purgischen Herzen. Die Wiedertäufer öffneten nur ihre Arme, nahmen die verlorenen Brüder und Schwestern in Wärme und Liebe auf, salbten sie mit elysischen Ölen - und stießen sie ins Fegefeuer.</p><p> Sie sagen, genau hier und jetzt müsse die Menschheit ihren Wert beweisen und sich in die letzte aller Schlachten stürzen. Ein ganzes Volk sieht sich als auserwählt und folgt Domstadt in einen heiligen Krieg. </p><h3>Attributsbonus</h3><p>CHARISMA<br/>Psyche</p><h3>Fähigkeitsbonus</h3><p>(CHA) Verhalten<br/>(VER) Legenden <br/>(PSY) Glaube/Willenskraft<br/>(PSY) Dominieren<br/>(INS) Zähmen</p>",
@@ -437,7 +437,6 @@
   "DGNS.AfricaDescription": "<h3>DER LÖWE IM SPRUNG</h3><p>Die Ketten von damals klirren wie ein dissonantes Windspiel aus dem Gestern bis ins Heute. Africa hat sich zwar befreit, hat den Weißen Mann ins Meer getrieben, doch der Schmerz sitzt zu tief. Und jedes von Piraten im Mittelmeer versenkte Schiff, jedes Gefecht in Hybrispania und im Balkhan ist ein weiterer Finger in der Wunde. </p><p>Aber auch nicht mehr. Africa ist stark, und es gedeiht.</p><h3>Attribute-Bonus</h3><p>VERSTAND<br/>KÖRPER</p><h3>Fähigkeitsbonus</h3>< p>(KÖR) Athletik<br/>(KÖR) Faustkampf<br/>(CHA) Ausdruck<br/>(VER) Medizin<br/>(PSY) Reaktion</p>",
   "DGNS.BalkhanDescription": "<h3>DIE HERRSCHAFT DER KLANS</h3><p> Stürme erschüttern die Ebenen, lassen die Wipfel der endlosen Wälder erzittern. Der Winter schlägt die Menschen mit klirrender Kälte und Bergen aus Schnee; der Sommer versengt die Grassteppen zu Stoppelfeldern; wenn es regnet, furchen Sturzbäche die Täler und vermählen sich zu reißenden Strömen. Der Balkhan ist ein Land der Extreme, durchdrungen von Stärke und Stolz, und täglich bedroht von Urgewalten zerrissen zu werden.</p><p>Die Menschen sind ein Spiegel ihres Landes: Wild und ungezähmt, keines Herren Sklave, leidenschaftlich und explosiv. Blutige Dispute zerrütten die Voivodate, machen einen Bauern über Nacht zum Krieger und seine Frau in der nächsten zur Witwe. </p><h3>Attributsbonus</h3><p>KÖRPER<br/>PSYCHE</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Faustkampf<br/>(KÖR) Kraft <br/>(CHA) Führung<br/>(PSY) Reaktion<br/>(INS) Empathie</p>",
   "DGNS.HybrispaniaDescription": "<h3>BLUTGETRÄNKTE FELDER</h3><p> Africaner streifen durch die Gärten der Alhambra, sitzen im Schatten der Sonnensegel und trinken mit einheimischen Hybrispaniern Tee. Doch die Grenzen wurden mit dem Blut hybrispanischer Widerstandskämpfer und Geißler gezogen. Jeder Hybrispanier wird mit dem Gedanken an Freiheit und Rückeroberung geboren. Um ihn herum steigen Freunde, Brüder, Schwestern und Weggefährten im Kampf zu Helden auf, um im nächsten Moment im Kugelhagel zu Boden zu gehen. Die Märtyrer bilden das Fundament der hybrispanischen Kultur. </p><h3>Attribute-Bonus</h3><p>VERSTAND<br/>GESCHICKLICHKEIT</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Nahkampf<br/>(GES) Beweglichkeit <br/>(GES) Heimlichkeit<br/>(VER) Medizin<br/>(INS) Orientieren</p>",
-
   "DGNS.Spitalians": "SPITALIER",
   "DGNS.Chroniclers": "CHRONISTEN",
   "DGNS.Hellvetics": "HELLVETIKER",
@@ -451,7 +450,6 @@
   "DGNS.Apocalyptics": "APOKALYPTIKER",
   "DGNS.Anabaptists": "WIEDERTÄUFER",
   "DGNS.Palers": "BLEICHER",
-
   "DGNS.SpitaliansDescription": "<h3> DIE LETZTE BASTION </h3><p> Die Spitalier sind Ärzte. Sich selbst unterwerfen sie strengen Regeln, rasieren ihre Schädel und reiben sich mit Kalk ab. Den Städten verordnen sie Hygienik. Heilung ist ein Privileg, das es zu verdienen gilt. Jedes Anzeichen von der Sporendroge Burn wird verfolgt und die Burner den Flammen überantwortet. Gnade können sich die Spitalier nicht erlauben. Was Nachsicht zur Folge hat, bekämpfen ihre Famulanten-Hundertschaften jeden Tag in Franka.</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Härte<br/>(VER) Medizin<br/>(PSY) Glaube /Willenskraft<br/>(VER) Wissenschaft<br/>(INS) Wahrnehmung</p>",
   "DGNS.ChroniclersDescription": "<h3> DIE ALLWISSENDEN </h3><p> Die Chronisten sind die Nachfahren dieser Streamer. Das Eshaton ließ die Quelle versiegen und das Meer an Wissen versteinern. Die Chronisten arbeiten sich vor, kaufen Schrottern Artefakte ab, befeuern einen ganzen Markt, spüren den Überresten des Damals nach und suchen die letzten Server. </p><h3>Fertigkeitsbonus</h3><p>(GES) Handwerk<br/>(CHA) Verhandlung<br/>(VER) Technik<br/>(VER) Artefaktkunde<br/>( PSY) Täuschung</p>",
   "DGNS.HellveticsDescription": "<h3> DIE BRUDERSCHAFT DER WAFFEN </h3><p> Hellvetiker sind Soldaten durch und durch. Ihre Doktrin bindet sie an Waffe, Kamerad und Land; jeder überflüssige oder verfehlte Schuss schwächt die Festung und wird abgestraft. Niemand da draußen ist ihnen in ihren Harnischen gewappnet, und niemand hat ihren Sturmgewehren, den Wegbereitern, etwas entgegenzusetzen. In der Alpenfestung mit ihren Geschützen und Wehrgängen wähnen sie sich unangreifbar. </p><h3>Fertigkeitsbonus</h3><p>(KÖR) Kraft<br/>(KÖR) Ausdauer<br/>(CHA) Führung<br/>(GES) Schusswaffen<br/>(PSY)  Reaktion</p>",
@@ -465,7 +463,6 @@
   "DGNS.ApocalypticsDescription": "<h3> DIE HERRRER DES BEGEHRENS </h3><p> Apokalyptiker sind reines, ungebändigtes Leben. Sie tauchen in Scharen auf, übernehmen Glückspielgeschäfte und Bordelle im Handstreich. Ihr Destillat ist hochprozentiger, ihr Burn potenter, ihre Huren schöner. Jedes Laster ist bei ihnen zu Hause und erfährt eine neue Steigerung. Sie leben im Jetzt. Jede Emotion ist ihnen heilig und wird zelebriert, als sei es die letzte. </p><h3>Fähigkeitsbonus</h3><p>(KÖR) Athletik<br/>(GES) Fingerfertigkeit<br/>(CHA) Verführung<br/>(CHA) Kunst<br/>(PSY) Gerissenheit</p>",
   "DGNS.AnabaptistsDescription": "<h3> FACKELTRÄGER IM PARADIES </h3><p> Ihre Asketen heilen und bestellen den geschundenen Boden, säen Weizen und taufen ihn mit dem reinsten aller Wasser. Sie pressen und mischen Öle zu Essenzen, die Stärke schenken und Schmerz lindern. Die Orgiasten sind die Kämpfer unter den Wiedertäufern; durchdrungen von elysischen Ölen werfen sie sich mit Schwertern und Brennern gegen die Psychonauten. Das letzte Gefecht um die Menschheit wird im Hier und Jetzt geführt, und die Wiedertäufer tragen die Fackel voran.</p><h3>Fähigkeitsbonus</h3><p>(KÖR) Nahkampf<br/>(KÖR) Kraft<br/ >(VER) Legenden<br/>(GES) Beweglichkeit<br/>(PSY) Glaube/Willenskraft</p>",
   "DGNS.PalersDescription": "<h3> DIE HÖHLENGÄNGER </h3><p> Die Bunker öffnen sich, einer nach dem anderen. Die Erwecker unter den Bleichern machen sich auf die Suche nach ihresgleichen, suchen die 44 Bunker. Fest an den Leib gepresst tragen sie die heiligen Sonnenscheiben, die sie schon bald vor verschlossenen Portale schwenken werden. Einige dieser Portale werden aufschwingen und einen Plan in Gang setzen, der größer ist als alles, was sich die Bleicher vorzustellen vermögen.</p><h3>Fähigkeitsbonus</h3><p>(GES) Schusswaffen <br/>(GES) Heimlichkeit<br/>(PSY) Gerissenheit<br/>(VER) Technik<br/>(INS) Wahrnehmung</p>",
-
   "DGNS.Adventurer": "0. DER ABENTEURER",
   "DGNS.Creator": "I. DER SCHÖPFER",
   "DGNS.Mentor": "II. DER MENTOR",
@@ -488,7 +485,6 @@
   "DGNS.Disciple": "XIX. DER SCHÜLER",
   "DGNS.Righteous": "XX. DER RECHTSCHAFFENE",
   "DGNS.Traveler": "XXI. DER WANDERER",
-
   "DGNS.AdventurerDescription": "<p>Leichtsinn, Übermut und die Suche nach den eigenen körperlichen und geistigen Grenzen sind die Triebfeder des Abenteurers. Ständig setzt er sich Situationen aus, die jenseits seiner Fähigkeiten liegen. Übersteht er sie, schöpft er Erfahrung und sucht nach neuen Leitmotiven. Den Abenteurer hält es nie lange an einem Ort, zu viel gibt es zu entdecken. Ruinen müssen erforscht, Passagen durchquert, Klans aufgespürt werden. Er umarmt die Angst als alten Freund; ohne sie ist alles fad. Nichts ist schlimmer als die Langeweile und Vorhersehbarkeit eines normalen Tages.</p><h3>Attribute bonus</h3><p>Körper</p><h3>Skill bonus</h3><p>(GES) Beweglichkeit<br/>(INS) Orientierung</p>",
   "DGNS.CreatorDescription": "<p>Alles verfällt. Der Mensch stirbt einfach dahin. Nur seine Bauwerke und Erfindungen, das Wissen seiner Lebenszeit bleiben bestehen. Schöpfer sind getrieben vom Ziel, der Nachwelt etwas zu hinterlassen, den eigenen Namen nicht in Vergessenheit geraten zu sehen. Ständig tüfteln sie, suchen die größte Herausforderung, um sich an ihr zu beweisen und sie zu meistern. Sie errichten Monolithen, schenken einem Dorf eine Wehrmauer, schweißen Rohre für ein Bewässerungssystem zusammen, oder sie sehen ihr Lebenswerk im Erwecken des Streams. Nichts spornt einen Schöpfer mehr an, als mit einem Unterfangen seinem Namen ein Denkmal zu setzen.</p><h3>Attribute bonus</h3><p>Beweglichkeit</p><h3>Skill bonus</h3><p>(CHA) Künste<br/>(VER) Technik</p>",
   "DGNS.MentorDescription": "<p>Lehren und Lernen hat die Menschheit über die Tierwelt erhoben. Der Mentor lebt in dieser Tradition und teilt sein Wissen mit erwählten Schülern. Er erkennt sich in ihnen, verewigt sich und sein Wissen durch sie. Er pflegt ihre Neugierde und leitet sie an. Eines Tages werden sie sein Werk weiterführen, und der Kreis schließt sich. Gleichgültigkeit den Wundern der Welt gegenüber, Stur- und Dummheit sind die Seuchen der Menschheit. Wer davon infiziert ist, wird vom Mentor verachtet.</p><h3>Attribute bonus</h3><p>VERSTAND</p><h3>Skill bonus</h3><p>(CHA) Führung<br/>(VER) Legenden</p>",
@@ -511,7 +507,6 @@
   "DGNS.DiscipleDescription": "<p>Das Wissen ist ein Meer, das der Schüler zeit seines Lebens bereisen wird. Er folgt großen Lehrern, sucht die vergessenen Bibliotheken des Urvolks, wird von seiner Neugier umgetrieben. Sein Wissen ist enorm, aber niemals ausreichend. Er vereint viele Lebenswege und Spezialisierungen in sich, doch für einen Weg kann er sich nicht entscheiden.</p><h3>Attribute bonus</h3><p>CHARISMA</p><h3>Skill bonus</h3><p>(INS) Empathie<br/>(INS) Wahrnehmung</p>",
   "DGNS.RighteousDescription": "<p>Handeln und Gewissen lassen sich nicht trennen, und das Gewissen des Rechtschaffenen ist rein. Er sieht die Welt in starken Kontrasten, wird von den Menschen um sich herum als selbstgerecht wahrgenommen. Tatsächlich schlägt er keinen Möglichkeit aus, seine Idee der Rechtschaffenheit durchzusetzen. Als Hüter von Glaubens- oder Gesetzesfragen unterteilt er jeden Menschen, jede Handlung, jedes Volk, sogar jede Regung in gut und schlecht. Mit sich selbst ist er stets im Reinen.</p><h3>Attribute bonus</h3><p>VERSTAND</p><h3>Skill bonus</h3><p>(PSY) Gerissenheit<br/>(CHA) Verhandlung</p>",
   "DGNS.TravelerDescription": "<p>Der Wanderer muss die Welt bereisen, um an ihr und ihren Menschen zu wachsen. Er sammelt Eindrücke und Erfahrungen wie andere Gendoschädel, und er behält sie nicht für sich. Er verbreitet gute und schlechte Nachrichten, verbindet das Hinterland mit den Metropolen, spannt ein Band zwischen Klans und Kulten. Er ist rastlos, sehnt sich nach der Straße.</p><h3>Attribute bonus</h3><p>INSTINKT</p><h3>Skill bonus</h3><p>(VER) Legenden<br/>(INS) Orientierung</p>",
-
   "DGNS.GettingFood": "Nahrungsbeschaffung",
   "DGNS.Traps": "Fallen",
   "DGNS.SourceOfLightFire": "Lichtquelle / Feuer",
@@ -535,7 +530,6 @@
   "DGNS.Transportation": "Transporthilfen",
   "DGNS.OrienteeringTracking": "Orientierung / Tracking",
   "DGNS.Equipments": "Ausrüstung",
-
   "DGNS.ConfigureActorInstructions": "Hier können Sie verschiedene vom Bogen berechnete Eigenschaften überschreiben. Wenn Sie einen Wert leer oder 0 lassen, berechnet das Blatt ihn automatisch.",
   "DGNS.ConfigureActor": "Konfiguriere Charakter",
   "DGNS.Configure": "Konfiguriere",
@@ -543,24 +537,19 @@
   "DGNS.ModAdd": "Hinzufügen",
   "DGNS.ModOverride": "Überschreiben",
   "DGNS.ModEditWarning": "Änderungen an einer montierten Modifikation werden nicht gespeichert.",
-
   "DGNS.SettingsEncumbrancePenalty": "Automatische Abzüge durch Belastung",
   "DGNS.SettingsEncumbrancePenaltyHelper": "Auswählen, um automatisch sämtliche Mali durch Belastung zu berechnen.",
   "DGNS.SettingsMinimumOneAN": "Im Fall eines negativen Aktionswerts mindestens einen Würfel werfen",
   "DGNS.SettingsMinimumOneANHelper": "Ist der Aktionswert negativ, wird ein Würfel für den Mindestaktionswert geworfen",
   "DGNS.SettingsShowInventoryHeaders": "Überschriften im Inventar anzeigen",
   "DGNS.SettingsShowInventoryHeadersHelper": "Überschriften für Kategorien werden im Inventar angezeigt, selbst wenn keine Items in den jeweiligen Kategorien vorhanden sind.",
-
   "DGNS.CloseQuarter": "Nahbereich",
   "DGNS.Ranged": "Fernkampf",
-
   "DGNS.DefensePassive": "Passiv",
   "DGNS.DefenseMeleeActive": "Nahkampf Aktiv",
   "DGNS.DefenseRangedActive": "Fernkampf Aktiv",
   "DGNS.DefenseMental": "Mental",
-
   "DGNS.Tactics": "Taktik",
-
   "DGNS.Rapture": "Raptus",
   "DGNS.Biokinetics": "Biokineten",
   "DGNS.Dushani": "Dushani",
@@ -568,10 +557,8 @@
   "DGNS.Pheromancers": "Pheromanten",
   "DGNS.Pregnoctics": "Prägnoktiker",
   "DGNS.Psychokinetics": "Psychokineten",
-
   "DGNS.SwarmStrength": "Schwarmstärke",
   "DGNS.SkinBags": "Hauttaschen",
-
   "DGNS.Phenomena": "Phänomene",
   "DGNS.Phenomenon": "Phänomen",
   "DGNS.PrimalPhase": "Primal-Phase",
