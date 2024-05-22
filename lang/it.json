@@ -1,16 +1,13 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
-
   "TYPES.Actor.TypeCharacter": "Personaggio",
   "TYPES.Actor.TypeNpc": "Personaggio non giocante",
   "TYPES.Actor.TypeAberrant": "Aberrante",
   "TYPES.Actor.TypeFromHell": "Dall’Inferno",
-
   "TYPES.Actor.TypeCharacterSheet": "Scheda Personaggio Default",
   "TYPES.Actor.TypeNpcSheet": "Scheda PNG Default",
   "TYPES.Actor.TypeAberrantSheet": "Scheda Aberrante Default",
   "TYPES.Actor.TypeFromHellSheet": "Scheda Dall’Inferno Default",
-
   "UI.SlotCost": "Costo dello Slot",
   "UI.Effect": "Effetto",
   "UI.ModType": "Tipo Mod",
@@ -40,13 +37,21 @@
   "UI.OverloadTooBig": "Il sovraccarico è più grande del valore di Infestazione Spora corrente",
   "UI.Roll": "Tiro",
   "UI.CannotRollPassive": "Non è possibile effettuare tiri di Difesa passiva.",
-
+  "UI.NotEnoughEgo": "Non ci sono abbastanza Punti Ego da spendere",
+  "UI.None": "Nessuno",
+  "UI.EmptyCult": "SCEGLI IL CULTO",
+  "UI.EmptyConcept": "SCEGLI IL CONCETTO",
+  "UI.EmptyCulture": "SCEGLI LA CULTURA",
+  "UI.EmptyRapture": "SCEGLI L'ESTASI ",
+  "UI.AddAction": "Aggiungi Azione",
+  "UI.RemoveAction": "Rimuovi Azione",
   "UI.D": "D",
   "UI.S": "S",
   "UI.T": "I",
-
+  "UI.SheetUnlocked": "Scheda sbloccata per le modifiche",
+  "UI.SheetLocked": "Scheda bloccata per le modifiche",
+  "UI.SheetLockedNotification": "La scheda è bloccata",
   "TYPES.Item.Type": "Personaggio",
-
   "TYPES.Item.TypeWeapon": "Arma",
   "TYPES.Item.TypeArmor": "Armatura",
   "TYPES.Item.TypeEquipment": "Equipaggiamento",
@@ -63,7 +68,6 @@
   "TYPES.Item.TypeAttack": "Attacco",
   "TYPES.Item.TypeDefense": "Difesa",
   "TYPES.Item.TypePhenomenon": "Fenomeno",
-
   "TYPES.Ammo.50gl": ".50 GL",
   "TYPES.Ammo.357": ".357",
   "TYPES.Ammo.44": ".44",
@@ -95,7 +99,6 @@
   "TYPES.Ammo.coal": "Carbone",
   "TYPES.Ammo.boltcoal": "Dardo e Carbone",
   "TYPES.Ammo.special": "Speciale",
-
   "DGNS.Name": "Nome",
   "DGNS.Age": "Età",
   "DGNS.Rank": "Rango",
@@ -363,7 +366,7 @@
   "DGNS.DamageType": "Tipo di Danno",
   "DGNS.Type": "Tipo",
   "DGNS.Permanent": "Permanente",
-
+  "DGNS.Number": "Numero",
   "DGNS.AreaDamageDescription": "L'arma non viene utilizzata puntandola direttamente contro il nemico, ma copre un'area espressa in gradi. Tutto ciò che si trova all'interno di quest'area può subire Danno",
   "DGNS.ArmorpiercingDescription": "Il proiettile utilizzato è molto compatto e veloce. Può bucare le armature come se fossero fatte di carta. I proiettili sfondacorazze non infliggono necessariamente un Danno maggiore, ma ignorano Qualità speciali come “Massiccia” o “Antiproiettile” che l'armatura del bersaglio potrebbe avere.",
   "DGNS.BiometricallyEncodedDescription": "L’impugnatura contiene dei sensori biometrici che si attivano solo quando a impugnare l’arma è la persona giusta. Una volta attivi, i componenti elettronici cominciano spesso a vibrare e a emettere un ronzio. Fra le mani di uno sconosciuto, invece, non succede nulla: l’arma non farà fuoco. Per disattivare questo meccanismo di protezione o per modificarne la codifica bisogna formattare o aggirare i circuiti. Sia in un caso che nell’altro occorre un tecnico esperto che abbia a disposizione un laboratorio di elettronica. Prima di tutto, dovrà effettuare un tiro di Azione di AGI+Artigianato (Difficoltà pari al valore della Qualità) per smontare il dispositivo. Dopodiché, con un tiro di INT+Ingegneria (Difficoltà pari al valore della Qualità) potrà cercare di identificare i circuiti su cui agire, capirne il funzionamento e manometterli. Se uno dei due tiri fallisce, la Difficoltà aumenta di (1). Se la Difficoltà dovesse aumentare fino a (12), l’arma smetterebbe del tutto di funzionare e non sarebbe altro che ferraglia.",
@@ -414,14 +417,12 @@
   "DGNS.BrittleDescription": "Le piastre delle armature possono essere rinforzate, di modo da aumentarne il valore Armatura di (1). Tuttavia, questo procedimento rende il materiale più Fragile: se chi indossa l'armatura subisce un attacco che infligge Danno pari o superiore al valore della Qualità, i componenti dell'armatura si spaccano e il valore Armatura scende di (1) punto. A differenza della Qualità “Improvvisata”, il personaggio accetta volontariamente di aggiungere la Qualità “Fragile” alla propria armatura modificandola per aumentarne il valore Armatura.",
   "DGNS.SealedDescription": "L'armatura offre una protezione affidabile contro le tossine ambientali, i germi e la contaminazione della spora: quando chi la indossa effettua un tiro per contrastare gli effetti di qualsiasi contaminazione, ottiene un numero di Successi automatici pari al valore della Qualità.",
   "DGNS.CuttingDescription": "Capacità speciale “Tagliente” — Se l'attacco ha successo, lo Spitaliano può spendere (2) Inneschi, per far chiudere di scatto le lame per infliggere 1D punti di Danno aggiuntivi. I 2I utilizzati non vengono considerati nel calcolo del Danno quindi, se il Giocatore dovesse ottenere solo un 1 nel tiro del Danno aggiuntivo, infliggerebbe (1) punto di Danno in meno di quanti ne avrebbe fatti senza attivare “Tagliente”. Nel migliore dei casi, però, potrebbe arrivare a infliggere (4) punti di Danno aggiuntivi.",
-
   "DGNS.BodyAbbrev": "COR",
   "DGNS.AgilityAbbrev": "AGI",
   "DGNS.CharismaAbbrev": "CAR",
   "DGNS.IntellectAbbrev": "INT",
   "DGNS.PsycheAbbrev": "PSI",
   "DGNS.InstinctAbbrev": "IST",
-
   "DGNS.Borca": "BORCA",
   "DGNS.Franka": "FRANKA",
   "DGNS.Purgare": "PURGARE",
@@ -429,7 +430,6 @@
   "DGNS.Africa": "AFRICA",
   "DGNS.Balkhan": "BALKHAN",
   "DGNS.Hybrispania": "HYBRISPANIA",
-
   "DGNS.BorcaDescription": "<h3>L’EREDITÀ DEGLI ANTICHI</h3><p>Onde di polvere rossa si infrangono contro scogliere monolitiche, accumulandosi fino a perdersi in labirinti di pietra, edifici erosi dai segni del tempo che ora respirano cenere fredda e terriccio. La boscaglia ricopre gli antichi pavimenti, mentre radici pallide, umide, scavano un passaggio giù e oltre. Nonostante tutto, diversi popoli vivono ancora qui e considerano questa terra la loro casa. Pietra dopo pietra, strappano dalle rovine metropoli come Justitian, Città Cattedrale e Osman, erigendo un nuovo mondo sulle terre conquistate, rafforzando il loro dominio. </p><h3>Attributo bonus</h3><p>AGILITÀ<br/>ISTINTO</p><h3>Abilità bonus</h3><p>(COR) Tenacia<br/>(INT) Erudizione<br/>(INT) Ingegneria<br/>(AGI) Artigianato<br/>(IST) Sopravvivenza</p>",
   "DGNS.FrankaDescription": "<h3>LO SCIAME</h3><p>Le ghiandole sui corpi degli Psiconauti si gonfiano e si sgretolano. Un odore malsano e dolce si leva, e scivola lungo i gradoni delle Ziggurat nelle terre degli umani, aggrovigliato fra gli sfiati di argilla e le rovine.</p><p>I Feromanti tessono la loro tela. Gli umani corrono verso i fiumi per sfuggire a tempeste di vespe e attacchi delle termiti, lasciandosi alle spalle gli sfiati disseminati di formiche che crescevano nei campi. Ma ora i Franki sono pronti al contrattacco, affumicano colonie riproduttive e eliminano i Feromanti. Un intero popolo è insorto.</p><h3>Attributo bonus</h3><p>CARISMA<br/>ISTINTO</p><h3>Abilità bonus</h3><p>(COR) Resistenza<br/>(AGI) Furtività<br/>(CAR) Negoziazione<br/>(PSI) Fede/Volontà<br/>(PSI) Inganno</p>",
   "DGNS.PurgareDescription": "<h3>LA TERRA DEL PRESCELTO</h3><p>Il bisogno di forza, di conoscenza e la fede in un’autorità superiore bruciano da sempre nei cuori dei Purgariani. Gli Anabattisti aprivano le braccia e accoglievano i loro fratelli e le loro sorelle smarriti. Con calore e amore, li cospargevano con gli olii Elisi - prima di lanciarli nel purgatorio. </p><p> Gli Anabattisti dicono che l’umanità deve dimostrare il proprio valore qui e ora, marciando in direzione della battaglia finale. Loro sono i prescelti, e seguiranno ben volentieri Città Cattedrale in una guerra sacra per il bene di ogni uomo e donna. </p><h3>Attributo bonus</h3><p>CARISMA<br/>Psiche</p><h3>Abilità bonus</h3><p>(CAR) Condotta<br/>(INT) Leggende<br/>(PSI) Fede/Volontà<br/>(PSI) Dominazione<br/>(IST) Doma</p>",
@@ -437,7 +437,6 @@
   "DGNS.AfricaDescription": "<h3>IL LEONE RAMPANTE</h3><p> Per quanto l’Africa abbia da tempo ottenuto la libertà, e sia riuscita a respingere l’uomo bianco verso il mare, le vecchie ferite sono troppo profonde perché possano essere dimenticate. Ogni nave affondata dai pirati del Mediterraneo, ogni battaglia combattuta in Hybrispania e nei Balkhan, riportano tutte in superficie un antico dolore. </p><p> Eppure, l'Africa è forte e prospera.</p><h3>Attributo bonus</h3><p>INTELLETTO<br/>CORPO</p><h3>Abilità bonus</h3><p>(COR) Atletica<br/>(COR) Lotta<br/>(CAR) Espressione<br/>(INT) Medicina<br/>(PSI) Reattività</p>",
   "DGNS.BalkhanDescription": "<h3>LE TERRE SELVAGGE</h3><p> I Balkhan sono terre di estremi, tenute insieme dalla forza e dall'orgoglio, ma sotto la costante minaccia di venire strappate in due da forze primordiali.</p><p>Gli umani che abitano nei Balkhan rispecchiano la loro casa: sono selvaggi e indomiti, privi di qualsiasi catena, passionali e volubili. Le lotte pe ril potere infuriano attraverso l'intera regione, sfociando in sanguinose dispute che trasformano in una notte i contadini in guerrieri, e in quella dopo le loro mogli in vedove.</p><h3>Attributo bonus</h3><p>CORPO<br/>PSICHE</p><h3>Abilità bonus</h3><p>(COR) Lotta<br/>(COR) Forza<br/>(CAR) Comando<br/>(PSI) Reattività<br/>(IST) Empatia</p>",
   "DGNS.HybrispaniaDescription": "<h3>I CAMPI ASSASSINI</h3><p> Gli Africani vagano per i giardini dell'Alhambra, passando il tempo a rilassarsi sotto l'ombra delle verande, prendendo un tè con i nativi dell'Hybrispania. Ma i confini sono stati disegnati con il sangue della resistenza autoctona e dei Flagellatori Africani.  Sin dalla nascita, a ogni abitante di questa regione viene inculcato l'ideale di libertò e di riconquista. Questi martiri costituiscono le fondamenta della cultura Hybrispanica. </p><h3>Attributo bonus</h3><p>INTELLETTO<br/>AGILITÀ</p><h3>Abilità bonus</h3><p>(COR) Mischia<br/>(AGI) Mobilità <br/>(AGI) Furtività<br/>(INT) Medicina<br/>(IST) Orientamento</p>",
-
   "DGNS.Spitalians": "SPITALIANI",
   "DGNS.Chroniclers": "CRONISTI",
   "DGNS.Hellvetics": "HELLVETICI",
@@ -451,7 +450,6 @@
   "DGNS.Apocalyptics": "APOCALITTICI",
   "DGNS.Anabaptists": "ANABATTISTI",
   "DGNS.Palers": "PALLIDI",
-
   "DGNS.SpitaliansDescription": "<h3> L'ULTIMO BASTIONE </h3><p> Gli Spitaliani sono medici. Vivono la loro vita seguendo regole ferree, portano le teste rigorosamente rasate e si strofinano attentamente il corpo con pietre calcaree. Nelle città, sono loro a far rispettare le regole sull'igiene e ritengono che la salute sia un privilegio che vada guadagnato. Vanno a caccia di qualsiasi segno di Burn, e chiunque ne faccia uso viene dato alle fiamme. GLi Spitaliani non possono permettersi pietà: le loro legioni di Praticanti si scontrano ogni giorno, in ogni parte dell'Europa, con le conseguenze dell'indulgenza</p><h3>Abilità bonus</h3><p>(COR) Tenacia<br/>(INT) Medicina<br/>(PSI) Fede/Volontà<br/>(INT) Scienza<br/>(IST) Percezione</p>",
   "DGNS.ChroniclersDescription": "<h3> GLI ONNISCIENTI </h3><p> I Cronisti sono i discendenti degli Streamer del passato. L'Eshaton prosciugò lo Stream, pietrificando il mare di conoscenze. I Cronisti cercano di continuare l'opera, acquistando artefatti dagli Scrapper e alimentando un intero mercato con le loro ricerche su ciò che resta del passato, e sugli ultimi server dello Stream rimasti. </p><h3>Abilità bonus</h3><p>(AGI) Artigianato<br/>(CAR) Negoziazione<br/>(INT) Ingegneria<br/>(INT) Erudizione<br/>(PSI) Inganno</p>",
   "DGNS.HellveticsDescription": "<h3> LA FRATELLANZA ARMATA </h3><p> Gli Hellvetici sono soldati fino al midollo. La loro Dottrina li lega alla loro arma, ai loro compagni e alla loro nazione. Ogni sparo superfluo indebolisce le Fortezze, ogni colpo mancato viene punito. Nessuno può competere con le loro difese e nessuno può opporsi al loro fucile d'assalto: l'Avanguardia. Nelle loro Fortezze Alpine, con le loro armi e i corridoi difensivi, gli Hellvetici si considerano inespugnabili. </p><h3>Abilità bonus</h3><p>(COR) Forza<br/>(COR) Resistenza<br/>(CAR) Comando<br/>(AGI) Balistica<br/>(PSI) Reattività</p>",
@@ -465,7 +463,6 @@
   "DGNS.ApocalypticsDescription": "<h3> I SIGNORI DEL DESIDERIO </h3><p> Gli Apocalittici vivono una vita pura e sfrenata. Arrivano in Stormi, piombano nelle case da gioco e fanno il nido nei bordelli. I loro distillati sono più forti, la loro Burn ha un effetto più potente e le loro puttane sono le più belle. Tra di loro, ogni vizio può trovare una casa accogliente. Vivono nel presente. Per loro ogni emozione è sacra, e tutte vengono festeggiate equamente come se fosse l'ultimo istante delle loro esistenze. </p><h3>Abilità bonus</h3><p>(COR) Atletica<br/>(AGI) Destrezza<br/>(CAR) Seduzione<br/>(CAR) Arti<br/>(PSI) Astuzia</p>",
   "DGNS.AnabaptistsDescription": "<h3> LE GUIDE DEL PARADISO </h3><p> I loro Asceti curano e coltivano il terreno torturato, seminando il grano che battezzano con l'acqua più pura. Producono olii che mescolano insieme per creare essenze che donano forza e leniscono il dolore. Gli Orgiastici, invece, sono i combattenti: cosparsi di olii Elisi, affrontano gli Psiconauti armati di spade e lanciafiamme. La battaglia finale per l'umanità va combattuta qui ed ora, e gli Anabattisti saranno in prima fila a fare da guida.</p><h3>Abilità bonus</h3><p>(COR) Mischia<br/>(COR) Forza<br/>(INT) Leggende<br/>(AGI) Mobilità<br/>(PSI) Fede/Volontà</p>",
   "DGNS.PalersDescription": "<h3> GLI ABITANTI DELLA CRIPTA </h3><p> Uno ad uno, i loro rifugi si stanno aprendo. Fra i Pallidi, sono i Rianimatori quelli che hanno il compito di andare in cerca dei membri del loro culto nei 44 bunker rimanenti, tenendo stretti i Dischi Solari che dovranno impugnare davanti agli ingressi sigillati. Alcuni di questi ingressi si apriranno lentamente, e metteranno in moto un piano più grande di qualsiasi cosa possano immaginare.</p><h3>Abilità bonus</h3><p>(AGI) Balistica<br/>(AGI) Furtività<br/>(PSI) Astuzia<br/>(INT) Ingegneria<br/>(IST) Percezione</p>",
-
   "DGNS.Adventurer": "0. L'AVVENTURIERO",
   "DGNS.Creator": "I. IL CREATORE",
   "DGNS.Mentor": "II. IL MENTORE",
@@ -488,7 +485,6 @@
   "DGNS.Disciple": "XIX. IL DISCEPOLO",
   "DGNS.Righteous": "XX. IL GIUSTO",
   "DGNS.Traveler": "XXI. IL VIAGGIATORE",
-
   "DGNS.AdventurerDescription": "<p>La follia, la sconsideratezza e la ricerca dei propri limiti fisici e mentali sono ciò che spinge un Avventuriero ad andare avanti. Egli affronta in continuazione situazioni che vanno oltre le sue capacità. Situazioni che, se dovesse sopravvivere, gli darebbero esperienza e lo stimolo per andare in cerca di nuove motivazioni. L'Avventuriero non resta mai nello stesso posto troppo a lungo, perché là fuori c'è così tanto da scoprire: rovine da esplorare, passaggi da attraversare, Clan da trovare. Egli accoglie la paura come una cara amica. Senza di essa, tutto sarebbe così noioso, e non c'è niente di peggio della noia e della prevedibilità di una giornata ordinaria</p><h3>Attributo bonus</h3><p>CORPO</p><h3>Abilità bonus</h3><p>(AGI) Mobilità<br/>(IST) Orientamento</p>",
   "DGNS.CreatorDescription": "<p>Tutto si sgretola. Gli umani, prima o poi, muoiono. Solo i loro edifici e le loro invenzioni, le scoperte fatte durante la loro vita, sopravvivono. È il bisogno di lasciare un'eredità, di fare in modo che il loro nome non venga dimenticato, che spinge i Creatori ad andare avanti. Lavorano meticolosamente e costantemente, in cerca di sfide sempre più grandi da padroneggiare e con cui possano dimostrare il loro valore. Innalzano monoliti, costruiscono mura difensive attorno ai villaggi, saldano insieme le tubature dei sistemi di irrigazione o considerano il risveglio dello Stream il lavoro della loro vita. Nulla dà più motivazione a un Creatore del desiderio di erigere un monumento al proprio nome tramite i suoi sforzi.</p><h3>Attributo bonus</h3><p>AGILITÀ</p><h3>Abilità bonus</h3><p>(CAR) Arti<br/>(INT) Ingegneria</p>",
   "DGNS.MentorDescription": "<p>L’insegnamento e l’apprendimento hanno elevato l’umanità al di sopra del livello animale. Il Mentore vive in questa tradizione, e condivide le sue conoscenze con i discepoli che accoglie sotto la sua ala. Si rivede nei suoi studenti e, stimolando la loro curiosità con i suoi insegnamenti, immortala sé stesso e la propria sapienza. Un giorno, saranno gli allievi a continuare la sua opera, e il ciclo continuerà. L’indifferenza verso le meraviglie del mondo, la testardaggine e la stupidità sono la rovina dell’umanità e il Mentore disprezza chiunque ne sia afflitto.</p><h3>Attributo bonus</h3><p>INTELLETTO</p><h3>Abilità bonus</h3><p>(CAR) Comando<br/>(INT) Leggende</p>",
@@ -511,7 +507,6 @@
   "DGNS.DiscipleDescription": "<p>La conoscenza è come un oceano su cui il Discepolo viaggerà per tutta la vita. Egli segue i più grandi fra i maestri e va in cerca delle biblioteche dimenticate dell’Era Passata, spinto dalla sua curiosità eterna. Ha una cultura sconfinata, ma la sua sete di conoscenza non conosce fine. Porta con sé tanti stili di vita e altrettante specializzazioni, ma non sa mai decidersi su un singolo percorso da seguire.</p><h3>Attributo bonus</h3><p>ISTINTO</p><h3>Attributo bonus</h3><p>CARISMA</p><h3>Abilità bonus</h3><p>(IST) Empatia<br/>(IST) Percezione</p>",
   "DGNS.RighteousDescription": "<p>La coscienza non può venire separata dall’azione, e quella del Giusto non conosce impurezza. Egli vede il mondo dipinto con colori contrastanti, e le persone che lo circondano lo considerano un presuntuoso. In effetti, non perde occasione per applicare il suo concetto di virtù. In veste di custode di ogni dubbio di fede o di legge, si permette di giudicare tutti, ogni gesto, ogni persona e persino ogni emozione. Tutto può essere definito come giusto o come sbagliato. E lui non si mette mai in discussione.</p><h3>Attributo bonus</h3><p>INTELLETTO</p><h3>Abilità bonus</h3><p>(PSI) Astuzia<br/>(CAR) Negoziazione</p>",
   "DGNS.TravelerDescription": "<p>Il Viaggiatore deve vagare per il mondo per crescere, sperimentandone i luoghi e le persone che lo abitano. Fa collezione di sensazioni e di esperienze come altri la fanno di teschi di Ghendo, ma il suo scopo non è quello di tenerle per sé: diffonde le notizie buone e quelle cattive, mettendo in contatto l’entroterra con le metropoli, collegando i Clan e i Culti. Non conosce posa; la strada è la sua casa.</p><h3>Attributo bonus</h3><p>ISTINTO</p><h3>Abilità bonus</h3><p>(INT) Leggende<br/>(IST) Orientamento</p>",
-
   "DGNS.GettingFood": "Procacciarsi il Cibo",
   "DGNS.Traps": "Trappole",
   "DGNS.SourceOfLightFire": "Fonti di Luce / Fuoco",
@@ -535,7 +530,6 @@
   "DGNS.Transportation": "Per il Trasporto",
   "DGNS.OrienteeringTracking": "Orientamento / Rilevamento",
   "DGNS.Equipments": "Equipaggiamenti",
-
   "DGNS.ConfigureActorInstructions": "Qui puoi sovrascrivere diverse proprietà calcolate dalla scheda. Se un valore viene lasciato in bianco o con uno 0 la scheda procederà con il calcolo automatico.",
   "DGNS.ConfigureActor": "Configura Attore",
   "DGNS.Configure": "Configura",
@@ -543,24 +537,19 @@
   "DGNS.ModAdd": "Aggiungi",
   "DGNS.ModOverride": "Sovrascrivi",
   "DGNS.ModEditWarning": "Cambiamenti effettuati su una modifica asseggnata non verranno salvati.",
-
   "DGNS.SettingsEncumbrancePenalty": "Penalità automatica per l'Ingombro",
   "DGNS.SettingsEncumbrancePenaltyHelper": "Seleziona per calcolare automaticamente la penalità del dado per tutti i tiri.",
   "DGNS.SettingsMinimumOneAN": "Tiro di un singolo dado per un Numero Azione negativo",
   "DGNS.SettingsMinimumOneANHelper": "Per modificatori negativi che eccedono il Numero Azione, forza il tiro di un singolo dado.",
   "DGNS.SettingsShowInventoryHeaders": "Mostra le intestazioni nell'inventario",
   "DGNS.SettingsShowInventoryHeadersHelper": "Mostra le intestazioni dell'inventario anche se non ci sono oggetti nella rispettiva categoria.",
-
   "DGNS.CloseQuarter": "Distanza ravvicinata",
   "DGNS.Ranged": "A distanza",
-
   "DGNS.DefensePassive": "Passiva",
   "DGNS.DefenseMeleeActive": "Attiva corpo a corpo",
   "DGNS.DefenseRangedActive": "Attiva a distanza",
   "DGNS.DefenseMental": "Mentale",
-
   "DGNS.Tactics": "Tattica",
-
   "DGNS.Rapture": "Estasi",
   "DGNS.Biokinetics": "Biocineti",
   "DGNS.Dushani": "Dushan",
@@ -568,10 +557,8 @@
   "DGNS.Pheromancers": "Feromanti",
   "DGNS.Pregnoctics": "Pregnoctiche",
   "DGNS.Psychokinetics": "Psicocineti",
-
   "DGNS.SwarmStrength": "Forza dello Sciame",
   "DGNS.SkinBags": "Sacche di pelle",
-
   "DGNS.Phenomena": "Fenomeni",
   "DGNS.Phenomenon": "Fenomeno",
   "DGNS.PrimalPhase": "Fase Impulsività",
