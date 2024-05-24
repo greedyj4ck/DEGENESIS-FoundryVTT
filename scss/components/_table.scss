@@ -1,0 +1,27 @@
+table {
+  border-top: 1px solid var(--c-gold);
+  tr {
+    border-bottom: 1px solid var(--c-gold);
+
+    &:nth-child(odd) {
+      background: none;
+    }
+    &:nth-child(even) {
+      background: none;
+    }
+
+    td {
+      padding: 5px;
+      border: 1px solid var(--c-gold);
+
+      &:first-child {
+        padding: 5px;
+        border-left: 0;
+      }
+      &:last-child {
+        padding: 5px;
+        border-right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+.gm-screen-drawer {
+  box-shadow: none;
+  height: calc(var(--gm-screen-height) - 10px) !important;
+
+  button {
+    padding: 5px;
+  }
+
+  &.expanded {
+    .gm-screen-actions.tabs {
+      margin-bottom: 5px;
+
+      .meta-actions {
+        transform: translateY(0%) !important;
+      }
+
+      .gm-screen-tabs {
+        transform: translateY(0%) !important;
+      }
+    }
+  }
+
+  .gm-screen-actions.tabs {
+    margin-bottom: 5px;
+
+    button {
+      border: 1px solid var(--c-gold);
+      background: var(--b-alpha-10);
+      border-radius: $b-radius-sm;
+    }
+
+    .gm-screen-tabs {
+      transform: translateY(150%) !important;
+    }
+
+    .meta-actions {
+      transform: translateY(150%) !important;
+
+      button {
+        border: 1px solid var(--c-gold);
+        background: var(--b-alpha-10);
+        border-radius: $b-radius-sm;
+      }
+    }
+  }
+
+  .window-resizable-handle {
+    display: none;
+  }
+
+  .meta-actions {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .gm-screen-container.window-content {
+    background: none;
+    background-color: none;
+    background-repeat: no-repeat;
+  }
+
+  .gm-screen-grid {
+    .gm-screen-grid-cell {
+      box-shadow: none;
+      backdrop-filter: blur(10px);
+      background-color: var(--b-alpha-9);
+
+      border: 1px solid var(--c-gold-7);
+
+      a {
+        &:hover {
+          color: var(--c-pred);
+        }
+      }
+
+      .gm-screen-grid-cell-header {
+        color: var(--c-gold);
+        padding: 2px;
+      }
+
+      .gm-screen-grid-cell-content-wrapper {
+        box-shadow: none;
+        padding: 5px;
+
+        .journal-page-header {
+          display: contents;
+          max-width: fit-content;
+          max-height: fit-content;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+          line-height: normal;
+          display: flex;
+          font-family: "Avenir";
+          font-weight: 800;
+          color: var(--c-pred);
+          border: 0;
+        }
+
+        .journal-page-content {
+          padding: 5px;
+          font-family: "Crimson Pro";
+          color: var(--c-gold);
+        }
+      }
+    }
+  }
+}

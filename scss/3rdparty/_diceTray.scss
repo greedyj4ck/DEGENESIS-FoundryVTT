@@ -1,0 +1,25 @@
+.dice-tray {
+  button,
+  input {
+    box-shadow: none !important;
+    font-weight: 300 !important;
+  }
+  svg,
+  g,
+  path,
+  polygon {
+    transition: all 0.1s !important;
+    fill: var(--c-gold-5) !important;
+  }
+  svg:hover {
+    g,
+    path,
+    polygon {
+      transition: all 0.1s !important;
+      fill: var(--c-pred) !important;
+    }
+  }
+}
+.dice-calculator-toggle:hover {
+  color: transparent !important;
+}

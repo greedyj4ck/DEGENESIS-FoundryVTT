@@ -861,6 +861,9 @@ fieldset {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.app.window-app .window-content button {
+  min-height: var(--font-size-28);
+}
 .app.window-app .window-content .sidebar {
   border-right: 1px solid var(--c-gold);
 }
@@ -1185,6 +1188,9 @@ header.table-header {
 }
 .application.dialog .window-content {
   border-top: 1px solid var(--c-gold);
+}
+.application.dialog .window-content button {
+  min-height: var(--font-size-28);
 }
 
 #sidebar-tabs {
@@ -3223,6 +3229,163 @@ ol.directory-list .document h5 {
   display: none;
 }
 
+.dice-tray button,
+.dice-tray input {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  font-weight: 300 !important;
+}
+.dice-tray svg,
+.dice-tray g,
+.dice-tray path,
+.dice-tray polygon {
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  fill: var(--c-gold-5) !important;
+}
+.dice-tray svg:hover g,
+.dice-tray svg:hover path,
+.dice-tray svg:hover polygon {
+  -webkit-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  fill: var(--c-pred) !important;
+}
+
+.dice-calculator-toggle:hover {
+  color: transparent !important;
+}
+
+.gm-screen-drawer {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  height: calc(var(--gm-screen-height) - 10px) !important;
+}
+.gm-screen-drawer button {
+  padding: 5px;
+}
+.gm-screen-drawer.expanded .gm-screen-actions.tabs {
+  margin-bottom: 5px;
+}
+.gm-screen-drawer.expanded .gm-screen-actions.tabs .meta-actions {
+  -webkit-transform: translateY(0%) !important;
+          transform: translateY(0%) !important;
+}
+.gm-screen-drawer.expanded .gm-screen-actions.tabs .gm-screen-tabs {
+  -webkit-transform: translateY(0%) !important;
+          transform: translateY(0%) !important;
+}
+.gm-screen-drawer .gm-screen-actions.tabs {
+  margin-bottom: 5px;
+}
+.gm-screen-drawer .gm-screen-actions.tabs button {
+  border: 1px solid var(--c-gold);
+  background: var(--b-alpha-10);
+  border-radius: 5px;
+}
+.gm-screen-drawer .gm-screen-actions.tabs .gm-screen-tabs {
+  -webkit-transform: translateY(150%) !important;
+          transform: translateY(150%) !important;
+}
+.gm-screen-drawer .gm-screen-actions.tabs .meta-actions {
+  -webkit-transform: translateY(150%) !important;
+          transform: translateY(150%) !important;
+}
+.gm-screen-drawer .gm-screen-actions.tabs .meta-actions button {
+  border: 1px solid var(--c-gold);
+  background: var(--b-alpha-10);
+  border-radius: 5px;
+}
+.gm-screen-drawer .window-resizable-handle {
+  display: none;
+}
+.gm-screen-drawer .meta-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.gm-screen-drawer .gm-screen-container.window-content {
+  background: none;
+  background-color: none;
+  background-repeat: no-repeat;
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  background-color: var(--b-alpha-9);
+  border: 1px solid var(--c-gold-7);
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell a:hover {
+  color: var(--c-pred);
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-header {
+  color: var(--c-gold);
+  padding: 2px;
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 5px;
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper .journal-page-header {
+  display: contents;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper h1,
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper h2,
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper h3,
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper h4,
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper h5 {
+  line-height: normal;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: "Avenir";
+  font-weight: 800;
+  color: var(--c-pred);
+  border: 0;
+}
+.gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell .gm-screen-grid-cell-content-wrapper .journal-page-content {
+  padding: 5px;
+  font-family: "Crimson Pro";
+  color: var(--c-gold);
+}
+
+table {
+  border-top: 1px solid var(--c-gold);
+}
+table tr {
+  border-bottom: 1px solid var(--c-gold);
+}
+table tr:nth-child(odd) {
+  background: none;
+}
+table tr:nth-child(even) {
+  background: none;
+}
+table tr td {
+  padding: 5px;
+  border: 1px solid var(--c-gold);
+}
+table tr td:first-child {
+  padding: 5px;
+  border-left: 0;
+}
+table tr td:last-child {
+  padding: 5px;
+  border-right: 0;
+}
+
 select {
   color: var(--c-gold);
   border: 1px solid var(--c-gold);
@@ -3261,7 +3424,6 @@ button {
       -ms-flex-align: center;
           align-items: center;
   line-height: normal;
-  min-height: var(--font-size-28);
   border: 1px solid var(--c-gold) !important;
   background-color: var(--c-resin-9) !important;
   border-radius: 5px !important;
@@ -3972,6 +4134,27 @@ a.diamond:hover .square.red.perma {
 
 .prosemirror .editor-container .editor-content {
   scrollbar-width: unset;
+}
+.prosemirror .editor-container .tableWrapper td {
+  border: 1px solid var(--c-gold);
+}
+.prosemirror .editor-container .tableWrapper td:first-child {
+  border-left: 0;
+}
+.prosemirror .editor-container .tableWrapper td:last-child {
+  border-right: 0;
+}
+
+#prosemirror-dropdown ul {
+  border: 1px solid var(--c-gold);
+  border-radius: 5px;
+  margin-top: 2px;
+  background: var(--b-alpha-10);
+  color: var(--c-gold);
+}
+#prosemirror-dropdown ul li:hover {
+  background-color: var(--c-pred);
+  color: var(--c-antiflash);
 }
 
 .app.window-app.form.sheet-config select {

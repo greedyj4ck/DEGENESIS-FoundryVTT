@@ -31,9 +31,11 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
 // 3RD PARTY
 @import "3rdparty/carousel";
 @import "3rdparty/ownership";
+@import "3rdparty/diceTray";
+@import "3rdparty/gmScreen";
 
 // MAIN COMPONENTS
-
+@import "components/table";
 @import "components/controls"; /// Main styling for buttons, selects, checboxes, inputs, etc...
 @import "components/scrollbar";
 @import "components/squares";

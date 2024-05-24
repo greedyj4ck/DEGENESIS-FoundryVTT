@@ -225,6 +225,10 @@ fieldset {
     border-bottom-left-radius: $b-radius-md;
     border-bottom-right-radius: $b-radius-md;
 
+    button {
+      min-height: var(--font-size-28);
+    }
+
     .sidebar {
       border-right: 1px solid var(--c-gold);
     }
@@ -537,5 +541,8 @@ header.table-header {
 
   .window-content {
     border-top: 1px solid var(--c-gold);
+    button {
+      min-height: var(--font-size-28);
+    }
   }
 }
