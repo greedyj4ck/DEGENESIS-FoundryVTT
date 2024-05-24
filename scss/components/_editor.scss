@@ -1,3 +1,38 @@
-.prosemirror .editor-container .editor-content {
-  scrollbar-width: unset;
+.prosemirror {
+  .editor-container {
+    .editor-content {
+      scrollbar-width: unset;
+    }
+
+    .tableWrapper {
+      td {
+        border: 1px solid var(--c-gold);
+
+        &:first-child {
+          border-left: 0;
+        }
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+  }
+}
+
+#prosemirror-dropdown {
+  ul {
+    border: 1px solid var(--c-gold);
+    border-radius: $b-radius-sm;
+    margin-top: 2px;
+    background: var(--b-alpha-10);
+    color: var(--c-gold);
+
+    li {
+      &:hover {
+        background-color: var(--c-pred);
+        color: var(--c-antiflash);
+      }
+    }
+  }
 }
