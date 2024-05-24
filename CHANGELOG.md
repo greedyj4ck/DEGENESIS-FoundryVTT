@@ -1,3 +1,14 @@
+# **CHANGELOG 0.7.1 (24.05.2024) **
+
+## Added
+
+- Styling for Dice Tray & GM Screen modules
+- Styling for some missed components like tables or prosemirror dropdown menus
+
+## Fixes
+
+- Renamed some translation strings
+
 # **CHANGELOG 0.7.0 (22.05.2024) **
 
 Many thanks the entire Court of The Piast server community involved and Degnesis for feedback, testing and translation.
