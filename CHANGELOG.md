@@ -1,3 +1,9 @@
+# **CHANGELOG 0.7.2 (26.05.2024) **
+
+## Fixes
+
+- Fixed wrong translation string on templates files
+
 # **CHANGELOG 0.7.1 (24.05.2024) **
 
 ## Added
