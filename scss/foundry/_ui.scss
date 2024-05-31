@@ -546,3 +546,8 @@ header.table-header {
     }
   }
 }
+
+form * .notes,
+form * .hint {
+  flex: 1 1 100%;
+}

@@ -1193,6 +1193,13 @@ header.table-header {
   min-height: var(--font-size-28);
 }
 
+form * .notes,
+form * .hint {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+}
+
 #sidebar-tabs {
   border-bottom: 1px solid var(--c-gold);
   -webkit-box-shadow: none;
