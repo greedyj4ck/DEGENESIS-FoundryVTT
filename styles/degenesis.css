@@ -1043,6 +1043,9 @@ fieldset {
   color: var(--c-gold);
   background-color: var(--b-alpha-9);
 }
+.app.window-app .select2-dropdown .select2-results__option {
+  min-height: 30px;
+}
 .app.window-app .select2-dropdown .select2-results__option--highlighted {
   background-color: var(--c-resin);
 }
@@ -1191,6 +1194,13 @@ header.table-header {
 }
 .application.dialog .window-content button {
   min-height: var(--font-size-28);
+}
+
+form * .notes,
+form * .hint {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
 }
 
 #sidebar-tabs {

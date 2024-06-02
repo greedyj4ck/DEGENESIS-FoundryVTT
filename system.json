@@ -2,10 +2,10 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "compatibility": {
     "minimum": "12.318",
-    "verified": "12.324"
+    "verified": "12.325"
   },
   "authors": [
     {
