@@ -1043,6 +1043,9 @@ fieldset {
   color: var(--c-gold);
   background-color: var(--b-alpha-9);
 }
+.app.window-app .select2-dropdown .select2-results__option {
+  min-height: 30px;
+}
 .app.window-app .select2-dropdown .select2-results__option--highlighted {
   background-color: var(--c-resin);
 }
