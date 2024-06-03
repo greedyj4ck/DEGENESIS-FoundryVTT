@@ -4,7 +4,7 @@
   width: 240px;
   border: 1px solid var(--c-gold);
   background: var(--b-alpha-8) !important;
-  backdrop-filter: blur(15px);
+  backdrop-filter: $backdrop-filter;
   box-shadow: none;
 
   font-family: "Avenir";

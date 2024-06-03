@@ -5,7 +5,7 @@
     box-shadow: none !important;
     color: var(--c-gold) !important;
     background-color: var(--b-alpha-8) !important;
-    backdrop-filter: blur(5px);
+    backdrop-filter: $backdrop-filter;
 
     &.active {
       border: 1px solid var(--c-pred) !important;

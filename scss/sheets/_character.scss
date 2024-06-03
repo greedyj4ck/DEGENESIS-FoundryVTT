@@ -272,7 +272,7 @@
       border-radius: $b-radius-md;
       border: 1px solid var(--c-gold);
       background: var(--b-alpha-6);
-      backdrop-filter: blur(10px);
+      backdrop-filter: $backdrop-filter;
       font-weight: 200;
       font-size: 12px;
       letter-spacing: 0.05em;
@@ -1389,7 +1389,7 @@
       margin: 5px 0px;
       padding: 5px 4px 5px 4px;
       background-color: var(--b-alpha-1);
-      backdrop-filter: blur(5px);
+      backdrop-filter: $backdrop-filter;
       border: 1px solid var(--c-gold);
 
       p {

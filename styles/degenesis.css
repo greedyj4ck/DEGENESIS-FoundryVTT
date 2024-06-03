@@ -160,8 +160,8 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
   width: 240px;
   border: 1px solid var(--c-gold);
   background: var(--b-alpha-8) !important;
-  -webkit-backdrop-filter: blur(15px);
-          backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   -webkit-box-shadow: none;
           box-shadow: none;
   font-family: "Avenir";
@@ -208,8 +208,8 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
   -webkit-box-shadow: none;
           box-shadow: none;
   background: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border-radius: 10px;
 }
 #hotbar .macro .macro-key {
@@ -226,8 +226,8 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
 #hotbar #hotbar-lock,
 #hotbar #hotbar-page-controls {
   background: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   color: var(--c-gold);
   border-radius: 10px;
@@ -241,8 +241,8 @@ FOUNDRY VTT SYSTEM STYLESHEET V.1.0
 #players {
   font-family: "Crimson Pro";
   background: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   border-radius: 10px;
   color: var(--c-gold);
@@ -314,8 +314,8 @@ nav#navigation a#nav-toggle {
   text-shadow: none !important;
   aspect-ratio: 1 !important;
   background-color: var(--b-alpha-8) !important;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   color: var(--c-gold);
 }
@@ -334,12 +334,6 @@ nav#navigation li.scene.nav-item {
   background: var(--b-alpha-8) !important;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-}
-nav#navigation li.scene.nav-item:hover {
-  -webkit-backdrop-filter: blur(15px);
-          backdrop-filter: blur(15px);
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 nav#navigation li.scene.nav-item a:hover {
   color: var(--c-antiflash) !important;
@@ -372,8 +366,8 @@ nav#navigation #context-menu {
   position: absolute;
   margin-top: 8px;
   background: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   color: var(--c-gold);
 }
@@ -400,8 +394,8 @@ nav#navigation #context-menu li:hover {
 #loading #loading-bar {
   height: 100%;
   background: RGBA(29,30,44, 0.5);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   border-radius: 2px;
   display: -webkit-box;
@@ -440,8 +434,8 @@ nav#navigation #context-menu li:hover {
   width: 90%;
   font-family: "Crimson Pro";
   background-color: var(--b-alpha-9);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   border-radius: 10px;
   color: var(--c-gold);
@@ -827,8 +821,8 @@ fieldset {
   border: 1px solid var(--c-gold);
   background-image: none;
   background-color: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1178,8 +1172,8 @@ header.table-header {
 /* APP V2 */
 .application.dialog {
   background-color: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border: 1px solid var(--c-gold);
   color: var(--c-gold);
 }
@@ -1218,8 +1212,8 @@ form * .hint {
   aspect-ratio: 1;
   border-radius: 3px;
   background-color: var(--b-alpha-4);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   background-size: 80%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -1752,8 +1746,8 @@ ol.directory-list .document h5 {
   border: 1px solid var(--c-gold);
   border-radius: 10px;
   background-color: var(--b-alpha-5);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   font-size: var(--font-size-14);
   color: var(--c-gold) !important;
   text-shadow: none;
@@ -2170,8 +2164,8 @@ ol.directory-list .document h5 {
   font-family: "Avenir";
   font-size: var(--font-size-12);
   background-color: var(--b-alpha-8);
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border-top: 1px solid var(--c-gold);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -3216,9 +3210,9 @@ ol.directory-list .document h5 {
 
 #tooltip.combat-dock-tooltip {
   opacity: 1 !important;
-  background: var(--b-alpha-5) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-          backdrop-filter: blur(10px) !important;
+  background: var(--b-alpha-7) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+          backdrop-filter: blur(5px) !important;
   border: 1px solid var(--c-gold) !important;
   border-radius: 5px !important;
   min-width: 200px;
@@ -3325,8 +3319,8 @@ ol.directory-list .document h5 {
 .gm-screen-drawer .gm-screen-grid .gm-screen-grid-cell {
   -webkit-box-shadow: none;
           box-shadow: none;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   background-color: var(--b-alpha-9);
   border: 1px solid var(--c-gold-7);
 }
@@ -3957,20 +3951,25 @@ a.diamond:hover .square.red.perma {
   color: var(--c-pred);
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-list {
-  margin: 5px;
+  scrollbar-gutter: stable;
   padding-right: 0;
+  margin: 5px;
   border: 1px solid var(--c-gold);
   border-radius: 10px;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-item {
-  border: 0;
+  border-top: 0;
+  border-right: 1px solid var(--c-gold);
   border-bottom: 1px solid var(--c-gold);
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-item:first-child {
   border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+}
+.app.window-app.sheet.journal-sheet.journal-entry .directory-item:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom: 0;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-item.active {
   background-color: var(--c-resin);
@@ -3983,19 +3982,23 @@ a.diamond:hover .square.red.perma {
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-item.active .headings {
   opacity: 1;
-  max-height: 200px;
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
   visibility: visible;
-  -webkit-transform: scaleY(1);
-          transform: scaleY(1);
+  -webkit-transform: scaleY(1) scaleX(1);
+          transform: scaleY(1) scaleX(1);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .directory-item .headings {
   display: block;
   max-height: 0;
-  -webkit-transform: scaleY(0);
-          transform: scaleY(0);
+  -webkit-transform: scaleY(0) scaleX(0);
+          transform: scaleY(0) scaleX(0);
   opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .app.window-app.sheet.journal-sheet.journal-entry .journal-sidebar.collapsed .ownership-viewer {
   display: none;
@@ -6100,8 +6103,8 @@ input[type=checkbox].lock-slider:checked + label:before {
   border-radius: 10px;
   border: 1px solid var(--c-gold);
   background: var(--b-alpha-6);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   font-weight: 200;
   font-size: 12px;
   letter-spacing: 0.05em;

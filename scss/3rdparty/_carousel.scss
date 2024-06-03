@@ -120,8 +120,8 @@
 
 #tooltip.combat-dock-tooltip {
   opacity: 1 !important;
-  background: var(--b-alpha-5) !important;
-  backdrop-filter: blur(10px) !important;
+  background: var(--b-alpha-7) !important;
+  backdrop-filter: $backdrop-filter !important;
   border: 1px solid var(--c-gold) !important;
   border-radius: $b-radius-sm !important;
 

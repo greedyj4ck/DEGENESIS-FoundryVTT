@@ -1,3 +1,16 @@
+# **CHANGELOG 0.7.4 (03.06.2024) **
+
+## Fixes
+
+- Another css fixes
+- Tuned down use of backdrop-filter (for testing)
+
+# **CHANGELOG 0.7.3 (02.06.2024) **
+
+## Fixes
+
+- Some small css fixes
+
 # **CHANGELOG 0.7.2 (26.05.2024) **
 
 ## Fixes

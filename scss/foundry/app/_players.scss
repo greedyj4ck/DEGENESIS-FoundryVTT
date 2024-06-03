@@ -2,7 +2,7 @@
 #players {
   font-family: "Crimson Pro";
   background: var(--b-alpha-8);
-  backdrop-filter: blur(20px);
+  backdrop-filter: $backdrop-filter;
   border: 1px solid var(--c-gold);
   border-radius: 10px;
   color: var(--c-gold);

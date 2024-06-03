@@ -58,21 +58,26 @@
   }
 
   .directory-list {
-    margin: 5px;
+    scrollbar-gutter: stable;
     padding-right: 0;
+    margin: 5px;
     border: 1px solid var(--c-gold);
     border-radius: $b-radius-md;
   }
 
   .directory-item {
-    border: 0;
-
+    border-top: 0;
+    border-right: 1px solid var(--c-gold);
     border-bottom: 1px solid var(--c-gold);
     transition: all 0.5s ease-in-out;
 
     &:first-child {
       border-top-left-radius: $b-radius-md;
-      border-top-right-radius: $b-radius-md;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $b-radius-md;
+      border-bottom: 0;
     }
 
     &.active {
@@ -91,18 +96,19 @@
 
       .headings {
         opacity: 1;
-        max-height: 200px;
+        max-height: fit-content;
         visibility: visible;
-        transform: scaleY(1);
+        transform: scaleY(1) scaleX(1);
+        transition: all 0.3s ease-in-out;
       }
     }
 
     .headings {
       display: block;
       max-height: 0;
-      transform: scaleY(0);
+      transform: scaleY(0) scaleX(0);
       opacity: 0;
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
   }
 

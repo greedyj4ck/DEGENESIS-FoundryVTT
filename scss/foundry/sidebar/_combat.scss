@@ -40,7 +40,7 @@
       border: 1px solid var(--c-gold);
       border-radius: $b-radius-md;
       background-color: var(--b-alpha-5);
-      backdrop-filter: blur(10px);
+      backdrop-filter: $backdrop-filter;
       font-size: var(--font-size-14);
       color: var(--c-gold) !important;
       text-shadow: none;
