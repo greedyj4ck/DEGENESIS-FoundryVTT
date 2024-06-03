@@ -189,7 +189,7 @@ fieldset {
   border: 1px solid var(--c-gold);
   background-image: none;
   background-color: var(--b-alpha-8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: $backdrop-filter;
   box-shadow: none;
 
   .window-header {
@@ -481,7 +481,7 @@ fieldset {
   color: $text-white;
   border-radius: $b-radius-sm;
   background-color: var(--b-alpha-6);
-  backdrop-filter: blur(5px);
+  backdrop-filter: $backdrop-filter;
 }
 
 .notification.info {
@@ -530,7 +530,7 @@ header.table-header {
 /* APP V2 */
 .application.dialog {
   background-color: var(--b-alpha-8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: $backdrop-filter;
   border: 1px solid var(--c-gold);
 
   color: var(--c-gold);

@@ -67,7 +67,7 @@
       font-size: var(--font-size-12);
 
       background-color: var(--b-alpha-8);
-      backdrop-filter: blur(20px);
+      backdrop-filter: $backdrop-filter;
 
       border-top: 1px solid var(--c-gold);
       border-bottom-left-radius: $b-radius-md;

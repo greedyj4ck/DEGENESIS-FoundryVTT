@@ -11,7 +11,7 @@
     color: var(--c-gold);
     box-shadow: none;
     background: var(--b-alpha-8);
-    backdrop-filter: blur(20px);
+    backdrop-filter: $backdrop-filter;
     border-radius: 10px;
 
     .macro-key {
@@ -30,7 +30,7 @@
   #hotbar-lock,
   #hotbar-page-controls {
     background: var(--b-alpha-8);
-    backdrop-filter: blur(20px);
+    backdrop-filter: $backdrop-filter;
     border: 1px solid var(--c-gold); //!important;
     color: var(--c-gold);
     border-radius: 10px;

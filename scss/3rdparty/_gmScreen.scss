@@ -62,7 +62,7 @@
   .gm-screen-grid {
     .gm-screen-grid-cell {
       box-shadow: none;
-      backdrop-filter: blur(10px);
+      backdrop-filter: $backdrop-filter;
       background-color: var(--b-alpha-9);
 
       border: 1px solid var(--c-gold-7);

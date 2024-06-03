@@ -15,7 +15,7 @@
     border-radius: 3px;
 
     background-color: var(--b-alpha-4);
-    backdrop-filter: blur(10px);
+    backdrop-filter: $backdrop-filter;
 
     background-size: 80%;
     background-repeat: no-repeat;
