@@ -46,6 +46,31 @@ export class DegenesisCombatTracker extends CombatTracker {
     html
       .find(".action-remove")
       .click((ev) => this._onActionBtnClick(ev, "remove"));
+
+    html
+      .find(".combat-button.initiative-all")
+      .click((ev) => this._onInitiativeAllClick(ev));
+    html
+      .find(".combat-button.initiative-npc")
+      .click((ev) => this._onInitiativeNPCClick(ev));
+  }
+
+  async _onInitiativeAllClick(event) {
+    let skipDialog = !event.ctrlKey;
+    let updateTurn = this.viewed.round > 0 ? true : false;
+    game.combat.rollAll({
+      updateTurn: updateTurn,
+      messageOptions: { skipDialog: skipDialog },
+    });
+  }
+
+  async _onInitiativeNPCClick(event) {
+    let skipDialog = !event.ctrlKey;
+    let updateTurn = this.viewed.round > 0 ? true : false;
+    game.combat.rollNPC({
+      updateTurn: updateTurn,
+      messageOptions: { skipDialog: skipDialog },
+    });
   }
 
   async _onActionBtnClick(event, op) {

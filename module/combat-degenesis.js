@@ -29,19 +29,24 @@ export class DegenesisCombat extends Combat {
       switch (combatant.actor.type) {
         case "fromhell": {
           initiativeValue = DegenesisCombat.rollInitiativeForFromHell(
-            combatant.actor
+            combatant.actor,
+            messageOptions
           );
           break;
         }
         case "aberrant": {
           initiativeValue = DegenesisCombat.rollInitiativeForAberrant(
-            combatant.actor
+            combatant.actor,
+            messageOptions
           );
           break;
         }
 
         default: {
-          initiativeValue = DegenesisCombat.rollInitiativeFor(combatant.actor);
+          initiativeValue = DegenesisCombat.rollInitiativeFor(
+            combatant.actor,
+            messageOptions
+          );
           break;
         }
       }
@@ -71,6 +76,24 @@ export class DegenesisCombat extends Combat {
   }
 
   /** @override */
+  async rollAll(options) {
+    const ids = this.combatants.reduce((ids, c) => {
+      if (c.isOwner && c.initiative === null) ids.push(c.id);
+      return ids;
+    }, []);
+    return this.rollInitiative(ids, options);
+  }
+
+  /** @override */
+  async rollNPC(options) {
+    const ids = this.combatants.reduce((ids, c) => {
+      if (c.isOwner && c.isNPC && c.initiative === null) ids.push(c.id);
+      return ids;
+    }, []);
+    return this.rollInitiative(ids, options);
+  }
+
+  /** @override */
   async resetAll() {
     this.combatants.forEach((c) => {
       const actor = c.actor;
@@ -83,11 +106,11 @@ export class DegenesisCombat extends Combat {
     return await super.resetAll();
   }
 
-  static async rollInitiativeFor(actor) {
+  static async rollInitiativeFor(actor, messageOptions = {}) {
     if (!actor) return 0;
     const spentEgo = actor.state.spentEgo.value;
     const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
-      skipDialog: false,
+      skipDialog: messageOptions.skipDialog ? messageOptions.skipDialog : false,
       spentEgo,
     });
     let actionCount = 1;
@@ -143,7 +166,7 @@ export class DegenesisCombat extends Combat {
 
   // FROM HELL ROUTINES
 
-  static async rollInitiativeForFromHell(actor) {
+  static async rollInitiativeForFromHell(actor, messageOptions = {}) {
     if (!actor) return 0;
     const spentEgo = actor.state.spentEgo.value;
     const actionModifier = actor.general.actionModifier;
@@ -152,7 +175,9 @@ export class DegenesisCombat extends Combat {
       "initiative",
       actor.fighting.initiative + actionModifier,
       {
-        skipDialog: false,
+        skipDialog: messageOptions.skipDialog
+          ? messageOptions.skipDialog
+          : false,
         spentEgo,
       }
     );
@@ -213,7 +238,7 @@ export class DegenesisCombat extends Combat {
 
   // ABERRANT ROUTINES
 
-  static async rollInitiativeForAberrant(actor) {
+  static async rollInitiativeForAberrant(actor, messageOptions = {}) {
     if (!actor) return 0;
 
     const actionModifier = actor.general.actionModifier;
@@ -231,7 +256,9 @@ export class DegenesisCombat extends Combat {
       "initiative",
       actor.fighting.initiative + actionModifier,
       {
-        skipDialog: false,
+        skipDialog: messageOptions.skipDialog
+          ? messageOptions.skipDialog
+          : false,
         spentEgo,
       }
     );
