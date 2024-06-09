@@ -2,10 +2,10 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "compatibility": {
     "minimum": "12.318",
-    "verified": "12.325"
+    "verified": "12.327"
   },
   "authors": [
     {
@@ -41,7 +41,7 @@
   ],
   "scripts": [
     "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js",
-    "lib/select2.full.js"
+    "lib/select2.full.min.js"
   ],
   "packs": [
     {

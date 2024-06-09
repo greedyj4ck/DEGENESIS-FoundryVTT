@@ -268,24 +268,30 @@ export class DegenesisActor extends Actor {
 
   limitFromHellValues(updateData) {
     if (foundry.utils.getProperty(updateData, "system.condition")) {
-      limitMaxMinValue(
-        updateData,
-        "system.condition.ego.value",
-        updateData.system.condition.ego.max || this.condition.ego.max
-      );
+      if (updateData.system.condition.ego) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.ego.value",
+          updateData.system.condition.ego.max || this.condition.ego.max
+        );
+      }
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.fleshwounds.value",
-        updateData.system.condition.fleshwounds.max ||
-          this.condition.fleshwounds.max
-      );
+      if (updateData.system.condition.fleshwounds) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.fleshwounds.value",
+          updateData.system.condition.fleshwounds.max ||
+            this.condition.fleshwounds.max
+        );
+      }
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.trauma.value",
-        updateData.system.condition.trauma.max || this.condition.trauma.max
-      );
+      if (updateData.system.condition.trauma) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.trauma.value",
+          updateData.system.condition.trauma.max || this.condition.trauma.max
+        );
+      }
     }
   }
 
@@ -296,38 +302,46 @@ export class DegenesisActor extends Actor {
     // Limit condition
 
     if (foundry.utils.getProperty(updateData, "system.condition")) {
-      limitMaxMinValue(
-        updateData,
-        "system.condition.ego.value",
-        updateData.system.condition.ego.max || this.condition.ego.max
-      );
+      if (updateData.system.condition.ego) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.ego.value",
+          updateData.system.condition.ego.max || this.condition.ego.max
+        );
+      }
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.fleshwounds.value",
-        updateData.system.condition.fleshwounds.max ||
-          this.condition.fleshwounds.max
-      );
+      if (updateData.system.condition.fleshwounds) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.fleshwounds.value",
+          updateData.system.condition.fleshwounds.max ||
+            this.condition.fleshwounds.max
+        );
+      }
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.trauma.value",
-        updateData.system.condition.trauma.max || this.condition.trauma.max
-      );
+      if (updateData.system.condition.trauma) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.trauma.value",
+          updateData.system.condition.trauma.max || this.condition.trauma.max
+        );
+      }
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.spore.permanent",
-        updateData.system.condition.spore.max || this.condition.spore.max
-      );
+      if (updateData.system.condition.spore) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.spore.permanent",
+          updateData.system.condition.spore.max || this.condition.spore.max
+        );
 
-      limitMaxMinValue(
-        updateData,
-        "system.condition.spore.value",
-        updateData.system.condition.spore.max || this.condition.spore.max,
-        updateData.system.condition.spore.permanent ||
-          this.condition.spore.permanent
-      );
+        limitMaxMinValue(
+          updateData,
+          "system.condition.spore.value",
+          updateData.system.condition.spore.max || this.condition.spore.max,
+          updateData.system.condition.spore.permanent ||
+            this.condition.spore.permanent
+        );
+      }
     }
 
     // Limit
@@ -358,38 +372,42 @@ export class DegenesisActor extends Actor {
     // Limit condition
 
     if (foundry.utils.getProperty(updateData, "system.condition")) {
-      limitMaxMinValue(
-        updateData,
-        "system.condition.ego.value",
-        updateData.system.condition.ego.max || this.condition.ego.max
-      );
-
-      limitMaxMinValue(
-        updateData,
-        "system.condition.fleshwounds.value",
-        updateData.system.condition.fleshwounds.max ||
-          this.condition.fleshwounds.max
-      );
-
-      limitMaxMinValue(
-        updateData,
-        "system.condition.trauma.value",
-        updateData.system.condition.trauma.max || this.condition.trauma.max
-      );
-
-      limitMaxMinValue(
-        updateData,
-        "system.condition.spore.permanent",
-        updateData.system.condition.spore.max || this.condition.spore.max
-      );
-
-      limitMaxMinValue(
-        updateData,
-        "system.condition.spore.value",
-        updateData.system.condition.spore.max || this.condition.spore.max,
-        updateData.system.condition.spore.permanent ||
-          this.condition.spore.permanent
-      );
+      if (updateData.system.condition.ego) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.ego.value",
+          updateData.system.condition.ego.max || this.condition.ego.max
+        );
+      }
+      if (updateData.system.condition.fleshwounds) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.fleshwounds.value",
+          updateData.system.condition.fleshwounds.max ||
+            this.condition.fleshwounds.max
+        );
+      }
+      if (updateData.system.condition.trauma) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.trauma.value",
+          updateData.system.condition.trauma.max || this.condition.trauma.max
+        );
+      }
+      if (updateData.system.condition.spore) {
+        limitMaxMinValue(
+          updateData,
+          "system.condition.spore.permanent",
+          updateData.system.condition.spore.max || this.condition.spore.max
+        );
+        limitMaxMinValue(
+          updateData,
+          "system.condition.spore.value",
+          updateData.system.condition.spore.max || this.condition.spore.max,
+          updateData.system.condition.spore.permanent ||
+            this.condition.spore.permanent
+        );
+      }
     }
 
     // Limit

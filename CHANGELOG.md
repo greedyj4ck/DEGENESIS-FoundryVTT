@@ -1,3 +1,14 @@
+# CHANGELOG 0.7.5 (06.06.2024)
+
+## New Features
+
+- Rolling initiative using combat tracker buttons (all / npc) now hide roll modifier windows by default. To open roll window for each combatant hold CTRL while pressing the button. Combantant's Roll Initiative button works as previously.
+
+## Fixes
+
+- Fixed wrong portrait image path for chat messages
+- Fixed error in limiting data routines for FH/NPC/Aberrant
+
 # **CHANGELOG 0.7.4 (03.06.2024) **
 
 ## Fixes
