@@ -1189,4 +1189,22 @@ $background-cult-image-offset: 50px; // in pixels
       fill: var(--c-pred);
     }
   }
+
+  .history-tab-container {
+    overflow: auto;
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+    padding: 0px 3px;
+
+    .section-header-legends {
+      border-color: var(--c-gold);
+
+      .item-add {
+        margin: 0 !important;
+      }
+    }
+  }
 }

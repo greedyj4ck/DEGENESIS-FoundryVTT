@@ -1,3 +1,9 @@
+# CHANGELOG 0.7.6 (27.06.2024)
+
+## Fixes
+
+- Another batch of css fixes
+
 # CHANGELOG 0.7.5 (06.06.2024)
 
 ## New Features
