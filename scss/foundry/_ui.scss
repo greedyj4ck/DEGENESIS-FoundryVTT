@@ -307,6 +307,8 @@ fieldset {
     margin-bottom: 3px;
     color: var(--c-gold);
 
+    cursor: se-resize;
+
     i {
       display: none;
     }
@@ -354,6 +356,15 @@ fieldset {
 
   .form-fields,
   .form-group {
+    .select2-container--disabled {
+      .select2-selection {
+        border: 1px solid var(--c-gold-7);
+        .select2-selection__rendered {
+          color: var(--c-gold-7);
+        }
+      }
+    }
+
     .select2-selection {
       background-color: var(--b-alpha-9);
       border: 1px solid var(--c-gold);
@@ -377,6 +388,15 @@ fieldset {
       .select2-results__option--selected {
         background-color: var(--c-pred);
         color: var(--c-antiflash);
+      }
+    }
+  }
+
+  .select2-container--disabled {
+    .select2-selection {
+      border: 1px solid var(--c-gold-7);
+      .select2-selection__rendered {
+        color: var(--c-gold-7);
       }
     }
   }
@@ -524,6 +544,14 @@ header.table-header {
         background-color: var(--c-gold-7);
       }
     }
+  }
+}
+
+.macro-sheet {
+  textarea {
+    border-color: var(--c-gold-6);
+    color: var(--c-gold);
+    font-weight: 700;
   }
 }
 

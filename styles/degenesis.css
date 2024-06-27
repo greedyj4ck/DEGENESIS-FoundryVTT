@@ -941,6 +941,7 @@ fieldset {
   margin-right: 3px;
   margin-bottom: 3px;
   color: var(--c-gold);
+  cursor: se-resize;
 }
 .app.window-app .window-resizable-handle i {
   display: none;
@@ -995,6 +996,14 @@ fieldset {
   color: var(--c-gold-5) !important;
   opacity: 0.5;
 }
+.app.window-app .form-fields .select2-container--disabled .select2-selection,
+.app.window-app .form-group .select2-container--disabled .select2-selection {
+  border: 1px solid var(--c-gold-7);
+}
+.app.window-app .form-fields .select2-container--disabled .select2-selection .select2-selection__rendered,
+.app.window-app .form-group .select2-container--disabled .select2-selection .select2-selection__rendered {
+  color: var(--c-gold-7);
+}
 .app.window-app .form-fields .select2-selection,
 .app.window-app .form-group .select2-selection {
   background-color: var(--b-alpha-9);
@@ -1021,6 +1030,12 @@ fieldset {
 .app.window-app .form-group .select2-dropdown .select2-results__option--selected {
   background-color: var(--c-pred);
   color: var(--c-antiflash);
+}
+.app.window-app .select2-container--disabled .select2-selection {
+  border: 1px solid var(--c-gold-7);
+}
+.app.window-app .select2-container--disabled .select2-selection .select2-selection__rendered {
+  color: var(--c-gold-7);
 }
 .app.window-app .select2-selection {
   background-color: var(--b-alpha-9);
@@ -1167,6 +1182,12 @@ header.table-header {
   border: 1px solid var(--c-antiflash);
   color: var(--c-antiflash);
   background-color: var(--c-gold-7);
+}
+
+.macro-sheet textarea {
+  border-color: var(--c-gold-6);
+  color: var(--c-gold);
+  font-weight: 700;
 }
 
 /* APP V2 */
@@ -9281,6 +9302,28 @@ input[type=checkbox].lock-slider:checked + label:before {
 .app.window-app.degenesis.sheet.npc .culture-img:hover {
   fill: var(--c-pred);
 }
+.app.window-app.degenesis.sheet.npc .history-tab-container {
+  overflow: auto;
+  margin: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: auto;
+  padding: 0px 3px;
+}
+.app.window-app.degenesis.sheet.npc .history-tab-container .section-header-legends {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.npc .history-tab-container .section-header-legends .item-add {
+  margin: 0 !important;
+}
 
 .app.window-app.degenesis.sheet.aberrant {
   min-width: 720px;
@@ -10412,6 +10455,28 @@ input[type=checkbox].lock-slider:checked + label:before {
 .app.window-app.degenesis.sheet.aberrant .select2-dropdown li:last-child {
   border-bottom-left-radius: 10px;
 }
+.app.window-app.degenesis.sheet.aberrant .history-tab-container {
+  overflow: auto;
+  margin: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow: auto;
+  padding: 0px 3px;
+}
+.app.window-app.degenesis.sheet.aberrant .history-tab-container .section-header-legends {
+  border-color: var(--c-gold);
+}
+.app.window-app.degenesis.sheet.aberrant .history-tab-container .section-header-legends .item-add {
+  margin: 0 !important;
+}
 
 /* SHEET: _ITEM.SCSS */
 /* LEGACY ITEM SPECIFIC STYLES */
@@ -11018,6 +11083,10 @@ input[type=checkbox].lock-slider:checked + label:before {
 }
 .app.window-app.degenesis.sheet.item .select2-dropdown .select2-results__option--highlighted {
   background-color: var(--c-pred) !important;
+}
+.app.window-app.degenesis.sheet.item .block-title.gold div {
+  font-weight: 600;
+  color: black;
 }
 .app.window-app.degenesis.sheet.item .block-title.gold h3 {
   font-weight: 600;
