@@ -128,6 +128,7 @@
                     <a class="action action-remove btn" data-tooltip="UI.RemoveAction">-</a>
                 </div>
                 <div class="actions-label">{{localize 'DGNS.Actions'}}</div>
+
                 {{else if this.owner}}
                 <div class="roll-initiative">
                     <div class="initiative-die">
@@ -135,6 +136,25 @@
                             role="button" data-tooltip="COMBAT.InitiativeRoll" data-control="rollInitiative"></a>
                     </div>
 
+
+
+
+                    {{#if this.actor.isPrimalPhase}}
+
+                    <div class="diamond-row" data-target="system.state.spentSpore.value" data-tooltip="DGNS.SpendSpore">
+                        {{#each this.actor.system.state.spentSpore.diamonds as |diamond index|}} {{#if
+                        diamond.filled}}
+                        <a class="diamond" data-index="{{index}}">
+                            <div class="square gold"></div>
+                        </a>
+                        {{else}}
+                        <a class="diamond" data-index="{{index}}">
+                            <div class="square"></div>
+                        </a>
+                        {{/if}} {{/each}}
+                    </div>
+
+                    {{else}}
 
 
                     <div class="diamond-row" data-target="system.state.spentEgo.value" data-tooltip="DGNS.SpendEgo">
@@ -150,6 +170,7 @@
                         {{/if}} {{/each}}
                     </div>
 
+                    {{/if}}
 
 
                 </div>

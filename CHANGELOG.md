@@ -1,3 +1,9 @@
+# CHANGELOG 0.7.7 (27.06.2024)
+
+## Fixes
+
+- Aberrant spent spore infestation points using combat tracker buttons should work correctly now.
+
 # CHANGELOG 0.7.6 (27.06.2024)
 
 ## Fixes
