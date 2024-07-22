@@ -45,7 +45,7 @@ export default function () {
 
       // For other users, draw offset pips
       for (let [i, u] of others.entries()) {
-        let color = Color.from(u.data.color);
+        let color = Color.from(u.color);
         this.target
           .beginFill(color, 1.0)
           .lineStyle(2, 0x0000000)
