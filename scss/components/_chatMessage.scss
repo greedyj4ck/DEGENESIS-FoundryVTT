@@ -123,3 +123,21 @@
     display: none;
   }
 }
+
+a.content-link {
+  background-color: black;
+  color: var(--c-gold);
+  border-color: var(--c-gold-6);
+  font-size: var(--font-size-13);
+  font-family: $serif-content-font;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  &:hover {
+    i {
+      color: var(--c-pred) !important;
+    }
+    color: var(--c-pred);
+    border-color: var(--c-pred-6);
+  }
+}

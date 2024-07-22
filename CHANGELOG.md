@@ -3,6 +3,8 @@
 ## Fixes
 
 - Aberrant spent spore infestation points using combat tracker buttons should work correctly now.
+- Equipping more than one Sonic Weapon will no longer cause rendering issues.
+- Deprecated method was causing issues with canva while targeting tokens.
 
 # CHANGELOG 0.7.6 (27.06.2024)
 
