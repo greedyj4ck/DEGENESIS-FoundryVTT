@@ -52,12 +52,12 @@ export class DegenesisCharacterSheet extends ActorSheet {
 
       const toggle = document.createElement("input");
       toggle.type = "checkbox";
-      toggle.id = "edit-switch";
+      toggle.id = `edit-switch-${this.appId}`;
       toggle.classList.add("lock-slider");
       toggle.checked = !this.isLocked();
 
       const label = document.createElement("label");
-      label.htmlFor = "edit-switch";
+      label.htmlFor = toggle.id;
       label.dataset.tooltip = "UI.SheetLocked";
       label.setAttribute("aria-label", game.i18n.localize("UI.SheetLocked"));
 
@@ -783,12 +783,6 @@ export class DegenesisCharacterSheet extends ActorSheet {
   async _onChangeSheetLock(event) {
     const toggle = event.currentTarget;
     const label = toggle.nextElementSibling;
-
-    /*     const label = game.i18n.localize(
-      `DND5E.SheetMode${toggle.checked ? "Play" : "Edit"}`
-    );
-    toggle.dataset.tooltip = label;
-    toggle.setAttribute("aria-label", label); */
 
     if (this.isLocked()) {
       this.document.setFlag(MODULE, "sheetLocked", false);
