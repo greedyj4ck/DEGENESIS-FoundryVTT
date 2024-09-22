@@ -30,6 +30,10 @@ export class DegenesisCombatTracker extends CombatTracker {
         turn.actorType = context.combat.combatants.get(turn.id)?.actor.type;
         turn.actor = context.combat.combatants.get(turn.id)?.actor;
         DEG_Utility.addDiamonds(turn.actor.system.state.spentEgo, 3);
+
+        if (turn.actorType === "aberrant") {
+          DEG_Utility.addDiamonds(turn.actor.system.state.spentSpore, 3);
+        }
       } catch (error) {
         context.combat.deleteEmbeddedDocuments("Combatant", [turn.id]);
       }

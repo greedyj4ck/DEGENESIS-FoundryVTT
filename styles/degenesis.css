@@ -3921,6 +3921,23 @@ a.diamond:hover .square.red.perma {
   display: none;
 }
 
+a.content-link {
+  background-color: black;
+  color: var(--c-gold);
+  border-color: var(--c-gold-6);
+  font-size: var(--font-size-13);
+  font-family: "Crimson Pro";
+  font-weight: 800;
+  text-transform: uppercase;
+}
+a.content-link:hover {
+  color: var(--c-pred);
+  border-color: var(--c-pred-6);
+}
+a.content-link:hover i {
+  color: var(--c-pred) !important;
+}
+
 .app.window-app.sheet.journal-sheet.journal-entry .line-stroke {
   stroke: var(--c-gold);
   stroke-width: 1.5px;

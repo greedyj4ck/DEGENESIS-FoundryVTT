@@ -431,9 +431,9 @@ export class DegenesisAberrantSheet extends ActorSheet {
 
       const combatantToken = game.combat.combatants.reduce((arr, c) => {
         if (this.actor.isToken == true) {
-          if (c.system.tokenId !== this.token.id) return arr;
+          if (c.tokenId !== this.token.id) return arr;
         } else {
-          if (c.system.actorId !== this.actor.id) return arr;
+          if (c.actor.system.actorId !== this.actor.id) return arr;
           if (c.token.isLinked !== true) return arr;
         }
 

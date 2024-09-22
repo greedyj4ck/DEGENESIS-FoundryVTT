@@ -1,3 +1,13 @@
+# CHANGELOG 0.7.7 (23.09.2024)
+
+## Fixes
+
+- Aberrant spent spore infestation points using combat tracker buttons should work correctly now.
+- Equipping more than one Sonic Weapon will no longer cause rendering issues.
+- Deprecated method was causing issues with canva while targeting tokens.
+- Character lock sheet buttons target proper actor sheet now (when multiple sheets are displayed).
+- Enumbrance is now calculated after items mods are applied.
+
 # CHANGELOG 0.7.6 (27.06.2024)
 
 ## Fixes
