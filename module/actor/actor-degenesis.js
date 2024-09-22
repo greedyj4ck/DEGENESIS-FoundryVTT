@@ -133,16 +133,16 @@ export class DegenesisActor extends Actor {
         this.general.encumbrance.max = this.general.encumbrance.override
           ? this.general.encumbrance.override + calcEnc
           : calcEnc;
-        // Encumbrance needs to be counted first....
 
+        //  1. Prepare items data
+        this.prepareItems();
+        // 2. Count encumbrance
         this.prepareEncumbrance();
 
         // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
         if (AutomateEncumbrancePenalty()) {
           this.modifiers.addEncumbranceModifiers(this);
         }
-
-        this.prepareItems();
 
         this.general.actionModifier = this.modifiers.action.D;
         this.general.movement =
