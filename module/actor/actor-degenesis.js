@@ -134,15 +134,17 @@ export class DegenesisActor extends Actor {
           ? this.general.encumbrance.override + calcEnc
           : calcEnc;
 
-        //  1. Prepare items data
-        this.prepareItems();
-        // 2. Count encumbrance
+        // 1. Count encumbrance - this need to be done first cause ENC penalty must be added in prepareItems.
         this.prepareEncumbrance();
 
         // CONDITIONAL FOR AUTOMATIC ENCUMBRANCE PENALTY
         if (AutomateEncumbrancePenalty()) {
           this.modifiers.addEncumbranceModifiers(this);
         }
+
+        //  2. Prepare items data
+        // TODO: This needs to be divided into few subroutines for proper calculation of encumbrance modifications.
+        this.prepareItems();
 
         this.general.actionModifier = this.modifiers.action.D;
         this.general.movement =
@@ -457,7 +459,7 @@ export class DegenesisActor extends Actor {
     encumbrance.pct = (encumbrance.current / encumbrance.max) * 100;
 
     if (encumbrance.pct > 100) {
-      encumbrance.over = true; // = "var(--degenesis-red)";
+      encumbrance.over = true;
     } else {
       encumbrance.over = false;
     }
