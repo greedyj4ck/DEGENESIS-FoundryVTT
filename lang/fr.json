@@ -2,7 +2,7 @@
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
   "TYPES.Actor.character": "Character",
   "TYPES.Actor.npc": "Personnage non jouable",
-  "TYPES.Actor.aberrant": "Abberant",
+  "TYPES.Actor.aberrant": "Aberrant",
   "TYPES.Actor.fromhell": "À vaincre sans péril",
   "TYPES.Actor.TypeCharacterSheet": "Feuille de Personnage par défaut",
   "TYPES.Actor.TypeNpcSheet": "Feuille de PNJ par défaut",
