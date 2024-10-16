@@ -1,6 +1,6 @@
 {
   "DEGENESIS.SystemName": "DEGENESIS: Rebirth",
-  "TYPES.Actor.character": "Character",
+  "TYPES.Actor.character": "Personnage Joueur",
   "TYPES.Actor.npc": "Personnage non jouable",
   "TYPES.Actor.aberrant": "Aberrant",
   "TYPES.Actor.fromhell": "À vaincre sans péril",
@@ -51,7 +51,7 @@
   "UI.SheetUnlocked": "Feuille déverrouillée pour modification",
   "UI.SheetLocked": "Feuille verrouillée pour modification",
   "UI.SheetLockedNotification": "La feuille est actuellement verrouillée",
-  "TYPES.Item.Type": "Character",
+  "TYPES.Item.Type": "Personnage",
   "TYPES.Item.weapon": "Armes",
   "TYPES.Item.armor": "Armure",
   "TYPES.Item.equipment": "Équipement",
