@@ -1,19 +1,14 @@
 //import { DegenesisCombatTrackerConfig } from "../apps/combat-config";
 
+import { injectSVGIcons } from "../item/svg.js";
+
 export default function () {
   // Apply select2 to item
   Hooks.once("ready", () => {});
 
-  Hooks.on("renderPause", (app, [html]) => {
-    html.classList.add("degenesis");
-    const img = html.querySelector("img");
-    img.src = "systems/degenesis/ui/jackal_pause.png";
-    img.className = "";
-  });
-
-  Hooks.on("renderSettings", (app, [html]) => {
-    const details = html.querySelector("#game-details");
-    const pip = details.querySelector(".system-info .update");
+  Hooks.on("renderSettings", (app, html) => {
+    const details = html.querySelector("section.info");
+    const pip = details.querySelector(".system .update");
     details.querySelector(".system").remove();
 
     const badge = document.createElement("div");
@@ -21,13 +16,12 @@ export default function () {
     badge.innerHTML = `
     <img src="systems/degenesis/ui/degenesis-logo-white.svg" data-tooltip="${game.system.title}" alt="${game.system.title}">
     <span class="system-info">${game.system.version}</span>
-  
   `;
     if (pip)
       badge
         .querySelector(".system-info")
         .insertAdjacentElement("beforeend", pip);
-    details.insertAdjacentElement("beforebegin", badge);
+    details.insertBefore(badge, details.querySelector("div.build"));
   });
 
   Hooks.on("renderChatLog", () => {
@@ -75,6 +69,14 @@ export default function () {
       dropdownAutoWidth: true,
       dropdownParent: $(`[data-appid=${app.appId}]`),
     });
+
+    const SVG_ICONS = [
+      { selector: "[data-culture-icon]", className: "culture-img" },
+      { selector: "[data-concept-icon]", className: "concept-img" },
+      { selector: "[data-cult-icon]", className: "cult-img" },
+    ];
+    // Fix for inline styling
+    injectSVGIcons(html, SVG_ICONS);
   });
 
   Hooks.on("renderDegenesisNPCSheet", (app, [html]) => {
@@ -82,6 +84,14 @@ export default function () {
       minimumResultsForSearch: Infinity,
       dropdownParent: $(`[data-appid=${app.appId}]`),
     });
+
+    const SVG_ICONS = [
+      { selector: "[data-culture-icon]", className: "culture-img" },
+      { selector: "[data-concept-icon]", className: "concept-img" },
+      { selector: "[data-cult-icon]", className: "cult-img" },
+    ];
+    // Fix for inline styling
+    injectSVGIcons(html, SVG_ICONS);
   });
 
   Hooks.on("renderDegenesisAberrantSheet", (app, [html]) => {
@@ -89,6 +99,12 @@ export default function () {
       minimumResultsForSearch: Infinity,
       dropdownParent: $(`[data-appid=${app.appId}]`),
     });
+
+    const SVG_ICONS = [
+      { selector: "[data-rapture-icon]", className: "rapture-img" },
+    ];
+    // Fix for inline styling
+    injectSVGIcons(html, SVG_ICONS);
   });
 
   Hooks.on("renderDegenesisItemSheet", (app, [html]) => {

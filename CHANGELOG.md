@@ -1,3 +1,15 @@
+# CHANGELOG 0.8.0.0 (v13 and v14 compatibility) (04.04.2026)
+
+Thanks to Pierre (anubisvladtepas) <3
+
+This release contains various adaptations for v13 and v14 compatibility.
+
+- CSS adaptations for appv2 for sidebar menu, chat, tooltip, combat tracker and other visual components.
+- Moved some SASS variables to \_scss-variables.scss.
+- Explicit imports of namespaced objects such as "Actors", "Items", etc.
+- Minor French translation fixes by Calion
+- Polish translation by Wloczykijem
+
 # CHANGELOG 0.7.7.1 (23.09.2024)
 
 - Revert the change for calculating encumbrance after modifications are applied, due to isses with action mallus. Main issue will be fixed in 0.8.0 release.

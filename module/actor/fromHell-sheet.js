@@ -10,6 +10,9 @@ import { DegenesisItem } from "../item/item-degenesis.js";
 import { DegenesisCombat } from "../combat-degenesis.js";
 import ActorConfigure from "../apps/actor-configure.js";
 
+const { ActorSheet } = foundry.appv1.sheets;
+const { TextEditor } = foundry.applications.ux;
+
 /**
  * Extending default Foundry ActorSheet
  * @extends {ActorSheet}

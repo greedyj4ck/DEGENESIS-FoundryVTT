@@ -4,6 +4,9 @@
 import { DEGENESIS } from "./config.js";
 import { DEG_Utility } from "./utility.js";
 
+const { TextEditor } = foundry.applications.ux;
+const { renderTemplate } = foundry.applications.handlebars;
+
 /**
  * Extend FVTT ChatMessage class for Degenesis functionality
  * @extends { ChatMessage }
@@ -44,18 +47,13 @@ export class DegenesisChatMessage extends ChatMessage {
         .filterJoin(", "),
     };
 
-    // Render message data specifically for ROLL type messages
-    if (this.isRoll) {
-      await this._renderRollContent(messageData);
-    }
-
     // Define a border color
     if (this.type === CONST.CHAT_MESSAGE_STYLES.OOC) {
       messageData.borderColor = this.user?.color;
     }
 
     // Render the chat message
-    let html = await renderTemplate(CONFIG.ChatMessage.template, messageData);
+    let html = this.isRoll ? await this.renderHTML() : await renderTemplate(CONFIG.ChatMessage.template, messageData);
     html = $(html);
 
     // Flag expanded state of dice rolls

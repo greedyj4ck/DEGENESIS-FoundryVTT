@@ -44,6 +44,11 @@ button {
 
   transition: all 0.1s ease-in-out;
 
+  &[aria-pressed="true"] {
+	border-color: var(--c-pred-3) !important;
+	color: var(--c-pred-3) !important;
+  }
+
   &:hover {
     color: var(--c-pred) !important;
     border: 1px solid var(--c-pred) !important;
@@ -106,6 +111,10 @@ input {
     &:checked::before {
       transform: scale(0.6);
     }
+
+	&::after {
+		display: none;
+	}
   }
 
   &[type="range"] {

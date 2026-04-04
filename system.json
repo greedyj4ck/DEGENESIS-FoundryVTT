@@ -2,16 +2,20 @@
   "id": "degenesis",
   "title": "DEGENESIS: Rebirth",
   "description": "DEGENESIS",
-  "version": "0.7.7.1",
+  "version": "0.8",
   "compatibility": {
-    "minimum": "12.318",
-    "verified": "12.331"
+    "minimum": "13",
+    "verified": "14.359"
   },
   "authors": [
     {
       "name": "Greedyj4ck",
       "discord": "GЯΣΣDYJΛCK#2690",
       "flags": {}
+    },
+    {
+      "name": "Pierre",
+      "discord": "anubisvladtepas"
     },
     {
       "name": "Moo Man",

@@ -29,6 +29,10 @@ import ActorConfigure from "./module/apps/actor-configure.js";
 import hooks from "./module/hooks/hooks.js";
 import { DegenesisCombatTracker } from "./module/apps/combat-tracker.js";
 
+const { Actors, Items } = foundry.documents.collections;
+const { ActorSheet, ItemSheet } = foundry.appv1.sheets;
+const { loadTemplates } = foundry.applications.handlebars;
+
 /* -------------------------------------------- */
 /*  FOUNDRY VTT INITIALIZATION                  */
 /* -------------------------------------------- */
@@ -38,7 +42,7 @@ Hooks.once("init", async function () {
   console.log(
     `%cDEGENESIS` + `%c | Initializing`,
     "color: #ed1d27",
-    "color: unset"
+    "color: unset",
   );
 
   document.onkeydown = function (e) {
@@ -46,7 +50,7 @@ Hooks.once("init", async function () {
       console.log(
         `%cDEGENESIS` + `%c | Welcome, Chronicler`,
         "color: #ed1d27",
-        "color: unset"
+        "color: unset",
       );
   };
 
@@ -141,7 +145,7 @@ Hooks.once("init", async function () {
     "systems/degenesis/templates/item/item-header-defense.html",
     "systems/degenesis/templates/item/item-header-phenomenon.html",
     "systems/degenesis/templates/chat/roll-card.html",
-    "systems/degenesis/templates/apps/combat-tracker.html",
+    "systems/degenesis/templates/apps/combat-tracker.hbs",
   ]);
 
   // ASSIGN THE ACTOR CLASS TO THE CONFIG

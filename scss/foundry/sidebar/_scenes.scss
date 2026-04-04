@@ -38,7 +38,7 @@
     border-radius: $b-radius-md;
     display: flex;
     background-color: var(--b-alpha-8);
-    background-image: url(../ui/placeholders/scene.webp);
+	overflow: clip;
     opacity: 0.8;
 
     justify-content: flex-end;
@@ -58,6 +58,15 @@
         border: none;
       }
     }
+
+	.entry-name {
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6), -1px -1px 3px rgba(0, 0, 0, 0.6);
+		color: white !important;
+	}
+
+	img.thumbnail {
+		margin: 0;
+	}
 
     h3 {
       margin: 0;

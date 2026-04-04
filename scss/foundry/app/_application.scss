@@ -141,7 +141,6 @@ form.application {
 
 #tooltip,
 .locked-tooltip {
-  position: absolute;
   width: max-content;
   max-width: 320px;
   padding: 6px 8px;
@@ -153,11 +152,7 @@ form.application {
   border: 1px solid var(--c-gold);
   border-radius: $b-radius-sm;
   box-shadow: 0 0 4px #000;
-  z-index: var(--z-index-tooltip);
-  pointer-events: none;
   overflow-wrap: break-word;
-  visibility: hidden;
-  opacity: 0;
   transition: visibility 0s 500ms, opacity 500ms;
 }
 
