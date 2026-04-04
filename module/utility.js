@@ -82,7 +82,7 @@ export class DEG_Utility {
       rollMode: modeOverride || game.settings.get("core", "rollMode"),
       content: content,
       speaker: speaker,
-      flags: { portrait: portraitPath }, // Flags are getting passed to ChatMessage class - only way to get some information into those
+      flags: { portrait: { path: portraitPath } }, // Flags are getting passed to ChatMessage class - only way to get some information into those
     };
     if (isRoll) chatData.sound = CONFIG.sounds.dice;
 

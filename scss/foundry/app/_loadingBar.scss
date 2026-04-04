@@ -2,10 +2,11 @@
 #loading {
   padding: 0 !important;
   margin: 0 !important;
-  height: 25px;
   background: var(--b-alpha-6) !important;
   box-shadow: none;
   border: none;
+  height: 0px;
+  opacity: 0;
 
   #loading-bar {
     height: 100%;

@@ -555,19 +555,25 @@ hr {
 }
 
 input[type="checkbox"] {
+  border-radius: 5px;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  aspect-ratio: 1/1;
+
   &.lock-slider {
     display: none;
 
     + label:before {
       font-size: var(--font-size-14);
-      font-family: FontAwesome;
+      font-family: "Font Awesome 7 Pro", "Font Awesome 6 Pro";
       display: inline-block;
-      content: "\f023";
+      content: "\f204";
     }
 
     &:checked {
       + label:before {
-        content: "\f3c1";
+        content: "\f205";
       }
     }
   }

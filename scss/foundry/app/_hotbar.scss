@@ -6,7 +6,7 @@
   color: var(--c-gold);
   background: none !important;
 
-  .macro {
+  .slot {
     border: 1px solid var(--c-gold) !important;
     color: var(--c-gold);
     box-shadow: none;
@@ -14,7 +14,11 @@
     backdrop-filter: $backdrop-filter;
     border-radius: 10px;
 
-    .macro-key {
+	&.open {
+		box-shadow: 0 0 5px var(--c-gold-7) inset;
+	}
+
+    .key {
       font-family: "Avenir";
       font-weight: 700;
       color: var(--c-gold);
@@ -24,16 +28,6 @@
       box-shadow: none;
       border: 1px solid var(--c-pred) !important;
     }
-  }
-
-  #hotbar-directory-controls,
-  #hotbar-lock,
-  #hotbar-page-controls {
-    background: var(--b-alpha-8);
-    backdrop-filter: $backdrop-filter;
-    border: 1px solid var(--c-gold); //!important;
-    color: var(--c-gold);
-    border-radius: 10px;
   }
 
   #macro-list {

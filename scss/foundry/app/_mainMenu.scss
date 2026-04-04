@@ -1,14 +1,9 @@
 /// Main menu (ON ESC BUTTON)
 #menu {
-  left: calc(50% - 120px);
-  width: 240px;
   border: 1px solid var(--c-gold);
   background: var(--b-alpha-8) !important;
   backdrop-filter: $backdrop-filter;
   box-shadow: none;
-
-  font-family: "Avenir";
-  color: var(--c-gold);
 
   i {
     font-size: 18px !important;
@@ -23,11 +18,9 @@
 
     transition: all 0.3s ease-in-out;
 
-    &:not(:last-child) {
-      border-bottom: 1px solid var(--c-gold);
-    }
-
-    h4 {
+    h2 {
+      color: var(--c-gold);
+      font-family: "Avenir";
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-weight: 1000 !important;
@@ -35,7 +28,10 @@
     }
 
     &:hover {
-      color: var(--c-antiflash);
+
+      :is(h2,i) {
+        color: var(--c-antiflash);
+      }
       box-shadow: none !important;
       text-shadow: none !important;
     }

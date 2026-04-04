@@ -1,7 +1,7 @@
 # DEGENESIS: Rebirth for Foundry VTT
 
 ![CurrentIssues](https://img.shields.io/github/issues/greedyj4ck/DEGENESIS-FoundryVTT?style=for-the-badge)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/greedyj4ck/DEGENESIS-FoundryVTT/latest/total?style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/downloads/greedyj4ck/DEGENESIS-FoundryVTT/latest/system.zip?style=for-the-badge)
 
 [![CourtOfThePiast](https://discordapp.com/api/guilds/862308554765500447/widget.png?style=banner2)](https://discord.com/invite/MC6gEVvnzm)
 
@@ -19,6 +19,7 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
   - ClemEvilzz (societe simulator#2110)
   - KristjanLaane
   - Greedyj4ck (greedyjack)
+  - Pierre (anubisvladtepas)
 - Item packs icons:
   - Renart de Maupertuis (Renart de Maupertuis#1302)
   - Pablo Ruiz Valls (Pabruva#1968)
@@ -32,6 +33,7 @@ Degenesis® is ™ SIXMOREVODKA Studio GmbH. All rights reserved. This module co
   - Calion (calion16)
   - Dentatum (.dentatum)
   - diskordanz (diskordanz)
+  - Wloczykijem
 
 > If you have worked on or contributed to the translation of the system and you are not on the list - please write a message.
 
