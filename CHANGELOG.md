@@ -1,3 +1,6 @@
+# CHANGELOG 0.8.0.1 (23.04.2026)
+- Changed "clamped" for "clamp" in tokenOverrides 
+
 # CHANGELOG 0.8.0.0 (v13 and v14 compatibility) (04.04.2026)
 
 Thanks to Pierre (anubisvladtepas) <3
