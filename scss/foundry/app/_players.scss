@@ -1,14 +1,15 @@
 /// Players list
 #players {
+  font-family: "Crimson Pro";
+  background: var(--b-alpha-8);
+  backdrop-filter: $backdrop-filter;
+  border: 1px solid var(--c-gold);
+  border-radius: 10px;
+  color: var(--c-gold);
+  box-shadow: none;
 
-  #players-inactive,
-  #players-active {
-    font-family: "Crimson Pro";
-    background: var(--b-alpha-8);
-    border: 1px solid var(--c-gold);
-    border-radius: 10px;
-    color: var(--c-gold);
-    box-shadow: none;
+  ol {
+    margin: 6px;
   }
 
   li.player {

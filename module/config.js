@@ -655,6 +655,19 @@ DEGENESIS.weaponGroupSkill = {
     trauma: "DGNS.Trauma",
   });
 
+/**
+ * Roll {count}d6 synchronously for damage bonus dice.
+ * Foundry v12+: {@link Die#evaluate} is not reliable for synchronous `.total`.
+ * @param {number} count
+ * @returns {number}
+ */
+function degenesisSyncD6Total(count) {
+  const roll = new Roll(`${count}d6`);
+  roll.evaluate({ async: false });
+  const t = roll.total;
+  return typeof t === "number" && !Number.isNaN(t) ? t : 0;
+}
+
 DEGENESIS.damageModifiers = {
   F: { blueprint: "+F", calculate: (force, triggers) => force },
   F2: {
@@ -673,34 +686,32 @@ DEGENESIS.damageModifiers = {
   D2: {
     blueprint: "+1D/2",
     calculate: (force, triggers) =>
-      Math.ceil(new Die({ faces: 6, number: 1 }).evaluate().total / 2),
+      Math.ceil(degenesisSyncD6Total(1) / 2),
   },
   D: {
     blueprint: "+1D",
-    calculate: (force, triggers) =>
-      new Die({ faces: 6, number: 1 }).evaluate().total,
+    calculate: (force, triggers) => degenesisSyncD6Total(1),
   },
   "2D": {
     blueprint: "+2D",
-    calculate: (force, triggers) =>
-      new Die({ faces: 6, number: 2 }).evaluate().total,
+    calculate: (force, triggers) => degenesisSyncD6Total(2),
   },
 };
 
 DEGENESIS.damageModifiersFromHell = {
-  T: { blueprint: "+T", calculate: (triggers) => triggers },
+  T: { blueprint: "+T", calculate: (force, triggers) => triggers },
   D2: {
     blueprint: "+1D/2",
-    calculate: (triggers) =>
-      Math.ceil(new Die({ faces: 6, number: 1 }).evaluate().total / 2),
+    calculate: (force, triggers) =>
+      Math.ceil(degenesisSyncD6Total(1) / 2),
   },
   D: {
     blueprint: "+1D",
-    calculate: (triggers) => new Die({ faces: 6, number: 1 }).evaluate().total,
+    calculate: (force, triggers) => degenesisSyncD6Total(1),
   },
   "2D": {
     blueprint: "+2D",
-    calculate: (triggers) => new Die({ faces: 6, number: 2 }).evaluate().total,
+    calculate: (force, triggers) => degenesisSyncD6Total(2),
   },
 };
 
@@ -782,14 +793,19 @@ DEGENESIS.systemItems = {
 
 DEGENESIS.transportationEncumbranceCalculation = {
   wholeReduction: (items, reductionValue) => {
-    let totalEnc = items.reduce((a, b) => a + (b.encumbrance || 0), 0);
+    let totalEnc = items.reduce((a, b) => {
+      const qty = Math.max(1, Number(b.quantity) || 1);
+      return a + (b.encumbrance || 0) * qty;
+    }, 0);
     totalEnc -= reductionValue;
     if (totalEnc < 0) totalEnc = 0;
     return totalEnc;
   },
   eachReduction: (items, reductionValue) => {
     let totalEnc = items.reduce((a, b) => {
-      let enc = (b.encumbrance * b.quantity || 0) - reductionValue * b.quantity;
+      const qty = Math.max(1, Number(b.quantity) || 1);
+      let enc =
+        (b.encumbrance || 0) * qty - reductionValue * qty;
       if (enc < 0) enc = 0;
       return a + enc;
     }, 0);

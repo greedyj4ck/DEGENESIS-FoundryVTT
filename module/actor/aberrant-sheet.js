@@ -4,9 +4,13 @@ import { DegenesisChat } from "../chat.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
 import { DegenesisCombat } from "../combat-degenesis.js";
 import ActorConfigure from "../apps/actor-configure.js";
-
-const { ActorSheet } = foundry.appv1.sheets;
-const { TextEditor } = foundry.applications.ux;
+import { registerInventoryCategoryCollapse } from "../sheet-inventory-collapse.js";
+import {
+  isStowableItem,
+  isStowableItemType,
+  promptStowInTransport,
+  setItemTransportLocation,
+} from "../inventory-stow.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -180,6 +184,10 @@ export class DegenesisAberrantSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    registerInventoryCategoryCollapse(html, this.actor);
+    html.on("click", ".item-stow-transport", (ev) =>
+      this._onStowTransportClick(ev)
+    );
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -245,6 +253,19 @@ export class DegenesisAberrantSheet extends ActorSheet {
   _onItemDelete(event) {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
+  async _onStowTransportClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.actor.canUserModify(game.user, "update")) return;
+    const row = event.currentTarget.closest(".entry-list-item[data-item-id]");
+    const itemId = row?.dataset?.itemId;
+    const item = itemId ? this.actor.items.get(itemId) : null;
+    if (!item || !isStowableItem(item)) return;
+    const transportId = await promptStowInTransport(this.actor, item);
+    if (!transportId) return;
+    await setItemTransportLocation(this.actor, item, transportId);
   }
 
   _onButtonAddClick(event) {
@@ -572,15 +593,7 @@ export class DegenesisAberrantSheet extends ActorSheet {
     if (transportTarget) {
       let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"));
       let itemData = await fromUuid(jsonData.uuid);
-      if (
-        itemData.type == "weapon" ||
-        itemData.type == "armor" ||
-        itemData.type == "ammunition" ||
-        itemData.type == "equipment" ||
-        itemData.type == "mod" ||
-        itemData.type == "shield" ||
-        itemData.type == "artifact"
-      )
+      if (isStowableItemType(itemData.type))
         this.actor.updateEmbeddedDocuments("Item", [
           {
             _id: itemData._id,

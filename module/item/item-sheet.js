@@ -2,9 +2,6 @@ import { DEGENESIS } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { ItemQualities } from "../apps/item-qualities.js";
 
-const { ItemSheet } = foundry.appv1.sheets;
-const { TextEditor } = foundry.applications.ux;
-
 /**
  * Extend the basic ItemSheet with for Degenesis
  * @extends {ItemSheet}

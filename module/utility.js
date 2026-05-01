@@ -82,7 +82,7 @@ export class DEG_Utility {
       rollMode: modeOverride || game.settings.get("core", "rollMode"),
       content: content,
       speaker: speaker,
-      flags: { portrait: { path: portraitPath } }, // Flags are getting passed to ChatMessage class - only way to get some information into those
+      flags: { portrait: portraitPath }, // Flags are getting passed to ChatMessage class - only way to get some information into those
     };
     if (isRoll) chatData.sound = CONFIG.sounds.dice;
 
@@ -101,5 +101,19 @@ export class DEG_Utility {
     }
 
     return chatData;
+  }
+
+  /**
+   * Escape string for HTML text/attributes (avoid relying on foundry.utils.escapeHTML).
+   * @param {string|null|undefined} text
+   * @returns {string}
+   */
+  static escapeHtml(text) {
+    return String(text ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 }

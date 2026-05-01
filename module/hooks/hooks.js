@@ -8,8 +8,10 @@ import itemHooks from "./item.js";
 import handlebars from "./handlebars.js";
 import diceSoNiceHooks from "./dsn.js";
 import uiHooks from "./ui.js";
+import combatHooks from "./combat.js";
 
 export default function () {
+  combatHooks();
   actorHooks();
   itemHooks();
   chatHooks();

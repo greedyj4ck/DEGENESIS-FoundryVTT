@@ -142,7 +142,9 @@
                             {{/selectOptions}}
                         </select>
 
-                        <span data-culture-icon="{{cultureIcon}}" class="culture-img"></span>
+                        <object type="image/svg+xml" data="{{cultureIcon}}" class="culture-img"
+                            onload="this.contentDocument.documentElement.classList.add('culture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
 
                     </div>
 
@@ -153,7 +155,9 @@
 
                             {{/selectOptions}}
                         </select>
-                       <span data-concept-icon="{{conceptIcon}}" class="concept-img"></span>
+                        <object type="image/svg+xml" data="{{conceptIcon}}" class="concept-img"
+                            onload="this.contentDocument.documentElement.classList.add('concept-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
 
                     </div>
 
@@ -164,7 +168,9 @@
 
                             {{/selectOptions}}
                         </select>
-                        <span data-cult-icon="{{cultIcon}}" class="cult-img"></span>
+                        <object type="image/svg+xml" data="{{cultIcon}}" class="cult-img"
+                            onload="this.contentDocument.documentElement.classList.add('cult-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
                     </div>
 
 

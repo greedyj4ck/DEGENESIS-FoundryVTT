@@ -448,7 +448,8 @@ export class DegenesisActor extends Actor {
         inContainers.push(i);
         continue;
       } else if (i.encumbrance && i.type != "transportation") {
-        encumbrance.current += i.encumbrance * i.quantity;
+        const qty = Math.max(1, Number(i.quantity) || 1);
+        encumbrance.current += i.encumbrance * qty;
       }
     }
 
@@ -800,6 +801,29 @@ export class DegenesisActor extends Actor {
 
   async rollWeapon(weapon, { skipDialog = false, use = "attack" }) {
     let { dialogData, cardData, rollData } = this.setupWeapon(weapon, { use });
+
+    let roundsFired = 1;
+    let salvoesDiceBonus = 0;
+    if (
+      weapon.isRanged &&
+      DegenesisItem.isRangedAttackUse(use) &&
+      weapon.salvoesMaxRounds != null &&
+      weapon.system.mag.current >= 1
+    ) {
+      const cap = Math.min(weapon.salvoesMaxRounds, weapon.system.mag.current);
+      if (!skipDialog) {
+        const n = await DegenesisDice.promptSalvoesCount(weapon, cap);
+        if (n === null) return null;
+        roundsFired = n;
+      } else {
+        roundsFired = 1;
+      }
+      salvoesDiceBonus = roundsFired;
+    }
+
+    dialogData.prefilled.diceModifier += salvoesDiceBonus;
+    dialogData.totalRollModifiers.diceModifier += salvoesDiceBonus;
+
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
     else {
@@ -836,14 +860,17 @@ export class DegenesisActor extends Actor {
     }
 
     const fullDamage = weapon.fullDamage(rollResults.triggers, {
-      modifier: this.modifiers.damage,
+      modifier: this.modifiers.damage + salvoesDiceBonus,
     });
     cardData.damageFull = `${fullDamage}`;
     if (rollData.weapon.isRanged)
       this.updateEmbeddedDocuments("Item", [
         {
           _id: rollData.weapon.id,
-          "system.mag.current": rollData.weapon.mag.current - 1,
+          "system.mag.current": Math.max(
+            0,
+            rollData.weapon.mag.current - roundsFired
+          ),
         },
       ]);
     this.postRollChecks(rollResults, "weapon");

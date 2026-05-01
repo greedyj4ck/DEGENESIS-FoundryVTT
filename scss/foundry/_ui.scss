@@ -2,25 +2,18 @@
 
 @keyframes pause {
   0% {
-    filter: brightness(70%) contrast(100%);
+    filter: brightness(100%) contrast(100%);
   }
   50% {
     filter: brightness(140%) contrast(140%);
   }
   100% {
-    filter: brightness(70%) contrast(100%);
+    filter: brightness(100%) contrast(100%);
   }
 }
 
-#pause {
-  img {
-    content: url("/systems/degenesis/ui/jackal_pause.png");
-  }
-}
-
-h4 {
-  font-size: var(--font-size-16);
-}
+$b-radius-sm: 5px;
+$b-radius-md: 10px;
 
 /// Import specific components
 @import "app/mainMenu"; //Main menu
@@ -86,7 +79,7 @@ h4 {
   --color-ownership-none: #5500ff;
   --color-ownership-observer: #7a7971;
   --color-ownership-owner: #b5b3a4;
-  --sidebar-width: 312px;
+  --sidebar-width: 300px;
   --sidebar-header-height: 32px;
   --sidebar-item-height: 48px;
   --hotbar-height: 52px;
@@ -349,8 +342,6 @@ fieldset {
     border: 1px solid var(--c-gold);
     border-radius: $b-radius-sm;
     color: var(--c-gold);
-
-    outline: none;
 
     &:focus {
       box-shadow: none;

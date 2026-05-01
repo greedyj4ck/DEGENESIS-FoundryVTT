@@ -38,7 +38,11 @@ ol.directory-list {
       background-blend-mode: hard-light;
       color: var(--c-gold);
 
-	  .folder-name {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
         font-family: "Crimson Pro";
         font-weight: 500;
         text-transform: uppercase;

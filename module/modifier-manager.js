@@ -2,6 +2,9 @@ import { DEGENESIS } from "./config.js";
 
 export class ModifierManager {
   constructor(actor) {
+    /** @type {{ label?: string, labelKey?: string, value: number }[]} Dice (D) only, same order as applied to action.D */
+    this.actionDiceBreakdown = [];
+
     let shields = actor.getItemTypes("shield").filter((i) => i.equipped);
     let shieldPassiveModifier = 0;
     let shieldActiveModifier = 0;
@@ -30,6 +33,16 @@ export class ModifierManager {
           };
         }
         this[mod.action][mod.modifyType] += mod.modifyNumber;
+        if (
+          mod.action === "action" &&
+          mod.modifyType === "D" &&
+          mod.modifyNumber
+        ) {
+          this.actionDiceBreakdown.push({
+            label: mod.name,
+            value: mod.modifyNumber,
+          });
+        }
       }
     });
     if (!this["action"]) {
@@ -80,10 +93,21 @@ export class ModifierManager {
         T: 0,
       };
     }
-    this.action.D = actor.system.state.motion
-      ? this.action.D - 2
-      : this.action.D;
-    this.action.D -= actor.system.condition.trauma.value;
+    if (actor.system.state.motion) {
+      this.action.D -= 2;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.InMotion",
+        value: -2,
+      });
+    }
+    const traumaVal = Number(actor.system.condition.trauma.value) || 0;
+    if (traumaVal) {
+      this.action.D -= traumaVal;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.Trauma",
+        value: -traumaVal,
+      });
+    }
     this.attack.D = this.attack.D
       ? this.attack.D + shieldAttackModifier
       : shieldAttackModifier;
@@ -106,6 +130,10 @@ export class ModifierManager {
         actor.system.general.encumbrance.max;
 
       this.action.D -= penalty;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.ActionModEncumbranceExcess",
+        value: -penalty,
+      });
       // this.attack.D -= penalty;
     }
   }
