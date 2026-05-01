@@ -9,10 +9,10 @@ export default function () {
 
     let portraitPath = app.flags.portrait;
 
-    if (portraitPath?.path) {
+    if (app.flags.portrait) {
       html[0].innerHTML =
         `<div class="portrait-wrapper" style="background-image: linear-gradient(to bottom, var(--b-alpha-8), var(--b-alpha-5)), url('` +
-        portraitPath.path +
+        portraitPath +
         `')">\n` +
         html[0].innerHTML +
         "\n</div>";

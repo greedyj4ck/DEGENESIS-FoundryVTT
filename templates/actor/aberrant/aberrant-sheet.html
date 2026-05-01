@@ -137,9 +137,16 @@
                             {{/selectOptions}}
                         </select>
 
-                        <span data-rapture-icon="{{raptureIcon}}"   class="rapture-img"></span>
 
-            
+
+
+
+                        <object type="image/svg+xml" data="{{raptureIcon}}" class="rapture-img"
+                            onload="this.contentDocument.documentElement.classList.add('rapture-img');this.parentNode.replaceChild(this.contentDocument.documentElement, this);">
+                        </object>
+
+
+
                     </div>
 
                     <div class="variant-container">

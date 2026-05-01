@@ -119,6 +119,66 @@ export class DegenesisDice {
     return [rollResult, roll];
   }
 
+  /**
+   * How many rounds to fire for Salvoes / Rafales weapons.
+   * @param {import("./item/item-degenesis.js").DegenesisItem} _weapon
+   * @param {number} max Upper bound (salvoes rating and magazine)
+   * @returns {Promise<number|null>} Selected count, or null if cancelled
+   */
+  static async promptSalvoesCount(_weapon, max) {
+    const defaultVal = max;
+    const content = await renderTemplate(
+      "systems/degenesis/templates/apps/salvoes-dialog.html",
+      {
+        prompt: game.i18n.localize("UI.SalvoesDialogPrompt"),
+        hint: game.i18n.format("UI.SalvoesDialogHint", { max }),
+        labelAmount: game.i18n.localize("UI.SalvoesDialogRounds"),
+        max,
+        defaultVal,
+      }
+    );
+    return new Promise((resolve) => {
+      let resolved = false;
+      const finish = (value) => {
+        if (resolved) return;
+        resolved = true;
+        resolve(value);
+      };
+      const min = 1;
+      new Dialog({
+        title: game.i18n.localize("UI.SalvoesDialogTitle"),
+        content,
+        buttons: {
+          confirm: {
+            icon: '<i class="fas fa-crosshairs"></i>',
+            label: game.i18n.localize("UI.SalvoesDialogConfirm"),
+            callback: (html) => {
+              const raw = html.find('[name="rounds"]').val();
+              const v = parseInt(String(raw).trim(), 10);
+              if (!Number.isInteger(v) || v < min || v > max) {
+                ui.notifications.warn(
+                  game.i18n.format("UI.SalvoesDialogInvalidAmount", {
+                    min,
+                    max,
+                  })
+                );
+                return false;
+              }
+              finish(v);
+            },
+          },
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize("UI.SalvoesDialogCancel"),
+            callback: () => finish(null),
+          },
+        },
+        default: "confirm",
+        close: () => finish(null),
+      }).render(true);
+    });
+  }
+
   // ROLL DIALOG TEMPLATES FOR SKILL AND SIMPLE DICE (ACTION NUMBER BASED) ROLLS :)
 
   static async showRollDialog({ dialogData, rollData, cardData }) {

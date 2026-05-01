@@ -2,10 +2,10 @@
 ///
 #playlists,
 #playlists-popout {
-	button {
-		width: 30px;
-		height: 30px;
-	}
+  button {
+    min-height: 35px;
+  }
+
   input {
     border: 1px solid var(--c-gold);
     background-color: var(--b-alpha-6);
@@ -85,6 +85,7 @@
   }
 
   header {
+    background: none;
     border: none;
   }
 
@@ -143,7 +144,7 @@
   }
 
   .sound-controls {
-    flex: 0 1 auto;
+    flex: 0 1 100px;
 
     gap: 5px;
     a.sound-control {
@@ -163,7 +164,7 @@
 
     opacity: 0.8;
 
-    align-items: stretch;
+    align-items: center;
     transition: opacity 0.1s ease-in-out;
 
     &:hover {

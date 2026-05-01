@@ -1,10 +1,7 @@
-const { Token } = foundry.canvas.placeables;
-
 export default function () {
   Hooks.on("init", () => {
     Token.prototype._refreshTarget = function () {
-      this.targetArrows.clear();
-      this.targetPips.clear();
+      this.target.clear();
       if (!this.targeted.size) return;
 
       // Determine whether the current user has target and any other users
@@ -25,7 +22,7 @@ export default function () {
         let w = this.w;
         let hw = w / 2;
 
-        this.targetArrows
+        this.target
           .lineStyle(2, 0x83754e)
           .drawPolygon([hw, -p, hw + a / 2, -p - ah, hw - a / 2, -p - ah]) // draw first triangle
           .drawPolygon([
@@ -49,7 +46,7 @@ export default function () {
       // For other users, draw offset pips
       for (let [i, u] of others.entries()) {
         let color = Color.from(u.color);
-        this.targetPips
+        this.target
           .beginFill(color, 1.0)
           .lineStyle(2, 0x0000000)
           .drawCircle(2 + i * 8, 0, 6);

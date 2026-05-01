@@ -49,7 +49,7 @@
   }
 }
 
-.chat-log {
+#chat-log {
   h1,
   h2,
   h3,
@@ -252,6 +252,54 @@
       box-shadow: 1px 1px 2px 0px var(--b-alpha-5);
       width: 28px;
       height: 28px;
+    }
+  }
+}
+
+.chat-sidebar {
+  .jump-to-bottom {
+    animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 0.4s; /* don't forget to set a duration! */
+
+    //display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+
+    font-family: $serif-content-font;
+    font-size: 14px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    width: calc(var(--sidebar-width) - 20px);
+
+    > a {
+      background: none !important;
+      position: relative !important;
+      bottom: 0;
+      left: 0;
+      opacity: 1;
+      border-top: 1px solid var(--c-gold);
+      color: var(--c-gold) !important;
+
+      //padding: 10px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-shadow: none;
+
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+        color: var(--c-pred) !important;
+      }
+    }
+
+    i {
+      margin-right: 2px;
+      font-size: var(--font-size-10);
     }
   }
 }

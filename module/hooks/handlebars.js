@@ -1,6 +1,7 @@
 import { DEGENESIS } from "../config.js";
 import { MODULE } from "../config.js";
 import { ShowInventoryHeaders } from "../settings.js";
+import { isStowableItem } from "../inventory-stow.js";
 
 export default function () {
   Hooks.on("init", () => {
@@ -100,5 +101,15 @@ export default function () {
         }
       }
     );
+
+    Handlebars.registerHelper("degenesisContainerQtySuffix", function (item) {
+      const q = Number(foundry.utils.getProperty(item, "system.quantity"));
+      if (!Number.isFinite(q) || !Number.isInteger(q) || q < 2) return "";
+      return ` x${q}`;
+    });
+
+    Handlebars.registerHelper("degenesisItemStowable", function (item) {
+      return isStowableItem(item);
+    });
   });
 }
