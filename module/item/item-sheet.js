@@ -107,6 +107,14 @@ export class DegenesisItemSheet extends ItemSheet {
     html.find(".mod-control").click(this._onModControlClick.bind(this));
     html.find(".mod-change").change(this._onModChanges.bind(this));
 
+    // Effect handlers for modifiers
+    html.find(".effect-action").change(this._onEffectChange.bind(this));
+    html.find(".effect-type").change(this._onEffectChange.bind(this));
+    html.find(".effect-number").change(this._onEffectChange.bind(this));
+    html.find(".effect-delete").click(this._onEffectDelete.bind(this));
+    html.find(".effect-delete-legacy").click(this._onEffectDeleteLegacy.bind(this));
+    html.find(".effect-add").click(this._onEffectAdd.bind(this));
+
     html.find(".item-quality-config").click((ev) => {
       new ItemQualities(this.item).render(true);
     });
@@ -210,5 +218,62 @@ export class DegenesisItemSheet extends ItemSheet {
 
     changes[index][type] = newValue;
     this.item.update({ "system.changes": changes });
+  }
+
+  _onEffectAdd(ev) {
+    ev.preventDefault();
+    let effects = foundry.utils.deepClone(this.item.system.effects || []);
+
+    // If no effects exist but old format exists, convert it
+    if (effects.length === 0 && this.item.system.action) {
+      effects.push({
+        action: this.item.system.action,
+        type: this.item.system.type || "",
+        number: this.item.system.number || 0,
+      });
+    }
+
+    // Add new empty effect
+    effects.push({ action: "", type: "", number: 0 });
+    this.item.update({ "system.effects": effects });
+  }
+
+  _onEffectDelete(ev) {
+    ev.preventDefault();
+    let index = $(ev.currentTarget).attr("data-index");
+    let effects = foundry.utils.deepClone(this.item.system.effects || []);
+    effects.splice(index, 1);
+    this.item.update({ "system.effects": effects });
+  }
+
+  _onEffectDeleteLegacy(ev) {
+    ev.preventDefault();
+    // Clear old format data
+    this.item.update({
+      "system.action": "",
+      "system.type": "",
+      "system.number": 0,
+    });
+  }
+
+  _onEffectChange(ev) {
+    let index = $(ev.currentTarget).attr("data-index");
+    let fieldType = $(ev.currentTarget).attr("class").split(" ")[0]; // effect-action, effect-type, effect-number
+    let effects = foundry.utils.deepClone(this.item.system.effects || []);
+    let newValue = ev.target.value;
+
+    if (fieldType === "effect-number" && Number.isNumeric(newValue)) {
+      newValue = Number(newValue);
+    }
+
+    if (fieldType === "effect-action") {
+      effects[index].action = newValue;
+    } else if (fieldType === "effect-type") {
+      effects[index].type = newValue;
+    } else if (fieldType === "effect-number") {
+      effects[index].number = newValue;
+    }
+
+    this.item.update({ "system.effects": effects });
   }
 }

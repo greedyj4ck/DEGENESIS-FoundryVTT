@@ -13,6 +13,8 @@ import ActorConfigure from "../apps/actor-configure.js";
 const { ActorSheet } = foundry.appv1.sheets;
 const { TextEditor } = foundry.applications.ux;
 
+import { runAutomatedAttackFlow } from "../combat-automation.js";
+
 /**
  * Extending default Foundry ActorSheet
  * @extends {ActorSheet}
@@ -242,11 +244,19 @@ export class DegenesisFromHellSheet extends ActorSheet {
 
     // Add conditional for range weapons without ammo
 
-    let { rollResults, cardData } = await this.actor.rollAttack(attack, {
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: attack,
       use,
       skipDialog,
+      attackRollMethod: this.actor.rollAttack.bind(this.actor),
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (automated?.handled) return;
+
+    let { rollResults, cardData } = await this.actor.rollAttack(attack, { use, skipDialog });
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   // Defense roll using new simplified dice roll manager
@@ -267,7 +277,9 @@ export class DegenesisFromHellSheet extends ActorSheet {
       use,
       skipDialog,
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   async _onDrop(event) {

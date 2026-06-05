@@ -7,21 +7,30 @@ export default function () {
   Hooks.once("ready", () => {});
 
   Hooks.on("renderSettings", (app, html) => {
-    const details = html.querySelector("section.info");
-    const pip = details.querySelector(".system .update");
-    details.querySelector(".system").remove();
+    try {
+      // v14: html may be an element or a jQuery-like object
+      const el = html instanceof HTMLElement ? html : html?.[0] ?? html?.element?.[0] ?? html?.element;
+      if (!el || typeof el.querySelector !== "function") return;
+      const details = el.querySelector("section.info");
+      if (!details) return;
+      const pip = details.querySelector(".system .update");
+      const systemDiv = details.querySelector(".system");
+      if (systemDiv) systemDiv.remove();
 
-    const badge = document.createElement("div");
-    badge.classList.add("dgns", "system-badge");
-    badge.innerHTML = `
-    <img src="systems/degenesis/ui/degenesis-logo-white.svg" data-tooltip="${game.system.title}" alt="${game.system.title}">
-    <span class="system-info">${game.system.version}</span>
-  `;
-    if (pip)
-      badge
-        .querySelector(".system-info")
-        .insertAdjacentElement("beforeend", pip);
-    details.insertBefore(badge, details.querySelector("div.build"));
+      const badge = document.createElement("div");
+      badge.classList.add("dgns", "system-badge");
+      badge.innerHTML = `
+      <img src="systems/degenesis/ui/degenesis-logo-white.svg" data-tooltip="${game.system.title}" alt="${game.system.title}">
+      <span class="system-info">${game.system.version}</span>
+    `;
+      if (pip)
+        badge
+          .querySelector(".system-info")
+          .insertAdjacentElement("beforeend", pip);
+      details.insertBefore(badge, details.querySelector("div.build"));
+    } catch (e) {
+      console.warn("DEGENESIS | renderSettings badge injection skipped:", e.message);
+    }
   });
 
   Hooks.on("renderChatLog", () => {

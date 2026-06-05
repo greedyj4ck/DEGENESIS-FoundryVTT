@@ -1,8 +1,40 @@
+import { applyAutomatedDamageFromMessage } from "../combat-automation.js";
+
+// Module-level flag for logs state
+let DEGENESIS_LOGS_ENABLED = false;
+
+export function isLogsEnabled() {
+  return DEGENESIS_LOGS_ENABLED;
+}
+
 export default function () {
-  //Hooks.on("chatMessage", (html, content, msg) => {
-  //
-  //   }
-  // })
+  Hooks.on("chatMessage", (html, content, msg) => {
+    // Handle /logs command
+    if (content.trim() === "/logs") {
+      if (!game.user.isGM) {
+        ui.notifications.warn(game.i18n.localize("DGNS.LogsOnlyGM"));
+        return false;
+      }
+
+      DEGENESIS_LOGS_ENABLED = !DEGENESIS_LOGS_ENABLED;
+
+      const statusText = DEGENESIS_LOGS_ENABLED
+        ? game.i18n.localize("DGNS.LogsEnabled")
+        : game.i18n.localize("DGNS.LogsDisabled");
+
+      ChatMessage.create({
+        content: `<strong style="color: #4b7bec;">${statusText}</strong>`,
+        blind: true,
+        flags: {
+          degenesis: {
+            isSystemLog: true,
+          },
+        },
+      });
+
+      return false;
+    }
+  });
 
   Hooks.on("renderChatMessage", async (app, html, msg) => {
     // Do not display "Blind" chat cards to non-gm
@@ -48,6 +80,20 @@ export default function () {
           })
         );
       });
+    }
+
+    const autoCombat = app.flags?.degenesis?.autoCombatDamage;
+    if (autoCombat) {
+      const applyButton = html.find(".degenesis-apply-damage-button")[0];
+      if (applyButton) {
+        applyButton.addEventListener("click", async (ev) => {
+          ev.preventDefault();
+          await applyAutomatedDamageFromMessage(app);
+        });
+        applyButton.addEventListener("contextmenu", (ev) => {
+          ev.preventDefault();
+        });
+      }
     }
   });
 

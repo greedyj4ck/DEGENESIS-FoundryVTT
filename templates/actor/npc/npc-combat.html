@@ -89,6 +89,13 @@
     </div>
 
     <div class="inventory-list item-list section-list">
+        {{#each intrinsicMeleeWeapons as |row|}}
+        <div class="weapon item entry-container section-entry-grid attack entry-list-item intrinsic-unarmed-npc"
+            data-world-weapon-id="{{row.worldId}}">
+            <a class="weapon-name intrinsic-unarmed-line" title="{{localize 'DGNS.IntrinsicUnarmedRollHint'}}">{{row.weapon.name}}
+                ({{row.weapon.dice.attack}}{{localize "UI.D"}})</a>
+        </div>
+        {{/each}}
         {{#each inventory.attack.items as |item w|}}
         {{#if item.isMelee }}
 

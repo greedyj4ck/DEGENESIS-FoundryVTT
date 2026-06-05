@@ -1,3 +1,8 @@
+{{#if contextNote}}
+<div class="auto-roll-context">
+    {{{contextNote}}}
+</div>
+{{/if}}
 <div class="title">
     <div class="body-column body-line">
         <div class="square little left"></div>
@@ -37,11 +42,22 @@
     </div>
 
     <div class="custom-modifier-section">
+        {{#if prefilled.breakdown.length}}
+        <div class="modifier-breakdown" style="padding: 6px 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); border-radius: 3px; font-size: 0.85em; max-height: 120px; overflow-y: auto;">
+            {{#each prefilled.breakdown as |src|}}
+            <div style="display: flex; justify-content: space-between; padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <span style="color: #c8b273;">{{src.name}}</span>
+                <span style="color: {{src.color}}; font-weight: bold;">{{src.display}}</span>
+            </div>
+            {{/each}}
+        </div>
+        {{else}}
         <select name="customModifiers" class="custom-modifiers select-swap" multiple label="SELECT">
             {{#each customModifiers as |modifier m|}}
             <option value="{{m}}">{{modifier.name}} {{modifier.modifyNumber}}{{modifier.modifyType}}</option>
             {{/each}}
         </select>
+        {{/if}}
     </div>
 
 </div>
@@ -79,9 +95,9 @@
 
         <div class="type-modifier-header">{{localize "UI.StaticModifiers"}}</div>
         <div class="type-modifier-values">
-            <div class="dice-modifiers">{{prefilled.diceModifier}}{{localize "UI.D"}}</div>
-            <div class="success-modifiers">{{prefilled.successModifier}}{{localize "UI.S"}}</div>
-            <div class="triggers-modifiers">{{prefilled.triggerModifier}}{{localize "UI.T"}}</div>
+            <div class="dice-modifiers">{{prefilled.displayDice}}{{localize "UI.D"}}</div>
+            <div class="success-modifiers">{{prefilled.displaySuccess}}{{localize "UI.S"}}</div>
+            <div class="triggers-modifiers">{{prefilled.displayTrigger}}{{localize "UI.T"}}</div>
         </div>
 
     </div>
