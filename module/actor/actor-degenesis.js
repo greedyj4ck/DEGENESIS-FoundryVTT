@@ -1538,7 +1538,7 @@ export class DegenesisActor extends Actor {
     }
 
     if (type !== "initiative" && this.state.initiative.actions >= 1)
-      await this.updateSource({
+      await this.update({
         "system.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
