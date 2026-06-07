@@ -37,7 +37,9 @@ export default class RollDialog extends Dialog {
       successModifier: 0,
       triggerModifier: 0,
     };
-    this.customModifiers.val().forEach((i) => {
+    const selected = this.customModifiers.val();
+    if (!selected) return totalMods;
+    selected.forEach((i) => {
       let index = Number(i);
       let modifierSelected = this.data.dialogData.customModifiers[index];
 

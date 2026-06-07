@@ -887,6 +887,10 @@ export class DegenesisActor extends Actor {
       modifier: this.modifiers.damage + salvoesDiceBonus,
     });
     cardData.damageFull = `${fullDamage}`;
+    const baseDamageNoTriggers = Number(weapon.fullDamage(0, {
+      modifier: this.modifiers.damage + salvoesDiceBonus,
+    })) || 0;
+    cardData.totalDamageDisplay = baseDamageNoTriggers + (Number(rollResults.triggers) || 0);
     if (rollData.weapon.isRanged)
       this.updateEmbeddedDocuments("Item", [
         {
@@ -898,11 +902,15 @@ export class DegenesisActor extends Actor {
         },
       ]);
 
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!override?.deferRender) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
     await this.handleRegularity(weapon, rollResults, cardData, rollData.actionNumber);
 
     this.postRollChecks(rollResults, "weapon");
-    cardData.alreadyRendered = true;
+    if (!override?.deferRender) {
+      cardData.alreadyRendered = true;
+    }
     return { rollResults, cardData };
   }
 
@@ -1092,6 +1100,10 @@ export class DegenesisActor extends Actor {
       modifier: this.modifiers.damage + salvoesDiceBonus,
     });
     cardData.damageFull = `${fullDamage}`;
+    const baseDamageNoTriggersAtk = Number(attack.fullDamage(0, {
+      modifier: this.modifiers.damage + salvoesDiceBonus,
+    })) || 0;
+    cardData.totalDamageDisplay = baseDamageNoTriggersAtk + (Number(rollResults.triggers) || 0);
 
     if (attack.system.mag)
       this.updateEmbeddedDocuments("Item", [
@@ -1104,11 +1116,15 @@ export class DegenesisActor extends Actor {
         },
       ]);
 
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!override?.deferRender) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
     await this.handleRegularity(attack, rollResults, cardData, rollData.actionNumber);
 
     this.postRollChecks(rollResults, "weapon");
-    cardData.alreadyRendered = true;
+    if (!override?.deferRender) {
+      cardData.alreadyRendered = true;
+    }
     return { rollResults, cardData };
   }
 

@@ -1,3 +1,23 @@
+# CHANGELOG 0.8.1.0 - Combat Automation Overhaul (07.06.2026)
+
+## Combat Automation
+
+- Removed active defense prompts (dodge, parry, counter-attack) — combat now uses passive defense only
+- Attack automation now produces a single chat message instead of two (attack roll + resolution card merged)
+- Weapon roll cards now display total damage with trigger breakdown (e.g. "TOTAL DAMAGE: 10 Fleshwounds (including 2 Trigger)")
+- "Apply Damage" button appears directly on the weapon roll card when the attack hits
+- Damage is correctly applied to unlinked tokens (NPC, From Hell, Aberrant) using token actor instead of world actor
+- NPC/FromHell/Aberrant armor rating (`system.armor.rating`) is now recognized for damage mitigation
+
+## Actor Sheets
+
+- Added editable Passive Defense field to NPC, From Hell, and Aberrant combat sections
+- Passive defense value is used as attack difficulty when targeting these actors
+
+## Fixes
+
+- Fixed "Ajouter Des" (Add Dice) modifier not working on combat rolls — null check on custom modifiers select
+
 # CHANGELOG 0.8.0.0 (v13 and v14 compatibility) (04.04.2026)
 
 Thanks to Pierre (anubisvladtepas) <3
