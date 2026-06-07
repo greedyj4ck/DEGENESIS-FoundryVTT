@@ -914,7 +914,7 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
-  async rollFightRoll(type, { skipDialog = false, spentEgo = 0, override = {} }) {
+  async rollFightRoll(type, { skipDialog = false, spentEgo = 0, override = {}, dsn = true }) {
     let { dialogData, cardData, rollData } = this.setupFightRoll(type);
     foundry.utils.mergeObject(dialogData, override, {
       inplace: true,
@@ -933,7 +933,7 @@ export class DegenesisActor extends Actor {
       rollData.successModifier = dialogData.prefilled.successModifier;
       rollData.triggerModifier = dialogData.prefilled.triggerModifier;
     }
-    let rollResults = await DegenesisDice.rollAction(rollData);
+    let rollResults = await DegenesisDice.rollAction(rollData, { dsn });
 
     if (rollData.secondary)
       await this.handleSecondaryRoll(
@@ -949,7 +949,7 @@ export class DegenesisActor extends Actor {
   async rollFightRollFromHell(
     type,
     dice,
-    { skipDialog = false, spentEgo = 0 }
+    { skipDialog = false, spentEgo = 0, dsn = true }
   ) {
     let { dialogData, cardData, rollData } = this.setupFightRollFromHell(
       type,
@@ -966,7 +966,7 @@ export class DegenesisActor extends Actor {
       rollData.triggerModifier = dialogData.prefilled.triggerModifier;
     }
 
-    let rollResults = await DegenesisDice.rollAction(rollData);
+    let rollResults = await DegenesisDice.rollAction(rollData, { dsn });
 
     if (rollData.secondary)
       await this.handleSecondaryRoll(

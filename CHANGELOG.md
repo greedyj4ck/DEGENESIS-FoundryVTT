@@ -14,6 +14,10 @@
 - Added editable Passive Defense field to NPC, From Hell, and Aberrant combat sections
 - Passive defense value is used as attack difficulty when targeting these actors
 
+## Compatibility
+
+- Dice So Nice: initiative rolls no longer trigger 3D dice animation — compatible with DSN's "disable for initiative" setting. No impact if Dice So Nice is not installed.
+
 ## Fixes
 
 - Fixed "Ajouter Des" (Add Dice) modifier not working on combat rolls — null check on custom modifiers select

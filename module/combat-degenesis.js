@@ -112,6 +112,7 @@ export class DegenesisCombat extends Combat {
 		const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
 			skipDialog: messageOptions.skipDialog ? messageOptions.skipDialog : false,
 			spentEgo,
+			dsn: false,
 		});
 		let actionCount = 1;
 		if (rollResults.triggers > 1) {
@@ -159,7 +160,7 @@ export class DegenesisCombat extends Combat {
 		});
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}
@@ -179,6 +180,7 @@ export class DegenesisCombat extends Combat {
 					? messageOptions.skipDialog
 					: false,
 				spentEgo,
+				dsn: false,
 			}
 		);
 		let actionCount = 1;
@@ -231,7 +233,7 @@ export class DegenesisCombat extends Combat {
 		});
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}
@@ -260,6 +262,7 @@ export class DegenesisCombat extends Combat {
 					? messageOptions.skipDialog
 					: false,
 				spentEgo,
+				dsn: false,
 			}
 		);
 
@@ -349,7 +352,7 @@ export class DegenesisCombat extends Combat {
 
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}
