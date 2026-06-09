@@ -14,6 +14,19 @@ import ActorConfigure from "../apps/actor-configure.js";
 const { ActorSheet } = foundry.appv1.sheets;
 const { TextEditor } = foundry.applications.ux;
 
+import { runAutomatedAttackFlow } from "../combat-automation.js";
+import {
+  createIntrinsicMeleeWeapon,
+  getIntrinsicMeleeWeaponRows,
+} from "../intrinsic-melee-weapons.js";
+import { registerInventoryCategoryCollapse } from "../sheet-inventory-collapse.js";
+import {
+  isStowableItem,
+  isStowableItemType,
+  promptStowInTransport,
+  setItemTransportLocation,
+} from "../inventory-stow.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -83,6 +96,7 @@ export class DegenesisNPCSheet extends ActorSheet {
     // - Switch from Primal / Focus and Willpower / Faith needs to be added ?
 
     sheetData.inventory = this.constructInventory();
+    sheetData.intrinsicMeleeWeapons = getIntrinsicMeleeWeaponRows(this.actor);
     sheetData.enrichment = await this._handleEnrichment();
 
     sheetData.transportation = {
@@ -200,6 +214,10 @@ export class DegenesisNPCSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    registerInventoryCategoryCollapse(html, this.actor);
+    html.on("click", ".item-stow-transport", (ev) =>
+      this._onStowTransportClick(ev)
+    );
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -228,6 +246,7 @@ export class DegenesisNPCSheet extends ActorSheet {
 
     // Attack and defense items hooks
     html.find(".roll-attack").click(this._onAttackClick.bind(this));
+    html.find(".intrinsic-unarmed-line").click(this._onIntrinsicMeleeWeaponClick.bind(this));
     html.find(".roll-defense").click(this._onDefenseClick.bind(this));
 
     //html
@@ -451,6 +470,19 @@ export class DegenesisNPCSheet extends ActorSheet {
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 
+  async _onStowTransportClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.actor.canUserModify(game.user, "update")) return;
+    const row = event.currentTarget.closest(".entry-list-item[data-item-id]");
+    const itemId = row?.dataset?.itemId;
+    const item = itemId ? this.actor.items.get(itemId) : null;
+    if (!item || !isStowableItem(item)) return;
+    const transportId = await promptStowInTransport(this.actor, item);
+    if (!transportId) return;
+    await setItemTransportLocation(this.actor, item, transportId);
+  }
+
   // Combat hooks
 
   async _onInitiativeClick(event) {
@@ -488,6 +520,46 @@ export class DegenesisNPCSheet extends ActorSheet {
     }
   }
 
+  async _onIntrinsicMeleeWeaponClick(event) {
+    event.preventDefault();
+    const worldId = $(event.currentTarget)
+      .closest("[data-world-weapon-id]")
+      .attr("data-world-weapon-id");
+    if (!worldId) return;
+    const skipDialog = event.shiftKey;
+    const use = event.ctrlKey ? "defense" : "attack";
+    const weapon = createIntrinsicMeleeWeapon(this.actor, worldId);
+    if (!weapon) {
+      ui.notifications.warn(
+        game.i18n.localize("DGNS.IntrinsicMeleeWeaponMissing")
+      );
+      return;
+    }
+    const mag = weapon.system?.mag;
+    if (
+      mag &&
+      mag.current <= 0 &&
+      weapon.isRanged &&
+      !weapon.isSonic
+    ) {
+      ui.notifications.error(game.i18n.localize("UI.NoAmmoLeft"));
+      return;
+    }
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: weapon,
+      use,
+      skipDialog,
+      attackRollMethod: this.actor.rollWeapon.bind(this.actor),
+    });
+    if (automated?.handled) return;
+    const rolled = await this.actor.rollWeapon(weapon, { use, skipDialog });
+    if (!rolled) return;
+    if (!rolled.cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rolled.rollResults, rolled.cardData);
+    }
+  }
+
   // Attack roll using new simplified dice roll manager
   async _onAttackClick(event) {
     let attackId = $(event.currentTarget)
@@ -499,11 +571,19 @@ export class DegenesisNPCSheet extends ActorSheet {
 
     // Add conditional for range weapons without ammo
 
-    let { rollResults, cardData } = await this.actor.rollAttack(attack, {
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: attack,
       use,
       skipDialog,
+      attackRollMethod: this.actor.rollAttack.bind(this.actor),
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (automated?.handled) return;
+
+    let { rollResults, cardData } = await this.actor.rollAttack(attack, { use, skipDialog });
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   // Defense roll using new simplified dice roll manager
@@ -524,7 +604,9 @@ export class DegenesisNPCSheet extends ActorSheet {
       use,
       skipDialog,
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   _onDropdown(event) {

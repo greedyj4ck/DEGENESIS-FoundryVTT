@@ -3004,8 +3004,6 @@ ol.directory-list .document h5 {
 }
 
 #sidebar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 #sidebar .collapse {
@@ -11089,4 +11087,129 @@ input[type=checkbox].lock-slider:checked + label:before {
 }
 .app.window-app.degenesis.sheet.item .block-title.gold i:hover {
   color: var(--c-gold-4);
+}
+
+/* ============================================================
+   COMBAT AUTOMATION & INVENTORY FEATURES (ported from v12)
+   ============================================================ */
+
+/* Roll-dialog context note for automated rolls */
+.window-app.roll-dialog .auto-roll-context {
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--c-gold-6);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* Encumbrance breakdown hover-tooltip */
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help {
+  position: relative;
+  display: inline-block;
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help h3 {
+  transition: color 120ms ease-in-out;
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help:hover h3 {
+  color: var(--degenesis-red);
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help-tooltip {
+  display: none;
+  position: absolute;
+  z-index: 30;
+  top: 16px;
+  left: 0;
+  min-width: 280px;
+  max-width: 360px;
+  background: rgba(10, 10, 15, 0.96);
+  border: 1px solid var(--c-gold);
+  padding: 8px 10px;
+  color: var(--c-gold-0);
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: normal;
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help:hover .encumbrance-help-tooltip {
+  display: block;
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help-row {
+  margin: 2px 0;
+}
+.app.window-app.degenesis.sheet.actor.character .inventory-tab-container .encumbrance-help-summary {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--c-gold-7);
+}
+
+/* NPC sheet: intrinsic unarmed weapon row spanning full width */
+.app.window-app.degenesis.sheet.npc .section-entry-grid.attack.intrinsic-unarmed-npc .weapon-name.intrinsic-unarmed-line {
+  grid-column: 1 / -1;
+  justify-self: flex-start;
+}
+
+/* Collapsible inventory categories (character / NPC / aberrant sheets) */
+.app.window-app.degenesis.sheet.actor .inventory-group[data-inventory-category].collapsed > .section-list {
+  display: none !important;
+}
+.app.window-app.degenesis.sheet.actor .inventory-category-toggle {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.app.window-app.degenesis.sheet.actor .inventory-category-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid currentColor;
+  margin-right: 0.45em;
+  vertical-align: middle;
+  -webkit-transform: translateY(2px);
+  transform: translateY(2px);
+  -webkit-transition: -webkit-transform 0.15s ease;
+  transition: transform 0.15s ease;
+}
+.app.window-app.degenesis.sheet.actor .inventory-group.collapsed .inventory-category-toggle::before {
+  -webkit-transform: translateY(2px) rotate(-90deg);
+  transform: translateY(2px) rotate(-90deg);
+}
+
+/* Stow-to-transport button in inventory rows */
+.app.window-app.degenesis.sheet.actor .item-stow-transport {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clickable action modifier (combat tab > General) */
+.app.window-app.degenesis.sheet.actor .action-modifier-breakdown {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+.app.window-app.degenesis.sheet.actor .action-modifier-breakdown:hover {
+  filter: brightness(1.08);
+}
+
+/* Action modifier breakdown dialog table */
+.degenesis-action-mod-breakdown table.plain {
+  width: 100%;
+  border-collapse: collapse;
+}
+.degenesis-action-mod-breakdown table.plain td {
+  padding: 0.25em 0.35em;
+  vertical-align: top;
+}
+.degenesis-action-mod-breakdown table.plain td.num {
+  text-align: right;
+  white-space: nowrap;
+}
+.degenesis-action-mod-breakdown table.plain tr.total td {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 0.5em;
 }

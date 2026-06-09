@@ -608,7 +608,8 @@
       "number": 0,
       "type": "",
       "disabled": false,
-      "showName": false
+      "showName": false,
+      "effects": []
     },
     "complication": {
       "cost": 0,

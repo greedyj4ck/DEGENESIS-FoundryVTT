@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="combat">
-          <div class="general-name">
+          <div class="general-name action-modifier-breakdown" data-tooltip="DGNS.ActionModBreakdownHint">
             {{localize "DGNS.ActionMod"}}: {{actor.general.actionModifier}}{{localize "UI.D"}}
           </div>
         </div>
@@ -68,6 +68,15 @@
             {{localize "DGNS.MentalDef"}} ({{actor.fighting.mentalDefense}}{{localize "UI.D"}})
           </div>
         </a>
+        {{#each intrinsicMeleeWeapons as |row|}}
+        <a class="combat intrinsic-unarmed-line"
+          data-world-weapon-id="{{row.worldId}}"
+          title="{{localize 'DGNS.IntrinsicUnarmedRollHint'}}">
+          <div class="general-name">
+            {{row.weapon.name}} ({{row.weapon.dice.attack}}{{localize "UI.D"}})
+          </div>
+        </a>
+        {{/each}}
         <div class="combat">
           <div class="general-name">
             {{localize "DGNS.PassiveDef"}}: {{actor.fighting.passiveDefense}}

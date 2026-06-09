@@ -448,7 +448,8 @@ export class DegenesisActor extends Actor {
         inContainers.push(i);
         continue;
       } else if (i.encumbrance && i.type != "transportation") {
-        encumbrance.current += i.encumbrance * i.quantity;
+        const qty = Math.max(1, Number(i.quantity) || 1);
+        encumbrance.current += i.encumbrance * qty;
       }
     }
 
@@ -546,11 +547,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollSkill;
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card.html",
@@ -587,11 +588,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollDice;
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card.html",
@@ -634,11 +635,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollWeapon;
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/weapon-roll-card.html",
@@ -689,11 +690,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollSkill;
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card.html",
@@ -798,8 +799,55 @@ export class DegenesisActor extends Actor {
     return { rollResults, cardData };
   }
 
-  async rollWeapon(weapon, { skipDialog = false, use = "attack" }) {
+  async rollWeapon(weapon, { skipDialog = false, use = "attack", override = {} }) {
     let { dialogData, cardData, rollData } = this.setupWeapon(weapon, { use });
+    foundry.utils.mergeObject(dialogData, override, { inplace: true, overwrite: true, recursive: true });
+    if (override?.prefilled?.difficulty != null) {
+      dialogData.prefilled.difficulty = override.prefilled.difficulty;
+      rollData.difficulty = override.prefilled.difficulty;
+    }
+
+    let roundsFired = 1;
+    let salvoesDiceBonus = 0;
+    if (
+      weapon.isRanged &&
+      DegenesisItem.isRangedAttackUse(use) &&
+      weapon.salvoesMaxRounds != null &&
+      weapon.system.mag.current >= 1
+    ) {
+      const cap = Math.min(weapon.salvoesMaxRounds, weapon.system.mag.current);
+      if (!skipDialog) {
+        const n = await DegenesisDice.promptSalvoesCount(weapon, cap);
+        if (n === null) return null;
+        roundsFired = n;
+      } else {
+        roundsFired = 1;
+      }
+      salvoesDiceBonus = roundsFired;
+    }
+
+    dialogData.prefilled.diceModifier += salvoesDiceBonus;
+    dialogData.totalRollModifiers.diceModifier += salvoesDiceBonus;
+
+    const isWeaponAttackRoll =
+      use === "attack" ||
+      use === "attack-sonic" ||
+      DegenesisItem.isRangedAttackUse(use);
+    if (isWeaponAttackRoll) {
+      const raw = weapon.fullDamage(0, {
+        modifier: this.modifiers.damage + salvoesDiceBonus,
+      });
+      const baseDmg = Number.isFinite(Number(raw)) ? Number(raw) : 0;
+      const dmgTypeLabel = weapon.DamageType ?? "";
+      const line = game.i18n.format("DGNS.WeaponRollDamagePreview", {
+        damage: baseDmg,
+        damageType: dmgTypeLabel,
+      });
+      dialogData.contextNote = dialogData.contextNote
+        ? `${dialogData.contextNote}<br><br>${line}`
+        : line;
+    }
+
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
     else {
@@ -836,22 +884,47 @@ export class DegenesisActor extends Actor {
     }
 
     const fullDamage = weapon.fullDamage(rollResults.triggers, {
-      modifier: this.modifiers.damage,
+      modifier: this.modifiers.damage + salvoesDiceBonus,
     });
     cardData.damageFull = `${fullDamage}`;
+    const baseDamageNoTriggers = Number(weapon.fullDamage(0, {
+      modifier: this.modifiers.damage + salvoesDiceBonus,
+    })) || 0;
+    cardData.totalDamageDisplay = baseDamageNoTriggers + (Number(rollResults.triggers) || 0);
     if (rollData.weapon.isRanged)
       this.updateEmbeddedDocuments("Item", [
         {
           _id: rollData.weapon.id,
-          "system.mag.current": rollData.weapon.mag.current - 1,
+          "system.mag.current": Math.max(
+            0,
+            rollData.weapon.mag.current - roundsFired
+          ),
         },
       ]);
+
+    if (!override?.deferRender) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
+    await this.handleRegularity(weapon, rollResults, cardData, rollData.actionNumber);
+
     this.postRollChecks(rollResults, "weapon");
+    if (!override?.deferRender) {
+      cardData.alreadyRendered = true;
+    }
     return { rollResults, cardData };
   }
 
-  async rollFightRoll(type, { skipDialog = false, spentEgo = 0 }) {
+  async rollFightRoll(type, { skipDialog = false, spentEgo = 0, override = {}, dsn = true }) {
     let { dialogData, cardData, rollData } = this.setupFightRoll(type);
+    foundry.utils.mergeObject(dialogData, override, {
+      inplace: true,
+      overwrite: true,
+      recursive: true,
+    });
+    if (override?.prefilled?.difficulty != null) {
+      dialogData.prefilled.difficulty = override.prefilled.difficulty;
+      rollData.difficulty = override.prefilled.difficulty;
+    }
     rollData.actionNumber += spentEgo;
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
@@ -860,7 +933,7 @@ export class DegenesisActor extends Actor {
       rollData.successModifier = dialogData.prefilled.successModifier;
       rollData.triggerModifier = dialogData.prefilled.triggerModifier;
     }
-    let rollResults = await DegenesisDice.rollAction(rollData);
+    let rollResults = await DegenesisDice.rollAction(rollData, { dsn });
 
     if (rollData.secondary)
       await this.handleSecondaryRoll(
@@ -876,7 +949,7 @@ export class DegenesisActor extends Actor {
   async rollFightRollFromHell(
     type,
     dice,
-    { skipDialog = false, spentEgo = 0 }
+    { skipDialog = false, spentEgo = 0, dsn = true }
   ) {
     let { dialogData, cardData, rollData } = this.setupFightRollFromHell(
       type,
@@ -893,7 +966,7 @@ export class DegenesisActor extends Actor {
       rollData.triggerModifier = dialogData.prefilled.triggerModifier;
     }
 
-    let rollResults = await DegenesisDice.rollAction(rollData);
+    let rollResults = await DegenesisDice.rollAction(rollData, { dsn });
 
     if (rollData.secondary)
       await this.handleSecondaryRoll(
@@ -924,11 +997,11 @@ export class DegenesisActor extends Actor {
 
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card.html",
@@ -958,8 +1031,36 @@ export class DegenesisActor extends Actor {
     return { dialogData, cardData, rollData };
   }
 
-  async rollAttack(attack, { skipDialog = false, use = null }) {
+  async rollAttack(attack, { skipDialog = false, use = null, override = {} }) {
     let { dialogData, cardData, rollData } = this.setupAttack(attack, { use });
+    foundry.utils.mergeObject(dialogData, override, { inplace: true, overwrite: true, recursive: true });
+    if (override?.prefilled?.difficulty != null) {
+      dialogData.prefilled.difficulty = override.prefilled.difficulty;
+      rollData.difficulty = override.prefilled.difficulty;
+    }
+
+    let roundsFired = 1;
+    let salvoesDiceBonus = 0;
+    if (
+      attack.salvoesMaxRounds != null &&
+      (attack.system.mag?.current >= 1 || !attack.system.mag)
+    ) {
+      const cap = attack.system.mag
+        ? Math.min(attack.salvoesMaxRounds, attack.system.mag.current)
+        : attack.salvoesMaxRounds;
+      if (!skipDialog) {
+        const n = await DegenesisDice.promptSalvoesCount(attack, cap);
+        if (n === null) return null;
+        roundsFired = n;
+      } else {
+        roundsFired = 1;
+      }
+      salvoesDiceBonus = roundsFired;
+    }
+
+    dialogData.prefilled.diceModifier += salvoesDiceBonus;
+    dialogData.totalRollModifiers.diceModifier += salvoesDiceBonus;
+
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
     else {
@@ -996,11 +1097,34 @@ export class DegenesisActor extends Actor {
     }
 
     const fullDamage = attack.fullDamage(rollResults.triggers, {
-      modifier: this.modifiers.damage,
+      modifier: this.modifiers.damage + salvoesDiceBonus,
     });
     cardData.damageFull = `${fullDamage}`;
+    const baseDamageNoTriggersAtk = Number(attack.fullDamage(0, {
+      modifier: this.modifiers.damage + salvoesDiceBonus,
+    })) || 0;
+    cardData.totalDamageDisplay = baseDamageNoTriggersAtk + (Number(rollResults.triggers) || 0);
+
+    if (attack.system.mag)
+      this.updateEmbeddedDocuments("Item", [
+        {
+          _id: attack.id,
+          "system.mag.current": Math.max(
+            0,
+            attack.system.mag.current - roundsFired
+          ),
+        },
+      ]);
+
+    if (!override?.deferRender) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
+    await this.handleRegularity(attack, rollResults, cardData, rollData.actionNumber);
 
     this.postRollChecks(rollResults, "weapon");
+    if (!override?.deferRender) {
+      cardData.alreadyRendered = true;
+    }
     return { rollResults, cardData };
   }
 
@@ -1008,6 +1132,29 @@ export class DegenesisActor extends Actor {
     let { dialogData, cardData, rollData } = this.setupDefense(defense, {
       use,
     });
+
+    let roundsFired = 1;
+    let salvoesDiceBonus = 0;
+    if (
+      defense.salvoesMaxRounds != null &&
+      (defense.system.mag?.current >= 1 || !defense.system.mag)
+    ) {
+      const cap = defense.system.mag
+        ? Math.min(defense.salvoesMaxRounds, defense.system.mag.current)
+        : defense.salvoesMaxRounds;
+      if (!skipDialog) {
+        const n = await DegenesisDice.promptSalvoesCount(defense, cap);
+        if (n === null) return null;
+        roundsFired = n;
+      } else {
+        roundsFired = 1;
+      }
+      salvoesDiceBonus = roundsFired;
+    }
+
+    dialogData.prefilled.diceModifier += salvoesDiceBonus;
+    dialogData.totalRollModifiers.diceModifier += salvoesDiceBonus;
+
     if (!skipDialog)
       rollData = await DegenesisDice.showRollDialog({ dialogData, rollData });
     else {
@@ -1044,7 +1191,22 @@ export class DegenesisActor extends Actor {
       } + ${rollData.secondary || DEGENESIS.skills[weapon.secondarySkill]})`;
     }
 
+    if (defense.system.mag)
+      this.updateEmbeddedDocuments("Item", [
+        {
+          _id: defense.id,
+          "system.mag.current": Math.max(
+            0,
+            defense.system.mag.current - roundsFired
+          ),
+        },
+      ]);
+
+    DegenesisChat.renderRollCard(rollResults, cardData);
+    await this.handleRegularity(defense, rollResults, cardData, rollData.actionNumber);
+
     this.postRollChecks(rollResults, "defense");
+    cardData.alreadyRendered = true;
     return { rollResults, cardData };
   }
 
@@ -1064,11 +1226,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollAttack;
     // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/weapon-roll-card.html",
@@ -1120,11 +1282,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollDefense;
     // ADD PREFILLED DICE MODIFIERS FOR TOTAL ROLL MODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card-two-lines.html",
@@ -1227,6 +1389,105 @@ export class DegenesisActor extends Actor {
       );
   }
 
+  async handleRegularity(weapon, rollResults, cardData, originalActionNumber, additionalMalus = 0) {
+    if (!weapon.regularityTriggers) return false;
+    if (rollResults.triggers < weapon.regularityTriggers) return false;
+
+    const currentMalus = additionalMalus + 2;
+    const choice = await new Promise((resolve) => {
+      const dialog = new Dialog({
+        title: game.i18n.localize("DGNS.RegularityTitle"),
+        content: `<p>${game.i18n.format("DGNS.RegularityPrompt", { malus: currentMalus })}</p>`,
+        buttons: {
+          yes: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize("Yes"),
+            callback: () => resolve(true),
+          },
+          no: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize("No"),
+            callback: () => resolve(false),
+          },
+        },
+        default: "no",
+        close: () => resolve(false),
+      });
+      dialog.render(true);
+    });
+
+    if (!choice) return false;
+
+    let roundsFired = 1;
+    let salvoesDiceBonus = 0;
+
+    if (weapon.salvoesMaxRounds != null && (weapon.system.mag?.current >= 1 || !weapon.system.mag)) {
+      const cap = weapon.system.mag
+        ? Math.min(weapon.salvoesMaxRounds, weapon.system.mag.current)
+        : weapon.salvoesMaxRounds;
+      const n = await DegenesisDice.promptSalvoesCount(weapon, cap);
+      if (n !== null) {
+        roundsFired = n;
+        salvoesDiceBonus = n;
+      }
+    }
+
+    const newDialogData = {
+      title: `${weapon.name} - ${game.i18n.format("DGNS.RegularityFollowUp", { malus: currentMalus })}`,
+      prefilled: {
+        diceModifier: -currentMalus + salvoesDiceBonus,
+        successModifier: 0,
+        triggerModifier: 0,
+        difficulty: 0,
+      },
+      customModifiers: this.modifiers.custom,
+      template: "systems/degenesis/templates/apps/roll-dialog.html",
+      showSecondaryOption: false,
+      totalRollModifiers: {
+        diceModifier: -currentMalus + salvoesDiceBonus,
+        successModifier: 0,
+        triggerModifier: 0,
+      },
+    };
+
+    let newRollData = {
+      actionNumber: originalActionNumber - currentMalus,
+      weapon: weapon,
+      difficulty: 0,
+      diceModifier: -currentMalus + salvoesDiceBonus,
+      successModifier: 0,
+      triggerModifier: 0,
+    };
+
+    newRollData = await DegenesisDice.showRollDialog({ dialogData: newDialogData, rollData: newRollData });
+
+    const newRollResults = await DegenesisDice.rollAction(newRollData);
+
+    const newCardData = this.constructCardData(
+      "systems/degenesis/templates/chat/weapon-roll-card.html",
+      `${weapon.name} - ${game.i18n.format("DGNS.RegularityFollowUp", { malus: currentMalus })}`
+    );
+    newCardData.damageFull = weapon.fullDamage(newRollResults.triggers, {
+      modifier: this.modifiers.damage + salvoesDiceBonus,
+    });
+
+    DegenesisChat.renderRollCard(newRollResults, newCardData);
+
+    if (weapon.system.mag && weapon.system.mag.current > 0)
+      this.updateEmbeddedDocuments("Item", [
+        {
+          _id: weapon.id,
+          "system.mag.current": Math.max(0, weapon.system.mag.current - roundsFired),
+        },
+      ]);
+
+    if (newRollResults.triggers >= weapon.regularityTriggers) {
+      return await this.handleRegularity(weapon, newRollResults, cardData, originalActionNumber, currentMalus);
+    }
+
+    return true;
+  }
+
   async postRollChecks(rollResults, type) {
     // CHEKING IF THERE WAS PREVIOUS EGO MODIFIER AND DELETE IT
     // USED WHEN ROLLING INITIATIVE WITH SPEND EGO VALUE
@@ -1277,7 +1538,7 @@ export class DegenesisActor extends Actor {
     }
 
     if (type !== "initiative" && this.state.initiative.actions >= 1)
-      await this.updateSource({
+      await this.update({
         "system.state.initiative.actions": this.state.initiative.actions - 1,
       });
   }
@@ -1381,11 +1642,11 @@ export class DegenesisActor extends Actor {
     dialogData.rollMethod = this.rollNPCSkill;
     // ADD PREFILLED DICE MODIFIERS FOR TOTALROLLMODIFIERS
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/roll-card.html",
@@ -1434,11 +1695,11 @@ export class DegenesisActor extends Actor {
     };
     dialogData.rollMethod = this.rollActivatePhenomenon;
     dialogData.totalRollModifiers.diceModifier +=
-      dialogData.prefilled.diceModifier;
+      dialogData.prefilled.displayDice || dialogData.prefilled.diceModifier;
     dialogData.totalRollModifiers.successModifier +=
-      dialogData.prefilled.successModifier;
+      dialogData.prefilled.displaySuccess || dialogData.prefilled.successModifier;
     dialogData.totalRollModifiers.triggerModifier +=
-      dialogData.prefilled.triggerModifier;
+      dialogData.prefilled.displayTrigger || dialogData.prefilled.triggerModifier;
 
     let cardData = this.constructCardData(
       "systems/degenesis/templates/chat/phenomenon-roll-card.html",
@@ -1489,6 +1750,7 @@ export class DegenesisActor extends Actor {
   }
 
   getSkillTotal(skill, options = { modifiers: false }) {
+    if (!this.skills?.[skill]) return 0;
     let total =
       this.attributes[this.skills[skill].attribute].value +
       this.skills[skill].value;

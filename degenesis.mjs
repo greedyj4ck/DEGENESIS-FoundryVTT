@@ -225,5 +225,32 @@ Hooks.on("setup", () => {
   }
 });
 
+// MIGRATE OLD MODIFIER FORMAT TO EFFECTS ARRAY
+Hooks.once("ready", async () => {
+  const modifiers = game.items.filter((item) => item.type === "modifier");
+  for (const mod of modifiers) {
+    const system = mod.system;
+    if (
+      (system.action || system.type || system.number) &&
+      (!system.effects || system.effects.length === 0)
+    ) {
+      const newEffects = [];
+      if (system.action) {
+        newEffects.push({
+          action: system.action,
+          type: system.type || "",
+          number: system.number || 0,
+        });
+      }
+      await mod.update({ "system.effects": newEffects });
+      console.log(
+        `%cDEGENESIS%c | Migrated modifier "${mod.name}" to effects format`,
+        "color: #ed1d27",
+        "color: unset"
+      );
+    }
+  }
+});
+
 // REGISTER ALL OTHER HOOKS
 hooks();

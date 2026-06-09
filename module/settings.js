@@ -14,9 +14,7 @@ export const DegenesisSystemSettings = () => {
     config: true,
     type: Boolean,
     default: true,
-    onChange: () => {
-      location.reload();
-    },
+    requiresReload: true,
   });
 
   // ALLOW ROLLS WITH MINIMUM ONE ACTION NUMBER
@@ -39,10 +37,26 @@ export const DegenesisSystemSettings = () => {
       config: true,
       type: Boolean,
       default: false,
-      onChange: () => {
-        location.reload();
-      },
+      requiresReload: true,
     });
+
+  game.settings.register(system, "AutomateAttackDefenseFlow", {
+    name: "DGNS.SettingsAutomateAttackDefenseFlow",
+    hint: "DGNS.SettingsAutomateAttackDefenseFlowHelper",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register(system, "AutomateAttackRangeCheck", {
+    name: "DGNS.SettingsAutomateAttackRangeCheck",
+    hint: "DGNS.SettingsAutomateAttackRangeCheckHelper",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true,
+  });
 
   console.log(`%cDEGENESIS` + `%c | Settings registered`, "color: #ed1d27", "color: unset");
 }
@@ -57,4 +71,12 @@ export const MinimumOneAN = () => {
 
 export const ShowInventoryHeaders = () => {
   return game.settings.get(system, "ShowInventoryHeaders");
-}; 
+};
+
+export const AutomateAttackDefenseFlow = () => {
+  return game.settings.get(system, "AutomateAttackDefenseFlow");
+};
+
+export const AutomateAttackRangeCheck = () => {
+  return game.settings.get(system, "AutomateAttackRangeCheck");
+};

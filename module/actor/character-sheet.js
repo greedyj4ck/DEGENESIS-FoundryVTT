@@ -2,9 +2,21 @@ import { DEGENESIS } from "../config.js";
 import { MODULE } from "../config.js";
 import { DEG_Utility } from "../utility.js";
 import { DegenesisChat } from "../chat.js";
+import { runAutomatedAttackFlow } from "../combat-automation.js";
+import {
+  createIntrinsicMeleeWeapon,
+  getIntrinsicMeleeWeaponRows,
+} from "../intrinsic-melee-weapons.js";
 import { DegenesisItem } from "../item/item-degenesis.js";
 import { DegenesisCombat } from "../combat-degenesis.js";
 import ActorConfigure from "../apps/actor-configure.js";
+import { registerInventoryCategoryCollapse } from "../sheet-inventory-collapse.js";
+import {
+  isStowableItem,
+  isStowableItemType,
+  promptStowInTransport,
+  setItemTransportLocation,
+} from "../inventory-stow.js";
 
 const { ActorSheet } = foundry.appv1.sheets;
 const { TextEditor } = foundry.applications.ux;
@@ -175,6 +187,8 @@ export class DegenesisCharacterSheet extends ActorSheet {
     }
 
     sheetData.inventory = this.constructInventory();
+    sheetData.encumbranceBreakdown = this._buildEncumbranceBreakdown();
+    sheetData.intrinsicMeleeWeapons = getIntrinsicMeleeWeaponRows(this.actor);
     sheetData.arsenal = this.constructArsenal();
     sheetData.transportation = {
       header: game.i18n.localize("DGNS.Transportation"),
@@ -192,6 +206,60 @@ export class DegenesisCharacterSheet extends ActorSheet {
     if (sheetData.document.getFlag(MODULE, "sheetLocked") === undefined) {
       sheetData.document.setFlag(MODULE, "sheetLocked", true);
     }
+  }
+
+  _buildEncumbranceBreakdown() {
+    const entries = [];
+    const rootItems = this.actor.items.filter((i) => !i.location && i.type !== "transportation");
+    for (const item of rootItems) {
+      const enc = Number(item.encumbrance) || 0;
+      if (enc <= 0) continue;
+      const qty = Math.max(1, Number(item.quantity) || 1);
+      const subtotal = enc * qty;
+      entries.push({
+        name: item.name,
+        qty,
+        showQty: qty > 1,
+        value: subtotal,
+      });
+    }
+
+    const transports = this.actor.getItemTypes("transportation");
+    for (const tr of transports) {
+      const data = tr.processTransportation();
+      const total = Number(data?.total) || 0;
+      if (total <= 0) continue;
+      entries.push({
+        name: tr.name,
+        qty: 1,
+        showQty: false,
+        value: total,
+      });
+    }
+
+    if (!entries.length) {
+      const enc = this.actor.system.general.encumbrance;
+      return {
+        entries: [],
+        over: Math.max(0, Number(enc.current || 0) - Number(enc.max || 0)),
+        current: Number(enc.current || 0),
+        max: Number(enc.max || 0),
+      };
+    }
+
+    entries.sort((a, b) => {
+      if (b.value !== a.value) return b.value - a.value;
+      return a.name.localeCompare(b.name, game.i18n.lang || undefined);
+    });
+
+    const enc = this.actor.system.general.encumbrance;
+    const over = Math.max(0, Number(enc.current || 0) - Number(enc.max || 0));
+    return {
+      entries,
+      over,
+      current: Number(enc.current || 0),
+      max: Number(enc.max || 0),
+    };
   }
 
   async _handleEnrichment() {
@@ -380,6 +448,14 @@ export class DegenesisCharacterSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    registerInventoryCategoryCollapse(html, this.actor);
+    html.on("click", ".item-stow-transport", (ev) =>
+      this._onStowTransportClick(ev)
+    );
+    html
+      .find(".action-modifier-breakdown")
+      .on("click", this._onActionModifierBreakdownClick.bind(this));
+
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
@@ -409,12 +485,55 @@ export class DegenesisCharacterSheet extends ActorSheet {
     html.find(".initiative-roll").click(this._onInitiativeClick.bind(this));
     html.find(".fight-roll").click(this._onFightClick.bind(this));
     html.find(".roll-weapon").click(this._onWeaponClick.bind(this));
+    html.find(".intrinsic-unarmed-line").click(this._onIntrinsicMeleeWeaponClick.bind(this));
     html.find(".quantity-click").mousedown(this._onQualityClick.bind(this));
     html.find(".reload-click").mousedown(this._onReloadClick.bind(this));
     html.find(".aggregate").click(this._onAggregateClick.bind(this));
     html
       .find(".tag.container-item")
       .mousedown(this._onContainerItemClick.bind(this));
+  }
+
+  /**
+   * Dialog listing dice (D) sources that sum to the general action modifier.
+   */
+  _onActionModifierBreakdownClick(event) {
+    event.preventDefault();
+    const diceUnit = game.i18n.localize("UI.D");
+    const lines = this.actor.modifiers?.actionDiceBreakdown ?? [];
+    const total = Number(this.actor.general?.actionModifier) || 0;
+
+    const formatVal = (n) =>
+      `${n > 0 ? "+" : ""}${String(n)}${diceUnit}`;
+
+    let body = '<div class="degenesis-action-mod-breakdown"><table class="plain">';
+    if (!lines.length) {
+      body += `<tr><td colspan="2">${game.i18n.localize(total ? "DGNS.ActionModBreakdownUnavailable" : "DGNS.ActionModBreakdownEmpty")}</td></tr>`;
+    } else {
+      for (const row of lines) {
+        const label = row.labelKey
+          ? game.i18n.localize(row.labelKey)
+          : DEG_Utility.escapeHtml(row.label ?? "—");
+        body += `<tr><td>${label}</td><td class="num">${formatVal(row.value)}</td></tr>`;
+      }
+    }
+    body += `<tr class="total"><td><strong>${game.i18n.localize("DGNS.ActionModBreakdownTotal")}</strong></td><td class="num"><strong>${formatVal(total)}</strong></td></tr>`;
+    body += "</table></div>";
+
+    new Dialog(
+      {
+        title: game.i18n.localize("DGNS.ActionModBreakdownTitle"),
+        content: body,
+        buttons: {
+          close: {
+            icon: '<i class="fas fa-check"></i>',
+            label: game.i18n.localize("DGNS.ActionModBreakdownClose"),
+          },
+        },
+        default: "close",
+      },
+      { width: 420 }
+    ).render(true);
   }
 
   // Handle custom drop events (currently just putting items into containers)
@@ -424,15 +543,7 @@ export class DegenesisCharacterSheet extends ActorSheet {
     if (transportTarget) {
       let jsonData = JSON.parse(event.dataTransfer.getData("text/plain"));
       let itemData = await fromUuid(jsonData.uuid);
-      if (
-        itemData.type == "weapon" ||
-        itemData.type == "armor" ||
-        itemData.type == "ammunition" ||
-        itemData.type == "equipment" ||
-        itemData.type == "mod" ||
-        itemData.type == "shield" ||
-        itemData.type == "artifact"
-      )
+      if (isStowableItemType(itemData.type))
         this.actor.updateEmbeddedDocuments("Item", [
           {
             _id: itemData._id,
@@ -457,6 +568,20 @@ export class DegenesisCharacterSheet extends ActorSheet {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
+  async _onStowTransportClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.actor.canUserModify(game.user, "update")) return;
+    if (this.isLocked({ notify: true })) return;
+    const row = event.currentTarget.closest(".entry-list-item[data-item-id]");
+    const itemId = row?.dataset?.itemId;
+    const item = itemId ? this.actor.items.get(itemId) : null;
+    if (!item || !isStowableItem(item)) return;
+    const transportId = await promptStowInTransport(this.actor, item);
+    if (!transportId) return;
+    await setItemTransportLocation(this.actor, item, transportId);
+  }
+
   _onItemCreate(event) {
     if (this.isLocked({ notify: true })) return;
     let type = $(event.currentTarget).attr("data-item");
@@ -693,8 +818,45 @@ export class DegenesisCharacterSheet extends ActorSheet {
     let { rollResults, cardData } = await this.actor.rollFightRoll(type, {
       skipDialog,
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
+  async _onIntrinsicMeleeWeaponClick(event) {
+    event.preventDefault();
+    const worldId = $(event.currentTarget)
+      .closest("[data-world-weapon-id]")
+      .attr("data-world-weapon-id");
+    if (!worldId) return;
+    const skipDialog = event.shiftKey;
+    const use = event.ctrlKey ? "defense" : "attack";
+    const weapon = createIntrinsicMeleeWeapon(this.actor, worldId);
+    if (!weapon) {
+      ui.notifications.warn(
+        game.i18n.localize("DGNS.IntrinsicMeleeWeaponMissing")
+      );
+      return;
+    }
+    const mag = weapon.system?.mag;
+    if (mag && mag.current <= 0 && weapon.isRanged && !weapon.isSonic) {
+      ui.notifications.error(game.i18n.localize("UI.NoAmmoLeft"));
+      return;
+    }
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: weapon,
+      use,
+      skipDialog,
+      attackRollMethod: this.actor.rollWeapon.bind(this.actor),
+    });
+    if (automated?.handled) return;
+    const rolled = await this.actor.rollWeapon(weapon, { use, skipDialog });
+    if (!rolled) return;
+    if (!rolled.cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rolled.rollResults, rolled.cardData);
+    }
+  }
+
   async _onWeaponClick(event) {
     let weaponId = $(event.currentTarget)
       .parents(".weapon")
@@ -709,11 +871,21 @@ export class DegenesisCharacterSheet extends ActorSheet {
       return;
     }
 
-    let { rollResults, cardData } = await this.actor.rollWeapon(weapon, {
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: weapon,
       use,
       skipDialog,
+      attackRollMethod: this.actor.rollWeapon.bind(this.actor),
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (automated?.handled) return;
+
+    let rolled = await this.actor.rollWeapon(weapon, { use, skipDialog });
+    if (!rolled) return;
+    let { rollResults, cardData } = rolled;
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
   _onQualityClick(event) {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");

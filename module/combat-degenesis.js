@@ -109,9 +109,11 @@ export class DegenesisCombat extends Combat {
 	static async rollInitiativeFor(actor, messageOptions = {}) {
 		if (!actor) return 0;
 		const spentEgo = actor.state.spentEgo.value;
+		const dsnDisabled = game.modules.get("dice-so-nice")?.active && game.settings.get("dice-so-nice", "disabledForInitiative");
 		const { rollResults, cardData } = await actor.rollFightRoll("initiative", {
 			skipDialog: messageOptions.skipDialog ? messageOptions.skipDialog : false,
 			spentEgo,
+			dsn: !dsnDisabled,
 		});
 		let actionCount = 1;
 		if (rollResults.triggers > 1) {
@@ -159,7 +161,7 @@ export class DegenesisCombat extends Combat {
 		});
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}
@@ -170,6 +172,7 @@ export class DegenesisCombat extends Combat {
 		if (!actor) return 0;
 		const spentEgo = actor.state.spentEgo.value;
 		const actionModifier = actor.general.actionModifier;
+		const dsnDisabled = game.modules.get("dice-so-nice")?.active && game.settings.get("dice-so-nice", "disabledForInitiative");
 
 		const { rollResults, cardData } = await actor.rollFightRollFromHell(
 			"initiative",
@@ -179,6 +182,7 @@ export class DegenesisCombat extends Combat {
 					? messageOptions.skipDialog
 					: false,
 				spentEgo,
+				dsn: !dsnDisabled,
 			}
 		);
 		let actionCount = 1;
@@ -231,7 +235,7 @@ export class DegenesisCombat extends Combat {
 		});
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}
@@ -251,6 +255,7 @@ export class DegenesisCombat extends Combat {
 		}
 
 		let spentEgo = spentPoints;
+		const dsnDisabled = game.modules.get("dice-so-nice")?.active && game.settings.get("dice-so-nice", "disabledForInitiative");
 
 		const { rollResults, cardData } = await actor.rollFightRollFromHell(
 			"initiative",
@@ -260,6 +265,7 @@ export class DegenesisCombat extends Combat {
 					? messageOptions.skipDialog
 					: false,
 				spentEgo,
+				dsn: !dsnDisabled,
 			}
 		);
 
@@ -349,7 +355,7 @@ export class DegenesisCombat extends Combat {
 
 		cardData.initiative = initiativeValue;
 		cardData.actions = actionCount;
-		DegenesisChat.renderRollCard(rollResults, cardData);
+		DegenesisChat.renderRollCard(rollResults, cardData, { core: { initiativeRoll: true } });
 
 		return initiativeValue;
 	}

@@ -8,6 +8,14 @@ import ActorConfigure from "../apps/actor-configure.js";
 const { ActorSheet } = foundry.appv1.sheets;
 const { TextEditor } = foundry.applications.ux;
 
+import { runAutomatedAttackFlow } from "../combat-automation.js";
+import { registerInventoryCategoryCollapse } from "../sheet-inventory-collapse.js";
+import {
+  isStowableItem,
+  promptStowInTransport,
+  setItemTransportLocation,
+} from "../inventory-stow.js";
+
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -180,6 +188,10 @@ export class DegenesisAberrantSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+    registerInventoryCategoryCollapse(html, this.actor);
+    html.on("click", ".item-stow-transport", (ev) =>
+      this._onStowTransportClick(ev)
+    );
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -245,6 +257,19 @@ export class DegenesisAberrantSheet extends ActorSheet {
   _onItemDelete(event) {
     let itemId = $(event.currentTarget).parents(".item").attr("data-item-id");
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+
+  async _onStowTransportClick(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.actor.canUserModify(game.user, "update")) return;
+    const row = event.currentTarget.closest(".entry-list-item[data-item-id]");
+    const itemId = row?.dataset?.itemId;
+    const item = itemId ? this.actor.items.get(itemId) : null;
+    if (!item || !isStowableItem(item)) return;
+    const transportId = await promptStowInTransport(this.actor, item);
+    if (!transportId) return;
+    await setItemTransportLocation(this.actor, item, transportId);
   }
 
   _onButtonAddClick(event) {
@@ -463,11 +488,19 @@ export class DegenesisAberrantSheet extends ActorSheet {
 
     // Add conditional for range weapons without ammo
 
-    let { rollResults, cardData } = await this.actor.rollAttack(attack, {
+    const automated = await runAutomatedAttackFlow({
+      actor: this.actor,
+      item: attack,
       use,
       skipDialog,
+      attackRollMethod: this.actor.rollAttack.bind(this.actor),
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (automated?.handled) return;
+
+    let { rollResults, cardData } = await this.actor.rollAttack(attack, { use, skipDialog });
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   // Defense roll using new simplified dice roll manager
@@ -488,7 +521,9 @@ export class DegenesisAberrantSheet extends ActorSheet {
       use,
       skipDialog,
     });
-    DegenesisChat.renderRollCard(rollResults, cardData);
+    if (!cardData.alreadyRendered) {
+      DegenesisChat.renderRollCard(rollResults, cardData);
+    }
   }
 
   _onDropdown(event) {

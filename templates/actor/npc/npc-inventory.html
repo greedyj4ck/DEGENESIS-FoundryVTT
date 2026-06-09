@@ -24,12 +24,12 @@
 
         {{#if section.items.length includeZero=(showHeaders)}}
 
-        <div class="inventory-group weapon-group">
+        <div class="inventory-group weapon-group" data-inventory-category="{{section.type}}">
 
             <div class="section-header-container">
                 <div class="section-header-titleblock">
                     <div class="block-title gold">
-                        <h3>{{localize section.header}}</h3>
+                        <h3 class="inventory-category-toggle">{{localize section.header}}</h3>
                         <a class="right bold icon item-add  " data-item="{{localize section.type}}">+</a>
                     </div>
                     <svg class="tab-start-line" height="20" width="26">
@@ -87,6 +87,9 @@
                                 <line x1="0%" y1="0%" x2="0%" y2="14px"></line>
                             </svg>
                         </div>
+                        {{#if (degenesisItemStowable item)}}
+                        <a class="icon item-stow-transport" data-tooltip="UI.StowInTransportTooltip"><i class="fas fa-box-open"></i></a>
+                        {{/if}}
                         <a class="icon item-post"><i class="fas fa-comment"></i></a>
                         <a class="icon item-edit"><i class="fas fa-edit"></i></a>
                         <a class="icon item-delete"><i class="fas fa-times"></i></a>
@@ -105,12 +108,12 @@
 
         <!-- CONTAINERS -->
         {{#if transportation.items.length includeZero=(showHeaders)}}
-        <div class="inventory-group weapon-group">
+        <div class="inventory-group weapon-group" data-inventory-category="transportation">
 
             <div class="section-header-container">
                 <div class="section-header-titleblock">
                     <div class="block-title gold">
-                        <h3>{{localize transportation.header}}</h3>
+                        <h3 class="inventory-category-toggle">{{localize transportation.header}}</h3>
                         <a class="right bold icon item-add" data-item="transportation">+</a>
                     </div>
                     <svg class="tab-start-line" height="20" width="26">
@@ -163,8 +166,7 @@
                         <div class="item-summary">
                             <div class="tags">
                                 {{#each item.itemsWithin as |containerItem i|}}
-                                <a class="tag container-item" data-item-id="{{containerItem.id}}">{{containerItem.name}}
-                                    ({{containerItem.encumbrance}})</a>
+                                <a class="tag container-item" data-item-id="{{containerItem.id}}">{{containerItem.name}}{{degenesisContainerQtySuffix containerItem}} ({{containerItem.encumbrance}})</a>
                                 {{/each}}
                             </div>
                         </div>

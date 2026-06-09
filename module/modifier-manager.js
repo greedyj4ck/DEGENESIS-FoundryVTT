@@ -2,6 +2,11 @@ import { DEGENESIS } from "./config.js";
 
 export class ModifierManager {
   constructor(actor) {
+    /** @type {{ label?: string, labelKey?: string, value: number }[]} Dice (D) only, same order as applied to action.D */
+    this.actionDiceBreakdown = [];
+    /** @type {Object<string, Array<{name: string, D: number, S: number, T: number}>>} Sources for each modifier key */
+    this._modifierSources = {};
+
     let shields = actor.getItemTypes("shield").filter((i) => i.equipped);
     let shieldPassiveModifier = 0;
     let shieldActiveModifier = 0;
@@ -16,21 +21,46 @@ export class ModifierManager {
     let modifierArray = actor.getItemTypes("modifier").filter((i) => i.enabled);
     this.custom = [];
     modifierArray.forEach((mod) => {
-      if (mod.action == "custom") {
-        this.custom.push(mod);
-      } else if (DEGENESIS.noType.includes(mod.action)) {
-        if (!this[mod.action]) this[mod.action] = mod.number;
-        else this[mod.action] += mod.number;
-      } else if (mod.action && mod.type) {
-        if (!this[mod.action]) {
-          this[mod.action] = {
-            D: 0,
-            S: 0,
-            T: 0,
-          };
+      // Handle new effects array format
+      const effectsToProcess = mod.system.effects && mod.system.effects.length > 0
+        ? mod.system.effects
+        : (mod.system.action ? [{ action: mod.system.action, type: mod.system.type, number: mod.system.number }] : []);
+
+      effectsToProcess.forEach((effect) => {
+        if (effect.action == "custom") {
+          this.custom.push(mod);
+        } else if (DEGENESIS.noType.includes(effect.action)) {
+          if (!this[effect.action]) this[effect.action] = effect.number;
+          else this[effect.action] += effect.number;
+          // Track source
+          if (!this._modifierSources[effect.action]) this._modifierSources[effect.action] = [];
+          this._modifierSources[effect.action].push({ name: mod.name, value: Number(effect.number) || 0, type: "" });
+        } else if (effect.action && effect.type) {
+          if (!this[effect.action]) {
+            this[effect.action] = {
+              D: 0,
+              S: 0,
+              T: 0,
+            };
+          }
+          const modifyType = effect.type === "D" ? "D" : (effect.type === "S" ? "S" : "T");
+          const modifyNumber = Number(effect.number) || 0;
+          this[effect.action][modifyType] += modifyNumber;
+          // Track source
+          if (!this._modifierSources[effect.action]) this._modifierSources[effect.action] = [];
+          this._modifierSources[effect.action].push({ name: mod.name, value: modifyNumber, type: modifyType });
+          if (
+            effect.action === "action" &&
+            modifyType === "D" &&
+            modifyNumber
+          ) {
+            this.actionDiceBreakdown.push({
+              label: mod.name,
+              value: modifyNumber,
+            });
+          }
         }
-        this[mod.action][mod.modifyType] += mod.modifyNumber;
-      }
+      });
     });
     if (!this["action"]) {
       this.action = {
@@ -80,10 +110,25 @@ export class ModifierManager {
         T: 0,
       };
     }
-    this.action.D = actor.system.state.motion
-      ? this.action.D - 2
-      : this.action.D;
-    this.action.D -= actor.system.condition.trauma.value;
+    if (actor.system.state.motion) {
+      this.action.D -= 2;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.InMotion",
+        value: -2,
+      });
+      if (!this._modifierSources["action"]) this._modifierSources["action"] = [];
+      this._modifierSources["action"].push({ name: game.i18n.localize("DGNS.InMotion"), value: -2, type: "D" });
+    }
+    const traumaVal = Number(actor.system.condition.trauma.value) || 0;
+    if (traumaVal) {
+      this.action.D -= traumaVal;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.Trauma",
+        value: -traumaVal,
+      });
+      if (!this._modifierSources["action"]) this._modifierSources["action"] = [];
+      this._modifierSources["action"].push({ name: game.i18n.localize("DGNS.Trauma"), value: -traumaVal, type: "D" });
+    }
     this.attack.D = this.attack.D
       ? this.attack.D + shieldAttackModifier
       : shieldAttackModifier;
@@ -93,6 +138,7 @@ export class ModifierManager {
     this.a_defense.D = this.a_defense.D
       ? this.a_defense.D + shieldActiveModifier
       : shieldActiveModifier;
+
   }
 
   addEncumbranceModifiers(actor) {
@@ -106,6 +152,12 @@ export class ModifierManager {
         actor.system.general.encumbrance.max;
 
       this.action.D -= penalty;
+      this.actionDiceBreakdown.push({
+        labelKey: "DGNS.ActionModEncumbranceExcess",
+        value: -penalty,
+      });
+      if (!this._modifierSources["action"]) this._modifierSources["action"] = [];
+      this._modifierSources["action"].push({ name: game.i18n.localize("DGNS.Encumbrance"), value: -penalty, type: "D" });
       // this.attack.D -= penalty;
     }
   }
@@ -123,6 +175,10 @@ export class ModifierManager {
       diceModifier: 0,
       successModifier: 0,
       triggerModifier: 0,
+      displayDice: 0,
+      displaySuccess: 0,
+      displayTrigger: 0,
+      breakdown: [],
     };
 
     if (game.user.targets.size && use != "attack-sonic") {
@@ -140,28 +196,61 @@ export class ModifierManager {
     }
 
     for (let modifier in this) {
+      // Skip internal properties
+      if (modifier === "_modifierSources" || modifier === "actionDiceBreakdown" || modifier === "custom") continue;
+
       let useModifier = false;
-      if (
-        modifier == "action" &&
-        type != "weapon" &&
-        type != "dodge" &&
-        type != "initiative"
-        //type != "mentalDefense"
-        //type != "phenomenon"
-      ) {
-        useModifier = true;
+      let showInDisplay = false;
+
+      if (modifier == "action") {
+        // Action modifier is always relevant for display
+        showInDisplay = true;
+        // But only added to prefilled calculation values for certain types
+        // (for weapon/dodge/initiative it's already baked into actionNumber)
+        if (type != "weapon" && type != "dodge" && type != "initiative") {
+          useModifier = true;
+        }
       } else if (modifier.includes("attr:")) {
         let attrMod = modifier.split(":")[1];
-        if (attrMod == DEGENESIS.skillAttributes[skill]) useModifier = true;
+        if (attrMod == DEGENESIS.skillAttributes[skill]) {
+          useModifier = true;
+          showInDisplay = true;
+        }
       } else if (modifier.includes("skill:")) {
         let skillMod = modifier.split(":")[1];
-        if (skillMod == skill) useModifier = true;
+        if (skillMod == skill) {
+          useModifier = true;
+          showInDisplay = true;
+        }
+      } else if (
+        (modifier == "attack" && use && use.includes("attack")) ||
+        (modifier == "a_defense" && use == "defense") ||
+        (modifier == "dodge" && type == "dodge") ||
+        (modifier == "initiative" && type == "initiative") ||
+        (modifier == "mentalDefense" && (type == "mentalDefense" || type == "mentalDefenseWill" || type == "mentalDefenseFaith"))
+      ) {
+        showInDisplay = true;
       }
 
       if (useModifier) {
         prefilled.diceModifier += this[modifier].D;
         prefilled.successModifier += this[modifier].S;
         prefilled.triggerModifier += this[modifier].T;
+      }
+
+      // Display values include ALL modifiers (even those baked into base dice)
+      if (showInDisplay && this[modifier] && typeof this[modifier] === "object") {
+        prefilled.displayDice += this[modifier].D || 0;
+        prefilled.displaySuccess += this[modifier].S || 0;
+        prefilled.displayTrigger += this[modifier].T || 0;
+
+        // Build breakdown from source modifiers
+        const sources = this._modifierSources?.[modifier] || [];
+        sources.forEach((src) => {
+          const display = (src.value > 0 ? "+" : "") + src.value + src.type;
+          const color = src.value > 0 ? "#6bcf6b" : "#cf6b6b";
+          prefilled.breakdown.push({ name: src.name, display, color });
+        });
       }
     }
     return prefilled;
@@ -181,6 +270,9 @@ export class ModifierManager {
     };
 
     for (let modifier in this) {
+      // Skip internal properties
+      if (modifier === "_modifierSources" || modifier === "actionDiceBreakdown" || modifier === "custom") continue;
+
       let useModifier = false;
       if (
         modifier == "action" ||

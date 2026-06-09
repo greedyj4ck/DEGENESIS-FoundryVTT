@@ -49,6 +49,8 @@ export class DegenesisItem extends Item {
   }
 
   prepareWeapon() {
+    if (!this.skill || !this.actor?.system?.skills) return;
+
     let dice = {
       attack: undefined,
       defense: undefined,
@@ -91,6 +93,8 @@ export class DegenesisItem extends Item {
 
   // Prepare data for attack item type for From Hell
   prepareAttack() {
+    if (!this.attack) return;
+
     let dice = {
       attack: undefined,
       effective: undefined,
@@ -114,6 +118,8 @@ export class DegenesisItem extends Item {
 
   // Prepare proper dice values for defense items
   prepareDefense() {
+    if (!this.defense) return;
+
     // forSheet(type, skill, use) function shortcut
     let dice = {
       passive: undefined,
@@ -234,35 +240,44 @@ export class DegenesisItem extends Item {
     return compatibleAmmo.reduce((a, b) => a + b.quantity, 0);
   }
 
-  fullDamage(triggers, { body, force, modifier }) {
+  fullDamage(triggers, { body, force, modifier } = {}) {
     let damage;
+    const mod = Number(modifier) || 0;
+    const baseFromStat = (v) =>
+      (parseInt(String(v ?? "").trim(), 10) || 0) + mod;
 
     if (this.actor.type === "character") {
       let bodyTotal = this.actor.attributes.body.value + (body || 0);
       let forceTotal = this.actor.skills.force.value + (force || 0);
 
-      const baseValue = parseInt(this.damage) + (modifier || 0);
+      const baseValue = baseFromStat(this.damage);
 
       damage = baseValue;
       if (this.DamageBonus)
         damage += this.DamageBonus.calculate(bodyTotal + forceTotal, triggers);
     } else if (this.actor.type === "fromhell") {
-      const baseValue = parseInt(this.damage) + (modifier || 0);
+      const baseValue = baseFromStat(this.damage);
       damage = baseValue;
       if (this.DamageBonus) {
-        damage += this.DamageBonus.calculate(triggers);
+        const bodyVal = this.actor.attributes?.body?.value ?? 0;
+        const forceVal = this.actor.skills?.force?.value ?? 0;
+        damage += this.DamageBonus.calculate(bodyVal + forceVal, triggers);
       }
     } else if (this.actor.type === "npc") {
-      const baseValue = parseInt(this.damage) + (modifier || 0);
+      const baseValue = baseFromStat(this.damage);
       damage = baseValue;
       if (this.DamageBonus) {
-        damage += this.DamageBonus.calculate(triggers);
+        const bodyVal = this.actor.attributes?.body?.value ?? 0;
+        const forceVal = this.actor.skills?.force?.value ?? 0;
+        damage += this.DamageBonus.calculate(bodyVal + forceVal, triggers);
       }
     } else if (this.actor.type === "aberrant") {
-      const baseValue = parseInt(this.damage) + (modifier || 0);
+      const baseValue = baseFromStat(this.damage);
       damage = baseValue;
       if (this.DamageBonus) {
-        damage += this.DamageBonus.calculate(triggers);
+        const bodyVal = this.actor.attributes?.body?.value ?? 0;
+        const forceVal = this.actor.skills?.force?.value ?? 0;
+        damage += this.DamageBonus.calculate(bodyVal + forceVal, triggers);
       }
     }
 
@@ -273,6 +288,85 @@ export class DegenesisItem extends Item {
     return ammo.filter(
       (a) => a.type == "ammunition" && a.name == weapon.Caliber
     );
+  }
+
+  /** Ranged attack roll types (sheet links); excludes melee "attack", defense, sonic. */
+  static isRangedAttackUse(use) {
+    return ["attack-short", "attack-far", "attack-extreme"].includes(use);
+  }
+
+  /**
+   * Owned ammunition items on the actor that match the weapon caliber (display name).
+   * @param {Actor} actor
+   * @param {DegenesisItem} weapon
+   * @returns {DegenesisItem[]}
+   */
+  static getCompatibleAmmoItems(actor, weapon) {
+    const list = actor.getItemTypes("ammunition") ?? [];
+    return DegenesisItem.matchAmmo(weapon, list);
+  }
+
+  /**
+   * Move ammunition from inventory stacks into the weapon magazine.
+   * @param {Actor} actor
+   * @param {DegenesisItem} weapon
+   * @param {number} amount
+   * @returns {Promise<{ ok: true } | { ok: false }>}
+   */
+  static async consumeAmmoFromInventory(actor, weapon, amount) {
+    if (!Number.isInteger(amount) || amount < 1) return { ok: false };
+    const space = weapon.system.mag.size - weapon.system.mag.current;
+    if (amount > space) return { ok: false };
+    const compatible = DegenesisItem.getCompatibleAmmoItems(actor, weapon);
+    const total = compatible.reduce((s, i) => s + i.quantity, 0);
+    if (amount > total) return { ok: false };
+    let remaining = amount;
+    const updates = [];
+    for (const stack of compatible) {
+      if (remaining <= 0) break;
+      const q = stack.quantity;
+      const take = Math.min(q, remaining);
+      updates.push({ _id: stack.id, "system.quantity": q - take });
+      remaining -= take;
+    }
+    const newMagCurrent = weapon.system.mag.current + amount;
+    updates.push({ _id: weapon.id, "system.mag.current": newMagCurrent });
+    await actor.updateEmbeddedDocuments("Item", updates);
+    return { ok: true };
+  }
+
+  /**
+   * Move ammunition from the magazine back to inventory (first compatible stack, or new item).
+   * @param {Actor} actor
+   * @param {DegenesisItem} weapon
+   * @param {number} amount
+   */
+  static async returnAmmoToInventory(actor, weapon, amount) {
+    if (!Number.isInteger(amount) || amount < 1) return;
+    if (amount > weapon.system.mag.current) return;
+    const newMagCurrent = weapon.system.mag.current - amount;
+    const compatible = DegenesisItem.getCompatibleAmmoItems(actor, weapon);
+    if (compatible.length > 0) {
+      const first = compatible[0];
+      await actor.updateEmbeddedDocuments("Item", [
+        { _id: weapon.id, "system.mag.current": newMagCurrent },
+        {
+          _id: first.id,
+          "system.quantity": first.quantity + amount,
+        },
+      ]);
+    } else {
+      await actor.updateEmbeddedDocuments("Item", [
+        { _id: weapon.id, "system.mag.current": newMagCurrent },
+      ]);
+      await actor.createEmbeddedDocuments("Item", [
+        {
+          name: weapon.Caliber,
+          type: "ammunition",
+          system: { quantity: amount },
+        },
+      ]);
+    }
   }
 
   //#endregion
@@ -312,6 +406,23 @@ export class DegenesisItem extends Item {
     };
   }
   _modifierDropdownData() {
+    const effects = this.system.effects;
+    const actions = DEG_Utility.getModificationActions();
+
+    // New effects format
+    if (effects && effects.length > 0) {
+      let text = `<b>${game.i18n.localize("DGNS.Name").toUpperCase()}</b>: ${this.name}<br>`;
+      text += `<b>${game.i18n.localize("DGNS.Rules").toUpperCase()}</b>:<br>`;
+      effects.forEach((e) => {
+        const num = e.number > 0 ? "+" + e.number : String(e.number);
+        const type = DEGENESIS.modifyTypes[e.type] || "";
+        const action = actions[e.action] || e.action || "";
+        text += `&nbsp;&nbsp;• ${num}${type} on ${action}<br>`;
+      });
+      return { text };
+    }
+
+    // Old format fallback
     let displayNumber;
     if (this.modifyNumber > 0) {
       displayNumber = "+" + this.modifyNumber;
@@ -674,6 +785,28 @@ export class DegenesisItem extends Item {
     if ((this.system.type = "weapon")) return this.group == "sonic";
   }
 
+  /** @returns {number|null} Positive integer from quality salvoes "rounds", or null */
+  get salvoesMaxRounds() {
+    if (!["weapon", "attack", "defense"].includes(this.type)) return null;
+    const q = this.system.qualities?.find((x) => x.name === "salvoes");
+    if (!q?.values?.length) return null;
+    const rounds = q.values.find((v) => v.name === "rounds");
+    if (!rounds) return null;
+    const n = parseInt(String(rounds.value).trim(), 10);
+    return Number.isInteger(n) && n > 0 ? n : null;
+  }
+
+  /** @returns {number|null} Positive integer from quality smoothRunning triggers required, or null */
+  get regularityTriggers() {
+    if (!["weapon", "attack", "defense"].includes(this.type)) return null;
+    const q = this.system.qualities?.find((x) => x.name === "smoothRunning");
+    if (!q?.values?.length) return null;
+    const trigger = q.values.find((v) => v.name === "trigger");
+    if (!trigger) return null;
+    const n = parseInt(String(trigger.value).trim(), 10);
+    return Number.isInteger(n) && n > 0 ? n : null;
+  }
+
   get hasSpecialty() {
     return !!(
       this.qualities && this.qualities.find((q) => q.name == "special")
@@ -765,6 +898,22 @@ export class DegenesisItem extends Item {
 
   get ActionType() {
     return DEG_Utility.getModificationActions()[this.action];
+  }
+
+  /**
+   * Returns a formatted summary of all effects for display in the modifier list.
+   * Example: "+2D on INS+Orientation, +2D on INT+Legends"
+   */
+  get EffectsSummary() {
+    const effects = this.system.effects;
+    if (!effects || effects.length === 0) return "";
+    const actions = DEG_Utility.getModificationActions();
+    return effects.map((e) => {
+      const num = e.number > 0 ? "+" + e.number : String(e.number);
+      const type = DEGENESIS.modifyTypes[e.type] || "";
+      const action = actions[e.action] || e.action || "";
+      return `${num}${type} on ${action}`;
+    }).join(", ");
   }
 
   // @@@@@@@@ DATA GETTERS @@@@@@@@@@

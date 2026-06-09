@@ -1,0 +1,18 @@
+{{#if didHit}}
+<h3 class="degenesis-auto-combat-hit-title">{{localize "DGNS.AutoAttackHitsTitle"}}</h3>
+{{/if}}
+<p>
+{{localize "DGNS.Attack"}}: <b>{{attackSuccesses}}S</b> /
+{{#if defenseIsActive}}
+{{localize "DGNS.AutoDefenseActiveLabel"}}: <b>{{defenseSuccesses}}S</b>
+{{else}}
+{{localize "DGNS.AutoDefensePassiveLabel"}}: <b>{{passiveDefenseDifficulty}}</b>
+{{/if}}
+</p>
+{{#if didHit}}
+<h3>{{localize "DGNS.AutoTotalDamage"}}: {{damage}} {{damageTypeLabel}} {{localize "DGNS.AutoIncludingTriggerPart" triggers=triggerDamageBonus}}</h3>
+<button type="button" class="degenesis-apply-damage-button">{{localize "DGNS.AutoApplyDamageButton"}}</button>
+{{else}}
+<h3>{{localize "DGNS.AutoNoHit"}}</h3>
+{{#if missReason}}<p>{{missReason}}</p>{{/if}}
+{{/if}}

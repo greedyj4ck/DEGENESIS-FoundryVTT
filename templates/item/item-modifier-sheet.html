@@ -3,7 +3,7 @@
 
 
     {{!-- Sheet Body --}}
-    <section class="sh-body tab-content-container">
+    <section class="sh-body tab-content-container" style="overflow-y: auto;">
         <div class="titlebar-container">
 
             <div class="square little left"></div>
@@ -20,43 +20,77 @@
         </div>
 
         <div class="detail-container">
-
-            <div class="column">
-
-                <div class="sh-field">
-                    <span class="field-name">{{localize "DGNS.Action"}}: </span>
-                    <select name="system.action">
-                        {{#selectOptions modifyActions selected=system.action blank="-"}}
-                        {{/selectOptions}}
-                    </select>
-                </div>
-
-                <div class="sh-field">
-                    <span class="field-name">{{localize "UI.Number"}}: </span>
-                    <div class="field-inputs">
-                        <input class="field-input field-start" type="text" name="system.number"
-                            value="{{system.number}}" data-dtype="Number" placeholder="-1, +2, etc" />
-                    </div>
-                </div>
+            <div class="sh-field">
+                <span class="field-name">{{localize "DGNS.ShowName"}}: </span>
+                <input type="checkbox" name="system.showName" {{checked system.showName}}>
             </div>
+        </div>
 
-            <div class="column">
-                {{#if showType}}
-                <div class="sh-field">
-                    <span class="field-name">{{localize "UI.Type"}}: </span>
-                    <select name="system.type">
-                        {{#selectOptions (config "modifyTypes") selected=system.type blank="-"}}
+        <!-- EFFECTS LIST -->
+        <div class="titlebar-container" style="margin-top: 20px;">
+            <div class="square little left"></div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="title-line-header">Effets ({{system.effects.length}})</div>
+            <svg class="title-line">
+                <line x1="0" y1="11" x2="100%" y2="11" class="line-stroke"></line>
+            </svg>
+            <div class="square little right"></div>
+        </div>
 
-                        {{/selectOptions}}
-                        <select>
+        <div class="effects-list" style="margin: 15px 0;">
+            {{#if system.effects.length}}
+                {{#each system.effects as |effect index|}}
+                <div class="effect-row" style="display: grid; grid-template-columns: 2fr 1fr 100px auto; gap: 12px; margin-bottom: 12px; padding: 12px; background: rgba(75, 123, 236, 0.08); border: 1px solid rgba(75, 123, 236, 0.3); border-radius: 3px; align-items: center;">
+                    <!-- ACTION SELECT -->
+                    <div>
+                        <label style="display: block; font-size: 0.75em; color: #aaa; margin-bottom: 4px; text-transform: uppercase;">Action</label>
+                        <select class="effect-action" data-index="{{index}}" style="width: 100%; padding: 8px; font-size: 0.95em; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 2px;">
+                            {{#selectOptions ../modifyActions selected=effect.action blank="-"}}
+                            {{/selectOptions}}
+                        </select>
+                    </div>
+
+                    <!-- TYPE SELECT -->
+                    <div>
+                        <label style="display: block; font-size: 0.75em; color: #aaa; margin-bottom: 4px; text-transform: uppercase;">Type</label>
+                        <select class="effect-type" data-index="{{index}}" style="width: 100%; padding: 8px; font-size: 0.95em; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 2px;">
+                            {{#selectOptions (config "modifyTypes") selected=effect.type blank="-"}}
+                            {{/selectOptions}}
+                        </select>
+                    </div>
+
+                    <!-- NUMBER INPUT -->
+                    <div>
+                        <label style="display: block; font-size: 0.75em; color: #aaa; margin-bottom: 4px; text-transform: uppercase;">Nombre</label>
+                        <input class="effect-number" data-index="{{index}}" type="text" value="{{effect.number}}"
+                            data-dtype="Number" placeholder="-1, +2, etc" style="width: 100%; padding: 8px; font-size: 0.95em; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: #fff; text-align: center; border-radius: 2px;" />
+                    </div>
+
+                    <!-- DELETE BUTTON -->
+                    <button class="effect-delete" data-index="{{index}}" type="button" title="Supprimer cet effet" style="padding: 8px; background: rgba(255, 100, 100, 0.2); border: 1px solid rgba(255, 100, 100, 0.5); color: #ff6464; cursor: pointer; border-radius: 2px; height: fit-content; align-self: flex-end;">
+                        <i class="fas fa-trash" style="font-size: 0.9em;"></i>
+                    </button>
+                </div>
+                {{/each}}
+            {{else}}
+                {{#if system.action}}
+                <div style="padding: 12px; background: rgba(75, 123, 236, 0.1); border: 1px solid rgba(75, 123, 236, 0.4); border-radius: 3px; margin-bottom: 12px;">
+                    <div style="font-size: 0.9em; color: #aaa; margin-bottom: 8px;">
+                        <strong style="color: #4b7bec;">⚠ Ancien format détecté</strong><br/>
+                        Cliquez sur "Ajouter un effet" pour convertir les données
+                    </div>
+                    <button class="effect-delete-legacy" type="button" title="Effacer l'ancien format" style="padding: 6px 12px; background: rgba(255, 100, 100, 0.2); border: 1px solid rgba(255, 100, 100, 0.5); color: #ff6464; cursor: pointer; border-radius: 2px; font-size: 0.85em;">
+                        <i class="fas fa-trash"></i> Effacer l'ancien format
+                    </button>
                 </div>
                 {{/if}}
-                <div class="sh-field">
-                    <span class="field-name">{{localize "DGNS.ShowName"}}: </span>
-                    <input type="checkbox" name="system.showName" {{checked system.showName}}>
-                </div>
+            {{/if}}
 
-            </div>
+            <button class="effect-add" type="button" style="width: 100%; padding: 12px; margin-top: 12px; background: rgba(75, 123, 236, 0.25); border: 1px solid #4b7bec; color: #4b7bec; cursor: pointer; border-radius: 3px; font-weight: bold; font-size: 0.95em; transition: all 0.2s;">
+                <i class="fas fa-plus"></i> Ajouter un effet
+            </button>
         </div>
         {{#if (eq item.action "custom")}}
 
